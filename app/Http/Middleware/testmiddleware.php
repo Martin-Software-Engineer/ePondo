@@ -21,11 +21,12 @@ class testmiddleware
         //     return route ('login');
         // }
         
-        $users_id = $request->user()->role_id;
+        $users_id = $request->user()->id;
 
-        if ($users_id == 1) {
+        if ($users_id != 1) {
              
-             return $next($request);
+            return redirect('login'); 
+            // return $next($request);
          }
          else
         {
