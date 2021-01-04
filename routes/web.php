@@ -28,3 +28,7 @@ Route::get('/backer', function () {
 Route::prefix('admin')->name('admin.')->group(function (){
     Route::resource('/users', UserController::class);
 });
+
+Route::get('/', function(){
+    dd(\Illuminate\Support\Facades\Auth::user());
+})->middleware(['auth','verified']);
