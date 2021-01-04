@@ -16,10 +16,22 @@ class testmiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        dd($request);
-        if(!$request->user() && $request->user()->roles->name != "Backer"){
-            return route ('login');
+        // dd($request->user()->roles());
+        // if($request){
+        //     return route ('login');
+        // }
+        
+        $users_id = $request->user()->role_id;
+
+        if ($users_id == 1) {
+             
+             return $next($request);
+         }
+         else
+        {
+            return redirect('login'); 
+            
         }
-        return $next($request);
+
     }
 }
