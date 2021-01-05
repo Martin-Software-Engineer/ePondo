@@ -18,13 +18,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/backer', function () {
-    return view('backer');
-})->middleware('testmiddleware');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Admin Routes
-Route::prefix('admin')->name('admin.')->group(function (){
+//Admin Routes using Route Group
+Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-Admin'])->group(function (){
     Route::resource('/users', UserController::class);
 });

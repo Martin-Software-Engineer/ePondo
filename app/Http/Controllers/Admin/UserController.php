@@ -22,14 +22,22 @@ class UserController extends Controller
     
     public function index()
     {
-        if(Gate::denies('logged-in')){
-            dd('no access allowed');
-        }
+        // if(Gate::denies('logged-in')){
+        //     dd('no access allowed');
+        // }
+        // if(Gate::allows('is-Admin')){
+            
+            // $users = User::paginate(10);
+            // $roles = Role::all();
         
+            // return view('admin.users.index',['users' => $users,'roles' => $roles]);
+        // }
+
         $users = User::paginate(10);
         $roles = Role::all();
-        
+    
         return view('admin.users.index',['users' => $users,'roles' => $roles]);
+    
     }
 
     /**
