@@ -6,6 +6,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
             <div class="card mt-4">
+
+            @if (session('status'))
+            <div class="alert alert-danger mt-4" role="alert">
+                {{ session('status') }}
+            </div>
+            @endif
+
                 <h3 class="mt-2 pd-2">Login</h3>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf

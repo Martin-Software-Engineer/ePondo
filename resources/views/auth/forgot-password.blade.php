@@ -7,11 +7,13 @@
             <div class="col-md-8">
             <div class="card mt-4">
                 <h3 class="mt-2 pd-2">Reset Password</h3>
+
                 @if(session('status'))
                     <div class="alert alert-success" role="alert">
                         {{session('status')}}
                     </div>
                 @endif
+                
                 <form method="POST" action="{{ route('password.request') }}">
                     @csrf
                     <div class="form-group">

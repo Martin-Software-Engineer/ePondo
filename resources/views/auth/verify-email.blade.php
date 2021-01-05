@@ -6,17 +6,22 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
             <div class="card mt-4">
+
             @if(session('status'))
                     <div class="alert alert-success" role="alert">
                         {{session('status')}}
                     </div>
-                @endif
-                <h3 class="mt-2 pd-2">You must verify your email address, please check your email for a verification link</h3>
+            @endif
+
+                <h5 class="mt-4">Please verify email address</h5>
+                <p>We have sent you a verification link, please check your email inbox.<br>
+                If you have not received any email from us. Please click the button below.</p>
+                
                 <form method="POST" action="{{ route('verification.send') }}">
                     @csrf
-                    
-                    <button type="submit" class="btn btn-primary mt-4">Resend Email</button>
+                    <button type="submit" class="btn btn-primary mt-1">Resend Email Verification Link</button>
                 </form>
+                
             </div>
             </div>
         </div>
