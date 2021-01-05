@@ -38,7 +38,7 @@
                                 </label>
                             </div> -->
 
-                            <div class="form-check">
+                            <div class="form-check @error('role') is-invalid @enderror">
                                 <input class="form-check-input @error('role') is-invalid @enderror" type="radio" 
                                         name="role" id="{{$role->name}}" value="{{ $role->id }}"
                                         
@@ -55,5 +55,9 @@
                                 </div>
 
                         @endforeach
+
+                        @error('role')
+                            <span class="invalid-feedback" role="alert">{{$message}}</span>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

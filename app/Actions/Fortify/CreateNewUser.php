@@ -33,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             ],
             'password' => $this->passwordRules(),
             'role' => 'required', // Add validate data for role
-        ])->validate();
+            ])->validate();
 
         $user =  User::create([
             'name' => $input['name'],
