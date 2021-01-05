@@ -32,7 +32,6 @@
                         @if (Route::has('login'))
                         <div>
                             @auth
-                                <a href="#">Home</a>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); 
                                 document.getElementById('logout-form').submit();">Logout</a>
 
