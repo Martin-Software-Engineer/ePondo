@@ -35,7 +35,7 @@
 
                 <div class="mb-3">
                         @foreach($roles as $role)
-                            <div class="form-check">
+                            <!-- <div class="form-check">
                                 <input class="form-check-input @error('role') is-invalid @enderror" name="role"
                                         type="checkbox" value="{{ $role->id }}" id="{{$role->name}}"
                                         @isset($user) 
@@ -45,10 +45,30 @@
                                 <label class="form-check-label" for="{{$role->name}}">
                                     {{ $role->name }}
                                 </label>
-                            </div>
+                            </div> -->
+
+                             
+                                <div class="form-check">
+                                <input class="form-check-input @error('role') is-invalid @enderror" type="radio" 
+                                        name="role" id="{{$role->name}}" value="{{ $role->id }}"
+                                        
+                                        @isset($user) 
+                                        @if(in_array($role->id, $user->roles->pluck('id')->toArray())) checked 
+                                        @endif 
+                                        @endisset
+                                        
+                                >
+                                
+                                <label class="form-check-label" for="{{$role->name}}">
+                                    {{ $role->name }}
+                                </label>
+                                </div>
+                            
+
                             @error('role')
-                        <span class="invalid-feedback" role="alert">Please select a role!!!!!</span>
-                        @enderror
+                            <span class="invalid-feedback" role="alert">Please select a role!!!!!</span>
+                            @enderror
+
                         @endforeach
                         
                         
