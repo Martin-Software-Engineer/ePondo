@@ -70,6 +70,12 @@
                     </li>
                     @endcan
 
+                    @can('is-JobSeeker')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('jobseeker.campaigns.index') }}">Campaigns</a>
+                    </li>
+                    @endcan
+
                     <li class="nav-item active">
                         <a class="nav-link" href="/MyProfile">My Profile</a>
                     </li>

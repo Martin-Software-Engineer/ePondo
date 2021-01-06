@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\JobSeeker;
 
-use App\Models\Role;
+use App\Models\Campaign;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class CampaignController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $campaigns = Campaign::all();
+        return view ('jobseeker.campaigns.index',['campaigns' => $campaigns]);
+
+        
     }
 
     /**
@@ -41,10 +45,10 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show($id)
     {
         //
     }
@@ -52,10 +56,10 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +68,10 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,11 +79,11 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        //possibly used for future use on crud roles, but most likely just to view roles
+        //
     }
 }
