@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use Admin\UserController;
+use JobSeeker\CampaignController;
+
 use App\Mail\UserVerifyEmail;
 use App\Mail\WelcomeMail;
 use App\Mail\CampaignMail;
 use App\Mail\JobMail;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,4 +51,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-Admin'])->gr
 Route::get('/MyProfile', function () {
     return view('myprofile');
 })->middleware(['auth','verified']);
+
+//JobSeeker -> Campaigns Route using Route Group
+Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-JobSeeker'])->group(function (){
+    Route::resource('/campaigns', CampaignController::class);
+});
 
