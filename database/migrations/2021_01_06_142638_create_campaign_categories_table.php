@@ -15,7 +15,7 @@ class CreateCampaignCategoriesTable extends Migration
     {
         Schema::create('campaign_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->string('description');
             $table->timestamps();
         });
