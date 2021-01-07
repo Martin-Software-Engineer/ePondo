@@ -1,8 +1,14 @@
 <?php
 
-use Admin\UserController;
 use Illuminate\Support\Facades\Route;
+use Admin\UserController;
 use JobSeeker\CampaignController;
+
+use App\Mail\UserVerifyEmail;
+use App\Mail\WelcomeMail;
+use App\Mail\CampaignMail;
+use App\Mail\JobMail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +23,22 @@ use JobSeeker\CampaignController;
 
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/email', function () {
+    return new UserVerifyEmail()    ;
+});
+
+Route::get('/welcome-mail', function () { //create user email
+    return new WelcomeMail();
+});
+
+Route::get('/campaign-mail', function () { //creating campaign email
+    return new CampaignMail();
+});
+
+Route::get('/job-mail', function () { //creating job email
+    return new JobMail();
 });
 
 //Admin Routes using Route Group
