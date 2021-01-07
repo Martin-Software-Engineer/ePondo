@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(RoleUserSeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(CampaignSeeder::class);
+        $this->call(CampaignCategorySeeder::class);
+        // $this->call(CampaignCategoryCampaignSeeder::class);
         
     }
 }

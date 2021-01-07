@@ -14,6 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->times(30)->create(); //used to generate 10 fake users
+        User::factory()->times(30)->create(); //used to generate fake users
     }
 }

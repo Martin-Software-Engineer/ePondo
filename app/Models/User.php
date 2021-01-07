@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function campaigns()
     {
-        return $this->hasMany(Campaign::class);
+        return $this->belongsToMany(Campaign::class);
     }
     
     // MIDDLEWARE PURPOSES
