@@ -42,8 +42,8 @@ class AdminSeeder extends Seeder
         
         // $roles = Role::where('id',[1])->get();
         $AdminRey->roles()->attach(1);
-        $AdminNicole->roles()->attach(1);
-        $AdminPat->roles()->attach(1);
+        $AdminNicole->roles()->attach(2);
+        $AdminPat->roles()->attach(3);
 
         // $AdminRey->attach($roles->random(1)->pluck('id'));
         // $AdminNicole->attach($roles->random(1)->pluck('id'));

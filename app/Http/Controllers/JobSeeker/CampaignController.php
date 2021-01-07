@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
+use App\Models\User;
 use App\Models\Campaign;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\CampaignCategory;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CampaignController extends Controller
 {
@@ -15,10 +19,20 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::all();
-        return view ('jobseeker.campaigns.index',['campaigns' => $campaigns]);
+        // $users = User::paginate(10);
+        // $roles = Role::all();
+        // return view('admin.users.index',['users' => $users,'roles' => $roles]);
 
+        $user_id = auth()->user()->id;
+
+        // $campaign = Campaign::all();
+        // $filtered_campaign = $campaign->where('user_id',[$user_id]);
+
+        $users = DB::select('select * from campaigns where user_id = ?', [$user_id]);
+
+        $campaign_categories = CampaignCategory::all();
         
+        return view ('jobseeker.campaigns.index',['campaigns' => $users,'campaign_categories' => $campaign_categories]);
     }
 
     /**
@@ -28,7 +42,7 @@ class CampaignController extends Controller
      */
     public function create()
     {
-        //
+        return view('jobseeker.campaigns.create',['campaign_categories' => CampaignCategory::all()]);
     }
 
     /**
@@ -39,7 +53,77 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        
+
+        // $campaign = Campaign::create($validatedData);
+
+        // $jobs1 = new Job();
+        // $jobs1->name = request('name');
+        // $jobs1->save();
+
+        //DB::insert('insert into jobs (name) values (?)', [request('name')]);
+        // $question = $questionnaire->questions()->create($data['question']);
+        // $question -> answers()->createMany($data['answers']);
+
+        // $campaign = Campaign::create($data['title'],$data['description']);
+
+        // $campaign = new Campaign();
+        // $campaign -> user_id = Auth::id();
+        // $campaign -> title = $data['title'];
+        // $campaign -> description = $data['description'];
+
+        // $data =  Campaign::create([
+            
+        //     'title' => $data['title'],
+        //     'description' => $data['description']
+            
+        // ]);
+
+        $data = $request->validate([
+            
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
+        ]);
+
+        $campaign = new Campaign();
+        $campaign -> user_id = auth()->user()->id;
+        $campaign -> title = $data['title'];
+        $campaign -> description = $data['description'];
+        $campaign -> save();
+
+        // $jobs1 = new Job();
+        // $jobs1->name = request('name');
+        // $jobs1->save();
+
+        // $data['user_id'] = auth()->user()->id;
+        // Campaign::create($data);
+
+
+        //Used when using the relationship of the users and questionnaires
+        // $campaign = auth() -> user() -> campaigns() -> create($data);
+
+        $campaign->campaign_categories()->attach($request['campaign_category']);
+        $request ->session()->flash('success','You have created a campaign');
+
+        // $campaign->campaign_categories()->sync($request->campaign_category);
+
+        
+
+        return redirect(route('jobseeker.campaigns.index'));
+
+        //$validatedData = $request->validate([
+        //     'name' => 'required|max:255',
+        //     'email' => 'required|max:255|unique:users',
+        //     'password' => 'required|min:8|max:255'
+        // ]);
+        // $user = User::create($validatedData);
+
+        // $user->roles()->sync($request->roles);
+
+        // $request ->session()->flash('success','You have created the user');
+
+        // return redirect(route('admin.users.index'));
     }
 
     /**
