@@ -19,16 +19,18 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">-->
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">   
             <div class="container">
                 <a class="navbar-brand" href="/">{{ config('app.name','ePondo') }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                
                     
                     </ul>
-                    <div class="form-inline my-2 my-lg-0">
+                   <!-- <div class="form-inline my-2 my-lg-0">
                         @if (Route::has('login'))
                         <div>
                             @auth
@@ -47,8 +49,33 @@
                                 @endif
                             @endauth
                         </div>
-                        @endif
+                        @endif-->
+
+
+                        <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @if (Route::has('login'))
+                        @auth
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); 
+                                document.getElementById('logout-form').submit();">Logout</a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none">
+                                @csrf
+                                </form>
+                            @else 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                           
+                            
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @endauth
                     </div>
+                    @endif
                 
             </div>
         </nav>
