@@ -25,22 +25,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/email', function () {
-    return new UserVerifyEmail()    ;
-});
-
-Route::get('/welcome-mail', function () { //create user email
-    return new WelcomeMail();
-});
-
-Route::get('/campaign-mail', function () { //creating campaign email
-    return new CampaignMail();
-});
-
-Route::get('/job-mail', function () { //creating job email
-    return new JobMail();
-});
-
 //Admin Routes using Route Group
 Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-Admin'])->group(function (){
     Route::resource('/users', UserController::class);
@@ -57,3 +41,13 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-JobS
     Route::resource('/campaigns', CampaignController::class);
 });
 
+// Mail Routes
+Route::get('/email', function () { return new UserVerifyEmail(); });
+Route::get('/welcome-mail', function () { return new WelcomeMail(); }); //create user email
+Route::get('/campaign-mail', function () { return new CampaignMail(); }); //creating campaign email
+Route::get('/job-mail', function () { return new JobMail(); }); //creating job email
+
+// Front-End Coding
+Route::get('/login-demo', function () {
+    return view('/auth/login-demo');
+});
