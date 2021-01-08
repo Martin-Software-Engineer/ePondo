@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title" aria-describedby="title" placeholder="Enter Title" 
-                                value="{{ old('title') }}">
+                                autocomplete="off" value="{{ old('title') }}">
                         @error('title')
                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                         @enderror
@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label for="description">Description</label>
                         <input name="description" type="text" class="form-control @error('description') is-invalid @enderror" id="description" aria-describedby="description" placeholder="Enter Description" 
-                                value="{{ old('description') }}">
+                            autocomplete="off" value="{{ old('description') }}">
                         @error('description')
                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                         @enderror
