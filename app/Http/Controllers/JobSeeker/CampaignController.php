@@ -25,14 +25,12 @@ class CampaignController extends Controller
 
         $user_id = auth()->user()->id;
 
-        // $campaign = Campaign::all();
-        // $filtered_campaign = $campaign->where('user_id',[$user_id]);
+        $campaigns = Campaign::where('user_id',$user_id)->get();
+        // $campaigns = $campaigns->
 
-        $users = DB::select('select * from campaigns where user_id = ?', [$user_id]);
-
-        $campaign_categories = CampaignCategory::all();
+        // $campaigns = DB::select('select * from campaigns where user_id = ?', [$user_id]);
         
-        return view ('jobseeker.campaigns.index',['campaigns' => $users,'campaign_categories' => $campaign_categories]);
+        return view ('jobseeker.campaigns.index',['campaigns' => $campaigns]);
     }
 
     /**
@@ -82,8 +80,8 @@ class CampaignController extends Controller
 
         $data = $request->validate([
             
-            'title' => 'required|max:255',
-            'description' => 'required|max:255',
+            'title' => 'required',
+            'description' => 'required',
         ]);
 
         $campaign = new Campaign();
