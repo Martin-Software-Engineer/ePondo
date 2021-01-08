@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use App\Models\Campaign;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CampaignFactory extends Factory
@@ -22,9 +23,9 @@ class CampaignFactory extends Factory
      */
     public function definition()
     {
-        
+
         return [
-            'user_id' => 1,
+            'user_id' => 32,
             'title' => $this->faker->text,
             'description' => $this->faker->text($maxNbChars = 200)
         ];
