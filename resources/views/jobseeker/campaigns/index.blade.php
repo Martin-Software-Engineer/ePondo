@@ -9,26 +9,26 @@
     <table class="table">
         <thead>
             <tr>
-            <th scope="col">#ID</th>
+            <th scope="col">Campaign ID</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
-            <th scope="col">Category Id</th>
+            <th scope="col">Category ID</th>
             <th scope="col">Category Name</th>
             <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($campaigns as $campaign)
-            
+            @foreach($campaign->campaign_categories as $campaign_category)
             <tr>
             <th scope="row">{{ $campaign->id }}</th>
             <td>{{ $campaign -> title }}</td>
             <td>{{ $campaign -> description }}</td>
-            <td></td>
-            <td></td>
+            <td>{{ $campaign_category->id }}</td>
+            <td>{{ $campaign_category->name }}</td>
             <td></td>
             </tr>
-            
+            @endforeach
             @endforeach
         </tbody>
     </table>

@@ -36,7 +36,7 @@ class UserController extends Controller
         $users = User::paginate(10);
         $roles = Role::all();
     
-        return view('admin.users.index',['users' => $users,'roles' => $roles]);
+        return view('admin.users.index',['users' => $users]);
     
     }
 

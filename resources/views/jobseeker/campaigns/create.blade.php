@@ -28,6 +28,7 @@
                     </div>
                    
                     <div class="mb-3">
+                        <label for="campaign_category" class="mb-2">Campaign Category</label>
                         @foreach($campaign_categories as $campaign_category)
                             
                             <div class="form-check @error('campaign_category') is-invalid @enderror">
