@@ -82,6 +82,7 @@ class CampaignController extends Controller
             
             'title' => 'required',
             'description' => 'required',
+            'campaign_category' => 'required'
         ]);
 
         $campaign = new Campaign();
