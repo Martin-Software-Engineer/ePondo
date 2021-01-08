@@ -48,6 +48,5 @@ Route::get('/campaign-mail', function () { return new CampaignMail(); }); //crea
 Route::get('/job-mail', function () { return new JobMail(); }); //creating job email
 
 // Front-End Coding
-Route::get('/login-demo', function () {
-    return view('/auth/login-demo');
-});
+Route::get('/login-demo', function () { return view('/auth/login-demo'); });
+Route::get('/register-demo', function () { return view('/auth/register-demo'); });
