@@ -32,5 +32,5 @@
             @endforeach
         </tbody>
     </table>
-
+    {{ $campaigns->links() }}
 @endsection

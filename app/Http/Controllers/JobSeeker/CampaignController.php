@@ -25,7 +25,7 @@ class CampaignController extends Controller
 
         $user_id = auth()->user()->id;
 
-        $campaigns = Campaign::where('user_id',$user_id)->get();
+        $campaigns = Campaign::where('user_id',$user_id)->paginate(5);
         // $campaigns = $campaigns->
 
         // $campaigns = DB::select('select * from campaigns where user_id = ?', [$user_id]);
