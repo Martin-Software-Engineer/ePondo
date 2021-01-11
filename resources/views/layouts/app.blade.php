@@ -105,7 +105,7 @@
 
                     @can('is-JobSeeker')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('jobseeker.campaigns.index') }}">Campaigns</a>
+                        <a class="nav-link" href="{{ route('jobseeker.campaigns.index') }}">My Campaigns</a>
                     </li>
                     @endcan
 

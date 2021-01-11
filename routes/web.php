@@ -25,7 +25,7 @@ use App\Mail\JobMail;
 Route::get('/', function () {return view('public.index');});                        // HOME PAGE
 Route::get('/Campaigns', function () { return view('public.campaigns.index'); });   // Campaigns
 Route::get('/Jobs', function () { return view('public.jobs.index'); });             // Jobs
-Route::get('/AboutUs', function () { return view('public.aboutus'); });     // About Us
+Route::get('/AboutUs', function () { return view('public.aboutus'); });             // About Us
 
 //Admin Routes using Route Group
 Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-Admin'])->group(function (){
@@ -38,6 +38,7 @@ Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(
 //JobSeeker -> Campaigns Route using Route Group
 Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-JobSeeker'])->group(function (){
     Route::resource('/campaigns', CampaignController::class);
+    // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
 });
 
 // Mail Routes

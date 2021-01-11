@@ -131,9 +131,16 @@ class CampaignController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Campaign $campaign)
     {
-        //
+        // use below if show($questionnaire)
+        // $campaign = Campaign::findOrFail($id);
+        // return view('jobseeker.campaigns.show',[ 'campaign' => $campaign]);
+        
+
+        // $questionnaire -> load ('questions.answers.responses');
+
+        return view('jobseeker.campaigns.show', compact('campaign'));
     }
 
     /**
@@ -144,7 +151,7 @@ class CampaignController extends Controller
      */
     public function edit($id)
     {
-        //
+        return route('jobseeker.campaign.edit','$id');
     }
 
     /**

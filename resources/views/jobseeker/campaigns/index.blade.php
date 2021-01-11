@@ -22,11 +22,13 @@
             @foreach($campaign->campaign_categories as $campaign_category)
             <tr>
             <th scope="row">{{ $campaign->id }}</th>
-            <td>{{ $campaign -> title }}</td>
+            <td><a href="{{$campaign -> path() }}">{{ $campaign -> title }}</a></td>
             <td>{{ $campaign -> description }}</td>
             <td>{{ $campaign_category->id }}</td>
             <td>{{ $campaign_category->name }}</td>
-            <td></td>
+            <td>
+                    <a class="btn btn-sm btn-primary" href="{{$campaign -> path() }}" role="button">View</a>
+            </td>
             </tr>
             @endforeach
             @endforeach

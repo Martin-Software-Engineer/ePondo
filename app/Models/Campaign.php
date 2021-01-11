@@ -16,6 +16,11 @@ class Campaign extends Model
         'description'
     ];
 
+    public function path(){
+
+        return url ('/jobseeker/campaigns/' . $this -> id);
+    }
+
     public function user(){
         return $this->belongsToMany(User::class);;
     }
