@@ -23,8 +23,11 @@
     <div class="container">
         <div class="row">
             <div class="col align-self-center">
-                <a class="btn btn-sm btn-primary" href="{{ route('jobseeker.campaigns.edit',$campaign->id)}}" role="button">Edit</a>
-                <!--                                    {{ route('jobseeker.campaigns.index') }} -->
+                <a class="btn btn-sm btn-primary" href="/jobseeker/campaigns/{{$campaign->id}}/edit" role="button">Edit</a>
+                <!--                                    {{ route('jobseeker.campaigns.index') }}
+                                                            {{$campaign -> path() }}
+                                                            {{ $campaign -> path('/$campaign->id/edit') }}
+                 -->
             </div>
         </div>
     </div>

@@ -151,7 +151,9 @@ class CampaignController extends Controller
      */
     public function edit($id)
     {
-        return route('jobseeker.campaign.edit','$id');
+        // $campaign = Campaign::find($id);
+        return view('jobseeker.campaigns.edit',['campaign' => Campaign::find($id)]); 
+        // return route('jobseeker.campaigns.edit','$id');
     }
 
     /**
@@ -163,7 +165,16 @@ class CampaignController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+
+        $campaign = Campaign::findOrFail($id);
+
+        $campaign->update($request->except(['_token']));
+        // $campaign->roles()->sync($request->roles);
+
+        $request ->session()->flash('success','You have edited the campaign');
+
+        return redirect(route('jobseeker.campaigns.index'));
     }
 
     /**
