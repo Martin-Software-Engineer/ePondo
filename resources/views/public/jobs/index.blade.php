@@ -7,5 +7,5 @@
         </div>
     @endif -->
 
-    <br><br><h1>Welcome to ePondo!</h1>
+    <br><br><h1>Public Path Jobs!</h1>
 @endsection
