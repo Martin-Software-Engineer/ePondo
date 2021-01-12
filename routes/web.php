@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 // PUBLIC PATHS
 Route::get('/', function () {return view('public.index');});                        // HOME PAGE
 Route::get('/Campaigns', 'PublicCampaignController@index');                         // Campaigns
-Route::get('/Jobs', 'PublicJobController@index');                              // Jobs
+Route::get('/Jobs', 'PublicJobController@index');                                   // Jobs
 Route::get('/AboutUs', function () { return view('public.aboutus'); });             // About Us
 
 //Admin Routes using Route Group

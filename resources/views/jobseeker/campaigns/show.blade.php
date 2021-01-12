@@ -29,6 +29,10 @@
         </div>
     </div>
 
+    <div class="row">
+        <h1>Jobs</h1>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-4">
@@ -58,7 +62,7 @@
             <td>{{ $job_category->id }}</td>
             <td>{{ $job_category->name }}</td>
             <td>
-                    <a class="btn btn-sm btn-primary" href="#" role="button">View Job Not Yet working</a>
+                <a class="btn btn-sm btn-primary" href="/jobseeker/campaigns/{{$campaign -> id}}/jobs/{{$job->id}}" role="button">View</a>
             </td>
             </tr>
             @endforeach
