@@ -20,6 +20,7 @@
             <p>{{ $campaign -> description}}</p>
         </div>
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col align-self-center">
@@ -30,5 +31,9 @@
                  -->
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        <a href="/jobseeker/campaigns/{{$campaign -> id}}/jobs/create" class="btn btn-dark">Add Job</a>
     </div>
 @endsection

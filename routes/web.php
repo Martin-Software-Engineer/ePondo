@@ -1,13 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Admin\UserController;
-use JobSeeker\CampaignController;
-
-use App\Mail\UserVerifyEmail;
+use App\Mail\JobMail;
 use App\Mail\WelcomeMail;
 use App\Mail\CampaignMail;
-use App\Mail\JobMail;
+use App\Mail\UserVerifyEmail;
+
+use Admin\UserController;
+// use App\Http\Controllers\JobController as ControllersJobController;
+use JobSeeker\CampaignController;
+// use JobSeeker\JobController;
+// use JobController;
+use App\Http\Controllers;
+
+use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -38,8 +44,31 @@ Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(
 //JobSeeker -> Campaigns Route using Route Group
 Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-JobSeeker'])->group(function (){
     Route::resource('/campaigns', CampaignController::class);
+    Route::resource('/campaigns.jobs', JobController::class);
+    // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
     // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
 });
+
+//JobSeeker -> Campaigns Route using Route Group
+// Route::middleware(['auth','auth.is-JobSeeker'])->group(function (){
+//     Route::resource('/jobseeker/campaigns/{campaign}/jobs', JobController::class);
+    // Route::resource('/campaigns.jobs', JobController::class);
+    // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
+    // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
+// });
+
+// Route::get('/jobseeker/campaigns/{campaign}/jobs/create','JobController@create');
+
+//JobSeeker -> Campaigns Route using Route Group
+// Route::prefix('jobseeker/campaigns/{campaign}/')->name('jobseeker.campaigns')->middleware(['auth','auth.is-JobSeeker'])->group(function (){
+//     Route::resource('/jobs', JobController::class);
+    // Route::resource('/campaigns.jobs', JobController::class);
+    // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
+    // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
+// });
+
+// Route::resource('campaigns.jobs',JobController::class);
+
 
 // Mail Routes
 Route::get('/email', function () { return new UserVerifyEmail(); });
