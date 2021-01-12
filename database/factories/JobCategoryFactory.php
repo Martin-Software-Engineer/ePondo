@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Job;
+use App\Models\JobCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class JobFactory extends Factory
+class JobCategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Job::class;
+    protected $model = JobCategory::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,7 @@ class JobFactory extends Factory
     public function definition()
     {
         return [
-            'campaign_id' => 1,
-            'title' => $this->faker->text,
-            'description' => $this->faker->text($maxNbChars = 200)
+            //
         ];
     }
 }

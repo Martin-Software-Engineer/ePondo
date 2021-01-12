@@ -18,4 +18,8 @@ class Job extends Model
     {
         return $this->belongsTo(Campaign::class);
     }
+
+    public function job_categories(){
+        return $this->belongsToMany(JobCategory::class);
+    }
 }
