@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Job;
 use App\Models\User;
 use App\Models\CampaignCategory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,5 +28,10 @@ class Campaign extends Model
 
     public function campaign_categories(){
         return $this->belongsToMany(CampaignCategory::class);
+    }
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
     }
 }

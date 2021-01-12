@@ -27,7 +27,6 @@ class CampaignController extends Controller
 
         $campaigns = Campaign::where('user_id',$user_id)->paginate(5);
         // $campaigns = $campaigns->
-
         // $campaigns = DB::select('select * from campaigns where user_id = ?', [$user_id]);
         
         return view ('jobseeker.campaigns.index',['campaigns' => $campaigns]);
