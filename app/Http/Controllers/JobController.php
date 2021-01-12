@@ -84,10 +84,19 @@ class JobController extends Controller
      * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function show(Job $job)
+    public function show($campaign_id, Job $job)
     {
-        //
+          
+        $job = Job::where('id',$job->id)->first();
+        
+        // return view('jobseeker.campaigns.show', compact('campaign'));
+        return view('jobseeker.jobs.show', ['job'=> $job, 'campaign' => $campaign_id]);
     }
+
+    // public function show($country_id, City $city)
+    // {
+    //     return view('admin.cities.show', compact('country_id', 'city'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -95,9 +104,10 @@ class JobController extends Controller
      * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function edit(Job $job)
+    public function edit($campaign_id, Job $job)
     {
-        //
+        
+        return view('jobseeker.jobs.edit',['job' => $job, 'campaign' => $campaign_id]); 
     }
 
     /**
@@ -107,9 +117,18 @@ class JobController extends Controller
      * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Job $job)
+    public function update($campaign_id, Request $request, Job $job)
     {
-        //
+        // $campaign = Campaign::findOrFail($id);
+
+        $job->update($request->except(['_token']));
+        // $job->roles()->sync($request->roles);
+
+        $request ->session()->flash('success','You have edited the job');
+
+        $job = Job::where('id',$job->id)->first();
+
+        return view ('jobseeker.jobs.show', ['job'=> $job, 'campaign' => $campaign_id]);
     }
 
     /**
