@@ -11,7 +11,7 @@ use JobSeeker\CampaignController;
 // use JobSeeker\JobController;
 // use JobController;
 use App\Http\Controllers;
-
+use App\Http\Controllers\PublicCampaignController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,8 +29,8 @@ use Illuminate\Support\Facades\Route;
 
 // PUBLIC PATHS
 Route::get('/', function () {return view('public.index');});                        // HOME PAGE
-Route::get('/Campaigns', function () { return view('public.campaigns.index'); });   // Campaigns
-Route::get('/Jobs', function () { return view('public.jobs.index'); });             // Jobs
+Route::get('/Campaigns', 'PublicCampaignController@index');                         // Campaigns
+Route::get('/Jobs', 'PublicJobController@index');                              // Jobs
 Route::get('/AboutUs', function () { return view('public.aboutus'); });             // About Us
 
 //Admin Routes using Route Group
