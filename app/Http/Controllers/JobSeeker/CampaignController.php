@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
+use App\Models\Job;
 use App\Models\User;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
@@ -139,7 +140,14 @@ class CampaignController extends Controller
 
         // $questionnaire -> load ('questions.answers.responses');
 
-        return view('jobseeker.campaigns.show', compact('campaign'));
+        // return view('jobseeker.campaigns.show', compact('campaign'));
+        
+        $campaign_id = $campaign->id;
+        $job = Job::where('campaign_id',$campaign_id)->paginate(5);
+        
+
+        // return view('jobseeker.campaigns.show', compact('campaign'));
+        return view('jobseeker.campaigns.show', ['campaign' => $campaign , 'jobs'=> $job, ]);
     }
 
     /**
