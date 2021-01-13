@@ -79,3 +79,5 @@ Route::get('/job-mail', function () { return new JobMail(); }); //creating job e
 // Front-End Coding
 Route::get('/login-demo', function () { return view('/auth/login-demo'); });
 Route::get('/register-demo', function () { return view('/auth/register-demo'); });
+Route::get('/userreg-demo', function () { return view('/auth/userreg-demo'); });
+Route::get('/homepage-demo', function () { return view('/auth/homepage-demo'); });
