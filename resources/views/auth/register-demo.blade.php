@@ -1,164 +1,130 @@
-@extends('layouts.app')
-
-<!--
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h1>Register</h1>
-            <form method="POST" action="{{ route('register') }}">-->
-            @section('content')
-<div class="container">
-<br>
-    <div class="row justify-content-center">
-        <div class="col-md-7">
-            <div class="card">
-                <div class="card-header">{{ isset($url) ? ucwords($url) : ""}} {{ __('Register') }}</div>
-                <!--
-                @csrf
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="name" placeholder="Enter Name" value="{{ old('name') }}">
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror-->
-
-                    <div class="card-body">
-                    @isset($url)
-                        <form method="POST" action='{{ url("register/$url") }}' aria-label="{{ __('Register') }}">
-                            @else
-                                <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                                    @endisset
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-center">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') 
-                                is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                               
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Registration Form</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <header>Registration Form</header>
+            <div class="progress-bar">
+                <div class="step">
+                    <p>Name</p>
+                    <div class="bullet">
+                    <span>1</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+                <div class="step">
+                    <p>Contact</p>
+                    <div class="bullet">
+                    <span>2</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+                <div class="step">
+                    <p>Birthdate</p>
+                    <div class="bullet">
+                    <span>3</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+                <div class="step">
+                    <p>Submit</p>
+                    <div class="bullet">
+                    <span>4</span>
+                </div>
+                <div class="check fas fa-check"></div>
+ 
+            </div>
+        </div>
+            <div class="form-outer">
+                <form action="#">
+                    <div class="page slidepage">
+                        <div class="title">Basic Info:</div>
+                        <div class="field">
+                            <div class="label">First Name</div>
+                            <input type="text">
                         </div>
-
-                        
-                    <br>
-
-                <!--<div class="form-group">
-                    <label for="email">Email address</label>
-                    <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="email" placeholder="Enter Email" value="{{ old('email') }}">
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror    
-                </div>-->
-
-                <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-center">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="field">
+                            <div class="label">Middle Name</div>
+                            <input type="text">
                         </div>
-
-                        <br>
-                <!--<div class="form-group">
-                    <label for="password">Password</label>
-                    <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Password">
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>-->
-                <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-center">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="field">
+                            <div class="label">Last Name</div>
+                            <input type="text">
                         </div>
-
-                    <br>
-
-
-                <!--<div class="form-group">
-                    <label for="password_confirmation">Confirm Password</label>
-                    <input name="password_confirmation" type="password" class="form-control " id="password_confirmation" placeholder="Confirm Password">
-                </div>-->
-
-
-                <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-center">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                <div class="mb-3">
-                        @foreach($roles as $role)
-                            <!-- <div class="form-check">
-                                <input class="form-check-input @error('role') is-invalid @enderror" name="role"
-                                        type="checkbox" value="{{ $role->id }}" id="{{$role->name}}"
-                                        @isset($user) 
-                                        @if(in_array($role->id, $user->roles->pluck('id')->toArray())) checked 
-                                        @endif 
-                                        @endisset>
-                                <label class="form-check-label" for="{{$role->name}}">
-                                    {{ $role->name }}
-                                </label>
-                            </div> -->
-
-                             
-                               <!-- <div class="form-check @error('role') is-invalid @enderror">
-                                <input class="form-check-input @error('role') is-invalid @enderror" type="radio" 
-                                        name="role" id="{{$role->name}}" value="{{ $role->id }}"
-                                        
-                                        @isset($user) 
-                                        @if(in_array($role->id, $user->roles->pluck('id')->toArray())) checked 
-                                        @endif 
-                                        @endisset
-                                        
-                                
-                                
-                                <label class="form-check-label" for="{{$role->name}}">
-                                    {{ $role->name }}
-                                </label>
-                                </div>
-                            
-                        @endforeach
-
-                        @error('role')
-                            <span class="invalid-feedback" role="alert">{{$message}}</span>
-                        @enderror-->
-                        
-                        
+                        <div class="field nextBtn">
+                            <button>Next</button>
+                        </div> 
                     </div>
 
-                    <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
+
+                <div class="page">
+                        <div class="title">Contact Info:</div>
+                        <div class="field">
+                            <div class="label">Email Address</div>
+                            <input type="text">
                         </div>
-            </form>
+                        <div class="field">
+                            <div class="label">Phone Number</div>
+                            <input type="number">
+                        </div>
+                        <div class="field btns">
+                            <button class="prev-1 prev">Previous</button>
+                            <button class="next-1 next">Next</button>
+                        </div> 
+                    </div>
+
+                <div class="page">
+                        <div class="title">Date of Birth:</div>
+                        <div class="field">
+                            <div class="label">Date</div>
+                            <input type="text">
+                        </div>
+                        <div class="field">
+                            <div class="label">Age</div>
+                            <input type="text">
+                        </div>
+                        <div class="field">
+                            <div class="label">Gender</div>
+                            <select>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                            </div>
+                        <div class="field btns">
+                            <button class="prev-2 prev">Previous</button>
+                            <button class="next-2 next">Next</button>
+                        </div>
+                    </div>
+
+
+                    <div class="page">
+                        <div class="title">Login Details:</div>
+                        <div class="field">
+                            <div class="label">Username</div>
+                            <input type="text">
+                        </div>
+                        <div class="field">
+                            <div class="label">Password</div>
+                            <input type="password">
+                        </div>
+                        <div class="field">
+                            <div class="label">Confirm Password</div>
+                            <input type="password">
+                        </div>
+                        <div class="field btns">
+                            <button class="prev-3 prev">Previous</button>
+                            <button class="Submit">Submit</button>
+                        </div> 
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</div>
-@endsection
+        <script src="js/script.js"></script>
+    </body>
+</html>
