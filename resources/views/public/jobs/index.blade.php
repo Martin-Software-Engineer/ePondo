@@ -22,7 +22,7 @@
             <td>{{ $job -> description }}</td>
             <td>{{ $job_category->name }}</td>
             <td>
-                <a class="btn btn-sm btn-primary" href="#" role="button">View</a>
+                <a class="btn btn-sm btn-primary" href="{{$job -> publicpath() }}" role="button">View</a>
             </td>
             </tr>
             @endforeach

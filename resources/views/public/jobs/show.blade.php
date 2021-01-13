@@ -3,10 +3,10 @@
 @section('content')
     <div class="row">
         <div class="col-3 mt-4">
-            <h1>Campaign Title:</h1>
+            <h1>Job Title:</h1>
         </div>
         <div class="col mt-4">
-            <h3>{{ $campaign -> title}}</h3>
+            <h3>{{ $job -> title}}</h3>
         </div>
     </div>
 
@@ -15,7 +15,7 @@
             <h4>Description:</h4>
         </div>
         <div class="col mt-4">
-            <p>{{ $campaign -> description}}</p>
+            <p>{{ $job -> description}}</p>
         </div>
     </div>
 

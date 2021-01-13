@@ -29,8 +29,8 @@ use Illuminate\Support\Facades\Route;
 
 // PUBLIC PATHS
 Route::get('/', function () {return view('public.index');});                        // HOME PAGE
-Route::resource('/Campaigns', PublicCampaignController::class);                           // Campaigns
-Route::get('/Jobs', 'PublicJobController@index');                                   // Jobs
+Route::resource('/Campaigns', PublicCampaignController::class);                     // Campaigns
+Route::resource('/Jobs', PublicJobController::class);                               // Jobs
 Route::get('/AboutUs', function () { return view('public.aboutus'); });             // About Us
 
 //Admin Routes using Route Group
