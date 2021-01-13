@@ -107,9 +107,9 @@ class JobController extends Controller
     public function edit($campaign_id, Job $job)
     {
         
-        return view('jobseeker.jobs.edit',['job' => $job, 'campaign' => $campaign_id]); 
+        return view('jobseeker.jobs.edit',['job' => $job, 'campaign' => $campaign_id]);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *

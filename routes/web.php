@@ -11,7 +11,7 @@ use JobSeeker\CampaignController;
 // use JobSeeker\JobController;
 // use JobController;
 use App\Http\Controllers;
-use App\Http\Controllers\PublicCampaignController;
+// use PublicCampaignController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 // PUBLIC PATHS
 Route::get('/', function () {return view('public.index');});                        // HOME PAGE
-Route::get('/Campaigns', 'PublicCampaignController@index');                         // Campaigns
+Route::resource('/Campaigns', PublicCampaignController::class);                           // Campaigns
 Route::get('/Jobs', 'PublicJobController@index');                                   // Jobs
 Route::get('/AboutUs', function () { return view('public.aboutus'); });             // About Us
 

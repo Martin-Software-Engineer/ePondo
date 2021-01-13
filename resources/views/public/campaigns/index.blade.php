@@ -22,7 +22,7 @@
             <td>{{ $campaign -> description }}</td>
             <td>{{ $campaign_category->name }}</td>
             <td>
-                <a class="btn btn-sm btn-primary" href="#" role="button">View</a>
+                <a class="btn btn-sm btn-primary" href="{{$campaign -> publicpath() }}" role="button">View</a>
             </td>
             </tr>
             @endforeach

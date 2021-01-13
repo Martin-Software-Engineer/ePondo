@@ -22,6 +22,11 @@ class Campaign extends Model
         return url ('/jobseeker/campaigns/' . $this -> id);
     }
 
+    public function publicpath(){
+
+        return url ('/Campaigns/' . $this -> id);
+    }
+
     public function user(){
         return $this->belongsToMany(User::class);;
     }
