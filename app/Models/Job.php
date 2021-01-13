@@ -14,6 +14,11 @@ class Job extends Model
         'description'
     ];
 
+    public function publicpath(){
+
+        return url ('/Jobs/' . $this -> id);
+    }
+
     public function campaign()
     {
         return $this->belongsTo(Campaign::class);
