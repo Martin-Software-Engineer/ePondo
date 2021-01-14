@@ -81,9 +81,9 @@ class JobController extends Controller
 
         // return redirect(route('jobseeker.campaigns.index'));
         // return view('/jobseeker/campaigns/{campaign}/show');
-        return view('jobseeker.campaigns.show', ['campaign' => $campaign,'jobs' => $jobs]);
+        // return view('jobseeker.campaigns.show', ['campaign' => $campaign,'jobs' => $jobs]);
 
-        // return redirect(route('jobseeker.campaigns.show'));
+        return redirect(route('jobseeker.campaigns.show',$campaign_id));
 
     }
 
@@ -115,8 +115,8 @@ class JobController extends Controller
      */
     public function edit($campaign_id, Job $job)
     {
-        
-        return view('jobseeker.jobs.edit',['job' => $job, 'campaign' => $campaign_id]);
+    
+        return view('jobseeker.jobs.edit',['job' => $job, 'campaign' => $campaign_id, 'job_categories' => JobCategory::all()]);
     }
     
     /**
@@ -133,11 +133,14 @@ class JobController extends Controller
         $job->update($request->except(['_token']));
         // $job->roles()->sync($request->roles);
 
+        $job->job_categories()->sync($request->job_category);
+
         $request ->session()->flash('success','You have edited the job');
 
         $job = Job::where('id',$job->id)->first();
 
-        return view ('jobseeker.jobs.show', ['job'=> $job, 'campaign' => $campaign_id]);
+        // return view ('jobseeker.jobs.show', ['job'=> $job, 'campaign' => $campaign_id]);
+        return redirect(route('jobseeker.campaigns.jobs.show',[$campaign_id,$job->id]));
     }
 
     /**
