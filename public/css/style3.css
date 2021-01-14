@@ -152,7 +152,7 @@ nav .wrapper{
         overflow-y: auto;
         line-height: 50px;
         padding: 50px 10px;
-        box-shadow: 0 15px 15px rgba(0, 0, 0, 0.15); 
+        box-shadow: 0 15px 15px rgba(0, 0, 0, 0.15);
         transition: all 0.3s ease;
     }
     #menu-btn:checked ~ .nav-links{
@@ -190,7 +190,7 @@ nav .wrapper{
     .nav-links .drop-menu li{
         margin: 0;
     }
-    .nav-links .drop-menu li a{ 
+    .nav-links .drop-menu li a{
         font-size: 18px;
         border-radius: 5px;
     }
@@ -248,4 +248,376 @@ nav .wrapper{
 }
 .wrapper input{
     display: none;
+}
+
+.content-container, .footer-container, .slideshow-container{
+    position: relative;
+    max-width: 1250px;
+    padding: 30px 30px;
+    margin: auto;
+}
+
+.cards-container{
+    /* display: flex;
+    justify-content: space-between; */
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20%;
+    margin-right: 20px;
+}
+
+.card:hover {
+ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card .text_container {
+padding: 20px 16px;
+height: 100px;
+}
+
+.card .card-image {
+    background-color: #ccc;
+    height: 200px;
+}
+
+.card .card-footer{
+    border-top: 1px solid #ccc;
+    padding: 8px 16px;
+}
+
+.mySlides {
+    display: none
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 970px;
+  position: relative;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.slideshow-container img {
+    vertical-align: middle;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #ffffff;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+.card-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .card-carousel .my-card {
+    height: 20rem;
+    width: 12rem;
+    position: relative;
+    z-index: 1;
+    -webkit-transform: scale(0.6) translateY(-2rem);
+    transform: scale(0.6) translateY(-2rem);
+    opacity: 0;
+    cursor: pointer;
+    pointer-events: none;
+    background: #2e5266;
+    background: linear-gradient(to top, #2e5266, #f5f6f7);
+    transition: 1s;
+  }
+
+  .card-carousel .my-card:after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    border-radius: 100%;
+    background-color: rgba(0,0,0,0.3);
+    bottom: -5rem;
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+  }
+
+  .card-carousel .my-card:nth-child(0):before {
+    content: '0';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card:nth-child(1):before {
+    content: '1';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card:nth-child(2):before {
+    content: '2';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card:nth-child(3):before {
+    content: '3';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card:nth-child(4):before {
+    content: '4';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card:nth-child(5):before {
+    content: '5';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card:nth-child(6):before {
+    content: '6';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card:nth-child(7):before {
+    content: '7';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card:nth-child(8):before {
+    content: '8';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card:nth-child(9):before {
+    content: '9';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .card-carousel .my-card.active {
+    z-index: 3;
+    -webkit-transform: scale(1) translateY(0) translateX(0);
+    transform: scale(1) translateY(0) translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+    transition: 1s;
+  }
+
+  .card-carousel .my-card.prev, .card-carousel .my-card.next {
+    z-index: 2;
+    -webkit-transform: scale(0.8) translateY(-1rem) translateX(0);
+    transform: scale(0.8) translateY(-1rem) translateX(0);
+    opacity: 0.6;
+    pointer-events: auto;
+    transition: 1s;
+  }
+
+  .slider-item{
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    background: #FFF;
+}
+.slider-item .slider-image img{
+    margin: 0 auto;
+    width: 100%;
+}
+.slider-item .slider-main-detail{
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+}
+.slider-item:hover .slider-main-detail{
+    background-color: #dbeeee !important;
+}
+.slider-item .price{
+    float: left;
+    margin-top: 5px;
+}
+.slider-item .price h5{
+    line-height: 20px;
+    margin: 0;
+}
+.detail-price{
+    color: #219FD1;
+}
+.slider-item .slider-main-detail .rating{
+    color: #777;
+}
+.slider-item .rating{
+    float: left;
+    font-size: 17px;
+    text-align: right;
+    line-height: 52px;
+    margin-bottom: 10px;
+    height: 52px;
+}
+.slider-item .btn-add{
+    width: 50%;
+    float: left;
+    border-right: 1px solid #E1E1E1;
+}
+.slider-item .btn-details{
+    width: 50%;
+    float: left;
+}
+.controls{
+    margin-top: 20px;
+}
+.btn-info,.btn-info:visited,.btn-info:hover{
+	background-color: #21BBD8;
+	border-color: #21BBD8;
+}
+.btn-info{
+	margin-left:5px;
+}
+.slider-main-detail:hover{
+	background-color: #dbeeee !important;
+}
+.AddCart{
+	margin: 0px;
+	padding:5px;
+	border-radius:2px;
+	margin-right:10px;
+}
+.review {
+	margin-bottom: 5px;
+	padding-top:5px;
 }
