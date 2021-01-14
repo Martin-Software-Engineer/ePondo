@@ -143,11 +143,11 @@ class CampaignController extends Controller
         // return view('jobseeker.campaigns.show', compact('campaign'));
         
         $campaign_id = $campaign->id;
-        $job = Job::where('campaign_id',$campaign_id)->paginate(5);
+        $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
         
 
         // return view('jobseeker.campaigns.show', compact('campaign'));
-        return view('jobseeker.campaigns.show', ['campaign' => $campaign , 'jobs'=> $job, ]);
+        return view('jobseeker.campaigns.show', ['campaign' => $campaign , 'jobs'=> $jobs ]);
     }
 
     /**

@@ -17,5 +17,32 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3">
+                        <label for="job_category" class="mb-2">job Category</label>
+                        @foreach($job_categories as $job_category)
+                            
+                            <div class="form-check @error('job_category') is-invalid @enderror">
+                                <input class="form-check-input @error('job_category') is-invalid @enderror" type="radio" 
+                                        name="job_category" id="{{$job_category->name}}" value="{{ $job_category->id }}"
+                                        
+                                        @isset($user) 
+                                        @if(in_array($job_category->id, $user->campaigns->jobs->pluck('id')->toArray())) checked 
+                                        @endif 
+                                        @endisset
+                                        
+                                >
+                                
+                                <label class="form-check-label" for="{{$job_category->name}}">
+                                    {{ $job_category->name }}
+                                </label>
+                                </div>
+
+                        @endforeach
+
+                        @error('job_category')
+                            <span class="invalid-feedback" role="alert">{{$message}}</span>
+                        @enderror
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                     
