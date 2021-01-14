@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-        <div class="mt-4"><h1>Public Path Jobs!</h1></div>
+        <div class="mt-4"><h1>Public Path Services!</h1></div>
     </div>
 
     <table class="table">

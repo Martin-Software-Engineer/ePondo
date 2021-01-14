@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Campaign;
+use App\Models\JobCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -30,8 +31,9 @@ class JobController extends Controller
         // dd($campaign);
         // $campaign = $campaign -> id;
 
-
-        return view ('jobseeker.jobs.create',compact('campaign_id'));
+        // ['campaign_categories' => CampaignCategory::all()]
+        // compact('campaign_id')
+        return view ('jobseeker.jobs.create',[ 'campaign_id'=> $campaign_id, 'job_categories' => JobCategory::all()]);
     }
 
     /**
@@ -58,7 +60,8 @@ class JobController extends Controller
         $data = $request->validate([
             
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'job_category' => 'required'
         ]);
 
         $job = new Job();
@@ -68,13 +71,19 @@ class JobController extends Controller
         $job -> save();
 
         // $campaign->campaign_categories()->attach($request['campaign_category']);
+        
+        $job->job_categories()->attach($request['job_category']);
         $request ->session()->flash('success','You have created a New Job!');
 
         $campaign = Campaign::findOrFail($campaign_id);
+        $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
+
 
         // return redirect(route('jobseeker.campaigns.index'));
         // return view('/jobseeker/campaigns/{campaign}/show');
-        return view('jobseeker.campaigns.show', compact('campaign'));
+        return view('jobseeker.campaigns.show', ['campaign' => $campaign,'jobs' => $jobs]);
+
+        // return redirect(route('jobseeker.campaigns.show'));
 
     }
 

@@ -32,7 +32,7 @@
 
                 <div class="collapse navbar-collapse">          
                     <a href="/Campaigns">Campaigns</a>
-                    <a href="/Jobs">Jobs</a>
+                    <a href="/Jobs">Services</a>
                 </div>
                     
                     
