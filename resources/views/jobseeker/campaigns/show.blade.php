@@ -84,4 +84,46 @@
     </table>
     {{ $jobs->links() }}
 
+    <div class="row">
+        <h1>Products</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <a href="/jobseeker/campaigns/{{$campaign -> id}}/products/create" class="btn btn-dark">Add Product</a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+            <th scope="col">product ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category ID</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($products as $product)
+            
+            <tr>
+            <th scope="row">{{ $product->id }}</th>
+            <td><a href="/jobseeker/campaigns/{{$campaign -> id}}/products/{{$product->id}}">{{ $product -> name }}</a></td>
+            <td>{{ $product -> description }}</td>
+            <td>#</td>
+            <td>#</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/jobseeker/campaigns/{{$campaign -> id}}/products/{{$product->id}}" role="button">View</a>
+            </td>
+            </tr>
+            
+            @endforeach
+        </tbody>
+    </table>
+    {{ $products->links() }}
+
 @endsection

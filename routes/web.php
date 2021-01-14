@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {return view('public.index');});                        // HOME PAGE
 Route::resource('/Campaigns', PublicCampaignController::class);                     // Campaigns
 Route::resource('/Jobs', PublicJobController::class);                               // Jobs
+Route::resource('/Products', PublicProductController::class);                       // Products
 Route::get('/AboutUs', function () { return view('public.aboutus'); });             // About Us
 
 //Admin Routes using Route Group
@@ -45,6 +46,7 @@ Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(
 Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-JobSeeker'])->group(function (){
     Route::resource('/campaigns', CampaignController::class);
     Route::resource('/campaigns.jobs', JobController::class);
+    Route::resource('/campaigns.products', ProductController::class);
     // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
     // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
 });

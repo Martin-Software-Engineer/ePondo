@@ -33,6 +33,7 @@
                 <div class="collapse navbar-collapse">          
                     <a href="/Campaigns">Campaigns</a>
                     <a href="/Jobs">Services</a>
+                    <a href="/Products">Products</a>
                 </div>
                     
                     
