@@ -26,18 +26,6 @@
                     @endisset
                     <div class="mb-3">
                         @foreach($roles as $role)
-                            <!-- <div class="form-check">
-                                <input class="form-check-input" name="roles[]"
-                                        type="checkbox" value="{{ $role->id }}" id="{{ $role->name }}"
-                                        @isset($user) 
-                                        @if(in_array($role->id, $user->roles->pluck('id')->toArray())) checked 
-                                        @endif 
-                                        @endisset>
-                                <label class="form-check-label" for="{{$role->name}}">
-                                    {{ $role->name }}
-                                </label>
-                            </div> -->
-
                             <div class="form-check @error('role') is-invalid @enderror">
                                 <input class="form-check-input @error('role') is-invalid @enderror" type="radio" 
                                         name="role" id="{{$role->name}}" value="{{ $role->id }}"

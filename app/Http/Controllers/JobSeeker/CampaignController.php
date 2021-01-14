@@ -144,10 +144,12 @@ class CampaignController extends Controller
         
         $campaign_id = $campaign->id;
         $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
+
+        $campaign_category = CampaignCategory::all();
         
 
         // return view('jobseeker.campaigns.show', compact('campaign'));
-        return view('jobseeker.campaigns.show', ['campaign' => $campaign , 'jobs'=> $jobs ]);
+        return view('jobseeker.campaigns.show', ['campaign' => $campaign , 'jobs'=> $jobs ,'campaign_category'=> $campaign_category ]);
     }
 
     /**
@@ -159,7 +161,7 @@ class CampaignController extends Controller
     public function edit($id)
     {
         // $campaign = Campaign::find($id);
-        return view('jobseeker.campaigns.edit',['campaign' => Campaign::find($id)]); 
+        return view('jobseeker.campaigns.edit',['campaign' => Campaign::find($id),'campaign_categories' => CampaignCategory::all()]); 
         // return route('jobseeker.campaigns.edit','$id');
     }
 
@@ -177,11 +179,16 @@ class CampaignController extends Controller
         $campaign = Campaign::findOrFail($id);
 
         $campaign->update($request->except(['_token']));
-        // $campaign->roles()->sync($request->roles);
+
+
+        $campaign->campaign_categories()->sync($request->campaign_category);
+        // $user->roles()->sync($request->roles);
+
+        // $request ->session()->flash('success','You have edited the user');
 
         $request ->session()->flash('success','You have edited the campaign');
 
-        return redirect(route('jobseeker.campaigns.index'));
+        return redirect(route('jobseeker.campaigns.show',$campaign->id));
     }
 
     /**

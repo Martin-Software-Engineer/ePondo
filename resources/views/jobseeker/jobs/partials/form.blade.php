@@ -1,8 +1,9 @@
 @csrf
+                                      
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title" aria-describedby="title" placeholder="Enter Title" 
-                                autocomplete="off" value="{{ old('title') }}">
+                                value="{{ old('title') }} @isset($job) {{ $job->title }} @endisset">
                         @error('title')
                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                         @enderror
@@ -11,7 +12,8 @@
                     <div class="form-group">
                         <label for="description">Description</label>
                         <input name="description" type="text" class="form-control @error('description') is-invalid @enderror" id="description" aria-describedby="description" placeholder="Enter Description" 
-                            autocomplete="off" value="{{ old('description') }}">
+                                value="{{ old('description') }} @isset($job) {{ $job->description }} @endisset">
+                            
                         @error('description')
                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                         @enderror
@@ -25,8 +27,8 @@
                                 <input class="form-check-input @error('job_category') is-invalid @enderror" type="radio" 
                                         name="job_category" id="{{$job_category->name}}" value="{{ $job_category->id }}"
                                         
-                                        @isset($user) 
-                                        @if(in_array($job_category->id, $user->campaigns->jobs->pluck('id')->toArray())) checked 
+                                        @isset($job) 
+                                        @if(in_array($job_category->id, $job->job_categories->pluck('id')->toArray())) checked 
                                         @endif 
                                         @endisset
                                         
@@ -36,6 +38,8 @@
                                     {{ $job_category->name }}
                                 </label>
                                 </div>
+                                
+                                
 
                         @endforeach
 
@@ -44,5 +48,4 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    
+                    <button type="submit" class="btn btn-primary">Submit</button>                   
