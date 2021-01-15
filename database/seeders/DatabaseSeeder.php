@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JobJobCategorySeeder::class);
 
         $this->call(ProductSeeder::class);
+        $this->call(ProductCategorySeeder::class);
         
     }
 }

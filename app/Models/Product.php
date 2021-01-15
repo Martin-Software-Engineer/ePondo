@@ -25,7 +25,7 @@ class Product extends Model
         return $this->belongsTo(Campaign::class);
     }
 
-    // public function job_categories(){
-    //     return $this->belongsToMany(JobCategory::class);
-    // }
+    public function product_categories(){
+        return $this->belongsToMany(ProductCategory::class);
+    }
 }

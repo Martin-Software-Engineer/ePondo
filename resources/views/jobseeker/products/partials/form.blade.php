@@ -19,7 +19,34 @@
         @enderror
     </div>
 
-    
+    <div class="mb-3">
+        <label for="product_category" class="mb-2">Product Category</label>
+        @foreach($product_categories as $product_category)
+            
+            <div class="form-check @error('product_category') is-invalid @enderror">
+                <input class="form-check-input @error('product_category') is-invalid @enderror" type="radio" 
+                        name="product_category" id="{{$product_category->name}}" value="{{ $product_category->id }}"
+                        
+                        @isset($product) 
+                        @if(in_array($product_category->id, $product->product_categories->pluck('id')->toArray())) checked 
+                        @endif 
+                        @endisset
+                        
+                >
+                
+                <label class="form-check-label" for="{{$product_category->name}}">
+                    {{ $product_category->name }}
+                </label>
+                </div>
+                
+                
+
+        @endforeach
+
+        @error('product_category')
+            <span class="invalid-feedback" role="alert">{{$message}}</span>
+        @enderror
+    </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </div>                   

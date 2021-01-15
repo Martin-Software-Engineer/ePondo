@@ -99,7 +99,7 @@
     <table class="table mt-4">
         <thead>
             <tr>
-            <th scope="col">product ID</th>
+            <th scope="col">Product ID</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Category ID</th>
@@ -109,21 +109,22 @@
         </thead>
         <tbody>
             @foreach($products as $product)
-            
+            @foreach($product->product_categories as $product_category)
             <tr>
             <th scope="row">{{ $product->id }}</th>
-            <td><a href="/jobseeker/campaigns/{{$campaign -> id}}/products/{{$product->id}}">{{ $product -> name }}</a></td>
+            <td><a href="#">{{ $product -> name }}</a></td>
             <td>{{ $product -> description }}</td>
-            <td>#</td>
-            <td>#</td>
+            <td>{{ $product_category->id }}</td>
+            <td>{{ $product_category->name }}</td>
             <td>
                 <a class="btn btn-sm btn-primary" href="/jobseeker/campaigns/{{$campaign -> id}}/products/{{$product->id}}" role="button">View</a>
             </td>
             </tr>
-            
+            @endforeach
             @endforeach
         </tbody>
     </table>
     {{ $products->links() }}
+    
 
 @endsection

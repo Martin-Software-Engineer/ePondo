@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -26,7 +27,7 @@ class ProductController extends Controller
     public function create($campaign_id)
     {
         
-        return view ('jobseeker.products.create',[ 'campaign_id'=> $campaign_id ]);
+        return view ('jobseeker.products.create',[ 'campaign_id'=> $campaign_id, 'product_categories' => ProductCategory::all()]);
     }
 
     /**
@@ -50,11 +51,11 @@ class ProductController extends Controller
         $product -> description = $data['description'];
         $product -> save();
 
-        // $job->job_categories()->attach($request['job_category']);
+        $product->product_categories()->attach($request['product_category']);
         $request ->session()->flash('success','You have created a New Product!');
 
         // $campaign = Campaign::findOrFail($campaign_id);
-        // $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
+        // $products = Product::where('campaign_id',$campaign_id)->paginate(5);
 
         return redirect(route('jobseeker.campaigns.show',$campaign_id));
     }

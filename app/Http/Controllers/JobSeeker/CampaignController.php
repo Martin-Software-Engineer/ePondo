@@ -6,7 +6,9 @@ use App\Models\Job;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Campaign;
+use App\Models\JobCategory;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use App\Models\CampaignCategory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -147,10 +149,17 @@ class CampaignController extends Controller
         $campaign_category = CampaignCategory::all();
 
         $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
+        // $job_category = JobCategory::all();
+
         $products = Product::where('campaign_id',$campaign_id)->paginate(5);
+        // $product_category = ProductCategory::all();
+
+        // dd($products);
 
         // return view('jobseeker.campaigns.show', compact('campaign'));
-        return view('jobseeker.campaigns.show', ['campaign' => $campaign, 'campaign_category'=> $campaign_category , 'jobs'=> $jobs, 'products'=>$products]);
+        return view('jobseeker.campaigns.show', 
+                                                ['campaign' => $campaign, 'campaign_category'=> $campaign_category ,
+                                                'jobs'=> $jobs, 'products' => $products ]);
     }
 
     /**
