@@ -7,7 +7,7 @@
   }
 
 nav{
-    background: #242526;
+    background: #236B8E;
     position: fixed;
     width: 100%;
     z-index: 999;
@@ -152,7 +152,7 @@ nav .wrapper{
         overflow-y: auto;
         line-height: 50px;
         padding: 50px 10px;
-        box-shadow: 0 15px 15px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 15px 15px rgba(105, 65, 208, 0.15);
         transition: all 0.3s ease;
     }
     #menu-btn:checked ~ .nav-links{
@@ -402,7 +402,7 @@ height: 100px;
   }
 
   .card-carousel .my-card:after {
-    content: '';
+    content: '0';
     position: absolute;
     height: 2px;
     width: 100%;
@@ -602,8 +602,8 @@ height: 100px;
     margin-top: 20px;
 }
 .btn-info,.btn-info:visited,.btn-info:hover{
-	background-color: #21BBD8;
-	border-color: #21BBD8;
+	background-color: #ffffff;
+	border-color: #000000;
 }
 .btn-info{
 	margin-left:5px;
@@ -621,3 +621,41 @@ height: 100px;
 	margin-bottom: 5px;
 	padding-top:5px;
 }
+.carousel-item {
+    -webkit-perspective: initial;
+    perspective: initial;
+}
+
+/* This is to make the image offset */
+.carousel-item img {
+    padding: 1rem;
+    width:640px;
+    height:360px;
+  }
+}
+
+.carousel-panel,
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+}
+
+.carousel-panel {
+    background-color: rgba(30,80,110,.334);
+}
+.carousel-overlay {
+    /*
+    Alternatively you could tint this, and
+    remove the coloring from `.carousel-panel`
+    */
+    /*background-color: rgba(30,80,110,.334);*/
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    align-items: bottom;
+}
+
