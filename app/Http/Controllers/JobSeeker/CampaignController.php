@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Models\Job;
+use App\Models\Role;
 use App\Models\User;
+use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Campaign;
 use App\Models\JobCategory;
@@ -13,6 +15,7 @@ use App\Models\CampaignCategory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CampaignController extends Controller
 {
@@ -85,7 +88,9 @@ class CampaignController extends Controller
             
             'title' => 'required',
             'description' => 'required',
-            'campaign_category' => 'required'
+            'campaign_category' => 'required',
+            'image' => 'required'
+            
         ]);
 
         $campaign = new Campaign();
@@ -93,6 +98,60 @@ class CampaignController extends Controller
         $campaign -> title = $data['title'];
         $campaign -> description = $data['description'];
         $campaign -> save();
+
+        // dd($data);
+
+        $path = Storage::disk('s3')->put('campaign',$data['image'],'public');
+
+        // $image = Photo::create([
+        //     'filename' => basename($path),
+        //     'url' => Storage::url($path)
+        // ]);
+
+        $photo = new Photo();
+        $photo -> filename =  basename($path);
+        $photo -> url = Storage::url($path);
+        $photo -> save();
+        // dd($photo->id);
+
+        $campaign->photos()->attach($photo->id);
+
+
+        // $file = $request -> file('image');
+
+
+        // $path = Storage::disk('s3')->put('campaign', $file);
+
+        // $image = Photo::create([
+        //     'filename' => basename($path),
+        //     'url' => Storage::url($path)
+        // ]);
+
+
+
+
+
+        // dd($path);
+
+        // $contents = Storage::get($file);
+
+        // dd($contents);
+
+        // $filename = $file->getClientOriginalName();
+        // $filename = time(). '.' . $filename;
+        // $path = $file->store('public',$file,'s3');
+        
+        
+        // $image = $request->file('image');
+        // dd($campaign);
+
+        // $path = $request -> file ('image') -> store ('images','s3');
+        // $path = $request -> file('image') -> store ('public/images');
+        // $path = Storage::put($image);
+        // return $path;
+        // dd($data['image']);
+        // $path = $data['image'] -> store ('public/images');
+        
 
         // $jobs1 = new Job();
         // $jobs1->name = request('name');
@@ -155,6 +214,13 @@ class CampaignController extends Controller
         // $product_category = ProductCategory::all();
 
         // dd($products);
+
+
+        //OUTPUT IMAGE FROM AWS S3
+        
+        // return Storage::disk('s3')->response('campaign/' . $image->filename);
+
+
 
         // return view('jobseeker.campaigns.show', compact('campaign'));
         return view('jobseeker.campaigns.show', 

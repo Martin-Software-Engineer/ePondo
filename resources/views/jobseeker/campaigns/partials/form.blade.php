@@ -1,5 +1,5 @@
 @csrf
-<div class="form-group">
+    <div class="form-group">
     <label for="title">Title</label>
     <input name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title" aria-describedby="title" placeholder="Enter title" 
             value="{{ old('title') }} @isset($campaign) {{ $campaign->title }} @endisset">
@@ -40,7 +40,21 @@
         @error('campaign_category')
             <span class="invalid-feedback" role="alert">{{$message}}</span>
         @enderror
-    </div> 
+    </div>
+
+    <div class="form-group">
+    <label for="image">Upload Campaign Image</label>
+    <input name="image" 
+            type="file" 
+            class="form-control @error('image') is-invalid @enderror" 
+            id="image" 
+            aria-describedby="image" 
+            placeholder="Enter image" 
+            value="#">
+    @error('image')
+        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+    @enderror
+    </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 
