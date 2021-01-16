@@ -45,4 +45,8 @@ class Campaign extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function photos(){
+        return $this->belongsToMany(Photo::class);
+    }
 }

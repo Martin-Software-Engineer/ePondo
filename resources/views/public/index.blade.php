@@ -28,6 +28,7 @@
 </head>
 
 <body>
+@extends('layouts.app')
     <nav>
         <div class="wrapper">
             <div class="logo"><a href="#">ePondo</a></div>
