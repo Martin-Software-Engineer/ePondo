@@ -43,18 +43,71 @@
     </div>
 
     <div class="form-group">
-    <label for="image">Upload Campaign Image</label>
-    <input name="image" 
-            type="file" 
-            class="form-control @error('image') is-invalid @enderror" 
-            id="image" 
-            aria-describedby="image" 
-            placeholder="Enter image" 
-            value="#">
-    @error('image')
-        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-    @enderror
+        <label for="images1">Upload Image 1</label>
+            <input name="images[]" 
+                    type="file" 
+                    class="form-control @error('image') is-invalid @enderror" 
+                    id="image1" 
+                    aria-describedby="image" 
+                    placeholder="Enter image" 
+                    value="{{ old('images.0') }}">
+        @error('images.0.image')
+            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+        @enderror
     </div>
+
+    <div class="form-group">
+        <label for="images2">Upload Image 2</label>
+            <input name="images[]" 
+                    type="file" 
+                    class="form-control @error('image') is-invalid @enderror" 
+                    id="image2" 
+                    aria-describedby="image" 
+                    placeholder="Enter image" 
+                    value="{{ old('images.1') }}">
+        @error('images.1.image')
+            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- 
+        <div class="form-group">
+        <label for="answer1">Choice 1</label>
+
+        <input 
+        name="answers[][answer]"  
+        value="{{ old('answers.0.answer') }}"  
+        id="answer1" 
+        >
+
+        @error('answers.0.answer')
+            <small class="text-danger">{{$message}}</small>
+        @enderror
+        </div>
+
+        <input 
+        name="answers[][answer]"  
+        value="{{ old('answers.1.answer') }}"  
+        id="answer2" 
+        >
+    
+        @error('answers.1.answer')
+            <small class="text-danger">{{$message}}</small>
+        @enderror
+    -->
+
+    <!-- 
+        $data = request() -> validate([
+            
+            'question.question' => 'required',
+            'answers.*.answer' => 'required',
+        ]);
+
+        $question = $questionnaire->questions()->create($data['question']);
+        $question -> answers()->createMany($data['answers']);
+
+        return redirect('/questionnaires/'.$questionnaire -> id); 
+    -->
 
     <button type="submit" class="btn btn-primary">Submit</button>
 

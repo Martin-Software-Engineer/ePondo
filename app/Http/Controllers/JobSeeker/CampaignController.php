@@ -60,9 +60,6 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
-        
-        
-
         // $campaign = Campaign::create($validatedData);
 
         // $jobs1 = new Job();
@@ -92,7 +89,7 @@ class CampaignController extends Controller
             'title' => 'required',
             'description' => 'required',
             'campaign_category' => 'required',
-            'image' => 'required'
+            'images.*' => 'required'
             
         ]);
 
@@ -102,25 +99,52 @@ class CampaignController extends Controller
         $campaign -> description = $data['description'];
         $campaign -> save();
 
-        // dd($data);
+        // dd($data['images']['0']);
 
-        $path = Storage::disk('s3')->put('campaign',$data['image']);
+        // $path = Storage::disk('s3')->put('campaign',$data['images']);
+        
+        foreach($data['images'] as $image){
+            
+            $path = Storage::disk('s3')->put(
+                'campaign', $image, 'public'
+            );
 
-        Storage::disk('s3')->setVisibility($path, 'public');
+            $photo = new Photo();
+            $photo -> filename =  basename($path);
+            $photo -> url = Storage::url($path);
+            $photo -> save();
+                
+            $campaign->photos()->attach($photo->id);
+
+        }
+        
+        
+        // $path = Storage::disk('s3')->put(
+        //     'campaign', $data['images']['0'], 'public'
+        // );
+
+        // dd($path);
+        
+
+        // Storage::disk('s3')->setVisibility($path, 'public');
+
+        // $question -> answers()->createMany($data['answers']);
 
         // $image = Photo::create([
         //     'filename' => basename($path),
         //     'url' => Storage::url($path)
         // ]);
 
-        $photo = new Photo();
-        $photo -> filename =  basename($path);
-        $photo -> url = Storage::url($path);
-        $photo -> save();
-        // dd($photo->id);
 
-        $campaign->photos()->attach($photo->id);
 
+        // $photo = new Photo();
+        // $photo -> filename =  basename($path);
+        // $photo -> url = Storage::url($path);
+        // $photo -> save();
+       
+        // $campaign->photos()->attach($photo->id);
+
+        
 
         // $file = $request -> file('image');
 

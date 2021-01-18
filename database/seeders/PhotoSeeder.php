@@ -37,8 +37,13 @@ class PhotoSeeder extends Seeder
         // // ]);
 
         $photo = new Photo();
-        $photo -> filename = 'i9p08P13g8U33V1IlrtuhKlMk3nMycKRlZEDfV8R.jpeg' ;
-        $photo -> url = '/storage/campaign/i9p08P13g8U33V1IlrtuhKlMk3nMycKRlZEDfV8R.jpeg' ;
+        $photo -> filename = 'piJd6a3QdCc0XH6lKva4JmgHQX7GWYWuFYk908Bt.png' ;
+        $photo -> url = '/storage/campaign/piJd6a3QdCc0XH6lKva4JmgHQX7GWYWuFYk908Bt.png' ;
+        $photo -> save();
+
+        $photo = new Photo();
+        $photo -> filename = 'PjuS8kpQSpNtY0eWwSJdUPZRu7Jzr0bs3Eevrbzg.png' ;
+        $photo -> url = '/storage/campaign/PjuS8kpQSpNtY0eWwSJdUPZRu7Jzr0bs3Eevrbzg.png' ;
         $photo -> save();
 
     }
