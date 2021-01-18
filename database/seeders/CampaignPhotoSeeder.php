@@ -23,6 +23,7 @@ class CampaignPhotoSeeder extends Seeder
         $photos = Photo::all();
         Campaign::all()->each( function ($campaigns) use ($photos){
             $campaigns->photos()->attach(1);
+            $campaigns->photos()->attach(2);
         });
     }
 }

@@ -21,23 +21,29 @@
         <tbody>
             @foreach($campaigns as $campaign)
             @foreach($campaign->campaign_categories as $campaign_category)
-            @foreach($campaign->photos as $photo)
+            
             <tr>
             <th scope="row">{{ $campaign->id }}</th>
             <td><a href="{{$campaign -> path() }}">{{ $campaign -> title }}</a></td>
             <td>{{ $campaign -> description }}</td>
             <td>{{ $campaign_category->id }}</td>
             <td>{{ $campaign_category->name }}</td>
+
+            
             <td>
+            @foreach($campaign->photos as $photo)
                     <!-- <img src="{!! Storage::disk('s3')->url('campaign/' . $photo->filename) !!}" alt="c_pic" width="100" height="100"> -->
                     <img src="{{ 'https://awssoftdevmartin-epondo-images.s3-ap-southeast-1.amazonaws.com/campaign/' . $photo->filename }}" alt="campaign_pic" width="100" height="100" >
+            @endforeach
             </td>
+            
+            
             <td>
                     <a class="btn btn-sm btn-primary" href="{{$campaign -> path() }}" role="button">View</a>
             </td>
             
             </tr>
-            @endforeach
+            
             @endforeach
             @endforeach
         </tbody>
