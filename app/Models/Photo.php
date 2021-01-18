@@ -9,11 +9,6 @@ class Photo extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'description'
-    ];
-
     public function campaigns(){
         return $this->belongsToMany(Campaign::class);;
     }

@@ -14,8 +14,8 @@
             <th scope="col">Description</th>
             <th scope="col">Category ID</th>
             <th scope="col">Category Name</th>
-            <th scope="col">Actions</th>
             <th scope="col">Image</th>
+            <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,11 +29,13 @@
             <td>{{ $campaign_category->id }}</td>
             <td>{{ $campaign_category->name }}</td>
             <td>
-                    <a class="btn btn-sm btn-primary" href="{{$campaign -> path() }}" role="button">View</a>
+                    <!-- <img src="{!! Storage::disk('s3')->url('campaign/' . $photo->filename) !!}" alt="c_pic" width="100" height="100"> -->
+                    <img src="{{ 'https://awssoftdevmartin-epondo-images.s3-ap-southeast-1.amazonaws.com/campaign/' . $photo->filename }}" alt="campaign_pic" width="100" height="100" >
             </td>
             <td>
-                    <img src="{{Storage::disk('s3')->response('campaign/' . $photo->filename)}}" alt="">
+                    <a class="btn btn-sm btn-primary" href="{{$campaign -> path() }}" role="button">View</a>
             </td>
+            
             </tr>
             @endforeach
             @endforeach

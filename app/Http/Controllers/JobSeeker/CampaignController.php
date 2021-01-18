@@ -36,6 +36,9 @@ class CampaignController extends Controller
         // $campaigns = $campaigns->
         // $campaigns = DB::select('select * from campaigns where user_id = ?', [$user_id]);
         
+        
+        // $path = Storage::disk('s3')->url('campaign/' . 'U0CWk2En5JpJh4feIOBhxDkFmUznhURDQrdhl9dk.jpeg');
+        
         return view ('jobseeker.campaigns.index',['campaigns' => $campaigns]);
     }
 
@@ -101,7 +104,9 @@ class CampaignController extends Controller
 
         // dd($data);
 
-        $path = Storage::disk('s3')->put('campaign',$data['image'],'public');
+        $path = Storage::disk('s3')->put('campaign',$data['image']);
+
+        Storage::disk('s3')->setVisibility($path, 'public');
 
         // $image = Photo::create([
         //     'filename' => basename($path),
