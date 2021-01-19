@@ -252,9 +252,8 @@ class CampaignController extends Controller
 
 
         // return view('jobseeker.campaigns.show', compact('campaign'));
-        return view('jobseeker.campaigns.show', 
-                                                ['campaign' => $campaign, 'campaign_category'=> $campaign_category ,
-                                                'jobs'=> $jobs, 'products' => $products ]);
+        
+        return view('jobseeker.campaigns.show',['campaign' => $campaign, 'campaign_category'=> $campaign_category ,'jobs'=> $jobs, 'products' => $products ]);
     }
 
     /**
