@@ -307,7 +307,7 @@
                 </div>
             </div>
         </div>
-        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+        <div id="carousel-example" class="carousel slide hidden-xs" " data-type="multi">
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
@@ -511,7 +511,7 @@
                 </div>
             </div>
         </div>
-        <div id="carousel-example1" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+        <div id="carousel-example1" class="carousel slide hidden-xs" " data-type="multi">
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
@@ -715,7 +715,7 @@
                 </div>
             </div>
         </div>
-        <div id="carousel-example3" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+        <div id="carousel-example3" class="carousel slide hidden-xs" " data-type="multi">
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
