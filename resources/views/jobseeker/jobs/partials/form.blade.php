@@ -48,5 +48,33 @@
         @enderror
     </div>
 
+    <div class="form-group">
+        <label for="images1">Upload Image 1</label>
+            <input name="images[]" 
+                    type="file" 
+                    class="form-control @error('image') is-invalid @enderror" 
+                    id="image1" 
+                    aria-describedby="image" 
+                    placeholder="Enter image" 
+                    value="{{ old('images.0') }}">
+        @error('images.0.image')
+            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="images2">Upload Image 2</label>
+            <input name="images[]" 
+                    type="file" 
+                    class="form-control @error('image') is-invalid @enderror" 
+                    id="image2" 
+                    aria-describedby="image" 
+                    placeholder="Enter image" 
+                    value="{{ old('images.1') }}">
+        @error('images.1.image')
+            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+        @enderror
+    </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
 </div>                   
