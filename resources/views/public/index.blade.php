@@ -28,7 +28,6 @@
 </head>
 
 <body>
-@extends('layouts.app')
     <nav>
         <div class="wrapper">
             <div class="logo"><a href="#">blank</a></div>
@@ -103,6 +102,7 @@
                     </div>
                 </li>
                 <li><a href="#">Community</a></li>
+                <li class="book-a-table text-center"><a href="#book-a-table">Login</a></li>
             </ul>
             <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
         </div>
@@ -294,7 +294,10 @@
 
     </section>
 
-    <section style="margin-bottom:100px; padding-top: 0" class="slideshow-container">
+
+ <section style="margin-bottom:50px; padding-top: 0" class="slideshow-container">
+    <!-- ======= About Us Section ======= -->
+
             <h1>More to Explore</h1>
             <div class="cards-container">
             <div class="container">
@@ -308,7 +311,7 @@
                 </div>
             </div>
         </div>
-        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+        <div id="carousel-example" class="carousel slide hidden-xs" >
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
@@ -499,12 +502,11 @@
     </div>
 </div>
 
-<h2 style="margin-top:30px" >More to Explore</h2>
             <div class="cards-container">
             <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <h3>Products</h3>
+                <h3 style="margin-bottom:20px; padding-top: 40px">Products</h3>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6 hidden-xs">
                 <div class="controls pull-right">
@@ -512,7 +514,7 @@
                 </div>
             </div>
         </div>
-        <div id="carousel-example1" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+        <div id="carousel-example1" class="carousel slide hidden-xs" >
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
@@ -716,7 +718,7 @@
                 </div>
             </div>
         </div>
-        <div id="carousel-example3" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+        <div id="carousel-example3" class="carousel slide hidden-xs" >
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
@@ -906,15 +908,69 @@
         </div>
     </div>
 
-</section>
+    <!-- ABOUT US -->
+
+    <!-- <section id="about" style="padding-top: 60px; padding-bottom: 50px;">
+      <div class="container" data-aos="fade-up">
+        <header class="section-header" style="padding-bottom: 20px">
+          <h3>About Us</h3>
+        </header>
+
+        <div class="row about-cols">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="about-col">
+              <div class="img">
+                <img src="https://vethics.com/assets/images/mission.jpg" alt="" class="img-fluid">
+                <div class="icon"><i class="fas fa-list-ul"></i></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Mission</a></h2>
+              <p>
+                Mission
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="about-col">
+              <div class="img">
+                <img src="https://ak.picdn.net/shutterstock/videos/11872559/thumb/10.jpg" alt="" class="img-fluid">
+                <div class="icon"><i class="fas fa-book-open"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Plan</a></h2>
+              <p>
+                 Plan
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="about-col">
+              <div class="img">
+                <img src="https://png.pngitem.com/pimgs/s/50-500664_vision-and-mission-png-transparent-png.png" alt="" class="img-fluid">
+                <div class="icon"><i class="far fa-eye"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Vision</a></h2>
+              <p>
+                Vision
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section> -->
+<!-- End About Us Section -->
+
+
 
 <!-- ======= Services Section ======= -->
 <section id="services" class="services">
       <div class="container">
 
-        <div class="section-title" data-aos="zoom-out">
-          <h2>Services</h2>
-          <p>What we do offer</p>
+      <header class="section-header" style="margin-bottom:20px; padding-top: 50px">
+          <h3>Our Services</h3>
+        </header>
         </div>
 
         <div class="row">
@@ -922,7 +978,7 @@
             <div class="icon-box" data-aos="zoom-in-left">
               <div class="icon"><i class="las la-basketball-ball" style="color: #ff689b;"></i></div>
               <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
@@ -946,8 +1002,12 @@
     </section>
 <!-- End Services Section -->
 
+</section>
+
+
+
 <!-- ======= Whu Us Section ======= -->
-<section id="why-us" class="why-us">
+<!-- <section id="why-us" class="why-us">
       <div class="container">
 
         <div style="padding: 40px 0 0 0;" class="section-title">
@@ -984,9 +1044,20 @@
         </div>
 
       </div>
-    </section>
+    </section> -->
 <!-- End Whu Us Section -->
 
+
+
+<footer id="footer">
+
+     <!-- ======= Call To Action Section ======= -->
+     <section id="call-to-action">
+      <div class="container text-center" data-aos="zoom-in">
+        <h3>Ready to create a campaign?</h3>
+        <a class="cta-btn" href="#">Create Now!</a>
+      </div>
+    </section><!-- End Call To Action Section -->
 
 <!--FOOTER SECTION -->
         <footer class="new_footer_area bg_color">
@@ -1062,69 +1133,9 @@
                 </div>
             </div>
         </footer>
-<!-- <div class="footer">
-  <div class="contain">
-  <div class="col">
-    <h1>Company</h1>
-    <ul>
-      <li>About</li>
-      <li>Mission</li>
-      <li>Services</li>
-      <li>Social</li>
-      <li>Get in touch</li>
-    </ul>
-  </div>
-  <div class="col">
-    <h1>Products</h1>
-    <ul>
-      <li>About</li>
-      <li>Mission</li>
-      <li>Services</li>
-      <li>Social</li>
-      <li>Get in touch</li>
-    </ul>
-  </div>
-  <div class="col">
-    <h1>Accounts</h1>
-    <ul>
-      <li>About</li>
-      <li>Mission</li>
-      <li>Services</li>
-      <li>Social</li>
-      <li>Get in touch</li>
-    </ul>
-  </div>
-  <div class="col">
-    <h1>Resources</h1>
-    <ul>
-      <li>Webmail</li>
-      <li>Redeem code</li>
-      <li>WHOIS lookup</li>
-      <li>Site map</li>
-      <li>Web templates</li>
-      <li>Email templates</li>
-    </ul>
-  </div>
-  <div class="col">
-    <h1>Support</h1>
-    <ul>
-      <li>Contact us</li>
-      <li>Web chat</li>
-      <li>Open ticket</li>
-    </ul>
-  </div>
-  <div class="col social">
-    <h1>Social</h1>
-    <ul>
-      <li><img src="https://svgshare.com/i/5fq.svg" width="32" style="width: 32px;"></li>
-      <li><img src="https://svgshare.com/i/5eA.svg" width="32" style="width: 32px;"></li>
-      <li><img src="https://svgshare.com/i/5f_.svg" width="32" style="width: 32px;"></li>
-    </ul>
-  </div>
-<div class="clearfix"> </div>
-</div>
-</div>
-END OF FOOTER -->
+
+
+
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
