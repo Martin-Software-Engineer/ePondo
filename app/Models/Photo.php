@@ -12,4 +12,8 @@ class Photo extends Model
     public function campaigns(){
         return $this->belongsToMany(Campaign::class);;
     }
+
+    public function jobs(){
+        return $this->belongsToMany(Campaign::class);;
+    }
 }

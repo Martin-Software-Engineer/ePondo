@@ -27,4 +27,8 @@ class Job extends Model
     public function job_categories(){
         return $this->belongsToMany(JobCategory::class);
     }
+
+    public function photos(){
+        return $this->belongsToMany(Photo::class);
+    }
 }

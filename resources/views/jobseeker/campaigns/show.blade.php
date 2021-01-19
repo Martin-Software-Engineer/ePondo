@@ -34,6 +34,20 @@
 
     </div>
 
+    <div class="row">
+        <div class="col-4 mt-4">
+            <h4>Campaign Photos:</h4>
+        </div>
+        
+        <div class="col mt-4">
+            @foreach($campaign->photos as $photo)
+                    <!-- <img src="{!! Storage::disk('s3')->url('campaign/' . $photo->filename) !!}" alt="c_pic" width="100" height="100"> -->
+                    <img src="{{ 'https://awssoftdevmartin-epondo-images.s3-ap-southeast-1.amazonaws.com/campaign/' . $photo->filename }}" alt="campaign_pic" width="100" height="100" >
+            @endforeach
+        </div>
+
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-4">
@@ -62,6 +76,7 @@
             <th scope="col">Description</th>
             <th scope="col">Category ID</th>
             <th scope="col">Category Name</th>
+            <th scope="col">Job Photos</th>
             <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -74,6 +89,12 @@
             <td>{{ $job -> description }}</td>
             <td>{{ $job_category->id }}</td>
             <td>{{ $job_category->name }}</td>
+            <td>
+            @foreach($job->photos as $photo)
+                    <!-- <img src="{!! Storage::disk('s3')->url('campaign/' . $photo->filename) !!}" alt="c_pic" width="100" height="100"> -->
+                    <img src="{{ 'https://awssoftdevmartin-epondo-images.s3-ap-southeast-1.amazonaws.com/campaign/' . $photo->filename }}" alt="campaign_pic" width="100" height="100" >
+            @endforeach
+            </td>
             <td>
                 <a class="btn btn-sm btn-primary" href="/jobseeker/campaigns/{{$campaign -> id}}/jobs/{{$job->id}}" role="button">View</a>
             </td>
@@ -104,6 +125,7 @@
             <th scope="col">Description</th>
             <th scope="col">Category ID</th>
             <th scope="col">Category Name</th>
+            <th scope="col">Job Photo</th>
             <th scope="col">Actions</th>
             </tr>
         </thead>

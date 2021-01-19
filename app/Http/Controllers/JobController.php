@@ -73,6 +73,7 @@ class JobController extends Controller
         // $campaign->campaign_categories()->attach($request['campaign_category']);
         
         $job->job_categories()->attach($request['job_category']);
+        
         $request ->session()->flash('success','You have created a New Job!');
 
         $campaign = Campaign::findOrFail($campaign_id);
