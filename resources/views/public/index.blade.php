@@ -30,7 +30,7 @@
 <body>
     <nav>
         <div class="wrapper">
-            <div class="logo"><a href="#">ePondo</a></div>
+            <div class="logo"><a href="#">blank</a></div>
             <input type="radio" name="slide" id="menu-btn">
             <input type="radio" name="slide" id="cancel-btn">
             <ul class="nav-links">
@@ -108,9 +108,123 @@
     </nav>
 
 
-<section class="slideshow-container">
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-end align-items-center">
+    <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
 
-        <div class="slideshow-container">
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Welcome to <span>ePONDO</span></h2>
+          <p class="animate__animated fanimate__adeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
+          <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
+          <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+        </div>
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+      <i class="fas fa-arrow-left"></i>
+        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+      <i class="fas fa-angle-right"></i>
+        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+
+    </div>
+
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+    </svg>
+
+  </section>
+  <!-- End Hero -->
+<!-- <div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
+
+
+
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <div class="view">
+            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
+            <div class="mask rgba-black-light"></div>
+          </div>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">Carousel Title here</h3>
+            <p>First text</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+
+          <div class="view">
+            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
+            <div class="mask rgba-black-strong"></div>
+          </div>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">Carousel Title here</h3>
+            <p>Secondary text</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+
+          <div class="view">
+            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
+            <div class="mask rgba-black-slight"></div>
+          </div>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">Carousel Title here</h3>
+            <p>Third text</p>
+          </div>
+        </div>
+      </div>
+
+      <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+
+    </div> -->
+
+
+  </div>
+
+
+        <!-- <div class="slideshow-container">
         <div class="container" style="padding: 40px 0 0 0;">
     <div style=height:200px id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
         <div class="carousel-inner">
@@ -174,11 +288,13 @@
         </div>
     </div>
 </div>
-</div>
+</div> -->
+
+
     </section>
 
-    <section style="margin-bottom:100px" class="slideshow-container">
-            <h1 style="margin-top: 80px">More to Explore</h1>
+    <section style="margin-bottom:100px; padding-top: 0" class="slideshow-container">
+            <h1>More to Explore</h1>
             <div class="cards-container">
             <div class="container">
         <div class="row">
@@ -382,7 +498,7 @@
     </div>
 </div>
 
-<h1 style="margin-top:30px" >More to Explore</h1>
+<h2 style="margin-top:30px" >More to Explore</h2>
             <div class="cards-container">
             <div class="container">
         <div class="row">
@@ -391,11 +507,11 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6 hidden-xs">
                 <div class="controls pull-right">
-                    <a class="left fa fa-chevron-left btn btn-info " href="#carousel-example" data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-info" href="#carousel-example" data-slide="next"></a>
+                    <a class="left fa fa-chevron-left btn btn-info " href="#carousel-example1" data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-info" href="#carousel-example1" data-slide="next"></a>
                 </div>
             </div>
         </div>
-        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+        <div id="carousel-example1" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
@@ -584,85 +700,430 @@
             </div>
         </div>
     </div>
-</div>
 
 
-
-
-
-            <!-- <div class="container">
-                <div class="row">
-
-
-                    <div class="col-sm">
-                        <div class="card">
-                            <div class="card-image"></div>
-                            <div class="text_container">
-                                <div>
-                                    <h4><b>Tutor</b></h4>
-                                    <p>Tutoring Services</p>
-                                </div>
-
-                            </div>
-                            <div class="card-footer">
-                                <button>Click here</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="card">
-                            <div class="card-image"></div>
-                            <div class="text_container">
-                                <div>
-                                    <h4><b>Tutor</b></h4>
-                                    <p>Tutoring Services</p>
-                                </div>
-
-                            </div>
-                            <div class="card-footer">
-                                <button>Click here</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="card">
-                            <div class="card-image"></div>
-                            <div class="text_container">
-                                <div>
-                                    <h4><b>Tutor</b></h4>
-                                    <p>Tutoring Services</p>
-                                </div>
-
-                            </div>
-                            <div class="card-footer">
-                                <button>Click here</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="card">
-                            <div class="card-image"></div>
-                            <div class="text_container">
-                                <div>
-                                    <h4><b>Tutor</b></h4>
-                                    <p>Tutoring Services</p>
-                                </div>
-
-                            </div>
-                            <div class="card-footer">
-                                <button>Click here</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> -->
+ <h2 style="margin-top:30px" >Most popular</h2>
+            <div class="cards-container">
+            <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <h3>Products and Services</h3>
             </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 hidden-xs">
+                <div class="controls pull-right">
+                    <a class="left fa fa-chevron-left btn btn-info " href="#carousel-example3" data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-info" href="#carousel-example3" data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+        <div id="carousel-example3" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="slider-item">
+                                <div class="slider-image">
+                                    <img src="https://api.time.com/wp-content/uploads/2018/11/sweetfoam-sustainable-product.jpg?quality=85" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="slider-main-detail">
+                                    <div class="slider-detail">
+                                        <div class="product-detail">
+                                            <h5>Tsinelas</h5>
+                                            <h5 class="detail-price">-</h5>
+                                        </div>
+                                    </div>
+                                    <div class="cart-section">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-6">
+                                                <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> More Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="slider-item">
+                                <div class="slider-image">
+                                    <img src="https://i.ebayimg.com/images/g/lPQAAOSwBRlcmjGR/s-l300.jpg" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="slider-main-detail">
+                                    <div class="slider-detail">
+                                        <div class="product-detail">
+                                            <h5>Product Name</h5>
+                                            <h5 class="detail-price">$187.87</h5>
+                                        </div>
+                                    </div>
+                                    <div class="cart-section">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-6">
+                                                <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> More Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="slider-item">
+                                <div class="slider-image">
+                                    <img src="https://media.architecturaldigest.com/photos/55e7862d302ba71f301793f4/master/w_400%2Cc_limit/dam-images-shopping-2014-11-handmade-goods-handmade-goods-companies-02-connected-goods.jpg" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="slider-main-detail">
+                                    <div class="slider-detail">
+                                        <div class="product-detail">
+                                            <h5>Product Name</h5>
+                                            <h5 class="detail-price">$187.87</h5>
+                                        </div>
+                                    </div>
+                                    <div class="cart-section">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-6">
+                                                <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="slider-item">
+                                <div class="slider-image">
+                                    <img src="https://themakeitcollective.com.au/wp-content/uploads/2020/10/lauren-roberts-439980-unsplash-1800x1200-1.jpg" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="slider-main-detail">
+                                    <div class="slider-detail">
+                                        <div class="product-detail">
+                                            <h5>Product Name</h5>
+                                            <h5 class="detail-price">$187.87</h5>
+                                        </div>
+                                    </div>
+                                    <div class="cart-section">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-6">
+                                                <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="slider-item">
+                                <div class="slider-image">
+                                    <img src="https://isteam.wsimg.com/ip/6a21c73c-9ff6-49ee-ba5b-bdf75ee525b8/fb_2748203905204683_1080x1080/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:400,cg:true" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="slider-main-detail">
+                                    <div class="slider-detail">
+                                        <div class="product-detail">
+                                            <h5>Product Name</h5>
+                                            <h5 class="detail-price">$187.87</h5>
+                                        </div>
+                                    </div>
+                                    <div class="cart-section">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-6">
+                                                <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="slider-item">
+                                <div class="slider-image">
+                                    <img src="https://in.all.biz/img/in/catalog/464325.jpeg" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="slider-main-detail">
+                                    <div class="slider-detail">
+                                        <div class="product-detail">
+                                            <h5>Product Name</h5>
+                                            <h5 class="detail-price">$187.87</h5>
+                                        </div>
+                                    </div>
+                                    <div class="cart-section">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-6">
+                                                <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="slider-item">
+                                <div class="slider-image">
+                                    <img src="https://makeyourboutique.com/wp-content/uploads/2019/11/8-Secrets-To-Selling-Your-Handmade-Goods-On-Shopify.jpg" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="slider-main-detail">
+                                    <div class="slider-detail">
+                                        <div class="product-detail">
+                                            <h5>Product Name</h5>
+                                            <h5 class="detail-price">$187.87</h5>
+                                        </div>
+                                    </div>
+                                    <div class="cart-section">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-6">
+                                                <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="slider-item">
+                                <div class="slider-image">
+                                    <img src="https://www.adnc.ca/wp-content/uploads/sites/7/2013/08/IMG_1824.jpg" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="slider-main-detail">
+                                    <div class="slider-detail">
+                                        <div class="product-detail">
+                                            <h5>Product Name</h5>
+                                            <h5 class="detail-price">$187.87</h5>
+                                        </div>
+                                    </div>
+                                    <div class="cart-section">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-6">
+                                                <a href="#" class="AddCart btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Services</h2>
+          <p>What we do offer</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="icon-box" data-aos="zoom-in-left">
+              <div class="icon"><i class="las la-basketball-ball" style="color: #ff689b;"></i></div>
+              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
+              <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
+              <h4 class="title"><a href="">Dolor Sitema</a></h4>
+              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 ">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
+              <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
+              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
     </section>
+<!-- End Services Section -->
 
-    <footer class="footer-container">
-        <p>ePONDO Capstone Project 2021</p>
-    </footer>
+<!-- ======= Whu Us Section ======= -->
+<section id="why-us" class="why-us">
+      <div class="container">
+
+        <div style="padding: 40px 0 0 0;" class="section-title">
+          <h2>Why choose <span>Us</span></h2>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="box">
+              <span >1</span>
+              <h4 style="text-align:center">Lorem Ipsum</h4>
+              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box">
+              <span>2</span>
+              <h4 style="text-align:center">Repellat Nihil</h4>
+              <p>Dolorem est fugiat occaecati voluptate velit esse. </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box">
+              <span>3</span>
+              <h4 style="text-align:center"> Ad ad velit qui</h4>
+              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+<!-- End Whu Us Section -->
+
+
+<!--FOOTER SECTION -->
+        <footer class="new_footer_area bg_color">
+            <div class="new_footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
+                                <p>Don’t miss any updates!</p>
+                                <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true" _lpchecked="1">
+                                    <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
+                                    <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
+                                    <p class="mchimp-errmessage" style="display: none;"></p>
+                                    <p class="mchimp-sucmessage" style="display: none;"></p>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Categories</h3>
+                                <ul class="list-unstyled f_list">
+                                    <li><a href="#">Education</a></li>
+                                    <li><a href="#">Medical and Health App</a></li>
+                                    <li><a href="#">Animals</a></li>
+                                    <li><a href="#">Non-profit and charity</a></li>
+                                    <li><a href="#">Memorial and Funeral</a></li>
+                                    <li><a href="#">Emergencies</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Help</h3>
+                                <ul class="list-unstyled f_list">
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Reporting</a></li>
+                                    <li><a href="#">Documentation</a></li>
+                                    <li><a href="#">Support Policy</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Contact Us</h3>
+                                <div class="f_social_icon">
+                                    <a href="#" class="fab fa-facebook"></a>
+                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="#" class="fab fa-linkedin"></a>
+                                    <a href="#" class="fab fa-pinterest"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_bg">
+                    <div class="footer_bg_one"></div>
+                    <div class="footer_bg_two"></div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-sm-7">
+                            <p class="mb-0 f_400">2020 All rights reserved.</p>
+                        </div>
+                        <div class="col-lg-6 col-sm-5 text-right">
+                            <p>Made with <i class="icon_heart"></i> in <a href="#">LOVE</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+<!-- <div class="footer">
+  <div class="contain">
+  <div class="col">
+    <h1>Company</h1>
+    <ul>
+      <li>About</li>
+      <li>Mission</li>
+      <li>Services</li>
+      <li>Social</li>
+      <li>Get in touch</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h1>Products</h1>
+    <ul>
+      <li>About</li>
+      <li>Mission</li>
+      <li>Services</li>
+      <li>Social</li>
+      <li>Get in touch</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h1>Accounts</h1>
+    <ul>
+      <li>About</li>
+      <li>Mission</li>
+      <li>Services</li>
+      <li>Social</li>
+      <li>Get in touch</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h1>Resources</h1>
+    <ul>
+      <li>Webmail</li>
+      <li>Redeem code</li>
+      <li>WHOIS lookup</li>
+      <li>Site map</li>
+      <li>Web templates</li>
+      <li>Email templates</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h1>Support</h1>
+    <ul>
+      <li>Contact us</li>
+      <li>Web chat</li>
+      <li>Open ticket</li>
+    </ul>
+  </div>
+  <div class="col social">
+    <h1>Social</h1>
+    <ul>
+      <li><img src="https://svgshare.com/i/5fq.svg" width="32" style="width: 32px;"></li>
+      <li><img src="https://svgshare.com/i/5eA.svg" width="32" style="width: 32px;"></li>
+      <li><img src="https://svgshare.com/i/5f_.svg" width="32" style="width: 32px;"></li>
+    </ul>
+  </div>
+<div class="clearfix"> </div>
+</div>
+</div>
+END OF FOOTER -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
