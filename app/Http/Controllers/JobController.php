@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\Photo;
 use App\Models\Campaign;
 use App\Models\JobCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class JobController extends Controller
 {
@@ -61,7 +63,8 @@ class JobController extends Controller
             
             'title' => 'required',
             'description' => 'required',
-            'job_category' => 'required'
+            'job_category' => 'required',
+            'images.*' => 'required'
         ]);
 
         $job = new Job();
@@ -71,6 +74,23 @@ class JobController extends Controller
         $job -> save();
 
         // $campaign->campaign_categories()->attach($request['campaign_category']);
+        // $path = Storage::disk('s3')->put('job',$data['images']['0'],'public');
+        // dd($path);
+
+        foreach($data['images'] as $image){
+            
+            $path = Storage::disk('s3')->put(
+                'job', $image, 'public'
+            );
+
+            $photo = new Photo();
+            $photo -> filename =  basename($path);
+            $photo -> url = Storage::url($path);
+            $photo -> save();
+                
+            $job->photos()->attach($photo->id);
+
+        }
         
         $job->job_categories()->attach($request['job_category']);
         

@@ -92,7 +92,7 @@
             <td>
             @foreach($job->photos as $photo)
                     <!-- <img src="{!! Storage::disk('s3')->url('campaign/' . $photo->filename) !!}" alt="c_pic" width="100" height="100"> -->
-                    <img src="{{ 'https://awssoftdevmartin-epondo-images.s3-ap-southeast-1.amazonaws.com/campaign/' . $photo->filename }}" alt="campaign_pic" width="100" height="100" >
+                    <img src="{{ 'https://awssoftdevmartin-epondo-images.s3-ap-southeast-1.amazonaws.com/job/' . $photo->filename }}" alt="job_pic" width="100" height="100" >
             @endforeach
             </td>
             <td>

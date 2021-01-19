@@ -36,6 +36,8 @@ class PhotoSeeder extends Seeder
         // //     'url' => Storage::url($path)
         // // ]);
 
+        // S3 campaign/ photos
+
         $photo = new Photo();
         $photo -> filename = 'piJd6a3QdCc0XH6lKva4JmgHQX7GWYWuFYk908Bt.png' ;
         $photo -> url = '/storage/campaign/piJd6a3QdCc0XH6lKva4JmgHQX7GWYWuFYk908Bt.png' ;
@@ -44,6 +46,18 @@ class PhotoSeeder extends Seeder
         $photo = new Photo();
         $photo -> filename = 'PjuS8kpQSpNtY0eWwSJdUPZRu7Jzr0bs3Eevrbzg.png' ;
         $photo -> url = '/storage/campaign/PjuS8kpQSpNtY0eWwSJdUPZRu7Jzr0bs3Eevrbzg.png' ;
+        $photo -> save();
+
+        // S3 cjob/ photos
+
+        $photo = new Photo();
+        $photo -> filename = 'sbwxF06sqsl9TRmy22dcHYvITMwKAOKtJ0mXoOsR.webp' ;
+        $photo -> url = '/storage/job/sbwxF06sqsl9TRmy22dcHYvITMwKAOKtJ0mXoOsR.webp' ;
+        $photo -> save();
+
+        $photo = new Photo();
+        $photo -> filename = 'xQDzCLjjQSnMeDTOGtY7Iy2YDQtEQtrJm0PmEbx7.jpeg' ;
+        $photo -> url = '/storage/job/xQDzCLjjQSnMeDTOGtY7Iy2YDQtEQtrJm0PmEbx7.jpeg' ;
         $photo -> save();
 
     }

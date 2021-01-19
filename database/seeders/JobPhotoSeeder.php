@@ -16,9 +16,9 @@ class JobPhotoSeeder extends Seeder
     public function run()
     {
         $photos = Photo::all();
-        Job::all()->each( function ($campaigns) use ($photos){
-            $campaigns->photos()->attach(1);
-            $campaigns->photos()->attach(2);
+        Job::all()->each( function ($jobs) use ($photos){
+            $jobs->photos()->attach(3);
+            $jobs->photos()->attach(4);
         });
     }
 }
