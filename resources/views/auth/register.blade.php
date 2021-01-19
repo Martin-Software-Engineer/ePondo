@@ -60,7 +60,8 @@
         </div>
             
             <div class="form-outer">
-                <form action="#">
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
                     <div class="page slidepage">
                         <div class="title">Basic Info:</div>
                         <div class="field">
