@@ -83,3 +83,4 @@ Route::get('/login-demo', function () { return view('/auth/login-demo'); });
 Route::get('/register-demo', function () { return view('/auth/register-demo'); });
 Route::get('/userreg-demo', function () { return view('/auth/userreg-demo'); });
 Route::get('/homepage-demo', function () { return view('/auth/homepage-demo'); });
+Route::get('/campaign-category', function () { return view('/public/campaigns/campaign-category'); });
