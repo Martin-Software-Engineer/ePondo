@@ -15,13 +15,13 @@
 
                 <h3 class="mt-2 pd-2">Login</h3>
                 <form method="POST" action="{{ route('login') }}">
-                    @csrf
+                    @csrf   
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="email" placeholder="Enter Email" value="{{ old('email') }}">
                         @error('email')
                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                        @enderror    
+                        @enderror
                     </div>
                     <div class="form-group mt-2">
                         <label for="password">Password</label>
