@@ -30,7 +30,7 @@
 </head>
 
 <body >
-<p>Sample</p>
+
     <!-- <nav>
         <div class="wrapper">
             <div class="logo"><a href="#">blank</a></div>
