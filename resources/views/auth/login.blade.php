@@ -20,6 +20,7 @@
                 @endif
 
                 <form method="POST" action="{{ route('login') }}">
+
                 @csrf
                     <div class="page">
                         <div class="title">Login Details:</div>
