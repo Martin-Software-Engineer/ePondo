@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->text('name');
             $table->longText('description');
             $table->timestamps();
+
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
         });
     }
 
