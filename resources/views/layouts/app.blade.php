@@ -20,13 +20,13 @@
 
         <!-- JS -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-             
+
 
     </head>
     <body>
        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">-->
-            <nav style="">
+            <!-- <nav style="">
             <div class="wrapper">
             <div class="logo"><a href="#">ePONDO</a></div>
             <input type="radio" name="slide" id="menu-btn">
@@ -105,7 +105,7 @@
             </ul>
             <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
         </div>
-    </nav>
+    </nav> -->
             <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="/">{{ config('app.name','ePondo') }}</a>
@@ -152,6 +152,7 @@
 
             </div>
         </nav>
+
 
         @can('logged-in')
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
