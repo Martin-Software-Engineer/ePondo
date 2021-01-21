@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +25,12 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="../../js/homepage.js"></script>
 
+
 </head>
 
-<body>
-    <nav>
+<body >
+<p>Sample</p>
+    <!-- <nav>
         <div class="wrapper">
             <div class="logo"><a href="#">blank</a></div>
             <input type="radio" name="slide" id="menu-btn">
@@ -105,15 +104,17 @@
                     </div>
                 </li>
                 <li><a href="#">Community</a></li>
-                <li class="book-a-table text-center"><a href="#book-a-table">Login</a></li>
+                <li class="book-a-table text-center"><a href="login">Login</a></li>
             </ul>
             <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
         </div>
-    </nav>
-
+    </nav> -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-end align-items-center">
+  @extends ('layouts.app')
+
+  @section('content')
+  <section id="hero" class="d-flex flex-column justify-content-end align-items-center" >
     <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
 
       <!-- Slide 1 -->
@@ -173,129 +174,9 @@
     </svg>
 
   </section>
-  <!-- End Hero -->
-<!-- <div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
-
-
-
-      <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-          <div class="view">
-            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
-            <div class="mask rgba-black-light"></div>
-          </div>
-          <div class="carousel-caption">
-            <h3 class="h3-responsive">Carousel Title here</h3>
-            <p>First text</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-
-          <div class="view">
-            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
-            <div class="mask rgba-black-strong"></div>
-          </div>
-          <div class="carousel-caption">
-            <h3 class="h3-responsive">Carousel Title here</h3>
-            <p>Secondary text</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-
-          <div class="view">
-            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
-            <div class="mask rgba-black-slight"></div>
-          </div>
-          <div class="carousel-caption">
-            <h3 class="h3-responsive">Carousel Title here</h3>
-            <p>Third text</p>
-          </div>
-        </div>
-      </div>
-
-      <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-
-    </div> -->
-
-
   </div>
+ </section>
 
-
-        <!-- <div class="slideshow-container">
-        <div class="container" style="padding: 40px 0 0 0;">
-    <div style=height:200px id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
-        <div class="carousel-inner">
-            <div class="carousel-test"></div>
-
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="https://steamuserimages-a.akamaihd.net/ugc/940586530515504757/CDDE77CB810474E1C07B945E40AE4713141AFD76/" alt="">
-                <div class="carousel-overlay">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2 class="py-2 text-left">Join Us!</h2>
-                        <p class="text-left">Be a backer or jobseeker now!</p>
-                        <p style="text-align: right !important;">Read More...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <img class="d-block w-100" src="https://assets.gamepur.com/wp-content/uploads/2020/10/04152721/among-hd.jpg" alt="">
-                <div class="carousel-overlay">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2 class="py-2 text-left">Title</h2>
-                        <p class="text-left">Be a Backer or Jobseeker now!</p>
-                        <p style="text-align: right !important;">Read More...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <img class="d-block w-100" src="https://wonderfulengineering.com/wp-content/uploads/2016/02/wallpaper-background-2.jpg" alt="">
-                <div class="carousel-overlay">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2 class="py-2 text-left">Title</h2>
-                        <p class="text-left">Be a Backer or Jobseeker now!</p>
-                        <p style="text-align: right !important;">Read More...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <img class="d-block w-100" src="https://images4.alphacoders.com/936/936378.jpg" alt="">
-                <div class="carousel-overlay">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2 class="py-2 text-left">Title</h2>
-                        <p class="text-left">Be a Backer or Jobseeker now!</p>
-                        <p style="text-align: right !important;">Read More...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-panel">
-            <a class="carousel-control-prev align-items-end" href="#carousel" role="button" data-slide="prev">
-                <span class="mb-4"><i class="fa fa-angle-left fa-3x"></i></span>
-                <span class="sr-only">Previous</span>
-            </a>
-
-            <a class="carousel-control-next align-items-end" href="#carousel" role="button" data-slide="next">
-                <span class="mb-4"><i class="fa fa-angle-right fa-3x"></i></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-</div>
-</div> -->
-
-
-    </section>
 
 
  <section style="margin-bottom:50px; padding-top: 0" class="slideshow-container">
@@ -911,61 +792,6 @@
         </div>
     </div>
 
-    <!-- ABOUT US -->
-
-    <!-- <section id="about" style="padding-top: 60px; padding-bottom: 50px;">
-      <div class="container" data-aos="fade-up">
-        <header class="section-header" style="padding-bottom: 20px">
-          <h3>About Us</h3>
-        </header>
-
-        <div class="row about-cols">
-          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="about-col">
-              <div class="img">
-                <img src="https://vethics.com/assets/images/mission.jpg" alt="" class="img-fluid">
-                <div class="icon"><i class="fas fa-list-ul"></i></i></div>
-              </div>
-              <h2 class="title"><a href="#">Our Mission</a></h2>
-              <p>
-                Mission
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="about-col">
-              <div class="img">
-                <img src="https://ak.picdn.net/shutterstock/videos/11872559/thumb/10.jpg" alt="" class="img-fluid">
-                <div class="icon"><i class="fas fa-book-open"></i></div>
-              </div>
-              <h2 class="title"><a href="#">Our Plan</a></h2>
-              <p>
-                 Plan
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="about-col">
-              <div class="img">
-                <img src="https://png.pngitem.com/pimgs/s/50-500664_vision-and-mission-png-transparent-png.png" alt="" class="img-fluid">
-                <div class="icon"><i class="far fa-eye"></i></div>
-              </div>
-              <h2 class="title"><a href="#">Our Vision</a></h2>
-              <p>
-                Vision
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section> -->
-<!-- End About Us Section -->
-
-
 
 <!-- ======= Services Section ======= -->
 <section id="services" class="services">
@@ -1006,50 +832,6 @@
 <!-- End Services Section -->
 
 </section>
-
-
-
-<!-- ======= Whu Us Section ======= -->
-<!-- <section id="why-us" class="why-us">
-      <div class="container">
-
-        <div style="padding: 40px 0 0 0;" class="section-title">
-          <h2>Why choose <span>Us</span></h2>
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4">
-            <div class="box">
-              <span >1</span>
-              <h4 style="text-align:center">Lorem Ipsum</h4>
-              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box">
-              <span>2</span>
-              <h4 style="text-align:center">Repellat Nihil</h4>
-              <p>Dolorem est fugiat occaecati voluptate velit esse. </p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box">
-              <span>3</span>
-              <h4 style="text-align:center"> Ad ad velit qui</h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section> -->
-<!-- End Whu Us Section -->
-
 
 
 <footer id="footer">
@@ -1143,6 +925,9 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-
 </body>
+@endsection
+
 </html>
+
+
