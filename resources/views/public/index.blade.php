@@ -29,7 +29,7 @@
 </head>
 
 <body >
-<p>Sample</p>
+@extends ('layouts.app')
     <!-- <nav>
         <div class="wrapper">
             <div class="logo"><a href="#">blank</a></div>
@@ -111,10 +111,11 @@
     </nav> -->
 
   <!-- ======= Hero Section ======= -->
-  @extends ('layouts.app')
+  
 
   @section('content')
   <section id="hero" class="d-flex flex-column justify-content-end align-items-center" >
+  
     <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
 
       <!-- Slide 1 -->
