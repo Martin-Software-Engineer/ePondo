@@ -7,7 +7,6 @@
 
             <h1>My Profile</h1>
 
-            
 
             <div class="card mt-2">
                 <div class="row">
@@ -20,16 +19,24 @@
                         <div class="col"><h6>Email:</h6></div>
                 </div>                
             </div>
-
+            <div class="card mt-4">
+                <div class="row">
+                        <div class="col"><h6>Personal Information</h6></div>
+                </div>                
+            </div>
             <div class="card mt-4">
                 <div class="row">
                         <div class="col"><h6>Address Information</h6></div>
                 </div>                
             </div>
-
             <div class="card mt-4">
                 <div class="row">
-                        <div class="col"><h6>Payment Information</h6></div>
+                        <div class="col"><h6>Background Information</h6></div>
+                </div>                
+            </div>
+            <div class="card mt-4">
+                <div class="row">
+                        <div class="col"><h6>4Ps Information</h6></div>
                 </div>                
             </div>
         </div>
