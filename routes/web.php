@@ -11,6 +11,9 @@ use JobSeeker\CampaignController;
 // use JobSeeker\JobController;
 // use JobController;
 use App\Http\Controllers;
+use App\Http\Controllers\JobseekerBackgroundController;
+// use App\Http\Controllers\JobseekerProfileController;
+use App\Models\JobseekerBackground;
 // use PublicCampaignController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,11 +45,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-Admin'])->gr
 // Demo route to check if verif email, lets use this for accessing profile, before they can they need to verify email
 Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(['auth','verified']);
 
+Route::resource('/backgroundinformation', JobseekerBackgroundController::class);
+
 //JobSeeker -> Campaigns Route using Route Group
 Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-JobSeeker'])->group(function (){
     Route::resource('/campaigns', CampaignController::class);
     Route::resource('/campaigns.jobs', JobController::class);
     Route::resource('/campaigns.products', ProductController::class);
+    Route::resource('/myprofile', JobseekerProfileController::class);
+    
     // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
     // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
 });

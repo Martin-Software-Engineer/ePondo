@@ -174,11 +174,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('jobseeker.campaigns.index') }}">My Campaigns</a>
                     </li>
-                    @endcan
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/MyProfile">My Profile</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('jobseeker.myprofile.index') }}">My Profile</a>
                     </li>
+                    @endcan
+                    
 
 
 
