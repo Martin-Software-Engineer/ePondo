@@ -20,7 +20,7 @@ class CreateUserInformationTable extends Migration
             $table->string('age');
             $table->string('sex');
             $table->string('marital_status');
-            $table->string('kids');
+            // $table->string('kids');
             $table->string('education');
             $table->string('occupation');
             $table->string('contact_no');

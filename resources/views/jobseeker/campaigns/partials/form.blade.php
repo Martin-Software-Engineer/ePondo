@@ -60,12 +60,12 @@
         <label for="images2">Upload Image 2</label>
             <input name="images[]" 
                     type="file" 
-                    class="form-control @error('image') is-invalid @enderror" 
+                    class="form-control @error('images.*') is-invalid @enderror" 
                     id="image2" 
                     aria-describedby="image" 
                     placeholder="Enter image" 
-                    value="{{ old('images.1') }}">
-        @error('images.1.image')
+                    value="{{ old('images.*') }}">
+        @error('images.*')
             <span class="invalid-feedback" role="alert">{{ $message }}</span>
         @enderror
     </div>

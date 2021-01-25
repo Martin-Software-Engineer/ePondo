@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\JobSeeker;
 
+use App\Http\Controllers\Controller;
 use App\Models\JobseekerProfile;
 use Illuminate\Http\Request;
+
 
 class JobseekerProfileController extends Controller
 {
@@ -24,7 +26,7 @@ class JobseekerProfileController extends Controller
      */
     public function create()
     {
-        // return view('jobseeker.myprofile.index');
+        // return view('jobseeker.background.create');
     }
 
     /**
