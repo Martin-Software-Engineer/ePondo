@@ -870,13 +870,15 @@ html,body {
     line-height: 20px;
     color: #7f88a6;
     padding: 27px 0px;
+    padding-bottom: 10px;
+
 }
 .new_footer_top .company_widget p {
     font-size: 16px;
     font-weight: 300;
     line-height: 28px;
     color: #6a7695;
-    margin-bottom: 20px;
+   
 }
 .new_footer_top .company_widget .f_subscribe_two .btn_get {
     border-width: 1px;
@@ -1065,6 +1067,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease-in-out;
     border-radius: 8px;
     z-index: 1;
+    margin-top: -12em;
   }
 
   .services .icon-box::before {
@@ -1144,7 +1147,9 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     position: relative;
     background: linear-gradient(0deg, #236B8E 0%, #236B8E 100%);
-    padding: 0;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin-top: -29em;
   }
 
   #hero .carousel-container {
@@ -1154,8 +1159,8 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     text-align: center;
     position: relative;
-    height: 70vh;
-    padding-top: 60px;
+    height: 55vh;
+    padding-top: 0px;
     background-image: linear-gradient(0deg, #236B8E 0%, #236B8E 100% );
   }
 
@@ -1230,6 +1235,7 @@ h1, h2, h3, h4, h5, h6 {
   .hero-waves {
     display: block;
     width: 100%;
+    padding-bottom: -90px;
     height: 60px;
     position: relative;
   }
@@ -1706,6 +1712,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     position: relative;
     padding-bottom: 15px;
+    margin-top: 1em;
 }
 .section-header h3::after {
     content: '';
@@ -1792,10 +1799,12 @@ h1, h2, h3, h4, h5, h6 {
 #call-to-action {
     background-image: linear-gradient(rgba(0, 142, 99, 0.1), rgba(0, 0, 0, 0.1)), url(https://wallpapercave.com/wp/wp6073628.jpg);
     background-size: cover;
-    padding: 60px 0;
+    margin-top: 30em;
+    padding: 100px;
   }
 
   #call-to-action h3 {
+    margin-top: -1em;
     color: #fff;
     font-size: 28px;
     font-weight: 700;
