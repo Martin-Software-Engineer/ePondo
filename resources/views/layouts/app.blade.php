@@ -163,10 +163,19 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Home</a>
                     </li>
+                    
 
                     @can('is-Admin')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.users.index') }}">Users</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Logout</a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none">
+                                @csrf
+                                </form>
                     </li>
                     @endcan
 
@@ -176,6 +185,14 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('jobseeker.myprofile.index') }}">My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Logout</a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none">
+                                @csrf
+                                </form>
                     </li>
                     @endcan
                     

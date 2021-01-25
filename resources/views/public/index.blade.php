@@ -30,9 +30,9 @@
 
 <body >
 
-    <!-- <nav>
+     <nav>
         <div class="wrapper">
-            <div class="logo"><a href="#">blank</a></div>
+            <div class="logo"><a href="#">ePondo</a></div>
             <input type="radio" name="slide" id="menu-btn">
             <input type="radio" name="slide" id="cancel-btn">
             <ul class="nav-links">
@@ -108,7 +108,7 @@
             </ul>
             <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
         </div>
-    </nav> -->
+    </nav> 
 
   <!-- ======= Hero Section ======= -->
   @extends ('layouts.app')
@@ -837,12 +837,12 @@
 <footer id="footer">
 
      <!-- ======= Call To Action Section ======= -->
-     <section id="call-to-action">
+    <section id="call-to-action">
       <div class="container text-center" data-aos="zoom-in">
-        <h3>Ready to create a campaign?</h3>
-        <a class="cta-btn" href="#">Create Now!</a>
+        
       </div>
-    </section><!-- End Call To Action Section -->
+    </section>
+    <!-- End Call To Action Section -->
 
 <!--FOOTER SECTION -->
         <footer class="new_footer_area bg_color">
@@ -903,22 +903,22 @@
                 <div class="footer_bg">
                     <div class="footer_bg_one"></div>
                     <div class="footer_bg_two"></div>
+                    
                 </div>
             </div>
-            <div class="footer_bottom">
+            <!--<div class="footer_bottom">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-sm-7">
                             <p class="mb-0 f_400">2020 All rights reserved.</p>
                         </div>
                         <div class="col-lg-6 col-sm-5 text-right">
-                            <p>Made with <i class="icon_heart"></i> in <a href="#">LOVE</a></p>
+                            <p>ePondo</p>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </footer>
-
 
 
 
