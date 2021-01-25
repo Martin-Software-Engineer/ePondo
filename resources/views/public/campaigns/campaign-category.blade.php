@@ -3,7 +3,7 @@
 <html>
     <link rel="stylesheet" href="css/style3.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-   
+
     <title>Campaign Categories</title>
 <body>
 <nav>
@@ -86,15 +86,15 @@
 </nav>
     <!--Categories-->
     <div class="container">
-        <a href="#">
+        <a href="/education-category">
             <div class="box">
                 <div class="icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
                 <div class="content">
-                    <h3>Education</h3>     
+                    <h3>Education</h3>
                 </div>
             </div>
             </a>
-            <a href="#">
+            <a href="/medical-category">
             <div class="box">
                 <div class="icon"><i class="fa fa-stethoscope" aria-hidden="true"></i></div>
                 <div class="content">
@@ -102,31 +102,31 @@
                 </div>
             </div>
             </a>
-            <a href="#">
+            <a href="/animals-category"#">
             <div class="box">
                 <div class="icon"><i class="fa fa-paw" aria-hidden="true"></i></div>
                 <div class="content">
-                    <h3>Animals</h3>      
+                    <h3>Animals</h3>
                 </div>
             </div>
             </a>
-            <a href="#">
+            <a href="/nonprofit-category">
             <div class="box">
                 <div class="icon"><i class="fa fa-handshake-o" aria-hidden="true"></i></div>
                 <div class="content">
-                    <h3>Non-profit and Charity</h3>         
+                    <h3>Non-profit and Charity</h3>
                 </div>
             </div>
             </a>
-            <a href="#">
+            <a href="/memorial-category">
             <div class="box">
                 <div class="icon"><i class="fa fa-heartbeat" aria-hidden="true"></i></div>
                 <div class="content">
-                    <h3>Memorial and Funeral</h3>     
+                    <h3>Memorial and Funeral</h3>
                 </div>
             </div>
             </a>
-            <a href="#">
+            <a href="/emergencies-category">
             <div class="box">
                 <div class="icon"><i class="fa fa-medkit" aria-hidden="true"></i></div>
                 <div class="content">
@@ -134,7 +134,7 @@
                 </div>
             </div>
             </a>
-        </div> 
+        </div>
 </body>
 </html>
 
