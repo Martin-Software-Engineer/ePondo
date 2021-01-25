@@ -23,4 +23,14 @@ class JobseekerBackground extends Model
     {
         return $this->hasOne(FourPsData::class);
     }
+
+    public function kids()
+    {
+        return $this->hasOne(JobseekerKids::class);
+    }
+
+    public function dependents()
+    {
+        return $this->hasOne(JobseekerDependents::class);
+    }
 }

@@ -9,3 +9,9 @@
             {{ session('isAdmin') }}
         </div>
 @endif
+
+@if (session('NoJobseekerBackground'))
+        <div class="alert alert-primary mt-4" role="alert">
+            {{ session('NoJobseekerBackground') }}
+        </div>
+@endif

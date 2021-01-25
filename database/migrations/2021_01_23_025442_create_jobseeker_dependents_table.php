@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFourPsDataTable extends Migration
+class CreateJobseekerDependentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateFourPsDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('four_ps_data', function (Blueprint $table) {
+        Schema::create('jobseeker_dependents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('jobseeker_backgrounds_id');
-            $table->string('acquirement_process');
-            $table->string('performance_of_service');
-            $table->string('benefits');
+            $table->string('relation');
+            $table->string('name');
+            $table->string('age');
+            $table->string('sex');
             $table->timestamps();
 
             $table->foreign('jobseeker_backgrounds_id')->references('id')->on('jobseeker_backgrounds')->onDelete('cascade');
@@ -32,6 +33,6 @@ class CreateFourPsDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('four_ps_data');
+        Schema::dropIfExists('jobseeker_dependents');
     }
 }

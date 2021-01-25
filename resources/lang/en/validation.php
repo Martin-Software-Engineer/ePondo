@@ -130,9 +130,15 @@ return [
     |
     */
 
+    // 'custom' => [
+    //     'attribute-name' => [
+    //         'rule-name' => 'custom-message',
+    //     ],
+    // ],
+
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'kids.*.first_name' => [
+            'required' => 'This field is required.',
         ],
     ],
 
