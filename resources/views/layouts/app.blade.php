@@ -106,7 +106,7 @@
             <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
         </div>
     </nav> -->
-            <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="/">{{ config('app.name','ePondo') }}</a>
 
@@ -124,9 +124,11 @@
                 <li>
 
 
-                        <ul class="navbar-nav ml-auto"> -->
+            <ul class="navbar-nav ml-auto">
 
                         <!-- Authentication Links -->
+        
+        <nav>
                         @if (Route::has('login'))
                         @auth
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
