@@ -53,7 +53,7 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-JobS
     Route::resource('/campaigns.jobs', JobController::class);
     Route::resource('/campaigns.products', ProductController::class);
     Route::resource('/myprofile', JobseekerProfileController::class);
-    
+
     // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
     // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
 });
@@ -91,3 +91,10 @@ Route::get('/register-demo', function () { return view('/auth/register-demo'); }
 Route::get('/userreg-demo', function () { return view('/auth/userreg-demo'); });
 Route::get('/homepage-demo', function () { return view('/auth/homepage-demo'); });
 Route::get('/campaign-category', function () { return view('/public/campaigns/campaign-category'); });
+Route::get('/campaign-home', function () { return view('/public/campaigns/campaign-home'); });
+Route::get('/education-category', function () { return view('/public/patcampaigncategories/education-category'); });
+Route::get('/medical-category', function () { return view('/public/patcampaigncategories/medical-category'); });
+Route::get('/animals-category', function () { return view('/public/patcampaigncategories/animals-category'); });
+Route::get('/nonprofit-category', function () { return view('/public/patcampaigncategories/nonprofit-category'); });
+Route::get('/memorial-category', function () { return view('/public/patcampaigncategories/memorial-category'); });
+Route::get('/emergencies-category', function () { return view('/public/patcampaigncategories/emergencies-category'); });
