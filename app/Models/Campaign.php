@@ -6,6 +6,7 @@ use App\Models\Job;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\CampaignCategory;
+use App\Models\Donation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,15 +26,23 @@ class Campaign extends Model
 
     public function publicpath(){
 
-        return url ('/Campaigns/' . $this -> id);
+        return url ('/Campaigns/' . $this ->id);
+    }
+
+    public function jobseeker(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function user(){
         return $this->belongsToMany(User::class);;
     }
 
-    public function campaign_categories(){
+    public function categories(){
         return $this->belongsToMany(CampaignCategory::class);
+    }
+
+    public function donations(){
+        return $this->belongsToMany(Donation::class);
     }
 
     public function jobs()

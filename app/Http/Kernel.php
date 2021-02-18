@@ -55,8 +55,8 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.is-Admin' => \App\Http\Middleware\AccessAdmin::class, //Added middleware to check for Admin Access
-        'auth.is-JobSeeker' => \App\Http\Middleware\AccessJobSeeker::class, //Added middleware to check for JobSeeker Access
+        'auth.is-admin' => \App\Http\Middleware\AccessAdmin::class, //Added middleware to check for Admin Access
+        'auth.is-jobseeker' => \App\Http\Middleware\AccessJobSeeker::class, //Added middleware to check for JobSeeker Access
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,

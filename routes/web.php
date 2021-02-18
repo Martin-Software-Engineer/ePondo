@@ -6,8 +6,7 @@ use App\Mail\CampaignMail;
 use App\Mail\UserVerifyEmail;
 
 use Admin\UserController;
-// use App\Http\Controllers\JobController as ControllersJobController;
-use JobSeeker\CampaignController;
+
 use JobSeeker\JobseekerProfileController;
 // use JobSeeker\JobController;
 // use JobController;
@@ -39,24 +38,31 @@ Route::resource('/Products', PublicProductController::class);                   
 Route::get('/AboutUs', function () { return view('public.aboutus'); });             // About Us
 
 //Admin Routes using Route Group
-Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-Admin'])->group(function (){
-    Route::resource('/users', UserController::class);
+Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-admin'])->group(function (){
+    Route::get('/', 'Admin\CampaignsController@index');
+    Route::resource('campaigns', 'Admin\CampaignsController');
+    Route::resource('donations', 'Admin\DonationsController');
+    Route::resource('services', 'Admin\ServicesController');
+    Route::resource('service-orders', 'Admin\ServiceOrdersController');
+    Route::resource('invoice', 'Admin\InvoicesController');
+    Route::resource('ratings', 'Admin\RatingsController');
+    Route::resource('rewards', 'Admin\RewardsController');
+    Route::resource('users-management', 'Admin\UserManagementController');
+    Route::resource('users', 'Admin\UserController');
 });
 
 // Demo route to check if verif email, lets use this for accessing profile, before they can they need to verify email
 Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(['auth','verified']);
 
 //JobSeeker -> Campaigns Route using Route Group
-Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-JobSeeker'])->group(function (){
-    Route::resource('/campaigns', CampaignController::class);
-    Route::resource('/campaigns.jobs', JobController::class);
-    Route::resource('/campaigns.products', ProductController::class);
+Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-jobseeker'])->group(function (){
+    Route::get('/', 'JobSeeker\AccountController@index')->name('index');
+    Route::resource('campaigns', 'JobSeeker\CampaignsController');
+    Route::resource('campaigns.jobs', JobController::class);
+    Route::resource('campaigns.products', ProductController::class);
 
-    Route::resource('/myprofile', JobseekerProfileController::class)->middleware('check');
-    Route::resource('/background', JobseekerBackgroundController::class);
-   
-    // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
-    // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
+    Route::resource('myprofile', JobseekerProfileController::class)->middleware('check');
+    Route::resource('background', JobseekerBackgroundController::class);
 });
 
 //JobSeeker -> Campaigns Route using Route Group

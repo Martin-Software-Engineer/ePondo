@@ -29,11 +29,11 @@ class AuthServiceProvider extends ServiceProvider
             return redirect('login');
         });
 
-        Gate::define('is-Admin', function($user){
+        Gate::define('is-admin', function($user){
             return $user->hasAnyRole('Admin');
         });
 
-        Gate::define('is-JobSeeker', function($user){
+        Gate::define('is-jobseeker', function($user){
             return $user->hasAnyRole('JobSeeker');
         });
     }

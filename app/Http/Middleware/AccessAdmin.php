@@ -17,10 +17,10 @@ class AccessAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Gate::allows('is-Admin')){
+        if(Gate::allows('is-admin')){
             return $next($request);
         }
 
-        return redirect('/')->with('isAdmin', 'You are not allowed access!');
+        return redirect('/')->with('isadmin', 'You are not allowed access!');
     }
 }
