@@ -1,57 +1,60 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Login Form</title>
-        <link rel="stylesheet" href="css/style4.css">
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    </head>
+@extends('layouts.auth')
 
-    <body>
-        <div class="container">
-            <header>Login Form</header>
-            <div class="form-outer">
+@section('content')
+<h4 class="card-title mb-1 text-center">Welcome! 👋</h4>
+<p class="card-text mb-2 text-center">Sign in to ePondo</p>
 
-                <!-- Added from the template status alert -->
-                @if (session('status'))
-                    <div class="alert alert-danger mt-4" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
+<form class="auth-login-form mt-2" action="{{route('login')}}" method="POST">
+    @csrf
+    <div class="form-group">
+        <label for="login-email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="login-email" name="email" value="{{ old('email') }}" autocomplete="login-email" tabindex="1" autofocus >
+        @error('email')
+            <span id="login-email-error" class="error">
+                {{ $message }}
+            </span>
+        @enderror
+    </div>
 
-                <form method="POST" action="{{ route('login') }}">
-
-                @csrf
-                    <div class="page">
-                        <div class="title">Login Details:</div>
-
-                        <div class="field">
-                            <div class="label">Username</div>
-                            <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="email" placeholder="Enter Email" value="{{ old('email') }}">
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                            @enderror
-
-                        </div>
-                    
-                        <div class="field">
-                            <div class="label">Password</div>
-                            <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Password">
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                            @enderror
-                        </div>  
-                        
-                        <div class="pass-link"><a href="forgot-password">Forgot Password?</a></div>
-                        
-                        <div class="field btns">
-                            <button class="Submit">Submit</button>
-                        </div> 
-                    
-                        <div class="signup-link">Not a member? <a href="register">Register now</a></div>
-                    </div>
-                </form>
-            </div>
+    <div class="form-group">
+        <div class="d-flex justify-content-between">
+            <label for="login-password">Password</label>
+            <a href="page-auth-forgot-password-v1.html">
+                <small>Forgot Password?</small>
+            </a>
         </div>
-    </body>
-</html>
+        <div class="input-group input-group-merge form-password-toggle">
+            <input type="password" class="form-control form-control-merge" id="login-password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
+            <div class="input-group-append">
+                <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+            </div>
+            @error('password')
+                <span id="login-password-error" class="error">
+                    {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="custom-control custom-checkbox">
+            <input class="custom-control-input" type="checkbox" name="remember_me" value="1" id="remember-me" tabindex="3" />
+            <label class="custom-control-label" for="remember-me"> Remember Me </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" tabindex="4">Sign in</button>
+</form>
+<p class="text-center mt-2">
+    <span>New on our platform?</span>
+    <a href="{{route('register')}}">
+        <span>Create an account</span>
+    </a>
+</p>
+@endsection
+
+@section('js')
+    
+    <!-- BEGIN: Page JS-->
+    <script src="{{asset('/app-assets/js/scripts/pages/page-auth-login.js')}}"></script>
+    <!-- END: Page JS-->
+
+@endsection
