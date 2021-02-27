@@ -21,9 +21,14 @@ class Orders extends JsonResource
             'jobseeker_id' => System::GenerateFormattedId('J', $this->service->jobseeker->id),
             'backer_name' => $this->backer->name,
             'backer_id' => System::GenerateFormattedId('B', $this->backer->id),
+            'service_id' => $this->service->id,
             'service_title' => $this->service->title,
             'service_categories' => $this->service->categories,
             'service_date' => $this->created_at->format('M-d-Y'),
+            'service_price' => number_format($this->service->price),
+            'service_duration' => $this->service->duration,
+            'has_jobseeker_feedback' => $this->hasjobseekerfeedback,
+            'has_backer_feedback' => $this->hasbackerfeedback,
             'status' => System::StatusTextValue($this->status)
         ];
     }

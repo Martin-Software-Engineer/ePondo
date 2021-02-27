@@ -4,7 +4,13 @@ namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Service;
+use App\Models\ServiceCategory;
+use App\Models\CampaignCategory;
+use App\Models\Photo;
+use App\Models\Tag;
 
+use App\Http\Requests\StoreService;
 class ServicesController extends Controller
 {
     /**
@@ -14,7 +20,11 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
+        $data['services'] = Service::where('user_id', auth()->user()->id)->get();
+        $data['service_categories'] = ServiceCategory::all();
+        $data['campaign_categories'] = CampaignCategory::all();
+        //return response()->json($data);
+        return view('jobseeker.contents.services', $data);
     }
 
     /**
@@ -33,9 +43,45 @@ class ServicesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreService $request)
     {
-        //
+        $service = Service::create([
+            'user_id' => auth()->user()->id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'duration' => $request->duration,
+            'location' => $request->location
+        ]);
+
+        if($request->hasFile('thumbnail')){
+            $image = $request->file('thumbnail');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            $photo = new Photo();
+            $photo ->filename =  $fileName;
+            $photo ->url = 'public/photos/'.$fileName;
+            $photo ->save();
+
+            $service->thumbnail_id = $photo->id;
+            $service->save();
+        }
+        
+        if($request->input('category', [])){
+            foreach($request->input('category', []) as $category){
+                $service->categories()->attach($category);
+            }
+        }
+        if($request->input('tags')){
+            $tags = explode(',', $request->tags);
+            foreach($tags as $tag){
+                $tagStore = Tag::create(['name' => $tag]);
+                $service->tags()->attach($tagStore->id);
+            }
+        }
+
+        return response()->json(array('success' => true, 'msg' => 'New Service Created.'));
     }
 
     /**

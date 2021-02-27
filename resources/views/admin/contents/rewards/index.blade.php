@@ -17,6 +17,8 @@
         white-space: nowrap;
         overflow: hidden;
     }
+    th { font-size: 12px; }
+    td { font-size: 12px; }
 </style>
 @endsection
 
@@ -81,6 +83,6 @@
 <script src="{{asset('/app-assets/vendors/js/extensions/polyfill.min.js')}}"></script>
 @endsection
 @section('scripts')
-<script src="{{asset('/app-assets/js/scripts/pages/app-campaigns.js')}}"></script>
+<script src="{{asset('/app-assets/js/scripts/pages/app-rewards.js')}}"></script>
 @endsection
 

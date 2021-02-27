@@ -24,11 +24,10 @@ class StoreCampaign extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
             'title' => 'required',
-            'description' => 'string|trim',
-            'campaign_category' => 'required',
-            'images.*' => 'required'
+            'target_date' => 'required',
+            'target_amount' => 'required',
+            'description' => 'string'
         ];
     }
 }

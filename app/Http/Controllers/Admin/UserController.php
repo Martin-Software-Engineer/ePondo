@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Resources\UserList as ResourceUserList;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Gate;
@@ -38,6 +39,16 @@ class UserController extends Controller
     
         return view('admin.users.index',['users' => $users]);
     
+    }
+
+    /**
+     * Show all records in json format.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function data(){
+        $results = User::all();
+        return DataTables::of(ResourceUserList::collection($results))->toJson();
     }
 
     /**

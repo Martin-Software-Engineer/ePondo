@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\Rewards as ResourceRewards;
+use App\Models\User;
+use App\Models\Role;
+use DataTables;
 class RewardsController extends Controller
 {
     /**
@@ -18,6 +21,19 @@ class RewardsController extends Controller
         return view('admin.contents.rewards.index', $data);
     }
 
+    /**
+     * Show all records in json format.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function data(){
+        $role = Role::where('name', 'JobSeeker')->first();
+        $results = User::whereHas('roles', function($q) use($role){
+            $q->where('role_id', $role->id);
+        })->get();
+
+        return DataTables::of(ResourceRewards::collection($results))->toJson();
+    }
     /**
      * Show the form for creating a new resource.
      *

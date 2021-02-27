@@ -17,6 +17,8 @@
         white-space: nowrap;
         overflow: hidden;
     }
+    th { font-size: 12px; }
+    td { font-size: 12px; }
 </style>
 @endsection
 
@@ -82,7 +84,7 @@
                 </div>
                 <div class="tab-pane" id="backer" role="tabpanel" aria-labelledby="backer-tab" aria-expanded="false">
                     <div class="table-responsive">
-                        <table class="jobseeker-list-table table">
+                        <table class="backer-list-table table">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -116,6 +118,6 @@
 <script src="{{asset('/app-assets/vendors/js/extensions/polyfill.min.js')}}"></script>
 @endsection
 @section('scripts')
-<script src="{{asset('/app-assets/js/scripts/pages/app-campaigns.js')}}"></script>
+<script src="{{asset('/app-assets/js/scripts/pages/app-ratings.js')}}"></script>
 @endsection
 

@@ -23,3 +23,7 @@ Route::get('donations', 'Admin\DonationsController@data');
 Route::get('services', 'Admin\ServicesController@data');
 Route::get('orders', 'Admin\ServiceOrdersController@data');
 Route::get('invoices', 'Admin\InvoicesController@data');
+Route::get('ratings', 'Admin\RatingsController@data');
+Route::get('rewards', 'Admin\RewardsController@data');
+Route::get('users', 'Admin\UserManagementController@data');
+Route::get('jobseekers', 'Admin\JobseekerProfileController@data');
