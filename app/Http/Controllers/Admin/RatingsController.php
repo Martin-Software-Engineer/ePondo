@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ServiceRating;
+use App\Http\Resources\RatingBacker as ResourceRatingBacker;
+use App\Http\Resources\RatingJobseeker as ResourceRatingJobseeker;
 
+use DataTables;
 class RatingsController extends Controller
 {
     /**
@@ -16,6 +20,24 @@ class RatingsController extends Controller
     {
         $data['title'] = 'Ratings & Feedbacks';
         return view('admin.contents.ratings.index', $data);
+    }
+
+    /**
+     * Show all records in json format.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function data(Request $request){
+        $results = ServiceRating::where('from', $request->from)->with('order')->get();
+        switch($request->from){
+            case 'backer': 
+                return DataTables::of(ResourceRatingBacker::collection($results))->toJson();
+            break;
+            case 'jobseeker': 
+                return DataTables::of(ResourceRatingJobseeker::collection($results))->toJson();
+            break;
+        }
+        
     }
 
     /**

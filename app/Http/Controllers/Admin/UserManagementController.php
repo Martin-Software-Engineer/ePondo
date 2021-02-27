@@ -4,17 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserList as ResourceUserList;
+use App\Models\User;
+use App\Models\Role;
 
+use DataTables;
 class UserManagementController extends Controller
 {
+    public function index()
+    {
+        $data['title'] = 'User Management';
+        return view('admin.contents.users-management.index', $data);
+    }
+
     /**
-     * Display a listing of the resource.
+     * Show all records in json format.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function data(){
+        $results = User::all();
+        return DataTables::of(ResourceUserList::collection($results))->toJson();
     }
 
     /**

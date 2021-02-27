@@ -9,6 +9,7 @@ use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Campaign;
 use App\Models\JobCategory;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Models\CampaignCategory;
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
+use App\Http\Requests\StoreCampaign;
+use App\Http\Requests\UpdateCampaign;
 
 class CampaignsController extends Controller
 {
@@ -26,20 +30,10 @@ class CampaignsController extends Controller
      */
     public function index()
     {
-        // $users = User::paginate(10);
-        // $roles = Role::all();
-        // return view('admin.users.index',['users' => $users,'roles' => $roles]);
-
-        $user_id = auth()->user()->id;
-
-        $campaigns = Campaign::where('user_id',$user_id)->paginate(5);
-        // $campaigns = $campaigns->
-        // $campaigns = DB::select('select * from campaigns where user_id = ?', [$user_id]);
-        
-        
-        // $path = Storage::disk('s3')->url('campaign/' . 'U0CWk2En5JpJh4feIOBhxDkFmUznhURDQrdhl9dk.jpeg');
-        
-        return view ('jobseeker.campaigns.index',['campaigns' => $campaigns]);
+        $data['campaigns'] = Campaign::where('user_id', auth()->user()->id)->get();
+        $data['categories'] = CampaignCategory::all();
+        //return response()->json($data);
+        return view('jobseeker.contents.campaigns', $data);
     }
 
     /**
@@ -49,7 +43,7 @@ class CampaignsController extends Controller
      */
     public function create()
     {
-        return view('jobseeker.campaigns.create',['campaign_categories' => CampaignCategory::all()]);
+        
     }
 
     /**
@@ -58,160 +52,44 @@ class CampaignsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCampaign $request)
     {
-        // $campaign = Campaign::create($validatedData);
-
-        // $jobs1 = new Job();
-        // $jobs1->name = request('name');
-        // $jobs1->save();
-
-        //DB::insert('insert into jobs (name) values (?)', [request('name')]);
-        // $question = $questionnaire->questions()->create($data['question']);
-        // $question -> answers()->createMany($data['answers']);
-
-        // $campaign = Campaign::create($data['title'],$data['description']);
-
-        // $campaign = new Campaign();
-        // $campaign -> user_id = Auth::id();
-        // $campaign -> title = $data['title'];
-        // $campaign -> description = $data['description'];
-
-        // $data =  Campaign::create([
-            
-        //     'title' => $data['title'],
-        //     'description' => $data['description']
-            
-        // ]);
-
-        $data = $request->validate([
-            
-            'title' => 'required',
-            'description' => 'required',
-            'campaign_category' => 'required',
-            'images.*' => 'required'
-            
+        $campaign = Campaign::create([
+            'user_id' => auth()->user()->id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'target_date' => $request->target_date,
+            'target_amount' => $request->target_amount
         ]);
 
-        $campaign = new Campaign();
-        $campaign ->user_id = auth()->user()->id;
-        $campaign ->title = $data['title'];
-        $campaign ->description = $data['description'];
-        $campaign ->save();
+        if($request->hasFile('thumbnail')){
+            $image = $request->file('thumbnail');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
 
-        // dd($data['images']['0']);
-
-        // $path = Storage::disk('s3')->put('campaign',$data['images']);
-        
-        foreach($data['images'] as $image){ 
-            $path = Storage::disk('s3')->put(
-                'campaign', $image, 'public'
-            );
-
+            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
             $photo = new Photo();
-            $photo ->filename =  basename($path);
-            $photo ->url = Storage::url($path);
-            $photo -> save();
-                
-            $campaign->photos()->attach($photo->id);
+            $photo ->filename =  $fileName;
+            $photo ->url = 'public/photos/'.$fileName;
+            $photo ->save();
+
+            $campaign->thumbnail_id = $photo->id;
+            $campaign->save();
         }
         
-        
-        // $path = Storage::disk('s3')->put(
-        //     'campaign', $data['images']['0'], 'public'
-        // );
+        if($request->input('category', [])){
+            foreach($request->input('category', []) as $category){
+                $campaign->categories()->attach($category);
+            }
+        }
+        if($request->input('tags')){
+            $tags = explode(',', $request->tags);
+            foreach($tags as $tag){
+                $tagStore = Tag::create(['name' => $tag]);
+                $campaign->tags()->attach($tagStore->id);
+            }
+        }
 
-        // dd($path);
-        
-
-        // Storage::disk('s3')->setVisibility($path, 'public');
-
-        // $question -> answers()->createMany($data['answers']);
-
-        // $image = Photo::create([
-        //     'filename' => basename($path),
-        //     'url' => Storage::url($path)
-        // ]);
-
-
-
-        // $photo = new Photo();
-        // $photo -> filename =  basename($path);
-        // $photo -> url = Storage::url($path);
-        // $photo -> save();
-       
-        // $campaign->photos()->attach($photo->id);
-
-        
-
-        // $file = $request -> file('image');
-
-
-        // $path = Storage::disk('s3')->put('campaign', $file);
-
-        // $image = Photo::create([
-        //     'filename' => basename($path),
-        //     'url' => Storage::url($path)
-        // ]);
-
-
-
-
-
-        // dd($path);
-
-        // $contents = Storage::get($file);
-
-        // dd($contents);
-
-        // $filename = $file->getClientOriginalName();
-        // $filename = time(). '.' . $filename;
-        // $path = $file->store('public',$file,'s3');
-        
-        
-        // $image = $request->file('image');
-        // dd($campaign);
-
-        // $path = $request -> file ('image') -> store ('images','s3');
-        // $path = $request -> file('image') -> store ('public/images');
-        // $path = Storage::put($image);
-        // return $path;
-        // dd($data['image']);
-        // $path = $data['image'] -> store ('public/images');
-        
-
-        // $jobs1 = new Job();
-        // $jobs1->name = request('name');
-        // $jobs1->save();
-
-        // $data['user_id'] = auth()->user()->id;
-        // Campaign::create($data);
-
-
-        //Used when using the relationship of the users and questionnaires
-        // $campaign = auth() -> user() -> campaigns() -> create($data);
-
-        $campaign->campaign_categories()->attach($request['campaign_category']);
-        $request ->session()->flash('success','You have created a campaign');
-
-        // $campaign->campaign_categories()->sync($request->campaign_category);
-
-        
-
-        return redirect(route('jobseeker.campaigns.index'));
-
-        //$validatedData = $request->validate([
-        //     'name' => 'required|max:255',
-        //     'email' => 'required|max:255|unique:users',
-        //     'password' => 'required|min:8|max:255'
-        // ]);
-        // $user = User::create($validatedData);
-
-        // $user->roles()->sync($request->roles);
-
-        // $request ->session()->flash('success','You have created the user');
-
-        // return redirect(route('admin.users.index'));
+        return response()->json(array('success' => true, 'msg' => 'New Campaign Created.'));
     }
 
     /**
@@ -262,9 +140,8 @@ class CampaignsController extends Controller
      */
     public function edit($id)
     {
-        // $campaign = Campaign::find($id);
-        return view('jobseeker.campaigns.edit',['campaign' => Campaign::find($id),'campaign_categories' => CampaignCategory::all()]); 
-        // return route('jobseeker.campaigns.edit','$id');
+        $campaign = Campaign::with(['jobseeker','categories','tags'])->where('id',$id)->first();
+        return response()->json($campaign);
     }
 
     /**
@@ -274,22 +151,46 @@ class CampaignsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCampaign $request)
     {
-        // dd($request);
+        $campaign = Campaign::findOrFail($request->id);
 
-        $campaign = Campaign::findOrFail($id);
+        $campaign->title = $request->title;
+        $campaign->description = $request->description;
+        $campaign->target_date = $request->target_date;
+        $campaign->target_amount = $request->target_amount;
+        $campaign->save();
 
-        $campaign->update($request->except(['_token']));
-        
-        $campaign->campaign_categories()->sync($request->campaign_category);
-        // $user->roles()->sync($request->roles);
+        if($request->hasFile('thumbnail')){
+            $image = $request->file('thumbnail');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
 
-        // $request ->session()->flash('success','You have edited the user');
+            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            $photo = new Photo();
+            $photo ->filename =  $fileName;
+            $photo ->url = 'public/photos/'.$fileName;
+            $photo ->save();
 
-        $request ->session()->flash('success','You have edited the campaign');
+            $campaign->thumbnail_id = $photo->id;
+            $campaign->save();
+        }
+        if($request->get('category', [])){
+            $campaign->categories()->sync($request->get('category', []));
+        }else{
+            $campaign->categories()->detach();
+        }
+        if($request->input('tags')){
+            $tags = explode(',', $request->tags);
+            $campaign->tags()->detach();
+            foreach($tags as $tag){
+                $tagStore = Tag::create(['name' => $tag]);
+                $campaign->tags()->attach($tagStore->id);
+            }
+        }else{
+            $campaign->tags()->detach();
+        }
 
-        return redirect(route('jobseeker.campaigns.show',$campaign->id));
+        return response()->json(array('success' => true, 'msg' => 'New Campaign Created.'));
     }
 
     /**
@@ -300,6 +201,8 @@ class CampaignsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Campaign::find($id)->delete()){
+            return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+        }
     }
 }

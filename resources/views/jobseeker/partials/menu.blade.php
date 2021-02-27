@@ -22,14 +22,13 @@
     </div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="nav-item active"><a class="d-flex align-items-center" href=""><span class="menu-title text-truncate">My Account</span></a></li>
-            <li class="nav-item"><a class="d-flex align-items-center" href=""><span class="menu-title text-truncate">My Public Profile</span></a></li>
-            <li class="nav-item"><a class="d-flex align-items-center" href=""><span class="menu-title text-truncate">My Campaigns</span></a></li>
-            <li class="nav-item"><a class="d-flex align-items-center" href=""><span class="menu-title text-truncate">My Services</span></a></li>
-            <li class="nav-item"><a class="d-flex align-items-center" href=""><span class="menu-title text-truncate">Services Orders</span></a></li>
-            <li class="nav-item"><a class="d-flex align-items-center" href=""><span class="menu-title text-truncate">Invoice</span></a></li>
-            <li class="nav-item"><a class="d-flex align-items-center" href=""><span class="menu-title text-truncate">Rewards & Points</span></a></li>
-            <li class="nav-item"><a class="d-flex align-items-center" href=""><span class="menu-title text-truncate">Rating & Feedbacks</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == '') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.index')}}"><span class="menu-title text-truncate">My Account</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == 'profile') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.profile')}}"><span class="menu-title text-truncate">My Public Profile</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == 'campaigns') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.campaigns.index')}}"><span class="menu-title text-truncate">My Campaigns</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == 'services') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.services.index')}}"><span class="menu-title text-truncate">My Services</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == 'orders') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.orders')}}"><span class="menu-title text-truncate">Services Orders</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == 'invoices') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.invoices')}}"><span class="menu-title text-truncate">Invoice</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == 'rewards') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.rewards')}}"><span class="menu-title text-truncate">Rewards</span></a></li>
         </ul>
     </div>
 </div>

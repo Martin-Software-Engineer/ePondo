@@ -17,10 +17,10 @@ class AccessJobSeeker
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Gate::allows('is-JobSeeker')){
+        if(Gate::allows('is-jobseeker')){
             return $next($request);
         }
 
-        return redirect('/')->with('is-JobSeeker', 'You are not allowed access!');
+        return redirect('/')->with('is-jobseeker', 'You are not allowed access!');
     }
 }

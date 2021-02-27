@@ -21,4 +21,35 @@ class System{
 
         return $status[$code];
     }
+    
+    public static function RewardsTier($points){
+        $tier = '';
+        if($points >= 100 && $points <= 499){
+            $tier = 'silver';
+        }
+        if($points >= 500 && $points <= 999){
+            $tier = 'gold';
+        }
+        if($points >= 1000){
+            $tier = 'platinum';
+        }
+
+        return $tier;
+    }
+
+    public static function RewardsEarn($service_price, $tier){
+        switch($tier){
+            case 'silver':
+               return $service_price*0.6;
+            break;
+            case 'gold': 
+                return $service_price*1.2;
+            break;
+            case 'platinum': 
+                return $service_price*2;
+            break;
+            default: 
+            return 0;
+        }
+    }
 }

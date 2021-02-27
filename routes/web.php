@@ -49,6 +49,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-admin'])->gr
     Route::resource('rewards', 'Admin\RewardsController');
     Route::resource('users-management', 'Admin\UserManagementController');
     Route::resource('users', 'Admin\UserController');
+    Route::get('jobseekers', 'Admin\JobseekerProfileController@index')->name('jobseekers.index');
 });
 
 // Demo route to check if verif email, lets use this for accessing profile, before they can they need to verify email
@@ -57,12 +58,21 @@ Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(
 //JobSeeker -> Campaigns Route using Route Group
 Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-jobseeker'])->group(function (){
     Route::get('/', 'JobSeeker\AccountController@index')->name('index');
-    Route::resource('campaigns', 'JobSeeker\CampaignsController');
-    Route::resource('campaigns.jobs', JobController::class);
-    Route::resource('campaigns.products', ProductController::class);
+    Route::get('profile','JobSeeker\JobseekerProfileController@index')->name('profile');
+    Route::get('orders', 'JobSeeker\OrdersController@index')->name('orders');
+    Route::get('order-list', 'JobSeeker\OrdersController@data')->name('order-list');
 
-    Route::resource('myprofile', JobseekerProfileController::class)->middleware('check');
-    Route::resource('background', JobseekerBackgroundController::class);
+    Route::get('invoices', 'JobSeeker\InvoicesController@index')->name('invoices');
+    Route::get('invoice-list', 'JobSeeker\InvoicesController@data')->name('invoice-list');
+
+    Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
+    
+    
+    Route::resource('feedbacks', 'JobSeeker\FeedbacksController');
+    Route::post('campaigns/update', 'JobSeeker\CampaignsController@update')->name('campaigns.update');
+    Route::get('campaigns/{id}/delete', 'JobSeeker\CampaignsController@destroy')->name('campaigns.delete');
+    Route::resource('campaigns', 'JobSeeker\CampaignsController', ['except' => ['destroy', 'update']]);
+    Route::resource('services', 'JobSeeker\ServicesController');
 });
 
 //JobSeeker -> Campaigns Route using Route Group
