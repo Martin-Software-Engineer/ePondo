@@ -21,6 +21,6 @@ class AccessAdmin
             return $next($request);
         }
 
-        return redirect('/')->with('isadmin', 'You are not allowed access!');
+        return redirect()->back();
     }
 }

@@ -21,6 +21,7 @@ class AccessJobSeeker
             return $next($request);
         }
 
-        return redirect('/')->with('is-jobseeker', 'You are not allowed access!');
+        return redirect()->back();
+        
     }
 }

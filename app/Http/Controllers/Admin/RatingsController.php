@@ -28,7 +28,12 @@ class RatingsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request){
-        $results = ServiceRating::where('from', $request->from)->with('order')->get();
+        $results = ServiceRating::whereHas('order', function($q){
+            $q->whereHas('service', function($q1){
+                $q1->whereNull('deleted_at');
+            });
+        })->where('from', $request->from)->with('order')->get();
+
         switch($request->from){
             case 'backer': 
                 return DataTables::of(ResourceRatingBacker::collection($results))->toJson();

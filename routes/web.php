@@ -72,7 +72,12 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-jobs
     Route::post('campaigns/update', 'JobSeeker\CampaignsController@update')->name('campaigns.update');
     Route::get('campaigns/{id}/delete', 'JobSeeker\CampaignsController@destroy')->name('campaigns.delete');
     Route::resource('campaigns', 'JobSeeker\CampaignsController', ['except' => ['destroy', 'update']]);
-    Route::resource('services', 'JobSeeker\ServicesController');
+    
+    Route::post('services/update', 'JobSeeker\ServicesController@update')->name('services.update');
+    Route::get('services/{id}/delete', 'JobSeeker\ServicesController@destroy')->name('services.delete');
+    Route::resource('services', 'JobSeeker\ServicesController', ['except' => ['destroy', 'update']]);
+
+    Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
 });
 
 //JobSeeker -> Campaigns Route using Route Group
