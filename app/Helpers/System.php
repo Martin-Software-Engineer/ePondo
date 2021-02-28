@@ -23,7 +23,7 @@ class System{
     }
     
     public static function RewardsTier($points){
-        $tier = '';
+        $tier = 'no-star';
         if($points >= 100 && $points <= 499){
             $tier = 'silver';
         }
@@ -36,6 +36,47 @@ class System{
 
         return $tier;
     }
+
+    public static function RewardsNextTier($points){
+        $tier = 'Silver';
+        if($points >= 100 && $points <= 499){
+            $tier = 'Gold';
+        }
+        if($points >= 500 && $points <= 999){
+            $tier = 'Platinum';
+        }
+
+        return $tier;
+    }
+
+    public static function RewardsProgress($points){
+        $min = 0;
+        $max = 100;
+        $req = $max - $points;
+        if($points >= 100 && $points <= 499){
+            $min = 100;
+            $max = 499;
+            $req = $max-$points;
+        }
+        if($points >= 500 && $points <= 999){
+            $min = 500;
+            $max = 999;
+            $req = $max-$points;
+        }
+        if($points >= 1000){
+            $min = 1000;
+            $max = -1;
+            $req = $max-$points;
+        }
+
+        return (object)[
+            'min' => $min,
+            'max' => $max,
+            'current' => $points,
+            'req' => $req
+        ];
+    }
+
 
     public static function RewardsEarn($service_price, $tier){
         switch($tier){

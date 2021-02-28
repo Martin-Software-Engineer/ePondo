@@ -113,24 +113,25 @@ $(function() {
             }
         });
     });
-    btnEdit.on('click', async function(){
+
+    btnEdit.on('click', async function() {
         var form = editModal.find('form');
         var id = $(this).data('id');
         form[0].reset();
         editModal.modal('show');
         const campaign = await $.get(`/jobseeker/campaigns/${id}/edit`);
 
-        if(campaign.thumbnail_url != ''){
+        if (campaign.thumbnail_url != '') {
             edit_accountUploadImg.attr('src', campaign.thumbnail_url);
         }
 
-        if(campaign.categories){
+        if (campaign.categories) {
             let categories = [];
-            $.each(campaign.categories, function(index, category){
+            $.each(campaign.categories, function(index, category) {
                 categories.push(category.id);
             });
-            $.each(form.find('.custom-control-input'), function(i, categoryCheckBox){
-                if($.inArray(parseInt($(categoryCheckBox).val()), categories) != -1){
+            $.each(form.find('.custom-control-input'), function(i, categoryCheckBox) {
+                if ($.inArray(parseInt($(categoryCheckBox).val()), categories) != -1) {
                     $(categoryCheckBox).prop('checked', true);
                 }
             });
@@ -141,9 +142,9 @@ $(function() {
         form.find('textarea[name=description]').val(campaign.description);
         form.find('input[name=target_amount]').val(campaign.target_amount);
 
-        if(campaign.tags){
+        if (campaign.tags) {
             let tags = [];
-            $.each(campaign.tags, function(i, tag){
+            $.each(campaign.tags, function(i, tag) {
                 tags.push(tag.name);
             });
             form.find('.tagsinput').remove();
@@ -152,7 +153,7 @@ $(function() {
         }
         form.find('input[name=tags]').val()
 
-        if(edit_target_date.length){
+        if (edit_target_date.length) {
             edit_target_date.flatpickr({
                 defaultDate: dayjs(campaign.target_date).toDate(),
                 onReady: function(selectedDates, dateStr, instance) {
@@ -163,7 +164,7 @@ $(function() {
             });
         }
     });
-    btnDelete.on('click', function(){
+    btnDelete.on('click', function() {
         var id = $(this).data('id');
         Swal.fire({
             title: "Are you sure?",
@@ -189,4 +190,5 @@ $(function() {
             }
         });
     })
+
 });

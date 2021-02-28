@@ -24,7 +24,7 @@
     </div>
 </section>
 <section>
-<div class="row">
+<div class="row match-height">
     @forelse($services as $service)
     <div class="col-md-6 col-lg-4">
         <div class="card text-center">
@@ -41,8 +41,8 @@
                 </div>
                 <div class="text-center">
                     <div class="btn btn-primary btn-sm btn-round">View</div>
-                    <div class="btn btn-primary btn-sm btn-round">Edit</div>
-                    <div class="btn btn-danger btn-sm btn-round">Delete</div>
+                    <button type="button" class="btn btn-primary btn-sm btn-round btn-edit" data-id="{{$service->id}}">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm btn-round btn-delete" data-id="{{$service->id}}">Delete</button>
                 </div>
             </div>
         </div>
@@ -134,6 +134,99 @@
                                 <div class="form-group">
                                     <label for="tags">Tags</label>
                                     <input name="tags" id="tagsinput" class="tagsinput" value="" />
+                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="description">Service Description</label>
+                                    <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Edit Service</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{route('jobseeker.services.update')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="thumbnail" class="mb-1">Service Thumbnail</label>
+                                    <div class="media">
+                                        <a href="javascript:void(0);" class="mr-25">
+                                            <img src="../../../app-assets/images/portrait/small/no-image.png" id="edit-account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                        </a>
+                                        <!-- upload and reset button -->
+                                        <div class="media-body mt-75 ml-1">
+                                            <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                            <input type="file" name="thumbnail" id="edit-account-upload" accept="image/*" style="display: none" />
+                                            <button class="btn btn-sm btn-outline-secondary mb-75" id="edit-upload-btn-reset" type="button">Reset</button>
+                                            <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>
+                                        </div>
+                                        <!--/ upload and reset button -->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-price">Service Price(per hour)</label>
+                                    <input type="text" id="edit-price" name="price" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-duration">Duration of Service (hours)</label>
+                                    <input type="number" id="edit-duration" name="duration" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-location">Location of Service</label>
+                                    <input type="text" id="edit-location" name="location" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label for="edit-title">Service Title</label>
+                                    <input type="text" id="edit-title" name="title" class="form-control" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="category">Service Category</label>
+                                    <div class="demo-inline-spacing">
+                                        @foreach($service_categories as $category)
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name="category[]" value="{{$category->id}}" id="editcustomCheck{{$loop->index}}">
+                                            <label class="custom-control-label" for="editcustomCheck{{$loop->index}}">{{$category->name}}</label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-campaigncategory">Campaign Category</label>
+                                    <select name="campaign_category[]" id="edit-campaigncategory" class="form-control">
+                                        @foreach($campaign_categories as $category)
+                                        <option value="">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tags">Tags</label>
+                                    <input name="tags" id="tagsinput" class="edit-tagsinput" value="" />
                                     <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
                                 </div>
                             </div>

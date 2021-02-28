@@ -24,7 +24,7 @@
     </div>
 </section>
 <section>
-<div class="row">
+<div class="row match-height">
     @forelse($campaigns as $campaign)
     <div class="col-md-6 col-lg-4">
         <div class="card text-center">
@@ -149,7 +149,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Edit Campaign</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Edit Service</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

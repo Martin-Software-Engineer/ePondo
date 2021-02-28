@@ -190,7 +190,7 @@ class CampaignsController extends Controller
             $campaign->tags()->detach();
         }
 
-        return response()->json(array('success' => true, 'msg' => 'New Campaign Created.'));
+        return response()->json(array('success' => true, 'msg' => 'Campaign Updated.'));
     }
 
     /**

@@ -103,7 +103,8 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $service = Service::with(['jobseeker','categories','tags'])->where('id',$id)->first();
+        return response()->json($service);
     }
 
     /**
@@ -113,9 +114,48 @@ class ServicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $service = Service::findOrFail($request->id);
+        $service->title = $request->title;
+        $service->description = $request->description;
+        $service->price = $request->price;
+        $service->duration = $request->duration;
+        $service->location = $request->location;
+        $service->save();
+
+        if($request->hasFile('thumbnail')){
+            $image = $request->file('thumbnail');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            $photo = new Photo();
+            $photo ->filename =  $fileName;
+            $photo ->url = 'public/photos/'.$fileName;
+            $photo ->save();
+
+            $service->thumbnail_id = $photo->id;
+            $service->save();
+        }
+        
+        if($request->get('category', [])){
+            $service->categories()->sync($request->get('category', []));
+        }else{
+            $service->categories()->detach();
+        }
+
+        if($request->input('tags')){
+            $tags = explode(',', $request->tags);
+            $service->tags()->detach();
+            foreach($tags as $tag){
+                $tagStore = Tag::create(['name' => $tag]);
+                $service->tags()->attach($tagStore->id);
+            }
+        }else{
+            $service->tags()->detach();
+        }
+
+        return response()->json(array('success' => true, 'msg' => 'Service Updated.'));
     }
 
     /**
@@ -126,6 +166,8 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Service::find($id)->delete()){
+            return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+        }
     }
 }
