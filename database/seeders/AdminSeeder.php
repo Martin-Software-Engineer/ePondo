@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminSeeder extends Seeder
 {
@@ -25,20 +26,32 @@ class AdminSeeder extends Seeder
         $AdminRey = User::create([
             'name' => 'Rey',
             'email' =>'remorrey24@gmail.com',
-            'password' => Hash::make('12341234'),   
+            'email_verified_at' => now(),
+            'password' => Hash::make('12341234'),
+            'remember_token' => Str::random(10),   
         ]);
         
         $AdminNicole = User::create([
             'name' => 'Nicole',
             'email' =>'n@gmail.com',
-            'password' => Hash::make('12341234'),   
+            'email_verified_at' => now(),
+            'password' => Hash::make('12341234'),
+            'remember_token' => Str::random(10),     
         ]);
 
         $AdminPat = User::create([
             'name' => 'Pat',
             'email' =>'p@gmail.com',
-            'password' => Hash::make('12341234'),   
+            'email_verified_at' => now(),
+            'password' => Hash::make('12341234'),
+            'remember_token' => Str::random(10),   
         ]);
+
+            // 'name' => $this->faker->name,
+            // 'email' => $this->faker->unique()->safeEmail,
+            // 'email_verified_at' => now(),
+            // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            // 'remember_token' => Str::random(10),
         
         // $roles = Role::where('id',[1])->get();
         $AdminRey->roles()->attach(1);

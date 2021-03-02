@@ -94,11 +94,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="price">Service Price(per hour)</label>
+                                    <label for="price">Service Price(Php)</label>
                                     <input type="text" id="price" name="price" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="duration">Duration of Service (hours)</label>
+                                    <label for="duration">Duration of Service(hour/s)</label>
                                     <input type="number" id="duration" name="duration" class="form-control" required>
                                 </div>
                                 <div class="form-group">
@@ -187,11 +187,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="edit-price">Service Price(per hour)</label>
+                                    <label for="edit-price">Service Price(Php)</label>
                                     <input type="text" id="edit-price" name="price" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="edit-duration">Duration of Service (hours)</label>
+                                    <label for="edit-duration">Duration of Service (hour/s)</label>
                                     <input type="number" id="edit-duration" name="duration" class="form-control" required>
                                 </div>
                                 <div class="form-group">
