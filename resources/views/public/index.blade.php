@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Doni Charity</title>
+      <title>ePondo</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -36,51 +36,20 @@
    </head>
    <body>
       <!-- header section start -->
-      <!-- <div class="header_section">
-      </div><nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand"><a href="index.html"><img src="img\epondo.png"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                     <a class="nav-link" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="about.html">About</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="donate.html">Donate</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="news.html">News</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="contact.html">Contact Us</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="mission.html">Our Mission</a>
-                  </li>
-               </ul>
-
-            </div>
-         </nav>
-         <div> -->
-
-         <nav>
+       <div class="header_section">
+       <nav>
         <div class="wrapper">
             <div class="logo"><a href="#">ePondo</a></div>
             <input type="radio" name="slide" id="menu-btn">
             <input type="radio" name="slide" id="cancel-btn">
             <ul class="nav-links">
                 <label for="cancel-btn" class="btn cancel-btn"><i class="fas fa-times"></i></label>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/AboutUs">About Us</a></li>
                 <li>
-                    <a href="#" class="desktop-item">Campaign Categories</a>
+                    <a href="#" class="desktop-item">Campaigns</a>
                     <input type="checkbox" id="showDrop">
-                    <label for="showDrop" class="mobile-item">Campaign Categories</label>
+                    <label for="showDrop" class="mobile-item">Campaign</label>
                     <ul class="drop-menu">
                     <li><a href="#">Education</a></li>
                     <li><a href="#">Medical and Health</a></li>
@@ -91,9 +60,9 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="desktop-item">Job Categories</a>
+                    <a href="#" class="desktop-item">Services</a>
                     <input type="checkbox" id="showJob">
-                    <label for="showJob" class="mobile-item">Job Categories</label>
+                    <label for="showJob" class="mobile-item">Services</label>
                     <div class="job-box">
                         <div class="content">
                             <div class="row">
@@ -141,16 +110,15 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="#">Community</a></li>
                 <li class="book-a-table text-center"><a href="login">Login</a></li>
             </ul>
             <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
         </div>
-    </nav>
+      </nav>
+    </div>
 <br/>
 <br/>
 <br/>
-
       <!-- header section end -->
       <!-- banner section start -->
       <div class="banner_section layout_padding">
