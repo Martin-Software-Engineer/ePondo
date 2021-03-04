@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>About Us</title>
+      <title>About</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -35,60 +35,76 @@
    <body>
       <!-- header section start -->
       <div class="header_section">
-         <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand"><a href="index.html"><img src="images/logo.png"></a>
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand"><a href="index.html"><img src="https://images.unsplash.com/photo-1572979926275-0ae397d83bee?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=180"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item ">
+                     <a class="nav-link" href="/">Home</a>
+                  </li>
                   <li class="nav-item active">
-                     <a class="nav-link" href="index.html">Home</a>
+                     <a class="nav-link" href="/AboutUs">About Us</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="about.html">About</a>
+                     <a class="nav-link" href="">Campaigns</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="donate.html">Donate</a>
+                     <a class="nav-link" href="">Services</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="news.html">News</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="contact.html">Contact Us</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="mission.html">Our Mission</a>
+                     <a class="nav-link" href="">Login</a>
                   </li>
                </ul>
-               <form class="form-inline my-2 my-lg-0">
-                  <div class="search_icon"><a href="#"><img src="images/search-icon.png"></a></div>
-                  <button class="donate_btn" type="submit">Donate Now</button>
-               </form>
             </div>
-         </nav> -->
-         @include('layouts.navbar')
+         </nav>
       </div>
-      <br/>
-    <br/>
-    <br/>
       <!-- header section end -->
       <!-- about section start -->
       <div class="about_section layout_padding">
          <div class="container">
             <div class="row">
                <div class="col-sm-8">
-                  <h2 class="about_taital">about Chrity</h2>
+                  <h2 class="about_taital">About Us</h2>
                   <p class="about_text">
-                     many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If youmany variations of passages of Lorem Ipsum 
-                     available, but the majority have suffered 
-                     alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you many
-                     variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, byinjected humour, or randomised words which don't look even slightly believable. If you
+                  ePondo is a rewards crowdfunding platform that aims to create a space for Filipinos to fundraise while
+                   creating a livelihood. The web-application provides the platform to help Filipinos fundraise for their
+                    desired campaign but also provide their services in support to their campaigns. This project aims to
+                     empower Filipinos and provide them opportunity despite the challenges they face today.
                   </p>
-                  <div class="readmore_bt"><a href="#">Read more</a></div>
+                  <!-- <div class="readmore_bt"><a href="#">Read more</a></div> -->
                </div>
                <div class="col-sm-4">
-                  <div class="about_img"><img src="images/about-img.png"></div>
+                  <div class="about_img"><img src="https://images.unsplash.com/photo-1572979926275-0ae397d83bee?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=797&q=80"></div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-4">
+                  <div class="about_img"><img src="https://images.unsplash.com/photo-1572979926275-0ae397d83bee?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=797&q=80"></div>
+               </div>
+               <div class="col-sm-8">
+                  <h2 class="about_taital">Vision</h2>
+                  <p class="about_text">
+                  To create a safe space for Filipinos to be empowered and provide opportunity despite the challenges we face today
+                  </p>
+                  <!-- <div class="readmore_bt"><a href="#">Read more</a></div> -->
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-8">
+                  <h2 class="about_taital">Background</h2>
+                  <p class="about_text">
+                  This web-application was created to provide assistance to the Filipinos families that need financial support.
+                   The team sought after a solution that would address the problem as well as provide an avenue for growth and
+                    opportunity. ePondo was formed to support the need for financial support while providing the opportunity for
+                     creating a livelihood.
+                  </p>
+                  <!-- <div class="readmore_bt"><a href="#">Read more</a></div> -->
+               </div>
+               <div class="col-sm-4">
+                  <div class="about_img"><img src="https://images.unsplash.com/photo-1572979926275-0ae397d83bee?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=797&q=80"></div>
                </div>
             </div>
          </div>
@@ -99,7 +115,7 @@
          <div class="container">
             <div class="row">
                <div class="col-sm-6 col-md-6 col-lg-3">
-                  <div class="footer_logo"><img src="images/footer-logo.png"></div>
+                  <div class="footer_logo"><img src="https://images.unsplash.com/photo-1572979926275-0ae397d83bee?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=797&q=80"></div>
                </div>
                <div class="col-sm-6 col-md-6 col-lg-3">
                   <h4 class="footer_taital">NAVIGATION</h4>
@@ -142,10 +158,10 @@
                   <div class="col-sm-4 col-md-4 col-lg-3">
                      <div class="social_icon">
                         <ul>
-                           <li><a href="#"><img src="images/fb-icon.png"></a></li>
-                           <li><a href="#"><img src="images/twitter-icon.png"></a></li>
-                           <li><a href="#"><img src="images/linkedin-icon.png"></a></li>
-                           <li><a href="#"><img src="images/instagram-icon.png"></a></li>
+                           <li><a href="#"><img src="https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=30&h=30"></a></li>
+                           <li><a href="#"><img src="https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=30&h=30"></a></li>
+                           <li><a href="#"><img src="https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=30&h=30"></a></li>
+                           <li><a href="#"><img src="https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=30&h=30"></a></li>
                         </ul>
                      </div>
                   </div>

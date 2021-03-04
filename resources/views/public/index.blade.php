@@ -36,7 +36,7 @@
    </head>
    <body>
       <!-- header section start -->
-       <div class="header_section">
+    <div class="header_section">
        <nav>
         <div class="wrapper">
             <div class="logo"><a href="#">ePondo</a></div>
