@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-<h4 class="card-title mb-1 text-center">Welcome! 👋</h4>
+<h2 class="mb-1 text-center">Welcome!</h2>
 <p class="card-text mb-2 text-center">Sign in to ePondo</p>
 
 <form class="auth-login-form mt-2" action="{{route('login')}}" method="POST">

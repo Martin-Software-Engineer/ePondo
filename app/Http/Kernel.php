@@ -57,6 +57,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.is-admin' => \App\Http\Middleware\AccessAdmin::class, //Added middleware to check for Admin Access
         'auth.is-jobseeker' => \App\Http\Middleware\AccessJobSeeker::class, //Added middleware to check for JobSeeker Access
+        'auth.is-backer' => \App\Http\Middleware\AccessBacker::class, //Added middleware to check for Backer Access
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,

@@ -19,10 +19,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
-        'role_id',
     ];
 
     /**
@@ -71,6 +70,19 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Campaign::class);
     }
     
+    public function donations(){
+        return $this->belongsToMany(Donation::class);
+    }
+    /**
+     * A user can have many messages
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
     // MIDDLEWARE PURPOSES
     /**
      * Check if user has a role

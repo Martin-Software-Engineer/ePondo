@@ -29,17 +29,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::post('/register', 'Auth\RegisteredUserController@store');
+Route::get('verify', 'Auth\RegisteredUserController@verify');
 // PUBLIC PATHS
-Route::get('/', function () {return view('public.index');});                        // HOME PAGE
-Route::resource('/Campaigns', PublicCampaignController::class);                     // Campaigns
-Route::resource('/Jobs', PublicJobController::class);                               // Jobs
-Route::resource('/Products', PublicProductController::class);                       // Products
-Route::get('/AboutUs', function () { return view('public.aboutus'); });             // About Us
+Route::get('/', 'PagesController@index');
+Route::get('campaigns', 'PagesController@campaigns')->name('campaigns');
+Route::get('campaign/{id}', 'PagesController@campaign_view')->name('campaign_view');
+Route::get('campaign/{id}/details','PagesController@campaign_details')->name('camapaign_details');
+
+Route::get('services', 'PagesController@services')->name('services');
+Route::get('service/{id}', 'PagesController@service_view')->name('service_view');
+
+Route::get('aboutus', 'PagesController@aboutus')->name('aboutus');
+Route::get('profile/{id}', 'PagesController@jobseeker')->name('profile');
 
 //Admin Routes using Route Group
-Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-admin'])->group(function (){
-    Route::get('/', 'Admin\CampaignsController@index');
+Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-admin'])->group(function (){
+    Route::get('/', 'Admin\CampaignsController@index')->name('index');
     Route::resource('campaigns', 'Admin\CampaignsController');
     Route::resource('donations', 'Admin\DonationsController');
     Route::resource('services', 'Admin\ServicesController');
@@ -56,7 +62,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-admin'])->gr
 Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(['auth','verified']);
 
 //JobSeeker -> Campaigns Route using Route Group
-Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-jobseeker'])->group(function (){
+Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','auth.is-jobseeker'])->group(function (){
     Route::get('/', 'JobSeeker\AccountController@index')->name('index');
     Route::get('profile','JobSeeker\JobseekerProfileController@index')->name('profile');
     Route::get('orders', 'JobSeeker\OrdersController@index')->name('orders');
@@ -80,26 +86,22 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-jobs
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
 });
 
-//JobSeeker -> Campaigns Route using Route Group
-// Route::middleware(['auth','auth.is-JobSeeker'])->group(function (){
-//     Route::resource('/jobseeker/campaigns/{campaign}/jobs', JobController::class);
-    // Route::resource('/campaigns.jobs', JobController::class);
-    // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
-    // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
-// });
+Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is-backer'])->group(function (){
+    Route::get('/', 'Backer\AccountController@index')->name('index');
+    Route::get('donations', 'Backer\DonationsController@index')->name('donations');
+    Route::get('donations/data', 'Backer\DonationsController@data')->name('donations.data');
 
-// Route::get('/jobseeker/campaigns/{campaign}/jobs/create','JobController@create');
+    Route::get('orders', 'Backer\OrdersController@index')->name('orders');
+    Route::get('orders/data', 'Backer\OrdersController@data')->name('orders.data');
+    Route::get('orders/{id}/edit', 'Backer\OrdersController@edit')->name('orders.edit');
+    Route::post('orders/cancel', 'Backer\OrdersController@cancel')->name('orders.cancel');
+});
 
-//JobSeeker -> Campaigns Route using Route Group
-// Route::prefix('jobseeker/campaigns/{campaign}/')->name('jobseeker.campaigns')->middleware(['auth','auth.is-JobSeeker'])->group(function (){
-//     Route::resource('/jobs', JobController::class);
-    // Route::resource('/campaigns.jobs', JobController::class);
-    // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
-    // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
-// });
-
-// Route::resource('campaigns.jobs',JobController::class);
-
+Route::get('chats', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');
+Route::post('getContacts', 'ChatsController@getContacts');
+Route::post('getChats', 'ChatsController@getChats');
 
 // Mail Routes
 Route::get('/email', function () { return new UserVerifyEmail(); });

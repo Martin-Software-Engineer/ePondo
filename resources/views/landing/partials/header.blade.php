@@ -1,0 +1,45 @@
+<!-- header section start -->
+<div class="header_section">
+   <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <a class="navbar-brand" href="/"><img src="{{asset('app-assets/images/logo/logo.png')}}"></a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+               <li class="nav-item active">
+                  <a class="nav-link" href="{{route('campaigns')}}">CAMPAIGNS</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="{{route('services')}}">SERVICES</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="{{route('aboutus')}}">ABOUT US</a>
+               </li>
+            </ul>
+            <div class="my-2 my-lg-0">
+                  @auth
+                     @if(auth()->user()->hasAnyRole('Admin'))
+                        <a class="account_btn" href="{{route('admin.index')}}">My Account</a>
+                     @endif
+                     @if(auth()->user()->hasAnyRole('JobSeeker'))
+                        <a class="account_btn" href="{{route('jobseeker.index')}}">My Account</a>
+                     @endif
+                     @if(auth()->user()->hasAnyRole('Backer'))
+                        <a class="account_btn" href="{{route('backer.index')}}">My Account</a>
+                     @endif
+                  @endauth
+                  
+                  @guest 
+                     <a class="register_btn" href="{{route('register')}}">Register</a>
+                     <a class="login_btn" href="{{route('login')}}">Login</a>
+                  @endguest
+
+            </div>
+         </div>
+      </nav>
+   </div>
+</div>
+
+<!-- header section end -->
