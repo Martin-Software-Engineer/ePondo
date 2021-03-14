@@ -18,8 +18,8 @@ class Donations extends JsonResource
         return [
             'id' => $this->id,
             'donation_id' => System::GenerateFormattedId('CD', $this->id),
-            'backer_name' => $this->backer->name,
-            'backer_email' => $this->backer->email,
+            'backer_name' => @$this->backer->name ?? '-',
+            'backer_email' => @$this->backer->email ?? '-',
             'message' => $this->message,
             'amount' => $this->amount
         ];

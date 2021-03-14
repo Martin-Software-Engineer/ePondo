@@ -36,9 +36,12 @@ Route::get('/', 'PagesController@index');
 Route::get('campaigns', 'PagesController@campaigns')->name('campaigns');
 Route::get('campaign/{id}', 'PagesController@campaign_view')->name('campaign_view');
 Route::get('campaign/{id}/details','PagesController@campaign_details')->name('camapaign_details');
+Route::post('campaign/donate', 'CampaignsController@donate')->name('campaign.donate');
 
 Route::get('services', 'PagesController@services')->name('services');
 Route::get('service/{id}', 'PagesController@service_view')->name('service_view');
+Route::get('service/{id}/details','PagesController@service_details')->name('service_details');
+Route::post('service/avail', 'ServicesController@avail')->name('service.avail');
 
 Route::get('aboutus', 'PagesController@aboutus')->name('aboutus');
 Route::get('profile/{id}', 'PagesController@jobseeker')->name('profile');

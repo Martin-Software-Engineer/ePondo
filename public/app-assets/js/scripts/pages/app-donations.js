@@ -49,8 +49,7 @@ $(function() {
                     render: function(data, type, full, meta) {
                         return (
                             `<div class="d-flex align-items-center col-actions">
-                              <a class="mr-1 btn-edit" href="/admin/campaigns/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
-                              <a class="mr-1 btn-delete" href="javascript:void(0);" data-toggle="tooltip" data-id="${full.id}" data-placement="top" title="Delete">${feather.icons['delete'].toSvg({ class: 'font-medium-2' })}</a>
+                              <a class="mr-1 btn-details" href="/admin/campaigns/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Details">${feather.icons['list'].toSvg({ class: 'font-medium-2' })}</a>
                             </div>
                             `
                         );

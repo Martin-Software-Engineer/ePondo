@@ -27,3 +27,9 @@ Route::get('ratings', 'Admin\RatingsController@data');
 Route::get('rewards', 'Admin\RewardsController@data');
 Route::get('users', 'Admin\UserManagementController@data');
 Route::get('jobseekers', 'Admin\JobseekerProfileController@data');
+
+Route::post('donation/paypal/create', 'DonatePaymentsController@CreatePayPalPayment')->name('api.donation_create_paypal');
+Route::post('donation/paypal/execute', 'DonatePaymentsController@ExecutePaypalPayment')->name('api.donation_execute_paypal');
+Route::post('donation/stripe/create', 'DonatePaymentsController@CreateStripePayment')->name('api.donation_create_stripe');
+Route::post('donation/stripe/confirm', 'DonatePaymentsController@ConfirmStripePayment')->name('api.donation_confirm_stripe');
+

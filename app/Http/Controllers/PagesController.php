@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Campaign;
+use App\Models\CampaignCategory;
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use App\Models\ServiceRating;
 
 class PagesController extends Controller
@@ -16,8 +18,20 @@ class PagesController extends Controller
         return view('landing.contents.index', $data);
     }
 
-    public function campaigns(){
-        $data['campaigns'] = Campaign::all();
+    public function campaigns(Request $request){
+        $campaigns = Campaign::orderBy('created_at', 'desc');
+        if($request->search){   
+            $campaigns = $campaigns->where('title', 'like', '%'.$request->search.'%');
+        }
+        if($request->category){
+            $category = $request->category;
+            $campaigns = $campaigns->whereHas('categories', function($q) use($category){
+                $q->where('campaign_category_id', $category);
+            });
+        }
+        
+        $data['campaigns'] = $campaigns->get();
+        $data['categories'] = CampaignCategory::all();
         return view('landing.contents.campaigns', $data);
     }
 
@@ -41,14 +55,37 @@ class PagesController extends Controller
         return $campaign;
     }
 
-    public function services(){
-        $data['services'] = Service::all();
+    public function services(Request $request){
+
+        $services = Service::orderBy('created_at', 'desc');
+        if($request->search){   
+            $services = $services->where('title', 'like', '%'.$request->search.'%');
+        }
+        if($request->category){
+            $category = $request->category;
+            $services = $services->whereHas('categories', function($q) use($category){
+                $q->where('service_category_id', $category);
+            });
+        }
+        
+        $data['services'] = $services->get();
+        $data['categories'] = ServiceCategory::all();
         return view('landing.contents.services', $data);
     }
 
     public function service_view($id){
         $data['service'] = Service::with(['categories','jobseeker'])->where('id',$id)->first();
         return view('landing.contents.service_view', $data);
+    }
+
+    public function service_details($id){
+        if(!Service::find($id)){
+            abort(404);
+        }
+
+        $service = Service::with(['categories','jobseeker'])->where('id',$id)->first();
+
+        return $service;
     }
 
     public function aboutus(){
