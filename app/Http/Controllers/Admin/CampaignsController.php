@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Request\StoreCampaign as StoreCampaignRequest;
+use App\Http\Requests\StoreCampaign;
+use App\Http\Requests\UpdateCampaign;
 use App\Http\Resources\Campaigns as ResourceCampaign;
+use App\Models\User;
 use App\Models\Campaign;
+use App\Models\CampaignCategory;
 use App\Models\Photo;
-
+use App\Models\Tag;
+use App\Helpers\System;
 use DataTables;
 class CampaignsController extends Controller
 {
@@ -41,6 +45,11 @@ class CampaignsController extends Controller
     public function create()
     {
         $data['title'] = 'Create Campaign';
+        $data['categories'] = CampaignCategory::all();
+        $data['jobseekers'] = User::whereHas('roles', function($q){
+            $q->where('name', 'JobSeeker');
+        })->get();
+
         return view('admin.contents.campaigns.create', $data);
     }
 
@@ -50,27 +59,56 @@ class CampaignsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCampaignRequest $request)
+    public function store(StoreCampaign $request)
     {
         $campaign = Campaign::create([
-            'user_id' => $request->user_id,
+            'user_id' => $request->jobseeker_id,
             'title' => $request->title,
-            'description' => $request->description
+            'description' => $request->description,
+            'target_date' => $request->target_date,
+            'target_amount' => $request->target_amount
         ]);
 
-        $campaign->categories()->attach($request->category_id);
+        if($request->hasFile('thumbnail')){
+            $image = $request->file('thumbnail');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
 
-        foreach($request->input('images',[]) as $image){ 
-            $path = Storage::disk('s3')->put(
-                'campaign', $image, 'public'
-            );
-
+            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
             $photo = new Photo();
-            $photo ->filename = basename($path);
-            $photo ->url = Storage::url($path);
-            $photo -> save();
-                
-            $campaign->photos()->attach($photo->id);
+            $photo ->filename =  $fileName;
+            $photo ->url = 'public/photos/'.$fileName;
+            $photo ->save();
+
+            $campaign->thumbnail_id = $photo->id;
+            $campaign->save();
+        }
+        
+        if($request->file('images',[])){
+            foreach($request->file('images',[]) as $image){
+                $fileName   = time() . '.' . $image->getClientOriginalExtension();
+                $upload = $image->storeAs('/photos',$fileName,'public');
+                $photo = new Photo();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+
+                $campaign->photos()->attach($photo->id);
+            }
+            
+        }
+        
+        if($request->input('category', [])){
+            foreach($request->input('category', []) as $category){
+                $campaign->categories()->attach($category);
+            }
+        }
+
+        if($request->input('tags')){
+            $tags = explode(',', $request->tags);
+            foreach($tags as $tag){
+                $tagStore = Tag::create(['name' => $tag]);
+                $campaign->tags()->attach($tagStore->id);
+            }
         }
 
         return response()->json(['success' => true,'msg' => trans('admin.campaign.create.success')]);
@@ -95,7 +133,14 @@ class CampaignsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['title'] = 'Edit Campaign';
+        $data['campaign'] = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
+        $data['categories'] = CampaignCategory::all();
+        $data['jobseekers'] = User::whereHas('roles', function($q){
+            $q->where('name', 'JobSeeker');
+        })->get();
+
+        return view('admin.contents.campaigns.edit', $data);
     }
 
     /**
@@ -107,7 +152,60 @@ class CampaignsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $campaign = Campaign::find($id);
+        $campaign->user_id = $request->jobseeker_id;
+        $campaign->title = $request->title;
+        $campaign->description = $request->description;
+        $campaign->target_date = $request->target_date;
+        $campaign->target_amount = $request->target_amount;
+        $campaign->save();
+
+        if($request->hasFile('thumbnail')){
+            $image = $request->file('thumbnail');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            $photo = new Photo();
+            $photo ->filename =  $fileName;
+            $photo ->url = 'public/photos/'.$fileName;
+            $photo ->save();
+
+            $campaign->thumbnail_id = $photo->id;
+            $campaign->save();
+        }
+        
+        if($request->file('images',[])){
+            $campaign->photos()->detach();
+            foreach($request->file('images',[]) as $image){
+                $fileName   = time() . '.' . $image->getClientOriginalExtension();
+                $upload = $image->storeAs('/photos',$fileName,'public');
+                $photo = new Photo();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+
+                $campaign->photos()->attach($photo->id);
+            }
+        }
+        
+        if($request->get('category', [])){
+            $campaign->categories()->sync($request->get('category', []));
+        }else{
+            $campaign->categories()->detach();
+        }
+
+        if($request->input('tags')){
+            $tags = explode(',', $request->tags);
+            $campaign->tags()->detach();
+            foreach($tags as $tag){
+                $tagStore = Tag::create(['name' => $tag]);
+                $campaign->tags()->attach($tagStore->id);
+            }
+        }else{
+            $campaign->tags()->detach();
+        }
+
+        return response()->json(['success' => true,'msg' => trans('admin.campaign.update.success')]);
     }
 
     /**
@@ -118,6 +216,8 @@ class CampaignsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $destroy = Campaign::find($id)->delete();
+        if($destroy)
+        return response()->json(array('success' => true, 'msg' => 'Campaign Deleted'));
     }
 }

@@ -33,7 +33,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet">
-
+    <link href="{{asset('app-assets/vendors/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/vendors.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/charts/apexcharts.css') }}">
@@ -57,9 +57,8 @@
     @yield('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('/app-assets/css/plugins/extensions/ext-component-toastr.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/app-assets/css/plugins/extensions/ext-component-sweet-alerts.css') }}">
-    <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-    <!-- END: Custom CSS-->
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/tags-input.css') }}">
 </head>
 <!-- END: Head-->
 

@@ -61,7 +61,7 @@ $(function() {
                     render: function(data, type, full, meta) {
                         return (
                             `<div class="d-flex align-items-center col-actions">
-                              <a class="mr-1 btn-edit" href="/admin/campaigns/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
+                              <a class="mr-1 btn-edit" href="/admin/services/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
                               <a class="mr-1 btn-delete" href="javascript:void(0);" data-toggle="tooltip" data-id="${full.id}" data-placement="top" title="Delete">${feather.icons['delete'].toSvg({ class: 'font-medium-2' })}</a>
                             </div>
                             `
@@ -120,4 +120,34 @@ $(function() {
             }
         });
     }
+
+    $(document).on('click', '.btn-delete', function() {
+        $(".dtr-bs-modal").modal("hide");
+        let id = $(this).data('id');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-outline-danger ml-1'
+            },
+            buttonsStyling: false
+        }).then(async function(result) {
+            if (result.isConfirmed) {
+                const deleteData = await $.get(`services/${id}/delete`);
+                if (deleteData.success) {
+                    toastr['success'](deleteData.msg, 'Deleted!', {
+                        closeButton: true,
+                        tapToDismiss: false,
+                        rtl: isRtl
+                    });
+                    dt.ajax.reload();
+                }
+            }
+        });
+
+    });
 });

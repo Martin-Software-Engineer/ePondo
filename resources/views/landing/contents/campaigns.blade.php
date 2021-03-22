@@ -224,7 +224,7 @@
                         <div class="col-md-12">
                             <h1 class="give_taital_1">{{$campaign->title}}</h1>
                             <p class="ipsum_text_1">{{$campaign->description}}</p>
-                            <h5 class="raised_text_1">Raised: ₱{{$campaign->donations()->sum('amount')}} <br><span class="text-danger">Goal: ₱{{$campaign->target_amount}}</span></h5>
+                            <h5 class="raised_text_1">Raised: ₱{{$campaign->raised}} <br><span class="text-danger">Goal: ₱{{$campaign->target_amount}}</span></h5>
                             <div class="donate_btn_main">
                                 <div class="donate_btn_1"><a href="javascript:void(0)" class="donate_btn" data-campaign-id="{{$campaign->id}}">Donate Now</a></div>
                             </div>
@@ -460,6 +460,10 @@
                         donateModal.modal('hide');
 
                         cardPayment.find('#paypal-button').attr('data-donation-id', resp.donation_id);
+                        cardPayment.find('#paypal-button').attr('data-currency', resp.currency);
+                        cardPayment.find('#pay-by-card').attr('data-donation-id', resp.donation_id);
+                        cardPayment.find('#pay-by-card').attr('data-currency', resp.currency);
+
                         cardPayment.find('.card-title').html(`<strong>Pay your Donation.<br>`);
                         cardPayment.find('.topay').html(`Amount to pay  <span class='topay-amount'>${resp.currency} ${resp.donation_amount}</span>`);
 
@@ -470,25 +474,25 @@
         });
 
         paypal.Button.render({
-            env: '{{env("PAYPAL_MODE")}}', // Or 'production'
+            env: 'sandbox', // Or 'production'
             style: {
-            size: 'responsive',
-            color: 'blue',
-            shape: 'pill',
-            label: 'paypal',
-            tagline: 'false'
+                size: 'responsive',
+                color: 'blue',
+                shape: 'pill',
+                label: 'paypal',
+                tagline: 'false'
             },
             // Set up the payment:
             // 1. Add a payment callback
             payment: function(data, actions) {
             // 2. Make a request to your server
-            return actions.request.post("{{route('api.donation_create_paypal')}}", {
-                ptype: ptype
-            })
-                .then(function(res) {
-                // 3. Return res.id from the response
-                // console.log(res);
-                return res.id;
+                var donation_data = $('#paypal-button').data();
+                return actions.request.post("{{route('api.donation_create_paypal')}}", {
+                    donation_id : donation_data.donationId,
+                    currency : donation_data.currency
+                }).then(function(res) {
+                    // 3. Return res.id from the response
+                    return res.id;
                 });
             },
             // Execute the payment:
@@ -500,22 +504,121 @@
                 payerID:   data.payerID
             })
                 .then(function(res) {
-                if(res.state = 'approved'){
-                    $('#selectPaymentMethodModal').modal('hide');
-                    Swal.fire({
-                    title: 'Payment Successful',
-                    text: 'Your payment was successful, you can now continue using Leadsopedia, Thank You!',
-                    icon: 'success',
-                    confirmButtonText: 'Go to Dashboard'
-                    }).then((result) =>{
-                    if(result.isConfirmed){
-                        location.href = "{{route('campaigns')}}";
+                    if(res.state = 'approved'){
+                        $('#selectPaymentMethodModal').modal('hide');
+                        Swal.fire({
+                            title: 'Payment Successful',
+                            text: 'Your donation was successful, Thank You!',
+                            icon: 'success'
+                        }).then(function(){
+                            location.reload();
+                        })
                     }
-                    })
-                }
                 });
             }
         }, '#paypal-button');
+
+        var stripe = Stripe("{{env('STRIPE_PUB_KEY')}}");
+
+        var stripePayment = function(donation_id, currency){
+            var donate = { donation_id, currency  };
+
+            fetch("{{route('api.donation_create_stripe')}}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(donate)
+            }).then(function(result) {
+                return result.json();
+            }).then(function(data) {
+                var elements = stripe.elements();
+                var style = {
+                    base: {
+                    color: "#32325d",
+                    fontFamily: 'Arial, sans-serif',
+                    fontSmoothing: "antialiased",
+                    fontSize: "16px",
+                    "::placeholder": {
+                        color: "#32325d"
+                    }
+                    },
+                    invalid: {
+                    fontFamily: 'Arial, sans-serif',
+                    color: "#fa755a",
+                    iconColor: "#fa755a"
+                    }
+                };
+                var card = elements.create("card", { style: style });
+                // Stripe injects an iframe into the DOM
+                card.mount("#card-element");
+                card.on("change", function (event) {
+                    // Disable the Pay button if there are no card details in the Element
+                    document.querySelector("button").disabled = event.empty;
+                    document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+                });
+                var form = document.getElementById("payment-form");
+                form.addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    // Complete payment when the submit button is clicked
+                    payWithCard(stripe, card, data.clientSecret);
+                });
+            });
+
+        }
+
+        
+        // Calls stripe.confirmCardPayment
+        // If the card requires authentication Stripe shows a pop-up modal to
+        // prompt the user to enter authentication details without leaving your page.
+        var payWithCard = function(stripe, card, clientSecret) {
+        stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: card
+                }
+            }).then(function(result) {
+                if (result.error) {
+                    // Show error to your customer
+                    showError(result.error.message);
+                } else {
+                    // The payment succeeded!
+                    orderComplete(result.paymentIntent.id);
+                }
+            });
+        };
+
+        /* ------- UI helpers ------- */
+        // Shows a success message when the payment is complete
+        var orderComplete = function(paymentIntentId) {
+            $.ajax({
+                url: "{{route('api.donation_confirm_stripe')}}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: paymentIntentId
+                }, 
+                success: function(resp){
+                    if(resp.success){
+                        $('#selectPaymentMethodModal').modal('hide');
+                        Swal.fire({
+                            title: 'Payment Successful',
+                            text: 'Your donation was successful, Thank You!',
+                            icon: 'success'
+                        }).then(function(){
+                            location.reload();
+                        })
+                    }
+                }
+            });
+            document.querySelector("button").disabled = true;
+        };
+
+        $('#pay-by-card').on('click', function(){
+            var data = $(this).data();
+            $(this).addClass('d-none');
+            $('.stripe-payment').removeClass('d-none');
+            stripePayment(data.donationId, data.currency);
+        });
 
         dropdownCategory.on('click', '.dropdown-item', function(){
             dropdownCategory.find('.dropdown-toggle').text($(this).text());

@@ -17,7 +17,7 @@ class Jobseekers extends JsonResource
         return [
             'id' => $this->id, 
             'jobseeker_id' => System::GenerateFormattedId('J', $this->id),
-            'name' => $this->name,
+            'name' => $this->username,
             'email' => $this->email
         ];
     }

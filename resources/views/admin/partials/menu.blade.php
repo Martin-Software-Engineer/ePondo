@@ -31,7 +31,7 @@
             <li class="nav-item @if(request()->segment(2) == 'rewards') active @endif"><a class="d-flex align-items-center" href="{{route('admin.rewards.index')}}"><span class="menu-title text-truncate">Rewards & Points</span></a></li>
             <li class="nav-item @if(request()->segment(2) == 'users-management') active @endif"><a class="d-flex align-items-center" href="{{route('admin.users-management.index')}}"><span class="menu-title text-truncate">Users Management</span></a></li>
             <li class="nav-item @if(request()->segment(2) == 'jobseekers') active @endif"><a class="d-flex align-items-center" href="{{route('admin.jobseekers.index')}}"><span class="menu-title text-truncate">Jobseeker Public Profile</span></a></li>
-            <li class="nav-item @if(request()->segment(2) == 'reports') active @endif"><a class="d-flex align-items-center" href="{{route('admin.campaigns.index')}}"><span class="menu-title text-truncate">Reports</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == 'reports') active @endif"><a class="d-flex align-items-center" href="{{route('admin.reports.index')}}"><span class="menu-title text-truncate">Reports</span></a></li>
         </ul>
     </div>
 </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransactionOrderTable extends Migration
+class CreateDonationTransactionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTransactionOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_order', function (Blueprint $table) {
+        Schema::create('donation_transaction', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('donation_id')->constrained();
             $table->foreignId('transaction_id')->constrained();
-            $table->foreignId('service_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateTransactionOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_order');
+        Schema::dropIfExists('donation_transaction');
     }
 }

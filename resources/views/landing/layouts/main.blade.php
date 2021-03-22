@@ -31,6 +31,9 @@
       <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
       <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      
+      <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/extensions/sweetalert2.min.css') }}">
+
       @yield('stylesheets')
    </head>
    <body>
@@ -48,6 +51,7 @@
       <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
       <script src="{{asset('js/jquery-3.0.0.min.js')}}"></script>
       <script src="{{asset('js/plugin.js')}}"></script>
+      <script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
       <!-- sidebar -->
       <script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
       <script src="{{asset('js/custom.js')}}"></script>

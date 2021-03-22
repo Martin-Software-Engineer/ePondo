@@ -22,7 +22,7 @@ class Order extends Model
     public function transactions(){
         return $this->belongsToMany(Transaction::class);
     }
-    
+
     public function getHasJobseekerFeedbackAttribute(){
         if(Feedback::where('service_id', $this->service_id)->where('from', 'jobseeker')->exists()){
             return true;

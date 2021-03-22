@@ -13,6 +13,10 @@ class Photo extends Model
         return $this->belongsToMany(Campaign::class);;
     }
 
+    public function services(){
+        return $this->belongsToMany(Service::class);;
+    }
+
     public function jobs(){
         return $this->belongsToMany(Campaign::class);;
     }

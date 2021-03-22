@@ -49,9 +49,16 @@ Route::get('profile/{id}', 'PagesController@jobseeker')->name('profile');
 //Admin Routes using Route Group
 Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-admin'])->group(function (){
     Route::get('/', 'Admin\CampaignsController@index')->name('index');
+    Route::post('campaigns/{id}', 'Admin\CampaignsController@update')->name('campaigns.update');
+    Route::get('campaigns/{id}/delete', 'Admin\CampaignsController@destroy')->name('campaigns.destroy');
     Route::resource('campaigns', 'Admin\CampaignsController');
+
     Route::resource('donations', 'Admin\DonationsController');
+
+    Route::post('services/{id}', 'Admin\ServicesController@update')->name('services.update');
+    Route::get('services/{id}/delete', 'Admin\ServicesController@destroy')->name('services.destroy');
     Route::resource('services', 'Admin\ServicesController');
+
     Route::resource('service-orders', 'Admin\ServiceOrdersController');
     Route::resource('invoice', 'Admin\InvoicesController');
     Route::resource('ratings', 'Admin\RatingsController');
@@ -59,6 +66,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
     Route::resource('users-management', 'Admin\UserManagementController');
     Route::resource('users', 'Admin\UserController');
     Route::get('jobseekers', 'Admin\JobseekerProfileController@index')->name('jobseekers.index');
+    Route::get('reports', 'Admin\ReportsController@index')->name('reports.index');
 });
 
 // Demo route to check if verif email, lets use this for accessing profile, before they can they need to verify email
@@ -125,3 +133,10 @@ Route::get('/animals-category', function () { return view('/public/patcampaignca
 Route::get('/nonprofit-category', function () { return view('/public/patcampaigncategories/nonprofit-category'); });
 Route::get('/memorial-category', function () { return view('/public/patcampaigncategories/memorial-category'); });
 Route::get('/emergencies-category', function () { return view('/public/patcampaigncategories/emergencies-category'); });
+
+Route::get('payment/success', function(){
+
+})->name('payment.success');
+Route::get('payment/cancel', function(){
+    
+})->name('payment.cancel');

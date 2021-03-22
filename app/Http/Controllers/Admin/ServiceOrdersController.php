@@ -27,7 +27,7 @@ class ServiceOrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(){
-        $results = Order::with(['service','backer'])->get();
+        $results = Order::whereHas('service')->with(['service','backer'])->get();
         return DataTables::of(ResourceOrder::collection($results))->toJson();
     }
 

@@ -28,7 +28,7 @@ class CampaignsController extends Controller
                 'success' => true, 
                 'donation_id' => $donate->id,
                 'donation_amount' => $donate->amount,
-                'currency' => ucfirst($request->currency)
+                'currency' => strtoupper($request->currency)
             )
         );
     }

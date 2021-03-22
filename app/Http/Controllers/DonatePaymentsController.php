@@ -18,7 +18,12 @@ use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\PaymentExecution;
 
-use App\Models\Campaign;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
+use Stripe\PaymentIntent;
+use Stripe\StripeClient;
+
+use App\Models\Donation;
 use App\Models\Transaction as MyTransaction;
 
 use Carbon\Carbon;
@@ -28,37 +33,34 @@ class DonatePaymentsController extends Controller
     private $currency = 'USD';
 
     public function CreatePayPalPayment(Request $request){
-        if(!User::where('id',$request->user_id)->exists()){
-            die('User not recognized');
-        }
-
         $apiContext = new \PayPal\Rest\ApiContext(
-            new \PayPal\Auth\OAuthTokenCredential(env('PAYPAL_CLIENT_ID', ''),env('PAYPAL_CLIENT_SECRET',''))
+            new \PayPal\Auth\OAuthTokenCredential(env('PAYPAL_CLIENT_ID'),env('PAYPAL_CLIENT_SECRET'))
         );
-        
+
         if(env('PAYPAL_MODE') == 'production'){
             $apiContext->setConfig(array('mode' => 'live'));
         }
         
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
-    
-        $campaign = Campaign::find($request->campaign_id);
-        $user = User::find($request->user_id);
+        
+        $donation = Donation::find($request->donation_id);
+
+        $this->currency = $request->currency;
         
         $item = new Item();
-        $item->setName('Donation to '.$campaign->title)
+        $item->setName('Donation to '.$donation->campaign->title)
             ->setCurrency($this->currency)
             ->setQuantity(1)
-            ->setSku('') // Similar to `item_number` in Classic API
-            ->setPrice($request->amount);
+            ->setSku("Donate") // Similar to `item_number` in Classic API
+            ->setPrice($donation->amount);
     
         $itemList = new ItemList();
         $itemList->setItems(array($item));
     
         $amount = new Amount();
         $amount->setCurrency($this->currency)
-            ->setTotal($request->amount);
+            ->setTotal($donation->amount);
     
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -75,7 +77,7 @@ class DonatePaymentsController extends Controller
         $inputFields->setNoShipping(1);
     
         $webProfile = new WebProfile();
-        $webProfile->setName($user->username . uniqid())->setInputFields($inputFields);
+        $webProfile->setName('test'.uniqid())->setInputFields($inputFields);
     
         $webProfileId = $webProfile->create($apiContext)->getId();
     
@@ -86,31 +88,26 @@ class DonatePaymentsController extends Controller
             ->setRedirectUrls($redirectUrls)
             ->setTransactions(array($transaction));
     
-        try {
+        try {    
             $payment->create($apiContext);
-            $donation = Donation::create([
-                'messages' => $request->message,
-                'amount' => $request->amount
-            ]);
-
-            $user->donations()->attach($donation->id);
-
-            $transaction = MyTransaction::create([
-                'payment_id' => $payment->id,
-                'payment_method' => $payment->payer->payment_method,
-                'amount' => $payment->transactions[0]->amount->total,
-                'currency' => $payment->transactions[0]->amount->currency,
-                'status' => $payment->state
-            ]);
-
-            $campaign->donations()->attach($donation->id);
-            $campaign->transactions()->attach($transaction->id);
-
-            return $payment;
-        } catch (Exception $ex) {
-            echo $ex;
-            exit(1);
+        } catch (PayPal\Exception\PayPalConnectionException $pce) {
+            // Don't spit out errors or use "exit" like this in production code
+            echo '<pre>';
+            print_r(json_decode($pce->getData()));
+            exit;
         }
+
+        $transaction = MyTransaction::create([
+            'payment_id' => $payment->id,
+            'payment_method' => $payment->payer->payment_method,
+            'amount' => $payment->transactions[0]->amount->total,
+            'currency' => $payment->transactions[0]->amount->currency,
+            'status' => $payment->state
+        ]);
+
+        $donation->transactions()->attach($transaction->id);
+
+        return $payment;
     }
     public function ExecutePayPalPayment(Request $request){
         $apiContext = new \PayPal\Rest\ApiContext(
@@ -140,12 +137,9 @@ class DonatePaymentsController extends Controller
     }
 
     public function CreateStripePayment(Request $request){
-        if(!User::where('id',$request->user_id)->exists()){
-            die('User not recognized');
-        }
 
-        $user = User::find($request->user_id);
-        $campaign = Campaign::find($request->campaign_id);
+        $donation = Donation::find($request->donation_id);
+        $this->currency = $request->currency;
 
         // This is a sample test API key. Sign in to see examples pre-filled with your key.
         $stripe_api_key = env('STRIPE_API_KEY', '');
@@ -153,9 +147,9 @@ class DonatePaymentsController extends Controller
 
         $items = array([
             'currency' => $this->currency,
-            'unit_amount' => $request->amount,
+            'unit_amount' => $donation->amount,
             'product_data' => [
-                'name' => 'Donation to '.$campaign->title,
+                'name' => 'Donation to '.$donation->title,
                 'description' => '',
             ],
             'quantity' => 1
@@ -168,24 +162,16 @@ class DonatePaymentsController extends Controller
               'currency' => $this->currency,
             ]);
 
-            $donation = Donation::create([
-                'messages' => $request->message,
-                'amount' => $request->amount
-            ]);
-
-            $user->donations()->attach($donation->id);
-
             $transaction = MyTransaction::create([
                 'payment_id' => $paymentIntent->id,
-                'payment_method' => 'stripe_payment',
+                'payment_method' => 'stripe',
                 'amount' => $paymentIntent->amount/100,
                 'currency' => $paymentIntent->currency,
                 'status' => $paymentIntent->status
             ]);
-
-            $campaign->donations()->attach($donation->id);
-            $campaign->transactions()->attach($transaction->id);
-
+    
+            $donation->transactions()->attach($transaction->id);
+    
             return response()->json(['clientSecret' => $paymentIntent->client_secret]);
 
           } catch (Error $e) {
@@ -206,7 +192,7 @@ class DonatePaymentsController extends Controller
 
             if($result->status == 'succeeded'){
                 $transaction = MyTransaction::where('payment_id', $result->id)->first();
-                $transaction->status = $result->status;
+                $transaction->status = 'approved';
                 $transaction->paid_at = Carbon::now()->toDateString();
                 $transaction->save();
 
@@ -217,5 +203,16 @@ class DonatePaymentsController extends Controller
             echo $ex;
             exit(1);
         }
+    }
+
+    function calculateOrderAmount(array $items) : int {
+        // Replace this constant with a calculation of the order's amount
+        // Calculate the order total on the server to prevent
+        // customers from directly manipulating the amount on the client
+        $amount = 0;
+        foreach($items as $item){
+            $amount += $item['unit_amount'];
+        }
+        return $amount * 100;
     }
 }

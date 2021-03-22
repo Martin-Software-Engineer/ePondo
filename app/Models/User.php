@@ -43,6 +43,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['earnings', 'orders'];
+
+
     public function setPasswordAttributes($password){
         $this->attributes['password'] = Hash::make($password);
     }
@@ -70,8 +73,36 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Campaign::class);
     }
     
+    public function services(){
+        return $this->hasMany(Service::class, 'user_id', 'id')->with(['orders']);
+    }
+    
     public function donations(){
         return $this->belongsToMany(Donation::class);
+    }
+
+    public function getEarningsAttribute(){
+        $earnings = 0;
+        $services =  $this->services()->whereHas('orders', function($q){
+            $q->whereHas('transactions', function($q2){
+                $q2->orWhere('status', 'completed'); //paypal
+                $q2->orWhere('status', 'succeeded'); //stripe
+            });
+        })->get();
+
+        foreach($services as $service){
+            foreach($service['orders'] as $order){
+                foreach($order['transactions'] as $transaction){
+                    $earnings += $transaction->amount;
+                }
+            }
+        }
+
+        return $earnings;
+    }
+
+    public function getOrdersAttribute(){
+        return  $this->services()->get()->count();
     }
     /**
      * A user can have many messages

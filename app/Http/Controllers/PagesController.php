@@ -32,6 +32,8 @@ class PagesController extends Controller
         
         $data['campaigns'] = $campaigns->get();
         $data['categories'] = CampaignCategory::all();
+
+        //return $data;
         return view('landing.contents.campaigns', $data);
     }
 

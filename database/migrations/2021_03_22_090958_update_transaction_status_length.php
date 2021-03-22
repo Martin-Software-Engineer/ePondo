@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransactionDonationTable extends Migration
+class UpdateTransactionStatusLength extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateTransactionDonationTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_donation', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('transaction_id')->constrained();
-            $table->foreignId('donation_id')->constrained();
-            $table->timestamps();
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->string('status', 64)->change();
         });
     }
 
@@ -28,6 +25,6 @@ class CreateTransactionDonationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_donation');
+        //
     }
 }

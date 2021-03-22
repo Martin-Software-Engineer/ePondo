@@ -18,7 +18,7 @@ class Campaigns extends JsonResource
         return [
             'id' => $this->id,
             'campaign_id' => System::GenerateFormattedId('C', $this->id),
-            'jobseeker_name' => $this->jobseeker->name,
+            'jobseeker_name' => $this->jobseeker->username,
             'jobseeker_id' => System::GenerateFormattedId('J', $this->jobseeker->id),
             'title' => $this->title,
             'categories' => $this->categories,
