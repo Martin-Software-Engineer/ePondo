@@ -76,7 +76,8 @@ class PagesController extends Controller
     }
 
     public function service_view($id){
-        $data['service'] = Service::with(['categories','jobseeker'])->where('id',$id)->first();
+        $data['service'] = Service::with(['categories','jobseeker', 'photos', 'messages'])->where('id',$id)->first();
+        //return $data;
         return view('landing.contents.service_view', $data);
     }
 

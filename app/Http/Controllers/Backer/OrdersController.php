@@ -15,7 +15,10 @@ class OrdersController extends Controller
     }
 
     public function data(){
-        $orders = Order::with(['service'])->where('backer_id', auth()->user()->id)->get();
+        $orders = Order::whereHas('transactions', function($q){
+            $q->where('status', 'approved');
+        })->with(['service'])->where('backer_id', auth()->user()->id)->get();
+        
         return DataTables::of(ResourceBackerOrders::collection($orders))->toJson();
     }
 

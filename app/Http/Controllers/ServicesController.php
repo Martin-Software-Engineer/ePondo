@@ -33,7 +33,7 @@ class ServicesController extends Controller
                 'success' => true, 
                 'service' => $service,
                 'order' => $order,
-                'currency' => ucfirst($request->currency)            
+                'currency' => strtoupper($service->currency)            
             )
         );
     }

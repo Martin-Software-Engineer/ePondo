@@ -33,3 +33,8 @@ Route::post('donation/paypal/execute', 'DonatePaymentsController@ExecutePaypalPa
 Route::post('donation/stripe/create', 'DonatePaymentsController@CreateStripePayment')->name('api.donation_create_stripe');
 Route::post('donation/stripe/confirm', 'DonatePaymentsController@ConfirmStripePayment')->name('api.donation_confirm_stripe');
 
+Route::post('order/paypal/create', 'OrderPaymentsController@CreatePayPalPayment')->name('api.order_create_paypal');
+Route::post('order/paypal/execute', 'OrderPaymentsController@ExecutePaypalPayment')->name('api.order_execute_paypal');
+Route::post('order/stripe/create', 'OrderPaymentsController@CreateStripePayment')->name('api.order_create_stripe');
+Route::post('order/stripe/confirm', 'OrderPaymentsController@ConfirmStripePayment')->name('api.order_confirm_stripe');
+

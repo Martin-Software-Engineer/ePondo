@@ -10,4 +10,12 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = ['payment_id', 'payment_method', 'amount', 'currency', 'status'];
+
+    public function orders(){
+        return $this->belongsToMany(Order::class);
+    }
+
+    public function order(){
+        return $this->orders()->first();
+    }
 }

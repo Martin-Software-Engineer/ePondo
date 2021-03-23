@@ -16,7 +16,7 @@ class Service extends Model
     protected $appends = ['thumbnail', 'thumbnail_url'];
     
     public function jobseeker(){
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id')->with('informations');
     }
 
     public function categories(){
@@ -31,6 +31,10 @@ class Service extends Model
         return $this->belongsToMany(Photo::class);
     }
     
+    public function messages(){
+        return $this->hasMany(ServiceMessage::class, 'service_id', 'id')->with('from');
+    }
+
     public function orders(){
         return $this->hasMany(Order::class, 'service_id', 'id')->with(['transactions']);
     }

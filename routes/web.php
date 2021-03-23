@@ -35,7 +35,7 @@ Route::get('verify', 'Auth\RegisteredUserController@verify');
 Route::get('/', 'PagesController@index');
 Route::get('campaigns', 'PagesController@campaigns')->name('campaigns');
 Route::get('campaign/{id}', 'PagesController@campaign_view')->name('campaign_view');
-Route::get('campaign/{id}/details','PagesController@campaign_details')->name('camapaign_details');
+Route::get('campaign/{id}/details','PagesController@campaign_details')->name('campaign_details');
 Route::post('campaign/donate', 'CampaignsController@donate')->name('campaign.donate');
 
 Route::get('services', 'PagesController@services')->name('services');

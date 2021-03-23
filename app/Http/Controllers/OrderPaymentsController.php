@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Mail;
-use App\Http\Resources\PaymentMethod as PaymentMethodResource;
 use PayPal\Api\Item;
 use PayPal\Api\Payer;
 use PayPal\Api\Amount;
@@ -18,8 +17,16 @@ use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\PaymentExecution;
 
-use App\Models\Campaign;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
+use Stripe\PaymentIntent;
+use Stripe\StripeClient;
+
+use App\Models\User;
+use App\Models\Service;
+use App\Models\Order;
 use App\Models\Transaction as MyTransaction;
+use App\Models\Donation;
 
 use Carbon\Carbon;
 use App\Mail\SendMail;
@@ -28,10 +35,6 @@ class OrderPaymentsController extends Controller
     private $currency = 'USD';
 
     public function CreatePayPalPayment(Request $request){
-        if(!User::where('id',$request->user_id)->exists()){
-            die('User not recognized');
-        }
-
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(env('PAYPAL_CLIENT_ID', ''),env('PAYPAL_CLIENT_SECRET',''))
         );
@@ -43,22 +46,23 @@ class OrderPaymentsController extends Controller
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
     
-        $service = Service::find($request->service_id);
-        $backer = User::find($request->backer_id);
-        
+        $order = Order::with('service')->where('id',$request->order_id)->first();
+
+        $this->currency = $request->currency;
+
         $item = new Item();
-        $item->setName($service->title)
+        $item->setName($order->service->title)
             ->setCurrency($this->currency)
             ->setQuantity(1)
             ->setSku('Service Purchase Order') // Similar to `item_number` in Classic API
-            ->setPrice($service->price);
+            ->setPrice($order->service->price);
     
         $itemList = new ItemList();
         $itemList->setItems(array($item));
     
         $amount = new Amount();
         $amount->setCurrency($this->currency)
-            ->setTotal($request->amount);
+            ->setTotal($order->service->price);
     
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -75,7 +79,7 @@ class OrderPaymentsController extends Controller
         $inputFields->setNoShipping(1);
     
         $webProfile = new WebProfile();
-        $webProfile->setName($user->username . uniqid())->setInputFields($inputFields);
+        $webProfile->setName($order->backer->username . uniqid())->setInputFields($inputFields);
     
         $webProfileId = $webProfile->create($apiContext)->getId();
     
@@ -88,10 +92,6 @@ class OrderPaymentsController extends Controller
     
         try {
             $payment->create($apiContext);
-            $order = Order::create([
-                'backer_id' => $backer->id,
-                'service_id' => $service->id
-            ]);
 
             $transaction = MyTransaction::create([
                 'payment_id' => $payment->id,
@@ -101,8 +101,7 @@ class OrderPaymentsController extends Controller
                 'status' => $payment->state
             ]);
 
-            $campaign->donations()->attach($donation->id);
-            $campaign->transactions()->attach($transaction->id);
+            $order->transactions()->attach($transaction->id);
 
             return $payment;
         } catch (Exception $ex) {
@@ -125,11 +124,16 @@ class OrderPaymentsController extends Controller
             $result = $payment->execute($execution, $apiContext);
 
             if($payment->state == 'approved'){
-                $transaction = MyTransaction::where('payment_id', $payment->id)->first();
+                $transaction = MyTransaction::with('orders')->where('payment_id', $payment->id)->first();
                 $transaction->status = $payment->state;
                 $transaction->paid_at = Carbon::now()->toDateString();
                 $transaction->save();
+
+                $order = Order::find($transaction->orders[0]->id);
+                $order->status = 3; //ongoing
+                $order->save();
             }
+
             return $result;
         } catch (Exception $ex) {
             echo $ex;
@@ -138,12 +142,9 @@ class OrderPaymentsController extends Controller
     }
 
     public function CreateStripePayment(Request $request){
-        if(!User::where('id',$request->user_id)->exists()){
-            die('User not recognized');
-        }
 
-        $user = User::find($request->user_id);
-        $campaign = Campaign::find($request->campaign_id);
+        $order = Order::with('service')->where('id',$request->order_id)->first();
+        $this->currency = $request->currency;
 
         // This is a sample test API key. Sign in to see examples pre-filled with your key.
         $stripe_api_key = env('STRIPE_API_KEY', '');
@@ -151,9 +152,9 @@ class OrderPaymentsController extends Controller
 
         $items = array([
             'currency' => $this->currency,
-            'unit_amount' => $request->amount,
+            'unit_amount' => $order->service->price,
             'product_data' => [
-                'name' => 'Donation to '.$campaign->title,
+                'name' => 'Donation to '.$order->service->title,
                 'description' => '',
             ],
             'quantity' => 1
@@ -166,23 +167,15 @@ class OrderPaymentsController extends Controller
               'currency' => $this->currency,
             ]);
 
-            $donation = Donation::create([
-                'messages' => $request->message,
-                'amount' => $request->amount
-            ]);
-
-            $user->donations()->attach($donation->id);
-
             $transaction = MyTransaction::create([
                 'payment_id' => $paymentIntent->id,
-                'payment_method' => 'stripe_payment',
+                'payment_method' => 'stripe',
                 'amount' => $paymentIntent->amount/100,
                 'currency' => $paymentIntent->currency,
                 'status' => $paymentIntent->status
             ]);
 
-            $campaign->donations()->attach($donation->id);
-            $campaign->transactions()->attach($transaction->id);
+            $order->transactions()->attach($transaction->id);
 
             return response()->json(['clientSecret' => $paymentIntent->client_secret]);
 
@@ -204,7 +197,7 @@ class OrderPaymentsController extends Controller
 
             if($result->status == 'succeeded'){
                 $transaction = MyTransaction::where('payment_id', $result->id)->first();
-                $transaction->status = $result->status;
+                $transaction->status = 'approved';
                 $transaction->paid_at = Carbon::now()->toDateString();
                 $transaction->save();
 
@@ -215,5 +208,16 @@ class OrderPaymentsController extends Controller
             echo $ex;
             exit(1);
         }
+    }
+
+    function calculateOrderAmount(array $items) : int {
+        // Replace this constant with a calculation of the order's amount
+        // Calculate the order total on the server to prevent
+        // customers from directly manipulating the amount on the client
+        $amount = 0;
+        foreach($items as $item){
+            $amount += $item['unit_amount'];
+        }
+        return $amount * 100;
     }
 }
