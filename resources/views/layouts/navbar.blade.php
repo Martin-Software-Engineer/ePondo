@@ -1,18 +1,16 @@
-
-
 <nav>
         <div class="wrapper">
-            <div class="logo"><a href="#">blank</a></div>
+            <div class="logo"><a href="#">ePondo</a></div>
             <input type="radio" name="slide" id="menu-btn">
             <input type="radio" name="slide" id="cancel-btn">
             <ul class="nav-links">
                 <label for="cancel-btn" class="btn cancel-btn"><i class="fas fa-times"></i></label>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/AboutUs">About Us</a></li>
                 <li>
-                    <a href="#" class="desktop-item">Campaign Categories</a>
+                    <a href="#" class="desktop-item">Campaigns</a>
                     <input type="checkbox" id="showDrop">
-                    <label for="showDrop" class="mobile-item">Campaign Categories</label>
+                    <label for="showDrop" class="mobile-item">Campaign</label>
                     <ul class="drop-menu">
                     <li><a href="#">Education</a></li>
                     <li><a href="#">Medical and Health</a></li>
@@ -23,9 +21,9 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="desktop-item">Job Categories</a>
+                    <a href="#" class="desktop-item">Services</a>
                     <input type="checkbox" id="showJob">
-                    <label for="showJob" class="mobile-item">Job Categories</label>
+                    <label for="showJob" class="mobile-item">Services</label>
                     <div class="job-box">
                         <div class="content">
                             <div class="row">
@@ -73,12 +71,8 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="#">Community</a></li>
                 <li class="book-a-table text-center"><a href="login">Login</a></li>
-
             </ul>
             <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
         </div>
-    </nav>
-
-
+      </nav>

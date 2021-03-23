@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'price', 'duration', 'location'];
+    protected $fillable = ['backer_id', 'service_id', 'status'];
     protected $appends = ['hasjobseekerfeedback','hasbackerfeedback'];
     public function service(){
         return $this->belongsTo(Service::class, 'service_id', 'id')->with(['jobseeker']);
@@ -17,6 +17,10 @@ class Order extends Model
 
     public function backer(){
         return $this->belongsTo(User::class, 'backer_id', 'id');
+    }
+
+    public function transactions(){
+        return $this->belongsToMany(Transaction::class);
     }
 
     public function getHasJobseekerFeedbackAttribute(){

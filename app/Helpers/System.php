@@ -8,16 +8,32 @@ class System{
         return $prefix.'-'.(str_pad((int)$ids[0], 3, '0', STR_PAD_LEFT)).'-'.(str_pad((int)$ids[1] + 1, 3, '0', STR_PAD_LEFT));
     }
 
-    public static function StatusTextValue($code){
-        $status = [
-            '1' => 'Pending Request', 
-            '2' => 'Accepted',
-            '3' => 'Declined', 
-            '4' => 'Ongoing', 
-            '5' => 'Pending Payment', 
-            '6' => 'Pending Rating & Feedback', 
-            '7' => 'Completed'
-        ];
+    public static function StatusTextValue($code, $hasBadge = false){
+        $status = [];
+
+        if($hasBadge){
+            $status = [
+                '1' => '<span class="badge badge-secondary">Pending Request</span>', 
+                '2' => '<span class="badge badge-primary">Accepted</span>',
+                '3' => '<span class="badge badge-warning">Declined</span>', 
+                '4' => '<span class="badge badge-info">Ongoing</span>', 
+                '5' => '<span class="badge badge-secondary">Pending Payment</span>', 
+                '6' => '<span class="badge badge-secondary">Pending Rating & Feedback</span>', 
+                '7' => '<span class="badge badge-success">Completed</span>',
+                '8' => '<span class="badge badge-danger">Cancelled</span>'
+            ];
+        }else{
+            $status = [
+                '1' => 'Pending Request', 
+                '2' => 'Accepted',
+                '3' => 'Declined', 
+                '4' => 'Ongoing', 
+                '5' => 'Pending Payment', 
+                '6' => 'Pending Rating & Feedback', 
+                '7' => 'Completed',
+                '8' => 'Cancelled'
+            ];
+        }
 
         return $status[$code];
     }

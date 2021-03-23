@@ -49,10 +49,10 @@ $(function() {
                     render: function(data, type, row) {
                         var $elArray = [];
                         $.each(row.categories, function(index, category) {
-                            $elArray.push(`<span>${category.name}</span`);
+                            $elArray.push(`<span class="badge badge-primary">${category.name}</span>`);
                         });
 
-                        return $elArray.join('<br>');
+                        return $elArray.join('');
                     }
                 },
                 {
@@ -122,4 +122,34 @@ $(function() {
             }
         });
     }
+
+    $(document).on('click', '.btn-delete', function() {
+        $(".dtr-bs-modal").modal("hide");
+        let id = $(this).data('id');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-outline-danger ml-1'
+            },
+            buttonsStyling: false
+        }).then(async function(result) {
+            if (result.isConfirmed) {
+                const deleteData = await $.get(`campaigns/${id}/delete`);
+                if (deleteData.success) {
+                    toastr['success'](deleteData.msg, 'Deleted!', {
+                        closeButton: true,
+                        tapToDismiss: false,
+                        rtl: isRtl
+                    });
+                    dt.ajax.reload();
+                }
+            }
+        });
+
+    });
 });

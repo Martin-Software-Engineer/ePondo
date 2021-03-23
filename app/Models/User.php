@@ -19,10 +19,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
-        'role_id',
     ];
 
     /**
@@ -43,6 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ['earnings', 'orders'];
+
 
     public function setPasswordAttributes($password){
         $this->attributes['password'] = Hash::make($password);
@@ -71,6 +73,51 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Campaign::class);
     }
     
+    public function services(){
+        return $this->hasMany(Service::class, 'user_id', 'id')->with(['orders']);
+    }
+    
+    public function donations(){
+        return $this->belongsToMany(Donation::class);
+    }
+
+    public function information(){
+        return $this->hasOne(UserInformation::class, 'id', 'user_id');
+    }
+
+    public function getEarningsAttribute(){
+        $earnings = 0;
+        $services =  $this->services()->whereHas('orders', function($q){
+            $q->whereHas('transactions', function($q2){
+                $q2->orWhere('status', 'completed'); //paypal
+                $q2->orWhere('status', 'succeeded'); //stripe
+            });
+        })->get();
+
+        foreach($services as $service){
+            foreach($service['orders'] as $order){
+                foreach($order['transactions'] as $transaction){
+                    $earnings += $transaction->amount;
+                }
+            }
+        }
+
+        return $earnings;
+    }
+
+    public function getOrdersAttribute(){
+        return  $this->services()->get()->count();
+    }
+    /**
+     * A user can have many messages
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
     // MIDDLEWARE PURPOSES
     /**
      * Check if user has a role

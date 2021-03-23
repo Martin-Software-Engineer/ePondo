@@ -36,7 +36,7 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::registerView(function() {
 
-            $roles = Role::all();
+            $roles = Role::where('name','!=','Admin')->get();
             return view ('auth.register', ['roles' => $roles]);
         });
 

@@ -29,20 +29,36 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::post('/register', 'Auth\RegisteredUserController@store');
+Route::get('verify', 'Auth\RegisteredUserController@verify');
 // PUBLIC PATHS
-Route::get('/', function () {return view('public.index');});                        // HOME PAGE
-Route::resource('/Campaigns', PublicCampaignController::class);                     // Campaigns
-Route::resource('/Jobs', PublicJobController::class);                               // Jobs
-Route::resource('/Products', PublicProductController::class);                       // Products
-Route::get('/AboutUs', function () { return view('public.aboutus'); });             // About Us
+Route::get('/', 'PagesController@index');
+Route::get('campaigns', 'PagesController@campaigns')->name('campaigns');
+Route::get('campaign/{id}', 'PagesController@campaign_view')->name('campaign_view');
+Route::get('campaign/{id}/details','PagesController@campaign_details')->name('campaign_details');
+Route::post('campaign/donate', 'CampaignsController@donate')->name('campaign.donate');
+
+Route::get('services', 'PagesController@services')->name('services');
+Route::get('service/{id}', 'PagesController@service_view')->name('service_view');
+Route::get('service/{id}/details','PagesController@service_details')->name('service_details');
+Route::post('service/avail', 'ServicesController@avail')->name('service.avail');
+
+Route::get('aboutus', 'PagesController@aboutus')->name('aboutus');
+Route::get('profile/{id}', 'PagesController@jobseeker')->name('profile');
 
 //Admin Routes using Route Group
-Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-admin'])->group(function (){
-    Route::get('/', 'Admin\CampaignsController@index');
+Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-admin'])->group(function (){
+    Route::get('/', 'Admin\CampaignsController@index')->name('index');
+    Route::post('campaigns/{id}', 'Admin\CampaignsController@update')->name('campaigns.update');
+    Route::get('campaigns/{id}/delete', 'Admin\CampaignsController@destroy')->name('campaigns.destroy');
     Route::resource('campaigns', 'Admin\CampaignsController');
+
     Route::resource('donations', 'Admin\DonationsController');
+
+    Route::post('services/{id}', 'Admin\ServicesController@update')->name('services.update');
+    Route::get('services/{id}/delete', 'Admin\ServicesController@destroy')->name('services.destroy');
     Route::resource('services', 'Admin\ServicesController');
+
     Route::resource('service-orders', 'Admin\ServiceOrdersController');
     Route::resource('invoice', 'Admin\InvoicesController');
     Route::resource('ratings', 'Admin\RatingsController');
@@ -50,13 +66,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','auth.is-admin'])->gr
     Route::resource('users-management', 'Admin\UserManagementController');
     Route::resource('users', 'Admin\UserController');
     Route::get('jobseekers', 'Admin\JobseekerProfileController@index')->name('jobseekers.index');
+    Route::get('reports', 'Admin\ReportsController@index')->name('reports.index');
 });
 
 // Demo route to check if verif email, lets use this for accessing profile, before they can they need to verify email
 Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(['auth','verified']);
 
 //JobSeeker -> Campaigns Route using Route Group
-Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-jobseeker'])->group(function (){
+Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','auth.is-jobseeker'])->group(function (){
     Route::get('/', 'JobSeeker\AccountController@index')->name('index');
     Route::get('profile','JobSeeker\JobseekerProfileController@index')->name('profile');
     Route::get('orders', 'JobSeeker\OrdersController@index')->name('orders');
@@ -80,26 +97,22 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','auth.is-jobs
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
 });
 
-//JobSeeker -> Campaigns Route using Route Group
-// Route::middleware(['auth','auth.is-JobSeeker'])->group(function (){
-//     Route::resource('/jobseeker/campaigns/{campaign}/jobs', JobController::class);
-    // Route::resource('/campaigns.jobs', JobController::class);
-    // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
-    // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
-// });
+Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is-backer'])->group(function (){
+    Route::get('/', 'Backer\AccountController@index')->name('index');
+    Route::get('donations', 'Backer\DonationsController@index')->name('donations');
+    Route::get('donations/data', 'Backer\DonationsController@data')->name('donations.data');
 
-// Route::get('/jobseeker/campaigns/{campaign}/jobs/create','JobController@create');
+    Route::get('orders', 'Backer\OrdersController@index')->name('orders');
+    Route::get('orders/data', 'Backer\OrdersController@data')->name('orders.data');
+    Route::get('orders/{id}/edit', 'Backer\OrdersController@edit')->name('orders.edit');
+    Route::post('orders/cancel', 'Backer\OrdersController@cancel')->name('orders.cancel');
+});
 
-//JobSeeker -> Campaigns Route using Route Group
-// Route::prefix('jobseeker/campaigns/{campaign}/')->name('jobseeker.campaigns')->middleware(['auth','auth.is-JobSeeker'])->group(function (){
-//     Route::resource('/jobs', JobController::class);
-    // Route::resource('/campaigns.jobs', JobController::class);
-    // Route::resource('/campaigns/{{campaign}}/jobs/create', JobController::class);
-    // Route::get('/campaigns/{campaign}', 'JobSeeker\CampaignController@show');
-// });
-
-// Route::resource('campaigns.jobs',JobController::class);
-
+Route::get('chats', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');
+Route::post('getContacts', 'ChatsController@getContacts');
+Route::post('getChats', 'ChatsController@getChats');
 
 // Mail Routes
 Route::get('/email', function () { return new UserVerifyEmail(); });
@@ -120,3 +133,10 @@ Route::get('/animals-category', function () { return view('/public/patcampaignca
 Route::get('/nonprofit-category', function () { return view('/public/patcampaigncategories/nonprofit-category'); });
 Route::get('/memorial-category', function () { return view('/public/patcampaigncategories/memorial-category'); });
 Route::get('/emergencies-category', function () { return view('/public/patcampaigncategories/emergencies-category'); });
+
+Route::get('payment/success', function(){
+
+})->name('payment.success');
+Route::get('payment/cancel', function(){
+    
+})->name('payment.cancel');

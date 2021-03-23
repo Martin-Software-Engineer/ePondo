@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AccessBacker
 {
@@ -16,6 +17,10 @@ class AccessBacker
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if(Gate::allows('is-backer')){
+            return $next($request);
+        }
+
+        return redirect()->back();
     }
 }

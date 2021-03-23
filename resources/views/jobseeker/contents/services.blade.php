@@ -94,11 +94,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="price">Service Price(per hour)</label>
+                                    <label for="price">Service Price(Php)</label>
                                     <input type="text" id="price" name="price" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="duration">Duration of Service (hours)</label>
+                                    <label for="duration">Duration of Service(hour/s)</label>
                                     <input type="number" id="duration" name="duration" class="form-control" required>
                                 </div>
                                 <div class="form-group">
@@ -178,7 +178,7 @@
                                         </a>
                                         <!-- upload and reset button -->
                                         <div class="media-body mt-75 ml-1">
-                                            <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                            <label for="edit-account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
                                             <input type="file" name="thumbnail" id="edit-account-upload" accept="image/*" style="display: none" />
                                             <button class="btn btn-sm btn-outline-secondary mb-75" id="edit-upload-btn-reset" type="button">Reset</button>
                                             <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>
@@ -187,11 +187,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="edit-price">Service Price(per hour)</label>
+                                    <label for="edit-price">Service Price(Php)</label>
                                     <input type="text" id="edit-price" name="price" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="edit-duration">Duration of Service (hours)</label>
+                                    <label for="edit-duration">Duration of Service (hour/s)</label>
                                     <input type="number" id="edit-duration" name="duration" class="form-control" required>
                                 </div>
                                 <div class="form-group">
