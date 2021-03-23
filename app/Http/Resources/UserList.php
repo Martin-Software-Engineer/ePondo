@@ -17,7 +17,7 @@ class UserList extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => (str_pad((int)$this->user_id + 1, 6, '0', STR_PAD_LEFT)),
-            'name' => $this->name,
+            'name' => $this->username,
             'email' => $this->email,
             'roles' => $this->roles
         ];

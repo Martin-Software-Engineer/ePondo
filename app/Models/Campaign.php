@@ -27,7 +27,7 @@ class Campaign extends Model
         'thumbnail_id'
     ];
 
-    protected $appends = ['progress','thumbnail','thumbnail_url'];
+    protected $appends = ['progress','thumbnail','thumbnail_url', 'raised'];
 
     public function path(){
 
@@ -73,8 +73,15 @@ class Campaign extends Model
         return $this->belongsToMany(Photo::class);
     }
 
+    public function getRaisedAttribute(){
+        return $this->donations()->whereHas('transactions', function($q){
+            $q->where('transactions.status', 'approved');
+        })->sum('amount');
+    }
     public function getProgressAttribute(){
-        $donations = $this->donations()->sum('amount');
+        $donations = $this->donations()->whereHas('transactions', function($q){
+            $q->where('transactions.status', 'approved');
+        })->sum('amount');
         $target = $this->target_amount;
 
         $data = (object)array(
@@ -91,6 +98,12 @@ class Campaign extends Model
     }
 
     public function getThumbnailUrlAttribute(){
-        return Storage::url(Photo::find($this->thumbnail_id)->url);
+        $photo = Photo::find($this->thumbnail_id);
+        $url = '../app-assets/images/pages/no-image.png';
+        if($photo){
+            $url = $photo->url;
+            $url = Storage::url($url);
+        }
+        return $url;
     }
 }

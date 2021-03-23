@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <a href="{{route('admin.campaigns.create')}}" class="btn btn-primary float-right">Create</a>
+            <a href="{{route('admin.services.create')}}" class="btn btn-primary float-right">Create</a>
         </div>
     </div>
 </section>

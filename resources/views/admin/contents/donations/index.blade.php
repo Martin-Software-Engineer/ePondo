@@ -44,9 +44,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <a href="{{route('admin.campaigns.create')}}" class="btn btn-primary float-right">Create</a>
-        </div>
     </div>
 </section>
 <section class="donations-list-wrapper">

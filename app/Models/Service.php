@@ -27,15 +27,25 @@ class Service extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function photos(){
+        return $this->belongsToMany(Photo::class);
+    }
+    
+    public function orders(){
+        return $this->hasMany(Order::class, 'service_id', 'id')->with(['transactions']);
+    }
+    
     public function getThumbnailAttribute(){
         return Photo::find($this->thumbnail_id);
     }
 
     public function getThumbnailUrlAttribute(){
-        if(Photo::find($this->thumbnail_id)){
-            return Storage::url(Photo::find($this->thumbnail_id)->url);
+        $photo = Photo::find($this->thumbnail_id);
+        $url = '../app-assets/images/pages/no-image.png';
+        if($photo){
+            $url = $photo->url;
+            $url = Storage::url($url);
         }
-        
-        return '';
+        return $url;
     }
 }

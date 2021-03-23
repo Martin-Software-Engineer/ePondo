@@ -17,8 +17,8 @@ class Service extends JsonResource
         return [
             'id' => $this->id,
             'service_id' => System::GenerateFormattedId('S', $this->id),
-            'jobseeker_name' => $this->jobseeker->name,
-            'jobseeker_id' => $this->jobseeker->id,
+            'jobseeker_name' => $this->jobseeker->username,
+            'jobseeker_id' => System::GenerateFormattedId('J', $this->jobseeker->id),
             'title' => $this->title,
             'categories' => $this->categories,
             'duration' => $this->duration

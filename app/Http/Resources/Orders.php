@@ -17,9 +17,9 @@ class Orders extends JsonResource
         return [
             'id' => $this->id,
             'order_id' => System::GenerateFormattedId('S', $this->id),
-            'jobseeker_name' => $this->service->jobseeker->name,
+            'jobseeker_name' => $this->service->jobseeker->username,
             'jobseeker_id' => System::GenerateFormattedId('J', $this->service->jobseeker->id),
-            'backer_name' => $this->backer->name,
+            'backer_name' => $this->backer->username,
             'backer_id' => System::GenerateFormattedId('B', $this->backer->id),
             'service_id' => $this->service->id,
             'service_title' => $this->service->title,

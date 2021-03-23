@@ -178,7 +178,7 @@
                                         </a>
                                         <!-- upload and reset button -->
                                         <div class="media-body mt-75 ml-1">
-                                            <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                            <label for="edit-account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
                                             <input type="file" name="thumbnail" id="edit-account-upload" accept="image/*" style="display: none" />
                                             <button class="btn btn-sm btn-outline-secondary mb-75" id="edit-upload-btn-reset" type="button">Reset</button>
                                             <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>

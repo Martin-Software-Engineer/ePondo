@@ -36,5 +36,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('is-jobseeker', function($user){
             return $user->hasAnyRole('JobSeeker');
         });
+
+        Gate::define('is-backer', function($user){
+            return $user->hasAnyRole('Backer');
+        });
     }
 }
