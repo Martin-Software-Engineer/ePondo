@@ -8,13 +8,13 @@
          </button>
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-               <li class="nav-item active">
+               <li class="nav-item {{ Request::segment(1) === 'campaigns' ? 'active' : null }}">
                   <a class="nav-link" href="{{route('campaigns')}}">CAMPAIGNS</a>
                </li>
-               <li class="nav-item">
+               <li class="nav-item {{ Request::segment(1) === 'services' ? 'active' : null }}">
                   <a class="nav-link" href="{{route('services')}}">SERVICES</a>
                </li>
-               <li class="nav-item">
+               <li class="nav-item {{ Request::segment(1) === 'aboutus' ? 'active' : null }}">
                   <a class="nav-link" href="{{route('aboutus')}}">ABOUT US</a>
                </li>
             </ul>

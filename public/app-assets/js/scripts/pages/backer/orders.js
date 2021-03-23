@@ -39,6 +39,17 @@ $(function() {
                     }
                 },
                 {
+                    targets: 3,
+                    render: function(data, type, row) {
+                        let categories = [];
+                        $.each(row.service.categories, function(i, category) {
+                            categories.push(`<span class="badge badge-primary">${category.name}</span>`);
+                        });
+
+                        return categories.join('');
+                    }
+                },
+                {
                     targets: 7,
                     render: function(data, type, row) {
                         return $.parseHTML(row.status.text)[0].data;

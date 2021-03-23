@@ -22,7 +22,7 @@ class DonationsController extends Controller
     }
 
     public function data(){
-        $donations = Donation::where('user_id', auth()->user()->id)->get();
+        $donations = auth()->user()->donations;
         return DataTables::of(ResourceBackerDonations::collection($donations))->toJson();
     }
     /**

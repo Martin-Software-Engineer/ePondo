@@ -11,8 +11,9 @@
 <form class="auth-register-form mt-2" action="{{route('register')}}" method="POST">
     @csrf
     <div class="form-group">
-        <label for="username" class="form-label">Username</label>
+        <label for="username" class="form-label">Username(Alias)</label>
         <input type="text" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" id="username" name="username" placeholder="johndoe" aria-describedby="register-username" tabindex="1" autofocus />
+        <small>You can use this to login incase you forgot your email</small>
         @error('username')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -63,6 +64,26 @@
     </div>
 
     <div class="form-group">
+        <label for="firstname" class="form-label">Firstname</label>
+        <input type="text" class="form-control @error('firstname') is-invalid @enderror" value="{{ old('firstname') }}" id="firstname" name="firstname" tabindex="5" autofocus />
+        @error('firstname')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="lastname" class="form-label">Lastname</label>
+        <input type="text" class="form-control @error('lastname') is-invalid @enderror" value="{{ old('lastname') }}" id="lastname" name="lastname" tabindex="6" autofocus />
+        @error('lastname')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="form-group">
         <label for="role" class="form-label">Register as </label>
 
         <select name="role" id="role" class="form-control">
@@ -80,13 +101,13 @@
 
     <div class="form-group">
         <div class="custom-control custom-checkbox">
-            <input class="custom-control-input" type="checkbox" id="register-privacy-policy" tabindex="5" required/>
+            <input class="custom-control-input" type="checkbox" id="register-privacy-policy" tabindex="7" required/>
             <label class="custom-control-label" for="register-privacy-policy">
                 I agree to <a href="javascript:void(0);">privacy policy & terms</a>
             </label>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary btn-block" tabindex="6">Sign up</button>
+    <button type="submit" class="btn btn-primary btn-block" tabindex="8">Sign up</button>
 
 </form>
 <p class="text-center mt-2">

@@ -30,7 +30,7 @@
                             <p class="ipsum_text_1">{{$campaign->description}}</p>
                             <h5 class="raised_text_1">Raised: ₱{{$campaign->donations()->sum('amount')}} <span class="goal_text">Goal: ₱{{$campaign->target_amount}}</span></h5>
                             <div class="donate_btn_main">
-                                <div class="donate_btn_1"><a href="donate.html">Donate Now</a></div>
+                                <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                             <p class="ipsum_text_1">{{$service->description}}</p>
                             <h5 class="raised_text_1">Price: ₱{{$service->price}} <span class="goal_text">Duration: {{$service->duration}}/Hours</span></h5>
                             <div class="donate_btn_main">
-                                <div class="donate_btn_1"><a href="donate.html">Avail</a></div>
+                                <div class="donate_btn_1"><a href="{{route('service_view', $service->id)}}">Avail</a></div>
                             </div>
                         </div>
                     </div>
