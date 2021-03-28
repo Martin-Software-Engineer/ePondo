@@ -16,7 +16,7 @@ class Service extends Model
     protected $appends = ['thumbnail', 'thumbnail_url'];
     
     public function jobseeker(){
-        return $this->belongsTo(User::class, 'user_id', 'id')->with('informations');
+        return $this->belongsTo(User::class, 'user_id', 'id')->with('information');
     }
 
     public function categories(){

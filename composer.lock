@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0706c3650835b5a9ff9a91c6faad9406",
+    "content-hash": "11b96e72a1938b6e68127e8e52f2d1ef",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3221,25 +3221,27 @@
         },
         {
             "name": "pusher/pusher-php-server",
-            "version": "v5.0.1",
+            "version": "6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
-                "reference": "6cad1269f1f5261969848b72829f4f30736f3d90"
+                "reference": "8673f60458ceedb9531fad7a5747eb49de619a8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/6cad1269f1f5261969848b72829f4f30736f3d90",
-                "reference": "6cad1269f1f5261969848b72829f4f30736f3d90",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/8673f60458ceedb9531fad7a5747eb49de619a8a",
+                "reference": "8673f60458ceedb9531fad7a5747eb49de619a8a",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
+                "guzzlehttp/guzzle": "^7.2",
                 "paragonie/sodium_compat": "^1.6",
-                "php": "^7.1|^8.0",
+                "php": "^7.2.5|^8.0",
                 "psr/log": "^1.0"
             },
             "require-dev": {
+                "overtrue/phplint": "^2.3",
                 "phpunit/phpunit": "^7.2|^8.5|^9.3"
             },
             "type": "library",
@@ -3271,7 +3273,7 @@
                 "rest",
                 "trigger"
             ],
-            "time": "2021-02-22T19:30:51+00:00"
+            "time": "2021-03-24T08:23:36+00:00"
         },
         {
             "name": "ralouphie/getallheaders",

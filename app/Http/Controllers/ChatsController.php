@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\Contact;
+use App\Models\User;
 use App\Events\MessageSent;
 
 use Illuminate\Http\Request;
@@ -56,7 +57,8 @@ class ChatsController extends Controller
     }
 
     public function getContacts(){
-        return Contact::with('user')->where('user_id', auth()->user()->id)->get();
+        $user =  User::with('contacts')->where('id', auth()->user()->id)->first();
+        return $user->contacts;
     }
 
     public function getChats(){

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\JobSeeker;
-
+use Illuminate\Support\Facades\Mail;
 use App\Models\Job;
 use App\Models\Role;
 use App\Models\User;
@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
+
+use App\Mail\SendMail;
 
 class CampaignsController extends Controller
 {
@@ -89,6 +91,10 @@ class CampaignsController extends Controller
             }
         }
 
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.campaign-mail', [
+            'subject' => 'Epondo Campaign'
+        ]));
+        
         return response()->json(array('success' => true, 'msg' => 'New Campaign Created.'));
     }
 

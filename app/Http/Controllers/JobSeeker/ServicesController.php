@@ -155,6 +155,10 @@ class ServicesController extends Controller
             $service->tags()->detach();
         }
 
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.service-create-mail', [
+            'subject' => 'Epondo Service'
+        ]));
+
         return response()->json(array('success' => true, 'msg' => 'Service Updated.'));
     }
 

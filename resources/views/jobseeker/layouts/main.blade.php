@@ -40,6 +40,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/charts/apexcharts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/extensions/toastr.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/extensions/sweetalert2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/forms/select/select2.min.css') }}">
+
     <!-- END: Vendor CSS-->
     @yield('vendors_css')
     <!-- BEGIN: Theme CSS-->
@@ -58,9 +60,9 @@
     @yield('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/extensions/ext-component-toastr.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/extensions/ext-component-sweet-alerts.css') }}">
-    <!-- BEGIN: Custom CSS-->
+    {{-- <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-    <!-- END: Custom CSS-->
+    <!-- END: Custom CSS--> --}}
 </head>
 <!-- END: Head-->
 
@@ -101,8 +103,9 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/charts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
-    <script src="{{ asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js') }}">
-    </script>
+    <script src="{{ asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+
     <!-- END: Page Vendor JS-->
     @yield('external_js')
 

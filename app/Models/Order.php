@@ -23,6 +23,9 @@ class Order extends Model
         return $this->belongsToMany(Transaction::class);
     }
 
+    public function details(){
+        return $this->hasOne(OrderDetail::class, 'order_id', 'id');
+    }
     public function getHasJobseekerFeedbackAttribute(){
         if(Feedback::where('service_id', $this->service_id)->where('from', 'jobseeker')->exists()){
             return true;

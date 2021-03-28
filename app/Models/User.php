@@ -85,6 +85,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserInformation::class, 'id', 'user_id');
     }
 
+    public function contacts(){
+        return $this->hasMany(Contact::class, 'user_id', 'id')->with('info');
+    }
     public function getEarningsAttribute(){
         $earnings = 0;
         $services =  $this->services()->whereHas('orders', function($q){

@@ -45,6 +45,17 @@ $(function() {
                     }
                 },
                 {
+                    targets: 4,
+                    render: function(data, type, row) {
+                        var $elArray = [];
+                        $.each(row.service_categories, function(index, category) {
+                            $elArray.push(`<span class="badge badge-info">${category.name}</span>`);
+                        });
+
+                        return $elArray.join();
+                    }
+                },
+                {
                     targets: 5,
                     width: '100px',
                     render: function(data, type, row) {
@@ -65,8 +76,8 @@ $(function() {
                     orderable: false,
                     render: function(data, type, full, meta) {
                         let actions = [];
-                        actions.push(`<a class="mr-1 btn-edit" href="" data-toggle="tooltip" data-placement="top" title="View">${feather.icons['eye'].toSvg({ class: 'font-medium-2' })}</a>`);
-                        if (!full.has_jobseeker_feedback) {
+                        actions.push(`<a class="mr-1 btn-view" href="/jobseeker/orders/${full.id}/show" data-toggle="tooltip" data-placement="top" title="View">${feather.icons['eye'].toSvg({ class: 'font-medium-2' })}</a>`);
+                        if (!full.has_jobseeker_feedback && full.status == 7) {
                             actions.push(`<a class="mr-1 btn-feedback text-success" href="javascript:void(0)" data-id="${full.service_id}" data-order-id="${full.order_id}" data-toggle="tooltip" data-placement="top" title="Add Feedback">${feather.icons['message-circle'].toSvg({ class: 'font-medium-2' })}</a>`);
                         }
                         return (

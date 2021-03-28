@@ -10,6 +10,10 @@ class Contact extends Model
     use HasFactory;
 
     public function user(){
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id','id');
+    }
+
+    public function info(){
+        return $this->belongsTo(User::class,'contact_id', 'id');
     }
 }
