@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Campaign;
 use App\Models\Donation;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 class CampaignsController extends Controller
 {
     public function donate(Request $request){
@@ -23,7 +24,7 @@ class CampaignsController extends Controller
             if($user)
                 $user->donations()->attach($donate->id);
         }
-        
+
         Mail::to(auth()->user()->email)->queue(new SendMail('emails.donation-received-mail', [
             'subject' => 'Epondo Service'
         ]));

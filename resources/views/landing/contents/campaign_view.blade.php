@@ -237,12 +237,12 @@
                         <div class="donate_btn btn btn-block btn-success" data-campaign-id="{{$campaign->id}}">Donate Now!</div>
                     </div>
                     <div class="card-footer d-flex justify-content-start">
-                        <div class="avatar mr-2">
-                            <img src="{{asset('app-assets/images/avatars/noface.png')}}" width="100" class="rounded-circle" alt="">
+                        <div class="avatar mr-3">
+                            <img src="{{asset('app-assets/images/avatars/noface.png')}}" width="50" class="rounded-circle" alt="">
                         </div>
                         <div class="info">
                             <h3>Posted By</h3>
-                            <h3><strong>{{$campaign->jobseeker->name}}</strong></h3>
+                            <h3><strong>{{$campaign->jobseeker->username}}</strong></h3>
 
                         </div>
                     </div>

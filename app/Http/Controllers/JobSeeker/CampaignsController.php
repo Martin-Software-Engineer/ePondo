@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\JobSeeker;
-use Illuminate\Support\Facades\Mail;
 use App\Models\Job;
 use App\Models\Role;
 use App\Models\User;
@@ -17,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
