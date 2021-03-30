@@ -75,15 +75,18 @@ Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(
 //JobSeeker -> Campaigns Route using Route Group
 Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','auth.is-jobseeker'])->group(function (){
     Route::get('/', 'JobSeeker\AccountController@index')->name('index');
+    Route::post('myaccount/update', 'JobSeeker\AccountController@update')->name('myaccount.update');
     Route::get('profile','JobSeeker\JobseekerProfileController@index')->name('profile');
     Route::get('orders', 'JobSeeker\OrdersController@index')->name('orders');
+    Route::get('orders/{id}/show', 'JobSeeker\OrdersController@show')->name('orders.show');
+    Route::get('orders/{id}/accept', 'JobSeeker\OrdersController@accept')->name('orders.accept');
+    Route::get('orders/{id}/decline', 'JobSeeker\OrdersController@decline')->name('orders.decline');
     Route::get('order-list', 'JobSeeker\OrdersController@data')->name('order-list');
 
     Route::get('invoices', 'JobSeeker\InvoicesController@index')->name('invoices');
     Route::get('invoice-list', 'JobSeeker\InvoicesController@data')->name('invoice-list');
 
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
-    
     
     Route::resource('feedbacks', 'JobSeeker\FeedbacksController');
     Route::post('campaigns/update', 'JobSeeker\CampaignsController@update')->name('campaigns.update');
@@ -99,19 +102,24 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
 
 Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is-backer'])->group(function (){
     Route::get('/', 'Backer\AccountController@index')->name('index');
+    Route::post('myaccount/update', 'Backer\AccountController@update')->name('myaccount.update');
     Route::get('donations', 'Backer\DonationsController@index')->name('donations');
     Route::get('donations/data', 'Backer\DonationsController@data')->name('donations.data');
 
     Route::get('orders', 'Backer\OrdersController@index')->name('orders');
     Route::get('orders/data', 'Backer\OrdersController@data')->name('orders.data');
     Route::get('orders/{id}/edit', 'Backer\OrdersController@edit')->name('orders.edit');
+    Route::get('orders/{id}/show', 'Backer\OrdersController@show')->name('orders.show');
+    Route::get('orders/{id}/approve', 'Backer\OrdersController@approve')->name('orders.approve');
     Route::post('orders/cancel', 'Backer\OrdersController@cancel')->name('orders.cancel');
 });
 
-Route::get('chats', 'ChatsController@index');
+Route::get('chats', 'ChatsController@index')->name('chats');
 Route::get('messages', 'ChatsController@fetchMessages');
+Route::get('get-contacts', 'ChatsController@getContacts');
+
 Route::post('messages', 'ChatsController@sendMessage');
-Route::post('getContacts', 'ChatsController@getContacts');
+
 Route::post('getChats', 'ChatsController@getChats');
 
 // Mail Routes

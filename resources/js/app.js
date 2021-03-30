@@ -1,5 +1,6 @@
 require('./bootstrap');
 
+Vue.component('chat-contacts', require('./components/ChatContacts.vue'));
 Vue.component('chat-messages', require('./components/ChatMessages.vue'));
 Vue.component('chat-form', require('./components/ChatForm.vue'));
 
@@ -7,11 +8,13 @@ const app = new Vue({
     el: '#app',
 
     data: {
-        messages: []
+        messages: [],
+        contacts: []
     },
 
     created() {
         this.fetchMessages();
+        this.fetchContacts();
         Echo.private('chat')
             .listen('MessageSent', (e) => {
                 this.messages.push({
@@ -25,6 +28,12 @@ const app = new Vue({
         fetchMessages() {
             axios.get('/messages').then(response => {
                 this.messages = response.data;
+            });
+        },
+
+        fetchContacts() {
+            axios.get('/get-contacts').then(response => {
+                this.contacts = response.data;
             });
         },
 

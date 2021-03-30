@@ -16,7 +16,7 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('contact_id')->constrained('users');
+            $table->foreignId('contact_id')->constained('users');
             $table->timestamps();
         });
     }

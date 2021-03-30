@@ -34,7 +34,7 @@
                                 <th>Service Duration</th>
                                 <th>Date of Service</th>
                                 <th>Service Order Status</th>
-                                <th></th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                     </table>

@@ -16,7 +16,7 @@ class JobseekerProfileController extends Controller
      */
     public function index()
     {
-        return view('jobseeker.myprofile.index');
+        return view('jobseeker.contents.public-profile');
     }
 
     /**

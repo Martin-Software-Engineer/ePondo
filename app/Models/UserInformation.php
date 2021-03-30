@@ -18,6 +18,7 @@ class UserInformation extends Model
         'middleinitial',
         'bio',
         'address',
+        'zipcode',
         'phone',
         'birthdate',
         'age',

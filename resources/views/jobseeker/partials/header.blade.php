@@ -8,7 +8,7 @@
         </div>
         <ul class="nav navbar-nav align-items-center ml-auto">
             <li class="nav-item mr-1"><a class="nav-link" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Home" data-original-title="Home"><i class="ficon" data-feather="home"></i></a></li>
-            <li class="nav-item mr-1"><a class="nav-link" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Messages" data-original-title="Messages"><i class="ficon" data-feather="message-square"></i></a></li>
+            <li class="nav-item mr-1"><a class="nav-link" href="{{route('chats')}}" data-toggle="tooltip" data-placement="top" title="Messages" data-original-title="Messages"><i class="ficon" data-feather="message-square"></i></a></li>
             <li class="nav-item mr-1"><a class="nav-link" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Notifications" data-original-title="Notifications"><i class="ficon" data-feather="bell"></i></a></li>
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{auth()->user()->name}}</span>
