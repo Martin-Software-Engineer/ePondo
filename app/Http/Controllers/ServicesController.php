@@ -42,9 +42,7 @@ class ServicesController extends Controller
 
         return response()->json(array(
                 'success' => true, 
-                'service' => $service,
-                'order' => $order,
-                'currency' => strtoupper($service->currency)            
+                'msg' => 'Your order was successful submitted, Please wait for the confirmation from the JobSeeker!'          
             )
         );
     }

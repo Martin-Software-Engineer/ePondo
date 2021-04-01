@@ -9,6 +9,9 @@
 @section('content')
 <section class="app-user-edit">
     <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Account</h4>
+        </div>
         <div class="card-body">
             <form class="form-validate" action="{{route('backer.myaccount.update')}}" method="POST">
                 @csrf 
@@ -58,13 +61,13 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="cpassword">Current Password</label>
-                            <input id="cpassword" type="password" class="form-control" name="current_password" required/>
+                            <input id="cpassword" type="password" class="form-control" name="current_password"/>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="newpassword">New Password</label>
-                            <input id="newpassword" type="password" class="form-control" name="new_password" required/>
+                            <input id="newpassword" type="password" class="form-control" name="new_password"/>
                         </div>
                     </div>
                 </div>
@@ -72,7 +75,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="confirmpassword">Confirm New Password</label>
-                            <input id="confirmpassword" type="password" class="form-control" name="new_confirm_password" required/>
+                            <input id="confirmpassword" type="password" class="form-control" name="new_confirm_password"/>
                         </div>
                     </div>
                 </div>

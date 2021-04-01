@@ -24,7 +24,7 @@ class ServicesController extends Controller
         $data['service_categories'] = ServiceCategory::all();
         $data['campaign_categories'] = CampaignCategory::all();
         //return response()->json($data);
-        return view('jobseeker.contents.services', $data);
+        return view('jobseeker.contents.services.index', $data);
     }
 
     /**
@@ -34,7 +34,10 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        //
+        $data['title'] = 'Create Service';
+        $data['categories'] = ServiceCategory::all();
+
+        return view('jobseeker.contents.services.create', $data);
     }
 
     /**

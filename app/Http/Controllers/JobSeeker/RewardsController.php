@@ -11,6 +11,7 @@ class RewardsController extends Controller
         $cpoints = auth()->user()->rewards->sum('points');
 
         $data = array(
+            'rewards' => auth()->user()->rewards,
             'current_points' => $cpoints,
             'progress' => System::RewardsProgress($cpoints),
             'badge' => System::RewardsTier($cpoints) != 'no-star' ? 'star-'.System::RewardsTier($cpoints).'.png' : 'no-star.png',

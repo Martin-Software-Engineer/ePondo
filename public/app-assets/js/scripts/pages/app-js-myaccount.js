@@ -1,20 +1,40 @@
 $(function() {
     'use strict';
 
-    var form = $('form');
+    var formAccount = $('#form-account'),
+        formPassword = $('#form-password'),
+        accountUploadImg = $('#account-upload-img'),
+        accountUploadBtn = $('#account-upload');
 
-    form.on('submit', function(e) {
+    // Update user photo on click of button
+    if (accountUploadBtn) {
+        accountUploadBtn.on('change', function(e) {
+            var reader = new FileReader(),
+                files = e.target.files;
+            reader.onload = function() {
+                if (accountUploadImg) {
+                    accountUploadImg.attr('src', reader.result);
+                }
+            };
+            reader.readAsDataURL(files[0]);
+        });
+    }
+
+    formAccount.on('submit', function(e) {
         e.preventDefault();
         $.ajax({
             url: $(this).attr('action'),
             type: 'POST',
-            data: $(this).serialize(),
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
             beforeSend: function() {
-                form.find('button[type=submit]').prop('disabled', true);
+                formAccount.find('button[type=submit]').prop('disabled', true);
             },
             success: function(resp) {
                 if (resp.success) {
-                    form.find('button[type=submit]').prop('disabled', false);
+                    formAccount.find('button[type=submit]').prop('disabled', false);
 
                     toastr['success'](resp.msg, 'Success!', {
                         closeButton: true,
@@ -27,7 +47,7 @@ $(function() {
                 }
             },
             error: function(xhr, status, error) {
-                form.find('button[type=submit]').prop('disabled', false);
+                formAccount.find('button[type=submit]').prop('disabled', false);
 
                 $.each(xhr.responseJSON.errors, function(key, text) {
                     toastr['error'](text[0], 'Error!', {
@@ -40,20 +60,57 @@ $(function() {
         })
     });
 
-    $('.kids-repeater, .dependents-repeater').repeater({
-        show: function() {
-            $(this).slideDown();
-            // Feather Icons
-            if (feather) {
-                feather.replace({ width: 14, height: 14 });
+    formPassword.on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: $(this).serialize(),
+            beforeSend: function() {
+                formPassword.find('button[type=submit]').prop('disabled', true);
+            },
+            success: function(resp) {
+                if (resp.success) {
+                    formPassword.find('button[type=submit]').prop('disabled', false);
+
+                    toastr['success'](resp.msg, 'Success!', {
+                        closeButton: true,
+                        tapToDismiss: false
+                    });
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 2000);
+                }
+            },
+            error: function(xhr, status, error) {
+                formPassword.find('button[type=submit]').prop('disabled', false);
+
+                $.each(xhr.responseJSON.errors, function(key, text) {
+                    toastr['error'](text[0], 'Error!', {
+                        closeButton: true,
+                        tapToDismiss: false
+                    });
+                });
+
             }
-        },
-        hide: function(deleteElement) {
-            if (confirm('Are you sure you want to delete this element?')) {
-                $(this).slideUp(deleteElement);
-            }
-        }
+        })
     });
+
+    // $('.kids-repeater, .dependents-repeater').repeater({
+    //     show: function() {
+    //         $(this).slideDown();
+    //         // Feather Icons
+    //         if (feather) {
+    //             feather.replace({ width: 14, height: 14 });
+    //         }
+    //     },
+    //     hide: function(deleteElement) {
+    //         if (confirm('Are you sure you want to delete this element?')) {
+    //             $(this).slideUp(deleteElement);
+    //         }
+    //     }
+    // });
 
     $('.select2').each(function() {
         var $this = $(this);

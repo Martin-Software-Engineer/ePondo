@@ -163,132 +163,6 @@
 </style>
 @endsection
 
-@section('modals')
-  <div class="modal fade" id="availModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title"></h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form action="{{route('service.avail')}}" class="avail_form">
-              @csrf
-              <input type="hidden" name="service_id">
-              <div class="modal-body">
-                  <div class="card mb-1">
-                      <div class="card-body">
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <div class="form-group">
-                                      <label for="jobseeker_name">Jobseeker</label>
-                                      <input type="text" name="jobseeker_name" id="jobseeker_name" class="form-control" disabled>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="service_title">Service Title</label>
-                                      <input type="text" name="service_title" id="service_title" class="form-control" disabled>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="service_category">Service Category</label>
-                                      <input type="text" name="service_category" id="service_category" class="form-control" disabled>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="service_price">Service Price</label>
-                                      <input type="text" name="service_price" id="service_price" class="form-control" disabled>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="service_duration">Service Duration</label>
-                                      <input type="text" name="service_duration" id="service_duration" class="form-control" disabled>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-body">
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label>Available Date/s to render service</label>
-                                      <input type="date" name="render_date" class="form-control">
-                                  </div>
-                              </div>   
-                          </div>
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <div class="form-group">
-                                      <label>Address (Where service will be delivered to)</label>
-                                      <input type="text" name="delivery_address" class="form-control">
-                                  </div>
-                              </div>   
-                          </div>
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <div class="form-group">
-                                      <label for="message">Message (for additional requests)</label>
-                                      <textarea name="message" cols="30" rows="6" class="form-control"></textarea>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary btn-block">Avail Service!</button>
-              </div>
-          </form>
-        </div>
-      </div>
-  </div>    
-  <div class="modal fade" id="selectPaymentMethodModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" style="width:400px" role="document">
-        <div class="modal-content">
-          <div class="loader"></div>
-          <div class="card card-payment text-center hide">
-            <div class="card-header pb-0">
-              <h2 class="card-title"></h2>
-            </div>
-            <div class="card-body">
-                <h3 class="topay"></h3>
-                <div class="links">
-                  <div id="paypal-button"></div>
-                </div>
-                <p class="mt-1">or</p>
-                <button type="button" id="pay-by-card">
-                  <span id="button-text">Pay with Card</span>
-                </button>
-                <form id="payment-form" class="stripe-payment d-none">
-                  <div id="card-element"><!--Stripe.js injects the Card Element--></div>
-                  <button id="submit">
-                    <div class="spinner hidden" id="spinner"></div>
-                    <span id="button-text">Pay</span>
-                  </button>
-                  <p id="card-error" role="alert"></p>
-                  <p class="result-message hidden">
-                    Payment succeeded, see the result in your
-                    <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
-                  </p>
-                </form>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>    
-@endsection
-
 @section('content')
 <div class="events_section layout_padding">
     <div class="container">
@@ -388,8 +262,7 @@
             </div>
         </div>
     </div>
-</div>
-      
+</div> 
 @endsection
 
 @section('modals')
@@ -564,15 +437,13 @@
                         availForm[0].reset();
                         availModal.modal('hide');
 
-                        cardPayment.find('#paypal-button').attr('data-order-id', resp.order.id);
-                        cardPayment.find('#paypal-button').attr('data-currency', resp.currency);
-                        cardPayment.find('#pay-by-card').attr('data-order-id', resp.order.id);
-                        cardPayment.find('#pay-by-card').attr('data-currency', resp.currency);
-
-                        cardPayment.find('.card-title').html(`<strong>Pay your Order.<br>`);
-                        cardPayment.find('.topay').html(`Amount to pay  <span class='topay-amount'>${resp.currency} ${resp.service.price}</span>`);
-
-                        selectPaymentModal.modal('show');
+                        Swal.fire({
+                            title: 'Success',
+                            text: resp.msg,
+                            icon: 'success'
+                        }).then(function(){
+                            location.reload();
+                        })
                     }
                 }
             });

@@ -36,7 +36,7 @@ class CampaignsController extends Controller
         $data['campaigns'] = Campaign::where('user_id', auth()->user()->id)->get();
         $data['categories'] = CampaignCategory::all();
         //return response()->json($data);
-        return view('jobseeker.contents.campaigns', $data);
+        return view('jobseeker.contents.campaigns.index', $data);
     }
 
     /**
@@ -46,7 +46,10 @@ class CampaignsController extends Controller
      */
     public function create()
     {
-        
+        $data['title'] = 'Create Campaign';
+        $data['categories'] = CampaignCategory::all();
+
+        return view('jobseeker.contents.campaigns.create', $data);
     }
 
     /**
@@ -79,11 +82,26 @@ class CampaignsController extends Controller
             $campaign->save();
         }
         
+        if($request->file('images',[])){
+            foreach($request->file('images',[]) as $image){
+                $fileName   = time() . '.' . $image->getClientOriginalExtension();
+                $upload = $image->storeAs('/photos',$fileName,'public');
+                $photo = new Photo();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+
+                $campaign->photos()->attach($photo->id);
+            }
+            
+        }
+        
         if($request->input('category', [])){
             foreach($request->input('category', []) as $category){
                 $campaign->categories()->attach($category);
             }
         }
+
         if($request->input('tags')){
             $tags = explode(',', $request->tags);
             foreach($tags as $tag){
@@ -147,8 +165,11 @@ class CampaignsController extends Controller
      */
     public function edit($id)
     {
-        $campaign = Campaign::with(['jobseeker','categories','tags'])->where('id',$id)->first();
-        return response()->json($campaign);
+        $data['title'] = 'Edit Campaign';
+        $data['campaign'] = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
+        $data['categories'] = CampaignCategory::all();
+
+        return view('jobseeker.contents.campaigns.edit', $data);
     }
 
     /**
