@@ -60,6 +60,19 @@
     @yield('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/extensions/ext-component-toastr.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/extensions/ext-component-sweet-alerts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/tags-input.css') }}">
+    <style>
+        .avatar .avatar-menu{
+            width: 90px !important;
+            height: 90px !important;
+            font-size: 3rem !important;
+        }
+        .avatar .avatar-header{
+            width: 42px !important;
+            height: 42px !important;
+            font-size: 1.2rem !important;
+        }
+    </style>
     {{-- <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <!-- END: Custom CSS--> --}}

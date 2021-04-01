@@ -76,6 +76,7 @@ Route::get('/MyProfile', function () { return view('myprofile'); })->middleware(
 Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','auth.is-jobseeker'])->group(function (){
     Route::get('/', 'JobSeeker\AccountController@index')->name('index');
     Route::post('myaccount/update', 'JobSeeker\AccountController@update')->name('myaccount.update');
+    Route::post('myaccount/changepassword', 'JobSeeker\AccountController@changepassword')->name('myaccount.changepassword');
     Route::get('profile','JobSeeker\JobseekerProfileController@index')->name('profile');
     Route::get('orders', 'JobSeeker\OrdersController@index')->name('orders');
     Route::get('orders/{id}/show', 'JobSeeker\OrdersController@show')->name('orders.show');

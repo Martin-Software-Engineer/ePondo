@@ -14,7 +14,19 @@
             <div class="profile-image-wrapper">
                 <div class="profile-image">
                     <div class="avatar">
-                        <img src="{{asset('app-assets/images/portrait/small/avatar-s-9.jpg')}}" alt="Profile Picture" />
+                        @if(auth()->user()->avatar != '')
+                            <img src="{{Storage::url(auth()->user()->avatar)}}" alt="Profile Picture" />
+                        @else 
+                            <div class="d-flex justify-content-left align-items-center">
+                                <div class="avatar colorClass">
+                                    <span class="avatar-content avatar-menu">{{strtoupper(substr(auth()->user()->username, 0,2))}}</span>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <span class="emp_name text-truncate font-weight-bold"></span>
+                                    <small class="emp_post text-truncate text-muted"></small>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

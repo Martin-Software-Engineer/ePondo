@@ -180,15 +180,17 @@
             <div class="col-md-8">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{asset('app-assets/images/banner/banner-1.jpg')}}" alt="First slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="{{asset('app-assets/images/banner/banner-2.jpg')}}" alt="Second slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="{{asset('app-assets/images/banner/banner-3.jpg')}}" alt="Third slide">
-                      </div>
+                        @if($campaign->thumbnail != '')
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{Storage::url($campaign->thumbnail->url)}}" alt="First slide">
+                          </div>
+                        @endif
+                        
+                        @foreach($campaign->photos as $photo)
+                        <div class="carousel-item @if($campaign->thumbnail == '' && $loop->index == 0) active @endif">
+                          <img class="d-block w-100" src="{{Storage::url($photo->url)}}" alt="Second slide">
+                        </div>
+                        @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>

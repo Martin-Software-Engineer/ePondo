@@ -20,7 +20,7 @@
             <h2 class="float-left mb-0">Campaigns</h2>
         </div>
         <div class="col-md-3">
-            <button class="float-right btn btn-primary btn-round" type="button" data-toggle="modal" data-target="#create-modal">Create</button>
+            <a class="float-right btn btn-primary btn-round" href="{{route('jobseeker.campaigns.create')}}">Create</a>
         </div>
     </div>
 </section>
@@ -44,8 +44,8 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <div class="btn btn-primary btn-sm btn-round">View</div>
-                    <button type="button" class="btn btn-primary btn-sm btn-round btn-edit" data-id="{{$campaign->id}}">Edit</button>
+                    <a class="btn btn-primary btn-sm btn-round" href="/campaign/{{$campaign->id}}" target="_blank">View</a>
+                    <a href="{{route('jobseeker.campaigns.edit', $campaign->id)}}" class="btn btn-primary btn-sm btn-round">Edit</a>
                     <button type="button" class="btn btn-danger btn-sm btn-round btn-delete" data-id="{{$campaign->id}}">Delete</button>
                 </div>
             </div>

@@ -19,7 +19,7 @@
             <h2 class="float-left mb-0">Services</h2>
         </div>
         <div class="col-md-3">
-            <button class="float-right btn btn-primary btn-round" type="button" data-toggle="modal" data-target="#create-modal">Create</button>
+            <a class="float-right btn btn-primary btn-round" href="{{route('jobseeker.services.create')}}">Create</a>
         </div>
     </div>
 </section>
@@ -174,7 +174,7 @@
                                     <label for="thumbnail" class="mb-1">Service Thumbnail</label>
                                     <div class="media">
                                         <a href="javascript:void(0);" class="mr-25">
-                                            <img src="../../../app-assets/images/portrait/small/no-image.png" id="edit-account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                            <img src="../../../app-assets/images/portrait/small/no-image.png" id="edit-account-upload-img" class="rounded mr-50" alt="profile image" height="60" width="60" />
                                         </a>
                                         <!-- upload and reset button -->
                                         <div class="media-body mt-75 ml-1">
