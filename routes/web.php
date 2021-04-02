@@ -78,6 +78,7 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::post('myaccount/update', 'JobSeeker\AccountController@update')->name('myaccount.update');
     Route::post('myaccount/changepassword', 'JobSeeker\AccountController@changepassword')->name('myaccount.changepassword');
     Route::get('profile','JobSeeker\JobseekerProfileController@index')->name('profile');
+    Route::post('profile/update','JobSeeker\JobseekerProfileController@update')->name('profile.update');
     Route::get('orders', 'JobSeeker\OrdersController@index')->name('orders');
     Route::get('orders/{id}/show', 'JobSeeker\OrdersController@show')->name('orders.show');
     Route::get('orders/{id}/accept', 'JobSeeker\OrdersController@accept')->name('orders.accept');

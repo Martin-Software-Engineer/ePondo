@@ -23,7 +23,7 @@ use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
 
 use App\Mail\SendMail;
-
+use Image;
 class CampaignsController extends Controller
 {
     /**
@@ -71,8 +71,16 @@ class CampaignsController extends Controller
         if($request->hasFile('thumbnail')){
             $image = $request->file('thumbnail');
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
+            
+            $destinationPath = storage_path('app/public/photos');
 
-            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 666, true);
+            }
+
+            $img = Image::make($image->path());
+            $img->resize(350, 350)->save($destinationPath."/".$fileName);
+
             $photo = new Photo();
             $photo ->filename =  $fileName;
             $photo ->url = 'public/photos/'.$fileName;
