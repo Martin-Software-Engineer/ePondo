@@ -9,6 +9,7 @@ use App\Models\ServiceCategory;
 use App\Models\CampaignCategory;
 use App\Models\Photo;
 use App\Models\Tag;
+use App\Models\User;
 
 use App\Http\Requests\StoreService;
 class ServicesController extends Controller
@@ -106,8 +107,10 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::with(['jobseeker','categories','tags'])->where('id',$id)->first();
-        return response()->json($service);
+        $data['title'] = 'Edit Service';
+        $data['service'] = Service::with(['jobseeker','categories','tags'])->where('id',$id)->first();
+
+        return view('jobseeker.contents.services.edit', $data);
     }
 
     /**
@@ -165,6 +168,30 @@ class ServicesController extends Controller
         return response()->json(array('success' => true, 'msg' => 'Service Updated.'));
     }
 
+    public function updatephotos(Request $request){
+        $service = Service::findOrFail($request->id);
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $upload = $request->file('image')->storeAs('/photos',$fileName,'public');
+            if($request->has('photo_id')){
+                $photo = $service->photos()->where('photo_id', $request->photo_id)->first();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+            }else{
+                $photo = new Photo();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+
+                $service->photos()->attach($photo->id);
+            }
+        }
+
+        return response()->json(['success' => true, 'msg' => 'Photos Updated']);
+    }
     /**
      * Remove the specified resource from storage.
      *

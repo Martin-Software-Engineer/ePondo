@@ -28,7 +28,7 @@
                         <div class="col-md-12">
                             <h1 class="give_taital_1">{{$campaign->title}}</h1>
                             <p class="ipsum_text_1">{{$campaign->description}}</p>
-                            <h5 class="raised_text_1">Raised: ₱{{$campaign->donations()->sum('amount')}} <span class="goal_text">Goal: ₱{{$campaign->target_amount}}</span></h5>
+                            <h5 class="raised_text_1">Raised: ₱{{$campaign->raised}} <span class="goal_text">Goal: ₱{{$campaign->target_amount}}</span></h5>
                             <div class="donate_btn_main">
                                 <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
                             </div>

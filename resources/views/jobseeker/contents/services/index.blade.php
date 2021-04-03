@@ -40,8 +40,8 @@
                     <div id="example-caption-2">Php {{number_format($service->price)}} / Hour</div>
                 </div>
                 <div class="text-center">
-                    <div class="btn btn-primary btn-sm btn-round">View</div>
-                    <button type="button" class="btn btn-primary btn-sm btn-round btn-edit" data-id="{{$service->id}}">Edit</button>
+                    <a class="btn btn-primary btn-sm btn-round" href="/service/{{$service->id}}" target="_blank">View</a>
+                    <a href="{{route('jobseeker.services.edit', $service->id)}}" class="btn btn-primary btn-sm btn-round">Edit</a>
                     <button type="button" class="btn btn-danger btn-sm btn-round btn-delete" data-id="{{$service->id}}">Delete</button>
                 </div>
             </div>

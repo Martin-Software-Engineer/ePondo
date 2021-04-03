@@ -91,11 +91,13 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
     
     Route::resource('feedbacks', 'JobSeeker\FeedbacksController');
-    Route::post('campaigns/update', 'JobSeeker\CampaignsController@update')->name('campaigns.update');
+    Route::post('campaigns/{id}', 'JobSeeker\CampaignsController@update')->name('campaigns.update');
+    Route::post('campaigns/photos/update', 'JobSeeker\CampaignsController@updatephotos')->name('campaigns.update-photos');
     Route::get('campaigns/{id}/delete', 'JobSeeker\CampaignsController@destroy')->name('campaigns.delete');
     Route::resource('campaigns', 'JobSeeker\CampaignsController', ['except' => ['destroy', 'update']]);
     
     Route::post('services/update', 'JobSeeker\ServicesController@update')->name('services.update');
+    Route::post('services/photos/update', 'JobSeeker\ServicesController@updatephotos')->name('services.update-photos');
     Route::get('services/{id}/delete', 'JobSeeker\ServicesController@destroy')->name('services.delete');
     Route::resource('services', 'JobSeeker\ServicesController', ['except' => ['destroy', 'update']]);
 

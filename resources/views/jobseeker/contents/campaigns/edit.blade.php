@@ -42,7 +42,7 @@
                                             <label for="description">Description</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{$campaign->description}}</textarea>
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ...">{{$campaign->description}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@
                                                 </a>
                                                 <!-- upload and reset button -->
                                                 <div class="media-body mt-75 ml-1">
-                                                    <input type="file" name="images[]" id="images-input1" class="images-input" accept="image/*" style="display: none" />
+                                                    <input type="file" name="images[]" data-photo-id="{{$photo->id}}" id="images-input1" class="images-input" accept="image/*" style="display: none" />
                                                 </div>
                                                 <!--/ upload and reset button -->
                                             </div>
@@ -271,6 +271,32 @@
                     input.parent().parent().find('.images-preview').attr('src', reader.result);
                 };
                 reader.readAsDataURL(files[0]);
+
+                var myFormData = new FormData();
+                myFormData.append('image', files[0]);
+                myFormData.append('id',"{{$campaign->id}}");
+                if(input.data('photoId')){
+                    myFormData.append('photo_id', input.data('photoId'));
+                }
+                
+                myFormData.append('_token', $('meta[name=csrf-token]').attr('content'));
+
+                $.ajax({
+                    url: "{{route('jobseeker.campaigns.update-photos')}}",
+                    type: 'POST',
+                    processData: false, // important
+                    contentType: false, // important
+                    dataType : 'json',
+                    data: myFormData,
+                    success: function(resp){
+                        if(resp.success){
+                            toastr['success'](resp.msg, 'Success!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+                        }
+                    }
+                });
             });
         });
     </script>

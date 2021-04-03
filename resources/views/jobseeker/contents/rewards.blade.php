@@ -81,7 +81,7 @@
                             <h5 class="text-success">POINTS REQUIRED: <br> 1000+ POINTS</h5>
                             <br><br>
                             <h5 class="text-success"><b>EARN</b></h5>
-                            <h2 class="text-success">+0.6%</h2>
+                            <h2 class="text-success">+2.0%</h2>
                             <h5 class="text-success">PER SERVICE</h5>
                         </div>
                     </div>

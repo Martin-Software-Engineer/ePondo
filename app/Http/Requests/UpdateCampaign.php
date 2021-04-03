@@ -24,7 +24,6 @@ class UpdateCampaign extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required',
             'title' => 'required',
             'target_date' => 'required',
             'target_amount' => 'required',
