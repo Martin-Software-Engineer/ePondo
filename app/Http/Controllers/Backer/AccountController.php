@@ -26,27 +26,54 @@ class AccountController extends Controller
     }
 
     public function update(Request $request){
+        $user = User::find(auth()->user()->id);
 
+        if ($request->hasFile('avatar')) {
+            if ($request->file('avatar')->isValid()) {
+                // Get image file
+                $image = $request->file('avatar');
+                $fileName   = time() . '.' . $image->getClientOriginalExtension();
+                $upload = $request->file('avatar')->storeAs('/avatars',$fileName,'public');
+                
+                $user->avatar = 'public/avatars/'.$fileName;
+                $user->save();
+
+            }
+        }
+
+        $userinfo = UserInformation::where('user_id', auth()->user()->id)->first();
+        if(!$userinfo){
+            UserInformation::create([
+                'user_id' => auth()->user()->id,
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'zipcode' => $request->zipcode
+            ]); 
+        }else{
+            $userinfo->firstname = $request->firstname;
+            $userinfo->lastname = $request->lastname;
+            $userinfo->phone = $request->phone;
+            $userinfo->address = $request->address;
+            $userinfo->zipcode = $request->zipcode;
+            $userinfo->save();
+        }
+
+        return response()->json(['success' => true, 'msg' => 'Account Information Updated']);
+    }
+
+    public function changepassword(Request $request){
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password']
         ]);
 
-        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-        
-        if(!UserInformation::where('user_id', auth()->user()->id)->exists())
-        $update = UserInformation::updateOrCreate([
-            'user_id' => auth()->user()->id,
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'zipcode' => $request->zipcode
-        ]);
+        $changepass = User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
 
-        if($update){
-            return response()->json(['success' => true, 'msg' => 'Account Information Updated']);
+        if($changepass){
+            return response()->json(['success' => true, 'msg' => 'Account Password Updated']);
         }
     }
 }

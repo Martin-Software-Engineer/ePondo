@@ -82,6 +82,7 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::get('orders', 'JobSeeker\OrdersController@index')->name('orders');
     Route::get('orders/{id}/show', 'JobSeeker\OrdersController@show')->name('orders.show');
     Route::get('orders/{id}/accept', 'JobSeeker\OrdersController@accept')->name('orders.accept');
+    Route::get('orders/{id}/deliver', 'JobSeeker\OrdersController@deliver')->name('orders.deliver');
     Route::get('orders/{id}/decline', 'JobSeeker\OrdersController@decline')->name('orders.decline');
     Route::get('order-list', 'JobSeeker\OrdersController@data')->name('order-list');
 
@@ -107,14 +108,18 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
 Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is-backer'])->group(function (){
     Route::get('/', 'Backer\AccountController@index')->name('index');
     Route::post('myaccount/update', 'Backer\AccountController@update')->name('myaccount.update');
+    Route::post('myaccount/changepassword', 'Backer\AccountController@changepassword')->name('myaccount.changepassword');
     Route::get('donations', 'Backer\DonationsController@index')->name('donations');
     Route::get('donations/data', 'Backer\DonationsController@data')->name('donations.data');
+
+    Route::resource('feedbacks', 'Backer\FeedbacksController');
 
     Route::get('orders', 'Backer\OrdersController@index')->name('orders');
     Route::get('orders/data', 'Backer\OrdersController@data')->name('orders.data');
     Route::get('orders/{id}/edit', 'Backer\OrdersController@edit')->name('orders.edit');
     Route::get('orders/{id}/show', 'Backer\OrdersController@show')->name('orders.show');
     Route::get('orders/{id}/approve', 'Backer\OrdersController@approve')->name('orders.approve');
+    Route::get('orders/{id}/invoice', 'Backer\OrdersController@invoice')->name('order.invoice');
     Route::post('orders/cancel', 'Backer\OrdersController@cancel')->name('orders.cancel');
 });
 

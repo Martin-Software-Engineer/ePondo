@@ -23,8 +23,7 @@ class ServicesController extends Controller
 
         $order = Order::create([
             'backer_id' => $backer_id,
-            'service_id' => $service->id,
-            'status' => 5
+            'service_id' => $service->id
         ]);
 
         $details = OrderDetail::create([

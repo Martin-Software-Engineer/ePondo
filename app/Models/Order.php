@@ -26,6 +26,10 @@ class Order extends Model
     public function details(){
         return $this->hasOne(OrderDetail::class, 'order_id', 'id');
     }
+
+    public function invoice(){
+        return $this->hasOne(Invoice::class, 'order_id', 'id');
+    }
     public function getHasJobseekerFeedbackAttribute(){
         if(Feedback::where('service_id', $this->service_id)->where('from', 'jobseeker')->exists()){
             return true;

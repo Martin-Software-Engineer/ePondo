@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Backer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Resources\BackerDonations as ResourceBackerDonations;
-use App\Models\Campaign;
-use App\Models\Donation;
-
-use DataTables;
-class DonationsController extends Controller
+use App\Models\Feedback;
+use App\Models\FeedbackPlatform;
+use App\Models\Order;
+class FeedbacksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,16 +16,9 @@ class DonationsController extends Controller
      */
     public function index()
     {
-        return view('backer.contents.donations');
+        //
     }
 
-    public function data(){
-        $donations = auth()->user()->donations()->whereHas('transactions', function($q){
-            $q->where('transactions.status', 'approved');
-        })->get();
-
-        return DataTables::of(ResourceBackerDonations::collection($donations))->toJson();
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -46,7 +37,26 @@ class DonationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Order::find($request->order_id);
+        
+        $order->status = 7;
+        $order->save();
+
+        Feedback::create([
+            'service_id' => $request->service_id,
+            'message' => $request->service_feedback,
+            'from' => $request->from
+        ]);
+
+        FeedbackPlatform::create([
+            'service_id' => $request->service_id,
+            'rating' => $request->platform_rating,
+            'message' => $request->platform_message,
+            'from' => $request->from
+        ]);
+
+        
+        return response()->json(['success' => true, 'msg' => 'Feedback Submitted']);
     }
 
     /**

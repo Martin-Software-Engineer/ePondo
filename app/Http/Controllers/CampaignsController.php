@@ -8,6 +8,8 @@ use App\Models\Donation;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
+
+use Auth;
 class CampaignsController extends Controller
 {
     public function donate(Request $request){
@@ -21,8 +23,15 @@ class CampaignsController extends Controller
 
         if(!$request->input('is_anonymous')){
             $user = User::where('email', $request->email)->first();
-            if($user)
+            if($user){
                 $user->donations()->attach($donate->id);
+            }else{
+                if (Auth::check()) {
+                    $user = User::find(auth()->user()->id);
+                    $user->donations()->attach($donate->id);
+                }
+            }
+
         }
 
         Mail::to(auth()->user()->email)->queue(new SendMail('emails.donation-received-mail', [

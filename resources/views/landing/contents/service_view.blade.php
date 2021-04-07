@@ -324,7 +324,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Available Date/s to render service</label>
+                                    <label>Service Delivery Date</label>
                                     <input type="date" name="render_date" class="form-control">
                                 </div>
                             </div>   
@@ -332,7 +332,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Address (Where service will be delivered to)</label>
+                                    <label>Service Delivery Location (Location where service will be rendered/delivered)</label>
                                     <input type="text" name="delivery_address" class="form-control">
                                 </div>
                             </div>   
@@ -340,7 +340,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="message">Message (for additional requests)</label>
+                                    <label for="message">Message (Pls. indicate any additional message/requests)</label>
                                     <textarea name="message" cols="30" rows="6" class="form-control"></textarea>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-@extends('jobseeker.layouts.main')
+@extends('backer.layouts.main')
 
 @section('vendors_css')
 <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
@@ -25,7 +25,7 @@
 <section class="invoice-preview-wrapper">
     <div class="row invoice-preview">
         <!-- Invoice -->
-        <div class="col-xl-9 col-md-8 col-12">
+        <div class="col-md-12">
             <div class="card invoice-preview-card">
                 <div class="card-body invoice-padding pb-0">
                     <!-- Header starts -->
@@ -55,7 +55,17 @@
                             </div>
                             <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">Status:</p>
-                                <p class="invoice-date">{{\App\Helpers\System::StatusTextValue($order->status)}}</p>
+                                <p class="invoice-date">
+                                    {{\App\Helpers\System::StatusTextValue($order->status)}}
+                                </p>
+                                <p class="invoice-date">
+                                    @if($order->status == 5)
+                                    <a href="{{route('backer.order.invoice', $order->id)}}" class="btn btn-primary">View Invoice</a>
+                                    @endif
+                                    @if($order->status == 6)
+                                    <button class="btn-feedback btn btn-info" data-toggle="modal" data-target="#feedback-modal">Add Feedback</button>
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -77,45 +87,70 @@
             </div>
         </div>
         <!-- /Invoice -->
-
-        <!-- Invoice Actions -->
-        <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
-            <div class="card">
-                <div class="card-body">
-                    @if($order->status == 1)
-                    <button type="button" class="btn-accept btn btn-primary btn-block mb-75">
-                        Accept
-                    </button>
-                    <button type="button" class="btn-decline btn btn-danger btn-block mb-75">
-                        Decline
-                    </button>
-                    @endif
-
-                    @if($order->status == 4)
-                    <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
-                        Deliver
-                    </button>
-                    @endif
-
-                    @if($order->status == 6)
-                    <button type="button" class="btn-feedback btn btn-info btn-block mb-75">
-                        Add Feedback
-                    </button>
-                    @endif
-
-                    @if($order->status == 7)
-                    <button type="button" class="btn btn-primary btn-block mb-75" disabled>
-                        Completed
-                    </button>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <!-- /Invoice Actions -->
     </div>
 </section>   
 @endsection
+@section('modals')
+<div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('backer.feedbacks.store')}}" method="POST">
+                @csrf
+                <input type="hidden" name="from" value="backer">
+                <input type="hidden" name="service_id" value="{{$order->service->id}}">
+                <input type="hidden" name="order_id" value="{{$order->id}}">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="service_feedback">How was the experience of your service with the customer</label>
+                                <textarea name="service_feedback" id="service_feedback" cols="30" rows="6" class="form-control"></textarea>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label for="category">How was your experience using the platform?</label>
+                                <div class="demo-inline-spacing">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="platform_rating" value="very-good" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Very Good</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="platform_rating" value="good" id="customCheck2">
+                                        <label class="custom-control-label" for="customCheck2">Good</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="platform_rating" value="bad" id="customCheck3">
+                                        <label class="custom-control-label" for="customCheck3">Bad</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="platform_rating" value="very-bad" id="customCheck4">
+                                        <label class="custom-control-label" for="customCheck4">Very Bad</label>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label for="platform_message">Message</label>
+                                <textarea name="platform_message" id="platform_message" cols="30" rows="5" class="form-control"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-block">Submit Feedback</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>    
+@endsection
 @section('scripts')
     <script>
         $(function(){
@@ -154,6 +189,35 @@
                     }
                 });
             });
+
+            $('#feedback-modal').on('submit', 'form', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    beforeSend: function() {
+                        $(this).find('button[type=submit]').prop('disabled', true);
+                    },
+                    success: function(resp) {
+                        $(this).find('button[type=submit]').prop('disabled', false);
+                        if (resp.success) {
+                            $('#feedback-modal').modal('hide');
+
+                            toastr['success'](resp.msg, 'Success!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+
+                            setTimeout(function(){
+                                location.reload();
+                            }, 2000)
+                        }
+                    }
+                });
+            });
+
         });
     </script> 
 @endsection
