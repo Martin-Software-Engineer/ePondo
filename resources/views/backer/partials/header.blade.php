@@ -10,8 +10,15 @@
             <li class="nav-item mr-1"><a class="nav-link" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Home" data-original-title="Home"><i class="ficon" data-feather="home"></i></a></li>
             <li class="nav-item mr-1"><a class="nav-link" href="{{route('chats')}}" data-toggle="tooltip" data-placement="top" title="Messages" data-original-title="Messages"><i class="ficon" data-feather="message-square"></i></a></li>
             <li class="nav-item mr-1"><a class="nav-link" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Notifications" data-original-title="Notifications"><i class="ficon" data-feather="bell"></i></a></li>
+            <li class="nav-item mr-1">
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();" data-toggle="tooltip" data-placement="top" title="Logout" data-original-title="Logout"><i class="ficon" data-feather="power"></i></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{auth()->user()->name}}</span>
+                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{auth()->user()->username}}</span>
                         <span class="user-status">
                             @foreach(auth()->user()->roles as $role)
                                 @if(!$loop->last)
@@ -21,22 +28,26 @@
                                 @endif
                             @endforeach
                         </span>
-                    </div><span class="avatar"><img class="round" src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+                    </div>
+                    
+                    @if(auth()->user()->avatar != '')
+                    <span class="avatar">
+                        <img class="round" src="{{Storage::url(auth()->user()->avatar)}}" alt="avatar" height="40" width="40">
+                        <span class="avatar-status-online"></span>
+                    </span>
+                    @else 
+                        <div class="d-flex justify-content-left align-items-center">
+                            <div class="avatar colorClass">
+                                <span class="avatar-content avatar-header">{{strtoupper(System::get_avatar(auth()->user()->username))}}</span>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <span class="emp_name text-truncate font-weight-bold"></span>
+                                <small class="emp_post text-truncate text-muted"></small>
+                            </div>
+                        </div>
+                    @endif
+                    
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-                    <a class="dropdown-item" href="page-profile.html">
-                        <i class="mr-50" data-feather="user"></i> Profile</a>
-                        <a class="dropdown-item" href=""><i class="mr-50" data-feather="message-square"></i> Chats</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href=""><i class="mr-50" data-feather="settings"></i> Settings</a>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        <i class="mr-50" data-feather="power"></i> Logout
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
             </li>
         </ul>
     </div>

@@ -16,9 +16,7 @@ class OrdersController extends Controller
     }
 
     public function data(){
-        $orders = Order::whereHas('service')->whereHas('transactions', function($q){
-            $q->where('status', 'approved');
-        })->with(['service'])->where('backer_id', auth()->user()->id)->get();
+        $orders = Order::whereHas('service')->with(['service'])->where('backer_id', auth()->user()->id)->get();
         
         return DataTables::of(ResourceBackerOrders::collection($orders))->toJson();
     }
@@ -35,6 +33,40 @@ class OrdersController extends Controller
 
         //return $data;
         return view('backer.contents.orders-view',$data);
+    }
+
+    public function invoice($id){
+        $order = Order::where(['id' => $id, 'backer_id' => auth()->user()->id])->with(['service', 'details', 'backer', 'invoice'])->first();
+
+        //return $data;
+        $data = [
+            'order_no' => System::GenerateFormattedId('S', $order->id),
+            'order_id' => $order->id,
+            'invoice_no' => $order->invoice->id,
+            'currency' => $order->service->currency,
+            'date_period' => $order->invoice->date_due,
+            'from' => (object)[
+                'name' => $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname,
+                'address' => $order->service->jobseeker->information->address
+            ],
+            'to' => (object)[
+                'name' => $order->backer->username,
+                'address' => $order->backer->address
+            ],
+            'service' => (object)[
+                'title' => $order->service->title,
+                'price' => $order->service->price,
+                'hours' => $order->service->duration,
+                'subtotal' => $order->service->price * $order->service->duration
+            ],
+            'add_charges' => [],
+            'transaction_fee' => $order->invoice->transaction_fee,
+            'processing_fee' => $order->invoice->processing_fee,
+            'total' => ($order->service->price * $order->service->duration) + $order->invoice->transaction_fee + $order->invoice->processing_fee
+        ];
+        
+        //return $data;
+        return view('backer.contents.orders-invoice',$data);
     }
 
     public function create(){

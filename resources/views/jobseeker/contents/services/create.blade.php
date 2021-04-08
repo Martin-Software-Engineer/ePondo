@@ -42,7 +42,7 @@
                                             <label for="description">Description</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ..."></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +52,15 @@
                                             <label for="price">Price</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" name="price" step=".01" id="price" class="form-control">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">₱</span>
+                                                </div>
+                                                <input type="number" name="price" step=".01" id="price" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +84,7 @@
                                             <label for="location">Location</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="location" id="location" class="form-control" placeholder="City/State">
+                                            <input type="text" name="location" id="location" class="form-control" placeholder="City/Municipality/Provinc">
                                         </div>
                                     </div>
                                 </div>

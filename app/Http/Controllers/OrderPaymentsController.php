@@ -27,6 +27,7 @@ use App\Models\Service;
 use App\Models\Order;
 use App\Models\Transaction as MyTransaction;
 use App\Models\Donation;
+use App\Models\Invoice;
 
 use Carbon\Carbon;
 use App\Mail\SendMail;
@@ -46,23 +47,24 @@ class OrderPaymentsController extends Controller
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
     
-        $order = Order::with('service')->where('id',$request->order_id)->first();
+        $order = Order::with(['service', 'invoice'])->where('id',$request->order_id)->first();
+        $invoice = $order->invoice;
 
-        $this->currency = $request->currency;
+        $this->currency = strtoupper($request->currency);
 
         $item = new Item();
         $item->setName($order->service->title)
             ->setCurrency($this->currency)
             ->setQuantity(1)
             ->setSku('Service Purchase Order') // Similar to `item_number` in Classic API
-            ->setPrice($order->service->price);
+            ->setPrice($invoice->total);
     
         $itemList = new ItemList();
         $itemList->setItems(array($item));
     
         $amount = new Amount();
         $amount->setCurrency($this->currency)
-            ->setTotal($order->service->price);
+            ->setTotal($invoice->total);
     
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -89,7 +91,7 @@ class OrderPaymentsController extends Controller
             ->setPayer($payer)
             ->setRedirectUrls($redirectUrls)
             ->setTransactions(array($transaction));
-    
+        
         try {
             $payment->create($apiContext);
 
@@ -130,7 +132,7 @@ class OrderPaymentsController extends Controller
                 $transaction->save();
 
                 $order = Order::find($transaction->orders[0]->id);
-                $order->status = 3; //ongoing
+                $order->status = 6; //ongoing
                 $order->save();
             }
 
@@ -143,7 +145,9 @@ class OrderPaymentsController extends Controller
 
     public function CreateStripePayment(Request $request){
 
-        $order = Order::with('service')->where('id',$request->order_id)->first();
+        $order = Order::with(['service', 'invoice'])->where('id',$request->order_id)->first();
+        $invoice = $order->invoice;
+
         $this->currency = $request->currency;
 
         // This is a sample test API key. Sign in to see examples pre-filled with your key.
@@ -152,7 +156,7 @@ class OrderPaymentsController extends Controller
 
         $items = array([
             'currency' => $this->currency,
-            'unit_amount' => $order->service->price,
+            'unit_amount' => $invoice->total,
             'product_data' => [
                 'name' => 'Donation to '.$order->service->title,
                 'description' => '',

@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('jobseeker.layouts.main')
 
 @section('vendors_css')
 <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/forms/select/select2.min.css') }}">
@@ -32,7 +32,7 @@
                                             <label for="campaign-id">Title</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" id="title" class="form-control" name="title" value="{{$service->title}}" placeholder="Service Title">
+                                            <input type="text" id="title" class="form-control" name="title" value="{{$service->title}}" placeholder="Input text here ...">
                                         </div>
                                     </div>
                                 </div>
@@ -42,37 +42,26 @@
                                             <label for="description">Description</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{$service->description}}</textarea>
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ...">{{$service->description}}</textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group row">
-                                        <div class="col-sm-3 col-form-label">
-                                            <label for="category">Category</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <select name="category[]" id="category" class="select2 form-control" multiple>
-                                                @foreach($categories as $category)
-                                                    @php $selected = false @endphp
-                                                    @foreach($service->categories as $cam_cat)
-                                                        @if($category->id == $cam_cat->id)
-                                                            @php $selected = true @endphp
-                                                        @endif
-                                                    @endforeach
-                                                    <option value="{{$category->id}}" @if($selected) selected @endif>{{$category->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="price">Price</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" name="price" step=".01" id="price" value="{{$service->price}}" class="form-control">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">₱</span>
+                                                </div>
+                                                <input type="number" name="price" step=".01" id="price" class="form-control" value="{{$service->price}}" placeholder="00" aria-label="Amount (to the nearest peso)">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +71,11 @@
                                             <label for="duration">Duration</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="duration" id="duration" value="{{$service->duration}}" class="form-control">
+                                            <select name="duration" id="duration" class="form-control">
+                                                @for($i = 1; $i<=24; $i++)
+                                                    <option value="{{$i}}" @if($i == $service->duration) selected @endif>{{$i}} @if($i> 1)Hours @else Hour @endif</option>
+                                                @endfor
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -108,24 +101,6 @@
                                             @endforeach
                                             <input name="tags" id="tagsinput" class="tagsinput" value="{{join(",", $tags)}}" />
                                             <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group row">
-                                        <div class="col-sm-3 col-form-label">
-                                            <label for="jobseeker-id">Job Seeker</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <select name="jobseeker_id" id="jobseeker-id" class="select2 form-control">
-                                                @foreach($jobseekers as $jobseeker)
-                                                    @php $selected = false @endphp
-                                                    @if($jobseeker->id == $service->jobseeker->id)
-                                                        @php $selected = true @endphp
-                                                    @endif
-                                                    <option value="{{$jobseeker->id}}" @if($selected) checked @endif>{{$jobseeker->username}}</small></option>
-                                                @endforeach
-                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -167,12 +142,12 @@
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input1" style="cursor: pointer">
-                                                        <img src="{{Storage::url($photo->url)}}" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <img src="{{Storage::url($photo->url)}}" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
                                                 <div class="media-body mt-75 ml-1">
-                                                    <input type="file" name="images[]" id="images-input1" class="images-input" accept="image/*" style="display: none" />
+                                                    <input type="file" name="images[]" id="images-input1" data-photo-id="{{$photo->id}}" class="images-input" accept="image/*" style="display: none" />
                                                 </div>
                                                 <!--/ upload and reset button -->
                                             </div>
@@ -183,7 +158,7 @@
                                                 <div class="media">
                                                     <a href="javascript:void(0);" class="mr-25">
                                                         <label for="images-input2" style="cursor: pointer">
-                                                            <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                            <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                         </label>
                                                     </a>
                                                     <!-- upload and reset button -->
@@ -289,6 +264,32 @@
                     input.parent().parent().find('.images-preview').attr('src', reader.result);
                 };
                 reader.readAsDataURL(files[0]);
+
+                var myFormData = new FormData();
+                myFormData.append('image', files[0]);
+                myFormData.append('id',"{{$service->id}}");
+                if(input.data('photoId')){
+                    myFormData.append('photo_id', input.data('photoId'));
+                }
+                
+                myFormData.append('_token', $('meta[name=csrf-token]').attr('content'));
+
+                $.ajax({
+                    url: "{{route('jobseeker.services.update-photos')}}",
+                    type: 'POST',
+                    processData: false, // important
+                    contentType: false, // important
+                    dataType : 'json',
+                    data: myFormData,
+                    success: function(resp){
+                        if(resp.success){
+                            toastr['success'](resp.msg, 'Success!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+                        }
+                    }
+                });
             });
         });
     </script>

@@ -62,13 +62,13 @@ $(function() {
                     orderable: false,
                     render: function(data, type, full, meta) {
                         var btns = [];
-                        if (full.status.code != 8) {
+                        if (full.status.code == 1 || full.status.code == 5) {
                             btns.push(`<button type="button" class="mr-1 btn btn-danger btn-sm btn-cancel" data-id="${full.id}">Cancel</button>`);
                         }
                         return (
                             `<div class="d-flex align-items-center col-actions">
                                 ${btns.join()}
-                                <a class="mr-1 btn btn-primary btn-sm" href="/backer/orders/${full.id}/show">View</a>
+                                <a class="mr-1 btn btn-primary btn-sm" href="/backer/orders/${full.id}/show">Details</a>
                             </div>
                             `
                         );

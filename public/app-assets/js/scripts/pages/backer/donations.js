@@ -44,6 +44,17 @@ $(function() {
                     }
                 },
                 {
+                    targets: 5,
+                    render: function(data, type, row) {
+                        let categories = [];
+                        $.each(row.categories, function(i, category) {
+                            categories.push(`<span class="badge badge-primary">${category.name}</span>`);
+                        });
+
+                        return categories.join('');
+                    }
+                },
+                {
                     // Actions
                     targets: -1,
                     width: '80px',
@@ -51,7 +62,7 @@ $(function() {
                     render: function(data, type, full, meta) {
                         return (
                             `<div class="d-flex align-items-center col-actions">
-                                <a class="mr-1 btn btn-primary" href="">View Campaigns</a>
+                                <a class="mr-1 btn btn-sm btn-primary" href="/campaign/${full.id}">View Campaign</a>
                             </div>
                             `
                         );

@@ -97,20 +97,7 @@ $(function() {
         })
     });
 
-    // $('.kids-repeater, .dependents-repeater').repeater({
-    //     show: function() {
-    //         $(this).slideDown();
-    //         // Feather Icons
-    //         if (feather) {
-    //             feather.replace({ width: 14, height: 14 });
-    //         }
-    //     },
-    //     hide: function(deleteElement) {
-    //         if (confirm('Are you sure you want to delete this element?')) {
-    //             $(this).slideUp(deleteElement);
-    //         }
-    //     }
-    // });
+
 
     $('.select2').each(function() {
         var $this = $(this);

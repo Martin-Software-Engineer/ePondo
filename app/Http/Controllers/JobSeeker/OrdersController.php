@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Orders as ResourceOrders;
 use App\Models\Order;
+use App\Models\InvoiceNumber;
 use App\Helpers\System;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 use DataTables;
+use Carbon\Carbon;
 class OrdersController extends Controller
 {
     public function index(){
@@ -31,17 +35,21 @@ class OrdersController extends Controller
         return view('jobseeker.contents.service-orders-view',$data);
     }
 
-    public function accept($id){
+    public function deliver($id){
         $order = Order::find($id);
-        $order->status = 4;
+        $order->status = 5;
         $order->save();
 
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.order-accept-email', [
-            'subject' => 'Service Order Status',
-            'order_id' => System::GenerateFormattedId('S', $order->id)
-        ]));
+        $price = $order->service->price*$order->service->duration;
+        $order->invoice()->create([
+            'price' => $price,
+            'date_due' =>  Carbon::now()->addDays(7),
+            'transaction_fee' => ($price*.07),
+            'processing_fee' => ($price*.03),
+            'total' => $price+($price*.07)+($price*.03)
+        ]);
 
-        return response()->json(['success' => true, 'msg' => 'Order Accepted']);
+        return response()->json(['success' => true, 'msg' => 'Order Delivered, Wait for the Buyer to response']);
     }
 
     public function decline($id){

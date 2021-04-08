@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-
 use App\Models\User;
 use App\Models\UserInformation;
 class AccountController extends Controller

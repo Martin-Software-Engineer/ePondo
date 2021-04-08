@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
 
 use App\Mail\SendMail;
-
+use Image;
 class CampaignsController extends Controller
 {
     /**
@@ -71,8 +71,16 @@ class CampaignsController extends Controller
         if($request->hasFile('thumbnail')){
             $image = $request->file('thumbnail');
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
+            
+            $destinationPath = storage_path('app/public/photos');
 
-            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 666, true);
+            }
+
+            $img = Image::make($image->path());
+            $img->resize(350, 350)->save($destinationPath."/".$fileName);
+
             $photo = new Photo();
             $photo ->filename =  $fileName;
             $photo ->url = 'public/photos/'.$fileName;
@@ -84,7 +92,7 @@ class CampaignsController extends Controller
         
         if($request->file('images',[])){
             foreach($request->file('images',[]) as $image){
-                $fileName   = time() . '.' . $image->getClientOriginalExtension();
+                $fileName   = Str::random(3).time() . '.' . $image->getClientOriginalExtension();
                 $upload = $image->storeAs('/photos',$fileName,'public');
                 $photo = new Photo();
                 $photo ->filename =  $fileName;
@@ -168,7 +176,7 @@ class CampaignsController extends Controller
         $data['title'] = 'Edit Campaign';
         $data['campaign'] = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
         $data['categories'] = CampaignCategory::all();
-
+        //return $data;
         return view('jobseeker.contents.campaigns.edit', $data);
     }
 
@@ -202,6 +210,7 @@ class CampaignsController extends Controller
             $campaign->thumbnail_id = $photo->id;
             $campaign->save();
         }
+
         if($request->get('category', [])){
             $campaign->categories()->sync($request->get('category', []));
         }else{
@@ -221,6 +230,30 @@ class CampaignsController extends Controller
         return response()->json(array('success' => true, 'msg' => 'Campaign Updated.'));
     }
 
+    public function updatephotos(Request $request){
+        $campaign = Campaign::findOrFail($request->id);
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $upload = $request->file('image')->storeAs('/photos',$fileName,'public');
+            if($request->has('photo_id')){
+                $photo = $campaign->photos()->where('photo_id', $request->photo_id)->first();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+            }else{
+                $photo = new Photo();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+
+                $campaign->photos()->attach($photo->id);
+            }
+        }
+
+        return response()->json(['success' => true, 'msg' => 'Photos Updated']);
+    }
     /**
      * Remove the specified resource from storage.
      *

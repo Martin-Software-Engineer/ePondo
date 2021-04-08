@@ -97,9 +97,15 @@
                     </button>
                     @endif
 
-                    @if($order->status == 4)
+                    @if($order->status == 2)
                     <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
                         Deliver
+                    </button>
+                    @endif
+
+                    @if($order->status == 5)
+                    <button type="button" class="btn-deliver btn btn-success btn-block mb-75" disabled>
+                        Delivered
                     </button>
                     @endif
 
@@ -130,6 +136,23 @@
             $('.btn-accept').on('click', function(){
                 $.ajax({
                     url: '/jobseeker/orders/{{$order->id}}/accept',
+                    type: 'GET',
+                    success: function(resp){
+                        if(resp.success){
+                            toastr['success'](resp.msg, 'Success!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+
+                            location.reload()
+                        }
+                    }
+                });
+            });
+
+            $('.btn-deliver').on('click', function(){
+                $.ajax({
+                    url: '/jobseeker/orders/{{$order->id}}/deliver',
                     type: 'GET',
                     success: function(resp){
                         if(resp.success){
