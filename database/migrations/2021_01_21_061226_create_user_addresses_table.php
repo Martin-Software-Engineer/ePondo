@@ -23,7 +23,7 @@ class CreateUserAddressesTable extends Migration
             $table->string('country');
             $table->timestamps();
 
-            $table->foreign('user_information_id')->references('id')->on('user_information')->onDelete('cascade');
+            // $table->foreign('user_information_id')->references('id')->on('user_information')->onDelete('cascade');
         });
     }
 

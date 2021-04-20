@@ -316,6 +316,67 @@ button.donate_btn {
     width: 100%;
     float: left;
     background-image: url(../images/banner-bg.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_1 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children.jpg);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_2 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children2.jpg);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_3 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children3.jpg);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_4 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children4.jpg);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_5 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children5.jpg);
+    /* background-color: #0e085f; */
     height: auto;
     background-repeat: no-repeat;
     background-size: cover;
