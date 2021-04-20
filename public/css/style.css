@@ -240,7 +240,7 @@ button {
 }
 
 .navbar-brand img {
-    width: 80px;
+    width: 150px;
 }
 
 .navbar {
@@ -316,6 +316,67 @@ button.donate_btn {
     width: 100%;
     float: left;
     background-image: url(../images/banner-bg.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_1 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children.jpg);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_2 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children2.jpg);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_3 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children3.jpg);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_4 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children4.jpg);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_5 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/children5.jpg);
+    /* background-color: #0e085f; */
     height: auto;
     background-repeat: no-repeat;
     background-size: cover;
@@ -520,12 +581,29 @@ button.donate_btn {
     width: 100%;
     float: left;
     background-color: #120a78;
-    padding-bottom: 90px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.about_section2 {
+    width: 100%;
+    float: left;
+    background-color: #0687ff;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.about_section3 {
+    width: 100%;
+    float: left;
+    background-color: #0bd498;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .about_img {
     width: 100%;
     float: left;
+    padding-bottom: 50px;
 }
 
 .about_taital {
@@ -545,7 +623,7 @@ button.donate_btn {
     font-size: 16px;
     margin: 0px;
     color: #ffffff;
-    padding: 50px 0px;
+    padding: 5px 0px;
 }
 
 .readmore_bt {
@@ -1216,7 +1294,7 @@ input.address_text::placeholder {
 .copyright_text {
     width: 100%;
     float: left;
-    font-size: 16px;
+    font-size: 6px;
     margin-left: 0px;
     color: #fff;
     text-align: center;
