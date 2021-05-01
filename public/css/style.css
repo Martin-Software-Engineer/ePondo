@@ -217,9 +217,16 @@ button {
 }
 
 .layout_padding {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
+
+@media only screen and (min-width: 400px) {
+    .layout_padding {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+  }
 
 .padding_0 {
     padding: 0px;
@@ -327,14 +334,28 @@ button.donate_btn {
 .carousel_1 {
     width: 100%;
     float: left;
-    background-image: url(../images/children.jpg);
+    background-image: url(../images/children4x3.png);
     /* background-color: #0e085f; */
     height: auto;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     position: relative;
     margin-bottom: 0;
 }
+
+@media only screen and (min-width: 400px) {
+    .carousel_1 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/children.jpg);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+  }
 
 .carousel_2 {
     width: 100%;
@@ -385,30 +406,43 @@ button.donate_btn {
 }
 
 .banner_taital {
-    width: 45%;
+    width: 100%;
     margin: 0 auto;
     font-size: 60px;
     color: #ffff;
-    text-transform: uppercase;
-    text-align: center;
+    /* text-transform: uppercase; */
+    text-align: left;
     font-weight: bold;
     line-height: 60px;
     font-family: 'Open Sans', sans-serif;
 }
 
 .banner_text {
-    width: 85%;
+    /* width: 85%;
     margin: 0 auto;
-    font-size: 16px;
+    font-size: 30px;
     color: #ffff;
     text-align: center;
-    padding: 20px 0px;
+    padding: 20px 0px; */
+
+    
+    
+    font-size: 30px;
+    color: #ffff;
+    text-align: left;
+    
 }
 
 .read_bt {
-    width: 150px;
+    /* width: 150px;
     margin: 0 auto;
+    text-align: center; */
+
+    width: 300px;
+    /* margin: 0 auto; */
+    padding: 10px 10px;
     text-align: center;
+    
 }
 
 .read_bt a {
@@ -417,13 +451,13 @@ button.donate_btn {
     text-align: center;
     font-size: 16px;
     color: #ffffff;
-    background-color: #f64646;
+    background-color: #120a78;
     padding: 8px 0px;
     text-transform: uppercase;
 }
 
 .read_bt a:hover {
-    background-color: #120a78;
+    background-color: #46f67b;
 }
 
 .carousel-indicators {
@@ -519,14 +553,15 @@ button.donate_btn {
 .box_main {
     width: 100%;
     background-color: #120a78;
-    clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0);
+    /* clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0); */
+    clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
     height: auto;
     padding: 30px 20px 70px 20px;
 }
 
 .icon_1 {
     width: 100%;
-    float: left;
+    float: center;
     text-align: center;
 }
 
