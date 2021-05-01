@@ -11,80 +11,80 @@
           </ol>
           <div class="carousel-inner">
              <div class="carousel-item active">
-             <!-- Edit Start -->
+             
              <div class="carousel_1 layout_padding">
              <div class="container">
-             <!-- Edit End -->
+             
                    <div class="col-sm-12">
-                      <h1 class="banner_taital">Help Poor Child</h1>
-                      <p class="banner_text">Suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going </p>
-                      <div class="read_bt"><a href="#">Read More</a></div>
+                      <h1 class="banner_taital">Fundraising for the people and causes you care about</h1>
+                      <p class="banner_text">Get started today!</p>
+                      <div class="read_bt"><a href="#">Create Campaign</a></div>
                    </div>
-             <!-- Edit Start -->
+             
              </div>
              </div>
-             <!-- Edit End -->
+             
              </div>
              <div class="carousel-item">
-                <!-- Edit Start -->
+                
              <div class="carousel_2 layout_padding">
              <div class="container">
-             <!-- Edit End -->
-                <div class="col-sm-12">
-                   <h1 class="banner_taital">Help Poor Child</h1>
-                   <p class="banner_text">Suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going </p>
-                   <div class="read_bt"><a href="#">Read More</a></div>
-                </div>
-                <!-- Edit Start -->
+             
+                   <div class="col-sm-12">
+                      <h1 class="banner_taital">Fundraising for the people and causes you care about</h1>
+                      <p class="banner_text">Get started today!</p>
+                      <div class="read_bt"><a href="#">Create Campaign</a></div>
+                   </div>
+                
              </div>
              </div>
-             <!-- Edit End -->
+             
              </div>
              <div class="carousel-item">
-                <!-- Edit Start -->
+                
              <div class="carousel_3 layout_padding">
              <div class="container">
-             <!-- Edit End -->
-                <div class="col-sm-12">
-                   <h1 class="banner_taital">Help Poor Child</h1>
-                   <p class="banner_text">Suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going </p>
-                   <div class="read_bt"><a href="#">Read More</a></div>
-                </div>
-                <!-- Edit Start -->
+             
+                   <div class="col-sm-12">
+                      <h1 class="banner_taital">Fundraising for the people and causes you care about</h1>
+                      <p class="banner_text">Get started today!</p>
+                      <div class="read_bt"><a href="#">Create Campaign</a></div>
+                   </div>
+                
              </div>
              </div>
-             <!-- Edit End -->
+             
              </div>
              <div class="carousel-item">
-                <!-- Edit Start -->
+                
              <div class="carousel_4 layout_padding">
              <div class="container">
-             <!-- Edit End -->
-                <div class="col-sm-12">
-                   <h1 class="banner_taital">Help Poor Child</h1>
-                   <p class="banner_text">Suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going </p>
-                   <div class="read_bt"><a href="#">Read More</a></div>
-                </div>
-                <!-- Edit Start -->
+             
+                   <div class="col-sm-12">
+                      <h1 class="banner_taital">Fundraising for the people and causes you care about</h1>
+                      <p class="banner_text">Get started today!</p>
+                      <div class="read_bt"><a href="#">Create Campaign</a></div>
+                   </div>
+                
              </div>
              </div>
-             <!-- Edit End -->
+             
              </div>
              <div class="carousel-item">
-                <!-- Edit Start -->
+                
              <div class="carousel_5 layout_padding">
              <div class="container">
-             <!-- Edit End -->
-                <div class="col-sm-12">
-                   <h1 class="banner_taital">Help Poor Child</h1>
-                   <p class="banner_text">Suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going </p>
-                   <div class="read_bt"><a href="#">Read More</a></div>
-                </div>
-                <!-- Edit Start -->
+             
+                   <div class="col-sm-12">
+                      <h1 class="banner_taital">Fundraising for the people and causes you care about</h1>
+                      <p class="banner_text">Get started today!</p>
+                      <div class="read_bt"><a href="#">Create Campaign</a></div>
+                   </div>
+                
              </div>
              </div>
-             <!-- Edit End -->
-             </div>
+             
+             </div> 
           </div>
        </div>
     <!-- </div> -->

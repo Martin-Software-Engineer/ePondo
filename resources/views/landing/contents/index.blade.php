@@ -75,33 +75,33 @@
 
 <div class="fundraise_section">
     <div class="fundraise_section_main">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-12 d-flex justify-content-start align-items-center">
                <h1 class="news_taital">What We Offer</h1>
             </div>
-        </div>
+        </div> -->
         <div class="row">
           <div class="col-lg-4">
              <div class="box_main">
                 <div class="icon_1"><img src="images/icon-1.png"></div>
                 <h4 class="volunteer_text">Create Campaign</h4>
-                <p class="lorem_text">Lorem Ipsum generators on the Internet tend to repeat predefined</p>
+                <p class="lorem_text">Fundraise your cause through creating a campaign on the platform</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
              </div>
           </div>
           <div class="col-lg-4">
-             <div class="box_main active">
+             <div class="box_main">
                 <div class="icon_1"><img src="images/icon-2.png"></div>
                 <h4 class="volunteer_text">Avail Service</h4>
-                <p class="lorem_text">Lorem Ipsum generators on the Internet tend to repeat predefined</p>
+                <p class="lorem_text">Browse through the different service offerings by the jobseekers</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
              </div>
           </div>
           <div class="col-lg-4">
              <div class="box_main">
                 <div class="icon_1"><img src="images/icon-3.png"></div>
-                <h4 class="volunteer_text">Dodate</h4>
-                <p class="lorem_text">Lorem Ipsum generators on the Internet tend to repeat predefined</p>
+                <h4 class="volunteer_text">Donate</h4>
+                <p class="lorem_text">Provide support by charitably donating monetary support to the different campaigns</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
              </div>
           </div>
