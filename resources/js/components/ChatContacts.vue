@@ -1,6 +1,6 @@
 <template>
     <ul class="chat-users-list contact-list media-list">
-        <li v-bind:key="index" v-for="(index, contact) in contacts">
+        <li v-bind:key="index" v-for="(index, contact) in contacts">a
             <span class="avatar"><img v-bind:src="contact.info.avatar" height="42" width="42" alt="Generic placeholder image" />
             </span>
             <div class="chat-info">

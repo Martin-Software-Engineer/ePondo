@@ -14,8 +14,8 @@
                 <div class="row">
                    <div class="col-sm-12">
                       <h1 class="banner_taital">Help Poor Child</h1>
-                      <p class="banner_text">Suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going </p>
-                      <div class="read_bt"><a href="#">Read More</a></div>
+                      <p class="banner_text">Create campaigns, donate, and avail services!</p>
+                      <div class="read_bt"><a href="{{route('aboutus')}}">Read More</a></div>
                    </div>
                 </div>
              </div>

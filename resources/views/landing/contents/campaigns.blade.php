@@ -51,7 +51,7 @@
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="img_7"><img src="{{$campaign->thumbnail_url}}" class="img_7"></div>
+                            <div class="img_7"><a href="{{route('campaign_view', $campaign->id)}}"><img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>
                             <div class="date_bt">
                                 <div class="date_text active"><a href="#">{{date('d', strtotime($campaign->target_date))}}</a></div>
                                 <div class="date_text"><a href="#">{{date('M', strtotime($campaign->target_date))}}</a></div>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="give_taital_1">{{$campaign->title}}</h1>
+                            <h1 class="give_taital_1"><a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a></h1>
                             <p class="ipsum_text_1">{{$campaign->description}}</p>
                             <h5 class="raised_text_1">Raised: ₱{{$campaign->raised}} <br><span class="text-danger">Goal: ₱{{$campaign->target_amount}}</span></h5>
                             <div class="donate_btn_main">
