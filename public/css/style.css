@@ -223,8 +223,8 @@ button {
 
 @media only screen and (min-width: 400px) {
     .layout_padding {
-        padding-top: 90px;
-        padding-bottom: 90px;
+        padding-top: 100px;
+        padding-bottom: 100px;
     }
   }
 
@@ -242,6 +242,22 @@ button {
     z-index: 1;
 }
 
+/* .navbar-sticky-top
+{
+    position: fixed;
+    z-index: 1;
+    opacity:1;
+    width: 100%;
+    float: left;
+    position: relative;
+} */
+
+.navbar {
+    position: fixed;
+    opacity:100%;
+    padding: 0px 25px 0px 25px;
+}
+
 .navbar-brand {
     margin-right: 0px;
 }
@@ -250,9 +266,7 @@ button {
     width: 150px;
 }
 
-.navbar {
-    padding: 0px 25px 0px 25px;
-}
+
 
 .mr-auto,
 .mx-auto {
@@ -278,6 +292,8 @@ button {
 .navbar-light .navbar-nav .show>.nav-link {
     color: #041151;
 }
+
+
 
 .search_icon {
     padding-top: 0px;
@@ -314,6 +330,7 @@ button.donate_btn {
 }
 
 
+
 /* header section end */
 
 
@@ -334,7 +351,7 @@ button.donate_btn {
 .carousel_1 {
     width: 100%;
     float: left;
-    background-image: url(../images/children4x3.png);
+    background-image: url(../images/400x200/1.png);
     /* background-color: #0e085f; */
     height: auto;
     background-repeat: no-repeat;
@@ -343,24 +360,10 @@ button.donate_btn {
     margin-bottom: 0;
 }
 
-@media only screen and (min-width: 400px) {
-    .carousel_1 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/children.jpg);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
-  }
-
 .carousel_2 {
     width: 100%;
     float: left;
-    background-image: url(../images/children2.jpg);
+    background-image: url(../images/400x200/2.png);
     /* background-color: #0e085f; */
     height: auto;
     background-repeat: no-repeat;
@@ -372,7 +375,7 @@ button.donate_btn {
 .carousel_3 {
     width: 100%;
     float: left;
-    background-image: url(../images/children3.jpg);
+    background-image: url(../images/400x200/3.png);
     /* background-color: #0e085f; */
     height: auto;
     background-repeat: no-repeat;
@@ -384,7 +387,7 @@ button.donate_btn {
 .carousel_4 {
     width: 100%;
     float: left;
-    background-image: url(../images/children4.jpg);
+    background-image: url(../images/400x200/4.png);
     /* background-color: #0e085f; */
     height: auto;
     background-repeat: no-repeat;
@@ -396,7 +399,7 @@ button.donate_btn {
 .carousel_5 {
     width: 100%;
     float: left;
-    background-image: url(../images/children5.jpg);
+    background-image: url(../images/400x200/5.png);
     /* background-color: #0e085f; */
     height: auto;
     background-repeat: no-repeat;
@@ -404,6 +407,70 @@ button.donate_btn {
     position: relative;
     margin-bottom: 0;
 }
+
+@media only screen and (min-width: 400px) {
+    .carousel_1 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/1.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    .carousel_2 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/2.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+    
+    .carousel_3 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/3.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+    
+    .carousel_4 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/4.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+    
+    .carousel_5 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/5.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+  }
+
+
 
 .banner_taital {
     width: 100%;
