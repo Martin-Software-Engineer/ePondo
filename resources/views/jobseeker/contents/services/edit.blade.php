@@ -172,6 +172,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-12">
+                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
+                                </div>
                             </div>
                         </div>
                     </div>

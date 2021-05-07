@@ -141,7 +141,7 @@
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input1" style="cursor: pointer">
-                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
@@ -153,7 +153,7 @@
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input2" style="cursor: pointer">
-                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
@@ -165,7 +165,7 @@
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input3" style="cursor: pointer">
-                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
@@ -177,7 +177,7 @@
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input4" style="cursor: pointer">
-                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
@@ -189,7 +189,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-12">
+                                    <span class="badge badge-danger">NOTE!</span>
+                                    <span class="help-inline">Click on the icon/photo to upload/edit photo</span>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </form>

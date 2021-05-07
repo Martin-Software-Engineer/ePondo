@@ -49,6 +49,20 @@
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
+                                            <label for="category">Category</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select name="category[]" id="category" class="select2 form-control" multiple>
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
                                             <label for="price">Price</label>
                                         </div>
                                         <div class="col-sm-9">
@@ -69,10 +83,17 @@
                                         <div class="col-sm-3 col-form-label">
                                             <label for="duration">Duration</label>
                                         </div>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-5">
                                             <select name="duration" id="duration" class="form-control">
                                                 @for($i = 1; $i<=24; $i++)
                                                     <option value="{{$i}}">{{$i}} @if($i> 1)Hours @else Hour @endif</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select name="duration2" id="duration2" class="form-control">
+                                                @for($i = 1; $i<=60; $i++)
+                                                    <option value="{{$i}}">{{$i}} @if($i> 1)Minutes @else Minute @endif</option>
                                                 @endfor
                                             </select>
                                         </div>
@@ -179,6 +200,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-12">
+                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
                                 </div>
                             </div>
                         </div>
