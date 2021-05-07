@@ -17,7 +17,7 @@
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="img_7"><img src="{{$campaign->thumbnail_url}}" class="img_7"></div>
+                            <div class="img_7"><a href="{{route('campaign_view', $campaign->id)}}"><img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>
                             <div class="date_bt">
                                 <div class="date_text active"><a href="#">{{date('d', strtotime($campaign->target_date))}}</a></div>
                                 <div class="date_text"><a href="#">{{date('M', strtotime($campaign->target_date))}}</a></div>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="give_taital_1">{{$campaign->title}}</h1>
+                            <h1 class="give_taital_1"><a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a></h1>
                             <p class="ipsum_text_1">{{$campaign->description}}</p>
                             <h5 class="raised_text_1">Raised: ₱{{$campaign->raised}} <span class="goal_text">Goal: ₱{{$campaign->target_amount}}</span></h5>
                             <div class="donate_btn_main">
@@ -54,11 +54,11 @@
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="img_7"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></div>                        </div>
+                            <div class="img_7"><a href="{{route('service_view', $campaign->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="give_taital_1">{{$service->title}}</h1>
+                            <h1 class="give_taital_1"><a href="{{route('service_view', $campaign->id)}}">{{$service->title}}</a></h1>
                             <p class="ipsum_text_1">{{$service->description}}</p>
                             <h5 class="raised_text_1">Price: ₱{{$service->price}} <span class="goal_text">Duration: {{$service->duration}}/Hours</span></h5>
                             <div class="donate_btn_main">
@@ -85,24 +85,37 @@
              <div class="box_main">
                 <div class="icon_1"><img src="images/icon-1.png"></div>
                 <h4 class="volunteer_text">Create Campaign</h4>
+<<<<<<< HEAD
                 <p class="lorem_text">Fundraise your cause through creating a campaign on the platform</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
+=======
+                <p class="lorem_text">Creation of campaigns are made in order to help jobseekers raise funds for certain causes</p>
+>>>>>>> c4617c9434a8d7a484c51b690517d3cbe612f484
              </div>
           </div>
           <div class="col-lg-4">
              <div class="box_main">
                 <div class="icon_1"><img src="images/icon-2.png"></div>
                 <h4 class="volunteer_text">Avail Service</h4>
+<<<<<<< HEAD
                 <p class="lorem_text">Browse through the different service offerings by the jobseekers</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
+=======
+                <p class="lorem_text">Backers are able to avail services produced by Jobseekers</p>
+                {{-- <div class="join_bt"><a href="#">Read More</a></div> --}}
+>>>>>>> c4617c9434a8d7a484c51b690517d3cbe612f484
              </div>
           </div>
           <div class="col-lg-4">
              <div class="box_main">
                 <div class="icon_1"><img src="images/icon-3.png"></div>
                 <h4 class="volunteer_text">Donate</h4>
+<<<<<<< HEAD
                 <p class="lorem_text">Provide support by charitably donating monetary support to the different campaigns</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
+=======
+                <p class="lorem_text">Our platform is made so you can browse through our website and donate to various campaigns</p>
+>>>>>>> c4617c9434a8d7a484c51b690517d3cbe612f484
              </div>
           </div>
         </div>
