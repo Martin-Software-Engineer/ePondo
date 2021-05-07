@@ -17,6 +17,7 @@
       <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
       <!-- style css -->
       <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+      <link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="{{asset('css/style_mobile.css')}}" />
       <!-- Responsive-->
       <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
       <!-- fevicon -->

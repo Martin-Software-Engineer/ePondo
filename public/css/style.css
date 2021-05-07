@@ -216,10 +216,14 @@ button {
     width: 100%;
 }
 
+
+
+
 .layout_padding {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
+
 
 .padding_0 {
     padding: 0px;
@@ -235,17 +239,33 @@ button {
     z-index: 1;
 }
 
+/* .navbar-sticky-top
+{
+    position: fixed;
+    z-index: 1;
+    opacity:1;
+    width: 100%;
+    float: left;
+    position: relative;
+} */
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    /* opacity:50%; */
+    padding: 0px 25px 0px 25px;
+}
+
 .navbar-brand {
     margin-right: 0px;
+    
 }
 
 .navbar-brand img {
-    width: 80px;
+    width: 150px;
 }
 
-.navbar {
-    padding: 0px 25px 0px 25px;
-}
+
 
 .mr-auto,
 .mx-auto {
@@ -271,6 +291,8 @@ button {
 .navbar-light .navbar-nav .show>.nav-link {
     color: #041151;
 }
+
+
 
 .search_icon {
     padding-top: 0px;
@@ -303,8 +325,10 @@ button.donate_btn {
 }
 
 .bg-light {
-    background-color: transparent !important;
+    background-color: white !important;
+    width: 100%;
 }
+
 
 
 /* header section end */
@@ -316,38 +340,114 @@ button.donate_btn {
     width: 100%;
     float: left;
     background-image: url(../images/banner-bg.png);
+    /* background-color: #0e085f; */
     height: auto;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     margin-bottom: 0;
 }
+    .carousel_1 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/1.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    .carousel_2 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/2.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+    
+    .carousel_3 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/3.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+    
+    .carousel_4 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/4.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+    
+    .carousel_5 {
+        width: 100%;
+        float: left;
+        background-image: url(../images/4800x2400/5.png);
+        /* background-color: #0e085f; */
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0;
+    }
+
+
+
 
 .banner_taital {
-    width: 45%;
+    width: 100%;
     margin: 0 auto;
     font-size: 60px;
     color: #ffff;
-    text-transform: uppercase;
-    text-align: center;
+    /* text-transform: uppercase; */
+    text-align: left;
     font-weight: bold;
     line-height: 60px;
     font-family: 'Open Sans', sans-serif;
 }
 
 .banner_text {
-    width: 85%;
+    /* width: 85%;
     margin: 0 auto;
-    font-size: 16px;
+    font-size: 30px;
     color: #ffff;
     text-align: center;
-    padding: 20px 0px;
+    padding: 20px 0px; */
+
+    
+    
+    font-size: 30px;
+    color: #ffff;
+    text-align: left;
+    
 }
 
 .read_bt {
-    width: 150px;
+    /* width: 150px;
     margin: 0 auto;
+    text-align: center; */
+
+    width: 300px;
+    /* margin: 0 auto; */
+    padding: 10px 10px;
     text-align: center;
+    
 }
 
 .read_bt a {
@@ -356,13 +456,13 @@ button.donate_btn {
     text-align: center;
     font-size: 16px;
     color: #ffffff;
-    background-color: #f64646;
+    background-color: #120a78;
     padding: 8px 0px;
     text-transform: uppercase;
 }
 
 .read_bt a:hover {
-    background-color: #120a78;
+    background-color: #46f67b;
 }
 
 .carousel-indicators {
@@ -458,14 +558,15 @@ button.donate_btn {
 .box_main {
     width: 100%;
     background-color: #120a78;
-    clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0);
+    /* clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0); */
+    clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
     height: auto;
     padding: 30px 20px 70px 20px;
 }
 
 .icon_1 {
     width: 100%;
-    float: left;
+    float: center;
     text-align: center;
 }
 
@@ -520,12 +621,29 @@ button.donate_btn {
     width: 100%;
     float: left;
     background-color: #120a78;
-    padding-bottom: 90px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.about_section2 {
+    width: 100%;
+    float: left;
+    background-color: #0687ff;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.about_section3 {
+    width: 100%;
+    float: left;
+    background-color: #0bd498;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .about_img {
     width: 100%;
     float: left;
+    padding-bottom: 50px;
 }
 
 .about_taital {
@@ -545,7 +663,7 @@ button.donate_btn {
     font-size: 16px;
     margin: 0px;
     color: #ffffff;
-    padding: 50px 0px;
+    padding: 5px 0px;
 }
 
 .readmore_bt {
@@ -1216,7 +1334,7 @@ input.address_text::placeholder {
 .copyright_text {
     width: 100%;
     float: left;
-    font-size: 16px;
+    font-size: 6px;
     margin-left: 0px;
     color: #fff;
     text-align: center;
