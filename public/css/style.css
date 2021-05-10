@@ -224,6 +224,18 @@ button {
     padding-bottom: 100px;
 }
 
+.layout_padding_campaigns_carousel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #cfd4eb;
+}
+
+.layout_padding_services_carousel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #b5dee9;
+}
+
 
 .padding_0 {
     padding: 0px;
@@ -231,29 +243,17 @@ button {
 
 
 /* header section start */
-
 .header_section {
     width: 100%;
-    float: left;
-    position: relative;
+    /* float: left; */
+    position: fixed;
     z-index: 1;
 }
 
-/* .navbar-sticky-top
-{
-    position: fixed;
-    z-index: 1;
-    opacity:1;
-    width: 100%;
-    float: left;
-    position: relative;
-} */
-
 .navbar {
-    width: 100%;
     position: fixed;
     /* opacity:50%; */
-    padding: 0px 25px 0px 25px;
+    padding: 0px 10px 0px 10px;
 }
 
 .navbar-brand {
@@ -326,7 +326,7 @@ button.donate_btn {
 
 .bg-light {
     background-color: white !important;
-    width: 100%;
+    
 }
 
 
@@ -545,23 +545,30 @@ button.donate_btn {
 
 .fundraise_section_main {
     width: 80%;
-    margin: 0 auto;
+    margin: 0px auto 30px auto;
     text-align: center;
 }
 
 .fundraise_section {
-    width: 100%;
+    /* width: 100%; */
     text-align: center;
-    background: white;
+    background-color: #ffffff;;
+}
+
+.fundraise_img {
+    width: 100%;
+    float: left;
+    padding-bottom: 10px;
 }
 
 .box_main {
     width: 100%;
-    background-color: #120a78;
+    background-color: #154377;
     /* clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0); */
-    clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
+    /* clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0); */
     height: auto;
-    padding: 30px 20px 70px 20px;
+    /* padding: 30px 20px 70px 20px; */
+    padding: 20px;
 }
 
 .icon_1 {
@@ -573,16 +580,16 @@ button.donate_btn {
 .volunteer_text {
     width: 100%;
     float: left;
-    font-size: 26px;
+    font-size: 16px;
     color: #fff;
     font-weight: bold;
-    padding-top: 20px;
+    /* padding-top: 20px; */
 }
 
 .lorem_text {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
-    font-size: 16px;
+    font-size: 12px;
     color: #fff;
     text-align: center;
 }
@@ -592,15 +599,17 @@ button.donate_btn {
     margin: 0 auto;
     text-align: center;
     margin-top: 20px;
+    
 }
 
 .join_bt a {
     width: 100%;
-    font-size: 16px;
+    font-size: 12px;
     color: #ffffff;
     text-align: center;
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff; */
     padding: 5px 15px;
+    background-color: #f64646;
 }
 
 .box_main:hover {
