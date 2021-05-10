@@ -4,7 +4,7 @@
 
 @include('landing.partials.banner')
 
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_campaigns_carousel">
     <div class="container">
        <div class="row">
           <div class="col-sm-12 d-flex justify-content-start align-items-center">
@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_services_carousel">
     <div class="container">
        <div class="row">
           <div class="col-sm-12 d-flex justify-content-start align-items-center">
@@ -73,41 +73,69 @@
     </div>
 </div>
 
-<div class="fundraise_section">
+<div class="fundraise_section ">
     <div class="fundraise_section_main">
-        <!-- <div class="row">
+        <div class="row">
             <div class="col-sm-12 d-flex justify-content-start align-items-center">
-               <h1 class="news_taital">What We Offer</h1>
+               <h1 class="news_taital"></h1>
             </div>
-        </div> -->
+        </div>
+        <div class="row">
+        <div class="fundraise_img"><img src="{{asset('app-assets/images/additional_pictures/concept_model_800x400_v3.png')}}"></div>
+        </div>
+        
         <div class="row">
           <div class="col-lg-4">
              <div class="box_main">
-                <div class="icon_1"><img src="images/icon-1.png"></div>
-                <h4 class="volunteer_text">Create Campaign</h4>
-                <p class="lorem_text">Fundraise your cause through creating a campaign on the platform</p>
+             <h4 class="volunteer_text">Jobseeker</h4><div class="icon_1">
+             <img src="{{asset('app-assets/images/additional_pictures/jobseeker_v3.png')}}"></div>
+                <p class="lorem_text">Create Campaign & Service</p>
+                <p class="lorem_text">The role of a jobseeker is to create campaigns and offer services in support to these campaigns. In return the jobseeker's campaign will be published publicly for audiences to reach.</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
              </div>
           </div>
           <div class="col-lg-4">
              <div class="box_main">
-                <div class="icon_1"><img src="images/icon-2.png"></div>
-                <h4 class="volunteer_text">Avail Service</h4>
-                <p class="lorem_text">Browse through the different service offerings by the jobseekers</p>
+                <h4 class="volunteer_text">Backer</h4>
+                <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/backer_v3.png')}}"></div>
+                <p class="lorem_text">Donate to Campaign</p>
+                <p class="lorem_text">The role of a backer is to support any desired campaign. They will be able to contribute monetary support to these campaigns.</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
              </div>
           </div>
           <div class="col-lg-4">
-             <div class="box_main">
-                <div class="icon_1"><img src="images/icon-3.png"></div>
-                <h4 class="volunteer_text">Donate</h4>
-                <p class="lorem_text">Provide support by charitably donating monetary support to the different campaigns</p>
+             <div class="box_main"> 
+                <h4 class="volunteer_text">Customer</h4>
+                <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/customer_v3.png')}}"></div>
+                <p class="lorem_text">Avail Service</p>
+                <p class="lorem_text">The role of the customer is to be able to avail the different services offered on the platform by the different jobseekers. These services are offered in support of the jobseekers campaigns.</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
              </div>
           </div>
         </div>
     </div>
  </div>
+
+ <div class="events_section layout_padding_services_carousel">
+    <div class="container">
+       <div class="row">
+          <div class="col-sm-12 d-flex justify-content-start align-items-center">
+             <h1 class="news_taital">Are you ready to start fundraising ?</h1>
+          </div>
+       </div>
+    </div>
+</div>
+
+<div class="events_section layout_padding_campaigns_carousel">
+    <div class="container">
+       <div class="row">
+          <div class="col-sm-12 d-flex justify-content-start align-items-center">
+             <h1 class="news_taital">ePondo tool nav bar guide</h1>
+          </div>
+       </div>
+    </div>
+</div>
+
 @endsection
 
 @section('scripts')
