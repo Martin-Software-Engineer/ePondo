@@ -25804,6 +25804,7 @@ var render = function() {
     [
       _vm._l(_vm.contacts, function(index, contact) {
         return _c("li", { key: index }, [
+          _vm._v("a\n        "),
           _c("span", { staticClass: "avatar" }, [
             _c("img", {
               attrs: {

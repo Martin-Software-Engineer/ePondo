@@ -62,7 +62,7 @@
     <!-- END: Custom CSS-->
     @yield('css')
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
 
 </head>
 <!-- END: Head-->
@@ -79,7 +79,9 @@
             <div class="content-overlay"></div>
             <div class="header-navbar-shadow"></div>
             <div class="content-area-wrapper">
-                @yield('content')
+                <div id="app">
+                    @yield('content')
+                </div>
             </div>
         </div>
         <!-- END: Content-->
@@ -108,6 +110,8 @@
     <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script>
     <script src="{{ asset('app-assets/js/core/app.js') }}"></script>
     <!-- END: Theme JS-->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
     @yield('scripts')
 
     <script>
