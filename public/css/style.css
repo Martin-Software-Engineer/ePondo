@@ -227,13 +227,25 @@ button {
 .layout_padding_campaigns_carousel {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #cfd4eb;
+    background-color: #f7f7f7;
 }
 
 .layout_padding_services_carousel {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #b5dee9;
+    background-color: #f7f7f7;
+}
+
+.layout_padding_quote {
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
+    background-color: #f7f7f7;
+}
+
+.layout_padding_footernav {
+    padding-top: 10px;
+    /* padding-bottom: 10px; */
+    background-color: #ffffff;
 }
 
 
@@ -563,7 +575,8 @@ button.donate_btn {
 
 .box_main {
     width: 100%;
-    background-color: #154377;
+    /* background-color: #154377; */
+    background-color: #120a78;
     /* clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0); */
     /* clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0); */
     height: auto;
@@ -582,6 +595,15 @@ button.donate_btn {
     float: left;
     font-size: 16px;
     color: #fff;
+    font-weight: bold;
+    /* padding-top: 20px; */
+}
+
+.footernav_heading_text {
+    width: 100%;
+    float: left;
+    font-size: 16px;
+    color: #120a78;
     font-weight: bold;
     /* padding-top: 20px; */
 }
@@ -612,12 +634,16 @@ button.donate_btn {
     background-color: #f64646;
 }
 
+.join_bt a:hover{
+    background-color: #63f646;
+}
+
 .box_main:hover {
-    background-color: #f64646;
+    /* background-color: #f64646; */
 }
 
 .box_main.active {
-    background-color: #f64646;
+    /* background-color: #f64646; */
 }
 
 
@@ -652,7 +678,7 @@ button.donate_btn {
 .about_img {
     width: 100%;
     float: left;
-    padding-bottom: 50px;
+    /* padding-bottom: 50px; */
 }
 
 .about_taital {
@@ -832,6 +858,15 @@ button.donate_btn {
     font-family: 'Open Sans', sans-serif;
 }
 
+.news_taital_quote {
+    float: left;
+    font-size: 30px;
+    color: #1d1d1d;
+    /* text-transform: uppercase; */
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+
 .news_text {
     width: 100%;
     float: left;
@@ -948,6 +983,20 @@ button.donate_btn {
     width: 100%;
     float: left;
     padding-top: 30px;
+}
+
+.events_section_3 {
+    width: 100%;
+    float:initial;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.events_section_4 {
+    width: 100%;
+    float: left;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .give_taital_1 {
