@@ -243,8 +243,8 @@ button {
 }
 
 .layout_padding_footernav {
-    padding-top: 10px;
-    /* padding-bottom: 10px; */
+    padding-top: 40px;
+    padding-bottom: 10px;
     background-color: #ffffff;
 }
 
@@ -262,7 +262,12 @@ button {
     z-index: 1;
 }
 
+.navi {
+    width: 100%;
+}
+
 .navbar {
+    width: 100%;
     position: fixed;
     /* opacity:50%; */
     padding: 0px 10px 0px 10px;
@@ -331,13 +336,14 @@ button.donate_btn {
     margin: 0 10px;
 }
 
-.register_btn,
+/* .register_btn,
 .account_btn {
     border: 1px solid #f64646;
-}
+} */
 
 .bg-light {
     background-color: white !important;
+    border-bottom: 1px solid rgb(235, 228, 228);
     
 }
 
@@ -638,13 +644,13 @@ button.donate_btn {
     background-color: #63f646;
 }
 
-.box_main:hover {
-    /* background-color: #f64646; */
+/* .box_main:hover {
+    background-color: #f64646;
 }
 
 .box_main.active {
-    /* background-color: #f64646; */
-}
+    background-color: #f64646;
+} */
 
 
 /* banner section end */
@@ -979,24 +985,18 @@ button.donate_btn {
     padding-bottom: 90px;
 }
 
-.events_section_2 {
-    width: 100%;
-    float: left;
-    padding-top: 30px;
-}
-
-.events_section_3 {
-    width: 100%;
-    float:initial;
-    padding-top: 20px;
-    padding-bottom: 30px;
-}
-
-.events_section_4 {
+.section_4_quote {
     width: 100%;
     float: left;
     padding-top: 40px;
     padding-bottom: 40px;
+}
+
+.section_5_footernav {
+    width: 100%;
+    float:left;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
 .give_taital_1 {

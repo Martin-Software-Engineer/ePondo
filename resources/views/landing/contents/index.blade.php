@@ -87,67 +87,49 @@
         <div class="row">
           <div class="col-lg-4">
              <div class="box_main">
-
-                <!-- <h4 class="volunteer_text">Jobseeker</h4> -->
-
-                <!-- <img src="{{asset('app-assets/images/additional_pictures/jobseeker_v3.png')}}"></div>
+                <!-- <h4 class="volunteer_text">Jobseeker</h4>
+                <img src="{{asset('app-assets/images/additional_pictures/jobseeker_v3.png')}}"></div>
                 <p class="lorem_text">Create Campaign & Service</p>
                 <p class="lorem_text">The role of a jobseeker is to create campaigns and offer services in support to these campaigns. In return the jobseeker's campaign will be published publicly for audiences to reach.</p> -->
-
                 <div class="icon_1"><img src="images/icon-1.png"></div>
                 <h4 class="volunteer_text">Create Campaign</h4>
                 <p class="lorem_text">Fundraise your cause through creating a campaign on the platform</p>
-
                 <div class="join_bt"><a href="#">Read More</a></div>
-
                 <!-- <p class="lorem_text">Creation of campaigns are made in order to help jobseekers raise funds for certain causes</p> -->
 
              </div>
           </div>
           <div class="col-lg-4">
              <div class="box_main">
-
-                <!-- <h4 class="volunteer_text">Backer</h4> -->
-
-                <!-- <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/backer_v3.png')}}"></div>
+                <!-- <h4 class="volunteer_text">Backer</h4>
+                <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/backer_v3.png')}}"></div>
                 <p class="lorem_text">Donate to Campaign</p>
                 <p class="lorem_text">The role of a backer is to support any desired campaign. They will be able to contribute monetary support to these campaigns.</p> -->
-
                 <div class="icon_1"><img src="images/icon-2.png"></div>
                 <h4 class="volunteer_text">Avail Service</h4>
                 <p class="lorem_text">Browse through the different service offerings by the jobseekers</p>
-
                 <div class="join_bt"><a href="#">Read More</a></div>
-
                 <!-- <p class="lorem_text">Backers are able to avail services produced by Jobseekers</p>
                 <div class="join_bt"><a href="#">Read More</a></div> -->
              </div>
           </div>
           <div class="col-lg-4">
-
              <div class="box_main"> 
-                
-                <!-- <h4 class="volunteer_text">Customer</h4>
+           <!-- <h4 class="volunteer_text">Customer</h4>
                 <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/customer_v3.png')}}"></div>
                 <p class="lorem_text">Avail Service</p>
                 <p class="lorem_text">The role of the customer is to be able to avail the different services offered on the platform by the different jobseekers. These services are offered in support of the jobseekers campaigns.</p> -->
-
-             
                 <div class="icon_1"><img src="images/icon-3.png"></div>
                 <h4 class="volunteer_text">Donate</h4>
                 <p class="lorem_text">Our platform is made so you can browse through our website and donate to various campaigns</p>
-
                 <div class="join_bt"><a href="#">Read More</a></div>
-
-                
-
              </div>
           </div>
         </div>
     </div>
- </div>
+</div>
 
- <div class="events_section_4 layout_padding_quote">
+ <div class="section_4_quote layout_padding_quote">
     <div class="container">
        <div class="row">
           <!-- <div class="col-sm-12 d-flex justify-content-start align-items-center"> -->
@@ -163,7 +145,7 @@
     </div>
 </div>
 
-<div class="events_section_3 layout_padding_footernav">
+<div class="section_5_footernav layout_padding_footernav">
     <div class="container">
        <div class="row">
           <div class="col-sm-3 d-flex justify-content-start align-items-start">
@@ -180,7 +162,7 @@
                 <li>Emergencies</li>
              </ul>
           </div>
-          <div class="col-sm-3 d-flex justify-content-start align-items-start mt-2">
+          <div class="col-sm-3 d-flex justify-content-start align-items-start ">
           <ul>
                 <li><h4 class="footernav_heading_text">SERVICES</h4></li>
                 <li>Education</li>
@@ -189,7 +171,7 @@
                 <li>Food</li>
              </ul>
           </div>
-          <div class="col-sm-3 d-flex justify-content-start align-items-start mt-2">
+          <div class="col-sm-3 d-flex justify-content-start align-items-start ">
           <ul>
                 <li><h4 class="footernav_heading_text">How it works ?</h4></li>
                 <li>About Us</li>
