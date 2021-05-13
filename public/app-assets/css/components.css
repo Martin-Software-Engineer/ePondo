@@ -717,9 +717,9 @@ footer.footer-border {
 }
 
 .main-menu.menu-light .navigation>li.active>a {
-    background: -webkit-linear-gradient(332deg, #7367F0, rgba(115, 103, 240, 0.7));
-    background: linear-gradient(118deg, #7367F0, rgba(115, 103, 240, 0.7));
-    box-shadow: 0 0 10px 1px rgba(115, 103, 240, 0.7);
+    background: -webkit-linear-gradient(332deg, #191268, rgba(25, 18, 104, 0.8));
+    background: linear-gradient(118deg, #191268, rgba(25, 18, 104, 0.8));
+    box-shadow: 0 0 10px 1px rgba(25, 18, 104, 0.8);
     color: #FFFFFF;
     font-weight: 400;
     border-radius: 4px;
@@ -1055,7 +1055,7 @@ footer.footer-border {
 }
 
 .main-menu .navbar-header .navbar-brand .brand-text {
-    color: #7367F0;
+    color: #191268;
     padding-left: 1rem;
     margin-bottom: 0;
     font-weight: 600;

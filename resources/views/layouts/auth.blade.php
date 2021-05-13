@@ -60,6 +60,10 @@
 </head>
 <!-- END: Head-->
 
+<!-- BEGIN: Header Navbar
+include('landing.partials.header')
+END: Header Navbar -->
+
 <!-- BEGIN: Body-->
 
 <body class="vertical-layout vertical-menu-modern ligh-layout blank-page navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="blank-page" data-layout="dark-layout">
@@ -74,7 +78,7 @@
                 <div class="auth-wrapper auth-v1 px-2">
                     <div class="auth-inner py-2">
                         <!-- Login v1 -->
-                        <div class="card mb-0">
+                        <div class="card ">
                             <div class="card-body">
                                 <a href="javascript:void(0);" class="brand-logo">
                                     <span class="brand-logo">
