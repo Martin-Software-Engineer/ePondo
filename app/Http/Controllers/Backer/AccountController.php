@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\UserInformation;
+use App\Helpers\System;
+
 class AccountController extends Controller
 {
     public function index(){

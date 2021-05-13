@@ -121,7 +121,7 @@
                     </div>
                     <div class="col-12">
                         <h4 class="mb-1">
-                            <i data-feather="shuffle" class="font-medium-4 mr-25"></i>
+                            <i data-feather="heart" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Living State</span>
                         </h4>
                     </div>
@@ -138,7 +138,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-9">
+                    <div class="col-lg-4 col-md-9">
                         <div class="form-group">
                             <label for="daily_meals">How many meals do you or your family get to eat in a day?</label>
                             <select name="daily_meals" id="daily_meals" class="form-control select2">
@@ -152,7 +152,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
-                            <label class="d-block mb-1">Do you have access to water ?</label>
+                            <label class="d-block ">Do you have access to water ?</label>
                             <select name="water_access" id="water_access" class="form-control select2">
                                 <option value="Always" @if($info->water_access == 1) selected @endif>Always</option>
                                 <option value="Seldom" @if($info->water_access == 2) selected @endif>Seldom</option>
@@ -263,7 +263,7 @@
                     <div class="col-12">
                         <h4 class="mb-1">
                             <i data-feather="users" class="font-medium-4 mr-25"></i>
-                            <span class="align-middle">Dependents (Those you support financially)</span>
+                            <span class="align-center">Dependents</span><span class="align-middle ml-1" style="font-size: 11px;">(Individuals you financially support)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">
@@ -371,7 +371,7 @@
                  
                     <div class="col-12">
                         <h4 class="mb-1">
-                            <i data-feather="users" class="font-medium-4 mr-25"></i>
+                            <i data-feather="tool" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Skills</span>
                         </h4>
                     </div>
@@ -436,7 +436,7 @@
 
                     <div class="col-12">
                         <h4 class="mb-1">
-                            <i data-feather="users" class="font-medium-4 mr-25"></i>
+                            <i data-feather="briefcase" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Work Experiences</span>
                         </h4>
                     </div>
@@ -523,7 +523,7 @@
 
                     <div class="col-12">
                         <h4 class="mb-1 mt-2">
-                            <i data-feather="user" class="font-medium-4 mr-25"></i>
+                            <i data-feather="edit-3" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">About Me</span>
                         </h4>
                     </div>
