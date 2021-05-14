@@ -10,7 +10,8 @@ $(function() {
         var dt = dtTable.DataTable({
             ajax: API_URL, // JSON file to add data
             autoWidth: true,
-            searching: false,
+            processing: true,
+            serverSide: true,
             columns: [
                 // columns according to JSON
                 { data: 'id' },
@@ -70,6 +71,8 @@ $(function() {
                 '>',
             language: {
                 sLengthMenu: 'Show _MENU_',
+                search: 'Search',
+                searchPlaceholder: 'Search for Donations',
                 paginate: {
                     // remove previous & next text from pagination
                     previous: '&nbsp;',

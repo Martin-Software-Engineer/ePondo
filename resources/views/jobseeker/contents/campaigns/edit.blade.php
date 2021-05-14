@@ -220,10 +220,10 @@
                     cache: false,
                     processData: false,
                     beforeSend: function() {
-                        $(this).find('button[type=submit]').prop('disabled', true);
+                        form.find('button[type=submit]').prop('disabled', true);
                     },
                     success: function(resp) {
-                        $(this).find('button[type=submit]').prop('disabled', false);
+                        form.find('button[type=submit]').prop('disabled', false);
                         if (resp.success) {
                             Swal.fire({
                                 title: 'Success!',
@@ -235,7 +235,7 @@
                                 },
                                 buttonsStyling: false
                             }).then(function(result) {
-                                location.href = "{{route('admin.campaigns.index')}}"
+                                location.href = "{{route('jobseeker.campaigns.index')}}"
                             });
                         }
                     }

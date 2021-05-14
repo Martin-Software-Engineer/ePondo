@@ -10,56 +10,90 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal">
+                <form class="form form-horizontal" action="{{route('admin.users.store')}}">
+                    @csrf
                     <div class="row">
                         <div class="col-8">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
-                                            <label for="campaign-id">Title</label>
+                                            <label for="username">Username</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" id="title" class="form-control" name="title" placeholder="Campaign Title">
+                                            <input type="text" id="username" class="form-control" name="username" placeholder="Username" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <label for="email">Email</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <label for="password">Password</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <label for="confirm_password">Confirm Password</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="password" id="confirm_password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
-                                            <label for="description">Description</label>
+                                            <label for="firstname">Firstname</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                                            <input type="text" id="firstname" class="form-control" name="firstname" placeholder="Firstname" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
-                                            <label for="category">Category</label>
+                                            <label for="lastname">Lastname</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <select name="category_id" id="category" class="form-control">
-                                                <option value=""></option>
-                                            </select>
+                                            <input type="text" id="lastname" class="form-control" name="lastname" placeholder="Lastname" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
-                                            <label for="user-id">Job Seeker</label>
+                                            <label for="role">Role</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <select name="user_id" id="user-id" class="form-control">
-                                                <option value=""></option>
+                                            <select name="role" id="role" class="select2 form-control">
+                                                @foreach($roles as $role)
+                                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-9 offset-sm-3">
-                                    <button type="reset" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
+                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -68,4 +102,48 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script>
+        $(function(){
+            'use strict';
+            var form = $('form');
+            form.on('submit', function(e){
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    beforeSend: function() {
+                        form.find('button[type=submit]').prop('disabled', true);
+                    },
+                    success: function(resp) {
+                        form.find('button[type=submit]').prop('disabled', false);
+                        if (resp.success) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: resp.msg,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonText: 'Users List',
+                                cancelButtonText: 'Create New',
+                                customClass: {
+                                    confirmButton: 'btn btn-primary',
+                                    cancelButton: 'btn btn-outline-danger ml-1'
+                                },
+                                buttonsStyling: false
+                            }).then(async function(result) {
+                                if (result.isConfirmed) {
+                                    location.href = "{{route('admin.users.index')}}"
+                                }else{
+                                    location.reload();
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        })
+    </script>
 @endsection

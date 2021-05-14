@@ -9,6 +9,8 @@ $(function() {
     // datatable
     if (dtTableBacker.length) {
         var dtBacker = dtTableBacker.DataTable({
+            processing: true,
+            serverSide: true,
             ajax: {
                 url: API_URL,
                 data: {
@@ -16,7 +18,6 @@ $(function() {
                 }
             },
             autoWidth: true,
-            searching: false,
             columns: [
                 // columns according to JSON
                 { data: 'id' },
@@ -76,6 +77,8 @@ $(function() {
                 '>',
             language: {
                 sLengthMenu: 'Show _MENU_',
+                search: 'Search',
+                searchPlaceholder: 'Search for Backer',
                 paginate: {
                     // remove previous & next text from pagination
                     previous: '&nbsp;',
@@ -119,6 +122,8 @@ $(function() {
     }
     if (dtTableJobseeker.length) {
         var dtJobseeker = dtTableJobseeker.DataTable({
+            processing: true,
+            serverSide: true,
             ajax: {
                 url: API_URL,
                 data: {
@@ -126,7 +131,6 @@ $(function() {
                 }
             },
             autoWidth: true,
-            searching: false,
             columns: [
                 // columns according to JSON
                 { data: 'id' },
@@ -187,6 +191,8 @@ $(function() {
                 '>',
             language: {
                 sLengthMenu: 'Show _MENU_',
+                search: 'Search',
+                searchPlaceholder: 'Search for Jobseeker',
                 paginate: {
                     // remove previous & next text from pagination
                     previous: '&nbsp;',

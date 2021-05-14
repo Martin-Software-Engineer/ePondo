@@ -27,7 +27,7 @@
 <section>
 <div class="row match-height">
     @forelse($campaigns as $campaign)
-    <div class="col-md-6 col-lg-4">
+    <div class="col-md-4 col-lg-3">
         <div class="card text-center">
             <img class="card-img-top" src="{{Storage::url(@$campaign->thumbnail->url)}}" alt="Card image cap" />
             <div class="card-body">

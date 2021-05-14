@@ -26,7 +26,6 @@ class StoreService extends FormRequest
         return [
             'title' => 'required',
             'price' => 'required',
-            'duration' => 'required',
             'location' => 'string',
             'description' => 'string'
         ];

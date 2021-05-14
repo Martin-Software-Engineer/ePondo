@@ -27,25 +27,6 @@
 @endsection
 
 @section('content')
-<section>
-    <div class="row">
-        <div class="col-md-6 d-flex">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <div class="p-0 m-0">
-                <button class="btn btn-flat-secondary dropdown-toggle waves-effect" type="button" id="dropdownMenuButton600" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    By
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton600">
-                    <a class="dropdown-item" href="javascript:void(0);">Option 1</a>
-                    <a class="dropdown-item" href="javascript:void(0);">Option 2</a>
-                    <a class="dropdown-item" href="javascript:void(0);">Option 3</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <section class="donations-list-wrapper">
     <div class="card">
         <div class="card-datatable table-responsive">

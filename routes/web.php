@@ -49,13 +49,16 @@ Route::get('profile/{id}', 'PagesController@jobseeker')->name('profile');
 //Admin Routes using Route Group
 Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-admin'])->group(function (){
     Route::get('/', 'Admin\CampaignsController@index')->name('index');
+
     Route::post('campaigns/{id}', 'Admin\CampaignsController@update')->name('campaigns.update');
+    Route::post('campaigns/photos/update', 'Admin\CampaignsController@updatephotos')->name('campaigns.update-photos');
     Route::get('campaigns/{id}/delete', 'Admin\CampaignsController@destroy')->name('campaigns.destroy');
     Route::resource('campaigns', 'Admin\CampaignsController');
 
     Route::resource('donations', 'Admin\DonationsController');
 
     Route::post('services/{id}', 'Admin\ServicesController@update')->name('services.update');
+    Route::post('services/photos/update', 'Admin\ServicesController@updatephotos')->name('services.update-photos');
     Route::get('services/{id}/delete', 'Admin\ServicesController@destroy')->name('services.destroy');
     Route::resource('services', 'Admin\ServicesController');
 
@@ -63,9 +66,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
     Route::resource('invoice', 'Admin\InvoicesController');
     Route::resource('ratings', 'Admin\RatingsController');
     Route::resource('rewards', 'Admin\RewardsController');
-    Route::resource('users-management', 'Admin\UserManagementController');
-    Route::resource('users', 'Admin\UserController');
+
+    Route::get('users/{id}/delete', 'Admin\UserManagementController@destroy')->name('users.destroy');
+    Route::post('users/{id}', 'Admin\UserManagementController@update')->name('users.update');
+    Route::resource('users', 'Admin\UserManagementController', ['except' => ['update', 'destroy']]);
+
     Route::get('jobseekers', 'Admin\JobseekerProfileController@index')->name('jobseekers.index');
+    Route::get('jobseekers/{id}/edit','Admin\JobseekerProfileController@edit')->name('jobseekers.profile.edit');
+    Route::post('jobseekers/{id}/update','Admin\JobseekerProfileController@update')->name('jobseekers.profile.update');
+
     Route::get('reports', 'Admin\ReportsController@index')->name('reports.index');
 });
 
@@ -97,7 +106,7 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::get('campaigns/{id}/delete', 'JobSeeker\CampaignsController@destroy')->name('campaigns.delete');
     Route::resource('campaigns', 'JobSeeker\CampaignsController', ['except' => ['destroy', 'update']]);
     
-    Route::post('services/update', 'JobSeeker\ServicesController@update')->name('services.update');
+    Route::post('services/{id}', 'JobSeeker\ServicesController@update')->name('services.update');
     Route::post('services/photos/update', 'JobSeeker\ServicesController@updatephotos')->name('services.update-photos');
     Route::get('services/{id}/delete', 'JobSeeker\ServicesController@destroy')->name('services.delete');
     Route::resource('services', 'JobSeeker\ServicesController', ['except' => ['destroy', 'update']]);

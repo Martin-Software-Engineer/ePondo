@@ -22,7 +22,8 @@ class UserInformationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'fistname' => $this->faker->firstName,
+            'lastname' => $this->faker->lastName
         ];
     }
 }

@@ -18,7 +18,7 @@ class Rewards extends JsonResource
         return [
             'id' => $this->id,
             'jobseeker_id' => System::GenerateFormattedId('J', $this->id),
-            'jobseeker_name' => $this->name,
+            'jobseeker_name' => $this->username,
             'reward_tier' => System::RewardsTier($total_points),
             'total_points' => $total_points
         ];

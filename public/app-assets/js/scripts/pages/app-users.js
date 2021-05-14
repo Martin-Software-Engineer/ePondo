@@ -10,11 +10,11 @@ $(function() {
         var dt = dtTable.DataTable({
             ajax: API_URL, // JSON file to add data
             autoWidth: true,
-            searching: false,
+            processing: true,
+            serverSide: true,
             columns: [
                 // columns according to JSON
                 { data: 'id' },
-                { data: 'user_id' },
                 { data: 'name' },
                 { data: 'email' },
                 { data: 'roles' },
@@ -30,7 +30,7 @@ $(function() {
                     }
                 },
                 {
-                    targets: 4,
+                    targets: 3,
                     render: function(data, type, row) {
                         var group = [];
                         $.each(row.roles, function(index, role) {
@@ -48,7 +48,7 @@ $(function() {
                     render: function(data, type, full, meta) {
                         return (
                             `<div class="d-flex align-items-center col-actions">
-                              <a class="mr-1 btn-edit" href="/admin/campaigns/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
+                              <a class="mr-1 btn-edit" href="/admin/users/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
                               <a class="mr-1 btn-delete" href="javascript:void(0);" data-toggle="tooltip" data-id="${full.id}" data-placement="top" title="Delete">${feather.icons['delete'].toSvg({ class: 'font-medium-2' })}</a>
                             </div>
                             `
@@ -58,7 +58,7 @@ $(function() {
             ],
             buttons: [],
             order: [
-                [1, 'desc']
+                [0, 'desc']
             ],
             dom: '<"row d-flex justify-content-between align-items-center m-1"' +
                 '<"col-lg-6 d-flex align-items-center"l<"dt-action-buttons text-xl-right text-lg-left text-lg-right text-left "B>>' +
@@ -70,6 +70,8 @@ $(function() {
                 '>',
             language: {
                 sLengthMenu: 'Show _MENU_',
+                search: 'Search',
+                searchPlaceholder: 'Search for Jobseeker',
                 paginate: {
                     // remove previous & next text from pagination
                     previous: '&nbsp;',
@@ -107,4 +109,33 @@ $(function() {
             }
         });
     }
+
+    $(document).on('click', '.btn-delete', function() {
+        let id = $(this).data('id');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-outline-danger ml-1'
+            },
+            buttonsStyling: false
+        }).then(async function(result) {
+            if (result.isConfirmed) {
+                const deleteData = await $.get(`users/${id}/delete`);
+                if (deleteData.success) {
+                    toastr['success'](deleteData.msg, 'Deleted!', {
+                        closeButton: true,
+                        tapToDismiss: false,
+                        rtl: isRtl
+                    });
+                    dt.ajax.reload();
+                }
+            }
+        });
+
+    });
 });

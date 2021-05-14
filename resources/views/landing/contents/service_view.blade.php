@@ -180,15 +180,10 @@
             <div class="col-md-8">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                      @if($service->thumbnail != '')
-                        <div class="carousel-item active">
-                          <img class="d-block w-100" src="{{Storage::url($service->thumbnail->url)}}" alt="First slide">
-                        </div>
-                      @endif
-                      
+
                       @foreach($service->photos as $photo)
-                      <div class="carousel-item @if($service->thumbnail == '' && $loop->index == 0) active @endif">
-                        <img class="d-block w-100" src="{{Storage::url($photo->url)}}" alt="Second slide">
+                      <div class="carousel-item @if($loop->index == 0) active @endif">
+                        <img class="d-block w-100" src="{{Storage::url($photo->url)}}">
                       </div>
                       @endforeach
                     </div>

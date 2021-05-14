@@ -30,24 +30,9 @@
 
 @section('content')
 <section>
-    <div class="row">
-        <div class="col-md-6 d-flex">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <div class="p-0 m-0">
-                <button class="btn btn-flat-secondary dropdown-toggle waves-effect" type="button" id="dropdownMenuButton600" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    By
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton600">
-                    <a class="dropdown-item" href="javascript:void(0);">Option 1</a>
-                    <a class="dropdown-item" href="javascript:void(0);">Option 2</a>
-                    <a class="dropdown-item" href="javascript:void(0);">Option 3</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <a href="{{route('admin.campaigns.create')}}" class="btn btn-primary float-right">Create</a>
+    <div class="row mb-1">
+        <div class="col-md-12 d-flex justify-content-end">
+            <a href="{{route('admin.users.create')}}" class="btn btn-primary float-right">Create</a>
         </div>
     </div>
 </section>
@@ -58,8 +43,7 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>User ID</th>
-                        <th>Name</th>
+                        <th>Username</th>
                         <th>Email</th>
                         <th>Role</th>
                         <th class="cell-fit">Actions</th>

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Resources\Service as ResourceService;
 use App\Models\Service;
+use App\Models\ServiceCategoryParent;
 use App\Models\ServiceCategory;
 use App\Models\User;
 use App\Models\Photo;
@@ -14,6 +16,7 @@ use App\Models\Tag;
 use App\Helpers\System;
 
 use DataTables;
+use Image;
 class ServicesController extends Controller
 {
     /**
@@ -45,7 +48,7 @@ class ServicesController extends Controller
     public function create()
     {
         $data['title'] = 'Create Service';
-        $data['categories'] = ServiceCategory::all();
+        $data['category_parents'] = ServiceCategoryParent::with('categories')->get();
         $data['jobseekers'] = User::whereHas('roles', function($q){
             $q->where('name', 'JobSeeker');
         })->get();
@@ -66,15 +69,24 @@ class ServicesController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
-            'duration' => $request->duration,
+            'duration_hours' => $request->duration_hours,
+            'duration_minutes' => $request->duration_minutes,
             'location' => $request->location
         ]);
 
         if($request->hasFile('thumbnail')){
             $image = $request->file('thumbnail');
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
+            
+            $destinationPath = storage_path('app/public/photos');
 
-            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 666, true);
+            }
+
+            $img = Image::make($image->path());
+            $img->resize(350, 350)->save($destinationPath."/".$fileName);
+
             $photo = new Photo();
             $photo ->filename =  $fileName;
             $photo ->url = 'public/photos/'.$fileName;
@@ -86,7 +98,7 @@ class ServicesController extends Controller
         
         if($request->file('images',[])){
             foreach($request->file('images',[]) as $image){
-                $fileName   = time() . '.' . $image->getClientOriginalExtension();
+                $fileName   = Str::random(3).time() . '.' . $image->getClientOriginalExtension();
                 $upload = $image->storeAs('/photos',$fileName,'public');
                 $photo = new Photo();
                 $photo ->filename =  $fileName;
@@ -136,7 +148,7 @@ class ServicesController extends Controller
     {
         $data['title'] = 'Edit Service';
         $data['service'] = Service::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
-        $data['categories'] = ServiceCategory::all();
+        $data['category_parents'] = ServiceCategoryParent::with('categories')->get();
         $data['jobseekers'] = User::whereHas('roles', function($q){
             $q->where('name', 'JobSeeker');
         })->get();
@@ -158,37 +170,10 @@ class ServicesController extends Controller
         $service->title = $request->title;
         $service->description = $request->description;
         $service->price = $request->price;
-        $service->duration = $request->duration;
+        $service->duration_hours = $request->duration_hours;
+        $service->duration_minutes = $request->duration_minutes;
         $service->location = $request->location;
         $service->save();
-
-        if($request->hasFile('thumbnail')){
-            $image = $request->file('thumbnail');
-            $fileName   = time() . '.' . $image->getClientOriginalExtension();
-
-            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
-            $photo = new Photo();
-            $photo ->filename =  $fileName;
-            $photo ->url = 'public/photos/'.$fileName;
-            $photo ->save();
-
-            $service->thumbnail_id = $photo->id;
-            $service->save();
-        }
-        
-        if($request->file('images',[])){
-            $service->photos()->detach();
-            foreach($request->file('images',[]) as $image){
-                $fileName   = time() . '.' . $image->getClientOriginalExtension();
-                $upload = $image->storeAs('/photos',$fileName,'public');
-                $photo = new Photo();
-                $photo ->filename =  $fileName;
-                $photo ->url = 'public/photos/'.$fileName;
-                $photo ->save();
-
-                $service->photos()->attach($photo->id);
-            }
-        }
         
         if($request->get('category', [])){
             $service->categories()->sync($request->get('category', []));
@@ -208,6 +193,31 @@ class ServicesController extends Controller
         }
 
         return response()->json(['success' => true,'msg' => trans('admin.service.update.success')]);
+    }
+
+    public function updatephotos(Request $request){
+        $service = Service::findOrFail($request->id);
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $upload = $request->file('image')->storeAs('/photos',$fileName,'public');
+            if($request->has('photo_id')){
+                $photo = $service->photos()->where('photo_id', $request->photo_id)->first();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+            }else{
+                $photo = new Photo();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+
+                $service->photos()->attach($photo->id);
+            }
+        }
+
+        return response()->json(['success' => true, 'msg' => 'Photos Updated']);
     }
 
     /**

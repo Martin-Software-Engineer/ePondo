@@ -21,7 +21,7 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('admin.services.store')}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('jobseeker.services.store')}}" method="POST"> 
                     @csrf
                     <div class="row">
                         <div class="col-8">
@@ -32,7 +32,7 @@
                                             <label for="campaign-id">Title</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" id="title" class="form-control" name="title" placeholder="Ïnput text here ...">
+                                            <input type="text" id="title" class="form-control" name="title" placeholder="Ïnput text here ..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -53,8 +53,12 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
-                                                @foreach($categories as $category)
-                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @foreach($category_parents as $parent)
+                                                    <optgroup label="{{$parent->name}}">
+                                                        @foreach($parent->categories as $category)
+                                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                                        @endforeach
+                                                    </optgroup>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -84,16 +88,16 @@
                                             <label for="duration">Duration</label>
                                         </div>
                                         <div class="col-sm-5">
-                                            <select name="duration" id="duration" class="form-control">
+                                            <select name="duration_hours" id="duration_hours" class="form-control">
                                                 @for($i = 1; $i<=24; $i++)
                                                     <option value="{{$i}}">{{$i}} @if($i> 1)Hours @else Hour @endif</option>
                                                 @endfor
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
-                                            <select name="duration2" id="duration2" class="form-control">
-                                                @for($i = 1; $i<=60; $i++)
-                                                    <option value="{{$i}}">{{$i}} @if($i> 1)Minutes @else Minute @endif</option>
+                                            <select name="duration_minutes" id="duration_minutes" class="form-control">
+                                                @for($i = 0; $i<=12; $i++)
+                                                    <option value="{{$i*5}}">{{$i*5}} Minutes</option>
                                                 @endfor
                                             </select>
                                         </div>
@@ -242,7 +246,7 @@
                     cache: false,
                     processData: false,
                     beforeSend: function() {
-                        $(this).find('button[type=submit]').prop('disabled', true);
+                        form.find('button[type=submit]').prop('disabled', true);
                     },
                     success: function(resp) {
                         $(this).find('button[type=submit]').prop('disabled', false);
@@ -259,9 +263,9 @@
                                     cancelButton: 'btn btn-outline-danger ml-1'
                                 },
                                 buttonsStyling: false
-                            }).then(async function(result) {
+                            }).then(function(result) {
                                 if (result.isConfirmed) {
-                                    location.href = "{{route('admin.services.index')}}"
+                                    location.href = "{{route('jobseeker.services.index')}}"
                                 }else{
                                     location.reload();
                                 }

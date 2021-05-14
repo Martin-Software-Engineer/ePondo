@@ -29,7 +29,7 @@
             <li class="nav-item @if(request()->segment(2) == 'invoice') active @endif"><a class="d-flex align-items-center" href="{{route('admin.invoice.index')}}"><span class="menu-title text-truncate">Invoice</span></a></li>
             <li class="nav-item @if(request()->segment(2) == 'ratings') active @endif"><a class="d-flex align-items-center" href="{{route('admin.ratings.index')}}"><span class="menu-title text-truncate">Rating & Feedback</span></a></li>
             <li class="nav-item @if(request()->segment(2) == 'rewards') active @endif"><a class="d-flex align-items-center" href="{{route('admin.rewards.index')}}"><span class="menu-title text-truncate">Rewards & Points</span></a></li>
-            <li class="nav-item @if(request()->segment(2) == 'users-management') active @endif"><a class="d-flex align-items-center" href="{{route('admin.users-management.index')}}"><span class="menu-title text-truncate">Users Management</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == 'users') active @endif"><a class="d-flex align-items-center" href="{{route('admin.users.index')}}"><span class="menu-title text-truncate">Users Management</span></a></li>
             <li class="nav-item @if(request()->segment(2) == 'jobseekers') active @endif"><a class="d-flex align-items-center" href="{{route('admin.jobseekers.index')}}"><span class="menu-title text-truncate">Jobseeker Public Profile</span></a></li>
             <li class="nav-item @if(request()->segment(2) == 'reports') active @endif"><a class="d-flex align-items-center" href="{{route('admin.reports.index')}}"><span class="menu-title text-truncate">Reports</span></a></li>
         </ul>

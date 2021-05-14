@@ -42,7 +42,7 @@
                                             <label for="description">Description</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{$service->description}}</textarea>
+                                            <textarea name="description" id="description" cols="30"  rows="5" class="form-control">{{$service->description}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -53,14 +53,18 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
-                                                @foreach($categories as $category)
-                                                    @php $selected = false @endphp
-                                                    @foreach($service->categories as $cam_cat)
-                                                        @if($category->id == $cam_cat->id)
-                                                            @php $selected = true @endphp
-                                                        @endif
-                                                    @endforeach
-                                                    <option value="{{$category->id}}" @if($selected) selected @endif>{{$category->name}}</option>
+                                                @foreach($category_parents as $parent)
+                                                    <optgroup label="{{$parent->name}}">
+                                                        @foreach($parent->categories as $category)
+                                                            @php $selected = false @endphp
+                                                            @foreach($service->categories as $cam_cat)
+                                                                @if($category->id == $cam_cat->id)
+                                                                    @php $selected = true @endphp
+                                                                @endif
+                                                            @endforeach
+                                                            <option value="{{$category->id}}" @if($selected) selected @endif>{{$category->name}}</option>
+                                                        @endforeach
+                                                    </optgroup>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -72,17 +76,37 @@
                                             <label for="price">Price</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" name="price" step=".01" id="price" value="{{$service->price}}" class="form-control">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">₱</span>
+                                                </div>
+                                                <input type="number" name="price" step=".01" id="price" class="form-control" value="{{$service->price}}" placeholder="00" aria-label="Amount (to the nearest peso)">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="duration">Duration</label>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="duration" id="duration" value="{{$service->duration}}" class="form-control">
+                                        <div class="col-sm-5">
+                                            <select name="duration_hours" id="duration_hours" class="form-control">
+                                                @for($i = 1; $i<=24; $i++)
+                                                    <option value="{{$i}}" @if($i == $service->duration_hours) selected @endif>{{$i}} @if($i> 1)Hours @else Hour @endif</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select name="duration_minutes" id="duration_minutes" class="form-control">
+                                                @for($i = 0; $i<=12; $i++)
+                                                    <option value="{{$i*5}}" @if($i*5 == $service->duration_minutes) selected @endif>{{$i*5}} Minutes</option>
+                                                @endfor
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -166,13 +190,13 @@
                                             @foreach($service->photos as $photo)
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
-                                                    <label for="images-input1" style="cursor: pointer">
-                                                        <img src="{{Storage::url($photo->url)}}" class="images-preview rounded mr-50" height="80" width="80" />
+                                                    <label for="images-input{{$photo->id}}" style="cursor: pointer">
+                                                        <img src="{{Storage::url($photo->url)}}" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
                                                 <div class="media-body mt-75 ml-1">
-                                                    <input type="file" name="images[]" id="images-input1" class="images-input" accept="image/*" style="display: none" />
+                                                    <input type="file" name="images[]" id="images-input{{$photo->id}}" data-photo-id="{{$photo->id}}" class="images-input" accept="image/*" style="display: none" />
                                                 </div>
                                                 <!--/ upload and reset button -->
                                             </div>
@@ -182,13 +206,13 @@
                                                 @for($i = 0; $i < $left; $i++)
                                                 <div class="media">
                                                     <a href="javascript:void(0);" class="mr-25">
-                                                        <label for="images-input2" style="cursor: pointer">
-                                                            <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <label for="images-input{{$i}}" style="cursor: pointer">
+                                                            <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                         </label>
                                                     </a>
                                                     <!-- upload and reset button -->
                                                     <div class="media-body mt-75 ml-1">
-                                                        <input type="file" name="images[]" id="images-input2" class="images-input" accept="image/*" style="display: none" />
+                                                        <input type="file" name="images[]" id="images-input{{$i}}" class="images-input" accept="image/*" style="display: none" />
                                                     </div>
                                                     <!--/ upload and reset button -->
                                                 </div>
@@ -196,6 +220,9 @@
                                             @endif
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-12">
+                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
                                 </div>
                             </div>
                         </div>
@@ -235,20 +262,15 @@
                     cache: false,
                     processData: false,
                     beforeSend: function() {
-                        $(this).find('button[type=submit]').prop('disabled', true);
+                        form.find('button[type=submit]').prop('disabled', true);
                     },
                     success: function(resp) {
-                        $(this).find('button[type=submit]').prop('disabled', false);
+                        form.find('button[type=submit]').prop('disabled', false);
                         if (resp.success) {
                             Swal.fire({
                                 title: 'Success!',
                                 text: resp.msg,
-                                icon: 'success',
-                                confirmButtonText: 'Services List',
-                                customClass: {
-                                    confirmButton: 'btn btn-primary',
-                                },
-                                buttonsStyling: false
+                                icon: 'success'
                             }).then(function(result) {
                                 location.reload();
                             });
@@ -289,6 +311,32 @@
                     input.parent().parent().find('.images-preview').attr('src', reader.result);
                 };
                 reader.readAsDataURL(files[0]);
+
+                var myFormData = new FormData();
+                myFormData.append('image', files[0]);
+                myFormData.append('id',"{{$service->id}}");
+                if(input.data('photoId')){
+                    myFormData.append('photo_id', input.data('photoId'));
+                }
+                
+                myFormData.append('_token', $('meta[name=csrf-token]').attr('content'));
+
+                $.ajax({
+                    url: "{{route('admin.services.update-photos')}}",
+                    type: 'POST',
+                    processData: false, // important
+                    contentType: false, // important
+                    dataType : 'json',
+                    data: myFormData,
+                    success: function(resp){
+                        if(resp.success){
+                            toastr['success'](resp.msg, 'Success!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+                        }
+                    }
+                });
             });
         });
     </script>

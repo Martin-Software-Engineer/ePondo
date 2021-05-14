@@ -48,7 +48,7 @@ class CampaignsController extends Controller
     {
         $data['title'] = 'Create Campaign';
         $data['categories'] = CampaignCategory::all();
-
+        
         return view('jobseeker.contents.campaigns.create', $data);
     }
 
@@ -93,7 +93,16 @@ class CampaignsController extends Controller
         if($request->file('images',[])){
             foreach($request->file('images',[]) as $image){
                 $fileName   = Str::random(3).time() . '.' . $image->getClientOriginalExtension();
-                $upload = $image->storeAs('/photos',$fileName,'public');
+
+                $destinationPath = storage_path('app/public/photos');
+
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 666, true);
+                }
+    
+                $img = Image::make($image->path());
+                $img->resize(400, 350)->save($destinationPath."/".$fileName);
+
                 $photo = new Photo();
                 $photo ->filename =  $fileName;
                 $photo ->url = 'public/photos/'.$fileName;

@@ -32,7 +32,7 @@
                                             <label for="campaign-id">Title</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" id="title" class="form-control" name="title" placeholder="Service Title">
+                                            <input type="text" id="title" class="form-control" name="title" placeholder="Ïnput text here ..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                             <label for="description">Description</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ..."></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -52,9 +52,13 @@
                                             <label for="category">Category</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <select name="category[]" id="category" class="select2 form-control" multiple>
-                                                @foreach($categories as $category)
-                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                            <select name="category[]" id="category" class="select2 form-control" multiple required>
+                                                @foreach($category_parents as $parent)
+                                                    <optgroup label="{{$parent->name}}">
+                                                        @foreach($parent->categories as $category)
+                                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                                        @endforeach
+                                                    </optgroup>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -66,7 +70,15 @@
                                             <label for="price">Price</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" name="price" step=".01" id="price" class="form-control">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">₱</span>
+                                                </div>
+                                                <input type="number" name="price" step=".01" id="price" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)" required>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -75,8 +87,19 @@
                                         <div class="col-sm-3 col-form-label">
                                             <label for="duration">Duration</label>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="duration" id="duration" class="form-control">
+                                        <div class="col-sm-5">
+                                            <select name="duration_hours" id="duration_hours" class="form-control">
+                                                @for($i = 1; $i<=24; $i++)
+                                                    <option value="{{$i}}">{{$i}} @if($i> 1)Hours @else Hour @endif</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select name="duration_minutes" id="duration_minutes" class="form-control">
+                                                @for($i = 0; $i<=12; $i++)
+                                                    <option value="{{$i*5}}">{{$i*5}} Minutes</option>
+                                                @endfor
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +109,7 @@
                                             <label for="location">Location</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="location" id="location" class="form-control">
+                                            <input type="text" name="location" id="location" class="form-control" placeholder="City/Municipality/Provinc" required>
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +171,7 @@
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input1" style="cursor: pointer">
-                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
@@ -160,7 +183,7 @@
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input2" style="cursor: pointer">
-                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
@@ -172,7 +195,7 @@
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input3" style="cursor: pointer">
-                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
@@ -184,7 +207,7 @@
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input4" style="cursor: pointer">
-                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="80" width="80" />
+                                                        <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
@@ -195,6 +218,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-12">
+                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
                                 </div>
                             </div>
                         </div>
@@ -234,10 +260,10 @@
                     cache: false,
                     processData: false,
                     beforeSend: function() {
-                        $(this).find('button[type=submit]').prop('disabled', true);
+                        form.find('button[type=submit]').prop('disabled', true);
                     },
                     success: function(resp) {
-                        $(this).find('button[type=submit]').prop('disabled', false);
+                        form.find('button[type=submit]').prop('disabled', false);
                         if (resp.success) {
                             Swal.fire({
                                 title: 'Success!',

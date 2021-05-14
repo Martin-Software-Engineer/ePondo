@@ -21,7 +21,7 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('admin.services.update', $service->id)}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('jobseeker.services.update', $service->id)}}" method="POST"> 
                     @csrf
                     <div class="row">
                         <div class="col-8">
@@ -46,7 +46,30 @@
                                         </div>
                                     </div>
                                 </div>
-                               
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <label for="category">Category</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select name="category[]" id="category" class="select2 form-control" multiple>
+                                                @foreach($category_parents as $parent)
+                                                    <optgroup label="{{$parent->name}}">
+                                                        @foreach($parent->categories as $category)
+                                                            @php $selected = false @endphp
+                                                            @foreach($service->categories as $cam_cat)
+                                                                @if($category->id == $cam_cat->id)
+                                                                    @php $selected = true @endphp
+                                                                @endif
+                                                            @endforeach
+                                                            <option value="{{$category->id}}" @if($selected) selected @endif>{{$category->name}}</option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
@@ -65,15 +88,23 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="duration">Duration</label>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <select name="duration" id="duration" class="form-control">
+                                        <div class="col-sm-5">
+                                            <select name="duration_hours" id="duration_hours" class="form-control">
                                                 @for($i = 1; $i<=24; $i++)
-                                                    <option value="{{$i}}" @if($i == $service->duration) selected @endif>{{$i}} @if($i> 1)Hours @else Hour @endif</option>
+                                                    <option value="{{$i}}" @if($i == $service->duration_hours) selected @endif>{{$i}} @if($i> 1)Hours @else Hour @endif</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select name="duration_minutes" id="duration_minutes" class="form-control">
+                                                @for($i = 0; $i<=12; $i++)
+                                                    <option value="{{$i*5}}" @if($i == $service->duration_minutes) selected @endif>{{$i*5}} Minutes</option>
                                                 @endfor
                                             </select>
                                         </div>
@@ -141,13 +172,13 @@
                                             @foreach($service->photos as $photo)
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
-                                                    <label for="images-input1" style="cursor: pointer">
+                                                    <label for="images-input{{$photo->id}}" style="cursor: pointer">
                                                         <img src="{{Storage::url($photo->url)}}" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
                                                 <div class="media-body mt-75 ml-1">
-                                                    <input type="file" name="images[]" id="images-input1" data-photo-id="{{$photo->id}}" class="images-input" accept="image/*" style="display: none" />
+                                                    <input type="file" name="images[]" id="images-input{{$photo->id}}" data-photo-id="{{$photo->id}}" class="images-input" accept="image/*" style="display: none" />
                                                 </div>
                                                 <!--/ upload and reset button -->
                                             </div>
@@ -157,13 +188,13 @@
                                                 @for($i = 0; $i < $left; $i++)
                                                 <div class="media">
                                                     <a href="javascript:void(0);" class="mr-25">
-                                                        <label for="images-input2" style="cursor: pointer">
+                                                        <label for="images-input{{$i}}" style="cursor: pointer">
                                                             <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                         </label>
                                                     </a>
                                                     <!-- upload and reset button -->
                                                     <div class="media-body mt-75 ml-1">
-                                                        <input type="file" name="images[]" id="images-input2" class="images-input" accept="image/*" style="display: none" />
+                                                        <input type="file" name="images[]" id="images-input{{$i}}" class="images-input" accept="image/*" style="display: none" />
                                                     </div>
                                                     <!--/ upload and reset button -->
                                                 </div>
@@ -213,20 +244,15 @@
                     cache: false,
                     processData: false,
                     beforeSend: function() {
-                        $(this).find('button[type=submit]').prop('disabled', true);
+                        form.find('button[type=submit]').prop('disabled', true);
                     },
                     success: function(resp) {
-                        $(this).find('button[type=submit]').prop('disabled', false);
+                        form.find('button[type=submit]').prop('disabled', false);
                         if (resp.success) {
                             Swal.fire({
                                 title: 'Success!',
                                 text: resp.msg,
                                 icon: 'success',
-                                confirmButtonText: 'Services List',
-                                customClass: {
-                                    confirmButton: 'btn btn-primary',
-                                },
-                                buttonsStyling: false
                             }).then(function(result) {
                                 location.reload();
                             });

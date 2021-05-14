@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
 use App\Http\Resources\Campaigns as ResourceCampaign;
@@ -14,6 +17,8 @@ use App\Models\Photo;
 use App\Models\Tag;
 use App\Helpers\System;
 use DataTables;
+
+use Image;
 class CampaignsController extends Controller
 {
     /**
@@ -24,6 +29,7 @@ class CampaignsController extends Controller
     public function index()
     {
         $data['title'] = 'Campaigns';
+        
         return view('admin.contents.campaigns.index', $data);
     }
 
@@ -61,6 +67,7 @@ class CampaignsController extends Controller
      */
     public function store(StoreCampaign $request)
     {
+        $jobseeker = User::find($request->jobseeker_id);
         $campaign = Campaign::create([
             'user_id' => $request->jobseeker_id,
             'title' => $request->title,
@@ -72,8 +79,16 @@ class CampaignsController extends Controller
         if($request->hasFile('thumbnail')){
             $image = $request->file('thumbnail');
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
+            
+            $destinationPath = storage_path('app/public/photos');
 
-            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 666, true);
+            }
+
+            $img = Image::make($image->path());
+            $img->resize(350, 350)->save($destinationPath."/".$fileName);
+
             $photo = new Photo();
             $photo ->filename =  $fileName;
             $photo ->url = 'public/photos/'.$fileName;
@@ -82,11 +97,20 @@ class CampaignsController extends Controller
             $campaign->thumbnail_id = $photo->id;
             $campaign->save();
         }
-        
+
         if($request->file('images',[])){
             foreach($request->file('images',[]) as $image){
-                $fileName   = time() . '.' . $image->getClientOriginalExtension();
-                $upload = $image->storeAs('/photos',$fileName,'public');
+                $fileName   = Str::random(3).time() . '.' . $image->getClientOriginalExtension();
+
+                $destinationPath = storage_path('app/public/photos');
+
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 666, true);
+                }
+    
+                $img = Image::make($image->path());
+                $img->resize(400, 350)->save($destinationPath."/".$fileName);
+
                 $photo = new Photo();
                 $photo ->filename =  $fileName;
                 $photo ->url = 'public/photos/'.$fileName;
@@ -110,6 +134,10 @@ class CampaignsController extends Controller
                 $campaign->tags()->attach($tagStore->id);
             }
         }
+
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.campaign-mail', [
+            'subject' => 'Epondo Campaign'
+        ]));
 
         return response()->json(['success' => true,'msg' => trans('admin.campaign.create.success')]);
     }
@@ -208,6 +236,31 @@ class CampaignsController extends Controller
         return response()->json(['success' => true,'msg' => trans('admin.campaign.update.success')]);
     }
 
+    public function updatephotos(Request $request){
+        $campaign = Campaign::findOrFail($request->id);
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $upload = $request->file('image')->storeAs('/photos',$fileName,'public');
+            if($request->has('photo_id')){
+                $photo = $campaign->photos()->where('photo_id', $request->photo_id)->first();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+            }else{
+                $photo = new Photo();
+                $photo ->filename =  $fileName;
+                $photo ->url = 'public/photos/'.$fileName;
+                $photo ->save();
+
+                $campaign->photos()->attach($photo->id);
+            }
+        }
+
+        return response()->json(['success' => true, 'msg' => 'Photos Updated']);
+    }
+        
     /**
      * Remove the specified resource from storage.
      *

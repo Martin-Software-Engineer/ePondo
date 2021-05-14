@@ -12,7 +12,7 @@ class Service extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['user_id','title','description', 'price', 'duration', 'location'];
+    protected $fillable = ['user_id','title','description', 'price', 'duration_hours', 'duration_minutes', 'location'];
     protected $appends = ['thumbnail', 'thumbnail_url'];
     
     public function jobseeker(){

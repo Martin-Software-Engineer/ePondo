@@ -14,6 +14,17 @@ class Service extends JsonResource
      */
     public function toArray($request)
     {
+        $duration = '';
+        if($this->duration_hours > 1){
+            $duration = $this->duration_hours.' Hours';
+        }else{
+            $duration = $this->duration_hours.' Hour';
+        }
+
+        if($this->duration_minutes > 1){
+            $duration = $duration.' '.$this->duration_minutes.' Minutes';
+        }
+        
         return [
             'id' => $this->id,
             'service_id' => System::GenerateFormattedId('S', $this->id),
@@ -21,7 +32,7 @@ class Service extends JsonResource
             'jobseeker_id' => System::GenerateFormattedId('J', $this->jobseeker->id),
             'title' => $this->title,
             'categories' => $this->categories,
-            'duration' => $this->duration
+            'duration' => $duration
         ];
     }
 }

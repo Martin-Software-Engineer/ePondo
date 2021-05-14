@@ -76,7 +76,15 @@
                                             <label for="target-amount">Target Amount</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="number" name="target_amount" step=".01" id="target-amount" class="form-control">
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">₱</span>
+                                                </div>
+                                                <input type="number" name="target_amount" step=".01" id="target-amount" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -231,10 +239,10 @@
                     cache: false,
                     processData: false,
                     beforeSend: function() {
-                        $(this).find('button[type=submit]').prop('disabled', true);
+                        form.find('button[type=submit]').prop('disabled', true);
                     },
                     success: function(resp) {
-                        $(this).find('button[type=submit]').prop('disabled', false);
+                        form.find('button[type=submit]').prop('disabled', false);
                         if (resp.success) {
                             Swal.fire({
                                 title: 'Success!',
