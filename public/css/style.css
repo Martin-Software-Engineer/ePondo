@@ -224,6 +224,30 @@ button {
     padding-bottom: 100px;
 }
 
+.layout_padding_campaigns_carousel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #f7f7f7;
+}
+
+.layout_padding_services_carousel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #f7f7f7;
+}
+
+.layout_padding_quote {
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
+    background-color: #f7f7f7;
+}
+
+.layout_padding_footernav {
+    padding-top: 40px;
+    padding-bottom: 10px;
+    background-color: #ffffff;
+}
+
 
 .padding_0 {
     padding: 0px;
@@ -231,29 +255,22 @@ button {
 
 
 /* header section start */
-
 .header_section {
     width: 100%;
-    float: left;
-    position: relative;
+    /* float: left; */
+    position: fixed;
     z-index: 1;
 }
 
-/* .navbar-sticky-top
-{
-    position: fixed;
-    z-index: 1;
-    opacity:1;
+.navi {
     width: 100%;
-    float: left;
-    position: relative;
-} */
+}
 
 .navbar {
     width: 100%;
     position: fixed;
     /* opacity:50%; */
-    padding: 0px 25px 0px 25px;
+    padding: 0px 10px 0px 10px;
 }
 
 .navbar-brand {
@@ -319,14 +336,15 @@ button.donate_btn {
     margin: 0 10px;
 }
 
-.register_btn,
+/* .register_btn,
 .account_btn {
     border: 1px solid #f64646;
-}
+} */
 
 .bg-light {
     background-color: white !important;
-    width: 100%;
+    border-bottom: 1px solid rgb(235, 228, 228);
+    
 }
 
 
@@ -545,23 +563,31 @@ button.donate_btn {
 
 .fundraise_section_main {
     width: 80%;
-    margin: 0 auto;
+    margin: 0px auto 30px auto;
     text-align: center;
 }
 
 .fundraise_section {
-    width: 100%;
+    /* width: 100%; */
     text-align: center;
-    background: white;
+    background-color: #ffffff;;
+}
+
+.fundraise_img {
+    width: 100%;
+    float: left;
+    padding-bottom: 10px;
 }
 
 .box_main {
     width: 100%;
+    /* background-color: #154377; */
     background-color: #120a78;
     /* clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0); */
-    clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
+    /* clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0); */
     height: auto;
-    padding: 30px 20px 70px 20px;
+    /* padding: 30px 20px 70px 20px; */
+    padding: 20px;
 }
 
 .icon_1 {
@@ -573,16 +599,25 @@ button.donate_btn {
 .volunteer_text {
     width: 100%;
     float: left;
-    font-size: 26px;
+    font-size: 16px;
     color: #fff;
     font-weight: bold;
-    padding-top: 20px;
+    /* padding-top: 20px; */
+}
+
+.footernav_heading_text {
+    width: 100%;
+    float: left;
+    font-size: 16px;
+    color: #120a78;
+    font-weight: bold;
+    /* padding-top: 20px; */
 }
 
 .lorem_text {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
-    font-size: 16px;
+    font-size: 12px;
     color: #fff;
     text-align: center;
 }
@@ -592,24 +627,30 @@ button.donate_btn {
     margin: 0 auto;
     text-align: center;
     margin-top: 20px;
+    
 }
 
 .join_bt a {
     width: 100%;
-    font-size: 16px;
+    font-size: 12px;
     color: #ffffff;
     text-align: center;
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff; */
     padding: 5px 15px;
+    background-color: #f64646;
 }
 
-.box_main:hover {
+.join_bt a:hover{
+    background-color: #63f646;
+}
+
+/* .box_main:hover {
     background-color: #f64646;
 }
 
 .box_main.active {
     background-color: #f64646;
-}
+} */
 
 
 /* banner section end */
@@ -643,7 +684,7 @@ button.donate_btn {
 .about_img {
     width: 100%;
     float: left;
-    padding-bottom: 50px;
+    /* padding-bottom: 50px; */
 }
 
 .about_taital {
@@ -823,6 +864,15 @@ button.donate_btn {
     font-family: 'Open Sans', sans-serif;
 }
 
+.news_taital_quote {
+    float: left;
+    font-size: 30px;
+    color: #1d1d1d;
+    /* text-transform: uppercase; */
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+
 .news_text {
     width: 100%;
     float: left;
@@ -935,10 +985,18 @@ button.donate_btn {
     padding-bottom: 90px;
 }
 
-.events_section_2 {
+.section_4_quote {
     width: 100%;
     float: left;
-    padding-top: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.section_5_footernav {
+    width: 100%;
+    float:left;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
 .give_taital_1 {

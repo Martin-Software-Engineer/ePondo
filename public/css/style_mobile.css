@@ -926,7 +926,7 @@ button.donate_btn {
 .events_section {
     width: 100%;
     float: left;
-    padding-bottom: 90px;
+    padding-bottom: 0px;
 }
 
 .events_section_2 {

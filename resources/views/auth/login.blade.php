@@ -3,7 +3,6 @@
 @section('content')
 <h2 class="mb-1 text-center">Welcome!</h2>
 <p class="card-text mb-2 text-center">Sign in to ePondo</p>
-
 <form class="auth-login-form mt-2" action="{{route('login')}}" method="POST">
     @csrf
     <div class="form-group">
@@ -41,6 +40,7 @@
             <label class="custom-control-label" for="remember-me"> Remember Me </label>
         </div>
     </div>
+    <!-- <button type="submit" class="btn btn-primary btn-block" tabindex="4">Sign in</button> -->
     <button type="submit" class="btn btn-primary btn-block" tabindex="4">Sign in</button>
 </form>
 <p class="text-center mt-2">

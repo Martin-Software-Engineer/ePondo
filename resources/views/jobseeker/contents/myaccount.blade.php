@@ -10,7 +10,7 @@
 <section class="app-user-edit">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Account</h4>
+            <h4 class="card-title">My Account</h4>
         </div>
         <div class="card-body">
             <form class="form-validate" id="form-account" action="{{route('jobseeker.myaccount.update')}}" method="POST">
@@ -21,20 +21,20 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
-                                    <input id="firstname" type="text" class="form-control" name="firstname" placeholder="Your First Name" value="{{$firstname}}" required/>
+                                    <input id="firstname" type="text" class="form-control" name="firstname" placeholder="Your First Name" value="{{$firstname}}" disabled/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lastname">Last Name</label>
-                                    <input id="lastname" type="text" class="form-control" name="lastname" placeholder="Your Last Name" value="{{$lastname}}" required/>
+                                    <input id="lastname" type="text" class="form-control" name="lastname" placeholder="Your Last Name" value="{{$lastname}}" disabled/>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="phonenumber">Phone Number</label>
+                                    <label for="phonenumber">Contact No.</label>
                                     <input id="phonenumber" type="text" class="form-control" name="phone" value="{{$phone}}">
                                 </div>
                             </div>
@@ -46,15 +46,18 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address">Address</label>
+                                    <label style="font-size:11px;;" class="ml-1">(Unit No.,House/Building/Street No.,Street Name,Barangay/Subdivision,City/Minicipality,Province)</label>
                                     <input id="address" type="text" class="form-control" name="address" value="{{$address}}"/>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="postcode">Postcode</label>
+                                    <label for="postcode">ZIP Code/Post Code</label>
                                     <input id="postcode" type="text" class="form-control" name="zipcode" value="{{$zipcode}}"/>
                                 </div>
                             </div>
@@ -76,7 +79,7 @@
                                     <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
                                     <input type="file" name="avatar" id="account-upload" hidden accept="image/*" />
                                     <button type="button" class="btn btn-sm btn-outline-secondary mb-75">Reset</button>
-                                    <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>
+                                    <p style="font-size:12px;">Allowed JPG, GIF or PNG. Max size of 800kb</p>
                                 </div>
                                 <!--/ upload and reset button -->
                             </div>
