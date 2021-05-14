@@ -38,6 +38,7 @@
                     @else 
                         <div class="d-flex justify-content-left align-items-center">
                             <div class="avatar colorClass">
+                            
                                 <!-- <span class="avatar-content avatar-header"></span> -->
                                 <!-- strtoupper(System::get_avatar(auth()->user()->username)) -->
                                 <!--  -->

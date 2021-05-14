@@ -52,6 +52,8 @@ class CampaignsController extends Controller
         return view('jobseeker.contents.campaigns.create', $data);
     }
 
+    
+
     /**
      * Store a newly created resource in storage.
      *
