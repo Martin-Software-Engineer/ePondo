@@ -38,7 +38,9 @@
                     @else 
                         <div class="d-flex justify-content-left align-items-center">
                             <div class="avatar colorClass">
+
                                 <!-- <span class="avatar-content avatar-menu">{{strtoupper(substr(auth()->user()->username, 0,2))}}</span> -->
+
                                 <!-- <span class="avatar-content avatar-header"></span> -->
                                 <!-- strtoupper(System::get_avatar(auth()->user()->username)) -->
                             </div>

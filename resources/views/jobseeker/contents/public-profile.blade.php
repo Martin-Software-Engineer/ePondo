@@ -317,7 +317,7 @@
                     <div class="col-12">
                         <h4 class="mb-1">
                             <i data-feather="users" class="font-medium-4 mr-25"></i>
-                            <span class="align-center">Dependents</span><span class="align-middle ml-1" style="font-size: 11px;">(Individuals you financially support)</span>
+                            <span class="align-center">Dependents</span><span class="align-middle ml-1" style="font-size: 11px;">(Individuals that you financially support)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">
