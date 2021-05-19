@@ -21,7 +21,7 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('jobseeker.campaigns.store')}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('jobseeker.campaigns.store')}}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-8">
