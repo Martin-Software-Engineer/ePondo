@@ -29,15 +29,20 @@
     @forelse($campaigns as $campaign)
     <div class="col-md-4 col-lg-3">
         <div class="card text-center">
-            <img class="card-img-top" src="{{Storage::url(@$campaign->thumbnail->url)}}" alt="Card image cap" />
+            <!-- <div style="overflow: hidden;">
+            <img style="width:300px; height:300px;margin: -75px 0 0 -100px;" class="card-img-top" src="{{Storage::url(@$campaign->thumbnail->url)}}" alt="Card image cap" />
+            </div> -->
+
+            <img style="width: 100%; height: 200px; object-fit: cover;" src="{{Storage::url(@$campaign->thumbnail->url)}}" alt="Card image cap" />
+
+            <!-- <img class="card-img-top" src="{{Storage::url(@$campaign->thumbnail->url)}}" alt="Card image cap" /> -->
             <div class="card-body">
-                <h4 class="card-title">{{$campaign->title}}</h4>
-                <p class="card-text">
-                    {{$campaign->description}}
-                </p>
+                <h4 class="card-title overflow-ellipsis">{{$campaign->title}}</h4>
+                <p class="card-text overflow-ellipsis">     {{$campaign->description}}     </p>
+                <!-- <p class="card-text">     {{$campaign->description}}     </p> -->
             </div>
             <div class="card-footer">
-                <div class="progress-wrapper mb-2">
+                <div class="progress-wrapper" >
                     <div id="example-caption-2">Php {{$campaign->progress->current_value}} Raised / Php {{$campaign->progress->target_value}}</div>
                     <div class="progress progress-bar-primary">
                         <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" aria-describedby="example-caption-2"></div>
