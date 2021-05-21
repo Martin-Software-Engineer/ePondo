@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css') }}">
 @endsection
 @section('stylesheets')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <style>
         .card-empty{
             background-size: cover;
@@ -30,10 +31,8 @@
         <div class="card text-center">
             <img class="card-img-top" src="{{Storage::url(@$service->thumbnail->url)}}" alt="Card image cap" />
             <div class="card-body">
-                <h4 class="card-title">{{$service->title}}</h4>
-                <p class="card-text">
-                    {{$service->description}}
-                </p>
+                <h1 class="card-title overflow-ellipsis">{{$service->title}}</h1>
+                <p class="card-text ipsum_text_1">{{$service->description}}</p>
             </div>
             <div class="card-footer">
                 <div class="progress-wrapper mb-2">

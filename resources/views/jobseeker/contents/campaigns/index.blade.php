@@ -37,8 +37,8 @@
 
             <!-- <img class="card-img-top" src="{{Storage::url(@$campaign->thumbnail->url)}}" alt="Card image cap" /> -->
             <div class="card-body">
-                <h4 class="card-title overflow-ellipsis">{{$campaign->title}}</h4>
-                <p class="card-text overflow-ellipsis">     {{$campaign->description}}     </p>
+                <h1 class="card-title overflow-ellipsis">{{$campaign->title}}</h1>
+                <p class="card-text ipsum_text_1">{{$campaign->description}}</p>
                 <!-- <p class="card-text">     {{$campaign->description}}     </p> -->
             </div>
             <div class="card-footer">

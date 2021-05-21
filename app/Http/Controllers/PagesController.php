@@ -13,8 +13,8 @@ use App\Models\ServiceRating;
 class PagesController extends Controller
 {
     public function index(){
-        $data['campaigns'] = Campaign::take(12)->get();
-        $data['services'] = Service::take(12)->get();
+        $data['campaigns'] = Campaign::take(3)->get();
+        $data['services'] = Service::take(3)->get();
         return view('landing.contents.index', $data);
     }
 
