@@ -81,8 +81,8 @@ h6 {
 h1 {
     font-size: 24px;
     /* BOTH of the following are required for text-overflow */
-    white-space: nowrap;
-    overflow: hidden;
+    /* white-space: nowrap;
+    overflow: hidden; */
 }
 
 h2 {
@@ -161,6 +161,8 @@ p {
 
 .overflow-ellipsis {
     text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
 a {
@@ -943,10 +945,26 @@ button.donate_btn {
 
 .goal_text {
     color: #f64646;
-    padding-left: 20px;
+    width: 100%;
+    float: left;
+    font-size: 20px;
+    /* color: #120a78; */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding-top: 10px;
+    
 }
 
 .donate_btn_main {
+    width: 100%;
+    display: flex;
+    padding: 10px 0 20px 0;
+    align-self: center;
+}
+
+.service_btn_main {
     width: 100%;
     display: flex;
     padding: 10px 0 20px 0;
@@ -982,6 +1000,23 @@ button.donate_btn {
 }
 
 .donate_btn_1 a {
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #1ea835;
+    border: 2px solid #ffffff;
+    padding: 8px;
+    text-transform: uppercase;
+}
+
+.service_btn_1 {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.service_btn_1 a {
     width: 150px;
     text-align: center;
     font-size: 14px;
@@ -1042,10 +1077,12 @@ button.donate_btn {
     color: #1b1b1b;
     padding: 0 20px 0 20px;
 }
-.give_ipsum_1{
-    background-color: transparent;
+
+.progress_bar{
     margin: 0 20px 0 20px;
 }
+
+
 
 .raised_text_1 {
     width: 100%;
@@ -1055,6 +1092,20 @@ button.donate_btn {
     font-weight: bold;
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.service_price {
+    width: 100%;
+    float: left;
+    font-size: 20px;
+    color: #120a78;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    /* text-align: center; */
+    padding: 10px 0 0 20px;
 }
 
 .img_7 {
@@ -1101,7 +1152,7 @@ button.donate_btn {
 /* events section end */
 
 
-/* donate section start */
+/*  section start */
 
 .donate_section {
     width: 100%;
