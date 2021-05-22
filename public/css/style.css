@@ -79,7 +79,10 @@ h6 {
 }
 
 h1 {
-    font-size: 24px
+    font-size: 24px;
+    /* BOTH of the following are required for text-overflow */
+    /* white-space: nowrap;
+    overflow: hidden; */
 }
 
 h2 {
@@ -91,7 +94,10 @@ h3 {
 }
 
 h4 {
-    font-size: 16px
+    font-size: 16px;
+    /* BOTH of the following are required for text-overflow */
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 h5 {
@@ -118,7 +124,8 @@ h5 a,
 h6 a {
     color: #212121;
     text-decoration: none!important;
-    opacity: 1
+    opacity: 1;
+
 }
 
 button:focus {
@@ -134,11 +141,29 @@ ol {
 }
 
 p {
-    margin: 20px;
+    /* margin: 20px; */
     font-weight: 300;
     font-size: 15px;
-    line-height: 24px;
+    /* line-height: 24px; */
+
+    /* BOTH of the following are required for text-overflow */
+    /* white-space: nowrap;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    max-width: 200px; */
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
+
+.overflow-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 
 a {
     color: #222222;
@@ -619,7 +644,7 @@ button.donate_btn {
     margin: 0 auto;
     font-size: 12px;
     color: #fff;
-    text-align: center;
+    
 }
 
 .join_bt {
@@ -894,7 +919,7 @@ button.donate_btn {
     font-size: 26px;
     color: #1d1d1d;
     font-weight: bold;
-    padding-top: 60px;
+    /* padding-top: 60px; */
     text-transform: uppercase;
 }
 
@@ -904,7 +929,7 @@ button.donate_btn {
     font-size: 16px;
     margin-left: 0px;
     color: #1b1b1b;
-    padding-top: 20px;
+    padding-top: 2px;
 }
 
 .raised_text {
@@ -920,13 +945,30 @@ button.donate_btn {
 
 .goal_text {
     color: #f64646;
-    padding-left: 20px;
+    width: 100%;
+    float: left;
+    font-size: 20px;
+    /* color: #120a78; */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding-top: 10px;
+    
 }
 
 .donate_btn_main {
-    width: 35%;
+    width: 100%;
     display: flex;
-    padding-top: 20px;
+    padding: 10px 0 20px 0;
+    align-self: center;
+}
+
+.service_btn_main {
+    width: 100%;
+    display: flex;
+    padding: 10px 0 20px 0;
+    align-self: center;
 }
 
 .donate_btn {
@@ -958,6 +1000,23 @@ button.donate_btn {
 }
 
 .donate_btn_1 a {
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #1ea835;
+    border: 2px solid #ffffff;
+    padding: 8px;
+    text-transform: uppercase;
+}
+
+.service_btn_1 {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.service_btn_1 a {
     width: 150px;
     text-align: center;
     font-size: 14px;
@@ -1004,8 +1063,10 @@ button.donate_btn {
     float: left;
     color: #1d1d1d;
     font-weight: bold;
-    padding-top: 10px;
-    text-transform: uppercase;
+    /* padding-top: 10px; */
+    padding: 10px 20px 0 20px;
+    text-align: left;
+    /* text-transform: uppercase; */
 }
 
 .ipsum_text_1 {
@@ -1014,7 +1075,14 @@ button.donate_btn {
     font-size: 16px;
     margin-left: 0px;
     color: #1b1b1b;
+    padding: 0 20px 0 20px;
 }
+
+.progress_bar{
+    margin: 0 20px 0 20px;
+}
+
+
 
 .raised_text_1 {
     width: 100%;
@@ -1024,12 +1092,28 @@ button.donate_btn {
     font-weight: bold;
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.service_price {
+    width: 100%;
+    float: left;
+    font-size: 20px;
+    color: #120a78;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    /* text-align: center; */
+    padding: 10px 0 0 20px;
 }
 
 .img_7 {
     width: 100%;
     float: left;
     position: relative;
+
+    width: 100%; height: 200px; object-fit: cover;
 }
 
 .date_bt {
@@ -1068,7 +1152,7 @@ button.donate_btn {
 /* events section end */
 
 
-/* donate section start */
+/*  section start */
 
 .donate_section {
     width: 100%;
@@ -1108,6 +1192,11 @@ button.donate_btn {
 .client_img {
     width: 100%;
 }
+
+/* .carddd {
+    border: 1px solid;
+    box-shadow:  0.5rem 1.5rem 0 #e4dede;
+} */
 
 .client_name_text {
     width: 100%;

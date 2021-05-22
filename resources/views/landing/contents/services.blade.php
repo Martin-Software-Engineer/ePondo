@@ -49,17 +49,19 @@
        <div class="row">
             @forelse($services as $service)
                 <div class="col-md-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="img_7"><a href="{{route('service_view', $service->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="give_taital_1"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h3>
-                            <p class="ipsum_text_1">{{$service->description}}</p>
-                            <h5 class="raised_text_1">Price: ₱{{$service->price}} <br><span class="text-danger">Duration: {{$service->duration}}/Hours</span></h5>
-                            <div class="donate_btn_main">
-                                <div class="donate_btn_1"><a href="{{route('service_view', $service->id)}}" class="avail_btn" data-service-id="{{$service->id}}">Avail</a></div> 
+                    <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="img_7"><a href="{{route('service_view', $service->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="give_taital_1 overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h3>
+                                <p class="ipsum_text_1">{{$service->description}}</p>
+                                <h5 class="raised_text_1">Price: ₱{{$service->price}} <br><span class="text-danger">Duration: {{$service->duration}}/Hours</span></h5>
+                                <div class="service_btn_main">
+                                    <div class="service_btn_1"><a href="{{route('service_view', $service->id)}}" class="avail_btn" data-service-id="{{$service->id}}">Avail</a></div> 
+                                </div>
                             </div>
                         </div>
                     </div>

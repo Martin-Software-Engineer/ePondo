@@ -21,7 +21,7 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('jobseeker.campaigns.store')}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('jobseeker.campaigns.store')}}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-8">
@@ -95,7 +95,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <input name="tags" id="tagsinput" class="tagsinput" value="" />
-                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
+                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add a comma or press enter to separate tags</span>        
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
+                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Click on the photo to upload or edit </span>
                                 </div>
                             </div>
                         </div>

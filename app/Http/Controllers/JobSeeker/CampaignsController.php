@@ -46,11 +46,14 @@ class CampaignsController extends Controller
      */
     public function create()
     {
+
         $data['title'] = 'Create Campaign';
         $data['categories'] = CampaignCategory::all();
         
         return view('jobseeker.contents.campaigns.create', $data);
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -60,6 +63,7 @@ class CampaignsController extends Controller
      */
     public function store(StoreCampaign $request)
     {
+       
         $campaign = Campaign::create([
             'user_id' => auth()->user()->id,
             'title' => $request->title,

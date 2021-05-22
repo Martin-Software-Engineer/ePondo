@@ -68,7 +68,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <!-- <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="main_source_income">Main source of income</label>
                             <select name="main_source_income" id="main_source_income" class="form-control select2">
@@ -118,12 +118,66 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-12">
                         <h4 class="mb-1">
                             <i data-feather="heart" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Living State</span>
                         </h4>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="main_source_income">Main source of income</label>
+                            <select name="main_source_income" id="main_source_income" class="form-control select2">
+                                <option value="job" @if($info->main_source_income=='job') selected @endif>job</option>
+                                <option value="part time jobs" @if($info->main_source_income=='part time jobs') selected @endif>part time jobs </option>
+                                <option value="donations" @if($info->main_source_income=='donations') selected @endif>donations</option> 
+                                <option value="family" @if($info->main_source_income=='family') selected @endif>family</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="extra_source_income">Other Source of Income</label>
+                            <select name="extra_source_income" id="extra_source_income" class="form-control select2">
+                                <option value="none" @if($info->main_source_income=='none') selected @endif>none</option>
+                                <option value="part time jobs" @if($info->extra_source_income=='part time jobs') selected @endif>part time jobs </option>
+                                <option value="donations" @if($info->extra_source_income=='donations') selected @endif>donations</option> 
+                                <option value="family" @if($info->extra_source_income=='family') selected @endif>family</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="daily_income">Average Daily Income</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">₱</span>
+                                </div>
+                                <input type="number" name="daily_income" step=".01" id="daily_income" class="form-control" value="{{$info->daily_income}}" placeholder="00" aria-label="Amount (to the nearest peso)">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="daily_expenses">Average Daily Expenses</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">₱</span>
+                                </div>
+                                <input type="number" name="daily_expenses" step=".01" id="daily_expenses" class="form-control" value="{{$info->daily_expenses}}" placeholder="00" aria-label="Amount (to the nearest peso)">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <hr>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
@@ -140,7 +194,7 @@
                     </div>
                     <div class="col-lg-4 col-md-9">
                         <div class="form-group">
-                            <label for="daily_meals">How many meals do you or your family get to eat in a day?</label>
+                            <label for="daily_meals">How many meals does your family eat in a day?</label>
                             <select name="daily_meals" id="daily_meals" class="form-control select2">
                                 <option value="1" @if($info->daily_meals == 1) selected @endif>1</option>
                                 <option value="2" @if($info->daily_meals == 2) selected @endif>2</option>
@@ -263,7 +317,7 @@
                     <div class="col-12">
                         <h4 class="mb-1">
                             <i data-feather="users" class="font-medium-4 mr-25"></i>
-                            <span class="align-center">Dependents</span><span class="align-middle ml-1" style="font-size: 11px;">(Individuals you financially support)</span>
+                            <span class="align-center">Dependents</span><span class="align-middle ml-1" style="font-size: 11px;">(Individuals that you financially support)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">

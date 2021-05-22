@@ -161,6 +161,20 @@ class ServicesController extends Controller
         $service->location = $request->location;
         $service->save();
         
+        if($request->hasFile('thumbnail')){
+            $image = $request->file('thumbnail');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            $photo = new Photo();
+            $photo ->filename =  $fileName;
+            $photo ->url = 'public/photos/'.$fileName;
+            $photo ->save();
+
+            $service->thumbnail_id = $photo->id;
+            $service->save();
+        }
+        
         if($request->get('category', [])){
             $service->categories()->sync($request->get('category', []));
         }else{
