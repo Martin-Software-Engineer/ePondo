@@ -16,4 +16,8 @@ class Contact extends Model
     public function info(){
         return $this->belongsTo(User::class,'contact_id', 'id');
     }
+
+    public function messages(){
+        return $this->hasMany(Message::class,'chat_id','id')->with('user');
+    }
 }

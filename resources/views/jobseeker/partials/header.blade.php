@@ -38,9 +38,8 @@
                     @else 
                         <div class="d-flex justify-content-left align-items-center">
                             <div class="avatar colorClass">
-                                <!-- <span class="avatar-content avatar-header"></span> -->
-                                <!-- strtoupper(System::get_avatar(auth()->user()->username)) -->
-                                <!--  -->
+                                <span class="avatar-content avatar-header">{{strtoupper(substr(auth()->user()->username, 0,2))}}</span> 
+                               
                             </div>
                             <div class="d-flex flex-column">
                                 <span class="emp_name text-truncate font-weight-bold"></span>

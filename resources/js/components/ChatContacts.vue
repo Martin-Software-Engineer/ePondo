@@ -1,8 +1,19 @@
 <template>
     <ul class="chat-users-list contact-list media-list">
-        <li v-bind:key="index" v-for="(index, contact) in contacts">a
-            <span class="avatar"><img v-bind:src="contact.info.avatar" height="42" width="42" alt="Generic placeholder image" />
+        <li v-for="(contact, index) in contacts" :key="index" v-on:click="selectUser(contact.info.id)">
+            <span class="avatar" v-if="contact.info.avatar != ''">
+                <img v-bind:src="contact.info.avatar" height="42" width="42" />
             </span>
+            <div class="d-flex justify-content-left align-items-center" v-else>
+                <div class="avatar colorClass">
+                    <span class="avatar-content avatar-header">{{contact.info.username | toUpper | subStr}}</span> 
+                    
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="emp_name text-truncate font-weight-bold"></span>
+                    <small class="emp_post text-truncate text-muted"></small>
+                </div>
+            </div>
             <div class="chat-info">
                 <h5 class="mb-0">{{contact.info.username}}</h5>
                 <p class="card-text text-truncate">
@@ -11,7 +22,7 @@
             </div>
         </li>
 
-        <li class="no-results" v-if="contacts.length === 0">
+        <li v-if="contacts.length === 0">
             <h6 class="mb-0">No Contacts Found</h6>
         </li>
     </ul>
@@ -19,6 +30,40 @@
 
 <script>
   export default {
-    props: ['contacts']
+    props: ['contacts', 'me', 'convo_id'],
+    data(){
+        return {
+            currentChatId: '',
+        }
+    },
+    created(){
+        if(this.convo_id != null){
+            this.updateConversationId(this.convo_id);
+        }
+    },
+    methods: {
+        selectUser(id){
+            axios.post('/getConversation', {
+                users: [id, this.me.id]
+            }).then(response => {
+                window.location.href = '/chats/?id='+response.data.id;
+            });
+        },
+        async updateConversationId(id){
+            //let user = await axios.get('/get-chat-user/'+id);
+            let messages = await axios.get('/get-messages/'+id);
+            this.$emit('update-messages', messages.data);
+            //this.$emit('select-user', user.data);
+            this.$emit('update-chatid', id);
+        }
+    },
+    filters: {
+        subStr: function(string) {
+    	    return string.substring(0,2);
+        },
+        toUpper: function(string){
+            return string.toUpperCase();
+        }
+    }
   };
 </script>

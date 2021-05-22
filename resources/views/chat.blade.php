@@ -28,7 +28,7 @@
             <!-- Sidebar Users start -->
             <div id="users-list" class="chat-user-list-wrapper list-group">
                 <h4 class="chat-list-title">Contacts</h4>
-                <chat-contacts :contacts="contacts"></chat-contacts>
+                <chat-contacts :contacts="contacts" :me="{{auth()->user()}}" :convo_id="{{$conversation_id}}" v-on:select-user="updateSelectedUser($event)" v-on:update-chatid="updateChatId($event)" v-on:update-messages="updateMessages($event)"></chat-contacts>
             </div>
             <!-- Sidebar Users end -->
         </div>
@@ -45,7 +45,7 @@
             <!-- Main chat area -->
             <section class="chat-app-window">
                 <!-- To load Conversation -->
-                <div class="start-chat-area">
+                <div class="start-chat-area" v-if="!isChatActive">
                     <div class="mb-1 start-chat-icon">
                         <i data-feather="message-square"></i>
                     </div>
@@ -54,48 +54,20 @@
                 <!--/ To load Conversation -->
 
                 <!-- Active Chat -->
-                <div class="active-chat d-none">
+                <div class="active-chat" v-if="isChatActive">
                     <!-- Chat Header -->
                     <div class="chat-navbar">
-                        <header class="chat-header">
-                            <div class="d-flex align-items-center">
-                                <div class="sidebar-toggle d-block d-lg-none mr-1">
-                                    <i data-feather="menu" class="font-medium-5"></i>
-                                </div>
-                                <div class="avatar avatar-border user-profile-toggle m-0 mr-1">
-                                    <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" alt="avatar" height="36" width="36" />
-                                    <span class="avatar-status-busy"></span>
-                                </div>
-                                <h6 class="mb-0">Kristopher Candy</h6>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <i data-feather="phone-call" class="cursor-pointer d-sm-block d-none font-medium-2 mr-1"></i>
-                                <i data-feather="video" class="cursor-pointer d-sm-block d-none font-medium-2 mr-1"></i>
-                                <i data-feather="search" class="cursor-pointer d-sm-block d-none font-medium-2"></i>
-                                <div class="dropdown">
-                                    <button class="btn-icon btn btn-transparent hide-arrow btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i data-feather="more-vertical" id="chat-header-actions" class="font-medium-2"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="chat-header-actions">
-                                        <a class="dropdown-item" href="javascript:void(0);">View Contact</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Mute Notifications</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Block Contact</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Clear Chat</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Report</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </header>
+                        <chat-head :selected-user="selectedUser"></chat-head>
                     </div>
                     <!--/ Chat Header -->
 
                     <!-- User Chat messages -->
                     <div class="user-chats">
-                        <chat-messages :messages="messages"></chat-messages>
+                        <chat-messages :messages="messages" :me="{{auth()->user()}}"></chat-messages>
                     </div>
                     <!-- User Chat messages -->
 
-                    <chat-form v-on:messagesent="addMessage"></chat-form>
+                    <chat-form v-on:send-message="addMessage" :chatid="conversation_id"></chat-form>
                    
                 </div>
                 <!--/ Active Chat -->
@@ -107,6 +79,3 @@
 </div>
 @endsection
 
-@section('scripts')
-<script src="{{ asset('app-assets/js/scripts/pages/app-chat.js') }}"></script>
-@endsection

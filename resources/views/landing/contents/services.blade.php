@@ -51,11 +51,11 @@
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="img_7"><a href="{{route('service_view', $campaign->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>                        </div>
+                            <div class="img_7"><a href="{{route('service_view', $service->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="give_taital_1"><a href="{{route('service_view', $campaign->id)}}">{{$service->title}}</a></h3>
+                            <h3 class="give_taital_1"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h3>
                             <p class="ipsum_text_1">{{$service->description}}</p>
                             <h5 class="raised_text_1">Price: ₱{{$service->price}} <br><span class="text-danger">Duration: {{$service->duration}}/Hours</span></h5>
                             <div class="donate_btn_main">
