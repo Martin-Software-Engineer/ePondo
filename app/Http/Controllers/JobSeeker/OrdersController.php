@@ -35,6 +35,17 @@ class OrdersController extends Controller
         return view('jobseeker.contents.service-orders-view',$data);
     }
 
+    public function accept($id){
+        $order = Order::find($id);
+        $order->status = 2;
+        $order->save();
+
+        if($order)
+        return response()->json(['success' => true, 'msg' => 'Order Accepted']);
+
+
+    }
+
     public function deliver($id){
         $order = Order::find($id);
         $order->status = 5;

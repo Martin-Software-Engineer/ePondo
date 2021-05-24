@@ -30,7 +30,7 @@ class PagesController extends Controller
             });
         }
         
-        $data['campaigns'] = $campaigns->get();
+        $data['campaigns'] = $campaigns->paginate(12);
         $data['categories'] = CampaignCategory::all();
 
         //return $data;
@@ -70,7 +70,7 @@ class PagesController extends Controller
             });
         }
         
-        $data['services'] = $services->get();
+        $data['services'] = $services->paginate(12);
         $data['categories'] = ServiceCategory::all();
         return view('landing.contents.services', $data);
     }

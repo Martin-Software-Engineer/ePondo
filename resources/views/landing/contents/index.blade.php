@@ -87,7 +87,11 @@
                                 <p class="ipsum_text_1 ">{{$service->description}}</p>
                                 <div><p class="give_taital_1">Category</p></div>
                                 <div><p class="give_taital_1">{{$service->location}}</p></div>
-                                <div style="margin: 0 0 0 20px;"><img src="{{asset('app-assets/images/additional_pictures/star.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star.png')}}"></div>
+                                <div style="margin: 0 0 0 20px;">
+                                    @for($i = 0; $i < $service->ratings; $i++)
+                                        <img src="{{asset('app-assets/images/additional_pictures/star.png')}}">
+                                    @endfor
+                                </div>
                                 <h5 class="service_price">Price: ₱{{$service->price}} | {{$service->duration_hours}} Hours</h5>
                                 <div class="service_btn_main">
                                     <div class="service_btn_1"><a href="{{route('service_view', $service->id)}}">Avail</a></div>
