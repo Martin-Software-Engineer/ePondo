@@ -12,11 +12,13 @@
 
 <div class="events_section layout_padding_campaigns_carousel">
     <div class="container">
-       <div class="row">
-          <div class="col-sm-12 d-flex justify-content-start align-items-center">
-             <h1 class="news_taital">CAMPAIGNS</h1>
-             <a href="{{route('campaigns')}}" class="ml-2">Browse more</a>
-          </div>
+       <div class="row mt-2">
+            <div class="col-sm-6 d-flex justify-content-start align-items-center ">
+                <h1 class="news_taital">CAMPAIGNS</h1>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-end align-items-center">
+                <a href="{{route('campaigns')}}" >Browse more ></a>
+            </div>
        </div>
        <div class="row">
             @forelse($campaigns as $campaign)
@@ -35,22 +37,41 @@
                             <div class="col-md-12">
                                 <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a></h1>
                                 <p class="ipsum_text_1 ">{{$campaign->description}}</p>
-                                <div><p class="give_taital_1">Category</p></div>
+                                <div>
+                                    <p class="ipsum_text_1">Category</p>
+                                </div>
+                                <div>
+                                    <p class="ipsum_text_1">Target Date: {{date('M-d', strtotime($campaign->target_date))}}</p>
+                                </div>
                                 <div class="progress-wrapper progress_bar">
-                                    <div id="example-caption-2">Php {{$campaign->progress->current_value}} Raised / Php {{$campaign->progress->target_value}}</div>
+                                    <div id="example-caption-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6>Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                            </div>
+                                            <!-- <div class="col-6">Php {{$campaign->progress->target_value}} <br>Target</div> -->
+                                        </div>
+                                    </div>
                                     <div class="progress progress-bar-primary">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" aria-describedby="example-caption-2"></div>
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
+                                            aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" 
+                                            aria-describedby="example-caption-2">
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- <div><p class="give_taital_1">{{date('M-d', strtotime($campaign->target_date))}}</p></div> -->
                                 <!-- <h5 class="raised_text_1 give_ipsum_1">Raised: ₱{{$campaign->raised}} <span class="goal_text">Goal: ₱{{$campaign->target_amount}}</span></h5> -->
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col">
                                         <h5 class="raised_text_1">₱{{$campaign->progress->current_value}}<br>Raised</h5>
                                     </div>
                                     <div class="col">
                                         <h5 class="goal_text">₱{{$campaign->progress->target_value}}<br>Target</h5>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="donate_btn_main">
                                     <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
                                 </div>
@@ -61,18 +82,20 @@
                 </div>
             @empty 
             @endforelse
-        </div> 
+        </div>
     </div>
 </div>
 
 <div class="events_section layout_padding_services_carousel">
     <div class="container">
-       <div class="row">
-          <div class="col-sm-12 d-flex justify-content-start align-items-center">
-             <h1 class="news_taital">SERVICES</h1>
-             <a href="{{route('services')}}" class="ml-2">Browse more</a>
-          </div>
-        </div>
+       <div class="row mt-2">
+            <div class="col-sm-6 d-flex justify-content-start align-items-center ">
+                <h1 class="news_taital">SERVICES</h1>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-end align-items-center">
+                <a href="{{route('services')}}" class="ml-2">Browse more ></a>
+            </div>
+       </div>
        <div class="row">
             @forelse($services as $service)
                 <div class="col-md-4">
@@ -83,16 +106,21 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+                                
                                 <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('service_view', $campaign->id)}}">{{$service->title}}</a></h1>
+                                <div style="margin: 0 0 0 20px;"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"></div>
+                                <p class="ipsum_text_1 ">by: Jobseeker Name</p>
                                 <p class="ipsum_text_1 ">{{$service->description}}</p>
-                                <div><p class="give_taital_1">Category</p></div>
-                                <div><p class="give_taital_1">{{$service->location}}</p></div>
-                                <div style="margin: 0 0 0 20px;">
-                                    @for($i = 0; $i < $service->ratings; $i++)
-                                        <img src="{{asset('app-assets/images/additional_pictures/star.png')}}">
-                                    @endfor
+                                <div>
+                                    <p class="ipsum_text_1">Category</p>
                                 </div>
-                                <h5 class="service_price">Price: ₱{{$service->price}} | {{$service->duration_hours}} Hours</h5>
+                                <div>
+                                    <p class="ipsum_text_1">Location: {{$service->location}}</p>
+                                </div>
+                                <div>
+                                    <p class="ipsum_text_1">Duration: {{$service->duration_hours}} Hr/s</p>
+                                </div>
+                                <h5 class="service_price">₱{{$service->price}}</h5>
                                 <div class="service_btn_main">
                                     <div class="service_btn_1"><a href="{{route('service_view', $service->id)}}">Avail</a></div>
                                 </div>
@@ -220,5 +248,6 @@
 @section('scripts')
 <script src="{{asset('js/owl.carousel.js')}}"></script>
 <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>   
+
       
 @endsection
