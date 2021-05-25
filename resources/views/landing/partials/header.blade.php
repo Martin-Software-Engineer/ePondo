@@ -10,25 +10,28 @@
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                <li class="nav-item {{ Request::segment(1) === 'campaigns' ? 'active' : null }}">
-                  <a class="nav-link" href="{{route('campaigns')}}">CAMPAIGNS</a>
+                  <a class="nav-link" href="{{route('campaigns')}}">Campaigns</a>
                </li>
                <li class="nav-item {{ Request::segment(1) === 'services' ? 'active' : null }}">
-                  <a class="nav-link" href="{{route('services')}}">SERVICES</a>
+                  <a class="nav-link" href="{{route('services')}}">Services</a>
                </li>
                <li class="nav-item {{ Request::segment(1) === 'aboutus' ? 'active' : null }}">
-                  <a class="nav-link" href="{{route('aboutus')}}">ABOUT US</a>
+                  <a class="nav-link" href="{{route('aboutus')}}">About Us</a>
                </li>
             </ul>
             <div class="my-2 my-lg-0">
                   @auth
                      @if(auth()->user()->hasAnyRole('Admin'))
-                        <a class="account_btn" href="{{route('admin.index')}}">My Account</a>
+                        <!-- <a class="account_btn" href="{{route('admin.index')}}">My Account</a> -->
+                        <a class="nav-link" href="{{route('admin.index')}}">My Account</a>
                      @endif
                      @if(auth()->user()->hasAnyRole('JobSeeker'))
-                        <a class="account_btn" href="{{route('jobseeker.index')}}">My Account</a>
+                        <!-- <a class="account_btn" href="{{route('jobseeker.index')}}">My Account</a> -->
+                        <a class="nav-link" href="{{route('jobseeker.index')}}">My Account</a>
                      @endif
                      @if(auth()->user()->hasAnyRole('Backer'))
-                        <a class="account_btn" href="{{route('backer.index')}}">My Account</a>
+                        <!-- <a class="account_btn" href="{{route('backer.index')}}">My Account</a> -->
+                        <a class="nav-link" href="{{route('backer.index')}}">My Account</a>
                      @endif
                   @endauth
                   

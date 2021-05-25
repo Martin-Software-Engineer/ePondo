@@ -245,6 +245,11 @@ button {
 
 
 .layout_padding {
+    padding-top: 190px;
+    padding-bottom: 100px;
+}
+
+.layout_padding_campaignspage {
     padding-top: 100px;
     padding-bottom: 100px;
 }
@@ -389,6 +394,7 @@ button.donate_btn {
     background-size: cover;
     position: relative;
     margin-bottom: 0;
+    padding-top: 300px;
 }
     .carousel_1 {
         width: 100%;
@@ -505,7 +511,7 @@ button.donate_btn {
 }
 
 .read_bt a:hover {
-    background-color: #46f67b;
+    background-color: #33db65;
 }
 
 .carousel-indicators {
@@ -1041,7 +1047,7 @@ button.donate_btn {
 .events_section {
     width: 100%;
     float: left;
-    padding-bottom: 90px;
+    padding-bottom: 50px;
 }
 
 .section_4_quote {
@@ -1072,7 +1078,7 @@ button.donate_btn {
 .ipsum_text_1 {
     width: 100%;
     float: left;
-    font-size: 16px;
+    font-size: 12px;
     margin-left: 0px;
     color: #1b1b1b;
     padding: 0 20px 0 20px;
@@ -1080,6 +1086,10 @@ button.donate_btn {
 
 .progress_bar{
     margin: 0 20px 0 20px;
+}
+
+.progress_bar_campaigns{
+    margin: 0 20px 20px 20px;
 }
 
 

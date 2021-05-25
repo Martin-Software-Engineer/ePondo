@@ -1,7 +1,7 @@
 @extends('landing.layouts.main')
 
 @section('content')
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_campaignspage">
     <div class="container">
        <div class="row mb-2">
           <div class="col-sm-12 d-flex justify-content-start align-items-center">
@@ -48,7 +48,7 @@
        </div>
        <div class="row">
             @forelse($services as $service)
-                <div class="col-md-3">
+                <div class="col-md-3 pt-4">
                     <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
                             <div class="col-md-12">

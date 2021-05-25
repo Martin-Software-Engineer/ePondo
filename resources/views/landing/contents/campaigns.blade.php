@@ -1,7 +1,7 @@
 @extends('landing.layouts.main')
 
 @section('content')
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_campaignspage">
     <div class="container">
        <div class="row mb-2">
           <div class="col-sm-12 d-flex justify-content-start align-items-center">
@@ -48,7 +48,7 @@
        </div>
        <div class="row">
             @forelse($campaigns as $campaign)
-                <div class="col-md-3">
+                <div class="col-md-3 pt-4">
                     <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
                             <div class="col-md-12">
@@ -61,15 +61,38 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a></h1>
-                                <p class="ipsum_text_1 o">{{$campaign->description}}</p>
-                                <h5 class="raised_text_1">Raised: ₱{{$campaign->raised}} <br><span class="text-danger">Goal: ₱{{$campaign->target_amount}}</span></h5>
-                                <!-- <div class="donate_btn_main">
+                            <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a></h1>
+                                <p class="ipsum_text_1 ">{{$campaign->description}}</p>
+                                <div>
+                                    <p class="ipsum_text_1">Category</p>
+                                </div>
+                                <div>
+                                    <p class="ipsum_text_1">Target Date: {{date('M-d', strtotime($campaign->target_date))}}</p>
+                                </div>
+                                <div class="progress-wrapper progress_bar_campaigns">
+                                    <div id="example-caption-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6>Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                            </div>
+                                            <!-- <div class="col-6">Php {{$campaign->progress->target_value}} <br>Target</div> -->
+                                        </div>
+                                    </div>
+                                    <div class="progress progress-bar-primary">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
+                                            aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" 
+                                            aria-describedby="example-caption-2">
+                                        </div>
+                                    </div>
+                                </div><!-- <div class="donate_btn_main">
                                     <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}" class="donate_btn" data-campaign-id="{{$campaign->id}}">Donate Now</a></div>
                                 </div> -->
-                                <div class="donate_btn_main">
+                                <!-- <div class="donate_btn_main">
                                     <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
