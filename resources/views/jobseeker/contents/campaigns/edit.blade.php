@@ -149,13 +149,13 @@
                                             @foreach($campaign->photos as $photo)
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
-                                                    <label for="images-input1" style="cursor: pointer">
+                                                    <label for="images-input{{$photo->id}}" style="cursor: pointer">
                                                         <img src="{{Storage::url($photo->url)}}" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
                                                 <div class="media-body mt-75 ml-1">
-                                                    <input type="file" name="images[]" data-photo-id="{{$photo->id}}" id="images-input1" class="images-input" accept="image/*" style="display: none" />
+                                                    <input type="file" name="images[]" data-photo-id="{{$photo->id}}" id="images-input{{$photo->id}}" class="images-input" accept="image/*" style="display: none" />
                                                 </div>
                                                 <!--/ upload and reset button -->
                                             </div>
@@ -165,13 +165,13 @@
                                                 @for($i = 0; $i < $left; $i++)
                                                 <div class="media">
                                                     <a href="javascript:void(0);" class="mr-25">
-                                                        <label for="images-input2" style="cursor: pointer">
+                                                        <label for="images-input{{$i}}" style="cursor: pointer">
                                                             <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                         </label>
                                                     </a>
                                                     <!-- upload and reset button -->
                                                     <div class="media-body mt-75 ml-1">
-                                                        <input type="file" name="images[]" id="images-input2" class="images-input" accept="image/*" style="display: none" />
+                                                        <input type="file" name="images[]" id="images-input{{$i}}" class="images-input" accept="image/*" style="display: none" />
                                                     </div>
                                                     <!--/ upload and reset button -->
                                                 </div>
