@@ -36,6 +36,15 @@ class FeedbacksController extends Controller
      */
     public function store(Request $request)
     {
+        $order = Order::find($request->order_id);
+        
+        $order->ratings()->create([
+            'service_id' => $request->service_id,
+            'rating' => $request->platform_rating,
+            'message' => $request->platform_message,
+            'from' => $request->from
+        ]);
+
         Feedback::create([
             'service_id' => $request->service_id,
             'message' => $request->service_feedback,

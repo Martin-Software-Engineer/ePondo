@@ -110,7 +110,31 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="service_feedback">How was the experience of your service with the customer</label>
-                                <textarea name="service_feedback" id="service_feedback" cols="30" rows="6" class="form-control"></textarea>
+                                <div class="demo-inline-spacing">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="service_rating" value="1" id="customCheckSR1">
+                                        <label class="custom-control-label" for="customCheckSR1">1 Star</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="service_rating" value="2" id="customCheckSR2">
+                                        <label class="custom-control-label" for="customCheckSR2">2 Star</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="service_rating" value="3" id="customCheckSR3">
+                                        <label class="custom-control-label" for="customCheckSR3">3 Star</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="service_rating" value="4" id="customCheckSR4">
+                                        <label class="custom-control-label" for="customCheckSR4">4 Star</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="service_rating" value="5" id="customCheckSR5">
+                                        <label class="custom-control-label" for="customCheckSR5">5 Star</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="service_feedback" id="service_feedback" cols="30" rows="6" class="form-control" placeholder="Give some feedback about the service rendered."></textarea>
                             </div>
                            
                             <div class="form-group">

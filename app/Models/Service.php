@@ -13,7 +13,7 @@ class Service extends Model
     use SoftDeletes;
 
     protected $fillable = ['user_id','title','description', 'price', 'duration_hours', 'duration_minutes', 'location'];
-    protected $appends = ['thumbnail', 'thumbnail_url'];
+    protected $appends = ['thumbnail', 'thumbnail_url', 'ratings'];
     
     public function jobseeker(){
         return $this->belongsTo(User::class, 'user_id', 'id')->with('information');
@@ -38,6 +38,10 @@ class Service extends Model
     public function orders(){
         return $this->hasMany(Order::class, 'service_id', 'id')->with(['transactions']);
     }
+
+    public function ratings(){
+        return $this->hasMany(ServiceRating::class, 'service_id', 'id');
+    }
     
     public function getThumbnailAttribute(){
         return Photo::find($this->thumbnail_id);
@@ -51,5 +55,12 @@ class Service extends Model
             $url = Storage::url($url);
         }
         return $url;
+    }
+
+    public function getRatingsAttribute(){
+        $total_ratings = $this->ratings()->sum('rating');
+        $count_ratings = $this->ratings()->get()->count();
+
+        return $count_ratings > 0 ? $total_ratings/$count_ratings : 0;
     }
 }

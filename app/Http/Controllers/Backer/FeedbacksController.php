@@ -42,6 +42,14 @@ class FeedbacksController extends Controller
         $order->status = 7;
         $order->save();
 
+
+        $order->ratings()->create([
+            'service_id' => $request->service_id,
+            'rating' => $request->service_rating,
+            'feedback' => $request->service_feedback,
+            'from' => $request->from
+        ]);
+
         Feedback::create([
             'service_id' => $request->service_id,
             'message' => $request->service_feedback,

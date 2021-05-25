@@ -69,6 +69,11 @@
             @empty 
             @endforelse
         </div> 
+        <div class="row mt-2">
+            <div class="col-12 d-flex justify-content-center">
+                {{ $services->links() }}
+            </div>
+        </div>
     </div>
 </div>    
 @endsection

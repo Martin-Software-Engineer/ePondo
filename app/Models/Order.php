@@ -27,6 +27,9 @@ class Order extends Model
         return $this->hasOne(OrderDetail::class, 'order_id', 'id');
     }
 
+    public function ratings(){
+        return $this->hasMany(ServiceRating::class, 'order_id', 'id');
+    }
     public function invoice(){
         return $this->hasOne(Invoice::class, 'order_id', 'id');
     }
