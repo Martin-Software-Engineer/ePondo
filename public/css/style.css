@@ -71,7 +71,7 @@ h6 {
     letter-spacing: 0;
     font-weight: normal;
     position: relative;
-    padding: 0 0 10px 0;
+    /* padding: 0 0 10px 0; */
     font-weight: normal;
     line-height: normal;
     color: #111111;
@@ -276,6 +276,7 @@ button {
     padding-top: 40px;
     padding-bottom: 10px;
     background-color: #ffffff;
+    border-top: 1px solid rgb(235, 228, 228);
 }
 
 
@@ -978,9 +979,16 @@ button.donate_btn {
 }
 
 .donate_btn {
+    /* display: flex; */
+    /* margin: 0 auto; */
+    /* text-align: center; */
+    /* align-self: center; */
     display: flex;
-    margin: 0 auto;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    background-color: #2610a5;
+    border-color: #28a745;
 }
 
 .donate_btn a {
@@ -1115,7 +1123,7 @@ button.donate_btn {
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
     /* text-align: center; */
-    padding: 10px 0 0 20px;
+    padding: 10px 0 20px 20px;
 }
 
 .img_7 {
@@ -1160,6 +1168,67 @@ button.donate_btn {
 
 
 /* events section end */
+
+/* Campaign {Id} start */
+
+.campaign_title {
+    width: 100%;
+    float: left;
+    color: #1d1d1d;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+.campaign_category {
+    width: 100%;
+    float: left;
+    color: #120a78;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+.campaign_raised_text {
+    width: 100%;
+    float: left;
+    color: #12dd78;
+    font-weight: bold;
+    padding: 10px 0 5px 0;
+    /* text-align: left; */
+}
+
+.campaign_target_text {
+    width: 100%;
+    float: left;
+    color: #e0063d;
+    font-weight: bold;
+    padding: 10px 0 5px 0;
+    /* text-align: left; */
+    text-align: right;
+}
+
+.campaign_progress_bar{
+    margin: 0 0 20px 0;
+}
+
+.campaign_donate_btn{
+    padding: 10px 15px 0 15px;
+    /* text-align: center; */
+}
+
+.donate_now{
+    width: 100%;
+    color: #ffdb11;
+    font-weight: bold;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 60px; */
+}
+
+/* Campaign {Id} end */
 
 
 /*  section start */

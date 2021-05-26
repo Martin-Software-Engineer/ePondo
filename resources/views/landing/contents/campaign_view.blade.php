@@ -164,17 +164,45 @@
 @endsection
 
 @section('content')
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_campaignspage">
     <div class="container">
         <div class="row">
           <div class="col-sm-12">
-             <h1 class="pb-0">{{$campaign->title}}</h1>
-             <span class="text-muted">
+             <h1 class="campaign_title">{{$campaign->title}}</h1>
+             <span class="campaign_category">
                  @foreach($campaign->categories as $category)
                     {{$category->name}} @if(!$loop->last)/@endif
                  @endforeach
              </span>
-          </div>
+             <div class="row">
+                <div class="col-sm-8">
+                    <div class="progress-wrapper campaign_progress_bar">
+                        <div id="example-caption-2">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="campaign_target_text">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress progress-bar-primary">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
+                                aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" 
+                                aria-describedby="example-caption-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 campaign_donate_btn">
+                    <div class="donate_btn btn btn-block " data-campaign-id="{{$campaign->id}}">
+                        <h2 class="donate_now">Donate Now!</h2>
+                    </div>
+                </div>
+            </div>
+         </div>
+             
         </div>
         <div class="row">
             <div class="col-md-8">
@@ -197,22 +225,22 @@
                 </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">Campaign Summary</a>
+                      <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">About</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Data</a>
+                      <a class="nav-link" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Profile</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" id="rating-tab" data-toggle="tab" href="#rating" role="tab" aria-controls="rating" aria-selected="false">Rating & Feedback</a>
-                    </li>
+                    </li> -->
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
                         <div class="card">
-                            <div class="card-header">About Campaign</div>
+                            <!-- <div class="card-header">About Campaign</div> -->
                             <div class="card-body">
                                 {{$campaign->description}}
                             </div>

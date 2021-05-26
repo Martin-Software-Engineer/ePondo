@@ -100,13 +100,14 @@
             @empty 
             @endforelse
         </div> 
-        <div class="row mt-2">
+        <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
                 {{ $campaigns->links() }}
             </div>
         </div>
     </div>
-</div>    
+</div>
+
 @endsection
 
 @section('modals')
