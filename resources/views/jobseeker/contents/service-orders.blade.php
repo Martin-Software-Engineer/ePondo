@@ -31,7 +31,7 @@
                     <tr>
                         <th></th>
                         <th>Order ID</th>
-                        <th>Title/Title</th>
+                        <th>Title</th>
                         <th>Date of Service</th>
                         <th>Category</th>
                         <th>Price</th>
