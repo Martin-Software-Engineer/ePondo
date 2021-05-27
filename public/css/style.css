@@ -1217,15 +1217,49 @@ button.donate_btn {
     /* text-align: center; */
 }
 
+.campaign_images{
+    width: 100%;
+    height: 400px;
+    position: relative;
+    object-fit: cover;
+}
+
 .donate_now{
     width: 100%;
-    color: #ffdb11;
+    color: #ffffff;
     font-weight: bold;
     font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     /* height: 60px; */
+}
+
+.campaign_profile_border{
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px 0 rgb(34 41 47 / 14%);
+}
+
+.campaign_profile_avatar{
+    width: 100px;
+    height: 100px;
+    
+    justify-content: center;
+    align-items: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.campaign_jobseeker_about{
+
+    font-weight: 300;
+    font-size: 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 
 /* Campaign {Id} end */

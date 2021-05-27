@@ -209,9 +209,9 @@
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @foreach($campaign->photos as $photo)
-                        <div class="carousel-item @if($loop->index == 0) active @endif">
-                          <img class="d-block w-100" src="{{Storage::url($photo->url)}}" alt="Second slide">
-                        </div>
+                            <div class="carousel-item @if($loop->index == 0) active @endif ">
+                                <img class="d-block w-100 campaign_images" src="{{Storage::url($photo->url)}} " alt="Second slide">
+                            </div>
                         @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -246,29 +246,58 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">...</div>
+                    <div class="tab-pane fade" id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">
+                        ...
+                    </div>
                     <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
                     <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">...</div>
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header text-center">
+
+                    <!-- <div class="card-header text-center">
                         <h3 class="card-title">{{$campaign->title}}</h3>
                         <p>{{$campaign->description}}</p>
-                    </div>
-                    <div class="card-body">
+                    </div> -->
+
+                    <!-- <div class="card-body">
                         <div class="donate_btn btn btn-block btn-success" data-campaign-id="{{$campaign->id}}">Donate Now!</div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-start">
-                        <div class="avatar mr-3">
-                            <img src="{{asset('app-assets/images/avatars/noface.png')}}" width="50" class="rounded-circle" alt="">
+                    </div> -->
+
+                    <!-- <div class="card-footer d-flex justify-content-start"> -->
+
+                    <div class="card-header text-center">
+                        <div class="row">
+                            <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
                         </div>
                         <div class="info">
                             <h3>Posted By</h3>
                             <h3><strong>{{$campaign->jobseeker->username}}</strong></h3>
-
                         </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <p class="campaign_jobseeker_about"> This portion will be the Jobseeker "About Me" data. {{$campaign->description}} </p>
+                            <div class="btn btn-block btn-primary" data-campaign-id="{{$campaign->id}}">View more ></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 20px;">
+                <div class="card-header text-center">
+                        <div class="info">
+                            <h3>Messages</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <h6 class="campaign_jobseeker_about">1 Donor Name/Message/Date/Amount</h6>
+                            <h6 class="campaign_jobseeker_about">2 Donor Name/Message/Date/Amount</h6>
+                            <h6 class="campaign_jobseeker_about">3 Donor Name/Message/Date/Amount</h6>
+                        </div>
+                    </div>
+
                     </div>
                 </div>
             </div>

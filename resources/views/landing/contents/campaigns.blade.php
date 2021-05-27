@@ -52,7 +52,12 @@
                     <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="img_7"><a href="{{route('campaign_view', $campaign->id)}}"><img style="width: 100%; height: 200px; object-fit: cover;" src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>
+                                <div class="img_7">
+                                    <a href="{{route('campaign_view', $campaign->id)}}">
+                                        <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : 
+                                                  asset('app-assets/images/pages/no-image.png')}}" class="img_7">
+                                    </a>
+                                </div>
                                 <!-- <div class="date_bt">
                                     <div class="date_text active"><a href="#">{{date('d', strtotime($campaign->target_date))}}</a></div>
                                     <div class="date_text"><a href="#">{{date('M', strtotime($campaign->target_date))}}</a></div>
