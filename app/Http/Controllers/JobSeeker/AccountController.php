@@ -49,15 +49,15 @@ class AccountController extends Controller
         if(!$userinfo){
             UserInformation::create([
                 'user_id' => auth()->user()->id,
-                'firstname' => $request->firstname,
-                'lastname' => $request->lastname,
+                // 'firstname' => $request->firstname,
+                // 'lastname' => $request->lastname,
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'zipcode' => $request->zipcode
             ]); 
         }else{
-            $userinfo->firstname = $request->firstname;
-            $userinfo->lastname = $request->lastname;
+            // $userinfo->firstname = $request->firstname;
+            // $userinfo->lastname = $request->lastname;
             $userinfo->phone = $request->phone;
             $userinfo->address = $request->address;
             $userinfo->zipcode = $request->zipcode;
