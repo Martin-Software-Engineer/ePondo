@@ -254,6 +254,11 @@ button {
     padding-bottom: 100px;
 }
 
+.layout_padding_servicespage {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
 .layout_padding_campaigns_carousel {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -1262,7 +1267,64 @@ button.donate_btn {
     -webkit-box-orient: vertical;
 }
 
+.campaign_header_icons{
+    width: 16px;
+    height: 16px;
+    justify-content: left;
+    align-items: flex-start;
+    /* display: block; */
+    /* margin-left: auto; */
+    margin-right: 7px;
+}
+
+.section_profile_header{
+    padding-bottom: 20px;
+    
+}
+
+.section_profile_desc{
+    border-top: 1px solid rgb(235, 228, 228);
+    padding: 20px 0 20px 0;
+}
+
+.section_details{
+    border-right: 1px solid rgb(235, 228, 228);
+    /* padding: 20px 0 20px 0; */
+}
+
+.section_living_state{
+    border-top: 1px solid rgb(235, 228, 228);
+    padding: 20px 0 20px 0;
+}
+
+.section_income{
+    border-right: 1px solid rgb(235, 228, 228);
+    /* padding: 20px 0 20px 0; */
+}
+
 /* Campaign {Id} end */
+
+/* Service {Id} start */
+
+.service_title {
+    width: 100%;
+    float: left;
+    color: #1d1d1d;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+.service_category {
+    width: 100%;
+    float: left;
+    color: #120a78;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+/* Service {Id} end */
 
 
 /*  section start */
