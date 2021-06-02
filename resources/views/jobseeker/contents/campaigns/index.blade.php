@@ -48,7 +48,7 @@
                         <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" aria-describedby="example-caption-2"></div>
                     </div>
                 </div>
-                <div class="text-center">
+                <div class="text-center mt-1">
                     <a class="btn btn-primary btn-sm btn-round" href="/campaign/{{$campaign->id}}" target="_blank">View</a>
                     <a href="{{route('jobseeker.campaigns.edit', $campaign->id)}}" class="btn btn-primary btn-sm btn-round">Edit</a>
                     <button type="button" class="btn btn-danger btn-sm btn-round btn-delete" data-id="{{$campaign->id}}">Delete</button>

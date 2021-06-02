@@ -1670,6 +1670,14 @@ input.address_text::placeholder {
     color: #ff5333;
 }
 
+/* Jobseeker - My Public Profile - start */
+
+.p_current_job{
+    font-size: 2px;
+    font-weight: lighter;
+}
+
+/* Jobseeker - My Public Profile - end */
 
 /* copyright section end */
 
