@@ -101,6 +101,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserInformation::class, 'user_id', 'id');
     }
 
+    public function pppp(){
+        return $this->hasOne(User4psInfo::class, 'user_id', 'id');
+    }
     public function contacts(){
         return $this->hasMany(Contact::class, 'user_id', 'id')->with('info');
     }
@@ -134,7 +137,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function messages()
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Message::class, 'from', 'id');
     }
 
     // MIDDLEWARE PURPOSES

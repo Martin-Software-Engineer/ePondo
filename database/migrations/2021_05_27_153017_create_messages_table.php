@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSeenColumnToConversationMessagesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class AddSeenColumnToConversationMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::table('conversation_messages', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('from')->constrained('users');
+            $table->foreignId('to')->constrained('users');
+            $table->string('message');
             $table->boolean('seen')->default(false);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ class AddSeenColumnToConversationMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('conversation_messages', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('messages');
     }
 }

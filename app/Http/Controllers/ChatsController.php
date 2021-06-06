@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Conversation;
 use App\Models\ConversationUser;
 use App\Events\MessageSent;
-
+use App\Http\Resources\Messages as MessageResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,18 +26,26 @@ class ChatsController extends Controller
      */
     public function index(Request $request)
     {
-        return view('chat', ['conversation_id' => $request->id]);
+        return view('chat');
     }
     /**
      * Fetch all messages
      *
      * @return Message
      */
-    public function fetchMessages($id)
+    public function fetchMessages($user_id)
     {
-        $chat = Conversation::find($id);
+        $messages = Message::with(['to', 'from'])->where(function($q) use($user_id){
+                        $q->where('from', $user_id);
+                        $q->where('to', auth()->user()->id);
+                    })
+                    ->orWhere(function($q) use($user_id){
+                        $q->where('from', auth()->user()->id);
+                        $q->where('to', $user_id);
+                    })
+                    ->get();
 
-        return $chat->messages;
+        return $messages;
     }
 
     public function getUser($id){
@@ -71,14 +79,21 @@ class ChatsController extends Controller
      */
     public function sendMessage(Request $request)
     {
-        $user = Auth::user();
-        $chat = Conversation::find($request->chat_id);
-        $message = $chat->messages()->create([
-            'user_id' => $user->id,
+        $from = Auth::user();
+        $message = $from->messages()->create([
+            'to' => $request->to,
             'message' => $request->input('message')
         ]);
-           
-        broadcast(new MessageSent($message))->toOthers();
+        
+        $isExists = Contact::where('user_id', $request->to)->where('contact_id', $from->id)->exists();
+        if(!$isExists){
+            Contact::create([
+                'user_id' => $request->to,
+                'contact_id' => $from->id
+            ]);
+        }
+
+        broadcast(new MessageSent($message));
       
         return ['status' => 'Message Sent!'];
     }
@@ -90,11 +105,11 @@ class ChatsController extends Controller
 
     public function getChats(){
         $chats = Message::join('users',  function ($join) {
-            $join->on('messages.from_id', '=', 'users.id')
-                ->orOn('messages.to_id', '=', 'users.id');
+            $join->on('messages.from', '=', 'users.id')
+                ->orOn('messages.to', '=', 'users.id');
         })
-            ->where('messages.from_id', Auth::user()->id)
-            ->orWhere('messages.to_id', Auth::user()->id)
+            ->where('messages.from', Auth::user()->id)
+            ->orWhere('messages.to', Auth::user()->id)
             ->orderBy('messages.created_at', 'desc')
             ->get()
             ->unique('id');

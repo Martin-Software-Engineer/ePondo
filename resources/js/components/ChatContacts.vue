@@ -1,13 +1,12 @@
 <template>
     <ul class="chat-users-list contact-list media-list">
-        <li v-for="(contact, index) in contacts" :key="index" v-on:click="selectUser(contact.info.id)">
-            <span class="avatar" v-if="contact.info.avatar != ''">
+        <li v-for="(contact, index) in contacts" :key="index" v-on:click="selectUser(contact.info)" :class="currentChatId == contact.info.id ? 'active' : ''">
+            <span class="avatar" v-if="contact.info.avatar != '' && contact.info.avatar != null">
                 <img v-bind:src="contact.info.avatar" height="42" width="42" />
             </span>
             <div class="d-flex justify-content-left align-items-center" v-else>
                 <div class="avatar colorClass">
                     <span class="avatar-content avatar-header">{{contact.info.username | toUpper | subStr}}</span> 
-                    
                 </div>
                 <div class="d-flex flex-column">
                     <span class="emp_name text-truncate font-weight-bold"></span>
@@ -30,24 +29,28 @@
 
 <script>
   export default {
-    props: ['contacts', 'me', 'convo_id'],
+    props: ['contacts', 'me', 'selected-user-id'],
     data(){
         return {
             currentChatId: '',
         }
     },
     created(){
-        if(this.convo_id != null){
-            this.updateConversationId(this.convo_id);
+        if(this.selectedUserId != null){
+            this.currentChatId = this.selectedUserId;
         }
     },
     methods: {
-        selectUser(id){
-            axios.post('/getConversation', {
-                users: [id, this.me.id]
-            }).then(response => {
-                window.location.href = '/chats/?id='+response.data.id;
-            });
+        async selectUser(user){
+            this.currentChatId = user.id;
+            let messages = await axios.get('/get-messages/'+user.id);
+            this.$emit('update-messages', messages.data);
+            this.$emit('select-user', user);
+
+            window.history.pushState( {} , '', '/chats/?'+$.param({contact_id: user.id}));
+
+            
+            //jQuery.param.querystring(window.location.href, $.param({contact_id: user.id}));
         },
         async updateConversationId(id){
             //let user = await axios.get('/get-chat-user/'+id);

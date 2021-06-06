@@ -588,6 +588,62 @@
                         </div>
                     </div>
 
+                    <div class="col-12">
+                        <h4 class="mb-1 mt-2">
+                            <i data-feather="edit-3" class="font-medium-4 mr-25"></i>
+                            <span class="align-middle">4Ps Information</span>
+                        </h4>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="4psId">Upload proof of 4Ps beneficiary (ID, or any proof)</label>
+                            <input type="file" name="4psId" class="form-control" id="4psId"/>
+                        </div>
+
+                        @if(@$pppp->id_photo != '')
+                            <img src="{{Storage::url(@$pppp->photo->url)}}" alt="" width="200">
+                        @endif
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="question1">How did you acquired for 4Ps?</label>
+                            <input type="text" name="question1" class="form-control" id="question1" value="{{@$pppp->question1}}"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="question2">How long have you been a 4Ps beneficiary?</label>
+                            <select name="question2" id="question2" class="form-control">
+                                <option value="less than a year" @if(@$pppp->question2 == 'less than a year') selected @endif>less than a year</option>
+                                <option value="1 year" @if(@$pppp->question2 == '1 year') selected @endif>1 year</option>
+                                <option value="2 years" @if(@$pppp->question2 == '2 years') selected @endif>2 years</option>
+                                <option value="3 years" @if(@$pppp->question2 == '3 years') selected @endif>3 years</option>
+                                <option value="4 years and above" @if(@$pppp->question2 == '4 years and above') selected @endif>4 years and above</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="question3">How is your experience?</label>
+                            <select name="question3" id="question3" class="form-control">
+                                <option value="Very Good" @if(@$pppp->question3 == 'Very Good') selected @endif>Very Good</option>
+                                <option value="Good" @if(@$pppp->question3 == 'Good') selected @endif>Good</option>
+                                <option value="Bad" @if(@$pppp->question3 == 'Bad') selected @endif>Bad</option>
+                                <option value="Very Bad" @if(@$pppp->question3 == 'Very Bad') selected @endif>Very Bad</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="question4">Why? (Indicate reason for your answer above)</label>
+                            <textarea name="question4" id="question4" cols="30" rows="10" class="form-control">{{@$pppp->question4}}</textarea>
+                        </div>
+                    </div>
+
                     <div class="col-12 d-flex flex-sm-row flex-column mt-2">
                         <button type="submit" class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1">Save Changes</button>
                     </div>
@@ -614,13 +670,20 @@
                 $.ajax({
                     url: $(this).attr('action'),
                     type: "POST",
-                    data: $(this).serialize(),
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
                     success: function(resp){
                         if(resp.success){
                             toastr['success'](resp.msg, 'Success!', {
                                 closeButton: true,
                                 tapToDismiss: false
                             });
+
+                            setTimeout(function(){
+                                location.reload()
+                            }), 200;
                         }
                     }
                 });

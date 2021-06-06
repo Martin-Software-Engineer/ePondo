@@ -9,6 +9,8 @@ class Contact extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'contact_id'];
+    
     public function user(){
         return $this->belongsTo(User::class, 'user_id','id');
     }

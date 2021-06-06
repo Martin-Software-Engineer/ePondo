@@ -141,12 +141,12 @@ Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is
 
 Route::get('chats', 'ChatsController@index')->name('chats');
 Route::get('get-messages/{id}', 'ChatsController@fetchMessages');
-Route::get('get-chat-user/{id}', 'ChatsController@getUser');
+Route::get('get-user/{id}', 'ChatsController@getUser');
 Route::get('get-contacts', 'ChatsController@getContacts');
 
 Route::post('messages', 'ChatsController@sendMessage');
 
-Route::post('getChats', 'ChatsController@getChats');
+Route::get('getChats', 'ChatsController@getChats');
 Route::post('getConversation', 'ChatsController@getConversation');
 
 // Mail Routes

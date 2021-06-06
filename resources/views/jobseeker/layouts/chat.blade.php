@@ -60,7 +60,19 @@
 
     @yield('css')
 
-    
+    <style>
+        .avatar .avatar-menu{
+            width: 90px !important;
+            height: 90px !important;
+            font-size: 3rem !important;
+        }
+        .avatar .avatar-header{
+            width: 42px !important;
+            height: 42px !important;
+            font-size: 1rem !important;
+            border: 2px solid #FFFFFF;
+        }
+    </style>
 
 </head>
 <!-- END: Head-->
@@ -71,16 +83,8 @@
     <div id="main-content-wrapper">
         @include('jobseeker.partials.header')
         @include('jobseeker.partials.menu')
-
-        <!-- BEGIN: Content-->
-        <div class="app-content content chat-application">
-            <div class="content-overlay"></div>
-            <div class="header-navbar-shadow"></div>
-            <div class="content-area-wrapper" id="app">
-                @yield('content')
-            </div>
-        </div>
-        <!-- END: Content-->
+        
+        @yield('content')
 
         <div class="sidenav-overlay"></div>
         <div class="drag-target"></div>

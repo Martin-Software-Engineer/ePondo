@@ -23,7 +23,7 @@
 
 <script>
     export default {
-        props: ['user', 'chatid'],
+        props: ['user', 'me'],
 
         data() {
             return {
@@ -34,12 +34,12 @@
         methods: {
             sendMessage() {
                 this.$emit('send-message', {
-                    chat_id: this.chatid,
-                    user: this.user,
+                    to: this.user,
+                    from: this.me,
                     message: this.newMessage
                 });
 
-                this.newMessage = ''
+                this.newMessage = '';
             }
         }    
     }

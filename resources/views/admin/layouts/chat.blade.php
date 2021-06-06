@@ -72,15 +72,7 @@
         @include('admin.partials.header')
         @include('admin.partials.menu')
 
-        <!-- BEGIN: Content-->
-        <div class="app-content content chat-application">
-            <div class="content-overlay"></div>
-            <div class="header-navbar-shadow"></div>
-            <div class="content-area-wrapper" id="app">
-                @yield('content')
-            </div>
-        </div>
-        <!-- END: Content-->
+        @yield('content')
 
         <div class="sidenav-overlay"></div>
         <div class="drag-target"></div>

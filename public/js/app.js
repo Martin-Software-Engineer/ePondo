@@ -1911,6 +1911,205 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatApp.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChatApp.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ChatMessages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChatMessages */ "./resources/js/components/ChatMessages.vue");
+/* harmony import */ var _ChatForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ChatForm */ "./resources/js/components/ChatForm.vue");
+/* harmony import */ var _ChatHead__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ChatHead */ "./resources/js/components/ChatHead.vue");
+/* harmony import */ var _ChatContacts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ChatContacts */ "./resources/js/components/ChatContacts.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    ChatMessages: _ChatMessages__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ChatForm: _ChatForm__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ChatHead: _ChatHead__WEBPACK_IMPORTED_MODULE_3__["default"],
+    ChatContacts: _ChatContacts__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+  props: ['user'],
+  data: function data() {
+    return {
+      messages: [],
+      contacts: [],
+      selectedUser: {},
+      selectedUserId: null,
+      isChatActive: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.fetchContacts();
+    var searchParams = new URLSearchParams(window.location.search);
+    var contact_id = searchParams.get('contact_id');
+
+    if (contact_id != null) {
+      this.selectedUserId = contact_id;
+      axios.get('/get-user/' + contact_id).then(function (user) {
+        _this.selectedUser = user.data;
+      });
+      axios.get('/get-messages/' + contact_id).then(function (message) {
+        _this.messages = message.data;
+        _this.isChatActive = true;
+      });
+    }
+
+    Echo["private"]("messages.".concat(this.user.id)).listen('MessageSent', function (e) {
+      _this.messages.push(e.message);
+    });
+  },
+  methods: {
+    fetchMessages: function fetchMessages() {
+      var _this2 = this;
+
+      axios.get('/messages').then(function (response) {
+        _this2.messages = response.data;
+      });
+    },
+    fetchContacts: function fetchContacts() {
+      var _this3 = this;
+
+      axios.get('/get-contacts').then(function (response) {
+        _this3.contacts = response.data;
+      });
+    },
+    updateSelectedUser: function updateSelectedUser(user) {
+      this.selectedUser = user;
+      this.isChatActive = true;
+    },
+    updateChatId: function updateChatId(id) {
+      this.conversation_id = id;
+      this.isChatActive = true;
+    },
+    updateMessages: function updateMessages(messages) {
+      this.messages = messages;
+    },
+    addMessage: function addMessage(message) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this4.messages.push(message);
+
+                _context.next = 3;
+                return axios.post('/messages', {
+                  to: message.to.id,
+                  message: message.message
+                });
+
+              case 3:
+                $('.user-chats').scrollTop($('.user-chats > .chats').height());
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatContacts.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChatContacts.vue?vue&type=script&lang=js& ***!
@@ -1957,28 +2156,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['contacts', 'me', 'convo_id'],
+  props: ['contacts', 'me', 'selected-user-id'],
   data: function data() {
     return {
       currentChatId: ''
     };
   },
   created: function created() {
-    if (this.convo_id != null) {
-      this.updateConversationId(this.convo_id);
+    if (this.selectedUserId != null) {
+      this.currentChatId = this.selectedUserId;
     }
   },
   methods: {
-    selectUser: function selectUser(id) {
-      axios.post('/getConversation', {
-        users: [id, this.me.id]
-      }).then(function (response) {
-        window.location.href = '/chats/?id=' + response.data.id;
-      });
-    },
-    updateConversationId: function updateConversationId(id) {
+    selectUser: function selectUser(user) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -1987,23 +2178,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get('/get-messages/' + id);
+                _this.currentChatId = user.id;
+                _context.next = 3;
+                return axios.get('/get-messages/' + user.id);
 
-              case 2:
+              case 3:
                 messages = _context.sent;
 
-                _this.$emit('update-messages', messages.data); //this.$emit('select-user', user.data);
+                _this.$emit('update-messages', messages.data);
 
+                _this.$emit('select-user', user);
 
-                _this.$emit('update-chatid', id);
+                window.history.pushState({}, '', '/chats/?' + $.param({
+                  contact_id: user.id
+                })); //jQuery.param.querystring(window.location.href, $.param({contact_id: user.id}));
 
-              case 5:
+              case 7:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
+      }))();
+    },
+    updateConversationId: function updateConversationId(id) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var messages;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get('/get-messages/' + id);
+
+              case 2:
+                messages = _context2.sent;
+
+                _this2.$emit('update-messages', messages.data); //this.$emit('select-user', user.data);
+
+
+                _this2.$emit('update-chatid', id);
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   },
@@ -2052,7 +2275,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user', 'chatid'],
+  props: ['user', 'me'],
   data: function data() {
     return {
       newMessage: ''
@@ -2061,8 +2284,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     sendMessage: function sendMessage() {
       this.$emit('send-message', {
-        chat_id: this.chatid,
-        user: this.user,
+        to: this.user,
+        from: this.me,
         message: this.newMessage
       });
       this.newMessage = '';
@@ -2096,8 +2319,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['selected-user']
+  props: ['selected-user'],
+  filters: {
+    subStr: function subStr(string) {
+      return string.substring(0, 2);
+    },
+    toUpper: function toUpper(string) {
+      return string.toUpperCase();
+    }
+  }
 });
 
 /***/ }),
@@ -2130,8 +2372,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['messages', 'me']
+  props: ['messages', 'me'],
+  mounted: function mounted() {
+    var userChats = $('.user-chats');
+
+    if (userChats.length > 0) {
+      new PerfectScrollbar(userChats[0], {
+        wheelPropagation: false
+      });
+      userChats.animate({
+        scrollTop: userChats[0].scrollHeight
+      }, 400);
+    }
+  },
+  filters: {
+    subStr: function subStr(string) {
+      return string.substring(0, 2);
+    },
+    toUpper: function toUpper(string) {
+      return string.toUpperCase();
+    }
+  }
 });
 
 /***/ }),
@@ -26645,6 +26939,173 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatApp.vue?vue&type=template&id=1da0bc8e&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChatApp.vue?vue&type=template&id=1da0bc8e& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "content-area-wrapper" }, [
+    _c("div", { staticClass: "sidebar-left" }, [
+      _c("div", { staticClass: "sidebar" }, [
+        _c("div", { staticClass: "sidebar-content card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "chat-user-list-wrapper list-group",
+              attrs: { id: "users-list" }
+            },
+            [
+              _c("h4", { staticClass: "chat-list-title" }, [_vm._v("Chats")]),
+              _vm._v(" "),
+              _c("ChatContacts", {
+                attrs: {
+                  contacts: _vm.contacts,
+                  me: _vm.user,
+                  "selected-user-id": _vm.selectedUserId
+                },
+                on: {
+                  "select-user": function($event) {
+                    return _vm.updateSelectedUser($event)
+                  },
+                  "update-messages": function($event) {
+                    return _vm.updateMessages($event)
+                  }
+                }
+              })
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "content-right" }, [
+      _c("div", { staticClass: "content-wrapper" }, [
+        _c("div", { staticClass: "content-header row" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "content-body" }, [
+          _c("div", { staticClass: "body-content-overlay" }),
+          _vm._v(" "),
+          _c("section", { staticClass: "chat-app-window" }, [
+            !_vm.isChatActive
+              ? _c("div", { staticClass: "start-chat-area" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "sidebar-toggle start-chat-text" }, [
+                    _vm._v("Start Conversation")
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isChatActive
+              ? _c(
+                  "div",
+                  { staticClass: "active-chat" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "chat-navbar" },
+                      [
+                        _c("ChatHead", {
+                          attrs: { "selected-user": _vm.selectedUser }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "user-chats" },
+                      [
+                        _c("ChatMessages", {
+                          attrs: { messages: _vm.messages, me: _vm.user }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("ChatForm", {
+                      attrs: { me: _vm.user, user: _vm.selectedUser },
+                      on: { "send-message": _vm.addMessage }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e()
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "sidebar-close-icon" }, [
+      _c("i", { attrs: { "data-feather": "x" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "chat-fixed-search" }, [
+      _c("div", { staticClass: "d-flex align-items-center w-100" }, [
+        _c("div", { staticClass: "input-group input-group-merge ml-1 w-100" }, [
+          _c("div", { staticClass: "input-group-prepend" }, [
+            _c("span", { staticClass: "input-group-text round" }, [
+              _c("i", {
+                staticClass: "text-muted",
+                attrs: { "data-feather": "search" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control round",
+            attrs: {
+              type: "text",
+              id: "chat-search",
+              placeholder: "Search or start a new chat",
+              "aria-label": "Search...",
+              "aria-describedby": "chat-search"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-1 start-chat-icon" }, [
+      _c("i", { attrs: { "data-feather": "message-square" } })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatContacts.vue?vue&type=template&id=26c21636&":
 /*!***************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChatContacts.vue?vue&type=template&id=26c21636& ***!
@@ -26669,14 +27130,15 @@ var render = function() {
           "li",
           {
             key: index,
+            class: _vm.currentChatId == contact.info.id ? "active" : "",
             on: {
               click: function($event) {
-                return _vm.selectUser(contact.info.id)
+                return _vm.selectUser(contact.info)
               }
             }
           },
           [
-            contact.info.avatar != ""
+            contact.info.avatar != "" && contact.info.avatar != null
               ? _c("span", { staticClass: "avatar" }, [
                   _c("img", {
                     attrs: {
@@ -26902,7 +27364,46 @@ var render = function() {
     _c("div", { staticClass: "d-flex align-items-center" }, [
       _vm._m(0),
       _vm._v(" "),
-      _vm._m(1),
+      _vm.selectedUser.avatar != "" && _vm.selectedUser.avatar != null
+        ? _c(
+            "div",
+            {
+              staticClass: "avatar avatar-border user-profile-toggle m-0 mr-1"
+            },
+            [
+              _c("img", {
+                attrs: {
+                  src: _vm.selectedUser.avatar,
+                  alt: "avatar",
+                  height: "36",
+                  width: "36"
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "avatar-status-busy" })
+            ]
+          )
+        : _c(
+            "div",
+            { staticClass: "d-flex justify-content-left align-items-center" },
+            [
+              _c("div", { staticClass: "avatar colorClass" }, [
+                _c("span", { staticClass: "avatar-content avatar-header" }, [
+                  _vm._v(
+                    _vm._s(
+                      _vm._f("subStr")(
+                        _vm._f("toUpper")(_vm.selectedUser.username)
+                      )
+                    )
+                  )
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "avatar-status-busy" })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          ),
       _vm._v(" "),
       _c("h6", { staticClass: "mb-0" }, [
         _vm._v(_vm._s(_vm.selectedUser.username))
@@ -26926,22 +27427,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "avatar avatar-border user-profile-toggle m-0 mr-1" },
-      [
-        _c("img", {
-          attrs: {
-            src: "/../app-assets/images/portrait/small/avatar-s-7.jpg",
-            alt: "avatar",
-            height: "36",
-            width: "36"
-          }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "avatar-status-busy" })
-      ]
-    )
+    return _c("div", { staticClass: "d-flex flex-column" }, [
+      _c("span", { staticClass: "emp_name text-truncate font-weight-bold" }),
+      _vm._v(" "),
+      _c("small", { staticClass: "emp_post text-truncate text-muted" })
+    ])
   }
 ]
 render._withStripped = true
@@ -26970,44 +27460,126 @@ var render = function() {
     { staticClass: "chats" },
     _vm._l(_vm.messages, function(message, index) {
       return _c("div", { key: index }, [
-        _c(
-          "div",
-          {
-            staticClass: "chat",
-            class: { "chat-left": message.user.id != _vm.me.id ? true : "" }
-          },
-          [
-            _c("div", { staticClass: "chat-avatar" }, [
-              _c(
-                "span",
-                { staticClass: "avatar box-shadow-1 cursor-pointer" },
-                [
-                  _c("img", {
-                    attrs: {
-                      src:
-                        "/../app-assets/images/portrait/small/avatar-s-11.jpg",
-                      alt: "avatar",
-                      height: "36",
-                      width: "36"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "chat-body" }, [
-              _c("div", { staticClass: "chat-content" }, [
-                _c("p", [_vm._v(_vm._s(message.message))])
+        message.from.id != _vm.me.id
+          ? _c("div", { staticClass: "chat chat-left" }, [
+              message.from.avatar != "" && message.from.avatar != null
+                ? _c("div", { staticClass: "chat-avatar" }, [
+                    _c(
+                      "span",
+                      { staticClass: "avatar box-shadow-1 cursor-pointer" },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src: message.from.avatar,
+                            alt: "avatar",
+                            height: "42",
+                            width: "42"
+                          }
+                        })
+                      ]
+                    )
+                  ])
+                : _c("div", { staticClass: "chat-avatar" }, [
+                    _c("div", { staticClass: "avatar colorClass" }, [
+                      _c(
+                        "span",
+                        { staticClass: "avatar-content avatar-header" },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("subStr")(
+                                _vm._f("toUpper")(message.from.username)
+                              )
+                            )
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0, true)
+                  ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "chat-body" }, [
+                _c("div", { staticClass: "chat-content" }, [
+                  _c("p", [_vm._v(_vm._s(message.message))])
+                ])
               ])
             ])
-          ]
-        )
+          : _c("div", { staticClass: "chat" }, [
+              message.from.avatar != ""
+                ? _c("div", { staticClass: "chat-avatar" }, [
+                    _c(
+                      "span",
+                      { staticClass: "avatar box-shadow-1 cursor-pointer" },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src: message.from.avatar,
+                            alt: "avatar",
+                            height: "42",
+                            width: "42"
+                          }
+                        })
+                      ]
+                    )
+                  ])
+                : _c("div", { staticClass: "chat-avatar" }, [
+                    _c(
+                      "div",
+                      { staticClass: "avatar box-shadow-1 cursor-pointer" },
+                      [
+                        _c(
+                          "span",
+                          { staticClass: "avatar-content avatar-header" },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("subStr")(
+                                  _vm._f("toUpper")(message.from.username)
+                                )
+                              )
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1, true)
+                  ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "chat-body" }, [
+                _c("div", { staticClass: "chat-content" }, [
+                  _c("p", [_vm._v(_vm._s(message.message))])
+                ])
+              ])
+            ])
       ])
     }),
     0
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-column" }, [
+      _c("span", { staticClass: "emp_name text-truncate font-weight-bold" }),
+      _vm._v(" "),
+      _c("small", { staticClass: "emp_post text-truncate text-muted" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-column" }, [
+      _c("span", { staticClass: "emp_name text-truncate font-weight-bold" }),
+      _vm._v(" "),
+      _c("small", { staticClass: "emp_post text-truncate text-muted" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -39185,61 +39757,9 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-Vue.component('chat-contacts', __webpack_require__(/*! ./components/ChatContacts.vue */ "./resources/js/components/ChatContacts.vue")["default"]);
-Vue.component('chat-messages', __webpack_require__(/*! ./components/ChatMessages.vue */ "./resources/js/components/ChatMessages.vue")["default"]);
-Vue.component('chat-form', __webpack_require__(/*! ./components/ChatForm.vue */ "./resources/js/components/ChatForm.vue")["default"]);
-Vue.component('chat-head', __webpack_require__(/*! ./components/ChatHead.vue */ "./resources/js/components/ChatHead.vue")["default"]);
+Vue.component('chat-app', __webpack_require__(/*! ./components/ChatApp.vue */ "./resources/js/components/ChatApp.vue")["default"]);
 var app = new Vue({
-  el: '#app',
-  data: {
-    messages: [],
-    contacts: [],
-    selectedUser: {},
-    isChatActive: false,
-    conversation_id: null
-  },
-  created: function created() {
-    var _this = this;
-
-    this.fetchContacts();
-    Echo.join('chat').listen('MessageSent', function (e) {
-      _this.messages.push({
-        message: e.message.message,
-        user: e.user
-      });
-    });
-  },
-  methods: {
-    fetchMessages: function fetchMessages() {
-      var _this2 = this;
-
-      axios.get('/messages').then(function (response) {
-        _this2.messages = response.data;
-      });
-    },
-    fetchContacts: function fetchContacts() {
-      var _this3 = this;
-
-      axios.get('/get-contacts').then(function (response) {
-        _this3.contacts = response.data;
-      });
-    },
-    updateSelectedUser: function updateSelectedUser(user) {
-      this.selectedUser = user;
-      this.isChatActive = true;
-    },
-    updateChatId: function updateChatId(id) {
-      this.conversation_id = id;
-      this.isChatActive = true;
-    },
-    updateMessages: function updateMessages(messages) {
-      this.messages = messages;
-    },
-    addMessage: function addMessage(message) {
-      this.messages.push(message);
-      axios.post('/messages', message);
-    }
-  }
+  el: '#app'
 });
 
 /***/ }),
@@ -39274,10 +39794,79 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "197baf5ceae8d69bbf21",
+  cluster: "ap1",
   forceTLS: true
 });
+
+/***/ }),
+
+/***/ "./resources/js/components/ChatApp.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/ChatApp.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ChatApp_vue_vue_type_template_id_1da0bc8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChatApp.vue?vue&type=template&id=1da0bc8e& */ "./resources/js/components/ChatApp.vue?vue&type=template&id=1da0bc8e&");
+/* harmony import */ var _ChatApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChatApp.vue?vue&type=script&lang=js& */ "./resources/js/components/ChatApp.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ChatApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ChatApp_vue_vue_type_template_id_1da0bc8e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ChatApp_vue_vue_type_template_id_1da0bc8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ChatApp.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ChatApp.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/ChatApp.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ChatApp.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatApp.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ChatApp.vue?vue&type=template&id=1da0bc8e&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/ChatApp.vue?vue&type=template&id=1da0bc8e& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatApp_vue_vue_type_template_id_1da0bc8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ChatApp.vue?vue&type=template&id=1da0bc8e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatApp.vue?vue&type=template&id=1da0bc8e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatApp_vue_vue_type_template_id_1da0bc8e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatApp_vue_vue_type_template_id_1da0bc8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
