@@ -164,18 +164,36 @@
 @endsection
 
 @section('content')
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_servicespage">
     <div class="container">
+    <!-- Service Header - Start -->
         <div class="row">
           <div class="col-sm-12">
-             <h1 class="pb-0">{{$service->title}}</h1>
-             <span class="text-muted">
-                 @foreach($service->categories as $category)
-                    {{$category->name}} @if(!$loop->last)/@endif
-                 @endforeach
-             </span>
+             <h1 class="service_title">{{$service->title}}</h1>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="service_category">
+                            @foreach($service->categories as $category)
+                                {{$category->name}} @if(!$loop->last)/@endif
+                            @endforeach
+                        </span>
+                        <h6>Location: {{$service->location}}</h6>
+                        <h6>Rating: ??</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <h1>Php {{$service->price}}</h1>
+                        <h4>Duration: {{$service->duration_hours}} Hrs {{$service->duration_minutes}} Mins</h4>
+                    </div>
+                    <div class="col-sm-4 campaign_donate_btn">
+                        <div class="donate_btn btn btn-block " data-campaign-id="{{$service->id}}">
+                            <h2 class="donate_now">Avail Service</h2>
+                        </div>
+                    </div>
+                </div>
           </div>
         </div>
+    <!-- Service Header - End -->
+    
         <div class="row">
             <div class="col-md-8">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -199,14 +217,14 @@
                 </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">Campaign Summary</a>
+                      <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">About Service</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Data</a>
+                      <a class="nav-link" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Profile</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                       <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" id="rating-tab" data-toggle="tab" href="#rating" role="tab" aria-controls="rating" aria-selected="false">Rating & Feedback</a>
                     </li>
@@ -214,36 +232,123 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
                         <div class="card">
-                            <div class="card-header">About Service</div>
+                            <!-- <div class="card-header">About Service</div> -->
                             <div class="card-body">
                                 {{$service->description}}
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">...</div>
-                    <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
+                    <div class="tab-pane fade" id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">
+                        <div class="card">
+                            <div class="card-body">
+                            <!-- Profile Header -->
+                                <div class="row section_profile_header">
+                                    <div class="col-sm-3">
+                                        <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="col-sm-9">
+                                            <h1>{{$service->jobseeker->userinformation->firstname}} ?MiddleInitial?
+                                                {{$service->jobseeker->userinformation->lastname}}</h1>
+                                            <div class="row pl-3">
+                                                <img src="{{asset('app-assets/images/additional_pictures/phone.png')}}" class="campaign_header_icons" alt="">
+                                                <h6>{{$service->jobseeker->userinformation->phone}}</h6>
+                                            </div>
+                                            <div class="row pl-3">
+                                                <img src="{{asset('app-assets/images/additional_pictures/email.png')}}" class="campaign_header_icons" alt="">
+                                                <h6>{{$service->jobseeker->email}}</h6>
+                                            </div>
+                                            <div class="row pl-3">
+                                                <img src="{{asset('app-assets/images/additional_pictures/location.png')}}" class="campaign_header_icons" alt="">
+                                                <h6>{{$service->jobseeker->userinformation->address}}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- Profile Description -->
+                                <div class="row section_profile_desc">
+                                    <!-- Details -->
+                                    <div class="col-sm-6 section_details">
+                                        <h6>Age: ??</h6>
+                                        <h6>Gender: ??</h6>
+                                        <h6>Kids: (Pending design)</h6>
+                                        <h6>Dependents: (Pending design)</h6>
+                                        <h6>Job: {{$service->jobseeker->userinformation->current_job}}</h6>
+                                        <h6>Skills: **</h6>
+                                        <h6>Work Experience: **</h6>
+                                    </div>
+                                    <!-- About Me -->
+                                    <div class="col-sm-6">
+                                    <h3>About Me</h3>
+                                    <h6>{{$service->jobseeker->userinformation->bio}}</h6>
+                                    </div>
+                                </div>
+                            <!-- Living State -->
+                                <div class="row section_living_state">
+                                    <div class="col-sm-12">
+                                        <h3>Living State</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Income -->
+                                    <div class="col-sm-6 section_income">
+                                        <h5>Average Daily Income: Php {{$service->jobseeker->userinformation->daily_income}}</h5>
+                                        <h6>Main Source Income: {{$service->jobseeker->userinformation->main_source_income}}</h6>
+                                        <h6>Other Source Income: {{$service->jobseeker->userinformation->extra_source_income}}</h6>
+                                    </div>
+                                    <!-- Expenses -->
+                                    <div class="col-sm-6">
+                                        <h5>Average Daily Expenses: Php {{$service->jobseeker->userinformation->daily_expenses}}</h5>
+                                        <h6>Type of Housing: {{$service->jobseeker->userinformation->type_of_housing}}</h6>
+                                        <h6>Meals per Day: {{$service->jobseeker->userinformation->daily_meals}}</h6>
+                                        <h6>Water: {{$service->jobseeker->userinformation->water_access}}</h6>
+                                        <h6>Electricity: {{$service->jobseeker->userinformation->electricity_access}}</h6>
+                                        <h6>Clothes: {{$service->jobseeker->userinformation->clean_clothes_access}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div> -->
                     <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">...</div>
                 </div>
             </div>
+            
             <div class="col-md-4">
                 <div class="card">
+                <!-- Jobseeker Profile -->
+                    <!-- Header -->
                     <div class="card-header text-center">
-                        <h3 class="card-title">{{$service->title}}</h3>
+                        <!-- <h3 class="card-title">{{$service->title}}</h3>
                         <p>Php {{$service->price}}</p>
-                        <p>{{$service->description}}</p>
-
+                        <p>{{$service->description}}</p> -->
+                        <div class="row">
+                            <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
+                        </div>
+                        <div class="info">
+                            <!-- <h3>Posted By</h3> -->
+                            <h3><strong>{{$service->jobseeker->userinformation->firstname}} ?MiddleInitial? {{$service->jobseeker->userinformation->lastname}} </strong></h3>
+                        </div>
                     </div>
+                    <!-- Body -->
                     <div class="card-body">
-                      @guest
+                      <!-- @guest
                           <p class="text-danger">Login to avail service!</p>
                       @endguest
                       @auth
                           @if(auth()->user()->hasAnyRole('Backer'))
                             <button class="avail_btn btn btn-block btn-success" data-service-id="{{$service->id}}">Avail Service</button>
                           @endif
-                      @endauth
+                      @endauth -->
+                      <div class="row">
+                            <p class="campaign_jobseeker_about"> This portion will be the Jobseeker "About Me" data. My name is Carla Lacy, I am the 
+                            grandmother of Aiden Leos’s 15-year-old sister, Alexis Cloonan. I have a very close bond and relationship with Aidans 
+                            mother and family. I have been asked to speak on their behalf and been given permission by the mother, Joanna Cloonan 
+                            to organize this fundraiser on behalf of her and the family’s needs. </p>
+                            <h5><<<<<< View More >>>>>></h5>
+                        </div>
                     </div>
-                    <div class="card-footer d-flex justify-content-start">
+                    <!-- <div class="card-footer d-flex justify-content-start">
                         <div class="avatar mr-2">
                             <img src="{{asset('app-assets/images/avatars/noface.png')}}" width="100" class="rounded-circle" alt="">
                         </div>
@@ -252,10 +357,92 @@
                             <h3><strong>{{$service->jobseeker->username}}</strong></h3>
 
                         </div>
+                    </div> -->
+                </div>
+                <!-- <div class="card" style="margin-top: 20px;">
+                    <div class="card-header text-center">
+                        <div class="info">
+                            <h3>Support My Campaigns</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-sm-12">
+                            <h6 class="campaign_jobseeker_about">Campaign 1</h6>
+                            <h6 class="campaign_jobseeker_about">Campaign 2</h6>
+                            <h6 class="campaign_jobseeker_about">Campaign 3</h6>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Campaign Tiles - Start -->
+        <div class="row pt-4">
+            <div class="col-sm-12">
+                <h1 class="news_taital">Support My Campaigns</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 pt-4">
+                <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="img_7">
+                                <a href="#">
+                                    <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" class="img_7">
+                                </a>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="give_taital_1 overflow-ellipsis"><a href="#">Title</a></h1>
+                            <p class="ipsum_text_1 ">description</p>
+                            <div>
+                                <p class="ipsum_text_1">Category</p>
+                            </div>
+                            <div>
+                                <p class="ipsum_text_1">Target Date:</p>
+                            </div>
+                            <div>
+                                <p class="ipsum_text_1">Progress Bar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 pt-4">
+                <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="img_7">
+                                <a href="#">
+                                    <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" class="img_7">
+                                </a>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="give_taital_1 overflow-ellipsis"><a href="#">Title</a></h1>
+                            <p class="ipsum_text_1 ">description</p>
+                            <div>
+                                <p class="ipsum_text_1">Category</p>
+                            </div>
+                            <div>
+                                <p class="ipsum_text_1">Target Date:</p>
+                            </div>
+                            <div>
+                                <p class="ipsum_text_1">Progress Bar</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Service Tiles - End -->
     </div>
 </div> 
 @endsection

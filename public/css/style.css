@@ -71,7 +71,7 @@ h6 {
     letter-spacing: 0;
     font-weight: normal;
     position: relative;
-    padding: 0 0 10px 0;
+    /* padding: 0 0 10px 0; */
     font-weight: normal;
     line-height: normal;
     color: #111111;
@@ -254,6 +254,11 @@ button {
     padding-bottom: 100px;
 }
 
+.layout_padding_servicespage {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
 .layout_padding_campaigns_carousel {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -276,6 +281,7 @@ button {
     padding-top: 40px;
     padding-bottom: 10px;
     background-color: #ffffff;
+    border-top: 1px solid rgb(235, 228, 228);
 }
 
 
@@ -978,9 +984,16 @@ button.donate_btn {
 }
 
 .donate_btn {
+    /* display: flex; */
+    /* margin: 0 auto; */
+    /* text-align: center; */
+    /* align-self: center; */
     display: flex;
-    margin: 0 auto;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    background-color: #2610a5;
+    border-color: #28a745;
 }
 
 .donate_btn a {
@@ -1115,7 +1128,7 @@ button.donate_btn {
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
     /* text-align: center; */
-    padding: 10px 0 0 20px;
+    padding: 10px 0 20px 20px;
 }
 
 .img_7 {
@@ -1160,6 +1173,158 @@ button.donate_btn {
 
 
 /* events section end */
+
+/* Campaign {Id} start */
+
+.campaign_title {
+    width: 100%;
+    float: left;
+    color: #1d1d1d;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+.campaign_category {
+    width: 100%;
+    float: left;
+    color: #120a78;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+.campaign_raised_text {
+    width: 100%;
+    float: left;
+    color: #12dd78;
+    font-weight: bold;
+    padding: 10px 0 5px 0;
+    /* text-align: left; */
+}
+
+.campaign_target_text {
+    width: 100%;
+    float: left;
+    color: #e0063d;
+    font-weight: bold;
+    padding: 10px 0 5px 0;
+    /* text-align: left; */
+    text-align: right;
+}
+
+.campaign_progress_bar{
+    margin: 0 0 20px 0;
+}
+
+.campaign_donate_btn{
+    padding: 10px 15px 0 15px;
+    /* text-align: center; */
+}
+
+.campaign_images{
+    width: 100%;
+    height: 400px;
+    position: relative;
+    object-fit: cover;
+}
+
+.donate_now{
+    width: 100%;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 60px; */
+}
+
+.campaign_profile_border{
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px 0 rgb(34 41 47 / 14%);
+}
+
+.campaign_profile_avatar{
+    width: 100px;
+    height: 100px;
+    
+    justify-content: center;
+    align-items: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.campaign_jobseeker_about{
+
+    font-weight: 300;
+    font-size: 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.campaign_header_icons{
+    width: 16px;
+    height: 16px;
+    justify-content: left;
+    align-items: flex-start;
+    /* display: block; */
+    /* margin-left: auto; */
+    margin-right: 7px;
+}
+
+.section_profile_header{
+    padding-bottom: 20px;
+    
+}
+
+.section_profile_desc{
+    border-top: 1px solid rgb(235, 228, 228);
+    padding: 20px 0 20px 0;
+}
+
+.section_details{
+    border-right: 1px solid rgb(235, 228, 228);
+    /* padding: 20px 0 20px 0; */
+}
+
+.section_living_state{
+    border-top: 1px solid rgb(235, 228, 228);
+    padding: 20px 0 20px 0;
+}
+
+.section_income{
+    border-right: 1px solid rgb(235, 228, 228);
+    /* padding: 20px 0 20px 0; */
+}
+
+/* Campaign {Id} end */
+
+/* Service {Id} start */
+
+.service_title {
+    width: 100%;
+    float: left;
+    color: #1d1d1d;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+.service_category {
+    width: 100%;
+    float: left;
+    color: #120a78;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+/* Service {Id} end */
 
 
 /*  section start */
@@ -1505,6 +1670,14 @@ input.address_text::placeholder {
     color: #ff5333;
 }
 
+/* Jobseeker - My Public Profile - start */
+
+.p_current_job{
+    font-size: 2px;
+    font-weight: lighter;
+}
+
+/* Jobseeker - My Public Profile - end */
 
 /* copyright section end */
 

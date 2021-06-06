@@ -56,12 +56,20 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h3 class="give_taital_1 overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h3>
-                                <p class="ipsum_text_1">{{$service->description}}</p>
-                                <h5 class="raised_text_1">Price: ₱{{$service->price}} <br><span class="text-danger">Duration: {{$service->duration}}/Hours</span></h5>
-                                <div class="service_btn_main">
-                                    <div class="service_btn_1"><a href="{{route('service_view', $service->id)}}" class="avail_btn" data-service-id="{{$service->id}}">Avail</a></div> 
+                            <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h1>
+                                <div style="margin: 0 0 0 20px;"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"></div>
+                                <p class="ipsum_text_1 ">by: Jobseeker Name</p>
+                                <p class="ipsum_text_1 ">{{$service->description}}</p>
+                                <div>
+                                    <p class="ipsum_text_1">Category</p>
                                 </div>
+                                <div>
+                                    <p class="ipsum_text_1">Location: {{$service->location}}</p>
+                                </div>
+                                <div>
+                                    <p class="ipsum_text_1">Duration: {{$service->duration_hours}} Hr/s</p>
+                                </div>
+                                <h5 class="service_price">₱{{$service->price}}</h5>
                             </div>
                         </div>
                     </div>
@@ -69,7 +77,7 @@
             @empty 
             @endforelse
         </div> 
-        <div class="row mt-2">
+        <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
                 {{ $services->links() }}
             </div>
