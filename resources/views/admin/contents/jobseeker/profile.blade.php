@@ -12,7 +12,7 @@
         <div class="card-header justify-content-start">
             @if($user->avatar != '')
                     <span class="avatar">
-                        <img class="round" src="{{Storage::url($user->avatar)}}" alt="avatar" height="40" width="40">
+                        <img class="round" src="{{$user->avatar}}" alt="avatar" height="40" width="40">
                         <span class="avatar-status-online"></span>
                     </span>
                     @else 

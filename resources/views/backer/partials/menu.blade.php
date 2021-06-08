@@ -15,7 +15,7 @@
                 <div class="profile-image">
                     <div class="avatar">
                         @if(auth()->user()->avatar != '')
-                            <img src="{{Storage::url(auth()->user()->avatar)}}" alt="Profile Picture" />
+                            <img src="{{auth()->user()->avatar}}" alt="Profile Picture" />
                         @else 
                             <div class="d-flex justify-content-left align-items-center">
                                 <div class="avatar colorClass">

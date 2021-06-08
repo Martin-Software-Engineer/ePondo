@@ -39,7 +39,7 @@ class AccountController extends Controller
                 $fileName   = time() . '.' . $image->getClientOriginalExtension();
                 $upload = $request->file('avatar')->storeAs('/avatars',$fileName,'public');
                 
-                $user->avatar = 'public/avatars/'.$fileName;
+                $user->avatar = '/storage/avatars/'.$fileName;
                 $user->save();
 
             }

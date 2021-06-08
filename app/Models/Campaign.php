@@ -40,7 +40,7 @@ class Campaign extends Model
     }
 
     public function jobseeker(){
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id')->with('information');
     }
 
     public function user(){

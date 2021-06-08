@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Feedback;
 use App\Models\FeedbackPlatform;
 use App\Models\Order;
+
+use App\Helpers\GiveReward;;
 class FeedbacksController extends Controller
 {
     /**
@@ -63,7 +65,18 @@ class FeedbacksController extends Controller
             'from' => $request->from
         ]);
 
-        
+        $jobseeker = User::find($order->service()->user_id);
+
+        $totalorders = Order::whereHas('service', function($q) use($jobseeker){
+            $q->where('user_id', $jobseeker->id);
+        })->count();
+        if($totalorders <= 0){ //first time
+            $reward = new GiveReward(auth()->user()->id, 'receiving_1st_service_order_rf');
+            $reward->send();
+        }else{
+            $reward = new GiveReward(auth()->user()->id, 'receiving_service_order_rf');
+            $reward->send();
+        }
         return response()->json(['success' => true, 'msg' => 'Feedback Submitted']);
     }
 

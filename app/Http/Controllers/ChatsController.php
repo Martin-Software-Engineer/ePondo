@@ -85,11 +85,24 @@ class ChatsController extends Controller
             'message' => $request->input('message')
         ]);
         
-        $isExists = Contact::where('user_id', $request->to)->where('contact_id', $from->id)->exists();
-        if(!$isExists){
+        $jobseeker_contact = Contact::where(function($q) use ($request, $from){
+            $q->where('user_id', $request->to);
+            $q->where('contact_id', $from->id);
+        });
+        $backer_contact = Contact::where(function($q) use ($request, $from){
+            $q->where('contact_id', $request->to);
+            $q->where('user_id', $from->id);
+        });
+        if(!$jobseeker_contact->exists()){
             Contact::create([
                 'user_id' => $request->to,
                 'contact_id' => $from->id
+            ]);
+        }
+        if(!$backer_contact->exists()){
+            Contact::create([
+                'user_id' => $from->id,
+                'contact_id' => $request->to
             ]);
         }
 
@@ -99,8 +112,8 @@ class ChatsController extends Controller
     }
 
     public function getContacts(){
-        $user =  User::with('contacts')->where('id', auth()->user()->id)->first();
-        return $user->contacts;
+        $contacts =  Contact::with('info')->where('user_id', auth()->user()->id)->get();
+        return $contacts;
     }
 
     public function getChats(){

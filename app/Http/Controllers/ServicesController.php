@@ -9,9 +9,11 @@ use App\Models\Service;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Helpers\System;
-
+use App\Models\User;
 use App\Mail\SendMail;
+use App\Notifications\OrderReceived as OrderReceivedNotification;
 
+use App\Helpers\GiveReward;
 class ServicesController extends Controller
 {
     public function __constructor(){
@@ -38,6 +40,20 @@ class ServicesController extends Controller
             'backer_name' => auth()->user()->username,
             'order_id' => System::GenerateFormattedId('S', $order->id)
         ]));
+
+        $jobseeker = User::find($service->user_id);
+        $jobseeker->notify(new OrderReceivedNotification($order));
+        
+        $totalorders = Order::whereHas('service', function($q) use($jobseeker){
+            $q->where('user_id', $jobseeker->id);
+        })->count();
+        if($totalorders <= 0){ //first time
+            $reward = new GiveReward($jobseeker->id, 'receiving_1st_service_order_request');
+            $reward->send();
+        }else{
+            $reward = new GiveReward($jobseeker->id, 'receiving_service_order_request');
+            $reward->send();
+        }
 
         return response()->json(array(
                 'success' => true, 

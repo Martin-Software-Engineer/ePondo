@@ -58,6 +58,18 @@ class FeedbacksController extends Controller
             'from' => $request->from
         ]);
 
+        $jobseeker = User::find($order->service()->user_id);
+
+        $totalorders = Order::whereHas('service', function($q) use($jobseeker){
+            $q->where('user_id', $jobseeker->id);
+        })->count();
+        if($totalorders <= 0){ //first time
+            $reward = new GiveReward(auth()->user()->id, 'creating_1st_service_order_feedback');
+            $reward->send();
+        }else{
+            $reward = new GiveReward(auth()->user()->id, 'creating_service_order_feedback');
+            $reward->send();
+        }
         return response()->json(['success' => true, 'msg' => 'Feedback Submitted']);
     }
 

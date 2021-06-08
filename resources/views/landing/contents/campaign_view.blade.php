@@ -280,13 +280,53 @@
                                 <div class="row section_profile_desc">
                                     <!-- Details -->
                                     <div class="col-sm-6 section_details">
-                                        <h6>Age: ??</h6>
+                                        <h6>Age: {{$campaign->jobseeker->userinformation->age}}</h6>
                                         <h6>Gender: ??</h6>
-                                        <h6>Kids: (Pending design)</h6>
-                                        <h6>Dependents: (Pending design)</h6>
+                                        <h6>Kids: 
+                                            @forelse($campaign->jobseeker->kids as $kid)
+                                                @if(!$loop->last)
+                                                    {{$kid->fullname.','}}
+                                                @else
+                                                    {{$kid->fullname}}
+                                                @endif
+                                            @empty 
+                                            <span>N/A</span>
+                                            @endforelse
+                                        </h6>
+                                        <h6>Dependents: 
+                                            @forelse($campaign->jobseeker->dependents as $dependent)
+                                                @if(!$loop->last)
+                                                    {{$dependent->fullname.','}}
+                                                @else
+                                                    {{$dependent->fullname}}
+                                                @endif
+                                            @empty 
+                                            <span>N/A</span>
+                                            @endforelse
+                                        </h6>
                                         <h6>Job: {{$campaign->jobseeker->userinformation->current_job}}</h6>
-                                        <h6>Skills: **</h6>
-                                        <h6>Work Experience: **</h6>
+                                        <h6>Skills: 
+                                            @forelse($campaign->jobseeker->skills as $skill)
+                                                @if(!$loop->last)
+                                                    {{$skill->work_skill.','}}
+                                                @else
+                                                    {{$skill->work_skill}}
+                                                @endif
+                                            @empty 
+                                            <span>N/A</span>
+                                            @endforelse
+                                        </h6>
+                                        <h6>Work Experience: 
+                                            @forelse($campaign->jobseeker->workexperiences as $workexp)
+                                                @if(!$loop->last)
+                                                    {{$workexp->description.','}}
+                                                @else
+                                                    {{$workexp->description}}
+                                                @endif
+                                            @empty 
+                                            <span>N/A</span>
+                                            @endforelse
+                                        </h6>
                                     </div>
                                     <!-- About Me -->
                                     <div class="col-sm-6">

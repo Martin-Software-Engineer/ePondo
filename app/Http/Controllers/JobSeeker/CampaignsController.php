@@ -21,8 +21,9 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
-
+use App\Notifications\CreateCampaign as CreateCampaignNotification;
 use App\Mail\SendMail;
+use App\Helpers\GiveReward;
 use Image;
 class CampaignsController extends Controller
 {
@@ -135,6 +136,16 @@ class CampaignsController extends Controller
             'subject' => 'Epondo Campaign'
         ]));
         
+        auth()->user()->notify(new CreateCampaignNotification());
+        
+        $totalcampaigns = Campaign::where('user_id', auth()->user()->id)->count();
+        if(!$totalcampaigns > 0){ //first time
+            $reward = new GiveReward(auth()->user()->id, 'creating_1st_campaign');
+            $reward->send();
+        }else{
+            $reward = new GiveReward(auth()->user()->id, 'creating_campaign');
+            $reward->send();
+        }
         return response()->json(array('success' => true, 'msg' => 'New Campaign Created.'));
     }
 

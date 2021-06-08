@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
+use App\Models\Reward;
+
+use App\Helpers\GiveReward;
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
@@ -51,6 +54,10 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         $user->roles()->attach($input['role']);
+        
+        //give reward pts
+        $reward = new GiveReward($user->id, 'create_account');
+        $reward->send();
         
         return $user;
     }

@@ -66,7 +66,7 @@
                             <div class="media">
                                 <a href="javascript:void(0);" class="mr-25">
                                     @if(auth()->user()->avatar != '')
-                                        <img src="{{Storage::url(auth()->user()->avatar)}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                        <img src="{{auth()->user()->avatar}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
                                     @else 
                                         <img src="{{asset('/app-assets/images/avatars/noface.png')}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
                                     @endif

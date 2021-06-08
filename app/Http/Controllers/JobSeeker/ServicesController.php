@@ -17,7 +17,8 @@ use App\Models\User;
 use App\Http\Requests\StoreService;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
-
+use App\Notifications\CreateService as CreateServiceNotification;
+use App\Helpers\GiveReward;
 use Image;
 class ServicesController extends Controller
 {
@@ -113,6 +114,17 @@ class ServicesController extends Controller
                 $tagStore = Tag::create(['name' => $tag]);
                 $service->tags()->attach($tagStore->id);
             }
+        }
+
+        auth()->user()->notify(new CreateServiceNotification());
+
+        $totalservices = Service::where('user_id', auth()->user()->id)->count();
+        if(!$totalservices > 0){ //first time
+            $reward = new GiveReward(auth()->user()->id, 'creating_1st_service');
+            $reward->send();
+        }else{
+            $reward = new GiveReward(auth()->user()->id, 'creating_service');
+            $reward->send();
         }
 
         return response()->json(array('success' => true, 'msg' => 'New Service Created.'));

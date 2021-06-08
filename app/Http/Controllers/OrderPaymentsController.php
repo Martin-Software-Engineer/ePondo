@@ -31,6 +31,8 @@ use App\Models\Invoice;
 
 use Carbon\Carbon;
 use App\Mail\SendMail;
+
+use App\Notifications\OrderPayment as OrderPaymentNotification;
 class OrderPaymentsController extends Controller
 {
     private $currency = 'USD';
@@ -134,6 +136,9 @@ class OrderPaymentsController extends Controller
                 $order = Order::find($transaction->orders[0]->id);
                 $order->status = 6; //ongoing
                 $order->save();
+
+                $jobseeker = $order->service->user();
+                $jobseeker->notify(new OrderPaymentNotification($order, $order->invoice));
             }
 
             return $result;
@@ -204,6 +209,13 @@ class OrderPaymentsController extends Controller
                 $transaction->status = 'approved';
                 $transaction->paid_at = Carbon::now()->toDateString();
                 $transaction->save();
+
+                $order = Order::find($transaction->orders[0]->id);
+                $order->status = 6; //ongoing
+                $order->save();
+                
+                $jobseeker = $order->service->user();
+                $jobseeker->notify(new OrderPaymentNotification($order, $order->invoice));
 
                 return response()->json(['success' => true]);
             }

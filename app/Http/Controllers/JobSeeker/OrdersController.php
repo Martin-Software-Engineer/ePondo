@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Orders as ResourceOrders;
 use App\Models\Order;
 use App\Models\InvoiceNumber;
+use App\Models\User;
 use App\Helpers\System;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use DataTables;
 use Carbon\Carbon;
+
+use App\Notifications\OrderAccepted as OrderAcceptedNotification;
+use App\Notifications\OrderDeclined as OrderDeclinedNotification;
+use App\Notifications\OrderCompleted as OrderCompletedNotification;
+use App\Notifications\OrderInvoice as OrderInvoiceNotification;
+
+use App\Helpers\GiveReward;
 class OrdersController extends Controller
 {
     public function index(){
@@ -40,10 +48,25 @@ class OrdersController extends Controller
         $order->status = 2;
         $order->save();
 
+        $jobseeker_id = $order->service->jobseeker->id;
+        $totalorders = Order::whereHas('service', function($q) use($jobseeker_id){
+            $q->where('user_id', $jobseeker_id);
+        })->count();
+        if($totalorders <= 0){ //first time
+            $reward = new GiveReward(auth()->user()->id, 'accepting_1st_service_order_request');
+            $reward->send();
+        }else{
+            $reward = new GiveReward(auth()->user()->id, 'accepting_service_order_request');
+            $reward->send();
+        }
+
+        auth()->user()->notify(new OrderAcceptedNotification($order));
+
+        $backer = User::find($order->backer_id);
+        $backer->notify(new OrderAcceptedNotification($order));
+        
         if($order)
-        return response()->json(['success' => true, 'msg' => 'Order Accepted']);
-
-
+            return response()->json(['success' => true, 'msg' => 'Order Accepted']);
     }
 
     public function deliver($id){
@@ -52,7 +75,7 @@ class OrdersController extends Controller
         $order->save();
 
         $price = $order->service->price*$order->service->duration;
-        $order->invoice()->create([
+        $invoice = $order->invoice()->create([
             'price' => $price,
             'date_due' =>  Carbon::now()->addDays(7),
             'transaction_fee' => ($price*.07),
@@ -60,6 +83,21 @@ class OrdersController extends Controller
             'total' => $price+($price*.07)+($price*.03)
         ]);
 
+        $jobseeker_id = $order->service->jobseeker->id;
+        $totalorders = Order::whereHas('service', function($q) use($jobseeker_id){
+            $q->where('user_id', $jobseeker_id);
+        })->count();
+
+        if($totalorders <= 0){ //first time
+            $reward = new GiveReward(auth()->user()->id, 'submit_1st_service_order_delivered');
+            $reward->send();
+        }else{
+            $reward = new GiveReward(auth()->user()->id, 'submitting_service_order_delivered');
+            $reward->send();
+        }
+
+        auth()->user()->notify(new OrderCompletedNotification($order));
+        auth()->user()->notify(new OrderInvoiceNotification($order, $invoice));
         return response()->json(['success' => true, 'msg' => 'Order Delivered, Wait for the Buyer to response']);
     }
 
@@ -67,6 +105,8 @@ class OrdersController extends Controller
         $order = Order::find($id);
         $order->status = 3;
         $order->save();
+
+        auth()->user()->notify(new OrderDeclinedNotification($order));
 
         return response()->json(['success' => true, 'msg' => 'Order Declined']);
     }

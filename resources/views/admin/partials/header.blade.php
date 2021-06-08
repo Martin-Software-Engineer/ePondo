@@ -9,7 +9,29 @@
         <ul class="nav navbar-nav align-items-center ml-auto">
             <li class="nav-item mr-1"><a class="nav-link" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Home" data-original-title="Home"><i class="ficon" data-feather="home"></i></a></li>
             <li class="nav-item mr-1"><a class="nav-link" href="{{route('chats')}}" data-toggle="tooltip" data-placement="top" title="Messages" data-original-title="Messages"><i class="ficon" data-feather="message-square"></i></a></li>
-            <li class="nav-item mr-1"><a class="nav-link" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Notifications" data-original-title="Notifications"><i class="ficon" data-feather="bell"></i></a></li>
+            <li class="nav-item mr-1 dropdown dropdown-notification">
+                <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">{{count(auth()->user()->unreadNotifications)}}</span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                    <li class="dropdown-menu-header">
+                        <div class="dropdown-header d-flex">
+                            <h4 class="notification-title mb-0 mr-auto">Notifications</h4>
+                            <div class="badge badge-pill badge-light-primary">{{count(auth()->user()->unreadNotifications)}} New</div>
+                        </div>
+                    </li>
+                    <li class="scrollable-container media-list">
+                        @foreach(auth()->user()->unreadNotifications as $notification)
+                            <a class="d-flex" href="javascript:void(0)">
+                                <div class="media d-flex align-items-start">
+                                    <div class="media-body">
+                                        <p class="media-heading"><span class="font-weight-bolder">{{@$notification->data['heading']}}</span></p><small class="notification-text"> {{@$notification->data['text']}}</small>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </li>
+                    <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="{{route('admin.notifications')}}">Read all notifications</a></li>
+                </ul>
+            </li>   
             <li class="nav-item mr-1">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();" data-toggle="tooltip" data-placement="top" title="Logout" data-original-title="Logout"><i class="ficon" data-feather="power"></i></a>

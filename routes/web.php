@@ -80,6 +80,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
     Route::get('payouts', 'Admin\PayoutRequestsController@index')->name('payouts.index');
     Route::get('payouts/{id}', 'Admin\PayoutRequestsController@view')->name('payouts.view');
     Route::post('payouts/{id}/updatestatus', 'Admin\PayoutRequestsController@update_status')->name('payouts.updatestatus');
+
+    Route::get('notifications', 'JobSeeker\NotificationsController@index')->name('notifications');
+    Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
+
 });
 
 // Demo route to check if verif email, lets use this for accessing profile, before they can they need to verify email
@@ -119,6 +123,9 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::resource('services', 'JobSeeker\ServicesController', ['except' => ['destroy', 'update']]);
 
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
+
+    Route::get('notifications', 'JobSeeker\NotificationsController@index')->name('notifications');
+    Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
 });
 
 Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is-backer'])->group(function (){
@@ -137,6 +144,10 @@ Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is
     Route::get('orders/{id}/approve', 'Backer\OrdersController@approve')->name('orders.approve');
     Route::get('orders/{id}/invoice', 'Backer\OrdersController@invoice')->name('order.invoice');
     Route::post('orders/cancel', 'Backer\OrdersController@cancel')->name('orders.cancel');
+
+    Route::get('notifications', 'JobSeeker\NotificationsController@index')->name('notifications');
+    Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
+
 });
 
 Route::get('chats', 'ChatsController@index')->name('chats');

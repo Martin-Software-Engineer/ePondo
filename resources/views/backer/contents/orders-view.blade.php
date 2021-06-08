@@ -82,6 +82,11 @@
                             <span>{{$order->details->message}}</span>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary">Send Direct Message</a>
+                        </div>
+                    </div>
                 </div>
                 <!-- Invoice Note ends -->
             </div>

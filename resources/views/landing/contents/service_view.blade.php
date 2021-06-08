@@ -185,7 +185,7 @@
                         <h4>Duration: {{$service->duration_hours}} Hrs {{$service->duration_minutes}} Mins</h4>
                     </div>
                     <div class="col-sm-4 campaign_donate_btn">
-                        <div class="donate_btn btn btn-block " data-campaign-id="{{$service->id}}">
+                        <div class="donate_btn btn btn-block " data-service-id="{{$service->id}}">
                             <h2 class="donate_now">Avail Service</h2>
                         </div>
                     </div>
@@ -571,6 +571,7 @@
       </div>
     </div>
 </div>    
+
 @endsection
 
 @section('scripts')
@@ -584,8 +585,8 @@
             availForm = $('.avail_form'),
             selectPaymentModal = $('#selectPaymentMethodModal'),
             cardPayment = $('.card-payment');
-
-        $('.avail_btn').on('click', async function(){
+        
+        $('.donate_btn').on('click', async function(){
             var serviceId = $(this).data('serviceId');
             const service = await $.get(`/service/${serviceId}/details`);
             var categories = [];
@@ -677,7 +678,7 @@
         }, '#paypal-button');
         
         var stripe = Stripe("{{env('STRIPE_PUB_KEY')}}");
-
+        
         var stripePayment = function(order_id, currency){
             var donate = { order_id, currency  };
 
@@ -778,70 +779,6 @@
             stripePayment(data.orderId, data.currency);
         });
 
-        dropdownCategory.on('click', '.dropdown-item', function(){
-            dropdownCategory.find('.dropdown-toggle').text($(this).text());
-            filter.category = $(this).data('value');
-            searchFilter(filter);
-        });
-        dropdownType.on('click', '.dropdown-item', function(){
-            dropdownType.find('.dropdown-toggle').text($(this).text());
-            filter.type = $(this).data('value');
-            searchFilter(filter);
-        });
-        dropdownRegion.on('click', '.dropdown-item', function(){
-            dropdownRegion.find('.dropdown-toggle').text($(this).text());
-            filter.type = $(this).data('value');
-            searchFilter(filter);
-        });
-        btnSearch.on('click', function(){
-            filter.search = $('input[name=filter_search]').val();
-            searchFilter(filter);
-        });
-        function loadFilterDefault(){
-            if(filter.category != ''){
-                var text = dropdownCategory.find('a[data-value='+filter.category+']').text();
-                dropdownCategory.find('.dropdown-toggle').text(text);
-            }
-                
-            if(filter.type != ''){
-                var text = dropdownType.find('a[data-value='+filter.type+']').text();
-                dropdownType.find('.dropdown-toggle').text(text);
-            }
-                
-            if(filter.region != ''){
-                var text = dropdownRegion.find('a[data-value='+filter.region+']').text();
-                dropdownRegion.find('.dropdown-toggle').text(text);
-            }
-                
-            if(filter.search != ''){
-                $('input[name=filter_search]').val(filter.search);
-            }
-                
-            
-        }
-        function searchFilter(filter){
-            var params = [];
-            var domain = window.location.origin;
-            if(filter.category != ''){
-                params.push('category='+filter.category);
-            }
-            if(filter.type != ''){
-                params.push('type='+filter.type);
-            }
-            if(filter.region != ''){
-                params.push('region='+filter.region);
-            }
-            if(filter.search != ''){
-                params.push('search='+filter.search);
-            }
-
-            var newUrl = domain+'/services?'+params.join('&');
-            window.location.href = newUrl;
-        }
-
-        function param(name) {
-            return (location.search.split(name + '=')[1] || '').split('&')[0];
-        }
     });
 </script>    
 @endsection
