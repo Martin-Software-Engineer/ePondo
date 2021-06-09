@@ -26,7 +26,10 @@
                     <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="img_7"><a href="{{route('campaign_view', $campaign->id)}}"><img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>
+                                <div class="img_7"><a href="{{route('campaign_view', $campaign->id)}}">
+                                    <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : 
+                                    asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a>
+                                </div>
                                 <!-- <div class="date_bt">
                                     <div class="date_text active"><a href="#">{{date('d', strtotime($campaign->target_date))}}</a></div>
                                     <div class="date_text"><a href="#">{{date('M', strtotime($campaign->target_date))}}</a></div>
@@ -35,22 +38,38 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a></h1>
-                                <p class="ipsum_text_1 ">{{$campaign->description}}</p>
-                                <div>
-                                    <p class="ipsum_text_1">Category</p>
-                                </div>
-                                <div>
-                                    <p class="ipsum_text_1">Target Date: {{date('M-d', strtotime($campaign->target_date))}}</p>
-                                </div>
+                                <h1 class="give_taital_1 overflow-ellipsis">
+                                    <a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a>
+                                </h1>
+                                <p class="card_c_category">
+                                    @foreach($campaign->categories as $category)
+                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    @endforeach
+                                </p>
+                                <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr></h3>
+                               
+                                <!-- <p class="ipsum_text_1 ">{{$campaign->description}}</p> -->
+                                <p class="card_c_desc">{{$campaign->description}}</p>
+                                <!-- <span class="card_c_category">
+                                    @foreach($campaign->categories as $category)
+                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    @endforeach
+                                </span> -->
+
+
+                                <!-- <div>
+                                    <p class="card_c_targetd">by: {{date('F d, Y', strtotime($campaign->target_date))}}</p>
+                                </div> -->
+
+
                                 <div class="progress-wrapper progress_bar">
                                     <div id="example-caption-2">
                                         <div class="row">
                                             <div class="col-6">
-                                                <h6>Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                                <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
                                             </div>
                                             <div class="col-6">
-                                                <h6 style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                                <h6 class="campaign_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
                                             </div>
                                             <!-- <div class="col-6">Php {{$campaign->progress->target_value}} <br>Target</div> -->
                                         </div>
@@ -61,6 +80,9 @@
                                             aria-describedby="example-caption-2">
                                         </div>
                                     </div>
+                                </div>
+                                <div>
+                                    <p class="card_c_targetd">{{date('F d, Y', strtotime($campaign->target_date))}}</p>
                                 </div>
                                 <!-- <div><p class="give_taital_1">{{date('M-d', strtotime($campaign->target_date))}}</p></div> -->
                                 <!-- <h5 class="raised_text_1 give_ipsum_1">Raised: ₱{{$campaign->raised}} <span class="goal_text">Goal: ₱{{$campaign->target_amount}}</span></h5> -->
@@ -108,12 +130,24 @@
                             <div class="col-md-12">
                                 
                                 <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h1>
-                                <div style="margin: 0 0 0 20px;"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"></div>
-                                <p class="ipsum_text_1 ">by: Jobseeker Name</p>
-                                <p class="ipsum_text_1 ">{{$service->description}}</p>
-                                <div>
-                                    <p class="ipsum_text_1">Category</p>
+                                <p class="card_c_category">
+                                    @foreach($service->categories as $category)
+                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    @endforeach
+                                </p>
+                                <div class=" row s_img_jname">
+                                    <div>
+                                        <p class="s_j_name">Text</p>
+                                    </div>
+                                    <div class="s_image">
+                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    </div>
+                                        
                                 </div>
+                                <p class="ipsum_text_1 ">by: {{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</p><span><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"></span>
+                                <div style="margin: 0 0 0 20px;"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"></div>
+                                <p class="ipsum_text_1 ">{{$service->description}}</p>
+                                
                                 <div>
                                     <p class="ipsum_text_1">Location: {{$service->location}}</p>
                                 </div>

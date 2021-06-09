@@ -253,10 +253,29 @@
                                 title: 'Success!',
                                 text: resp.msg,
                                 icon: 'success',
+                                confirmButtonText: 'Services List',
+                                customClass: {
+                                    confirmButton: 'btn btn-primary',
+                                },
+                                buttonsStyling: false
                             }).then(function(result) {
-                                location.reload();
+                                location.href = "{{route('jobseeker.services.index')}}"
                             });
                         }
+                        // if (resp.success) {
+                        //     Swal.fire({
+                        //         title: 'Success!',
+                        //         text: resp.msg,
+                        //         icon: 'success',
+                        //         confirmButtonText: 'Campaigns List',
+                        //         customClass: {
+                        //             confirmButton: 'btn btn-primary',
+                        //         },
+                        //         buttonsStyling: false
+                        //     }).then(function(result) {
+                        //         location.href = "{{route('jobseeker.campaigns.index')}}"
+                        //     });
+                        // }
                     }
                 });
             });

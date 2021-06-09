@@ -9,7 +9,7 @@
 
 .tagsinput .tag {
     border-radius: 4px;
-    background-color: #7367F0 !important;
+    background-color: #191268 !important;
     color: #ffffff;
     cursor: pointer;
     margin-right: 5px;
@@ -30,7 +30,7 @@
 }
 
 .tagsinput .tag:hover {
-    background-color: #7367F0 !important;
+    background-color: #191268 !important;
     color: #ffffff;
     padding-left: 12px;
     padding-right: 20px;
@@ -104,7 +104,7 @@
 }
 
 .tagsinput-add:hover {
-    background-color: #7367F0 !important;
+    background-color: #191268 !important;
 }
 
 .tagsinput-add:before {

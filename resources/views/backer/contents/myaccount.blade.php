@@ -46,15 +46,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                 <div class="form-group">
                                     <label for="address">Address</label>
+                                    <label style="font-size:11px;;" class="ml-1">(City/Minicipality,Province)</label>
                                     <input id="address" type="text" class="form-control" name="address" value="{{$address}}"/>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="postcode">Postcode</label>
+                                    <label for="postcode">ZIP Code/Post Code</label>
                                     <input id="postcode" type="text" class="form-control" name="zipcode" value="{{$zipcode}}"/>
                                 </div>
                             </div>

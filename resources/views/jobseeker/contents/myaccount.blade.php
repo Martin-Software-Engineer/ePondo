@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="postcode">ZIP Code/Post Code</label>
                                     <input id="postcode" type="text" class="form-control" name="zipcode" value="{{$zipcode}}"/>

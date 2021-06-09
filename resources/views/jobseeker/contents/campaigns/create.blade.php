@@ -30,9 +30,10 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="campaign-id">Title</label>
+                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; ">(Pamagat)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" id="title" class="form-control" name="title" placeholder="Input text here ...">
+                                            <input type="text" id="title" class="form-control" name="title">
                                         </div>
                                     </div>
                                 </div>
@@ -40,9 +41,10 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="description">Description</label>
+                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; ">(Diskripsyon)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ..."></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +52,8 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="category">Category</label>
-                                        </div>
+                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; ">(Kategorya)</span>
+                                    </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
                                                 @foreach($categories as $category)
@@ -64,6 +67,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="target-date">Target Date</label>
+                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; ">(Mithing Petsa)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="date" name="target_date" id="target-date" class="form-control">
@@ -74,6 +78,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="target-amount">Target Amount</label>
+                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; "><br>(Mithing Halaga)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="input-group mb-2">
