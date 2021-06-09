@@ -102,7 +102,7 @@
                     <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="img_7"><a href="{{route('service_view', $campaign->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>                        </div>
+                                <div class="img_7"><a href="{{route('service_view', $service->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>                        </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
