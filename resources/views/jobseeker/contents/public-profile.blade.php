@@ -301,7 +301,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <hr /> -->
                                 </div>
                                 @empty 
                                 <div data-repeater-item>
@@ -329,7 +328,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr />
                                 </div>
                                 @endforelse
                             </div>
@@ -444,7 +442,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr />
                                 </div>
                                 @endforelse
                             </div>
@@ -511,7 +508,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr />
                                 </div>
                                 @endforelse
                             </div>
@@ -602,7 +598,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <hr /> -->
                                 </div>
                                 @endforelse
                             </div>
@@ -631,9 +626,9 @@
                             <textarea name="bio" id="bio" cols="30" rows="10" class="form-control">{{$info->bio}}</textarea>
                         </div>
                     </div>
-
                     <div class="col-12">
                         <h4 class="mb-1 mt-2">
+                            <hr>
                             <i data-feather="edit-3" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">4Ps Information</span>
                         </h4>
