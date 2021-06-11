@@ -1179,14 +1179,29 @@ button.donate_btn {
 
 .s_img_jname{
     display: flex;
+    padding: 0 20px 0 20px;
     /* align-items: center; */
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .s_j_name{
     /* padding-left: 20px; */
     margin: 0;
+    padding: 0;
     float: left;
+    
+}
+
+.s_image{
+    /* padding: 0; */
+
+    /* vertical-align: middle; */
+
+    text-align: right;
+
+    /* align-items: right; */
+    /* justify-content: right; */
+
     
 }
 
@@ -1194,7 +1209,6 @@ button.donate_btn {
     width: 100%;
     float: left;
     position: relative;
-
     width: 100%; height: 200px; object-fit: cover;
 }
 

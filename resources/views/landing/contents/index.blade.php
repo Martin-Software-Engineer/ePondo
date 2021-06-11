@@ -124,28 +124,35 @@
                     <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="img_7"><a href="{{route('service_view', $service->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>                        </div>
+                                <div class="img_7"><a href="{{route('service_view', $service->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                
                                 <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h1>
+                                @foreach($service->categories as $category)
                                 <p class="card_c_category">
-                                    @foreach($service->categories as $category)
+                                    
                                         {{$category->name}} @if(!$loop->last)/@endif
-                                    @endforeach
+                                    
                                 </p>
-                                <div class=" row s_img_jname">
-                                    <div>
-                                        <p class="s_j_name">Text</p>
+                                @endforeach
+
+                                <div class="row-md-12 s_img_jname">
+                                    <div class="col-md-6 s_j_name">
+                                        <p >By: {{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</p>
                                     </div>
-                                    <div class="s_image">
+                                    <div class="col-md-6 s_image">
                                         <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                        (5)
                                     </div>
-                                        
                                 </div>
-                                <p class="ipsum_text_1 ">by: {{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</p><span><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"></span>
-                                <div style="margin: 0 0 0 20px;"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"></div>
+
+                                <hr>
                                 <p class="ipsum_text_1 ">{{$service->description}}</p>
                                 
                                 <div>
