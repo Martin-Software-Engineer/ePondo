@@ -63,7 +63,8 @@ $(function() {
                     orderable: false,
                     render: function(data, type, full, meta) {
                         var btns = [];
-                        if (full.status.code == 1 || full.status.code == 2) {
+                        var statusCode = parseInt(full.status.code);
+                        if (statusCode == 1 || statusCode == 2) {
                             btns.push(`<button type="button" class="mr-1 btn btn-danger btn-sm btn-cancel" data-id="${full.id}">Cancel</button>`);
                         }
                         return (
