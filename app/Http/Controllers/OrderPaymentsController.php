@@ -137,7 +137,7 @@ class OrderPaymentsController extends Controller
                 $order->status = 6; //ongoing
                 $order->save();
 
-                $jobseeker = $order->service->user();
+                $jobseeker = $order->service->jobseeker();
                 $jobseeker->notify(new OrderPaymentNotification($order, $order->invoice));
             }
 
