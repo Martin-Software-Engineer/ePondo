@@ -16,7 +16,7 @@ class CampaignsController extends Controller
     public function donate(Request $request){
         $donate = Donation::create([
             'message' => $request->message,
-            'amount' => $request->amount
+            'amount' => $request->amount + ($request->amount * 0.03)
         ]);
 
         $campaign = Campaign::find($request->campaign_id);
@@ -27,25 +27,17 @@ class CampaignsController extends Controller
             
             if($user){
                 $user->donations()->attach($donate->id);
-                $jobseeker->notify(new DonateCampaignNotification($user, $campaign));
-                $user->notify(new DonateCampaignNotification($user, $campaign));
             }else{
                 if (Auth::check()) {
                     $user = User::find(auth()->user()->id);
                     $user->donations()->attach($donate->id);
-                    $jobseeker->notify(new DonateCampaignNotification($user, $campaign));
-                    $user->notify(new DonateCampaignNotification($user, $campaign));
                     Mail::to(auth()->user()->email)->queue(new SendMail('emails.donation-received-mail', [
                         'subject' => 'Epondo Service'
                     ]));
-                }else{
-                    $jobseeker->notify(new DonateCampaignNotification((object)['username' => $request->firstname], $campaign));
                 }
             }
-
-        }else{
-            $jobseeker->notify(new DonateCampaignNotification(null, $campaign));
         }
+
         return response()->json(array(
                 'success' => true, 
                 'donation_id' => $donate->id,

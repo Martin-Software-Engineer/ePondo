@@ -602,12 +602,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h5>Transaction Fee</h5>
                                 <h5>Payment Processing Fee</h5>
                                 <h5><strong>Total Amount</strong></h5>
                             </div>
                             <div class="col-md-6">
-                                <h5>5%</h5>
                                 <h5>3%</h5>
                                 <h5 class="total_amount"></h5>
                             </div>
@@ -698,7 +696,8 @@
             if(donationForm.find('input[name=amount]').val() > 0){
                 totalAmount = donationForm.find('input[name=amount]').val()
             }
-
+            totalAmount = parseFloat(totalAmount);
+            totalAmount = (totalAmount + (totalAmount * .03));
             $('.total_amount').text(`${currency.toUpperCase()} ${totalAmount}`);
         });
 
@@ -709,7 +708,8 @@
             if(donationForm.find('input[name=amount]').val() > 0){
                 totalAmount = donationForm.find('input[name=amount]').val()
             }
-
+            totalAmount = parseFloat(totalAmount);
+            totalAmount = (totalAmount + (totalAmount * .03));
             $('.total_amount').text(`${currency.toUpperCase()} ${totalAmount}`);
         });
 

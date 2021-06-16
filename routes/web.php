@@ -104,6 +104,7 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::get('order-list', 'JobSeeker\OrdersController@data')->name('order-list');
 
     Route::get('invoices', 'JobSeeker\InvoicesController@index')->name('invoices');
+    Route::get('invoices/{id}', 'JobSeeker\InvoicesController@show')->name('invoices.show');
     Route::get('invoice-list', 'JobSeeker\InvoicesController@data')->name('invoice-list');
 
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');

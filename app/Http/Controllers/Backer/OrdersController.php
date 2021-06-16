@@ -38,6 +38,18 @@ class OrdersController extends Controller
     public function invoice($id){
         $order = Order::where(['id' => $id, 'backer_id' => auth()->user()->id])->with(['service', 'details', 'backer', 'invoice'])->first();
 
+        $duration = '';
+        $durationDec = $order->service->duration_hours + ($order->service->duration_minutes/60);
+        if($order->service->duration_hours > 1){
+            $duration = $order->service->duration_hours.' Hours';
+        }else{
+            $duration = $order->service->duration_hours.' Hour';
+        }
+
+        if($order->service->duration_minutes > 1){
+            $duration = $duration.' '.$order->service->duration_minutes.' Minutes';
+        }
+
         //return $data;
         $data = [
             'order_no' => System::GenerateFormattedId('S', $order->id),
@@ -56,13 +68,13 @@ class OrdersController extends Controller
             'service' => (object)[
                 'title' => $order->service->title,
                 'price' => $order->service->price,
-                'hours' => $order->service->duration,
-                'subtotal' => $order->service->price * $order->service->duration
+                'duration' => $duration,
+                'subtotal' => $order->service->price * $durationDec
             ],
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'total' => ($order->service->price * $order->service->duration) + $order->invoice->transaction_fee + $order->invoice->processing_fee
+            'total' => ($order->service->price * $durationDec) + $order->invoice->transaction_fee + $order->invoice->processing_fee
         ];
         
         //return $data;

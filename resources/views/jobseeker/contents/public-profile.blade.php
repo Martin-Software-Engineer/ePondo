@@ -628,7 +628,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <textarea name="bio" id="bio" cols="30" rows="10" class="form-control">{{$info->bio}}</textarea>
+                            <textarea name="bio" id="bio" cols="30" rows="15" class="form-control">{{$info->bio}}</textarea>
                         </div>
                     </div>
 
@@ -684,7 +684,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="question4">Why? (Indicate reason for your answer above)</label>
-                            <textarea name="question4" id="question4" cols="30" rows="10" class="form-control">{{@$pppp->question4}}</textarea>
+                            <textarea name="question4" id="question4" cols="30" rows="15" class="form-control">{{@$pppp->question4}}</textarea>
                         </div>
                     </div>
 

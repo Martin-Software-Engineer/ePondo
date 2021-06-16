@@ -15,9 +15,10 @@
                               Category
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              @foreach($categories as $category)
-                              <a class="dropdown-item" href="#" data-value="{{$category->id}}">{{$category->name}}</a>
-                              @endforeach
+                            <a class="dropdown-item" href="{{route('campaigns')}}">All</a>
+                            @foreach($categories as $category)
+                            <a class="dropdown-item" href="#" data-value="{{$category->id}}">{{$category->name}}</a>
+                            @endforeach
                           </div>
                       </div>
                       <div class="dropdown dropdown-type mr-1">
