@@ -73,16 +73,16 @@
                                     <p class="ipsum_text_1">Category</p>
                                 </div>
                                 <div>
-                                    <p class="ipsum_text_1">Target Date: {{date('M-d', strtotime($campaign->target_date))}}</p>
+                                    <p class="ipsum_text_1">Target Date: <b>{{date('M-d', strtotime($campaign->target_date))}}</b></p>
                                 </div>
                                 <div class="progress-wrapper progress_bar_campaigns">
                                     <div id="example-caption-2">
                                         <div class="row">
                                             <div class="col-6">
-                                                <h6>Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                                <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
                                             </div>
                                             <div class="col-6">
-                                                <h6 style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                                <h6 class="campaign_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
                                             </div>
                                             <!-- <div class="col-6">Php {{$campaign->progress->target_value}} <br>Target</div> -->
                                         </div>

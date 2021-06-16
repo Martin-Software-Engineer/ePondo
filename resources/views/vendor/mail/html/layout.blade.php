@@ -39,10 +39,36 @@ width: 100% !important;
 <tr>
 <td class="content-cell">
 {{ Illuminate\Mail\Markdown::parse($slot) }}
-
 {{ $subcopy ?? '' }}
 </td>
 </tr>
+<!-- <div class="row">
+    <div class="col">
+        <h1>Hi</h1>
+    </div>
+    <div class="col">
+        <h1>Hi</h1>
+    </div>
+    <div class="col">
+        <h1>Hi</h1>
+    </div>
+</div> -->
+
+<!-- <tr>
+<td class="email_footer">
+<hr>
+<div class="email_footer">Contact Us : ePondo@gmail.com</div> -->
+
+
+<!-- </td>
+<td class="email_footer">
+<img style="" class="img_header_email"src="{{asset('app-assets/images/additional_pictures/navbar_logo.png')}}">
+</td>
+<td class="email_footer">
+<h1>col-3</h1>  -->
+</td>
+</tr>
+
 </table>
 </td>
 </tr>

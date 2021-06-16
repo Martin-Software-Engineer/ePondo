@@ -301,7 +301,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <hr /> -->
                                 </div>
                                 @empty 
                                 <div data-repeater-item>
@@ -329,7 +328,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr />
                                 </div>
                                 @endforelse
                             </div>
@@ -350,8 +348,8 @@
                             <hr>
                             <i data-feather="users" class="font-medium-4 mr-25"></i>
                             <span class="align-center">Dependents</span>
-                            <span class="align-middle ml-1" style="font-size: 11px;">Individuals that you financially support</span>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; margin-left:10px">(Mga Indibidwal na iyong sinusustentuhan/sinusuportahan)</span>
+                            <span class="align-middle ml-1" style="color:gray;font-weight:normal;font-size:10px;">Individuals that you financially support</span>
+                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; ">(Mga Indibidwal na iyong sinusustentuhan/sinusuportahan)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">
@@ -444,7 +442,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr />
                                 </div>
                                 @endforelse
                             </div>
@@ -511,7 +508,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr />
                                 </div>
                                 @endforelse
                             </div>
@@ -549,14 +545,14 @@
                                         </div>
                                         <div class="col-md-5 col-12">
                                             <div class="form-group">
-                                                <label for="description">Description</label>
-                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Paglalarawan)</span>
+                                                <label for="description">Position</label>
+                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Posisyon)</span>
                                                 <input type="text" name="workexp[description][]" class="form-control" value="{{$workexp->description}}" id="description"/>
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
-                                                <label for="year">Year</label>
+                                                <label for="year">Year/s</label>
                                                 <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Taon)</span>
                                                 <input type="text" name="workexp[year][]" class="form-control" value="{{$workexp->year}}" id="year"/>
                                             </div>
@@ -602,7 +598,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <hr /> -->
                                 </div>
                                 @endforelse
                             </div>
@@ -631,9 +626,9 @@
                             <textarea name="bio" id="bio" cols="30" rows="15" class="form-control">{{$info->bio}}</textarea>
                         </div>
                     </div>
-
                     <div class="col-12">
                         <h4 class="mb-1 mt-2">
+                            <hr>
                             <i data-feather="edit-3" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">4Ps Information</span>
                         </h4>

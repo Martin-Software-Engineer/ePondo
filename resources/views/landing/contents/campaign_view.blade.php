@@ -184,7 +184,7 @@
                                         <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
                                     </div>
                                     <div class="col-6">
-                                        <h6 class="campaign_target_text">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                        <h6 class="campaign_target_text">Php {{$campaign->progress->target_value}} <br>Target by {{date('M-d-Y', strtotime($campaign->target_date))}}</h6>
                                     </div>
                                 </div>
                             </div>

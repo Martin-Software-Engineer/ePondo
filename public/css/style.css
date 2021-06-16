@@ -155,7 +155,7 @@ p {
 
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }
 
@@ -619,7 +619,10 @@ button.donate_btn {
 .box_main {
     width: 100%;
     /* background-color: #154377; */
-    background-color: #120a78;
+
+    /* background-color: #120a78; */
+    background-color: #0f073b;
+
     /* clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0); */
     /* clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0); */
     height: auto;
@@ -646,7 +649,7 @@ button.donate_btn {
     width: 100%;
     float: left;
     font-size: 16px;
-    color: #120a78;
+    color: #0f073b;
     font-weight: bold;
     /* padding-top: 20px; */
 }
@@ -1024,7 +1027,7 @@ button.donate_btn {
     font-size: 14px;
     color: #ffffff;
     background-color: #1ea835;
-    border: 2px solid #ffffff;
+    /* border: 2px solid #ffffff; */
     padding: 8px;
     text-transform: uppercase;
 }
@@ -1083,13 +1086,56 @@ button.donate_btn {
     color: #1d1d1d;
     font-weight: bold;
     /* padding-top: 10px; */
-    padding: 10px 20px 0 20px;
+    padding: 15px 20px 0 20px;
+    font-size: 20px;
     text-align: left;
     /* text-transform: uppercase; */
 }
 
 .ipsum_text_1 {
     width: 100%;
+    float: left;
+    font-size: 12px;
+    margin-left: 0px;
+    color: #1b1b1b;
+    padding: 0 20px 0 20px;
+}
+
+.card_c_category {
+    width: 100%;
+    float: left;
+    font-size: 13px;
+    color: #120a78;
+    font-weight: 700;
+    margin: 10px 0 0 0;
+    padding: 0 20px 0 20px;
+}
+
+.card_c_jname {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    color: #1b1b1b;
+    /* font-weight: 500; */
+    /* margin: 0 0 15px 0; */
+    padding: 0 20px 0 20px;
+    /* border-bottom: 1px solid #b1afd1 ; */
+}
+
+.card_c_targetd {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    color: #e0063d;
+    font-weight: 400;
+    margin: 5px 0 15px 0;;
+    padding: 0 20px 0 20px;
+    text-align: right;
+}
+
+.card_c_desc {
+    width: 100%;
+    height: 90px;
     float: left;
     font-size: 12px;
     margin-left: 0px;
@@ -1131,11 +1177,38 @@ button.donate_btn {
     padding: 10px 0 20px 20px;
 }
 
+.s_img_jname{
+    display: flex;
+    padding: 0 20px 0 20px;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.s_j_name{
+    /* padding-left: 20px; */
+    margin: 0;
+    padding: 0;
+    float: left;
+    
+}
+
+.s_image{
+    /* padding: 0; */
+
+    /* vertical-align: middle; */
+
+    text-align: right;
+
+    /* align-items: right; */
+    /* justify-content: right; */
+
+    
+}
+
 .img_7 {
     width: 100%;
     float: left;
     position: relative;
-
     width: 100%; height: 200px; object-fit: cover;
 }
 
@@ -1197,7 +1270,8 @@ button.donate_btn {
 .campaign_raised_text {
     width: 100%;
     float: left;
-    color: #12dd78;
+    /* color: #12dd78; */
+    color: #120a78;
     font-weight: bold;
     padding: 10px 0 5px 0;
     /* text-align: left; */
@@ -1679,12 +1753,32 @@ input.address_text::placeholder {
 
 /* Jobseeker - My Public Profile - end */
 
+/* Email - start */
+
+.email_btn {
+    width: 100%;
+    display: flex;
+    padding: 10px 0 20px 0;
+    align-self: center;
+}
+
+.email_btn_1 {
+    display: flex;
+    /* padding: 200px 200px; */
+    text-align: center;
+}
+
+/* Email - end */
+
 /* copyright section end */
 
 .margin_top_90 {
     margin-top: 90px;
 }
 
+.img_header_email {
+    margin-top: 90px;
+}
 
 /*================================================================================
 	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
