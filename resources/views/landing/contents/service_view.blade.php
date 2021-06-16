@@ -639,7 +639,7 @@
             availModal.find('form').find('input[name=service_title]').val(service.title);
             availModal.find('form').find('input[name=service_category]').val(categories.join('/'));
             availModal.find('form').find('input[name=service_price]').val(service.currency+' '+service.price);
-            availModal.find('form').find('input[name=service_duration]').val(service.duration+' Hour/s');
+            availModal.find('form').find('input[name=service_duration]').val(service.duration_hours+' Hour/s ' + service.duration_minutes + ' Minute/s');
             availModal.modal('show');
         });
 
