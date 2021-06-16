@@ -146,8 +146,8 @@ Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is
     Route::get('orders/{id}/invoice', 'Backer\OrdersController@invoice')->name('order.invoice');
     Route::post('orders/cancel', 'Backer\OrdersController@cancel')->name('orders.cancel');
 
-    Route::get('notifications', 'JobSeeker\NotificationsController@index')->name('notifications');
-    Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
+    Route::get('notifications', 'Backer\NotificationsController@index')->name('notifications');
+    Route::get('notifications/markall', 'Backer\NotificationsController@markall')->name('notifications.markall');
 
 });
 
