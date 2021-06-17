@@ -29,7 +29,9 @@ class InvoicesController extends Controller
     }
 
     public function show($id){
-        $order = Order::where(['id' => $id])->with(['service', 'details', 'backer', 'invoice'])->first();
+        $order = Order::whereHas('invoice', function($q) use ($id){
+            $q->where('id', $id);
+        })->with(['service', 'details', 'backer', 'invoice'])->first();
 
         $duration = '';
         $durationDec = $order->service->duration_hours + ($order->service->duration_minutes/60);
