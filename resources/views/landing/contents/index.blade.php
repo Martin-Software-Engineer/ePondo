@@ -139,8 +139,8 @@
                                 @endforeach
 
                                 <div class="row-md-12 s_img_jname">
-                                    <div class="col-md-6 s_j_name">
-                                        <p >By: {{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</p>
+                                    <div class="col-md-6 s_jname_spacing">
+                                        <h3 class="s_j_name" >By: {{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</h3>
                                     </div>
                                     <div class="col-md-6 s_image">
                                         <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
@@ -156,10 +156,14 @@
                                 <p class="ipsum_text_1 ">{{$service->description}}</p>
                                 
                                 <div>
-                                    <p class="ipsum_text_1">Location: {{$service->location}}</p>
+                                    <!-- <h3 class="s_location" style="font-weight: normal;"><span style="font-weight:600">Location:</span> {{$service->location}}</h3>  -->
+                                    <h3 class="s_location"><span class="s_hlocation">Location:</span> {{$service->location}}</h3>
                                 </div>
                                 <div>
-                                    <p class="ipsum_text_1">Duration: {{$service->duration_hours}} Hr/s</p>
+                                <h3 class="s_duration"><span class="s_hduration">Duration:</span>
+                                    @if( $service->duration_hours > 1 ) {{$service->duration_hours}} Hrs @elseif( $service->duration_hours == 0 )  @else {{$service->duration_hours}} Hr @endif
+                                    @if( $service->duration_minutes > 1 ) {{$service->duration_minutes}} Mins @elseif( $service->duration_minutes == 0 )  @else {{$service->duration_minutes}} Min @endif
+                                </h3>
                                 </div>
                                 <h5 class="service_price">₱{{$service->price}}</h5>
                                 <div class="service_btn_main">
@@ -189,41 +193,25 @@
         <div class="row">
           <div class="col-lg-4">
              <div class="box_main">
-                <!-- <h4 class="volunteer_text">Jobseeker</h4>
-                <img src="{{asset('app-assets/images/additional_pictures/jobseeker_v3.png')}}"></div>
-                <p class="lorem_text">Create Campaign & Service</p>
-                <p class="lorem_text">The role of a jobseeker is to create campaigns and offer services in support to these campaigns. In return the jobseeker's campaign will be published publicly for audiences to reach.</p> -->
                 <div class="icon_1"><img src="images/icon-1.png"></div>
                 <h4 class="volunteer_text">Create Campaign</h4>
                 <p class="lorem_text">Fundraise your cause through creating a campaign on the platform</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
-                <!-- <p class="lorem_text">Creation of campaigns are made in order to help jobseekers raise funds for certain causes</p> -->
-
-             </div>
-          </div>
-          <div class="col-lg-4">
-             <div class="box_main">
-                <!-- <h4 class="volunteer_text">Backer</h4>
-                <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/backer_v3.png')}}"></div>
-                <p class="lorem_text">Donate to Campaign</p>
-                <p class="lorem_text">The role of a backer is to support any desired campaign. They will be able to contribute monetary support to these campaigns.</p> -->
-                <div class="icon_1"><img src="images/icon-2.png"></div>
-                <h4 class="volunteer_text">Avail Service</h4>
-                <p class="lorem_text">Browse through the different service offerings by the jobseekers</p>
-                <div class="join_bt"><a href="#">Read More</a></div>
-                <!-- <p class="lorem_text">Backers are able to avail services produced by Jobseekers</p>
-                <div class="join_bt"><a href="#">Read More</a></div> -->
              </div>
           </div>
           <div class="col-lg-4">
              <div class="box_main"> 
-           <!-- <h4 class="volunteer_text">Customer</h4>
-                <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/customer_v3.png')}}"></div>
-                <p class="lorem_text">Avail Service</p>
-                <p class="lorem_text">The role of the customer is to be able to avail the different services offered on the platform by the different jobseekers. These services are offered in support of the jobseekers campaigns.</p> -->
-                <div class="icon_1"><img src="images/icon-3.png"></div>
+                <div class="icon_3"><img src="images/icon-3.png"></div>
                 <h4 class="volunteer_text">Donate</h4>
                 <p class="lorem_text">Our platform is made so you can browse through our website and donate to various campaigns</p>
+                <div class="join_bt"><a href="#">Read More</a></div>
+             </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="box_main">
+                <div class="icon_1"><img src="images/icon-2.png"></div>
+                <h4 class="volunteer_text">Avail Service</h4>
+                <p class="lorem_text">Browse through the different service offerings by the jobseekers</p>
                 <div class="join_bt"><a href="#">Read More</a></div>
              </div>
           </div>
