@@ -49,7 +49,8 @@
        <div class="row">
             @forelse($campaigns as $campaign)
                 <div class="col-md-3 pt-4">
-                    <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                    <!-- Campaign Tile - Start -->
+                    <!-- <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;" >
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="img_7">
@@ -58,12 +59,9 @@
                                                   asset('app-assets/images/pages/no-image.png')}}" class="img_7">
                                     </a>
                                 </div>
-                                <!-- <div class="date_bt">
-                                    <div class="date_text active"><a href="#">{{date('d', strtotime($campaign->target_date))}}</a></div>
-                                    <div class="date_text"><a href="#">{{date('M', strtotime($campaign->target_date))}}</a></div>
-                                </div> -->
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                             <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a></h1>
@@ -83,7 +81,6 @@
                                             <div class="col-6">
                                                 <h6 class="campaign_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
                                             </div>
-                                            <!-- <div class="col-6">Php {{$campaign->progress->target_value}} <br>Target</div> -->
                                         </div>
                                     </div>
                                     <div class="progress progress-bar-primary">
@@ -92,15 +89,65 @@
                                             aria-describedby="example-caption-2">
                                         </div>
                                     </div>
-                                </div><!-- <div class="donate_btn_main">
-                                    <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}" class="donate_btn" data-campaign-id="{{$campaign->id}}">Donate Now</a></div>
-                                </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Campaign Tile - End -->
+
+                    <!-- Campaign Tile 2 - Start -->
+                    <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="c_img"><a href="{{route('campaign_view', $campaign->id)}}">
+                                    <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : 
+                                    asset('app-assets/images/pages/no-image.png')}}" class="c_img"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <a class="c_card_title overflow-ellipsis stretched-link" href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a>
+                                
+                                <p class="c_card_c_category">
+                                    @foreach($campaign->categories as $category)
+                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    @endforeach
+                                </p>
+                                <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
+                               
+                                <div class="c_card_c_desc">{{$campaign->description}}</div>
+                               
+                                <div class="progress-wrapper progress_bar">
+                                    <div id="example-caption-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="campaign_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress progress-bar-primary">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
+                                            aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" 
+                                            aria-describedby="example-caption-2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="card_c_targetd">{{date('F d, Y', strtotime($campaign->target_date))}}</p>
+                                </div>
                                 <!-- <div class="donate_btn_main">
                                     <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
                                 </div> -->
                             </div>
                         </div>
                     </div>
+                    <!-- Campaign Tile 2 - End -->
+
                 </div>
             @empty 
             @endforelse

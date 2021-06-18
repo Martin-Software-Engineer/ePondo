@@ -184,7 +184,8 @@
                                         <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
                                     </div>
                                     <div class="col-6">
-                                        <h6 class="campaign_target_text">Php {{$campaign->progress->target_value}} <br>Target by {{date('M-d-Y', strtotime($campaign->target_date))}}</h6>
+                                        <h6 class="campaign_target_text">Php {{$campaign->progress->target_value}} <br>Target </h6>
+                                        <h6 class="campaign_target_date">({{date('F d, Y', strtotime($campaign->target_date))}})</h6>
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +199,7 @@
                     </div>
                     <div class="col-sm-4 campaign_donate_btn">
                         <div class="donate_btn btn btn-block " data-campaign-id="{{$campaign->id}}">
-                            <h2 class="donate_now">Donate Now!</h2>
+                            <h2 class="donate_now"><img src="{{asset('app-assets/images/additional_pictures/icon-4.png')}}" class="donate_now_img">Donate Now!</h2>
                         </div>
                     </div>
                 </div>
@@ -259,7 +260,7 @@
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="col-sm-9">
-                                            <h1>{{$campaign->jobseeker->userinformation->firstname}} ?MiddleInitial?
+                                            <h1>{{$campaign->jobseeker->userinformation->firstname}}
                                                 {{$campaign->jobseeker->userinformation->lastname}}</h1>
                                             <div class="row pl-3">
                                                 <img src="{{asset('app-assets/images/additional_pictures/phone.png')}}" class="campaign_header_icons" alt="">
@@ -388,28 +389,30 @@
                             <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
                         </div>
                         <div class="info">
-                            <h3>Posted By</h3>
+                            <!-- <h6>Posted By</h6> -->
                             <!-- <h3><strong>{{$campaign->jobseeker->username}}</strong></h3> -->
-                            <h3><strong>{{$campaign->jobseeker->userinformation->firstname}} ?MiddleInitial? {{$campaign->jobseeker->userinformation->lastname}} </strong></h3>
+                            <h3><strong>{{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}} </strong></h3>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body c_j_body">
                         <div class="row">
-                            <p class="campaign_jobseeker_about"> This portion will be the Jobseeker "About Me" data. My name is Carla Lacy, I am the 
+                            <p class="campaign_jobseeker_about"> 
+                            This portion will be the Jobseeker "About Me" data. My name is Carla Lacy, I am the 
                             grandmother of Aiden Leos’s 15-year-old sister, Alexis Cloonan. I have a very close bond and relationship with Aidans 
                             mother and family. I have been asked to speak on their behalf and been given permission by the mother, Joanna Cloonan 
-                            to organize this fundraiser on behalf of her and the family’s needs. </p>
-                            <h5><<<<<< View More >>>>>></h5>
+                            to organize this fundraiser on behalf of her and the family’s needs. 
+                            </p>
+                            <h5 class="c_j_vm">View More ></h5>
                         </div>
                     </div>
                 </div>
                 <div class="card" style="margin-top: 20px;">
                     <div class="card-header text-center">
                         <div class="info">
-                            <h3>Messages</h3>
+                            <strong>Messages</strong>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body c_j_body">
                         <div class="row">
                             <h6 class="campaign_jobseeker_about">1 Donor Name/Message/Date/Amount</h6>
                             <h6 class="campaign_jobseeker_about">2 Donor Name/Message/Date/Amount</h6>

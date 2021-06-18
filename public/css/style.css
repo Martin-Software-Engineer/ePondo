@@ -365,11 +365,10 @@ button.donate_btn {
 .register_btn,
 .account_btn {
     width: 150px;
-    font-size: 18px;
-    color: #666666;
+    font-size: 14px;
+    color: rgba(0,0,0,.5);;
     background: transparent;
-    padding: 0 10px;
-    margin: 0 10px;
+    padding: 0 8px;
 }
 
 /* .register_btn,
@@ -383,7 +382,10 @@ button.donate_btn {
     
 }
 
+.enavbar{
+    border-right: 1px solid rgb(235, 228, 228);
 
+}
 
 /* header section end */
 
@@ -632,6 +634,13 @@ button.donate_btn {
 
 .icon_1 {
     width: 100%;
+    float: center;
+    text-align: center;
+}
+
+.icon_3 {
+    width: 100%;
+    height: 96px;
     float: center;
     text-align: center;
 }
@@ -1126,8 +1135,8 @@ button.donate_btn {
     width: 100%;
     float: left;
     font-size: 12px;
-    color: #e0063d;
-    font-weight: 400;
+    color: #1b1b1b;
+    font-weight: normal;
     margin: 5px 0 15px 0;;
     padding: 0 20px 0 20px;
     text-align: right;
@@ -1141,6 +1150,61 @@ button.donate_btn {
     margin-left: 0px;
     color: #1b1b1b;
     padding: 0 20px 0 20px;
+}
+
+.c_img { /* Campaigns Page*/
+    width: 100%;
+    float: left;
+    position: relative;
+    width: 100%; height: 150px; object-fit: cover;
+}
+
+.c_card_c_desc { /* Campaigns Page*/
+    width: 100%;
+    height: 40px;
+    float: left;
+    font-size: 12px;
+    margin-left: 0px;
+    color: #1b1b1b;
+    padding: 0 20px 0 20px;
+
+    font-weight: 300;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    margin-top: 0;
+    margin-bottom: 1rem;
+
+    /* margin-block-start: 1em; */
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.c_card_c_category { /* Campaigns Page*/
+    width: 100%;
+    float: left;
+    font-size: 13px;
+    color: #120a78;
+    font-weight: 700;
+    margin: 0;
+    padding: 0 20px 0 20px;
+}
+
+.c_card_title {
+    width: 100%;
+    float: left;
+    color: #1d1d1d;
+    font-weight: bold;
+    padding: 5px 20px 0 20px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.hr_m{
+    margin: 8px 0;
 }
 
 .progress_bar{
@@ -1185,11 +1249,34 @@ button.donate_btn {
 }
 
 .s_j_name{
-    /* padding-left: 20px; */
+    font-size: 12px;
+    color: #1b1b1b;
+    font-weight: normal;
     margin: 0;
     padding: 0;
     float: left;
     
+}
+
+.s_jname_spacing{
+    padding: 0;
+}
+
+.s_location, .s_duration {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0px;
+    color: #1b1b1b;
+    padding: 0 20px 0 20px;
+
+}
+
+.s_hlocation, .s_hduration {
+    font-weight:600;
+    margin-right:8px
+
 }
 
 .s_image{
@@ -1256,25 +1343,24 @@ button.donate_btn {
     font-weight: bold;
     padding: 10px 0 0 0;
     text-align: left;
+    font-size: 40px;
 }
 
 .campaign_category {
     width: 100%;
     float: left;
-    color: #120a78;
-    font-weight: bold;
-    padding: 10px 0 0 0;
+    color: #7e7e7e;
     text-align: left;
+    font-size: 13px;
 }
 
 .campaign_raised_text {
     width: 100%;
     float: left;
-    /* color: #12dd78; */
     color: #120a78;
     font-weight: bold;
     padding: 10px 0 5px 0;
-    /* text-align: left; */
+    font-size: 16px;
 }
 
 .campaign_target_text {
@@ -1282,9 +1368,19 @@ button.donate_btn {
     float: left;
     color: #e0063d;
     font-weight: bold;
-    padding: 10px 0 5px 0;
-    /* text-align: left; */
+    padding: 10px 0 0px 0;
     text-align: right;
+    font-size: 16px;
+}
+
+.campaign_target_date {
+    width: 100%;
+    float: left;
+    color: #e0063d;
+    font-weight: 500;
+    padding: 0 0 10px 0;
+    text-align: right;
+    font-size: 12px;
 }
 
 .campaign_progress_bar{
@@ -1307,11 +1403,22 @@ button.donate_btn {
     width: 100%;
     color: #ffffff;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     /* height: 60px; */
+}
+
+.donate_now_img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.c_j_body{
+    margin: 0 10px;
+
 }
 
 .campaign_profile_border{
@@ -1332,14 +1439,30 @@ button.donate_btn {
 }
 
 .campaign_jobseeker_about{
-
     font-weight: 300;
-    font-size: 15px;
+    font-size: 12px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
+    color: #111111;
+    margin-bottom: 5px;
+
 }
+
+.c_j_vm{
+    width: 100%;
+    font-weight: 300;
+    font-size: 12px;
+    color: #111111;
+    float: right;
+    text-align: right;
+    align-items: flex-end;
+    justify-content: left;
+    text-decoration: underline;
+
+}
+
 
 .campaign_header_icons{
     width: 16px;

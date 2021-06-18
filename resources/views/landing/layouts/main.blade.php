@@ -21,7 +21,7 @@
       <!-- Responsive-->
       <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
       <!-- fevicon -->
-      <link rel="icon" href="{{asset('app-assets/images/additional_pictures/logo2.png')}}" type="image/gif" />
+      <link rel="shortcut icon" href="{{asset('app-assets/images/additional_pictures/logo2.png')}}" />
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="{{asset('css/jquery.mCustomScrollbar.min.css')}}">
       <!-- Tweaks for older IEs-->

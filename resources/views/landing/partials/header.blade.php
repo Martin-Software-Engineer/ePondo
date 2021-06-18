@@ -4,11 +4,13 @@
 <!-- <div class="container"> -->
       <nav class="navbar navbar-expand-xl navbar-light bg-light ">
          <a class="navbar-brand" href="/"><img src="{{asset('app-assets/images/additional_pictures/navbar_logo.png')}}"></a>
+         
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
          </button>
+         
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto enavbar">
                <li class="nav-item {{ Request::segment(1) === 'campaigns' ? 'active' : null }}">
                   <a class="nav-link" href="{{route('campaigns')}}">Campaigns</a>
                </li>
@@ -17,6 +19,9 @@
                </li>
                <li class="nav-item {{ Request::segment(1) === 'aboutus' ? 'active' : null }}">
                   <a class="nav-link" href="{{route('aboutus')}}">About Us</a>
+               </li>
+               <li class="nav-item {{ Request::segment(1) === 'aboutus' ? 'active' : null }}">
+                  <a class="nav-link" href="#">How it works ?</a>
                </li>
             </ul>
             <div class="my-2 my-lg-0">
@@ -36,8 +41,9 @@
                   @endauth
                   
                   @guest 
-                     <a class="register_btn" href="{{route('register')}}">Register</a>
-                     <a class="login_btn" href="{{route('login')}}">Login</a>
+                     <!-- <a class="register_btn" href="{{route('register')}}">Register</a> -->
+                     <a class="login_btn" href="{{route('login')}}">Log-In</a>
+                     <!-- <p style="font-size:8px">Create Account</p> -->
                   @endguest
             </div>
          </div>
