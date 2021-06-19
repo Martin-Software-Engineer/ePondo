@@ -104,6 +104,7 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::get('order-list', 'JobSeeker\OrdersController@data')->name('order-list');
 
     Route::get('invoices', 'JobSeeker\InvoicesController@index')->name('invoices');
+    Route::get('invoices/{id}', 'JobSeeker\InvoicesController@show')->name('invoices.show');
     Route::get('invoice-list', 'JobSeeker\InvoicesController@data')->name('invoice-list');
 
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
@@ -145,8 +146,8 @@ Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is
     Route::get('orders/{id}/invoice', 'Backer\OrdersController@invoice')->name('order.invoice');
     Route::post('orders/cancel', 'Backer\OrdersController@cancel')->name('orders.cancel');
 
-    Route::get('notifications', 'JobSeeker\NotificationsController@index')->name('notifications');
-    Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
+    Route::get('notifications', 'Backer\NotificationsController@index')->name('notifications');
+    Route::get('notifications/markall', 'Backer\NotificationsController@markall')->name('notifications.markall');
 
 });
 

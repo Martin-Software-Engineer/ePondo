@@ -20,7 +20,6 @@ $(function() {
                 { data: 'backer_email' },
                 { data: 'message' },
                 { data: 'amount' },
-                { data: '' }
             ],
             columnDefs: [{
                     // For Responsive
@@ -34,26 +33,16 @@ $(function() {
                 {
                     targets: 4,
                     render: function(data, type, row) {
-                        if (row.message.length > 20) {
-                            return row.message.substring(0, 20) + '...';
-                        } else {
-                            return row.message;
+                        if(row.message != null && row.message != ''){
+                            if (row.message.length > 20) {
+                                return row.message.substring(0, 20) + '...';
+                            } else {
+                                return row.message;
+                            }
+                        }else{
+                            return '';
                         }
 
-                    }
-                },
-                {
-                    // Actions
-                    targets: -1,
-                    width: '80px',
-                    orderable: false,
-                    render: function(data, type, full, meta) {
-                        return (
-                            `<div class="d-flex align-items-center col-actions">
-                              <a class="mr-1 btn-details" href="/admin/campaigns/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Details">${feather.icons['list'].toSvg({ class: 'font-medium-2' })}</a>
-                            </div>
-                            `
-                        );
                     }
                 }
             ],

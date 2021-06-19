@@ -39,7 +39,6 @@
                         <th>Backer Email</th>
                         <th>Backer Message</th>
                         <th>Donation Amount</th>
-                        <th class="cell-fit">Actions</th>
                     </tr>
                 </thead>
             </table>

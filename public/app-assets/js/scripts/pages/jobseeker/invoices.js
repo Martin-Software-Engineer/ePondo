@@ -70,6 +70,7 @@ $(function() {
                     render: function(data, type, full, meta) {
                         return (
                             `<div class="d-flex align-items-center col-actions">
+                                <a class="mr-1" href="/jobseeker/invoices/${full.id}" data-toggle="tooltip" data-placement="top" title="View">${feather.icons['eye'].toSvg({ class: 'font-medium-2' })}</a>
                             </div>
                             `
                         );

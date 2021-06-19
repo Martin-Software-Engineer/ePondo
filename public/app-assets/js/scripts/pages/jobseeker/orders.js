@@ -64,13 +64,6 @@ $(function() {
                     }
                 },
                 {
-                    targets: 6,
-                    width: '100px',
-                    render: function(data, type, row) {
-                        return `<span>${row.service_duration} Hrs</span>`;
-                    }
-                },
-                {
                     // Actions
                     targets: -1,
                     width: '80px',

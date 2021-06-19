@@ -31,7 +31,7 @@ use App\Models\Invoice;
 
 use Carbon\Carbon;
 use App\Mail\SendMail;
-
+use App\Helpers\System;
 use App\Notifications\OrderPayment as OrderPaymentNotification;
 class OrderPaymentsController extends Controller
 {
@@ -137,7 +137,8 @@ class OrderPaymentsController extends Controller
                 $order->status = 6; //ongoing
                 $order->save();
 
-                $jobseeker = $order->service->user();
+                $jobseeker_id = $order->service->jobseeker->id;
+                $jobseeker = User::find($jobseeker_id);
                 $jobseeker->notify(new OrderPaymentNotification($order, $order->invoice));
             }
 

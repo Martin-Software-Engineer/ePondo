@@ -246,6 +246,7 @@
                             <!-- Profile Description -->
                                 <div class="row section_profile_desc">
                                     <div class="col-sm-6 section_details">
+                                    
                                         <!-- Jobseeker Profile & Name -->
                                             <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="j_p_profile" alt="">
                                             <h1 class="j_p_name">
@@ -311,6 +312,7 @@
                                             </h6>
                                         
                                    </div>    
+
                                     <!-- About Me -->
                                     <div class="col-sm-6 ">
                                         <h3 class="j_p_header">About Me</h3>
@@ -608,7 +610,7 @@
             availModal.find('form').find('input[name=service_title]').val(service.title);
             availModal.find('form').find('input[name=service_category]').val(categories.join('/'));
             availModal.find('form').find('input[name=service_price]').val(service.currency+' '+service.price);
-            availModal.find('form').find('input[name=service_duration]').val(service.duration+' Hour/s');
+            availModal.find('form').find('input[name=service_duration]').val(service.duration_hours+' Hour/s ' + service.duration_minutes + ' Minute/s');
             availModal.modal('show');
         });
 

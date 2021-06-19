@@ -5,7 +5,6 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css') }}">
 @endsection
 @section('stylesheets')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <style>
         .card-empty{
             background-size: cover;
