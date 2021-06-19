@@ -215,18 +215,18 @@
                       <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs c_tab_space" id="myTab" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">About Service</a>
+                      <a class="nav-link active c_tabs" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">About Service</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Profile</a>
+                      <a class="nav-link c_tabs" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Profile</a>
                     </li>
                     <!-- <li class="nav-item">
                       <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" id="rating-tab" data-toggle="tab" href="#rating" role="tab" aria-controls="rating" aria-selected="false">Rating & Feedback</a>
+                        <a class="nav-link c_tabs" id="rating-tab" data-toggle="tab" href="#rating" role="tab" aria-controls="rating" aria-selected="false">Rating & Feedback</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -238,72 +238,107 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">
+                    <div class="tab-pane fade show " id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">
                         <div class="card">
                             <div class="card-body">
                             <!-- Profile Header -->
-                                <div class="row section_profile_header">
-                                    <div class="col-sm-3">
-                                        <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <div class="col-sm-9">
-                                            <h1>{{$service->jobseeker->userinformation->firstname}} ?MiddleInitial?
-                                                {{$service->jobseeker->userinformation->lastname}}</h1>
-                                            <div class="row pl-3">
-                                                <img src="{{asset('app-assets/images/additional_pictures/phone.png')}}" class="campaign_header_icons" alt="">
-                                                <h6>{{$service->jobseeker->userinformation->phone}}</h6>
-                                            </div>
-                                            <div class="row pl-3">
-                                                <img src="{{asset('app-assets/images/additional_pictures/email.png')}}" class="campaign_header_icons" alt="">
-                                                <h6>{{$service->jobseeker->email}}</h6>
-                                            </div>
-                                            <div class="row pl-3">
-                                                <img src="{{asset('app-assets/images/additional_pictures/location.png')}}" class="campaign_header_icons" alt="">
-                                                <h6>{{$service->jobseeker->userinformation->address}}</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             <!-- Profile Description -->
                                 <div class="row section_profile_desc">
-                                    <!-- Details -->
                                     <div class="col-sm-6 section_details">
-                                        <h6>Age: ??</h6>
-                                        <h6>Gender: ??</h6>
-                                        <h6>Kids: (Pending design)</h6>
-                                        <h6>Dependents: (Pending design)</h6>
-                                        <h6>Job: {{$service->jobseeker->userinformation->current_job}}</h6>
-                                        <h6>Skills: **</h6>
-                                        <h6>Work Experience: **</h6>
-                                    </div>
+                                        <!-- Jobseeker Profile & Name -->
+                                            <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="j_p_profile" alt="">
+                                            <h1 class="j_p_name">
+                                                {{$service->jobseeker->userinformation->firstname}}
+                                                {{$service->jobseeker->userinformation->lastname}}
+                                            </h1>
+                                            <hr>
+                                        <!-- Details -->
+                                            <h3 class="j_p_header">Personal Information</h3>
+                                            <h6 class="j_p_subtitle">Age:<span class="j_p_text">24y.o.</span></h6>
+                                            <h6 class="j_p_subtitle">Kids:
+                                                <span class="j_p_text">
+                                                @forelse($service->jobseeker->kids as $kid)
+                                                    @if(!$loop->last)
+                                                        {{$kid->fullname.','}}
+                                                    @else
+                                                        {{$kid->fullname}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span> 
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Dependents:
+                                                <span class="j_p_text">
+                                                @forelse($service->jobseeker->dependents as $dependent)
+                                                    @if(!$loop->last)
+                                                        {{$dependent->fullname.','}}
+                                                    @else
+                                                        {{$dependent->fullname}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span>
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Job: <span class="j_p_text">{{$service->jobseeker->userinformation->current_job}}</span></h6>
+                                            <h6 class="j_p_subtitle">Skills:
+                                                <span class="j_p_text">
+                                                @forelse($service->jobseeker->skills as $skill)
+                                                    @if(!$loop->last)
+                                                        {{$skill->work_skill.','}}
+                                                    @else
+                                                        {{$skill->work_skill}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span>
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Work Experience:
+                                                <span class="j_p_text">
+                                                @forelse($service->jobseeker->workexperiences as $workexp)
+                                                    @if(!$loop->last)
+                                                        {{$workexp->description.','}}
+                                                    @else
+                                                        {{$workexp->description}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span>
+                                            </h6>
+                                        
+                                   </div>    
                                     <!-- About Me -->
-                                    <div class="col-sm-6">
-                                    <h3>About Me</h3>
-                                    <h6>{{$service->jobseeker->userinformation->bio}}</h6>
+                                    <div class="col-sm-6 ">
+                                        <h3 class="j_p_header">About Me</h3>
+                                        <h6 class="campaign_jobseeker_about">{{$service->jobseeker->userinformation->bio}}</h6>
                                     </div>
+                                    
                                 </div>
                             <!-- Living State -->
                                 <div class="row section_living_state">
                                     <div class="col-sm-12">
-                                        <h3>Living State</h3>
+                                        <h3 class="j_p_header">Living State</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <!-- Income -->
                                     <div class="col-sm-6 section_income">
-                                        <h5>Average Daily Income: Php {{$service->jobseeker->userinformation->daily_income}}</h5>
-                                        <h6>Main Source Income: {{$service->jobseeker->userinformation->main_source_income}}</h6>
-                                        <h6>Other Source Income: {{$service->jobseeker->userinformation->extra_source_income}}</h6>
+                                        <h6 class="j_p_subtitle">Average Daily Income: <span class="j_p_text">Php {{$service->jobseeker->userinformation->daily_income}}</span></h6>
+                                        <h6 class="j_p_subtitle">Main Source Income: <span class="j_p_text">{{$service->jobseeker->userinformation->main_source_income}}</span></h6>
+                                        <h6 class="j_p_subtitle">Other Source Income: <span class="j_p_text">{{$service->jobseeker->userinformation->extra_source_income}}</span></h6>
                                     </div>
                                     <!-- Expenses -->
                                     <div class="col-sm-6">
-                                        <h5>Average Daily Expenses: Php {{$service->jobseeker->userinformation->daily_expenses}}</h5>
-                                        <h6>Type of Housing: {{$service->jobseeker->userinformation->type_of_housing}}</h6>
-                                        <h6>Meals per Day: {{$service->jobseeker->userinformation->daily_meals}}</h6>
-                                        <h6>Water: {{$service->jobseeker->userinformation->water_access}}</h6>
-                                        <h6>Electricity: {{$service->jobseeker->userinformation->electricity_access}}</h6>
-                                        <h6>Clothes: {{$service->jobseeker->userinformation->clean_clothes_access}}</h6>
+                                        <h5 class="j_p_subtitle">Average Daily Expenses: <span class="j_p_text">Php {{$service->jobseeker->userinformation->daily_expenses}}</span></h5>
+                                        <h6 class="j_p_subtitle">Type of Housing: <span class="j_p_text">{{$service->jobseeker->userinformation->type_of_housing}}</span></h6>
+                                        <h6 class="j_p_subtitle">Meals per Day: <span class="j_p_text">{{$service->jobseeker->userinformation->daily_meals}}</span></h6>
+                                        <h6 class="j_p_subtitle">Water: <soan class="j_p_text">{{$service->jobseeker->userinformation->water_access}}</soan></h6>
+                                        <h6 class="j_p_subtitle">Electricity: <span class="j_p_text">{{$service->jobseeker->userinformation->electricity_access}}</span></h6>
+                                        <h6 class="j_p_subtitle">Clothes: <span class="j_p_text">{{$service->jobseeker->userinformation->clean_clothes_access}}</span></h6>
                                     </div>
                                 </div>
                             </div>
@@ -319,14 +354,10 @@
                 <!-- Jobseeker Profile -->
                     <!-- Header -->
                     <div class="card-header text-center">
-                        <!-- <h3 class="card-title">{{$service->title}}</h3>
-                        <p>Php {{$service->price}}</p>
-                        <p>{{$service->description}}</p> -->
                         <div class="row">
                             <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
                         </div>
                         <div class="info">
-                            <!-- <h3>Posted By</h3> -->
                             <h3><strong>{{$service->jobseeker->userinformation->firstname}} ?MiddleInitial? {{$service->jobseeker->userinformation->lastname}} </strong></h3>
                         </div>
                     </div>
@@ -340,39 +371,16 @@
                             <button class="avail_btn btn btn-block btn-success" data-service-id="{{$service->id}}">Avail Service</button>
                           @endif
                       @endauth -->
-                      <div class="row">
+                      <div class="card-body c_j_body">
+                        <div class="row">
                             <p class="campaign_jobseeker_about"> This portion will be the Jobseeker "About Me" data. My name is Carla Lacy, I am the 
                             grandmother of Aiden Leos’s 15-year-old sister, Alexis Cloonan. I have a very close bond and relationship with Aidans 
                             mother and family. I have been asked to speak on their behalf and been given permission by the mother, Joanna Cloonan 
                             to organize this fundraiser on behalf of her and the family’s needs. </p>
-                            <h5><<<<<< View More >>>>>></h5>
+                            <h5 class="c_j_vm"><<<<<< View More >>>>>></h5>
                         </div>
                     </div>
-                    <!-- <div class="card-footer d-flex justify-content-start">
-                        <div class="avatar mr-2">
-                            <img src="{{asset('app-assets/images/avatars/noface.png')}}" width="100" class="rounded-circle" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Posted By</h3>
-                            <h3><strong>{{$service->jobseeker->username}}</strong></h3>
-
-                        </div>
-                    </div> -->
                 </div>
-                <!-- <div class="card" style="margin-top: 20px;">
-                    <div class="card-header text-center">
-                        <div class="info">
-                            <h3>Support My Campaigns</h3>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="col-sm-12">
-                            <h6 class="campaign_jobseeker_about">Campaign 1</h6>
-                            <h6 class="campaign_jobseeker_about">Campaign 2</h6>
-                            <h6 class="campaign_jobseeker_about">Campaign 3</h6>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -384,65 +392,66 @@
                 <h1 class="news_taital">Support My Campaigns</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3 pt-4">
-                <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="img_7">
-                                <a href="#">
-                                    <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" class="img_7">
-                                </a>
-                            </div>                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="give_taital_1 overflow-ellipsis"><a href="#">Title</a></h1>
-                            <p class="ipsum_text_1 ">description</p>
-                            <div>
-                                <p class="ipsum_text_1">Category</p>
-                            </div>
-                            <div>
-                                <p class="ipsum_text_1">Target Date:</p>
-                            </div>
-                            <div>
-                                <p class="ipsum_text_1">Progress Bar</p>
+        <div class="row pb-5">
+        @forelse($campaigns as $campaign)
+                <div class="col-md-3 pt-4">
+                    <!-- Campaign Tile - Start -->
+                    <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="c_img"><a href="{{route('campaign_view', $campaign->id)}}">
+                                    <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : 
+                                    asset('app-assets/images/pages/no-image.png')}}" class="c_img"></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <a class="c_card_title overflow-ellipsis stretched-link" href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a>
+                                
+                                <p class="c_card_c_category">
+                                    @foreach($campaign->categories as $category)
+                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    @endforeach
+                                </p>
+                                <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
+                               
+                                <div class="c_card_c_desc">{{$campaign->description}}</div>
+                               
+                                <div class="progress-wrapper progress_bar">
+                                    <div id="example-caption-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="campaign_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress progress-bar-primary">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
+                                            aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" 
+                                            aria-describedby="example-caption-2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="card_c_targetd">{{date('F d, Y', strtotime($campaign->target_date))}}</p>
+                                </div>
+                                <!-- <div class="donate_btn_main">
+                                    <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
+                                </div> -->
+                            </div>
+                        </div>
                     </div>
+                    <!-- Campaign Tile - End -->
                 </div>
-            </div>
-            <div class="col-sm-3 pt-4">
-                <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="img_7">
-                                <a href="#">
-                                    <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" class="img_7">
-                                </a>
-                            </div>                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="give_taital_1 overflow-ellipsis"><a href="#">Title</a></h1>
-                            <p class="ipsum_text_1 ">description</p>
-                            <div>
-                                <p class="ipsum_text_1">Category</p>
-                            </div>
-                            <div>
-                                <p class="ipsum_text_1">Target Date:</p>
-                            </div>
-                            <div>
-                                <p class="ipsum_text_1">Progress Bar</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @empty 
+            @endforelse
         </div>
-        <!-- Service Tiles - End -->
+        <!-- Campaign Tiles - End -->
     </div>
 </div> 
 @endsection
@@ -451,7 +460,7 @@
 <div class="modal fade" id="availModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header m_c_title">
           <h2 class="modal-title"></h2>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
