@@ -43,6 +43,12 @@ class PagesController extends Controller
         }
 
         $data['campaign'] = Campaign::with(['categories','jobseeker'])->where('id',$id)->first();
+        /* 
+            1. Get the user_id from campaigns
+            2. Find services with the same user_id
+            3. Output all data
+        */
+        $data['services'] = Service::where('user_id', $data['campaign']->user_id)->get();
         //return $data;
         return view('landing.contents.campaign_view', $data);
     }
@@ -77,6 +83,12 @@ class PagesController extends Controller
 
     public function service_view($id){
         $data['service'] = Service::with(['categories','jobseeker', 'photos', 'messages'])->where('id',$id)->first();
+        /* 
+            1. Get the user_id from campaigns
+            2. Find services with the same user_id
+            3. Output all data
+        */
+        $data['campaigns'] = Campaign::where('user_id', $data['service']->user_id)->get();
         //return $data;
         return view('landing.contents.service_view', $data);
     }
