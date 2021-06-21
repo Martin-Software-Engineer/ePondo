@@ -170,26 +170,36 @@
         <div class="row">
           <div class="col-sm-12">
              <h1 class="service_title">{{$service->title}}</h1>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <span class="service_category">
-                            @foreach($service->categories as $category)
-                                {{$category->name}} @if(!$loop->last)/@endif
-                            @endforeach
-                        </span>
-                        <h6>Location: {{$service->location}}</h6>
-                        <h6>Rating: ??</h6>
-                    </div>
-                    <div class="col-sm-4">
-                        <h1>Php {{$service->price}}</h1>
-                        <h4>Duration: {{$service->duration_hours}} Hrs {{$service->duration_minutes}} Mins</h4>
-                    </div>
-                    <div class="col-sm-4 campaign_donate_btn">
-                        <div class="donate_btn btn btn-block " data-service-id="{{$service->id}}">
-                            <h2 class="donate_now">Avail Service</h2>
-                        </div>
-                    </div>
+             <span class="service_category">
+                @foreach($service->categories as $category)
+                    {{$category->name}} @if(!$loop->last)/@endif
+                @endforeach
+            </span>
+            <div class="row s_details">
+                <div class="col-sm-4 mt-2">
+                    
+                    <h6><span class="s_hlocation"> Location: </span> {{$service->location}}</h6>
+                    <h6> <span class="s_hduration"> Duration: </span>  {{$service->duration_hours}} Hrs {{$service->duration_minutes}} Mins</h6>
                 </div>
+                <div class="col-sm-4">
+                    <h6 class="s_price">Php {{$service->price}}</h6>
+                </div>
+                <div class="col-sm-4">
+                    
+                        @guest
+                        
+                        <div class="service_btn btn btn-block ">
+                            <h2 class="donate_now">Log In to Avail Service</h2>
+                        </div>
+                        @endguest
+                        @auth
+                        <div class="service_btn btn btn-block " data-service-id="{{$service->id}}">
+                            <h2 class="donate_now"> <img src="{{asset('app-assets/images/additional_pictures/tap.png')}}" class="donate_now_img">Avail Service</h2>
+                        </div>
+                        @endauth
+                    
+                </div>
+            </div>
           </div>
         </div>
     <!-- Service Header - End -->
@@ -347,7 +357,13 @@
                         </div>
                     </div>
                     <!-- <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div> -->
-                    <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">...</div>
+                    <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6>N/A</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -360,11 +376,11 @@
                             <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
                         </div>
                         <div class="info">
-                            <h3><strong>{{$service->jobseeker->userinformation->firstname}} ?MiddleInitial? {{$service->jobseeker->userinformation->lastname}} </strong></h3>
+                            <h3><strong>{{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}} </strong></h3>
                         </div>
                     </div>
                     <!-- Body -->
-                    <div class="card-body">
+                    <!-- <div class="card-body"> -->
                       <!-- @guest
                           <p class="text-danger">Login to avail service!</p>
                       @endguest
@@ -379,10 +395,10 @@
                             grandmother of Aiden Leos’s 15-year-old sister, Alexis Cloonan. I have a very close bond and relationship with Aidans 
                             mother and family. I have been asked to speak on their behalf and been given permission by the mother, Joanna Cloonan 
                             to organize this fundraiser on behalf of her and the family’s needs. </p>
-                            <h5 class="c_j_vm"><<<<<< View More >>>>>></h5>
+                            <!-- <h5 class="c_j_vm">View More</h5> -->
                         </div>
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -462,8 +478,10 @@
 <div class="modal fade" id="availModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header m_c_title">
-          <h2 class="modal-title"></h2>
+        <!-- <div class="modal-header m_c_title">
+          <h2 class="modal-title m_title"></h2> -->
+        <div class="modal-header m_title_area">
+          <h3 class="m_title">Avail Service</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -472,6 +490,11 @@
             @csrf
             <input type="hidden" name="service_id">
             <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <h2 class="modal-title m_c_title"></h2>
+                    </div>
+                </div>
                 <div class="card mb-1">
                     <div class="card-body">
                         <div class="row">
@@ -597,7 +620,7 @@
             selectPaymentModal = $('#selectPaymentMethodModal'),
             cardPayment = $('.card-payment');
         
-        $('.donate_btn').on('click', async function(){
+        $('.service_btn').on('click', async function(){
             var serviceId = $(this).data('serviceId');
             const service = await $.get(`/service/${serviceId}/details`);
             var categories = [];
@@ -606,7 +629,7 @@
             });
             availModal.find('.modal-title').text(service.title);
             availModal.find('form').find('input[name=service_id]').val(service.id);
-            availModal.find('form').find('input[name=jobseeker_name]').val(service.jobseeker.username);
+            availModal.find('form').find('input[name=jobseeker_name]').val(service.jobseeker.information.firstname + ' ' +service.jobseeker.information.lastname);
             availModal.find('form').find('input[name=service_title]').val(service.title);
             availModal.find('form').find('input[name=service_category]').val(categories.join('/'));
             availModal.find('form').find('input[name=service_price]').val(service.currency+' '+service.price);

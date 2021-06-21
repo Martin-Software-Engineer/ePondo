@@ -419,7 +419,7 @@
                             mother and family. I have been asked to speak on their behalf and been given permission by the mother, Joanna Cloonan 
                             to organize this fundraiser on behalf of her and the family’s needs. 
                             </p>
-                            <h5 class="c_j_vm">View More ></h5>
+                            <!-- <h5 class="c_j_vm">View More ></h5> -->
                         </div>
                     </div>
                 </div>
