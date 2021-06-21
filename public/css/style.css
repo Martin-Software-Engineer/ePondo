@@ -2019,16 +2019,16 @@ input.address_text::placeholder {
 .copyright_section {
     width: 100%;
     float: left;
-    background-color: #222122;
-    height: auto;
+    /* background-color: #0f073b; */
+    height: 30px;
 }
 
 .copyright_text {
     width: 100%;
     float: left;
-    font-size: 6px;
+    font-size: 10px;
     margin-left: 0px;
-    color: #fff;
+    color: rgb(197, 197, 197);
     text-align: center;
 }
 

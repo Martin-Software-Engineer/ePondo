@@ -47,9 +47,9 @@
          </div>
       </div>
       <div class="copyright_section">
-        <div class="container">
-           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-           <span>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a></span>
-        </div>
+         <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design" style="color: rgb(197, 197, 197);">Free html  Templates</a>
+           Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" style="color: rgb(197, 197, 197);">Pixel perfect</a>
+           from <a href="https://www.flaticon.com/" style="color: rgb(197, 197, 197);">www.flaticon.com</a></span>
+         </p>
      </div>
      <!-- copyright section end -->
