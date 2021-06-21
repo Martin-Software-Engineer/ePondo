@@ -44,6 +44,7 @@ Route::get('service/{id}/details','PagesController@service_details')->name('serv
 Route::post('service/avail', 'ServicesController@avail')->name('service.avail');
 
 Route::get('aboutus', 'PagesController@aboutus')->name('aboutus');
+Route::get('howitworks', 'PagesController@howitworks')->name('howitworks');
 Route::get('profile/{id}', 'PagesController@jobseeker')->name('profile');
 
 //Admin Routes using Route Group
