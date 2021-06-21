@@ -996,18 +996,12 @@ button.donate_btn {
 }
 
 .donate_btn {
-    /* display: flex; */
-    /* margin: 0 auto; */
-    /* text-align: center; */
-    /* align-self: center; */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60px;
-    background-color: #2610a5;
-    /* background-color: #041151; */
-    /* background-color: #11e261; */
-    /* border-color: #28a745; */
+    /* background-color: #2610a5; */
+    background-color: #1ea835;
     border-color: #ffffff;
 }
 
@@ -1377,7 +1371,7 @@ button.donate_btn {
 
 /* Campaign {Id} start */
 
-.campaign_title {
+.campaign_title, .service_title {
     width: 100%;
     float: left;
     color: #1d1d1d;
@@ -1387,7 +1381,7 @@ button.donate_btn {
     font-size: 40px;
 }
 
-.campaign_category {
+.campaign_category, .service_category {
     width: 100%;
     float: left;
     color: #7e7e7e;
@@ -1647,22 +1641,57 @@ button.donate_btn {
 
 /* Service {Id} start */
 
-.service_title {
-    width: 100%;
-    float: left;
-    color: #1d1d1d;
-    font-weight: bold;
-    padding: 10px 0 0 0;
-    text-align: left;
+.s_details{
+    padding: 0 0 10px 0;
+    vertical-align: middle;
 }
 
-.service_category {
-    width: 100%;
-    float: left;
-    color: #120a78;
+.service_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    background-color: #f64646;
+    border-color: #ffffff;
+}
+
+.service_btn a {
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #120a78;
+    border: 2px solid #ffffff;
+    padding: 8px;
+    text-transform: uppercase;
+}
+
+.service_btn a:hover {
+    color: #ffffff;
+    background-color: #120a78;
+}
+
+.s_hlocation2{
+    font-weight:600;
+    margin: 0 8px 0 0;
+    padding-top: 10px;
+}
+
+.s_price {
+    /* width: 100%; */
+    float: right;
+    color: #e0063d;
+    /* color: #120a78; */
     font-weight: bold;
-    padding: 10px 0 0 0;
-    text-align: left;
+    padding: 0;
+    text-align: right;
+    /* line-height: normal; */
+    font-size: 36px;
+    /* position: absolute; */
+
+    /* line-height: 1.5;
+    display: inline-block; */
+    vertical-align: top;
 }
 
 /* Service {Id} end */
