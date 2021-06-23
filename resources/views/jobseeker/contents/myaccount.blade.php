@@ -49,7 +49,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <label style="font-size:11px;;" class="ml-1">(Unit No.,House/Building/Street No.,Street Name,Barangay/Subdivision,City/Minicipality,Province)</label>
+                                    <label style="font-size:11px;;" class="ml-1">(City/Minicipality,Province)</label>
                                     <input id="address" type="text" class="form-control" name="address" value="{{$address}}"/>
                                 </div>
                             </div>
@@ -109,19 +109,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cpassword">Current Password</label>
-                                    <input id="cpassword" type="password" class="form-control" name="current_password" required/>
+                                    <input id="cpassword" type="password" class="form-control" name="current_password" placeholder="********" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="newpassword">New Password</label>
-                                    <input id="newpassword" type="password" class="form-control" name="new_password" required/>
+                                    <input id="newpassword" type="password" class="form-control" name="new_password" placeholder="********" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="confirmpassword">Confirm New Password</label>
-                                    <input id="confirmpassword" type="password" class="form-control" name="new_confirm_password" required/>
+                                    <input id="confirmpassword" type="password" class="form-control" name="new_confirm_password"  placeholder="********"required/>
                                 </div>
                             </div>
                         </div>

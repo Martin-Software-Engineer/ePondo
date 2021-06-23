@@ -105,7 +105,7 @@
 
                     @if($order->status == 5)
                     <button type="button" class="btn-deliver btn btn-success btn-block mb-75" disabled>
-                        Delivered
+                        Submit as Delivered
                     </button>
                     @endif
 

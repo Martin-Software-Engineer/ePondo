@@ -24,6 +24,7 @@
 
 @section('content')
 <section class="orders-list-wrapper">
+    <h2>Service Orders</h2>
     <div class="card">
         <div class="card-datatable table-responsive">
             <table class="orders-list-table table">

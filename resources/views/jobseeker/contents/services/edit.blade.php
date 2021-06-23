@@ -131,7 +131,7 @@
                                                 @php array_push($tags, $tag->name); @endphp
                                             @endforeach
                                             <input name="tags" id="tagsinput" class="tagsinput" value="{{join(",", $tags)}}" />
-                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
+                                            <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
+                                    <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit</span>
                                 </div>
                             </div>
                         </div>
