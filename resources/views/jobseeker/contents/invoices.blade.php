@@ -25,6 +25,7 @@
 
 @section('content')
 <section class="invoices-list-wrapper">
+    <h2>Invoice</h2>
     <div class="card">
         <div class="card-datatable table-responsive">
             <table class="invoices-list-table table">

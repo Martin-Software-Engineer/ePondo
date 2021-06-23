@@ -107,19 +107,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cpassword">Current Password</label>
-                                    <input id="cpassword" type="password" class="form-control" name="current_password" required/>
+                                    <input id="cpassword" type="password" class="form-control" name="current_password" placeholder="********" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="newpassword">New Password</label>
-                                    <input id="newpassword" type="password" class="form-control" name="new_password" required/>
+                                    <input id="newpassword" type="password" class="form-control" name="new_password" placeholder="********" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="confirmpassword">Confirm New Password</label>
-                                    <input id="confirmpassword" type="password" class="form-control" name="new_confirm_password" required/>
+                                    <input id="confirmpassword" type="password" class="form-control" name="new_confirm_password" placeholder="********" required/>
                                 </div>
                             </div>
                         </div>

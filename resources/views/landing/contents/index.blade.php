@@ -196,7 +196,8 @@
                 <div class="icon_1"><img src="images/icon-1.png"></div>
                 <h4 class="volunteer_text">Create Campaign</h4>
                 <p class="lorem_text">Fundraise your cause through creating a campaign on the platform</p>
-                <div class="join_bt"><a href="#">Read More</a></div>
+                <div class="join_bt"><a href="{{route('howitworks')}}">Read More</a></div>
+                <!-- <div class="join_bt"><a href="{{route('howitworks')}}#mission">Read More</a></div> -->
              </div>
           </div>
           <div class="col-lg-4">

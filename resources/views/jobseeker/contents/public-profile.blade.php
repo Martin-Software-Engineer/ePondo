@@ -256,6 +256,7 @@
                             <hr>
                             <i data-feather="users" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Kids</span>
+                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Anak)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">
@@ -528,6 +529,7 @@
                             <hr>
                             <i data-feather="briefcase" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Work Experiences</span>
+                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Karanasahan sa trabaho)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">
@@ -618,6 +620,7 @@
                             <hr>
                             <i data-feather="edit-3" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">About Me</span>
+                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Karagdagang impormasyo tungkil sa iyo)</span>
                         </h4>
                     </div>
 

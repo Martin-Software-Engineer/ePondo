@@ -20,9 +20,9 @@
                <li class="nav-item {{ Request::segment(1) === 'aboutus' ? 'active' : null }}">
                   <a class="nav-link" href="{{route('aboutus')}}">About Us</a>
                </li>
-               <!-- <li class="nav-item {{ Request::segment(1) === 'aboutus' ? 'active' : null }}">
+               <li class="nav-item {{ Request::segment(1) === 'howitworks' ? 'active' : null }}">
                   <a class="nav-link" href="{{route('howitworks')}}">How it works ?</a>
-               </li> -->
+               </li>
             </ul>
             <div class="my-2 my-lg-0">
                   @auth

@@ -32,7 +32,7 @@
                                             <label for="campaign-id">Title</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" id="title" class="form-control" name="title" placeholder="Ïnput text here ..." required>
+                                            <input type="text" id="title" class="form-control" name="title" required>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                             <label for="description">Description</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ..."></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" ></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <select name="duration_minutes" id="duration_minutes" class="form-control">
-                                                @for($i = 0; $i<=12; $i++)
+                                                @for($i = 0; $i<=11; $i++)
                                                     <option value="{{$i*5}}">{{$i*5}} Minutes</option>
                                                 @endfor
                                             </select>
@@ -109,7 +109,7 @@
                                             <label for="location">Location</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="location" id="location" class="form-control" placeholder="City/Municipality/Provinc">
+                                            <input type="text" name="location" id="location" class="form-control" placeholder="City/Municipality/Province">
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <input name="tags" id="tagsinput" class="tagsinput" value="" />
-                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
+                                            <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
+                                    <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit</span>
                                 </div>
                             </div>
                         </div>
