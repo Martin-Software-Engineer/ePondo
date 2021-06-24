@@ -74,21 +74,21 @@
     </div>
 </div>
 
-<div class="user_role_section">
+<div class="user_role_section" id="createcampaign">
    <div class="container">
        <!-- Jobseeker Title - Start -->
        <div class="row mt-2" style="border-bottom: 1px solid #ffff; padding-bottom: 20px;">
-            <div class="col-sm-2  ">
+            <div class="col-sm-2">
                 <div class="user_avatar align-items-start"><img src="{{asset('app-assets/images/additional_pictures/jobseeker.png')}}"></div>
             </div>
-            <div class="col-sm-10  ">
+            <div class="col-sm-10">
                 <h1 class="user_title">Jobseeker</h1>
                 <!-- <p class="user_desc">Descirption.   Est aliquyam et rebum kasd sit. Eos sea ipsum voluptua no sed voluptua takimata amet et, amet dolores kasd dolor diam sit, no no no sed nonumy et. Vero diam amet ipsum sit stet sed, et magna gubergren amet sit.</p> -->
                   <div class="row mt-4">
                      <div class="col-sm-4">
                         <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/donation_4.png')}}"></div>
                      </div>
-                     <div class="col-sm-8">
+                     <div class="col-sm-8" >
                         <h3 class="user_title">Create Campaign</h3>
                         <!-- <p class="user_desc">Amet dolore sadipscing diam invidunt voluptua est sit sea sit dolores. Justo at accusam ea et dolor sea. Gubergren nonumy.</p> -->
                      </div>
@@ -108,14 +108,14 @@
             <div class="col-sm-2  ">
                 <div class="user_avatar align-items-start"><img src="{{asset('app-assets/images/additional_pictures/backer_200x200.png')}}"></div>
             </div>
-            <div class="col-sm-10  ">
+            <div class="col-sm-10">
                 <h1 class="user_title">Backer/ Customer</h1>
                 <!-- <p class="user_desc">Description. Sed sed elitr justo lorem eirmod nonumy diam consetetur gubergren, dolore et sea nonumy magna accusam takimata duo tempor lorem, et kasd nonumy justo diam erat, amet duo sit eirmod dolores ipsum. Justo eirmod takimata sed invidunt labore no sanctus.</p> -->
                 <div class="row mt-4">
                   <div class="col-sm-4">
                      <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/donation_5.png')}}"></div>
                   </div>
-                  <div class="col-sm-8">
+                  <div class="col-sm-8" id="donate">
                      <h3 class="user_title">Donate to Campaigns</h3>
                      <!-- <p class="user_desc">Amet dolore sadipscing diam invidunt voluptua est sit sea sit dolores. Justo at accusam ea et dolor sea. Gubergren nonumy.</p> -->
                   </div>
@@ -124,7 +124,7 @@
                   <div class="col-sm-4">
                      <div class="icon_1"><img src="{{asset('app-assets/images/additional_pictures/service.png')}}"></div>
                   </div>
-                  <div class="col-sm-8">
+                  <div class="col-sm-8" id="availservice">
                      <h3 class="user_title">Avail Services</h3>
                      <!-- <p class="user_desc">Amet dolore sadipscing diam invidunt voluptua est sit sea sit dolores. Justo at accusam ea et dolor sea. Gubergren nonumy.</p> -->
                   </div>
