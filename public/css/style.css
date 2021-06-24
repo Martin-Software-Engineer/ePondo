@@ -602,7 +602,7 @@ button.donate_btn {
 
 .fundraise_section_main {
     width: 80%;
-    margin: 0px auto 30px auto;
+    margin: 0 auto 30px auto;
     text-align: center;
 }
 
@@ -610,6 +610,7 @@ button.donate_btn {
     /* width: 100%; */
     text-align: center;
     background-color: #ffffff;;
+    padding-top: 100px;
 }
 
 .fundraise_img {
@@ -710,7 +711,8 @@ button.donate_btn {
 .about_section {
     width: 100%;
     float: left;
-    background-color: #120a78;
+    /* background-color: #120a78; */
+    background-color: #041151;
     padding-top: 100px;
     padding-bottom: 40px;
 }
@@ -1696,6 +1698,30 @@ button.donate_btn {
 
 /* Service {Id} end */
 
+/* How it works - Start */
+
+.user_avatar{
+    width: 150px;
+    height: 150px;
+}
+
+.user_role_section {
+    width: 100%;
+    float: left;
+    background-color: #041151;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.user_title{
+    color: #ffffff;
+}
+
+.user_desc{
+    color: #ffffff;
+}
+
+/* How it works - End */
 
 /*  section start */
 

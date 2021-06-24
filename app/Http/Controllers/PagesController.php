@@ -111,6 +111,10 @@ class PagesController extends Controller
         return view('landing.contents.howitworks');
     }
 
+    public function privacypolicyterms(){
+        return view('landing.contents.privacypolicyterms');
+    }
+
     public function jobseeker($id){
         $data['user'] = User::find($id);
         $data['services'] = Service::where('user_id', $id)->get();
