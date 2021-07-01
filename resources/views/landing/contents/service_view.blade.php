@@ -178,8 +178,8 @@
             <div class="row s_details">
                 <div class="col-sm-4 mt-2">
                     
-                    <h6><span class="s_hlocation"> Location: </span> {{$service->location}}</h6>
-                    <h6> <span class="s_hduration"> Duration: </span>  {{$service->duration_hours}} Hrs {{$service->duration_minutes}} Mins</h6>
+                    <h4><span class="s_hlocation"> Location: </span> {{$service->location}}</h4>
+                    <h4> <span class="s_hduration"> Duration: </span>  {{$service->duration_hours}} Hrs {{$service->duration_minutes}} Mins</h4>
                 </div>
                 <div class="col-sm-4">
                     <h6 class="s_price">Php {{$service->price}}</h6>
@@ -441,10 +441,10 @@
                                     <div id="example-caption-2">
                                         <div class="row">
                                             <div class="col-6">
-                                                <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                                <h6 class="c_cam_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
                                             </div>
                                             <div class="col-6">
-                                                <h6 class="campaign_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                                <h6 class="c_cam_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
                                             </div>
                                         </div>
                                     </div>

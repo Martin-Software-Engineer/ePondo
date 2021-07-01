@@ -45,7 +45,11 @@ Route::post('service/avail', 'ServicesController@avail')->name('service.avail');
 
 Route::get('aboutus', 'PagesController@aboutus')->name('aboutus');
 Route::get('howitworks', 'PagesController@howitworks')->name('howitworks');
-Route::get('privacypolicyterms', 'PagesController@privacypolicyterms')->name('privacypolicyterms');
+Route::get('privacypolicy', 'PagesController@privacypolicy')->name('privacypolicy');
+Route::get('termsandconditions', 'PagesController@termsandconditions')->name('termsandconditions');
+Route::get('cookiepolicy', 'PagesController@cookiepolicy')->name('cookiepolicy');
+Route::get('eula', 'PagesController@eula')->name('eula');
+Route::get('disclaimer', 'PagesController@disclaimer')->name('disclaimer');
 Route::get('profile/{id}', 'PagesController@jobseeker')->name('profile');
 
 //Admin Routes using Route Group

@@ -12,7 +12,7 @@
          <div class="carousel_1 layout_padding">
                <div class="container">
                <div class="col-sm-12">
-                  <h1 class="banner_taital">Fundraising for the campaigns that matter to you</h1>
+                  <h1 class="banner_taital">Pondo patungo sa pangarap ng bawat Pilipino!</h1>
                   <p class="banner_text">Supporting your campaign for a better tommorrow!</p>
                   <div class="read_bt"><a href="/register">Sign Up</a></div>
                </div>
@@ -24,7 +24,7 @@
          <div class="carousel_2 layout_padding">
             <div class="container">
                   <div class="col-sm-12">
-                     <h1 class="banner_taital">Fundraising for the people and causes you care about</h1>
+                     <h1 class="banner_taital">Pondo patungo sa pangarap ng bawat Pilipino!</h1>
                      <p class="banner_text">Get started today!</p>
                      <div class="read_bt"><a href="/register">Sign Up</a></div>
                   </div>
@@ -35,7 +35,7 @@
          <div class="carousel_3 layout_padding">
             <div class="container">
                <div class="col-sm-12">
-                  <h1 class="banner_taital">Fundraising for the people and causes you care about</h1>
+                  <h1 class="banner_taital">Pondo patungo sa pangarap ng bawat Pilipino!</h1>
                   <p class="banner_text">Get started today!</p>
                   <div class="read_bt"><a href="/register">Sign Up</a></div>
                </div>
@@ -46,7 +46,7 @@
          <div class="carousel_4 layout_padding">
             <div class="container">
                <div class="col-sm-12">
-                  <h1 class="banner_taital">Fundraising for the people and causes you care about</h1>
+                  <h1 class="banner_taital">Pondo patungo sa pangarap ng bawat Pilipino!</h1>
                   <p class="banner_text">Get started today!</p>
                   <div class="read_bt"><a href="/register">Sign Up</a></div>
                </div>
@@ -57,7 +57,7 @@
          <div class="carousel_5 layout_padding">
             <div class="container">
                <div class="col-sm-12">
-                  <h1 class="banner_taital">Fundraising for the people and causes you care about</h1>
+                  <h1 class="banner_taital">Pondo patungo sa pangarap ng bawat Pilipino!</h1>
                   <p class="banner_text">Get started today!</p>
                   <div class="read_bt"><a href="/register">Sign Up</a></div>
                </div>

@@ -917,11 +917,20 @@ button.donate_btn {
 
 .news_taital_quote {
     float: left;
-    font-size: 30px;
-    color: #1d1d1d;
-    /* text-transform: uppercase; */
+    font-size: 36px;
+    color: #041151;
     font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'New Century Schoolbook, TeX Gyre Schola', serif;
+}
+
+.news_taital_author {
+    float: left;
+    font-size: 30px;
+    color: #0b218b;
+    font-weight: bold;
+    font-family: 'New Century Schoolbook, TeX Gyre Schola', serif;
+    margin-top: 20px;
 }
 
 .news_text {
@@ -1190,9 +1199,10 @@ button.donate_btn {
 .c_card_c_category { /* Campaigns Page*/
     width: 100%;
     float: left;
-    font-size: 13px;
+    font-size: 11px;
     color: #120a78;
-    font-weight: 700;
+    font-weight: 500;
+    font-style: italic;
     margin: 0;
     padding: 0 20px 0 20px;
 }
@@ -1203,7 +1213,7 @@ button.donate_btn {
     color: #1d1d1d;
     font-weight: bold;
     padding: 5px 20px 0 20px;
-    font-size: 20px;
+    font-size: 14px;
     text-align: left;
 }
 
@@ -1225,13 +1235,24 @@ button.donate_btn {
 
 /* Services Page - Start */
 
+.card_s_title {
+    width: 100%;
+    float: left;
+    color: #1d1d1d;
+    font-weight: bold;
+    padding: 15px 20px 0 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
 .card_s_category {
     width: 100%;
     float: left;
-    font-size: 13px;
+    font-size: 11px;
     color: #120a78;
-    font-weight: 700;
-    margin: 0 0;
+    font-weight: 500;
+    font-style: italic;
+    margin: 0;
     padding: 0 20px 0 20px;
 }
 
@@ -1305,8 +1326,9 @@ button.donate_btn {
 }
 
 .s_hlocation, .s_hduration {
-    font-weight:600;
-    margin-right:8px
+    font-weight:500;
+    margin-right:8px;
+    font-size: 18px;
 
 }
 
@@ -1388,7 +1410,9 @@ button.donate_btn {
     float: left;
     color: #7e7e7e;
     text-align: left;
-    font-size: 13px;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .campaign_raised_text {
@@ -1397,7 +1421,26 @@ button.donate_btn {
     color: #120a78;
     font-weight: bold;
     padding: 10px 0 5px 0;
-    font-size: 12px;
+    font-size: 18px;
+}
+
+.c_cam_target_text {
+    width: 100%;
+    float: left;
+    color: #e0063d;
+    font-weight: bold;
+    padding: 10px 0 0px 0;
+    text-align: right;
+    font-size: 13px;
+}
+
+.c_cam_raised_text {
+    width: 100%;
+    float: left;
+    color: #120a78;
+    font-weight: bold;
+    padding: 10px 0 5px 0;
+    font-size: 13px;
 }
 
 .campaign_target_text {
@@ -1407,7 +1450,7 @@ button.donate_btn {
     font-weight: bold;
     padding: 10px 0 0px 0;
     text-align: right;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 .campaign_target_date {
@@ -1454,7 +1497,20 @@ button.donate_btn {
 }
 
 .c_j_body{
-    margin: 0 10px;
+    margin: 0;
+    padding: 0;
+
+}
+
+.c_j_about{
+    width: auto;
+    max-height: 225px;
+    overflow: auto;
+
+}
+
+.c_j_about_text{
+    margin: 10px 20px;
 
 }
 
@@ -1480,7 +1536,7 @@ button.donate_btn {
     font-size: 12px;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    /* -webkit-line-clamp: 5; */
     -webkit-box-orient: vertical;
     color: #111111;
     margin-bottom: 5px;
@@ -1490,8 +1546,6 @@ button.donate_btn {
 
 .c_messages{
     color: #041151;
-    /* border-color: #dee2e6 #dee2e6 #fff; */
-    /* background-color: rgba(0,0,0,.03); */
 }
 
 .c_summary{
@@ -1639,6 +1693,51 @@ button.donate_btn {
     /* padding: 20px 0 20px 0; */
 }
 
+.c_message_section{
+    margin-top: 20px;
+}
+
+.c_messages_box{
+    margin: 0;
+    padding: 0;
+    width: auto;
+    max-height:  295px;
+    overflow: auto;
+
+}
+
+.c_donation_sec{
+    padding: 10px 0;
+    margin: 0 20px;
+    border-bottom: 1px solid rgb(235, 228, 228);
+
+}
+
+.c_donation_text{
+    margin: 0 20px;
+}
+
+.c_don_amount{
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #041151;
+}
+
+.c_don_name{
+    font-weight: 500;
+    font-size: 12px;
+    color: #111111;
+    text-align: justify;
+}
+
+.c_don_mess{
+    font-style: oblique;
+    font-weight: 300;
+    margin: 10px 10px 0 10px;
+    text-align: start;
+}
+
 /* Campaign {Id} end */
 
 /* Service {Id} start */
@@ -1677,6 +1776,7 @@ button.donate_btn {
     font-weight:600;
     margin: 0 8px 0 0;
     padding-top: 10px;
+
 }
 
 .s_price {
@@ -1903,6 +2003,58 @@ button.donate_btn {
 
 /* contact section end */
 
+/* Privacy Policy - Start */
+
+.pri_pol_section {
+    width: 100%;
+    float: left;
+    /* background-color: #120a78; */
+    /* background-color: #041151; */
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
+
+.pppic{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.pri_pol_logo{
+    width: 150px;
+    height: 150px;
+}
+
+.pri_pol_nav_sec{
+    padding: 0 15px;
+    justify-content: center;
+    height: 50px;
+    /* border-bottom: 1px solid #041151; */
+    border-bottom: 1px solid #e3e5e9;
+}
+
+.pri_pol_title_section{
+    background-color: #120a78;
+    height: auto;
+    /* margin-top: 20px; */
+    margin: 20px 15px 0 15px;
+}
+
+.pri_pol_title{
+    color: #000000;
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 10px;
+    text-decoration: underline;
+}
+
+.pri_pol_nav{
+    color: #120a78;
+    font-weight: 500;
+}
+
+/* Privacy Policy - End */
+
 
 /* footer section start */
 
@@ -2034,6 +2186,15 @@ input.address_text::placeholder {
     top: -56px;
     right: 5px;
     font-weight: bold;
+}
+
+.agg_section{
+    /* border-bottom: 1px solid #656465; */
+    border-left: 1px solid #dfd5df;
+
+}
+.agg_text{
+    color: #b7b9bd;
 }
 
 

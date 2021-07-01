@@ -6,7 +6,7 @@
                <div class="col-sm-3 d-flex justify-content-start align-items-start">
                   <div class="about_img"><img src="{{asset('app-assets/images/additional_pictures/navbar_logo.png')}}"></div>
                </div>
-               <div class="col-sm-3 d-flex justify-content-start align-items-start ">
+               <div class="col-sm-2 d-flex justify-content-start align-items-start ">
                   <ul>
                      <li><h4 class="footernav_heading_text">CAMPAIGNS</h4></li>
                      <a href="/campaigns?category=1">Education</a><br>
@@ -22,7 +22,7 @@
                      <li>Emergencies</li> -->
                   </ul>
                </div>
-               <div class="col-sm-3 d-flex justify-content-start align-items-start ">
+               <div class="col-sm-2 d-flex justify-content-start align-items-start ">
                <ul>
                      <li><h4 class="footernav_heading_text">SERVICES</h4></li>
                      <a href="/services?category=1">Tutor</a><br>
@@ -36,11 +36,27 @@
                      <li>Food</li> -->
                   </ul>
                </div>
-               <div class="col-sm-3 d-flex justify-content-start align-items-start ">
+               <div class="col-sm-2 d-flex justify-content-start align-items-start ">
                <ul>
-                     <li><h4 class="footernav_heading_text">How it works ?</h4></li>
-                     <li>About Us</li>
-                     <li>What is crowdfunding ?</li>
+                     <li><h4 class="footernav_heading_text">Resources</h4></li>
+                     <a href="{{route('aboutus')}}">About Us</a><br>
+                     <a href="{{route('howitworks')}}">How it works</a><br>
+                     <!-- <li>About Us</li>
+                     <li>How it works</li> -->
+                  </ul>
+               </div>
+               <div class="col-sm-3 d-flex justify-content-start align-items-start agg_section">
+               <ul>
+                     <!-- <li>Terms & Conditions</li>
+                     <li>Privacy Policy</li>
+                     <li>Cookie Policy</li>
+                     <li>EULA</li>
+                     <li>Disclaimer</li> -->
+                     <a href="{{route('termsandconditions')}}" class="agg_text">Terms & Conditions</a><br>
+                     <a href="{{route('privacypolicy')}}" class="agg_text">Privacy Policy</a><br>
+                     <a href="{{route('cookiepolicy')}}" class="agg_text">Cookie Policy</a><br>
+                     <a href="{{route('eula')}}" class="agg_text">EULA</a><br>
+                     <a href="{{route('privacypolicy')}}" class="agg_text">Disclaimer</a><br>
                   </ul>
                </div>
             </div>
