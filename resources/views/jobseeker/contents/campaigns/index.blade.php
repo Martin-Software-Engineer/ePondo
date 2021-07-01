@@ -21,6 +21,7 @@
         <div class="col-md-3">
             <a class="float-right btn btn-primary btn-round" href="{{route('jobseeker.campaigns.create')}}">Create</a>
         </div>
+
     </div>
 </section>
 <section>
@@ -51,7 +52,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="c_img"><a href="{{route('campaign_view', $campaign->id)}}">
-                        <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : 
+                        <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url :
                         asset('app-assets/images/pages/no-image.png')}}" class="c_img"></a>
                     </div>
                 </div>
@@ -77,8 +78,8 @@
                             </div>
                         </div>
                         <div class="progress progress-bar-primary">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
-                                aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" 
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0"
+                                aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%"
                                 aria-describedby="example-caption-2">
                             </div>
                         </div>
@@ -95,7 +96,7 @@
             </div>
         </div>
     </div>
-    @empty 
+    @empty
     <div class="col-lg-12">
         <div class="card card-empty">
             <div class="card-body text-center d-flex justify-content-center align-items-center">
@@ -106,7 +107,7 @@
     </div>
     @endforelse
 </div>
-</section>    
+</section>
 @endsection
 
 
@@ -116,5 +117,5 @@
 <script src="{{ asset('app-assets/vendors/js/jquery/jquery.tagsinput.js')}}"></script>
 @endsection
 @section('scripts')
-<script src="{{ asset('app-assets/js/scripts/pages/jobseeker/campaigns.js') }}"></script>    
+<script src="{{ asset('app-assets/js/scripts/pages/jobseeker/campaigns.js') }}"></script>
 @endsection

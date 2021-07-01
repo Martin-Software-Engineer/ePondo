@@ -36,23 +36,35 @@
                             </div>
                             <h1 class="mb-25 text-success">{{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h1>
                         </div>
+
                         <div class="mt-md-0 mt-2">
                             <h4 class="invoice-title">
-                                Order ID 
+                                Order ID
                                 <span class="invoice-number">#{{$order_id}}</span>
                             </h4>
+
                             <div class="invoice-date-wrapper">
-                                <p class="invoice-date-title">Render Date:</p>
-                                <p class="invoice-date">{{$order->details->render_date}}</p>
+                            <p class="invoice-date-title">Duration:</p>
+                             <p class="invoice-date">{{$order->service->duration}} Hours</p>
                             </div>
+
+
                             <div class="invoice-date-wrapper">
-                                <p class="invoice-date-title">Duration:</p>
-                                <p class="invoice-date">{{$order->service->duration}} Hours</p>
+                            <p class="invoice-date-title">Render Date:</p>
+                            <p class="invoice-date">{{$order->details->render_date}}</p>
                             </div>
+
+                            <div class="invoice-date-wrapper">
+                            <p class="invoice-date-title">Render Date:</p>
+                            <p class="invoice-date">{{$order->category->category}}</p>
+                            </div>
+
+
                             <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">Location:</p>
                                 <p class="invoice-date">{{$order->service->location}}</p>
                             </div>
+
                             <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">Status:</p>
                                 <p class="invoice-date">{{\App\Helpers\System::StatusTextValue($order->status)}}</p>
@@ -125,7 +137,7 @@
         </div>
         <!-- /Invoice Actions -->
     </div>
-</section>   
+</section>
 @endsection
 
 @section('scripts')
@@ -184,5 +196,5 @@
                 });
             });
         });
-    </script> 
+    </script>
 @endsection
