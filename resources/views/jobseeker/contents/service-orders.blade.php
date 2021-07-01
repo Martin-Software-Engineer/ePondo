@@ -33,10 +33,12 @@
                         <th></th>
                         <th>Order ID</th>
                         <th>Title</th>
-                        <th>Date of Service</th>
                         <th>Category</th>
-                        <th>Price</th>
                         <th>Duration</th>
+                        <th>Price</th>
+                        <th>Date of Service</th>
+
+
                         <th>Status</th>
                         <th class="cell-fit">Actions</th>
                     </tr>
@@ -44,7 +46,7 @@
             </table>
         </div>
     </div>
-</section>      
+</section>
 @endsection
 
 @section('modals')
@@ -69,7 +71,7 @@
                                     <label for="service_feedback">How was the experience of your service with the customer/backer</label>
                                     <textarea name="service_feedback" id="service_feedback" cols="30" rows="6" class="form-control"></textarea>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="category">How was your experience using the platform?</label>
                                     <div class="demo-inline-spacing">
