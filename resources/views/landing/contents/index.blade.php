@@ -197,7 +197,6 @@
                 <h4 class="volunteer_text">Create Campaign</h4>
                 <p class="lorem_text">Fundraise your cause through creating a campaign on the platform</p>
                 <div class="join_bt"><a href="{{route('howitworks')}}#createcampaign">Read More</a></div>
-                <!-- <div class="join_bt"><a href="{{route('howitworks')}}#mission">Read More</a></div> -->
              </div>
           </div>
           <div class="col-lg-4">
@@ -228,8 +227,8 @@
               <div class="row">
                 <h1 class="news_taital_quote">"Giving is not just about making a donation. It is making a difference."</h1>
               </div>
-              <div class="row">
-                <h1 class="news_taital_quote">- Kathy Calvin</h1>
+              <div class="row justify-content-end">
+                <h1 class="news_taital_author ">- Kathy Calvin</h1>
               </div>
           </div>
        </div>

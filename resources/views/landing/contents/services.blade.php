@@ -31,14 +31,14 @@
                                  <a class="dropdown-item" href="#" data-value="popular">Popular</a>
                             </div>
                         </div>
-                        <div class="dropdown dropdown-region mr-1">
+                        <!-- <div class="dropdown dropdown-region mr-1">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Region
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                 <a class="dropdown-item" href="#">All</a>
                             </div>
-                        </div>
+                        </div> -->
                   </div>
                   <div class="col-md-4 d-flex">
                       <input type="text" name="filter_search" class="form-control" placeholder="Search">
@@ -63,7 +63,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h1>
+                                <h1 class="card_s_title overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h1>
                                 @foreach($service->categories as $category)
                                 <p class="card_s_category">
                                         {{$category->name}} @if(!$loop->last)/@endif
