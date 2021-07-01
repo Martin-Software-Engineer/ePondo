@@ -33,10 +33,10 @@
                         <th></th>
                         <th>Order ID</th>
                         <th>Title</th>
-                        <th>Category</th>
-                        <th>Duration</th>
-                        <th>Price</th>
                         <th>Date of Service</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Duration</th>
 
 
                         <th>Status</th>

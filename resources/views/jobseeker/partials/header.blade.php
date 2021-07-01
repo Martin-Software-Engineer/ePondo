@@ -45,19 +45,19 @@
                             @foreach(auth()->user()->roles as $role)
                                 @if(!$loop->last)
                                     {{$role->name}}/
-                                @else 
+                                @else
                                     {{$role->name}}
                                 @endif
                             @endforeach
                         </span>
                     </div>
-                    
+
                     @if(auth()->user()->avatar != '')
                     <span class="avatar">
                         <img class="round" src="{{auth()->user()->avatar}}" alt="avatar" height="40" width="40">
                         <span class="avatar-status-online"></span>
                     </span>
-                    @else 
+                    @else
                         <div class="d-flex justify-content-left align-items-center">
                             <div class="avatar colorClass">
 
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     @endif
-                    
+
                 </a>
             </li>
         </ul>

@@ -36,7 +36,7 @@
                             </div>
                             <h1 class="mb-25 text-success">{{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h1>
                         </div>
-                        
+
                         <div class="mt-md-0 mt-2">
                             <h4 class="invoice-title">
                                 Order ID
@@ -53,6 +53,12 @@
                             <p class="invoice-date-title">Render Date:</p>
                             <p class="invoice-date">{{$order->details->render_date}}</p>
                             </div>
+
+                            <div class="invoice-date-wrapper">
+                            <p class="invoice-date-title">Render Date:</p>
+                            <p class="invoice-date">{{$order->category->category}}</p>
+                            </div>
+
 
                             <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">Location:</p>
