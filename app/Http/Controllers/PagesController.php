@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Campaign;
-use App\Models\CampaignCategory;
 use App\Models\Service;
-use App\Models\ServiceCategory;
+use App\Models\Campaign;
+use Illuminate\Http\Request;
 use App\Models\ServiceRating;
+use App\Models\ServiceCategory;
+use App\Models\CampaignCategory;
+use Illuminate\Support\Facades\Redirect;
 
 class PagesController extends Controller
 {
@@ -111,8 +112,28 @@ class PagesController extends Controller
         return view('landing.contents.howitworks');
     }
 
-    public function privacypolicyterms(){
-        return view('landing.contents.privacypolicyterms');
+    public function privacypolicy(){
+        return view('landing.contents.privacypolicy');
+        // Redirect::away('landing.contents.privacypolicyterms');
+        // Redirect::away('landing.contents.privacypolicyterms');
+        // Redirect::to(view('landing.contents.privacypolicyterms'));
+        // return redirect('/privacypolicyterms');
+    }
+
+    public function termsandconditions(){
+        return view('landing.contents.termsandconditions');
+    }
+
+    public function cookiepolicy(){
+        return view('landing.contents.cookiepolicy');
+    }
+
+    public function eula(){
+        return view('landing.contents.eula');
+    }
+
+    public function disclaimer(){
+        return view('landing.contents.disclaimer');
     }
 
     public function jobseeker($id){

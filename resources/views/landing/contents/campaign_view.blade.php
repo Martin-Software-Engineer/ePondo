@@ -254,29 +254,7 @@
                         <div class="card">
                             <div class="card-body">
                             <!-- Profile Header -->
-                                <!-- <div class="row section_profile_header">
-                                    <div class="col-sm-3">
-                                        <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_jp" alt="">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <div class="row">
-                                            <h1>{{$campaign->jobseeker->userinformation->firstname}}
-                                                {{$campaign->jobseeker->userinformation->lastname}}</h1>
-                                            <div class="row pl-3">
-                                                <img src="{{asset('app-assets/images/additional_pictures/phone.png')}}" class="campaign_header_icons" alt="">
-                                                <h6>{{$campaign->jobseeker->userinformation->phone}}</h6>
-                                            </div>
-                                            <div class="row pl-3">
-                                                <img src="{{asset('app-assets/images/additional_pictures/email.png')}}" class="campaign_header_icons" alt="">
-                                                <h6>{{$campaign->jobseeker->email}}</h6>
-                                            </div>
-                                            <div class="row pl-3">
-                                                <img src="{{asset('app-assets/images/additional_pictures/location.png')}}" class="campaign_header_icons" alt="">
-                                                <h6>{{$campaign->jobseeker->userinformation->address}}</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
+                                
                             <!-- Profile Description -->
                                 <div class="row section_profile_desc">
                                     <div class="col-sm-6 section_details">
@@ -390,53 +368,57 @@
             </div>
 
             <div class="col-md-4">
+                <!-- Jobseeker Picture, Name, Some Details - Start -->
                 <div class="card">
-                    <!-- <div class="card-header text-center">
-                        <h3 class="card-title">{{$campaign->title}}</h3>
-                        <p>{{$campaign->description}}</p>
-                    </div> -->
-
-                    <!-- <div class="card-body">
-                        <div class="donate_btn btn btn-block btn-success" data-campaign-id="{{$campaign->id}}">Donate Now!</div>
-                    </div> -->
-
-                    <!-- <div class="card-footer d-flex justify-content-start"> -->
                     <div class="card-header text-center">
                         <div class="row">
                             <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
                         </div>
                         <div class="info">
-                            <!-- <h6>Posted By</h6> -->
-                            <!-- <h3><strong>{{$campaign->jobseeker->username}}</strong></h3> -->
                             <h3><strong>{{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}} </strong></h3>
                         </div>
                     </div>
                     <div class="card-body c_j_body">
-                        <div class="row">
-                            <p class="campaign_jobseeker_about"> 
-                            This portion will be the Jobseeker "About Me" data. My name is Carla Lacy, I am the 
-                            grandmother of Aiden Leos’s 15-year-old sister, Alexis Cloonan. I have a very close bond and relationship with Aidans 
-                            mother and family. I have been asked to speak on their behalf and been given permission by the mother, Joanna Cloonan 
-                            to organize this fundraiser on behalf of her and the family’s needs. 
-                            </p>
-                            <!-- <h5 class="c_j_vm">View More ></h5> -->
+                        <div class="c_j_about">
+                            <h6 class="campaign_jobseeker_about c_j_about_text"> 
+                                {{$campaign->jobseeker->userinformation->bio}} {{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}
+                            </h6>
                         </div>
                     </div>
                 </div>
-                <div class="card" style="margin-top: 20px;">
+                <!-- Jobseeker Picture, Name, Some Details - End -->
+
+                <!-- Donation Messages - Start -->
+                <div class="card c_message_section">
                     <div class="card-header text-center">
                         <div class="info c_messages">
-                            <strong>Messages</strong>
+                            <strong>Donations</strong>
                         </div>
                     </div>
-                    <div class="card-body c_j_body">
-                        <div class="row">
-                            <h6 class="campaign_jobseeker_about">1 Donor Name/Message/Date/Amount</h6>
-                            <h6 class="campaign_jobseeker_about">2 Donor Name/Message/Date/Amount</h6>
-                            <h6 class="campaign_jobseeker_about">3 Donor Name/Message/Date/Amount</h6>
-                        </div>
+                    <div class="card-body c_messages_box">
+                        <!-- For Loop - Start -->
+                            <div class="c_donation_sec c_donation_text">
+                                <h6><span class="c_don_amount">Php 50</span>donated by FirstName, LastName</h6>
+                                <h6 class="c_don_mess">
+                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+                                </h6>
+                            </div>
+                            <div class="c_donation_sec">
+                                <h6 ><span class="c_don_amount">Php 50</span>donated by FirstName, LastName</h6>
+                                <h6 class="c_don_mess">
+                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+                                </h6>
+                            </div>
+                            <div class="c_donation_sec">
+                                <h6 ><span class="c_don_amount">Php 50</span>donated by FirstName, LastName</h6>
+                                <h6 class="c_don_mess">
+                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+                                </h6>
+                            </div>
+                        <!-- For Loop - End -->
                     </div>
                 </div>
+                <!-- Donation Messages - End -->
             </div>
         </div>
         <!-- Campaign Content - End -->
@@ -453,36 +435,6 @@
         <div class="row">
         @forelse($services as $service)
             <div class="col-sm-3 pt-4">
-                <!-- <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="img_7">
-                                <a href="#">
-                                    <img src="https://images.unsplash.com/photo-1614945201491-b867f6031bdd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" class="img_7">
-                                </a>
-                            </div>                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="give_taital_1 overflow-ellipsis"><a href="#">{{$service->title}}</a></h1>
-                            <div style="margin: 0 0 0 20px;"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"><img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}"></div>
-                                <p class="ipsum_text_1 ">{{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</p>
-                                <p class="ipsum_text_1 ">{{$service->description}}</p>
-                                <div>
-                                    <p class="ipsum_text_1">Category</p>
-                                </div>
-                                <div>
-                                    <p class="ipsum_text_1">Location: {{$service->location}}</p>
-                                </div>
-                                <div>
-                                    <p class="ipsum_text_1">Duration: {{$service->duration_hours}} Hr/s</p>
-                                </div>
-                                <h5 class="service_price">₱{{$service->price}}</h5>
-                        </div>
-                    </div>
-                </div> -->
-
                 <!-- Service Tiles - Start -->
                 <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
@@ -496,13 +448,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h1>
+                                <a class="c_card_title overflow-ellipsis stretched-link" href="{{route('service_view', $service->id)}}">{{$service->title}}</a>
                                 @foreach($service->categories as $category)
                                 <p class="card_s_category">
                                         {{$category->name}} @if(!$loop->last)/@endif
                                 </p>
                                 @endforeach
-
                                 <div class="row-md-12 s_img_jname">
                                     <div class="col-md-6 s_jname_spacing">
                                         <h3 class="s_j_name" >By: {{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</h3>
@@ -515,13 +466,11 @@
                                         <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
                                         (5)
                                     </div>
-                                    
                                 </div>
                                 <hr class="hr_m_2">
                                 <div class="c_card_c_desc">{{$service->description}}</div>
                                 
                                 <div>
-                                    <!-- <h3 class="s_location" style="font-weight: normal;"><span style="font-weight:600">Location:</span> {{$service->location}}</h3>  -->
                                     <h3 class="card_s_hloc"><span class="s_hlocation">Location:</span> {{$service->location}}</h3>
                                 </div>
                                 <div>
@@ -531,9 +480,6 @@
                                 </h3>
                                 </div>
                                 <h5 class="service_price">₱{{$service->price}}</h5>
-                                <!-- <div class="service_btn_main">
-                                    <div class="service_btn_1"><a href="{{route('service_view', $service->id)}}">Avail</a></div>
-                                </div> -->
                             </div>
                         </div>
                     </div>

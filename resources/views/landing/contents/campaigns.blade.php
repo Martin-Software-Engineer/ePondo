@@ -31,14 +31,14 @@
                                <a class="dropdown-item" href="#" data-value="popular">Popular</a>
                           </div>
                       </div>
-                      <div class="dropdown dropdown-region mr-1">
+                      <!-- <div class="dropdown dropdown-region mr-1">
                           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Region
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                               <a class="dropdown-item" href="#">All</a>
                           </div>
-                      </div>
+                      </div> -->
                 </div>
                 <div class="col-md-4 d-flex">
                     <input type="text" name="filter_search" class="form-control" placeholder="Search">
@@ -124,10 +124,10 @@
                                     <div id="example-caption-2">
                                         <div class="row">
                                             <div class="col-6">
-                                                <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                                <h6 class="c_cam_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
                                             </div>
                                             <div class="col-6">
-                                                <h6 class="campaign_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                                <h6 class="c_cam_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
                                             </div>
                                         </div>
                                     </div>
