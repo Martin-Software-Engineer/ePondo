@@ -1256,14 +1256,20 @@ button.donate_btn {
     padding: 0 20px 0 20px;
 }
 
-.card_s_hloc  {
-    width: 100%;
+.card_s_loc  {
+    /* width: 100%;
     float: left;
     font-size: 12px;
     font-weight: normal;
     margin: 0px;
     color: #1b1b1b;
-    padding: 15px 20px 0 20px;
+    padding: 15px 20px 0 20px; */
+
+    /* font-weight:500;
+    margin-right:8px; */
+
+    font-size: 12px;
+    margin: 0 20px;
 
 }
 
@@ -2253,6 +2259,12 @@ input.address_text::placeholder {
 
 .img_header_email {
     margin-top: 90px;
+}
+
+/* Others */
+
+.just{
+    text-align: justify;
 }
 
 /*================================================================================

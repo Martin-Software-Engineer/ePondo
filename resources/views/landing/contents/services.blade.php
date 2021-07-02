@@ -89,10 +89,10 @@
                                 
                                 <div>
                                     <!-- <h3 class="s_location" style="font-weight: normal;"><span style="font-weight:600">Location:</span> {{$service->location}}</h3>  -->
-                                    <h3 class="card_s_hloc"><span class="s_hlocation">Location:</span> {{$service->location}}</h3>
+                                    <h3 class="card_s_loc"><strong>Location:</strong> {{$service->location}}</h3>
                                 </div>
                                 <div>
-                                <h3 class="s_duration"><span class="s_hduration">Duration:</span>
+                                <h3 class="card_s_loc"><strong>Duration:</strong>
                                     @if( $service->duration_hours > 1 ) {{$service->duration_hours}} Hrs @elseif( $service->duration_hours == 0 )  @else {{$service->duration_hours}} Hr @endif
                                     @if( $service->duration_minutes > 1 ) {{$service->duration_minutes}} Mins @elseif( $service->duration_minutes == 0 )  @else {{$service->duration_minutes}} Min @endif
                                 </h3>

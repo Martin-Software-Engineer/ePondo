@@ -28,7 +28,7 @@
             <div class="fundraise_img align-items-start"><img src="{{asset('app-assets/images/additional_pictures/concept_model_800x400_v3.png')}}"></div>
         </div>
         <div class="row">
-         <p>Ipsum aliquyam tempor ea lorem dolores stet invidunt lorem ipsum stet. 
+         <p class="just">Ipsum aliquyam tempor ea lorem dolores stet invidunt lorem ipsum stet. 
          Ea est sit ipsum rebum. Duo stet voluptua amet consetetur. Stet amet dolore sadipscing et. 
          Stet dolor diam kasd invidunt sit ut sit at. Duo ipsum diam consetetur invidunt
          Ipsum aliquyam tempor ea lorem dolores stet invidunt lorem ipsum stet. 
@@ -38,9 +38,10 @@
          <div class="col-sm-2">
             <div class="user_avatar align-items-start"><img src="{{asset('app-assets/images/additional_pictures/reward.png')}}"></div>
          </div>
-         <div class="col-sm-10 ">
+         <div class="col-sm-10">
             <h1>What is Rewards Crowdfunding ?</h1>
-            <p>Sit ipsum eos amet voluptua sit sit. Amet sed aliquyam et magna et dolore ipsum duo, ipsum ut consetetur sea.</p>
+            <p class="just">ePondo believes in hardwork and perseverance, and therefore 
+            provides value and </p>
          </div>
         </div>
       <!-- ePondo Process Flow - End -->  
