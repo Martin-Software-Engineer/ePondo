@@ -24,8 +24,8 @@ $(function() {
                 { data: 'order_id' },
                 { data: 'service.title' },
                 { data: 'service.categories' },
-                { data: 'service.price' },
                 { data: 'service.duration' },
+                { data: 'service.price' },
                 { data: 'date' },
                 { data: 'status.text' },
                 { data: '' }
