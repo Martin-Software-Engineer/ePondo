@@ -28,13 +28,13 @@
                             <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Kasalukuyang Trabaho)</span>
                             <select name="current_job" id="current_job" class="form-control select2">
                                 <option value="Agriculture" @if($info->current_job == 'Agriculture') selected @endif>Agriculture</option>
-                                <option value="Food and Natural Resources/Architecture" @if($info->current_job == 'Food and Natural Resources/Architecture') selected @endif>Food and Natural Resources/Architecture</option> 
+                                <option value="Food and Natural Resources/Architecture" @if($info->current_job == 'Food and Natural Resources/Architecture') selected @endif>Food and Natural Resources/Architecture</option>
                                 <option value="Construction/Arts" @if($info->current_job == 'Construction/Arts') selected @endif>Construction/Arts</option>
                                 <option value="Audio/Video Technology" @if($info->current_job == 'Audio/Video Technology') selected @endif>Audio/Video Technology</option>
-                                <option value="Communications/Business Management" @if($info->current_job == 'Communications/Business Management') selected @endif>Communications/Business Management</option> 
-                                <option value="Administration/Education" @if($info->current_job == 'Administration/Education') selected @endif>Administration/Education</option> 
+                                <option value="Communications/Business Management" @if($info->current_job == 'Communications/Business Management') selected @endif>Communications/Business Management</option>
+                                <option value="Administration/Education" @if($info->current_job == 'Administration/Education') selected @endif>Administration/Education</option>
                                 <option value="Training/Finance/Government" @if($info->current_job == 'Training/Finance/Government') selected @endif>Training/Finance/Government</option>
-                                <option value="Public Administration/Health" @if($info->current_job == 'Public Administration/Health') selected @endif>Public Administration/Health</option> 
+                                <option value="Public Administration/Health" @if($info->current_job == 'Public Administration/Health') selected @endif>Public Administration/Health</option>
                                 <option value="Science/Hospitality" @if($info->current_job == 'Science/Hospitality') selected @endif>Science/Hospitality</option>
                                 <option value="Tourism/Human Services/Information Technology/Law" @if($info->current_job == 'Tourism/Human Services/Information Technology/Law') selected @endif>Tourism/Human Services/Information Technology/Law</option>
                                 <option value="Public Safety" @if($info->current_job == 'Public Safety') selected @endif>Public Safety</option>
@@ -65,11 +65,11 @@
                             <select name="freq_of_work" id="freq_of_work" class="form-control select2">
                                 <option value="everyday" @if($info->freq_of_work=='everyday') selected @endif>everyday</option>
                                 <option value="5 days a week" @if($info->freq_of_work=='5 days a week') selected @endif>5 days a week</option>
-                                <option value="4 days a week" @if($info->freq_of_work=='4 days a week') selected @endif>4 days a week</option> 
-                                <option value="3 days a week" @if($info->freq_of_work=='3 days a week') selected @endif>3 days a week</option> 
-                                <option value="2 days a week" @if($info->freq_of_work=='2 days a week') selected @endif>2 days a week</option> 
+                                <option value="4 days a week" @if($info->freq_of_work=='4 days a week') selected @endif>4 days a week</option>
+                                <option value="3 days a week" @if($info->freq_of_work=='3 days a week') selected @endif>3 days a week</option>
+                                <option value="2 days a week" @if($info->freq_of_work=='2 days a week') selected @endif>2 days a week</option>
                                 <option value="once a week" @if($info->freq_of_work=='once a week') selected @endif>once a week</option>
-                                <option value="once a month" @if($info->freq_of_work=='once a month') selected @endif>once a month</option> 
+                                <option value="once a month" @if($info->freq_of_work=='once a month') selected @endif>once a month</option>
                                 <option value="occasional" @if($info->freq_of_work=='occasional') selected @endif>occasional</option>
                             </select>
                         </div>
@@ -80,9 +80,9 @@
                             <select name="main_source_income" id="main_source_income" class="form-control select2">
                                 <option value="job" @if($info->main_source_income=='job') selected @endif>job</option>
                                 <option value="part time jobs" @if($info->main_source_income=='part time jobs') selected @endif>part time jobs </option>
-                                <option value="donations" @if($info->main_source_income=='donations') selected @endif>donations</option> 
+                                <option value="donations" @if($info->main_source_income=='donations') selected @endif>donations</option>
                                 <option value="family" @if($info->main_source_income=='family') selected @endif>family</option>
-                                
+
                             </select>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                             <select name="extra_source_income" id="extra_source_income" class="form-control select2">
                                 <option value="none" @if($info->main_source_income=='none') selected @endif>none</option>
                                 <option value="part time jobs" @if($info->extra_source_income=='part time jobs') selected @endif>part time jobs </option>
-                                <option value="donations" @if($info->extra_source_income=='donations') selected @endif>donations</option> 
+                                <option value="donations" @if($info->extra_source_income=='donations') selected @endif>donations</option>
                                 <option value="family" @if($info->extra_source_income=='family') selected @endif>family</option>
                             </select>
                         </div>
@@ -139,9 +139,9 @@
                             <select name="main_source_income" id="main_source_income" class="form-control select2">
                                 <option value="job" @if($info->main_source_income=='job') selected @endif>job</option>
                                 <option value="part time jobs" @if($info->main_source_income=='part time jobs') selected @endif>part time jobs </option>
-                                <option value="donations" @if($info->main_source_income=='donations') selected @endif>donations</option> 
+                                <option value="donations" @if($info->main_source_income=='donations') selected @endif>donations</option>
                                 <option value="family" @if($info->main_source_income=='family') selected @endif>family</option>
-                                
+
                             </select>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                             <select name="extra_source_income" id="extra_source_income" class="form-control select2">
                                 <option value="none" @if($info->main_source_income=='none') selected @endif>none</option>
                                 <option value="part time jobs" @if($info->extra_source_income=='part time jobs') selected @endif>part time jobs </option>
-                                <option value="donations" @if($info->extra_source_income=='donations') selected @endif>donations</option> 
+                                <option value="donations" @if($info->extra_source_income=='donations') selected @endif>donations</option>
                                 <option value="family" @if($info->extra_source_income=='family') selected @endif>family</option>
                             </select>
                         </div>
@@ -257,6 +257,7 @@
                             <i data-feather="users" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Kids</span>
                             <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Anak)</span>
+                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(*Not Required)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">
@@ -284,7 +285,7 @@
                                                 <input type="text" name="kids[name][]" class="form-control" value="{{$kid->fullname}}" id="kids_name"/>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="kids_age">Age</label>
@@ -292,7 +293,7 @@
                                                 <input type="number" name="kids[age][]" class="form-control" value="{{$kid->age}}" id="kids_age"/>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-2 col-12 mb-50">
                                             <div class="form-group">
                                                 <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
@@ -303,7 +304,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @empty 
+                                @empty
                                 <div data-repeater-item>
                                     <div class="row d-flex align-items-end">
                                         <div class="col-md-6 col-12">
@@ -312,14 +313,14 @@
                                                 <input type="text" name="kids[name][]" class="form-control" id="kids_name"/>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label for="kids_age">Age</label>
                                                 <input type="number" name="kids[age][]" class="form-control" id="kids_age"/>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-2 col-12 mb-50">
                                             <div class="form-group">
                                                 <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
@@ -341,7 +342,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div class="col-12">
@@ -366,7 +367,7 @@
                                                 <input type="text" name="dependent[name][]" class="form-control" value="{{$dependent->fullname}}" id="dependent_name"/>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_age">Age</label>
@@ -374,7 +375,7 @@
                                                 <input type="number" name="dependent[age][]" class="form-control" value="{{$dependent->age}}" id="dependent_age"/>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_relation">Relation</label>
@@ -390,7 +391,7 @@
                                                 </select>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-2 col-12 mb-50">
                                             <div class="form-group">
                                                 <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
@@ -402,7 +403,7 @@
                                     </div>
                                     <!-- <hr /> -->
                                 </div>
-                                @empty 
+                                @empty
                                 <div data-repeater-item>
                                     <div class="row d-flex align-items-end">
                                         <div class="col-md-4 col-12">
@@ -411,14 +412,14 @@
                                                 <input type="text" name="dependent[name][]" class="form-control" id="kids_name"/>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_age">Age</label>
                                                 <input type="number" name="dependent[age][]" class="form-control" id="dependent_age"/>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_relation">Relation</label>
@@ -433,7 +434,7 @@
                                                 </select>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-2 col-12 mb-50">
                                             <div class="form-group">
                                                 <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
@@ -455,9 +456,9 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
-                 
+
                     <div class="col-12">
                         <h4 class="mb-1">
                             <hr>
@@ -490,7 +491,7 @@
                                     </div>
                                     <!-- <hr /> -->
                                 </div>
-                                @empty 
+                                @empty
                                 <div data-repeater-item>
                                     <div class="row d-flex align-items-end">
                                         <div class="col-md-10 col-12">
@@ -499,7 +500,7 @@
                                                 <input type="text" name="skills[name][]" class="form-control" id="skills"/>
                                             </div>
                                         </div>
-    
+
                                         <div class="col-md-2 col-12 mb-50">
                                             <div class="form-group">
                                                 <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
@@ -521,7 +522,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div class="col-12">
@@ -570,7 +571,7 @@
                                     </div>
                                     <!-- <hr /> -->
                                 </div>
-                                @empty 
+                                @empty
                                 <div data-repeater-item>
                                     <div class="row d-flex align-items-end">
                                         <div class="col-md-3 col-12">
@@ -612,7 +613,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div class="col-12">
@@ -693,7 +694,7 @@
             </form>
         </div>
     </div>
-</section>    
+</section>
 @endsection
 
 @section('external_js')
@@ -703,7 +704,7 @@
     <script>
         $(function($){
             'use strict';
-            
+
             var form = $('#form-profile');
 
             form.on('submit', function(e){
@@ -746,5 +747,5 @@
                 }
             });
         });
-    </script>    
+    </script>
 @endsection

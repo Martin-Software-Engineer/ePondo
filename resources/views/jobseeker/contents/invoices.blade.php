@@ -33,10 +33,7 @@
                     <tr>
                         <th></th>
                         <th>Invoice No.</th>
-                        <th>Jobseeker Name</th>
-                        <th>Jobseeker ID</th>
                         <th>Backer Name</th>
-                        <th>Backer ID</th>
                         <th>Service Title</th>
                         <th>Serivce Order No.</th>
                         <th>Service Category</th>
@@ -47,7 +44,7 @@
             </table>
         </div>
     </div>
-</section>    
+</section>
 @endsection
 
 @section('external_js')
