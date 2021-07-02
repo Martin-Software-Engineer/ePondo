@@ -55,12 +55,6 @@
                             </div>
 
                             <div class="invoice-date-wrapper">
-                            <p class="invoice-date-title">Render Date:</p>
-                            <p class="invoice-date">{{$order->category->category}}</p>
-                            </div>
-
-
-                            <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">Location:</p>
                                 <p class="invoice-date">{{$order->service->location}}</p>
                             </div>

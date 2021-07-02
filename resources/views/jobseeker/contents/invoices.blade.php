@@ -31,14 +31,27 @@
             <table class="invoices-list-table table">
                 <thead>
                     <tr>
-                        <th></th>
+                     <th></th>
+
                         <th>Invoice No.</th>
+                        <th>Jobseeker Name</th>
+                        <th>Jobseeker ID</th>
                         <th>Backer Name</th>
+                        <th>Backer ID</th>
                         <th>Service Title</th>
                         <th>Serivce Order No.</th>
                         <th>Service Category</th>
+                        <!-- <th>Invoice No.</th> -->
+                        <!-- <th>Backer Name</th> -->
+                        <!-- <th>Serivce Order No.</th> -->
+                        <!-- <th>Service Category</th> -->
+                        <!-- <th>Backer ID</th> -->
+                        <!-- <th>Service Title</th> -->
+                        <!-- <th>Order ID</th> -->
+                        <!-- <th></th> -->
                         <th>Date of Service</th>
                         <th class="cell-fit">Actions</th>
+
                     </tr>
                 </thead>
             </table>

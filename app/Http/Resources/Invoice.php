@@ -23,7 +23,7 @@ class Invoice extends JsonResource
             'backer_name' => $this->order->backer->name,
             'backer_id' => System::GenerateFormattedId('B', $this->order->backer->id),
             'service_title' => $this->order->service->title,
-            'order_id' => System::GenerateFormattedId('SO', $this->order->id),
+            'order_id' => System::GenerateFormattedId('SO', $this->order->id), /** ACTIONS COLUMN */
             'categories' => Service::find($this->order->service->id)->categories,
             'due_date' => $this->date_due
         ];
