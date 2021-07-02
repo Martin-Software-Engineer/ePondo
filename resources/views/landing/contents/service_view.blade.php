@@ -235,9 +235,9 @@
                     <!-- <li class="nav-item">
                       <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
                     </li> -->
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link c_tabs" id="rating-tab" data-toggle="tab" href="#rating" role="tab" aria-controls="rating" aria-selected="false">Rating & Feedback</a>
-                    </li>
+                    </li> -->
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
@@ -357,13 +357,7 @@
                         </div>
                     </div>
                     <!-- <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div> -->
-                    <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6>N/A</h6>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">...</div> -->
                 </div>
             </div>
             
@@ -390,16 +384,79 @@
                           @endif
                       @endauth -->
                       <div class="card-body c_j_body">
-                        <div class="row">
-                            <p class="campaign_jobseeker_about"> This portion will be the Jobseeker "About Me" data. My name is Carla Lacy, I am the 
-                            grandmother of Aiden Leos’s 15-year-old sister, Alexis Cloonan. I have a very close bond and relationship with Aidans 
-                            mother and family. I have been asked to speak on their behalf and been given permission by the mother, Joanna Cloonan 
-                            to organize this fundraiser on behalf of her and the family’s needs. </p>
-                            <!-- <h5 class="c_j_vm">View More</h5> -->
+                        <div class="c_j_about">
+                            <h6 class="campaign_jobseeker_about c_j_about_text"> 
+                                {{$service->jobseeker->userinformation->bio}}{{$service->jobseeker->userinformation->bio}}{{$service->jobseeker->userinformation->bio}}{{$service->jobseeker->userinformation->bio}}{{$service->jobseeker->userinformation->bio}}{{$service->jobseeker->userinformation->bio}}{{$service->jobseeker->userinformation->bio}}
+                            </h6>
+                        </div>
+                      </div>
+                <!-- </div> -->
+                </div>
+                <!-- Rating & Feedback - Start -->
+                <div class="card c_message_section">
+                    <div class="card-header text-center">
+                        <div class="info c_messages">
+                            <strong>Rating & Feedback</strong>
                         </div>
                     </div>
-                <!-- </div> -->
-            </div>
+                    <div class="card-body c_messages_box">
+                        <!-- For Loop - Start -->
+                            <div class="c_donation_sec c_donation_text">
+                                <div class="col-md-6 s_image">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    (5)
+                                </div>
+                                <h6 class="c_don_mess">
+                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+                                </h6>
+                            </div>
+                            <div class="c_donation_sec c_donation_text">
+                                <div class="col-md-6 s_image">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    (5)
+                                </div>
+                                <h6 class="c_don_mess">
+                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+                                </h6>
+                            </div>
+                            <div class="c_donation_sec c_donation_text">
+                                <div class="col-md-6 s_image">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    (5)
+                                </div>
+                                <h6 class="c_don_mess">
+                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+                                </h6>
+                            </div>
+                            <div class="c_donation_sec c_donation_text">
+                                <div class="col-md-6 s_image">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                    (5)
+                                </div>
+                                <h6 class="c_don_mess">
+                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+                                </h6>
+                            </div>
+                        <!-- For Loop - End -->
+                    </div>
+                </div>
+                <!-- Rating & Feedback - End -->
         </div>
     </div>
 
