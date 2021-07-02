@@ -311,7 +311,7 @@ button {
 
 .navbar-brand {
     margin-right: 0px;
-    
+
 }
 
 .navbar-brand img {
@@ -379,12 +379,12 @@ button.donate_btn {
 .bg-light {
     background-color: white !important;
     border-bottom: 1px solid rgb(235, 228, 228);
-    
+
 }
 
 .enavbar{
     border-right: 1px solid rgb(235, 228, 228);
-
+    margin-right: 8px;
 }
 
 /* header section end */
@@ -427,7 +427,7 @@ button.donate_btn {
         position: relative;
         margin-bottom: 0;
     }
-    
+
     .carousel_3 {
         width: 100%;
         float: left;
@@ -439,7 +439,7 @@ button.donate_btn {
         position: relative;
         margin-bottom: 0;
     }
-    
+
     .carousel_4 {
         width: 100%;
         float: left;
@@ -451,7 +451,7 @@ button.donate_btn {
         position: relative;
         margin-bottom: 0;
     }
-    
+
     .carousel_5 {
         width: 100%;
         float: left;
@@ -487,12 +487,12 @@ button.donate_btn {
     text-align: center;
     padding: 20px 0px; */
 
-    
-    
+
+
     font-size: 30px;
     color: #ffff;
     text-align: left;
-    
+
 }
 
 .read_bt {
@@ -504,7 +504,7 @@ button.donate_btn {
     /* margin: 0 auto; */
     padding: 10px 10px;
     text-align: center;
-    
+
 }
 
 .read_bt a {
@@ -669,7 +669,7 @@ button.donate_btn {
     margin: 0 auto;
     font-size: 12px;
     color: #fff;
-    
+
 }
 
 .join_bt {
@@ -677,7 +677,7 @@ button.donate_btn {
     margin: 0 auto;
     text-align: center;
     margin-top: 20px;
-    
+
 }
 
 .join_bt a {
@@ -989,7 +989,7 @@ button.donate_btn {
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     padding-top: 10px;
-    
+
 }
 
 .donate_btn_main {
@@ -1307,7 +1307,7 @@ button.donate_btn {
     margin: 0;
     padding: 0;
     float: left;
-    
+
 }
 
 .s_jname_spacing{
@@ -1342,13 +1342,13 @@ button.donate_btn {
     /* align-items: right; */
     /* justify-content: right; */
 
-    
+
 }
 
 .s_image_star{
     width: 10px;
     height: 10px;
-    
+
 }
 
 .img_7 {
@@ -1523,7 +1523,7 @@ button.donate_btn {
 .campaign_profile_avatar{
     width: 100px;
     height: 100px;
-    
+
     justify-content: center;
     align-items: center;
     display: block;
@@ -1624,7 +1624,7 @@ button.donate_btn {
 .j_p_profile{
     width: 70px;
     height: 70px;
-    
+
     justify-content: center;
     align-items: center;
     display: block;
@@ -1670,7 +1670,7 @@ button.donate_btn {
 
 .section_profile_header{
     padding-bottom: 20px;
-    
+
 }
 
 .section_profile_desc{

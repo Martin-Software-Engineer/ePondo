@@ -21,7 +21,7 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('jobseeker.services.store')}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('jobseeker.services.store')}}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-8">
@@ -120,7 +120,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <input name="tags" id="tagsinput" class="tagsinput" value="" />
-                                            <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
+                                            <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
                                         </div>
                                     </div>
                                 </div>
@@ -152,7 +152,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="thumbnail" class="mb-1">Add More Photos</label>
+                                    <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label>
+                                    <label>It must be a JPG, PNG, no larger than 200 MB.</label></label>
                                         <div class="media-group d-flex">
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
@@ -206,7 +207,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit</span>
+                                <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add an image that clearly represents your SERVICES. Choose one that looks good at different sizes — it’ll appear on your services page. </span></label>
                                 </div>
                             </div>
                         </div>
