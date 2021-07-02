@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="invoice-date-wrapper">
-                            <p class="invoice-date-title">Render Date:</p>
+                            <p class="invoice-date-title">Category:</p>
                             <p class="invoice-date">{{$order->category->category}}</p>
                             </div>
 
