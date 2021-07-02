@@ -37,8 +37,7 @@
                                 <th>Title</th>
                                 <th>Category</th>
                                 <th>Jobseeker Name</th>
-                                <th>Campaign</th>
-                                <th>Date of Donation</th>
+                                <th>Donation Date</th>
                                 <th>Amount</th>          
                                 
                                 <th></th>
