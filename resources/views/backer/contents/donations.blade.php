@@ -27,13 +27,20 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Campaign No.</th>
+                                <!--<th>Campaign No.</th>
                                 <th>Campaigns</th>
                                 <th>Description</th>
                                 <th>Thumbnail</th>
                                 <th>Category</th>
                                 <th>Date</th>
-                                <th>Amount</th>
+                                <th>Amount</th>-->
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Jobseeker Name</th>
+                                <th>Campaign</th>
+                                <th>Date of Donation</th>
+                                <th>Amount</th>          
+                                
                                 <th></th>
                             </tr>
                         </thead>

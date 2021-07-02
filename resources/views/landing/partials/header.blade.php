@@ -50,6 +50,31 @@
 
             </ul>
 
+            <div class="my-2 my-lg-0">
+                  @auth
+                     @if(auth()->user()->hasAnyRole('Admin'))
+                        <!-- <a class="account_btn" href="{{route('admin.index')}}">My Account</a> -->
+                        <a class="nav-link" href="{{route('admin.index')}}">My Account</a>
+                     @endif
+                     @if(auth()->user()->hasAnyRole('JobSeeker'))
+           <!-- <a class="account_btn" href="{{route('jobseeker.index')}}">My Account</a> -->
+                     <p>Hello,<a style="display:inline-block" class="nav-link" href="{{route('jobseeker.index')}}">
+                     {{auth()->user()->username}}</a></p>
+                     @endif
+                     @if(auth()->user()->hasAnyRole('Backer'))
+                        <!-- <a class="account_btn" href="{{route('backer.index')}}">My Account</a> -->
+                        <p>Hello,<a style="display:inline-block" class="nav-link" href="{{route('backer.index')}}">
+                     {{auth()->user()->username}}</a></p>
+                     @endif
+                  @endauth
+                  
+                  @guest 
+                     <!-- <a class="register_btn" href="{{route('register')}}">Register</a> -->
+                     <a class="login_btn" href="{{route('login')}}">Log-In</a>
+                     <!-- <p style="font-size:8px">Create Account</p> -->
+                  @endguest
+            </div>
+
          </div>
       </nav>
 <!-- </div> -->
