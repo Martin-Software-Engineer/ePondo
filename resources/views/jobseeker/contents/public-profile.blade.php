@@ -10,11 +10,25 @@
 <section class="app-user-edit">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">My Public Profile</h4>
+        <h4 class="card-title">My Public Profile</h4>
+        <!-- <div class="row"><h4 class="card-title">My Public Profile</h4></div> -->
+        <!-- <div class="row"><span class="j_tag_trans">(Kasalukuyang Trabaho)</span></div> -->
+            
+            
         </div>
         <div class="card-body">
             <form class="form-validate" id="form-profile" action="{{route('jobseeker.profile.update')}}">
                 @csrf
+                    
+                <p class="j_prof_note"><strong>Note :</strong> 
+                    The public profile is not required. But highly encouraged in order to provide your backers/customers 
+                    additional information about you. This is important for campaigns so that backers are able to connect
+                    with you through your life story and this can touch their hearts to support your campaigns. For services
+                    this becomes important as it will contain information such us skills and work experience that can be vital
+                    to attract your customers to avail your services. You may review ePondo's Data Privacy Policy <a href="{{route('privacypolicy')}}" style="font-weight:400;">here</a>. If you have
+                    any additional quesitons you can contact us through epondo.co@gmail.com.
+                </p>
+
                 <div class="row mt-1">
                     <div class="col-12">
                         <h4 class="mb-1">
@@ -25,7 +39,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="current_job">Current Job</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Kasalukuyang Trabaho)</span>
+                            <span class="j_tag_trans">(Kasalukuyang Trabaho)</span>
                             <select name="current_job" id="current_job" class="form-control select2">
                                 <option value="Agriculture" @if($info->current_job == 'Agriculture') selected @endif>Agriculture</option>
                                 <option value="Food and Natural Resources/Architecture" @if($info->current_job == 'Food and Natural Resources/Architecture') selected @endif>Food and Natural Resources/Architecture</option>
@@ -49,7 +63,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="employment_type">Employment Type</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Kategorya ng Trabaho)</span>
+                            <span class="j_tag_trans">(Kategorya ng Trabaho)</span>
                             <select name="employment_type" id="employment_type" class="form-control select2">
                                 <option value="Full Time" @if($info->employment_type == 'Full Time') selected @endif>Full Time</option>
                                 <option value="Part Time" @if($info->employment_type == 'Part Time') selected @endif>Part Time</option>
@@ -61,7 +75,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="freq_of_work">Frequency of work</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Prikwensiya ng Trabaho)</span>
+                            <span class="j_tag_trans">(Prikwensiya ng Trabaho)</span>
                             <select name="freq_of_work" id="freq_of_work" class="form-control select2">
                                 <option value="everyday" @if($info->freq_of_work=='everyday') selected @endif>everyday</option>
                                 <option value="5 days a week" @if($info->freq_of_work=='5 days a week') selected @endif>5 days a week</option>
@@ -135,7 +149,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="main_source_income">Main source of income</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;"><br>(Pangunahing pinagkukunan ng inggreso/kita)</span>
+                            <span class="j_tag_trans"><br>(Pangunahing pinagkukunan ng inggreso/kita)</span>
                             <select name="main_source_income" id="main_source_income" class="form-control select2">
                                 <option value="job" @if($info->main_source_income=='job') selected @endif>job</option>
                                 <option value="part time jobs" @if($info->main_source_income=='part time jobs') selected @endif>part time jobs </option>
@@ -148,7 +162,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="extra_source_income">Other Source of Income</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;"><br>(Pangalawang pinagkukunan ng inggreso/kita)</span>
+                            <span class="j_tag_trans"><br>(Pangalawang pinagkukunan ng inggreso/kita)</span>
                             <select name="extra_source_income" id="extra_source_income" class="form-control select2">
                                 <option value="none" @if($info->main_source_income=='none') selected @endif>none</option>
                                 <option value="part time jobs" @if($info->extra_source_income=='part time jobs') selected @endif>part time jobs </option>
@@ -160,7 +174,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="daily_income">Average Daily Income</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;"><br>(Karaniwang inggreso/kita sa isang araw)</span>
+                            <span class="j_tag_trans"><br>(Karaniwang inggreso/kita sa isang araw)</span>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">₱</span>
@@ -175,7 +189,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="daily_expenses">Average Daily Expenses</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;"><br>(Karaniwang kabuuang gastos sa isang araw)</span>
+                            <span class="j_tag_trans"><br>(Karaniwang kabuuang gastos sa isang araw)</span>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">₱</span>
@@ -193,7 +207,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label for="type_of_housing">Type of Housing</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;"><br>(Uri ng pamamahay)</span>
+                            <span class="j_tag_trans"><br>(Uri ng pamamahay)</span>
                             <select name="type_of_housing" id="type_of_housing" class="form-control select2">
                                 <option value="Govnt. Housing" @if($info->type_of_housing == 'Govnt. Housing') selected @endif>Govnt. Housing</option>
                                 <option value="Apartment" @if($info->type_of_housing == 'Apartment') selected @endif>Apartment</option>
@@ -207,7 +221,7 @@
                     <div class="col-lg-4 col-md-9">
                         <div class="form-group">
                             <label for="daily_meals">How many meals does your family eat in a day?</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;"><br>(Ilang beses nakakakain ang pamilya mo sa isang araw ?)</span>
+                            <span class="j_tag_trans"><br>(Ilang beses nakakakain ang pamilya mo sa isang araw ?)</span>
                             <select name="daily_meals" id="daily_meals" class="form-control select2">
                                 <option value="1" @if($info->daily_meals == 1) selected @endif>1</option>
                                 <option value="2" @if($info->daily_meals == 2) selected @endif>2</option>
@@ -220,7 +234,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label class="d-block ">Do you have access to clean water ?</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Nakakagamit ba kayo ng malinis na tubig ?)</span>
+                            <span class="j_tag_trans">(Nakakagamit ba kayo ng malinis na tubig ?)</span>
                             <select name="water_access" id="water_access" class="form-control select2">
                                 <option value="Always" @if($info->water_access == 1) selected @endif>Always</option>
                                 <option value="Seldom" @if($info->water_access == 2) selected @endif>Seldom</option>
@@ -231,7 +245,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label class="d-block ">Do you have access to electricity ?</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Nakakagamit ba kayo ng kuryente ?)</span>
+                            <span class="j_tag_trans">(Nakakagamit ba kayo ng kuryente ?)</span>
                             <select name="electricity_access" id="electricity_access" class="form-control select2">
                                 <option value="Always" @if($info->electricity_access == 1) selected @endif>Always</option>
                                 <option value="Seldom" @if($info->electricity_access == 2) selected @endif>Seldom</option>
@@ -242,7 +256,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="form-group">
                             <label class="d-block">Do you have access to clean clothes ?</label>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Nakakasuot ba kayo ng malinis na damit ?)</span>
+                            <span class="j_tag_trans">(Nakakasuot ba kayo ng malinis na damit ?)</span>
                             <select name="clean_clothes_access" id="clean_clothes_access" class="form-control select2">
                                 <option value="Always" @if($info->clean_clothes_access == 1) selected @endif>Always</option>
                                 <option value="Seldom" @if($info->clean_clothes_access == 2) selected @endif>Seldom</option>
@@ -256,8 +270,7 @@
                             <hr>
                             <i data-feather="users" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Kids</span>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Anak)</span>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(*Not Required)</span>
+                            <span class="j_tag_trans">(Anak)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">
@@ -267,11 +280,11 @@
                                 <!-- <div class="row d-flex align-items-end">
                                     <div class="col-md-6 col-12">
                                         <label for="kids_name">Name</label>
-                                        <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Pangalan)</span>
+                                        <span class="j_tag_trans">(Pangalan)</span>
                                     </div>
                                     <div class="col-md-4 col-12">
                                         <label for="kids_age">Age</label>
-                                        <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Edad)</span>
+                                        <span class="j_tag_trans">(Edad)</span>
                                     </div>
                                 </div> -->
 
@@ -281,7 +294,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="kids_name">Name</label>
-                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Pangalan)</span>
+                                                <span class="j_tag_trans">(Pangalan)</span>
                                                 <input type="text" name="kids[name][]" class="form-control" value="{{$kid->fullname}}" id="kids_name"/>
                                             </div>
                                         </div>
@@ -289,7 +302,7 @@
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="kids_age">Age</label>
-                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Edad)</span>
+                                                <span class="j_tag_trans">(Edad)</span>
                                                 <input type="number" name="kids[age][]" class="form-control" value="{{$kid->age}}" id="kids_age"/>
                                             </div>
                                         </div>
@@ -363,7 +376,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_name">Name</label>
-                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Pangalan)</span>
+                                                <span class="j_tag_trans">(Pangalan)</span>
                                                 <input type="text" name="dependent[name][]" class="form-control" value="{{$dependent->fullname}}" id="dependent_name"/>
                                             </div>
                                         </div>
@@ -371,7 +384,7 @@
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_age">Age</label>
-                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Edad)</span>
+                                                <span class="j_tag_trans">(Edad)</span>
                                                 <input type="number" name="dependent[age][]" class="form-control" value="{{$dependent->age}}" id="dependent_age"/>
                                             </div>
                                         </div>
@@ -379,7 +392,7 @@
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_relation">Relation</label>
-                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Relasyon)</span>
+                                                <span class="j_tag_trans">(Relasyon)</span>
                                                 <select name="dependent[relation][]" id="dependent_relation" class="form-control select2">
                                                     <option value="Grandparents" @if($dependent->relation == 'Gradparents') selected @endif>Grandparents</option>
                                                     <option value="Parents" @if($dependent->relation == 'Parents') selected @endif>Parents</option>
@@ -464,7 +477,7 @@
                             <hr>
                             <i data-feather="tool" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Skills</span>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Kasanayan/Kakayahan)</span>
+                            <span class="j_tag_trans">(Kasanayan/Kakayahan)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">
@@ -530,7 +543,7 @@
                             <hr>
                             <i data-feather="briefcase" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">Work Experiences</span>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Karanasahan sa trabaho)</span>
+                            <span class="j_tag_trans">(Karanasahan sa trabaho)</span>
                         </h4>
                     </div>
                     <div class="card-body pt-0">
@@ -542,21 +555,21 @@
                                         <div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label for="company">Company</label>
-                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Kompanya)</span>
+                                                <span class="j_tag_trans">(Kompanya)</span>
                                                 <input type="text" name="workexp[company][]" class="form-control" value="{{$workexp->company}}" id="company"/>
                                             </div>
                                         </div>
                                         <div class="col-md-5 col-12">
                                             <div class="form-group">
                                                 <label for="description">Position</label>
-                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Posisyon)</span>
+                                                <span class="j_tag_trans">(Posisyon)</span>
                                                 <input type="text" name="workexp[description][]" class="form-control" value="{{$workexp->description}}" id="description"/>
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="year">Year/s</label>
-                                                <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Taon)</span>
+                                                <span class="j_tag_trans">(Taon)</span>
                                                 <input type="text" name="workexp[year][]" class="form-control" value="{{$workexp->year}}" id="year"/>
                                             </div>
                                         </div>
@@ -621,7 +634,7 @@
                             <hr>
                             <i data-feather="edit-3" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">About Me</span>
-                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">(Karagdagang impormasyo tungkil sa iyo)</span>
+                            <span class="j_tag_trans">(Karagdagang impormasyo tungkil sa iyo)</span>
                         </h4>
                     </div>
 
