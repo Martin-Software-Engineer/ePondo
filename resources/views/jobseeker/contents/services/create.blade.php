@@ -30,6 +30,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="campaign-id">Title</label>
+                                            <span class="j_tag_trans">(Pamagat)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="text" id="title" class="form-control" name="title" required>
@@ -40,6 +41,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="description">Description</label>
+                                            <span class="j_tag_trans">(Diskripsyon)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <textarea name="description" id="description" cols="30" rows="5" class="form-control" ></textarea>
@@ -50,6 +52,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="category">Category</label>
+                                            <span class="j_tag_trans">(Kategorya)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
@@ -68,6 +71,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="price">Price</label>
+                                            <span class="j_tag_trans">(Presyo)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="input-group">
@@ -86,6 +90,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="duration">Duration</label>
+                                            <span class="j_tag_trans"><br>(Haba ng oras ng serbisyo)</span>
                                         </div>
                                         <div class="col-sm-5">
                                             <select name="duration_hours" id="duration_hours" class="form-control">
@@ -107,6 +112,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="location">Location</label>
+                                            <span class="j_tag_trans">(Lokasyon)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="text" name="location" id="location" class="form-control" placeholder="City/Municipality/Province">
@@ -133,7 +139,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="thumbnail" class="mb-1">Thumbnail</label>
+                                        <label for="thumbnail" class="mb-1">Service Thumbnail</label>
                                         <div class="media">
                                             <a href="javascript:void(0);" class="mr-25">
                                                 <label for="thumbnail-input" style="cursor: pointer">
@@ -152,8 +158,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                    <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label>
-                                    <label>It must be a JPG, PNG, no larger than 200 MB.</label></label>
+                                    <!-- <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label> -->
+                                    <label>Service Photos</label></label>
                                         <div class="media-group d-flex">
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
@@ -207,7 +213,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add an image that clearly represents your SERVICES. Choose one that looks good at different sizes — it’ll appear on your services page. </span></label>
+                                <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign.</span></label>
                                 </div>
                             </div>
                         </div>

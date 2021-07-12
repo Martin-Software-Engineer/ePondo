@@ -31,17 +31,16 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Order ID</th>
+                        <th>Service Order No.</th>
                         <th>Title</th>
-                        <th>Date of Service</th>
                         <th>Category</th>
-                        <th>Price</th>
                         <th>Duration</th>
-
-
+                        <th>Price</th>
+                        <th>Service Location</th>
+                        <th>Service Order Date</th>
                         <th>Status</th>
                         <th class="cell-fit">Actions</th>
-                    </tr>
+                        </tr>
                 </thead>
             </table>
         </div>

@@ -30,7 +30,7 @@
                 <div class="card-body invoice-padding pb-0">
                     <!-- Header starts -->
                     <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
-                        <div>
+                        <!-- <div>
                             <div class="logo-wrapper">
                                 <h3 class="text-primary">{{$order->service->title}}</h3>
                             </div>
@@ -63,27 +63,65 @@
                                 <p class="invoice-date-title">Status:</p>
                                 <p class="invoice-date">{{\App\Helpers\System::StatusTextValue($order->status)}}</p>
                             </div>
+                        </div> -->
+
+                        <!-- Service Details - Start -->
+                        <div class="col">
+                            <h6 style="color:#120a78;margin-bottom:20px">
+                                Service Order No. : <span style="font-weight:900;">{{$order_id}}</span>
+                            </h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6 class="so_text">Title : </h6>
+                                </div>
+                                <div class="col-md-8">
+                                    <span style="font-weight:900;"> "{{$order->service->title}}" </span>                            
+                                </div>
+                            </div>
+                            <h6 class="so_text">
+                                Category :
+                                            @foreach($order->service->categories as $category)
+                                                {{$category->name}} @if(!$loop->last)/@endif
+                                            @endforeach
+                            </h6>
+                            <h6 class="so_text">Duration :
+                                            @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
+                                            @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
+                            </h6>
+                            <h6 class="so_text">Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
                         </div>
+                        <!-- Service Details - End -->
                     </div>
                     <!-- Header ends -->
                 </div>
 
-                <hr class="invoice-spacing" />
+                <hr class="m-0"/>
 
                 <!-- Invoice Note starts -->
-                <div class="card-body invoice-padding pt-0">
+                <div class="card-body invoice-padding">
+                <div class="col">
+                    <!-- <div class="invoice-date-wrapper">
+                        <p class="invoice-date-title">Service Order Date:</p>
+                        <p class="invoice-date">{{date('F d, Y', strtotime($order->details->render_date))}}</p>
+                    </div>
+                    <h3>Location : {{$order->details->delivery_address}}</h3>
                     <div class="row">
                         <div class="col-12">
-                            <span class="font-weight-bold">Backer:</span>
+                            <span class="font-weight-bold">Customer:</span>
                             <span>{{$order->backer->username}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <span class="font-weight-bold">Message:</span>
+                            <span class="font-weight-bold"> Additonal Message:</span>
                             <span>{{$order->details->message}}</span>
                         </div>
-                    </div>
+                    </div> -->
+                    <h6 class="so_text">Service Order Date: {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
+                    <h6 class="so_text">Location : {{$order->details->delivery_address}}</h6>
+                    <h6 class="so_text">Customer: {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
+                    <h6 class="so_text">Additonal Message: {{$order->details->message}}</h6>
+                </div>
                 </div>
                 <!-- Invoice Note ends -->
             </div>
@@ -111,7 +149,7 @@
 
                     @if($order->status == 5)
                     <button type="button" class="btn-deliver btn btn-success btn-block mb-75" disabled>
-                        Submit as Delivered
+                        Submited as Delivered
                     </button>
                     @endif
 

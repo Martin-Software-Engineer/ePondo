@@ -3183,7 +3183,7 @@ ul.list-inline.list-inline-pipe > li + li:before {
 .page-item.active .page-link {
   z-index : 3;
   border-radius : 5rem;
-  background-color : #7367F0;
+  background-color : #120a78;
   color : #FFFFFF !important;
   font-weight : 600;
 }

@@ -19,15 +19,26 @@ $(function() {
             serverSide: true,
             columns: [
                 // columns according to JSON
+                    // { data: 'id' },
+                    // { data: 'order_id' },
+                    // { data: 'service_title' },
+                    // { data: 'service_date' },
+                    // { data: 'service_categories' },
+                    // { data: 'service_price' },
+                    // { data: 'service_duration' },
+                    // { data: 'status' },
+                    // { data: '' }
                 { data: 'id' },
                 { data: 'order_id' },
                 { data: 'service_title' },
-                { data: 'service_date' },
                 { data: 'service_categories' },
-                { data: 'service_price' },
                 { data: 'service_duration' },
+                { data: 'service_price' },
+                { data: 'service_location' },
+                { data: 'service_date' },
                 { data: 'status' },
                 { data: '' }
+                
             ],
             columnDefs: [{
                     // For Responsive
@@ -45,8 +56,68 @@ $(function() {
                         return row.order_id;
                     }
                 },
+                // {
+                //     targets: 6,
+                //     width: '100px',
+                //     render: function(data, type, row) {
+                //         return row.render_date;
+                //     }
+
+                    // {"draw":1,"recordsTotal":3,"recordsFiltered":3,
+                    // "data":
+                    
+                    // [{"id":3,"order_id":"S-000-004",
+                    
+                    // "jobseeker_name":"MartinLee24",
+                    // "jobseeker_id":"J-000-002",
+                    
+                    // "backer_name":"MartinLee24",
+                    // "backer_id":"B-000-003",
+
+                    // "service_id":1,"service_title":"I will teach online math and science for grade 1 to 8",
+                    // "service_categories":[{"id":1,"name":"Tutor","description":"This is for tutor",
+                    // "created_at":null,"updated_at":null,"parent_id":1,"pivot":{"service_id":1,"service_category_id":1}}],
+                    // "service_date":"Jul-08-2021",
+                    // "service_price":"888",
+                    // "service_duration":"8 Hours",
+
+                    // "has_jobseeker_feedback":false,"has_backer_feedback":false,"status":"Pending Request"},
+                    
+                    // {"id":2,"order_id":"S-000-003","jobseeker_name":"MartinLee24","jobseeker_id":"J-000-002",
+                    // "backer_name":"MartinLee24","backer_id":"B-000-003","service_id":1,
+                    // "service_title":"I will teach online math and science for grade 1 to 8",
+                    // "service_categories":[{"id":1,"name":"Tutor","description":"This is for tutor","created_at":null,
+                    // "updated_at":null,"parent_id":1,"pivot":{"service_id":1,"service_category_id":1}}],"service_date":"Jun-15-2021",
+                    // "service_price":"888","service_duration":"8 Hours","has_jobseeker_feedback":false,
+                    // "has_backer_feedback":false,"status":"Pending Payment"},
+                    
+                    // {"id":1,"order_id":"S-000-002",
+                    // "jobseeker_name":"MartinLee24","jobseeker_id":"J-000-002","backer_name":"MartinLee24",
+                    // "backer_id":"B-000-003","service_id":3,"service_title":"I will create any delicious food video recipe for you",
+                    // "service_categories":[{"id":12,"name":"Kitchen Staff","description":"This is for",
+                    // "created_at":null,"updated_at":null,"parent_id":4,"pivot":{"service_id":3,"service_category_id":12}}],
+                    // "service_date":"Jun-14-2021","service_price":"888","service_duration":"1 Hour 15 Minutes",
+                    // "has_jobseeker_feedback":false,"has_backer_feedback":false,"status":"Pending Payment"}
+                
+                    // ],
+
+                    // "input":{"draw":"1","columns":[{"data":"id","name":null,"searchable":"true","orderable":"true",
+                    // "search":{"value":null,"regex":"false"}},{"data":"order_id","name":null,"searchable":"true",
+                    // "orderable":"true","search":{"value":null,"regex":"false"}},{"data":"service_title","name":null,
+                    // "searchable":"true","orderable":"true","search":{"value":null,"regex":"false"}},
+                    // {"data":"service_categories","name":null,"searchable":"true","orderable":"true",
+                    // "search":{"value":null,"regex":"false"}},{"data":"service_duration","name":null,
+                    // "searchable":"true","orderable":"true","search":{"value":null,"regex":"false"}},
+                    // {"data":"service_price","name":null,"searchable":"true","orderable":"true",
+                    // "search":{"value":null,"regex":"false"}},{"data":"service_date","name":null,
+                    // "searchable":"true","orderable":"true","search":{"value":null,"regex":"false"}},
+                    // {"data":"status","name":null,"searchable":"true","orderable":"true","search":{"value":null,"regex":"false"}},
+                    // {"data":null,"name":null,"searchable":"true","orderable":"false","search":{"value":null,"regex":"false"}}],
+                    // "order":[{"column":"1","dir":"desc"}],"start":"0","length":"10","search":{"value":null,"regex":"false"},
+                    // "_token":"ghWEIzmpZDKe0IzoBReWtZwftuwVqha8c9yXp0cc","_":"1625739140063"}}
+                // },
                 {
-                    targets: 4,
+                    targets: 3,
                     render: function(data, type, row) {
                         var $elArray = [];
                         $.each(row.service_categories, function(index, category) {
