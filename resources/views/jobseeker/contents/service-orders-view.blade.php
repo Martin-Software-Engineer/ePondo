@@ -23,8 +23,9 @@
 
 @section('content')
 <section class="invoice-preview-wrapper">
+    <h2>Service Order</h2>
     <div class="row invoice-preview">
-        <!-- Invoice -->
+        <!-- Service Order View -->
         <div class="col-xl-9 col-md-8 col-12">
             <div class="card invoice-preview-card">
                 <div class="card-body invoice-padding pb-0">
@@ -66,29 +67,64 @@
                         </div> -->
 
                         <!-- Service Details - Start -->
-                        <div class="col">
+                        <!-- <div class="col">
                             <h6 style="color:#120a78;margin-bottom:20px">
                                 Service Order No. : <span style="font-weight:900;">{{$order_id}}</span>
                             </h6>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <h6 class="so_text">Title : </h6>
+                                <div class="col-5">
+                                    <h1 style="color:#120a78;margin-bottom:20px">Service Order No. : </h1>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-7">
+                                    <h1 style="font-weight:900;"> {{$order_id}} </h1>                            
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <h6>Title : </h6>
+                                </div>
+                                <div class="col-10">
                                     <span style="font-weight:900;"> "{{$order->service->title}}" </span>                            
                                 </div>
                             </div>
-                            <h6 class="so_text">
+                            <div class="row">
+                                <div class="col-2">
+                                    <h6>Category : </h6>
+                                </div>
+                                <div class="col-10">
+                                    <h6>
+                                        @foreach($order->service->categories as $category)
+                                            {{$category->name}} @if(!$loop->last)/@endif
+                                        @endforeach
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <h6>Duration :</h6>
+                                </div>
+                                <div class="col-10">
+                                    <h6>
+                                        @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
+                                        @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
+                                    </h6>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col">
+                            <h6 style="color:#120a78;margin-bottom:30px;border-bottom: 3px solid #120a78;">Service Order No. : <b>{{$order_id}}</b> </h6>
+                            <h6>Title : <span style="font-style:italic;"> "{{$order->service->title}}" </span> </h6>
+                            <h6>
                                 Category :
                                             @foreach($order->service->categories as $category)
                                                 {{$category->name}} @if(!$loop->last)/@endif
                                             @endforeach
                             </h6>
-                            <h6 class="so_text">Duration :
+                            <h6>Duration :
                                             @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
                                             @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
                             </h6>
-                            <h6 class="so_text">Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
+                            <h6>Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
                         </div>
                         <!-- Service Details - End -->
                     </div>
@@ -117,22 +153,36 @@
                             <span>{{$order->details->message}}</span>
                         </div>
                     </div> -->
-                    <h6 class="so_text">Service Order Date: {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
-                    <h6 class="so_text">Location : {{$order->details->delivery_address}}</h6>
-                    <h6 class="so_text">Customer: {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
-                    <h6 class="so_text">Additonal Message: {{$order->details->message}}</h6>
+                    <h6>Service Order Date : {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
+                    <h6>Location : {{$order->details->delivery_address}}</h6>
+                    <h6>Customer : {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
+                    <h6 class="mt-2">Additional Message : {{$order->details->message}}</h6>
+                    <!-- <div class="row">
+                        <div class="col-xs-2">
+                            <h6>
+                                Additonal Message:
+                            </h6>
+                        </div>
+                        <div class="col-xs-10">
+                            <h6>
+                                {{$order->details->message}}
+                            </h6>
+                        </div>
+                    </div> -->
                 </div>
                 </div>
                 <!-- Invoice Note ends -->
             </div>
         </div>
-        <!-- /Invoice -->
+        <!-- /Service Order View -->
 
         <!-- Invoice Actions -->
         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
             <div class="card">
                 <div class="card-body">
+                    <h6>Instrucitons:</h6>
                     @if($order->status == 1)
+                    <p style="font-size:12px; margin-bottom:20px;">Please read the details of the service order request. Then click the appropriate button below.</p>
                     <button type="button" class="btn-accept btn btn-primary btn-block mb-75">
                         Accept
                     </button>
@@ -142,14 +192,16 @@
                     @endif
 
                     @if($order->status == 2)
+                    <div style="font-size:12px; margin-bottom:20px; font-weight:lighter;">Once you have completed the service order for your customer, you may now submit service order complete by clicking the button below.</div>
                     <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
-                        Deliver
+                        Submit Service Order Delivered
                     </button>
                     @endif
 
                     @if($order->status == 5)
-                    <button type="button" class="btn-deliver btn btn-success btn-block mb-75" disabled>
-                        Submited as Delivered
+                    <p style="font-size:12px; margin-bottom:20px;">Service Order Submitted as Delivered. Please wait 1-3 days for processing of payment. Thank you! </p>
+                    <button type="button" class="btn-deliver btn btn-warning btn-block mb-75" disabled>
+                        Payment Processing
                     </button>
                     @endif
 

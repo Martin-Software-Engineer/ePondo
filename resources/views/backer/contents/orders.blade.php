@@ -28,12 +28,11 @@
                             <tr>
                                 <th></th>
                                 <th>Order No.</th>
-                                <th>Title</th>
+                                <th>Service Title</th>
                                 <th>Category</th>
-                                <th>Duration</th>
                                 <th>Price</th>
-                                <th>Date</th>
-                                <th>Order Status</th>
+                                <th>Service Order Date</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

@@ -19,12 +19,20 @@ $(function() {
             serverSide: true,
             columns: [
                 // columns according to JSON
+                // { data: 'id' },
+                // { data: 'campaign_id' },
+                // { data: 'title' },
+                // { data: 'description' },
+                // { data: 'thumbnail_url' },
+                // { data: 'categories' },
+                // { data: 'date' },
+                // { data: 'amount' },
+                // { data: '' }
+
                 { data: 'id' },
-                { data: 'campaign_id' },
                 { data: 'title' },
-                { data: 'description' },
-                { data: 'thumbnail_url' },
                 { data: 'categories' },
+                { data: 'jobseeker_name' },
                 { data: 'date' },
                 { data: 'amount' },
                 { data: '' }
@@ -38,14 +46,14 @@ $(function() {
                         return '';
                     }
                 },
+                // {
+                //     targets: 4,
+                //     render: function(data, type, row) {
+                //         return `<img src="${row.thumbnail_url}" class="mr-75 rounded" height="50" width="50">`
+                //     }
+                // },
                 {
-                    targets: 4,
-                    render: function(data, type, row) {
-                        return `<img src="${row.thumbnail_url}" class="mr-75 rounded" height="50" width="50">`
-                    }
-                },
-                {
-                    targets: 5,
+                    targets: 2,
                     render: function(data, type, row) {
                         let categories = [];
                         $.each(row.categories, function(i, category) {

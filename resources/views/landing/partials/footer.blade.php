@@ -56,7 +56,7 @@
                      <a href="{{route('privacypolicy')}}" class="agg_text">Privacy Policy</a><br>
                      <a href="{{route('cookiepolicy')}}" class="agg_text">Cookie Policy</a><br>
                      <a href="{{route('eula')}}" class="agg_text">EULA</a><br>
-                     <a href="{{route('privacypolicy')}}" class="agg_text">Disclaimer</a><br>
+                     <a href="{{route('disclaimer')}}" class="agg_text">Disclaimer</a><br>
                   </ul>
                </div>
             </div>
