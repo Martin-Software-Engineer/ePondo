@@ -20,12 +20,12 @@ class Invoice extends JsonResource
             'invoice_id' => System::GenerateFormattedId('I', $this->id),
             'jobseeker_name' => $this->order->service->jobseeker->name,
             'jobseeker_id' => System::GenerateFormattedId('J', $this->order->service->jobseeker->id),
-            'backer_name' => $this->order->backer->name,
+            'backer_name' => $this->order->backer->userinformation->firstname.' '.$this->order->backer->userinformation->lastname, 
             'backer_id' => System::GenerateFormattedId('B', $this->order->backer->id),
             'service_title' => $this->order->service->title,
-            'order_id' => System::GenerateFormattedId('SO', $this->order->id), /** ACTIONS COLUMN */
+            'order_id' => System::GenerateFormattedId('SO', $this->order->details->id), /** ACTIONS COLUMN */
             'categories' => Service::find($this->order->service->id)->categories,
-            'due_date' => $this->date_due
+            'due_date' => date('F d, Y', strtotime($this->date_due))
         ];
     }
 }

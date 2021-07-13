@@ -30,7 +30,7 @@
                 <div class="card-body invoice-padding pb-0">
                     <!-- Header starts -->
                     <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
-                        <div>
+                        <!-- <div>
                             <div class="logo-wrapper">
                                 <h3 class="text-primary">{{$order->service->title}}</h3>
                             </div>
@@ -67,7 +67,35 @@
                                     @endif
                                 </p>
                             </div>
+                        </div> -->
+
+                        <!-- Service Details - Start -->
+                        <div class="col">
+                            <h6 style="color:#120a78;margin-bottom:20px">
+                                Service Order No. : <span style="font-weight:900;">{{$order_id}}</span>
+                            </h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6 class="so_text">Title : </h6>
+                                </div>
+                                <div class="col-md-8">
+                                    <span style="font-weight:900;"> "{{$order->service->title}}" </span>                            
+                                </div>
+                            </div>
+                            <h6 class="so_text">
+                                Category :
+                                            @foreach($order->service->categories as $category)
+                                                {{$category->name}} @if(!$loop->last)/@endif
+                                            @endforeach
+                            </h6>
+                            <h6 class="so_text">Duration :
+                                            @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
+                                            @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
+                            </h6>
+                            <h6 class="so_text">Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
                         </div>
+                        <!-- Service Details - End -->
+
                     </div>
                     <!-- Header ends -->
                 </div>
@@ -76,11 +104,22 @@
 
                 <!-- Invoice Note starts -->
                 <div class="card-body invoice-padding pt-0">
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-12">
                             <span class="font-weight-bold">Your Message:</span>
                             <span>{{$order->details->message}}</span>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary">Send Direct Message</a>
+                        </div>
+                    </div> -->
+                    <div class="col">
+                        <h6 class="so_text">Service Order Date: {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
+                        <h6 class="so_text">Location : {{$order->details->delivery_address}}</h6>
+                        <h6 class="so_text">Customer: {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
+                        <h6 class="so_text">Additonal Message: {{$order->details->message}}</h6>
                     </div>
                     <div class="row">
                         <div class="col-12">

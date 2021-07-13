@@ -24,7 +24,6 @@ $(function() {
                 { data: 'order_id' },
                 { data: 'service.title' },
                 { data: 'service.categories' },
-                { data: 'service.duration' },
                 { data: 'service.price' },
                 { data: 'date' },
                 { data: 'status.text' },
@@ -51,7 +50,7 @@ $(function() {
                     }
                 },
                 {
-                    targets: 7,
+                    targets: 6,
                     render: function(data, type, row) {
                         return $.parseHTML(row.status.text)[0].data;
                     }
