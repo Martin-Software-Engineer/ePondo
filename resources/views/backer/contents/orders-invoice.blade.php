@@ -240,7 +240,7 @@
                                     <span class="font-weight-bold">Php {{$service->subtotal}}</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td class="py-1">
                                     <p class="card-text font-weight-bold mb-25">Additional Charges:</p>
                                     <p class="card-text text-nowrap">
@@ -253,7 +253,7 @@
                                 <td class="py-1">
                                     <span class="font-weight-bold"></span>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td class="py-1">
                                     <p class="card-text font-weight-bold mb-25">Transaction Fee</p>
@@ -286,11 +286,11 @@
                 <!-- Invoice Note starts -->
                 <div class="card-body invoice-padding pt-0">
                     <div class="row">
-                        <div class="col-xl-4 p-0">
+                        <!-- <div class="col-xl-4 p-0">
                             <h5 class="mb-2"><b>Additional Information</b></h5>
                             <h6 class="mb-25">Service Order No.</h6>
-                        </div>
-                        <div class="col-xl-8 p-0 mt-xl-0 mt-2 text-right">
+                        </div> -->
+                        <div class="col-xl-12 p-0 mt-xl-0 mt-2 mb-3 text-right">
                             <h5 class="mb-2"><b>Total Due</b></h5>
                             <h1 style="font-size: 3rem">Php {{$total}}</h1>
                         </div>

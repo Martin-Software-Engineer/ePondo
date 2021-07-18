@@ -19,7 +19,13 @@
             <h2 class="float-left mb-0">Services</h2>
         </div>
         <div class="col-md-3">
-            <a class="float-right btn btn-primary btn-round" href="{{route('jobseeker.services.create')}}">Create</a>
+            <!-- <a class="float-right btn btn-primary btn-round" href="{{route('jobseeker.services.create')}}">Create</a> -->
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-3">
+            <a class=" s_create_btn_2" href="{{route('jobseeker.services.create')}}">Create +</a>
+            
         </div>
     </div>
 </section>
@@ -111,7 +117,7 @@
         <div class="card card-empty">
             <div class="card-body text-center d-flex justify-content-center align-items-center">
                 <!-- main title -->
-                <h2 class="text-primary">No Services Found!</h2>
+                <h2 class="text-primary">Create your very First Service Post Today!</h2>
             </div>
         </div>
     </div>

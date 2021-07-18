@@ -30,7 +30,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="campaign-id">Title</label>
-                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; ">(Pamagat)</span>
+                                            <span class="j_tag_trans">(Pamagat)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="text" id="title" class="form-control" name="title">
@@ -41,7 +41,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="description">Description</label>
-                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; ">(Diskripsyon)</span>
+                                            <span class="j_tag_trans">(Diskripsyon)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
@@ -52,7 +52,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="category">Category</label>
-                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; ">(Kategorya)</span>
+                                            <span class="j_tag_trans">(Kategorya)</span>
                                     </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
@@ -67,7 +67,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="target-date">Target Date</label>
-                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; ">(Mithing Petsa)</span>
+                                            <span class="j_tag_trans">(Mithing Petsa)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="date" name="target_date" id="target-date" class="form-control">
@@ -78,7 +78,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="target-amount">Target Amount</label>
-                                            <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px; "><br>(Mithing Halaga)</span>
+                                            <span class="j_tag_trans"><br>(Mithing Halaga)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="input-group mb-2">
@@ -132,9 +132,9 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                    <div class="col-12">
-                                    <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label>
-                                    <label>It must be a JPG, PNG, no larger than 200 MB.</label></label>
+                                    
+                                    <label>Campaign Photos</label>
+                                    <!-- <label>It must be a JPG, PNG, no larger than 200 MB.</label></label> -->
 
                                         <!-- <label for="thumbnail" class="mb-1">Add More Photos or Select a file.</label> -->
                                         <div class="media-group d-flex">
@@ -187,11 +187,11 @@
                                                 <!--/ upload and reset button -->
                                             </div>
                                         </div>
-                                    </div>
+                                    
                                 </div>
-                                <div class="col-12">
-                                    <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add an image that clearly represents your CAMPAIGN. Choose one that looks good at different sizes — it’ll appear on your campaign page. </span></label>
-                                </div>
+                                
+                                <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign. </span></label>
+                                
                             </div>
                         </div>
                     </div>

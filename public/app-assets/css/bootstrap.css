@@ -5996,7 +5996,7 @@ a.badge:focus {
 
 .badge-primary {
     color: #FFFFFF;
-    background-color: #7367F0;
+    background-color: #120a78;
 }
 
 a.badge-primary:hover,
@@ -6047,7 +6047,7 @@ a.badge-success.focus {
 
 .badge-info {
     color: #FFFFFF;
-    background-color: #00CFE8;
+    background-color: #120a78;
 }
 
 a.badge-info:hover,

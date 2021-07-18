@@ -1512,6 +1512,18 @@ button.donate_btn {
 }
 
 
+.j_tag_trans{
+    color:gray;
+    font-weight:lighter;
+    font-style:italic;
+    font-size:10px;
+}
+
+.j_prof_note{
+    color:gray;
+    font-size:10px;
+}
+
 .campaign_header_icons{
     width: 16px;
     height: 16px;
@@ -1604,6 +1616,44 @@ button.donate_btn {
 /* Campaign {Id} end */
 
 /* Service {Id} start */
+
+.s_create_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    /* background-color: #2610a5; */
+    /* background-color: #b0a8e2; */
+    background-color: #cec9eb;
+    border-style: dashed;
+    border-radius: 15px;
+    border-color: #2610a5;
+
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.s_create_btn_2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    background-color: #120a78;
+    border-radius: 15px;
+
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+a.s_create_btn_2:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    background-color: #2610a5;
+}
 
 .s_details{
     padding: 0 0 10px 0;
@@ -2064,6 +2114,10 @@ input.address_text::placeholder {
     color: #1b1b1b;
     padding: 0 20px 0 20px;
 
+}
+
+.so_text{
+    margin-left: 40px;
 }
 
 /* Jobseeker - end */
