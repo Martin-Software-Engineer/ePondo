@@ -2267,6 +2267,16 @@ input.address_text::placeholder {
     text-align: justify;
 }
 
+/* Service Order - Start */
+
+.btn-feedback-r{
+    background-color: blueviolet;
+    background: blueviolet;
+}
+
+/* Service Order - End */
+
+
 /*================================================================================
 	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
 	Version: 2.0

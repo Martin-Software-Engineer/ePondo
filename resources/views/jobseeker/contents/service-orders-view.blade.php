@@ -29,88 +29,8 @@
         <div class="col-xl-9 col-md-8 col-12">
             <div class="card invoice-preview-card">
                 <div class="card-body invoice-padding pb-0">
-                    <!-- Header starts -->
+                    <!-- Service Details - Start -->
                     <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
-                        <!-- <div>
-                            <div class="logo-wrapper">
-                                <h3 class="text-primary">{{$order->service->title}}</h3>
-                            </div>
-                            <h1 class="mb-25 text-success">{{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h1>
-                        </div>
-
-                        <div class="mt-md-0 mt-2">
-                            <h4 class="invoice-title">
-                                Order ID
-                                <span class="invoice-number">#{{$order_id}}</span>
-                            </h4>
-
-                            <div class="invoice-date-wrapper">
-                            <p class="invoice-date-title">Duration:</p>
-                             <p class="invoice-date">{{$order->service->duration}} Hours</p>
-                            </div>
-
-
-                            <div class="invoice-date-wrapper">
-                            <p class="invoice-date-title">Render Date:</p>
-                            <p class="invoice-date">{{$order->details->render_date}}</p>
-                            </div>
-
-                            <div class="invoice-date-wrapper">
-                                <p class="invoice-date-title">Location:</p>
-                                <p class="invoice-date">{{$order->service->location}}</p>
-                            </div>
-
-                            <div class="invoice-date-wrapper">
-                                <p class="invoice-date-title">Status:</p>
-                                <p class="invoice-date">{{\App\Helpers\System::StatusTextValue($order->status)}}</p>
-                            </div>
-                        </div> -->
-
-                        <!-- Service Details - Start -->
-                        <!-- <div class="col">
-                            <h6 style="color:#120a78;margin-bottom:20px">
-                                Service Order No. : <span style="font-weight:900;">{{$order_id}}</span>
-                            </h6>
-                            <div class="row">
-                                <div class="col-5">
-                                    <h1 style="color:#120a78;margin-bottom:20px">Service Order No. : </h1>
-                                </div>
-                                <div class="col-7">
-                                    <h1 style="font-weight:900;"> {{$order_id}} </h1>                            
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <h6>Title : </h6>
-                                </div>
-                                <div class="col-10">
-                                    <span style="font-weight:900;"> "{{$order->service->title}}" </span>                            
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <h6>Category : </h6>
-                                </div>
-                                <div class="col-10">
-                                    <h6>
-                                        @foreach($order->service->categories as $category)
-                                            {{$category->name}} @if(!$loop->last)/@endif
-                                        @endforeach
-                                    </h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <h6>Duration :</h6>
-                                </div>
-                                <div class="col-10">
-                                    <h6>
-                                        @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
-                                        @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
-                                    </h6>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="col">
                             <h6 style="color:#120a78;margin-bottom:30px;border-bottom: 3px solid #120a78;">Service Order No. : <b>{{$order_id}}</b> </h6>
                             <h6>Title : <span style="font-style:italic;"> "{{$order->service->title}}" </span> </h6>
@@ -126,57 +46,23 @@
                             </h6>
                             <h6>Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
                         </div>
-                        <!-- Service Details - End -->
                     </div>
-                    <!-- Header ends -->
+                    <!-- /Service Details - End -->
                 </div>
-
                 <hr class="m-0"/>
-
                 <!-- Invoice Note starts -->
                 <div class="card-body invoice-padding">
-                <div class="col">
-                    <!-- <div class="invoice-date-wrapper">
-                        <p class="invoice-date-title">Service Order Date:</p>
-                        <p class="invoice-date">{{date('F d, Y', strtotime($order->details->render_date))}}</p>
+                    <div class="col">
+                        <h6>Service Order Date : {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
+                        <h6>Location : {{$order->details->delivery_address}}</h6>
+                        <h6>Customer : {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
+                        <h6 class="mt-2">Additional Message : {{$order->details->message}}</h6>
                     </div>
-                    <h3>Location : {{$order->details->delivery_address}}</h3>
-                    <div class="row">
-                        <div class="col-12">
-                            <span class="font-weight-bold">Customer:</span>
-                            <span>{{$order->backer->username}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <span class="font-weight-bold"> Additonal Message:</span>
-                            <span>{{$order->details->message}}</span>
-                        </div>
-                    </div> -->
-                    <h6>Service Order Date : {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
-                    <h6>Location : {{$order->details->delivery_address}}</h6>
-                    <h6>Customer : {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
-                    <h6 class="mt-2">Additional Message : {{$order->details->message}}</h6>
-                    <!-- <div class="row">
-                        <div class="col-xs-2">
-                            <h6>
-                                Additonal Message:
-                            </h6>
-                        </div>
-                        <div class="col-xs-10">
-                            <h6>
-                                {{$order->details->message}}
-                            </h6>
-                        </div>
-                    </div> -->
                 </div>
-                </div>
-                <!-- Invoice Note ends -->
+                <!-- /Invoice Note ends -->
             </div>
         </div>
-        <!-- /Service Order View -->
-
-        <!-- Invoice Actions -->
+        <!-- Actions -->
         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
             <div class="card">
                 <div class="card-body">
@@ -219,7 +105,8 @@
                 </div>
             </div>
         </div>
-        <!-- /Invoice Actions -->
+        <!-- /Actions -->
+        <!-- /Service Order View -->
     </div>
 </section>
 @endsection
