@@ -45,6 +45,11 @@ class ChatsController extends Controller
                     })
                     ->get();
 
+        Message::where(function($q) use($user_id){
+                        $q->where('from', $user_id);
+                        $q->where('to', auth()->user()->id);
+                    })->update(['seen' => 1]);
+
         return $messages;
     }
 
@@ -80,7 +85,8 @@ class ChatsController extends Controller
     public function sendMessage(Request $request)
     {
         $from = Auth::user();
-        $message = $from->messages()->create([
+        $message = Message::create([
+            'from' => $from->id,
             'to' => $request->to,
             'message' => $request->input('message')
         ]);

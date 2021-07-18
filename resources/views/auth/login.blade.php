@@ -18,7 +18,7 @@
     <div class="form-group">
         <div class="d-flex justify-content-between">
             <label for="login-password">Password</label>
-            <a href="page-auth-forgot-password-v1.html">
+            <a href="{{route('password.request')}}">
                 <small>Forgot Password?</small>
             </a>
         </div>

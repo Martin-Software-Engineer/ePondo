@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
             <div class="card mt-4">
                 <h3 class="mt-2 pd-2">Reset Password</h3>
 
@@ -23,7 +23,7 @@
                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                         @enderror    
                     </div>
-                    <input name="reset" id="reset" class="btn btn-primary login-btn mt-4" type="submit" value="Reset">
+                    <input name="reset" id="reset" class="btn btn-primary login-btn" type="submit" value="Reset">
                     
                 </form>
             </div>

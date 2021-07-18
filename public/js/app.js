@@ -27177,14 +27177,21 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "chat-info" }, [
               _c("h5", { staticClass: "mb-0" }, [
-                _vm._v(_vm._s(contact.info.username))
+                _vm._v(_vm._s(contact.info.username) + " "),
+                contact.unreadmessages > 0
+                  ? _c(
+                      "span",
+                      { staticClass: "badge badge-pill badge-danger" },
+                      [_vm._v(_vm._s(contact.unreadmessages))]
+                    )
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "card-text text-truncate" }, [
                 _vm._v(
                   "\n                " +
                     _vm._s(contact.info.email) +
-                    "\n            "
+                    " \n            "
                 )
               ])
             ])

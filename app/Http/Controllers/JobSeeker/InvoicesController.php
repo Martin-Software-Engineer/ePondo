@@ -64,12 +64,13 @@ class InvoicesController extends Controller
                 'title' => $order->service->title,
                 'price' => $order->service->price,
                 'duration' => $duration,
-                'subtotal' => $order->service->price * $durationDec
+                'subtotal' => $order->service->price
             ],
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'total' => ($order->service->price * $durationDec) + $order->invoice->transaction_fee + $order->invoice->processing_fee
+            'earned' => $order->invoice->price,
+            'total' => ($order->invoice->price) + $order->invoice->transaction_fee + $order->invoice->processing_fee
         ];
         
         //return $data;

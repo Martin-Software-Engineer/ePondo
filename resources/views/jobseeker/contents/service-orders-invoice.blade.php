@@ -242,38 +242,13 @@
                             </tr>
                             <tr>
                                 <td class="py-1">
-                                    <p class="card-text font-weight-bold mb-25">Additional Charges:</p>
-                                    <p class="card-text text-nowrap">
-                                        
-                                    </p>
+                                    <p class="card-text font-weight-bold mb-25">Earned</p>
                                 </td>
                                 <td class="py-1">
                                     
                                 </td>
                                 <td class="py-1">
-                                    <span class="font-weight-bold"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <p class="card-text font-weight-bold mb-25">Transaction Fee</p>
-                                </td>
-                                <td class="py-1">
-                                    
-                                </td>
-                                <td class="py-1">
-                                    <span class="font-weight-bold">7% (Php {{$transaction_fee}})</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <p class="card-text font-weight-bold mb-25">Payment Processing Fee</p>
-                                </td>
-                                <td class="py-1">
-                                    
-                                </td>
-                                <td class="py-1">
-                                    <span class="font-weight-bold">3% (Php {{$processing_fee}})</span>
+                                    <span class="font-weight-bold">Php {{$earned}}</span>
                                 </td>
                             </tr>
                         </tbody>

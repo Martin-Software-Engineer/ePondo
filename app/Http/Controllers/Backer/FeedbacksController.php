@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Feedback;
 use App\Models\FeedbackPlatform;
 use App\Models\Order;
-
+use App\Models\User;
 use App\Helpers\GiveReward;;
 class FeedbacksController extends Controller
 {
@@ -65,7 +65,7 @@ class FeedbacksController extends Controller
             'from' => $request->from
         ]);
 
-        $jobseeker = User::find($order->service()->user_id);
+        $jobseeker = User::find($order->service->user_id);
 
         $totalorders = Order::whereHas('service', function($q) use($jobseeker){
             $q->where('user_id', $jobseeker->id);

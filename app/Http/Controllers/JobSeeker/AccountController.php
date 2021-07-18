@@ -25,6 +25,7 @@ class AccountController extends Controller
             'email' => $user->email,
             'address' => @$userInfo->address,
             'zipcode' => @$userInfo->zipcode, 
+            'birthdate' => @$userInfo->birthdate
         ];
         return view('jobseeker.contents.myaccount', $data);
     }
@@ -53,7 +54,8 @@ class AccountController extends Controller
                 // 'lastname' => $request->lastname,
                 'phone' => $request->phone,
                 'address' => $request->address,
-                'zipcode' => $request->zipcode
+                'zipcode' => $request->zipcode,
+                'birthdate' => $request->birthdate
             ]); 
         }else{
             // $userinfo->firstname = $request->firstname;
@@ -61,6 +63,7 @@ class AccountController extends Controller
             $userinfo->phone = $request->phone;
             $userinfo->address = $request->address;
             $userinfo->zipcode = $request->zipcode;
+            $userinfo->birthdate = $request->birthdate;
             $userinfo->save();
         }
 

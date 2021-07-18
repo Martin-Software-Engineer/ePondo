@@ -40,7 +40,11 @@ class Service extends Model
     }
 
     public function ratings(){
-        return $this->hasMany(ServiceRating::class, 'service_id', 'id');
+        return $this->hasMany(ServiceRating::class, 'service_id', 'id')->where('from', 'backer');
+    }
+
+    public function backer_ratings(){
+        return $this->hasMany(ServiceRating::class, 'service_id', 'id')->where('from', 'backer');
     }
     
     public function getThumbnailAttribute(){

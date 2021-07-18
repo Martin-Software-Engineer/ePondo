@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
             <div class="card mt-4">
                 <h3 class="mt-2 pd-2">Reset Password</h3>
                 <form method="POST" action="{{ route('password.update') }}">
@@ -28,7 +28,7 @@
                         <label for="password_confirmation">Confirm New Password</label>
                         <input name="password_confirmation" type="password" class="form-control " id="password_confirmation" placeholder="Confirm Password">
                     </div>
-                    <input name="reset" id="reset" class="btn btn-primary login-btn mt-4 " type="submit" value="Update">
+                    <input name="reset" id="reset" class="btn btn-primary login-btn" type="submit" value="Update">
                 </form>
             </div>
             </div>

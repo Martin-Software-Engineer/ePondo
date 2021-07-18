@@ -87,6 +87,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
     Route::get('payouts/{id}', 'Admin\PayoutRequestsController@view')->name('payouts.view');
     Route::post('payouts/{id}/updatestatus', 'Admin\PayoutRequestsController@update_status')->name('payouts.updatestatus');
 
+    Route::get('claimrequests', 'Admin\ClaimDonationRequestsController@index')->name('claimrequests.index');
+    Route::get('claimrequests/{id}', 'Admin\ClaimDonationRequestsController@view')->name('claimrequests.view');
+    Route::post('claimrequests/{id}/updatestatus', 'Admin\ClaimDonationRequestsController@update_status')->name('claimrequests.updatestatus');
+
+
     Route::get('notifications', 'JobSeeker\NotificationsController@index')->name('notifications');
     Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
 
@@ -114,6 +119,9 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::get('invoice-list', 'JobSeeker\InvoicesController@data')->name('invoice-list');
 
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
+
+    Route::get('claimfunds/{id}', 'JobSeeker\ClaimFundsController@index')->name('funds.claimform');
+    Route::post('claimfunds', 'JobSeeker\ClaimFundsController@claim')->name('funds.claim');
 
     Route::get('earnings', 'JobSeeker\EarningsController@index')->name('earnings');
     Route::post('withdraw', 'JobSeeker\EarningsController@withdraw')->name('earnings.withdraw');

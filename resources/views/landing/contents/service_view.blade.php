@@ -258,7 +258,7 @@
                                     <div class="col-sm-6 section_details">
                                     
                                         <!-- Jobseeker Profile & Name -->
-                                            <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="j_p_profile" alt="">
+                                            <img src="{{$service->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="">
                                             <h1 class="j_p_name">
                                                 {{$service->jobseeker->userinformation->firstname}}
                                                 {{$service->jobseeker->userinformation->lastname}}
@@ -266,7 +266,7 @@
                                             <hr>
                                         <!-- Details -->
                                             <h3 class="j_p_header">Personal Information</h3>
-                                            <h6 class="j_p_subtitle">Age:<span class="j_p_text">24y.o.</span></h6>
+                                            <h6 class="j_p_subtitle">Age:<span class="j_p_text">{{$service->jobseeker->userinformation->age}}y.o.</span></h6>
                                             <h6 class="j_p_subtitle">Kids:
                                                 <span class="j_p_text">
                                                 @forelse($service->jobseeker->kids as $kid)
@@ -367,7 +367,7 @@
                     <!-- Header -->
                     <div class="card-header text-center">
                         <div class="row">
-                            <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
+                            <img src="{{$service->jobseeker->avatar}}" class="rounded-circle campaign_profile_avatar" alt="">
                         </div>
                         <div class="info">
                             <h3><strong>{{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}} </strong></h3>
@@ -400,60 +400,19 @@
                         </div>
                     </div>
                     <div class="card-body c_messages_box">
-                        <!-- For Loop - Start -->
-                            <div class="c_donation_sec c_donation_text">
-                                <div class="col-md-6 s_image">
+                        @foreach($service->backer_ratings as $rating)
+                        <div class="c_donation_sec c_donation_text">
+                            <div class="col-md-6 s_image">
+                                @for($i = 0; $i < $rating->rating; $i++)
                                     <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    (5)
-                                </div>
-                                <h6 class="c_don_mess">
-                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
-                                </h6>
+                                @endfor
+                                ({{$rating->rating}})
                             </div>
-                            <div class="c_donation_sec c_donation_text">
-                                <div class="col-md-6 s_image">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    (5)
-                                </div>
-                                <h6 class="c_don_mess">
-                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
-                                </h6>
-                            </div>
-                            <div class="c_donation_sec c_donation_text">
-                                <div class="col-md-6 s_image">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    (5)
-                                </div>
-                                <h6 class="c_don_mess">
-                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
-                                </h6>
-                            </div>
-                            <div class="c_donation_sec c_donation_text">
-                                <div class="col-md-6 s_image">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                    (5)
-                                </div>
-                                <h6 class="c_don_mess">
-                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
-                                </h6>
-                            </div>
-                        <!-- For Loop - End -->
+                            <h6 class="c_don_mess">
+                            {{$rating->feedback}}
+                            </h6>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <!-- Rating & Feedback - End -->

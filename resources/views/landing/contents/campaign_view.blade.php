@@ -259,7 +259,7 @@
                                 <div class="row section_profile_desc">
                                     <div class="col-sm-6 section_details">
                                         <!-- Jobseeker Profile & Name -->
-                                            <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="j_p_profile" alt="">
+                                            <img src="{{$campaign->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="">
                                             <h1 class="j_p_name">
                                                 {{$campaign->jobseeker->userinformation->firstname}}
                                                 {{$campaign->jobseeker->userinformation->lastname}}
@@ -267,7 +267,7 @@
                                             <hr>
                                         <!-- Details -->
                                             <h3 class="j_p_header">Personal Information</h3>
-                                            <h6 class="j_p_subtitle">Age:<span class="j_p_text">24y.o.</span></h6>
+                                            <h6 class="j_p_subtitle">Age:<span class="j_p_text">{{$campaign->jobseeker->userinformation->age}}y.o.</span></h6>
                                             <h6 class="j_p_subtitle">Kids:
                                                 <span class="j_p_text">
                                                 @forelse($campaign->jobseeker->kids as $kid)
@@ -372,7 +372,7 @@
                 <div class="card">
                     <div class="card-header text-center">
                         <div class="row">
-                            <img src="{{asset('app-assets/images/additional_pictures/customer_v2.png')}}" class="campaign_profile_avatar" alt="">
+                            <img src="{{$campaign->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="">
                         </div>
                         <div class="info">
                             <h3><strong>{{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}} </strong></h3>
@@ -396,26 +396,14 @@
                         </div>
                     </div>
                     <div class="card-body c_messages_box">
-                        <!-- For Loop - Start -->
+                        @foreach($campaign->donations as $donation)
                             <div class="c_donation_sec c_donation_text">
-                                <h6><span class="c_don_amount">Php 50</span>donated by FirstName, LastName</h6>
+                                <h6><span class="c_don_amount">Php {{$donation->amount}}</span>donated by {{@$donation->backer->userinformation->firstname}}, {{@$donation->backer->userinformation->lastname}}</h6>
                                 <h6 class="c_don_mess">
-                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+                                "{{$donation->message}}"
                                 </h6>
                             </div>
-                            <div class="c_donation_sec">
-                                <h6 ><span class="c_don_amount">Php 50</span>donated by FirstName, LastName</h6>
-                                <h6 class="c_don_mess">
-                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
-                                </h6>
-                            </div>
-                            <div class="c_donation_sec">
-                                <h6 ><span class="c_don_amount">Php 50</span>donated by FirstName, LastName</h6>
-                                <h6 class="c_don_mess">
-                                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
-                                </h6>
-                            </div>
-                        <!-- For Loop - End -->
+                        @endforeach
                     </div>
                 </div>
                 <!-- Donation Messages - End -->

@@ -14,9 +14,9 @@
                 </div>
             </div>
             <div class="chat-info">
-                <h5 class="mb-0">{{contact.info.username}}</h5>
+                <h5 class="mb-0">{{contact.info.username}} <span class="badge badge-pill badge-danger" v-if="contact.unreadmessages > 0">{{contact.unreadmessages}}</span></h5>
                 <p class="card-text text-truncate">
-                    {{contact.info.email}}
+                    {{contact.info.email}} 
                 </p>
             </div>
         </li>

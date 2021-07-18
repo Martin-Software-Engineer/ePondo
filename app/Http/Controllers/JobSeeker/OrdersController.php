@@ -74,8 +74,7 @@ class OrdersController extends Controller
         $order->status = 5;
         $order->save();
 
-        $duration = $order->service->duration_hours+($order->service->duration_minutes/60);
-        $price = $order->service->price*$duration;
+        $price = $order->service->price;
         $invoice = $order->invoice()->create([
             'price' => $price,
             'date_due' =>  Carbon::now()->addDays(7),

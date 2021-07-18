@@ -10,6 +10,7 @@ class Contact extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'contact_id'];
+    protected $appends = ['unreadmessages'];
     
     public function user(){
         return $this->belongsTo(User::class, 'user_id','id');
@@ -20,6 +21,11 @@ class Contact extends Model
     }
 
     public function messages(){
-        return $this->hasMany(Message::class,'chat_id','id')->with('user');
+        return $this->hasMany(Message::class,'from','contact_id');
     }
+    
+    public function getUnreadMessagesAttribute(){
+        return $this->messages()->where('to', $this->user_id)->where('seen', 0)->count();
+    }
+
 }

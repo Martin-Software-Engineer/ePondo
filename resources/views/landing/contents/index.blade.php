@@ -142,14 +142,14 @@
                                     <div class="col-md-6 s_jname_spacing">
                                         <h3 class="s_j_name" >By: {{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</h3>
                                     </div>
+                                    @if($service->ratings > 0)
                                     <div class="col-md-6 s_image">
-                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        (5)
+                                        @for($i = 0; $i < $service->ratings; $i++)
+                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                        @endfor
+                                        ({{$service->ratings}})
                                     </div>
+                                    @endif
                                 </div>
 
                                 <hr>

@@ -8,8 +8,12 @@
         </div>
         <ul class="nav navbar-nav align-items-center ml-auto">
             <li class="nav-item mr-1"><a class="nav-link" href="/" data-toggle="tooltip" data-placement="top" title="Home" data-original-title="Home"><i class="ficon" data-feather="home"></i></a></li>
-            <li class="nav-item mr-1"><a class="nav-link" href="{{route('chats')}}" data-toggle="tooltip" data-placement="top" title="Messages" data-original-title="Messages"><i class="ficon" data-feather="message-square"></i></a></li>
-            <li class="nav-item mr-1 dropdown dropdown-notification">
+            <li class="nav-item mr-1">
+                <a class="nav-link" href="{{route('chats')}}" data-toggle="tooltip" data-placement="top" title="Messages" data-original-title="Messages">
+                    <i class="ficon" data-feather="message-square"></i>
+                    <span class="badge badge-pill badge-danger badge-up">{{auth()->user()->unreadmessages}}</span>
+                </a>
+            </li>            <li class="nav-item mr-1 dropdown dropdown-notification">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">{{count(auth()->user()->unreadNotifications)}}</span></a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                     <li class="dropdown-menu-header">

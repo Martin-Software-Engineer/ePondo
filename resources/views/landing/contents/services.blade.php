@@ -72,16 +72,16 @@
 
                                 <div class="row-md-12 s_img_jname">
                                     <div class="col-md-6 s_jname_spacing">
-                                        <h3 class="s_j_name" >By: {{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</h3>
+                                        <h3 class="s_j_name" >By: {{@$service->jobseeker->userinformation->firstname}} {{@$service->jobseeker->userinformation->lastname}}</h3>
                                     </div>
+                                    @if($service->ratings > 0)
                                     <div class="col-md-6 s_image">
+                                        @for($i = 0; $i < $service->ratings; $i++)
                                         <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        (5)
+                                        @endfor
+                                        ({{$service->ratings}})
                                     </div>
+                                    @endif
                                     
                                 </div>
                                 <hr class="hr_m_2">

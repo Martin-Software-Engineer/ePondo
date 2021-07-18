@@ -55,7 +55,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="birthdate">Birthdate</label>
+                                    <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{$birthdate}}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="postcode">ZIP Code/Post Code</label>
                                     <input id="postcode" type="text" class="form-control" name="zipcode" value="{{$zipcode}}"/>
