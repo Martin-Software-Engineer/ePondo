@@ -30,8 +30,9 @@ class BackerOrders extends JsonResource
             'date' => date('F d, Y', strtotime($this->details->render_date)),
             'status' => (object)[
                 'code' => $this->status,
-                'text' => System::StatusTextValue($this->status, true)
-            ]
+                'text' => System::StatusTextValue($this->status, true),
+            ],
+            'status_text' => System::StatusTextValue($this->status),
         ];
     }
 }
