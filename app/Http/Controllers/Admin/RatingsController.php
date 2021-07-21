@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helpers\System;
 use App\Models\ServiceRating;
 use App\Http\Resources\RatingBacker as ResourceRatingBacker;
 use App\Http\Resources\RatingJobseeker as ResourceRatingJobseeker;
@@ -74,7 +75,11 @@ class RatingsController extends Controller
      */
     public function show($id)
     {
-        //
+        $rating = ServiceRating::where('id',$id)->with('order')->first();
+        $data['order_id'] = System::GenerateFormattedId('S', $rating->order_id);
+        $data['rating'] = $rating;
+
+        return view('admin.contents.ratings.show', $data);
     }
 
     /**

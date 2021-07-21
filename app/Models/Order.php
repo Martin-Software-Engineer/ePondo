@@ -10,7 +10,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = ['backer_id', 'service_id', 'status'];
-    protected $appends = ['hasjobseekerfeedback','hasbackerfeedback'];
+    protected $appends = ['hasjobseekerfeedback','hasbackerfeedback', 'hasjsfeedback'];
     public function service(){
         return $this->belongsTo(Service::class, 'service_id', 'id')->with(['jobseeker']);
     }
@@ -40,7 +40,9 @@ class Order extends Model
             return false;
         }
     }
-
+    public function getHasJSFeedBackAttribute(){
+        return $this->ratings()->count() > 0 ? true : false;
+    }
     public function getHasBackerFeedbackAttribute(){
         if(Feedback::where('service_id', $this->service_id)->where('from', 'backer')->exists()){
             return true;

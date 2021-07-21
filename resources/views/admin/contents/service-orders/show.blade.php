@@ -1,4 +1,4 @@
-@extends('jobseeker.layouts.main')
+@extends('admin.layouts.main')
 
 @section('vendors_css')
 <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
@@ -23,16 +23,51 @@
 
 @section('content')
 <section class="invoice-preview-wrapper">
-    <h2>Service Order</h2>
     <div class="row invoice-preview">
-        <!-- Service Order View -->
+        <!-- Invoice -->
+        <!-- <div class="col-md-12"> -->
         <div class="col-xl-9 col-md-8 col-12">
+            <!-- <div class="card invoice-preview-card">
+                <div class="card-body invoice-padding pb-0">
+                <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0 ">
+                <div class="col">
+                    <h6>Hi</h6>
+                </div>
+                </div>
+                </div>
+            </div>                 -->
             <div class="card invoice-preview-card">
                 <div class="card-body invoice-padding pb-0">
-                    <!-- Service Details - Start -->
-                    <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
+                    <!-- Header starts -->
+                    <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0 mb-0">
+                        <!-- Service Details - Start -->
                         <div class="col">
+                            <!-- <h6 style="color:#120a78;margin-bottom:20px">
+                                Service Order No. : <span style="font-weight:900;">{{$order_id}}</span>
+                            </h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6 class="so_text">Title : </h6>
+                                </div>
+                                <div class="col-md-8">
+                                    <span style="font-weight:900;"> "{{$order->service->title}}" </span>                            
+                                </div>
+                            </div>
+                            <h6 class="so_text">
+                                Category :
+                                            @foreach($order->service->categories as $category)
+                                                {{$category->name}} @if(!$loop->last)/@endif
+                                            @endforeach
+                            </h6>
+                            <h6 class="so_text">Duration :
+                                            @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
+                                            @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
+                            </h6>
+                            <h6 class="so_text">Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6> -->
+
+                            
                             <h6 style="color:#120a78;margin-bottom:30px;border-bottom: 3px solid #120a78;">Service Order No. : <b>{{$order_id}}</b> </h6>
+                            <!-- <h6 class="invoice-date-title"  ><strong style="margin-right:10px;">Status :</strong>{{\App\Helpers\System::StatusTextValue($order->status)}}</h6> -->
                             <h6>Title : <span style="font-style:italic;"> "{{$order->service->title}}" </span> </h6>
                             <h6>
                                 Category :
@@ -45,70 +80,91 @@
                                             @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
                             </h6>
                             <h6>Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
+
                         </div>
+                        <!-- Service Details - End -->
                     </div>
-                    <!-- /Service Details - End -->
+                    <!-- Header ends -->
                 </div>
-                <hr class="m-0"/>
+                <hr/>
                 <!-- Invoice Note starts -->
-                <div class="card-body invoice-padding">
+                <div class="card-body invoice-padding pt-0">
                     <div class="col">
-                        <h6>Service Order Date : {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
+                        <h6>Service Order Date: {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
                         <h6>Location : {{$order->details->delivery_address}}</h6>
-                        <h6>Customer : {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
-                        <h6 class="mt-2">Additional Message : {{$order->details->message}}</h6>
+                        <h6>Customer: {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
+                        <h6 class="mt-2">Additonal Message: {{$order->details->message}}</h6>
                     </div>
+                    <!-- <div class="row">
+                        <div class="col-12">
+                            <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary">Send Direct Message</a>
+                        </div>
+                    </div> -->
                 </div>
-                <!-- /Invoice Note ends -->
+                <!-- Invoice Note ends -->
             </div>
         </div>
+        <!-- /Invoice -->
+
         <!-- Actions -->
         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
-            <div class="card">
+            <div class="card mb-1">
                 <div class="card-body">
-                    <h6>Instrucitons:</h6>
-                    @if($order->status == 1)
-                    <p style="font-size:12px; margin-bottom:20px;">Please read the details of the service order request. Then click the appropriate button below.</p>
-                    <button type="button" class="btn-accept btn btn-primary btn-block mb-75">
-                        Accept
-                    </button>
-                    <button type="button" class="btn-decline btn btn-danger btn-block mb-75">
-                        Decline
-                    </button>
-                    @endif
-
-                    @if($order->status == 2)
-                    <div style="font-size:12px; margin-bottom:20px; font-weight:lighter;">Once you have completed the service order for your customer, you may now submit service order complete by clicking the button below.</div>
-                    <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
-                        Submit Service Order Delivered
-                    </button>
-                    @endif
-
-                    @if($order->status == 5)
-                    <p style="font-size:12px; margin-bottom:20px;">Service Order Submitted as Delivered. Please wait 1-3 days for processing of payment. Thank you! </p>
-                    <button type="button" class="btn-deliver btn btn-warning btn-block mb-75" disabled>
-                        Payment Processing
-                    </button>
-                    @endif
-
-                    @if(!$order->hasjsfeedback)
-                    <button type="button" class="btn-feedback btn btn-info btn-block mb-75" data-toggle="modal" data-target="#feedback-modal">
-                        Add Feedback
-                    </button>
-                    @endif
-
-                    @if($order->status == 7)
-                    <button type="button" class="btn btn-primary btn-block mb-75" disabled>
-                        Completed
-                    </button>
-                    @endif
+                    <!-- <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-secondary btn-block mb-2">Contact Jobseeker</a>
+                    <hr> -->
+                        @if($order->status == 1)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:lightskyblue"> Pending Request </span> </h5>
+                            <p style="font-size:12px; margin-bottom:20px;"> Please wait 1-3 days for Jobseeker to respond to your Service Order Request.</p>
+                        @endif
+                        @if($order->status == 2)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Order Accepted </span> </h5>
+                            <p style="font-size:12px; margin-bottom:20px;"> Service Order has been Accepted. Once service has been completed wait for Invoice and proceed to Payment. You may also contact your jobseeker by clicking the button below.</p>
+                        @endif
+                        @if($order->status == 3)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:crimson"> Declined </span> </h5>
+                            <p style="font-size:12px; margin-bottom:20px;"> Service Order Declined. We are sorry to hear that your service order request has been declined. If you have concerns & feedback please email us at <strong style="font-style:italic; text-decoration:underline;">epondo.co@gmail.com</strong style="font-style:italic; text-decoration:underline;"></p>
+                        @endif
+                        @if($order->status == 4)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Ongoing </span> </h5>
+                            <p style="font-size:12px; margin-bottom:20px;"> Service Order Ongoing. Once service has been completed wait for Invoice and proceed to Payment. You may also contact your jobseeker by clicking the button below.</p>
+                        @endif
+                        @if($order->status == 5)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:#FFC107"> Pending Payment </span> </h5>
+                            <p style="font-size:12px; margin-bottom:20px;"> Service Order is Complete. Please view Invoice and continue to Payment. </p>
+                            <a href="{{route('backer.order.invoice', $order->id)}}" class="btn btn-warning btn-block">View Invoice & Pay</a>
+                        @endif
+                        @if($order->status == 6)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
+                            <p style="font-size:12px; margin-bottom:20px;"> Service Order Complete & Payment Successful. Please provide Feedback & Rating for your jobseeker. </p>
+                            <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button>
+                        @endif
+                        @if($order->status == 7)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Completed </span> </h5>
+                            <p style="font-size:12px; margin-bottom:20px;"> Service Order Complete! On behalf of the whole ePondo Team, Thank you! </p>
+                        @endif
+                        @if($order->status == 8)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:crimson"> Cancelled </span> </h5>
+                            <p style="font-size:12px; margin-bottom:20px;"> Service Order Cancelled. If you have any concerns & feedback email us at <strong style="font-style:italic; text-decoration:underline;">epondo.co@gmail.com</strong style="font-style:italic; text-decoration:underline;"> </p>
+                        @endif
+                    <!-- 
+                        '1' => 'Pending Request', 
+                        '2' => 'Accepted',
+                        '3' => 'Declined', 
+                        '4' => 'Ongoing', 
+                        '5' => 'Pending Payment', 
+                        '6' => 'Pending Rating & Feedback', 
+                        '7' => 'Completed',
+                        '8' => 'Cancelled' 
+                    -->
                 </div>
             </div>
+            <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary btn-block ">Contact Jobseeker</a>
+                    
         </div>
         <!-- /Actions -->
-        <!-- /Service Order View -->
+
     </div>
-</section>
+</section>   
 @endsection
 @section('modals')
 <div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -120,16 +176,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('jobseeker.feedbacks.store')}}" method="POST">
+            <form action="{{route('backer.feedbacks.store')}}" method="POST">
                 @csrf
-                <input type="hidden" name="from" value="jobseeker">
+                <input type="hidden" name="from" value="backer">
                 <input type="hidden" name="service_id" value="{{$order->service->id}}">
                 <input type="hidden" name="order_id" value="{{$order->id}}">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="service_feedback">How was the experience of your service with the client?</label>
+                                <label for="service_feedback">How was the experience of your service with the customer</label>
                                 <div class="demo-inline-spacing">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" class="custom-control-input" name="service_rating" value="1" id="customCheckSR1">
@@ -217,23 +273,6 @@
                 });
             });
 
-            $('.btn-deliver').on('click', function(){
-                $.ajax({
-                    url: '/jobseeker/orders/{{$order->id}}/deliver',
-                    type: 'GET',
-                    success: function(resp){
-                        if(resp.success){
-                            toastr['success'](resp.msg, 'Success!', {
-                                closeButton: true,
-                                tapToDismiss: false
-                            });
-
-                            location.reload()
-                        }
-                    }
-                });
-            });
-
             $('.btn-decline').on('click', function(){
                 $.ajax({
                     url: '/jobseeker/orders/{{$order->id}}/decline',
@@ -278,6 +317,7 @@
                     }
                 });
             });
+
         });
-    </script>
+    </script> 
 @endsection

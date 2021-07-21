@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helpers\System;
 use App\Http\Resources\Orders as ResourceOrder;
 use App\Models\Order;
 
@@ -60,7 +61,12 @@ class ServiceOrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::where('id', $id)->with(['service', 'details', 'backer'])->first();
+        $data['order'] = $order;
+        $data['order_id'] = System::GenerateFormattedId('S', $order->id);
+
+        //return $data;
+        return view('admin.contents.service-orders.show',$data);
     }
 
     /**

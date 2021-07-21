@@ -34,11 +34,16 @@
                         <div class="col-12 d-flex justify-content-start align-items-center">
                             <img src="{{asset('app-assets/images/reward/'.$badge)}}" class="current-star" />
                             <div class="progress progress-bar-primary ml-1">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="{{$progress->current}}" aria-valuemin="{{$progress->min}}" aria-valuemax="{{$progress->max}}" style="width: {{($progress->current/$progress->max)*100}}%">
-                                    {{$progress->current}} / {{$progress->max}} pts
-                                </div>
+                                
                                 @if($current_points < 1000)
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{$progress->current}}" aria-valuemin="{{$progress->min}}" aria-valuemax="{{$progress->max}}" style="width: {{($progress->current/$progress->max)*100}}%">
+                                        {{$progress->current}} / {{$progress->max}} pts
+                                    </div>
                                     <div class="current-star-description">Earn {{$progress->req}} pts to reach {{$next_tier}} tier</div>
+                                @else 
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{$progress->current}}" aria-valuemin="{{$progress->current}}" aria-valuemax="{{$progress->current}}" style="width: 100%">
+                                    {{$progress->current}} pts
+                                </div>
                                 @endif
                             </div>
                         </div>
