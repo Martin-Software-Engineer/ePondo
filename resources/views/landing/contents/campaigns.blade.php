@@ -109,7 +109,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 
-                                <a class="c_card_title overflow-ellipsis stretched-link" href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a>
+                                <a class="stretched-link" href="{{route('campaign_view', $campaign->id)}}">
+                                    <h1 class="card_s_title overflow-ellipsis">{{$campaign->title}}</h1>
                                 
                                 <p class="c_card_c_category">
                                     @foreach($campaign->categories as $category)
@@ -141,6 +142,7 @@
                                 <div>
                                     <p class="card_c_targetd">{{date('F d, Y', strtotime($campaign->target_date))}}</p>
                                 </div>
+                                </a>
                                 <!-- <div class="donate_btn_main">
                                     <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
                                 </div> -->

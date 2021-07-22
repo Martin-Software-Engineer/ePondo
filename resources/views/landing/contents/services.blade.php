@@ -47,6 +47,20 @@
               </div>
           </div>
        </div>
+    <!-- 
+       <div class="row">
+           <div class="col-md-3">
+                <div class="card" >
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card with stretched link</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="stretched-link btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+           </div>
+       </div> -->
+
        <div class="row">
             @forelse($services as $service)
                 <div class="col-md-3 pt-4">
@@ -63,12 +77,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="card_s_title overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h1>
-                                @foreach($service->categories as $category)
+                                <a href="{{route('service_view', $service->id)}}" class="stretched-link"><h1 class="card_s_title overflow-ellipsis">{{$service->title}}</h1>
                                 <p class="card_s_category">
-                                        {{$category->name}} @if(!$loop->last)/@endif
-                                </p>
+                                @foreach($service->categories as $category)
+                                    {{$category->name}} @if(!$loop->last)/@endif
                                 @endforeach
+                                </p>
 
                                 <div class="row-md-12 s_img_jname">
                                     <div class="col-md-6 s_jname_spacing">
@@ -88,7 +102,6 @@
                                 <div class="c_card_c_desc">{{$service->description}}</div>
                                 
                                 <div>
-                                    <!-- <h3 class="s_location" style="font-weight: normal;"><span style="font-weight:600">Location:</span> {{$service->location}}</h3>  -->
                                     <h3 class="card_s_loc"><strong>Location:</strong> {{$service->location}}</h3>
                                 </div>
                                 <div>
@@ -97,13 +110,26 @@
                                     @if( $service->duration_minutes > 1 ) {{$service->duration_minutes}} Mins @elseif( $service->duration_minutes == 0 )  @else {{$service->duration_minutes}} Min @endif
                                 </h3>
                                 </div>
-                                <h5 class="service_price">₱{{$service->price}}</h5>
+                                <h5 class="service_price">₱{{$service->price}}</h5></a>
                                 <!-- <div class="service_btn_main">
                                     <div class="service_btn_1"><a href="{{route('service_view', $service->id)}}">Avail</a></div>
                                 </div> -->
+                                
                             </div>
                         </div>
                     </div>
+
+                    <!-- Bootstarp Stretched-link guide - Start -->
+                        <!-- <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card with stretched link</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
+                        </div>
+                        </div> -->
+                    <!-- Bootstarp Stretched-link guide - End -->
+
                     <!-- Service Tiles - End -->
                 </div>
             @empty 
