@@ -20,7 +20,7 @@ class CreateUser4psInfoTable extends Migration
             $table->string('question1');
             $table->string('question2');
             $table->string('question3');
-            $table->string('question4');
+            $table->text('question4');
             $table->timestamps();
         });
     }
