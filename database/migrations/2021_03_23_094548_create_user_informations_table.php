@@ -19,7 +19,7 @@ class CreateUserInformationsTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('middleinitial', 4)->nullable();
-            $table->string('bio')->nullable();
+            $table->text('bio')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->date('birthdate')->nullable();

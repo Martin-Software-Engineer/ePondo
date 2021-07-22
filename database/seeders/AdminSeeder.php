@@ -23,29 +23,29 @@ class AdminSeeder extends Seeder
         //     'email' => 'remorrey24@gmail.com',
         //     'password' => Hash::make('password'),
         // ]);
-        $AdminRey = User::create([
-            'name' => 'Rey',
-            'email' =>'remorrey24@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('12341234'),
-            'remember_token' => Str::random(10),   
-        ]);
+        // $AdminRey = User::create([
+        //     'name' => 'Rey',
+        //     'email' =>'remorrey24@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('12341234'),
+        //     'remember_token' => Str::random(10),   
+        // ]);
         
-        $AdminNicole = User::create([
-            'name' => 'Nicole',
-            'email' =>'n@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('12341234'),
-            'remember_token' => Str::random(10),     
-        ]);
+        // $AdminNicole = User::create([
+        //     'name' => 'Nicole',
+        //     'email' =>'n@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('12341234'),
+        //     'remember_token' => Str::random(10),     
+        // ]);
 
-        $AdminPat = User::create([
-            'name' => 'Pat',
-            'email' =>'p@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('12341234'),
-            'remember_token' => Str::random(10),   
-        ]);
+        // $AdminPat = User::create([
+        //     'name' => 'Pat',
+        //     'email' =>'p@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('12341234'),
+        //     'remember_token' => Str::random(10),   
+        // ]);
 
             // 'name' => $this->faker->name,
             // 'email' => $this->faker->unique()->safeEmail,
@@ -54,9 +54,9 @@ class AdminSeeder extends Seeder
             // 'remember_token' => Str::random(10),
         
         // $roles = Role::where('id',[1])->get();
-        $AdminRey->roles()->attach(1);
-        $AdminNicole->roles()->attach(2);
-        $AdminPat->roles()->attach(3);
+        // $AdminRey->roles()->attach(1);
+        // $AdminNicole->roles()->attach(2);
+        // $AdminPat->roles()->attach(3);
 
         // $AdminRey->attach($roles->random(1)->pluck('id'));
         // $AdminNicole->attach($roles->random(1)->pluck('id'));
