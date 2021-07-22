@@ -381,7 +381,12 @@
                     <div class="card-body c_j_body">
                         <div class="c_j_about">
                             <h6 class="campaign_jobseeker_about c_j_about_text"> 
-                                {{$campaign->jobseeker->userinformation->bio}} {{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}{{$campaign->jobseeker->userinformation->bio}}
+                                
+                                @if (empty($campaign->jobseeker->userinformation->bio))
+                                <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
+                                @else
+                                {{$campaign->jobseeker->userinformation->bio}}
+                                @endif
                             </h6>
                         </div>
                     </div>

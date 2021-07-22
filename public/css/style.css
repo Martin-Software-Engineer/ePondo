@@ -1205,6 +1205,11 @@ button.donate_btn {
     font-style: italic;
     margin: 0;
     padding: 0 20px 0 20px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .c_card_title {
@@ -1254,6 +1259,11 @@ button.donate_btn {
     font-style: italic;
     margin: 0;
     padding: 0 20px 0 20px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .card_s_loc  {
