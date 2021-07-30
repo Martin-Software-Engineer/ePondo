@@ -259,7 +259,11 @@
                                 <div class="row section_profile_desc">
                                     <div class="col-sm-6 section_details">
                                         <!-- Jobseeker Profile & Name -->
-                                            <img src="{{$campaign->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="">
+                                            @if($campaign->jobseeker->avatar != '')
+                                                <img src="{{$campaign->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="" />
+                                            @else 
+                                                <img src="{{asset('/app-assets/images/avatars/noface.png')}}" class="rounded-circle j_p_profile" alt="" />
+                                            @endif
                                             <h1 class="j_p_name">
                                                 {{$campaign->jobseeker->userinformation->firstname}}
                                                 {{$campaign->jobseeker->userinformation->lastname}}
@@ -267,7 +271,13 @@
                                             <hr>
                                         <!-- Details -->
                                             <h3 class="j_p_header">Personal Information</h3>
-                                            <h6 class="j_p_subtitle">Age:<span class="j_p_text">{{$campaign->jobseeker->userinformation->age}}y.o.</span></h6>
+                                            <h6 class="j_p_subtitle">Age:
+                                                @if (empty($campaign->jobseeker->userinformation->age))
+                                                <span class="j_p_text">N/A</span>
+                                                @else
+                                                    <span class="j_p_text">{{$campaign->jobseeker->userinformation->age}}y.o.</span>
+                                                @endif
+                                            </h6>
                                             <h6 class="j_p_subtitle">Kids:
                                                 <span class="j_p_text">
                                                 @forelse($campaign->jobseeker->kids as $kid)
@@ -294,7 +304,13 @@
                                                 @endforelse
                                                 </span>
                                             </h6>
-                                            <h6 class="j_p_subtitle">Job: <span class="j_p_text">{{$campaign->jobseeker->userinformation->current_job}}</span></h6>
+                                            <h6 class="j_p_subtitle">Job:
+                                                @if (empty($campaign->jobseeker->userinformation->current_job))
+                                                <span class="j_p_text">N/A</span>
+                                                @else
+                                                    <span class="j_p_text">{{$campaign->jobseeker->userinformation->current_job}}</span>
+                                                @endif
+                                            </h6>
                                             <h6 class="j_p_subtitle">Skills:
                                                 <span class="j_p_text">
                                                 @forelse($campaign->jobseeker->skills as $skill)
@@ -324,9 +340,16 @@
                                         
                                    </div>    
                                     <!-- About Me -->
-                                    <div class="col-sm-6 ">
+                                    <div class="col-sm-6 j_p_aboutme">
                                         <h3 class="j_p_header">About Me</h3>
-                                        <h6 class="campaign_jobseeker_about">{{$campaign->jobseeker->userinformation->bio}}</h6>
+                                        <h6 class="campaign_jobseeker_about ">
+                                            <!-- {{$campaign->jobseeker->userinformation->bio}} -->
+                                            @if (empty($campaign->jobseeker->userinformation->bio))
+                                                <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
+                                            @else
+                                            {{$campaign->jobseeker->userinformation->bio}}
+                                            @endif
+                                        </h6>
                                     </div>
                                     
                                 </div>
@@ -339,18 +362,72 @@
                                 <div class="row">
                                     <!-- Income -->
                                     <div class="col-sm-6 section_income">
-                                        <h6 class="j_p_subtitle">Average Daily Income: <span class="j_p_text">Php {{$campaign->jobseeker->userinformation->daily_income}}</span></h6>
-                                        <h6 class="j_p_subtitle">Main Source Income: <span class="j_p_text">{{$campaign->jobseeker->userinformation->main_source_income}}</span></h6>
-                                        <h6 class="j_p_subtitle">Other Source Income: <span class="j_p_text">{{$campaign->jobseeker->userinformation->extra_source_income}}</span></h6>
+                                        <h6 class="j_p_subtitle">Average Daily Income: 
+                                                @if (empty($campaign->jobseeker->userinformation->daily_income))
+                                                    <span class="j_p_text">N/A</span>
+                                                @else
+                                                    <span class="j_p_text">Php {{$campaign->jobseeker->userinformation->daily_income}}</span>
+                                                @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Main Source Income:
+                                            @if (empty($campaign->jobseeker->userinformation->main_source_income))
+                                            <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->main_source_income}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Other Source Income:
+                                            @if (empty($campaign->jobseeker->userinformation->extra_source_income))
+                                            <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->extra_source_income}}</span>
+                                            @endif
+                                        </h6>
                                     </div>
                                     <!-- Expenses -->
                                     <div class="col-sm-6">
-                                        <h5 class="j_p_subtitle">Average Daily Expenses: <span class="j_p_text">Php {{$campaign->jobseeker->userinformation->daily_expenses}}</span></h5>
-                                        <h6 class="j_p_subtitle">Type of Housing: <span class="j_p_text">{{$campaign->jobseeker->userinformation->type_of_housing}}</span></h6>
-                                        <h6 class="j_p_subtitle">Meals per Day: <span class="j_p_text">{{$campaign->jobseeker->userinformation->daily_meals}}</span></h6>
-                                        <h6 class="j_p_subtitle">Water: <soan class="j_p_text">{{$campaign->jobseeker->userinformation->water_access}}</soan></h6>
-                                        <h6 class="j_p_subtitle">Electricity: <span class="j_p_text">{{$campaign->jobseeker->userinformation->electricity_access}}</span></h6>
-                                        <h6 class="j_p_subtitle">Clothes: <span class="j_p_text">{{$campaign->jobseeker->userinformation->clean_clothes_access}}</span></h6>
+                                        <h5 class="j_p_subtitle">Average Daily Expenses: 
+                                            @if (empty($campaign->jobseeker->userinformation->daily_expenses))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">Php {{$campaign->jobseeker->userinformation->daily_expenses}}</span>
+                                            @endif
+                                        </h5>
+                                        <h6 class="j_p_subtitle">Type of Housing:
+                                            @if (empty($campaign->jobseeker->userinformation->type_of_housing))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->type_of_housing}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Meals per Day:
+                                            @if (empty($campaign->jobseeker->userinformation->daily_meals))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->daily_meals}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Water:
+                                            @if (empty($campaign->jobseeker->userinformation->water_access))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->water_access}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Electricity:
+                                            @if (empty($campaign->jobseeker->userinformation->electricity_access))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->electricity_access}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Clothes:
+                                            @if (empty($campaign->jobseeker->userinformation->clean_clothes_access))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->clean_clothes_access}}</span>
+                                            @endif
+                                        </h6>
                                     </div>
                                 </div>
                             </div>
@@ -372,7 +449,11 @@
                 <div class="card">
                     <div class="card-header text-center">
                         <div class="row">
-                            <img src="{{$campaign->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="">
+                            @if($campaign->jobseeker->avatar != '')
+                                <img src="{{$campaign->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="" />
+                            @else 
+                                <img src="{{asset('/app-assets/images/avatars/noface.png')}}" class="rounded-circle j_p_profile" alt="" />
+                            @endif
                         </div>
                         <div class="info">
                             <h3><strong>{{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}} </strong></h3>
@@ -380,10 +461,10 @@
                     </div>
                     <div class="card-body c_j_body">
                         <div class="c_j_about">
+                            <h6 class="c_j_about_subhead">About Me:</h6>
                             <h6 class="campaign_jobseeker_about c_j_about_text"> 
-                                
                                 @if (empty($campaign->jobseeker->userinformation->bio))
-                                <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
+                                    <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
                                 @else
                                 {{$campaign->jobseeker->userinformation->bio}}
                                 @endif
@@ -401,14 +482,14 @@
                         </div>
                     </div>
                     <div class="card-body c_messages_box">
-                        @foreach($campaign->donations as $donation)
-                            <div class="c_donation_sec c_donation_text">
+                        <div class="c_donation_sec c_donation_text">
+                        @forelse($campaign->donations as $donation)
                                 <h6><span class="c_don_amount">Php {{$donation->amount}}</span>donated by {{@$donation->backer->userinformation->firstname}}, {{@$donation->backer->userinformation->lastname}}</h6>
-                                <h6 class="c_don_mess">
-                                "{{$donation->message}}"
-                                </h6>
-                            </div>
-                        @endforeach
+                                <h6 class="c_don_mess">"{{$donation->message}}"</h6>
+                        @empty
+                                <h6>N/A</h6>
+                        @endforelse
+                        </div>
                     </div>
                 </div>
                 <!-- Donation Messages - End -->
@@ -441,44 +522,53 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <a class="c_card_title overflow-ellipsis stretched-link" href="{{route('service_view', $service->id)}}">{{$service->title}}</a>
-                                @foreach($service->categories as $category)
+                                <a href="{{route('service_view', $service->id)}}" class="stretched-link"><h1 class="card_s_title overflow-ellipsis">{{$service->title}}</h1>
                                 <p class="card_s_category">
-                                        {{$category->name}} @if(!$loop->last)/@endif
-                                </p>
+                                @foreach($service->categories as $category)
+                                    {{$category->name}} @if(!$loop->last)/@endif
                                 @endforeach
+                                </p>
+
                                 <div class="row-md-12 s_img_jname">
                                     <div class="col-md-6 s_jname_spacing">
-                                        <h3 class="s_j_name" >By: {{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}}</h3>
+                                        <h3 class="s_j_name" >By: {{@$service->jobseeker->userinformation->firstname}} {{@$service->jobseeker->userinformation->lastname}}</h3>
                                     </div>
+                                    @if($service->ratings > 0)
                                     <div class="col-md-6 s_image">
+                                        @for($i = 0; $i < $service->ratings; $i++)
                                         <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
-                                        (5)
+                                        @endfor
+                                        ({{$service->ratings}})
                                     </div>
+                                    @endif
+                                    
                                 </div>
                                 <hr class="hr_m_2">
                                 <div class="c_card_c_desc">{{$service->description}}</div>
                                 
                                 <div>
-                                    <h3 class="card_s_hloc"><span class="s_hlocation">Location:</span> {{$service->location}}</h3>
+                                    <h3 class="card_s_loc"><strong>Location:</strong> {{$service->location}}</h3>
                                 </div>
                                 <div>
-                                <h3 class="s_duration"><span class="s_hduration">Duration:</span>
+                                <h3 class="card_s_loc"><strong>Duration:</strong>
                                     @if( $service->duration_hours > 1 ) {{$service->duration_hours}} Hrs @elseif( $service->duration_hours == 0 )  @else {{$service->duration_hours}} Hr @endif
                                     @if( $service->duration_minutes > 1 ) {{$service->duration_minutes}} Mins @elseif( $service->duration_minutes == 0 )  @else {{$service->duration_minutes}} Min @endif
                                 </h3>
                                 </div>
-                                <h5 class="service_price">₱{{$service->price}}</h5>
+                                <h5 class="service_price">₱{{$service->price}}</h5></a>
+                                <div class="service_btn_main mt-0">
+                                    <div class="service_btn_1"><a href="{{route('service_view', $service->id)}}">Avail</a></div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <!-- Service Tiles - End -->
             </div>
-            @empty 
+            @empty
+            <div class="col-sm-3">
+                <h3> No Services Available</h3>
+            </div>
             @endforelse
         </div>
         <!-- Service Tiles - End -->

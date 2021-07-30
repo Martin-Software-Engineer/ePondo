@@ -16,6 +16,7 @@ class Messages extends JsonResource
     public function toArray($request)
     {
         $from = $this->from()->select('id','username','avatar','email')->first();
+        $fromtwo = $this->from->user->userinformation()->select('id')->first();
        
   
 
@@ -24,7 +25,7 @@ class Messages extends JsonResource
     
         return [
             'from' => $from,
-            'to' => $to,
+            'fromtwo' => $fromtwo,
             'message' => $this->message,
             'seen' => $this->seen,
             'date' => $this->created_at->format('M d, Y')

@@ -1530,6 +1530,14 @@ button.donate_btn {
 
 }
 
+.c_j_about_subhead{
+    color: #041151;
+    font-weight: 500;
+    font-size: 12px;
+    text-decoration: underline;
+    margin: 10px 20px;
+}
+
 .campaign_profile_border{
     border-radius: 50%;
     background-color: #FFFFFF;
@@ -1570,6 +1578,12 @@ button.donate_btn {
     color: #111111;
     margin: 5px 0;
     text-align: justify;
+}
+
+.c_summary_area{
+    width: auto;
+    max-height: 500px;
+    overflow: auto;
 }
 
 .c_tabs{
@@ -1646,6 +1660,13 @@ button.donate_btn {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.j_p_aboutme{
+    width: auto;
+    max-height: 300px;
+    overflow: auto;
+
 }
 
 .j_p_header{
