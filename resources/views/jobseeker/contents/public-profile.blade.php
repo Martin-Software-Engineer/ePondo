@@ -13,8 +13,6 @@
         <h4 class="card-title">My Public Profile</h4>
         <!-- <div class="row"><h4 class="card-title">My Public Profile</h4></div> -->
         <!-- <div class="row"><span class="j_tag_trans">(Kasalukuyang Trabaho)</span></div> -->
-            
-            
         </div>
         <div class="card-body">
             <form class="form-validate" id="form-profile" action="{{route('jobseeker.profile.update')}}">
@@ -151,10 +149,10 @@
                             <label for="main_source_income">Main source of income</label>
                             <span class="j_tag_trans"><br>(Pangunahing pinagkukunan ng inggreso/kita)</span>
                             <select name="main_source_income" id="main_source_income" class="form-control select2">
-                                <option value="job" @if($info->main_source_income=='job') selected @endif>job</option>
-                                <option value="part time jobs" @if($info->main_source_income=='part time jobs') selected @endif>part time jobs </option>
-                                <option value="donations" @if($info->main_source_income=='donations') selected @endif>donations</option>
-                                <option value="family" @if($info->main_source_income=='family') selected @endif>family</option>
+                                <option value="job" @if($info->main_source_income=='Job') selected @endif>Job</option>
+                                <option value="part time jobs" @if($info->main_source_income=='Part Time Jobs') selected @endif>Part Time Jobs </option>
+                                <option value="donations" @if($info->main_source_income=='Donations') selected @endif>Donations</option>
+                                <option value="family" @if($info->main_source_income=='Family') selected @endif>Family</option>
 
                             </select>
                         </div>
@@ -164,10 +162,10 @@
                             <label for="extra_source_income">Other Source of Income</label>
                             <span class="j_tag_trans"><br>(Pangalawang pinagkukunan ng inggreso/kita)</span>
                             <select name="extra_source_income" id="extra_source_income" class="form-control select2">
-                                <option value="none" @if($info->main_source_income=='none') selected @endif>none</option>
-                                <option value="part time jobs" @if($info->extra_source_income=='part time jobs') selected @endif>part time jobs </option>
-                                <option value="donations" @if($info->extra_source_income=='donations') selected @endif>donations</option>
-                                <option value="family" @if($info->extra_source_income=='family') selected @endif>family</option>
+                                <option value="none" @if($info->main_source_income=='None') selected @endif>None</option>
+                                <option value="part time jobs" @if($info->extra_source_income=='Part Time Jobs') selected @endif>Part Time Jobs </option>
+                                <option value="donations" @if($info->extra_source_income=='Donations') selected @endif>Donations</option>
+                                <option value="family" @if($info->extra_source_income=='Family') selected @endif>Family</option>
                             </select>
                         </div>
                     </div>
@@ -643,7 +641,7 @@
                             <textarea name="bio" id="bio" cols="30" rows="15" class="form-control">{{$info->bio}}</textarea>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         <h4 class="mb-1 mt-2">
                             <hr>
                             <i data-feather="edit-3" class="font-medium-4 mr-25"></i>
@@ -698,15 +696,91 @@
                             <label for="question4">Why? (Indicate reason for your answer above)</label>
                             <textarea name="question4" id="question4" cols="30" rows="15" class="form-control">{{@$pppp->question4}}</textarea>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="col-12 d-flex flex-sm-row flex-column mt-2">
-                        <button type="submit" class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1">Save Changes</button>
+                        <button type="submit" class="btn btn-success mb-1 mb-sm-0 mr-0 mr-sm-1">Save Changes</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    <div class="card">
+        <!-- <div class="card-header">
+            <h4 class="card-title">4Ps Information</h4>
+        </div> -->
+        <div class="card-body">
+            <form class="form-validate" id="form-profile-pppp" action="{{route('jobseeker.profile.updatepppp')}}" method="POST">
+                @csrf
+                <div class="row">
+                
+                <div class="col-12">
+                        <h4 class="mb-1">
+                            <i data-feather="edit-3" class="font-medium-4 mr-25"></i>
+                            <span class="align-middle">4Ps Information (Pantawid Pamilyang Pilipino Program)</span>
+                        </h4>
+                        <p class="j_prof_note mb-1"><strong>Note :</strong> 
+                            Optional. If you are a 4Ps beneficiary please fill in the following information below .You may review ePondo's Data Privacy Policy <a href="{{route('privacypolicy')}}" style="font-weight:400;">here</a>. If you have
+                            any additional quesitons you can contact us through epondo.co@gmail.com.
+                        </p>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="4psId">Upload proof of 4Ps beneficiary (ID, or any proof)</label>
+                            <input type="file" name="4psId" class="form-control" id="4psId"/>
+                        </div>
+
+                        @if(@$pppp->id_photo != '')
+                            <img src="{{Storage::url(@$pppp->photo->url)}}" alt="" width="200">
+                        @endif
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="question1">How did you acquired for 4Ps?</label>
+                            <input type="text" name="question1" class="form-control" id="question1" value="{{@$pppp->question1}}"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="question2">How long have you been a 4Ps beneficiary?</label>
+                            <select name="question2" id="question2" class="form-control">
+                                <option value="less than a year" @if(@$pppp->question2 == 'less than a year') selected @endif>less than a year</option>
+                                <option value="1 year" @if(@$pppp->question2 == '1 year') selected @endif>1 year</option>
+                                <option value="2 years" @if(@$pppp->question2 == '2 years') selected @endif>2 years</option>
+                                <option value="3 years" @if(@$pppp->question2 == '3 years') selected @endif>3 years</option>
+                                <option value="4 years and above" @if(@$pppp->question2 == '4 years and above') selected @endif>4 years and above</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="question3">How is your experience?</label>
+                            <select name="question3" id="question3" class="form-control">
+                                <option value="Very Good" @if(@$pppp->question3 == 'Very Good') selected @endif>Very Good</option>
+                                <option value="Good" @if(@$pppp->question3 == 'Good') selected @endif>Good</option>
+                                <option value="Bad" @if(@$pppp->question3 == 'Bad') selected @endif>Bad</option>
+                                <option value="Very Bad" @if(@$pppp->question3 == 'Very Bad') selected @endif>Very Bad</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="question4">Why? (Indicate reason for your answer above)</label>
+                            <textarea name="question4" id="question4" cols="30" rows="15" class="form-control">{{@$pppp->question4}}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex flex-sm-row flex-column mt-2">
+                        <button type="submit" class="btn btn-success mb-1 mb-sm-0 mr-0 mr-sm-1">Save Changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
 </section>
 @endsection
 
@@ -718,9 +792,34 @@
         $(function($){
             'use strict';
 
-            var form = $('#form-profile');
+            var formProfile = $('#form-profile'),
+                formPPPP = $('#form-profile-pppp')
 
-            form.on('submit', function(e){
+            formProfile.on('submit', function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(resp){
+                        if(resp.success){
+                            toastr['success'](resp.msg, 'Success!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+
+                            setTimeout(function(){
+                                location.reload()
+                            }), 200;
+                        }
+                    }
+                });
+            });
+            formPPPP.on('submit', function(e){
                 e.preventDefault();
 
                 $.ajax({

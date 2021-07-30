@@ -221,7 +221,7 @@
                         <thead>
                             <tr>
                                 <th class="py-1">Description</th>
-                                <th class="py-1">Price (Per Hour)</th>
+                                <th class="py-1">Price / Duration</th>
                                 <th class="py-1">Subtotal</th>
                             </tr>
                         </thead>
@@ -234,7 +234,7 @@
                                     </p>
                                 </td>
                                 <td class="py-1">
-                                    <span class="font-weight-bold">Php {{$service->price}} ({{$service->duration}})</span>
+                                    <span class="font-weight-bold">Php {{$service->price}} / {{$service->duration}}</span>
                                 </td>
                                 <td class="py-1">
                                     <span class="font-weight-bold">Php {{$service->subtotal}}</span>

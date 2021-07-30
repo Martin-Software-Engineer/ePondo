@@ -62,7 +62,7 @@ END: Header Navbar -->
                         <!-- Login v1 -->
                         <div class="card ">
                             <div class="card-body">
-                                <a href="javascript:void(0);" class="brand-logo">
+                                <a href="/" class="brand-logo">
                                     <span class="brand-logo">
                                         <img src="{{asset('/app-assets/images/logo/logo.png')}}" style="width: 100px">
                                     </span>

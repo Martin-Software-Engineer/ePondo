@@ -85,7 +85,6 @@
         @include('jobseeker.partials.menu')
         
         @yield('content')
-
         <div class="sidenav-overlay"></div>
         <div class="drag-target"></div>
 

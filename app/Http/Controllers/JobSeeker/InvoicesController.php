@@ -57,7 +57,7 @@ class InvoicesController extends Controller
                 'address' => $order->service->jobseeker->information->address
             ],
             'to' => (object)[
-                'name' => $order->backer->username,
+                'name' => $order->backer->information->firstname.' '.$order->backer->information->lastname,
                 'address' => $order->backer->address
             ],
             'service' => (object)[
