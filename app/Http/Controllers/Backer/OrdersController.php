@@ -55,26 +55,32 @@ class OrdersController extends Controller
             'order_no' => System::GenerateFormattedId('S', $order->id),
             'order_id' => $order->id,
             'invoice_no' => $order->invoice->id,
+            'invoice_no2' => 'I-000-00'.$order->invoice->id,
             'currency' => $order->service->currency,
             'date_period' => $order->invoice->date_due,
             'from' => (object)[
                 'name' => $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname,
+                'email' => $order->service->jobseeker->email,
+                'contact' => $order->service->jobseeker->information->phone,
                 'address' => $order->service->jobseeker->information->address
             ],
             'to' => (object)[
-                'name' => $order->backer->username,
-                'address' => $order->backer->address
+                'name' => $order->backer->information->firstname.''.$order->backer->information->lastname,
+                'email' => $order->backer->email,
+                'contact' => $order->backer->information->phone,
+                'address' => $order->backer->information->address
             ],
             'service' => (object)[
                 'title' => $order->service->title,
+                'description' => $order->service->description,
                 'price' => $order->service->price,
                 'duration' => $duration,
-                'subtotal' => $order->service->price * $durationDec
+                'subtotal' => $order->service->price
             ],
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'total' => ($order->service->price * $durationDec) + $order->invoice->transaction_fee + $order->invoice->processing_fee
+            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee  
         ];
         
         //return $data;
