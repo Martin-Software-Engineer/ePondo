@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Backer;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Resources\BackerOrders as ResourceBackerOrders;
-use App\Models\Order;
-use App\Models\OrderCancel;
-use App\Helpers\System;
 use DataTables;
+use App\Models\Order;
+use App\Helpers\System;
+use App\Models\OrderCancel;
+use Illuminate\Http\Request;
+use App\Models\ServiceCategory;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\BackerOrders as ResourceBackerOrders;
+
 class OrdersController extends Controller
 {
     public function index(){
@@ -57,7 +59,8 @@ class OrdersController extends Controller
             'invoice_no' => $order->invoice->id,
             'invoice_no2' => 'I-000-00'.$order->invoice->id,
             'currency' => $order->service->currency,
-            'date_period' => $order->invoice->date_due,
+            'date_issued' => $order->invoice->created_at,
+            'date_due' => $order->invoice->date_due,
             'from' => (object)[
                 'name' => $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname,
                 'email' => $order->service->jobseeker->email,
@@ -73,10 +76,11 @@ class OrdersController extends Controller
             'service' => (object)[
                 'title' => $order->service->title,
                 'description' => $order->service->description,
-                'price' => $order->service->price,
+                'price' =>  $order->service->price,
                 'duration' => $duration,
-                'subtotal' => $order->service->price
+                'categories' => $order->service->categories,
             ],
+            'delivery_address' => $order->details->delivery_address,
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
