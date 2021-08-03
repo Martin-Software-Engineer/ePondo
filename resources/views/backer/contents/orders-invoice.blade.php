@@ -185,6 +185,23 @@
                     <!-- Header starts -->
                     <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
                         <div>
+                            <div class="mb-0"><img src="{{asset('app-assets/images/additional_pictures/navbar_logo.png')}}"></div>
+                            <p class="card-text mb-25">Contact No.:</p>
+                            <p class="card-text mb-25">Email :</p>
+                            <p class="card-text mb-25">Website :</p>
+                        </div>
+                        <div>
+                            <h1><b>INVOICE</b></h1>
+                            <p class="card-text mb-25">Date Issued: XXX {{$date_period}}</p>
+                            <p class="card-text mb-25">Invoice No: {{$invoice_no}}</p>
+                            <p class="card-text mb-25">Due Date: XXX</p>
+                            <p class="card-text mb-25">Service Order No: {{$order_no}}</p>
+                        </div>
+                    </div>
+                    <!-- Header ends -->
+                    <!-- Header starts -->
+                    <!-- <div class="d-flex justify-content-between flex-md-row  invoice-spacing mt-0">
+                        <div class="col">
                             <h1><b>Invoice</b></h1>
                             <h4>
                                 Service Order No. <span>{{$order_no}}</span>
@@ -192,14 +209,22 @@
                             <p class="card-text mb-25">Date Period: {{$date_period}}</p>
                             <p class="card-text mb-25">Invoice No: {{$invoice_no}}</p>
                         </div>
-                    </div>
+                        <div class="col">
+                            <h1><b>Invoice</b></h1>
+                            <h4>
+                                Service Order No. <span>{{$order_no}}</span>
+                            </h4>
+                            <p class="card-text mb-25">Date Period: {{$date_period}}</p>
+                            <p class="card-text mb-25">Invoice No: {{$invoice_no}}</p>
+                        </div>
+                    </div> -->
                     <!-- Header ends -->
                 </div>
 
-                <hr class="invoice-spacing">
+                <!-- <hr class="invoice-spacing"> -->
 
                 <!-- Address and Contact starts -->
-                <div class="card-body invoice-padding pt-0">
+                <!-- <div class="card-body invoice-padding pt-0">
                     <div class="row invoice-spacing">
                         <div class="col-xl-8 p-0">
                             <h5 class="mb-2"><b>BILL FROM</b></h5>
@@ -212,17 +237,63 @@
                             <p class="card-text mb-25">{{$to->address}}</p>
                         </div>
                     </div>
+                </div> -->
+                <div class="card-body invoice-padding pt-0">
+                    <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
+                        <div style="text-align:left;align-items:flex-start;">
+                            <h5 class="mb-2"><b>BILL TO</b></h5>
+                            <h6 class="mb-25">{{$to->name}}</h6>
+                            <p class="card-text mb-25" style="font-size: 12px;">
+                                <strong>Address :</strong>
+                                @if (empty($to->address))
+                                    N/A 
+                                @else
+                                    {{$to->address}}
+                                @endif
+                            </p>
+                            <p class="card-text mb-25" style="font-size: 12px;">
+                                <strong>Contact No. :</strong>
+                                @if (empty($to->contact))
+                                    N/A 
+                                @else
+                                    {{$to->contact}}
+                                @endif
+                            </p>
+                            <p class="card-text mb-25" style="font-size: 12px;"><strong>Email : </strong>{{$to->email}}</p>
+                        </div>
+                        <div>
+                            <h5 class="mb-2"><b>BILL FROM</b></h5>
+                            <h6 class="mb-25">{{$from->name}}</h6>
+                            <p class="card-text mb-25" style="font-size: 12px;">
+                                <strong>Address :</strong>
+                                @if (empty($from->address))
+                                    N/A 
+                                @else
+                                    {{$from->address}}
+                                @endif
+                            </p>
+                            <p class="card-text mb-25" style="font-size: 12px;">
+                                <strong>Contact No. :</strong>
+                                @if (empty($from->contact))
+                                    N/A 
+                                @else
+                                    {{$from->contact}}
+                                @endif
+                            </p>
+                            <p class="card-text mb-25" style="font-size: 12px;"><strong>Email : </strong>{{$from->email}}</p>
+                        </div>
+                    </div>
                 </div>
                 <!-- Address and Contact ends -->
 
                 <!-- Invoice Description starts -->
-                <div class="table-responsive">
+                <!-- <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th class="py-1">Description</th>
                                 <th class="py-1">Price (Per Hour)</th>
-                                <th class="py-1">Subtotal</th>
+                                <th class="py-1">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -240,20 +311,6 @@
                                     <span class="font-weight-bold">Php {{$service->subtotal}}</span>
                                 </td>
                             </tr>
-                            <!-- <tr>
-                                <td class="py-1">
-                                    <p class="card-text font-weight-bold mb-25">Additional Charges:</p>
-                                    <p class="card-text text-nowrap">
-                                        
-                                    </p>
-                                </td>
-                                <td class="py-1">
-                                    
-                                </td>
-                                <td class="py-1">
-                                    <span class="font-weight-bold"></span>
-                                </td>
-                            </tr> -->
                             <tr>
                                 <td class="py-1">
                                     <p class="card-text font-weight-bold mb-25">Transaction Fee</p>
@@ -278,25 +335,112 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
+                <div class="card-body invoice-padding pt-0">
+                    <div class="d-flex " style="width:100%">
+                        <div style="border: 2px solid rgb(235, 228, 228);width:100%">
+                            <h6>Description</h6>
+                            <p class="card-text text-nowrap">
+                                    Title :{{$service->title}}
+                            </p>
+                            <p class="card-text">
+                                    Description : {{$service->description}}
+                            </p>
+                            <p class="card-text text-nowrap">
+                                    Category :
+                            </p>
+                            <p class="card-text text-nowrap">
+                                    Duration :
+                            </p>
+                            <p class="card-text text-nowrap">
+                                    Location :
+                            </p>
+                        </div>
+                        <div style="border: 2px solid rgb(235, 228, 228);">
+                            <div style="text-align:right;">
+                                <h6 >Amount</h6>
+                            </div>
+                            <!-- <div style="display:flex;justify-content:center;align-items:center"> -->
+                            <div style="text-align:right;">
+                                <h6 >Php {{$service->subtotal}}.00</h6>
+                            </div>
+                        </div>
+                        <!-- <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr style="border: 2px solid rgb(235, 228, 228);">
+                                        <th class="py-1" style="border: 2px solid rgb(235, 228, 228); width:80%;">Description</th>
+                                        <th class="py-1 text-right" style="border: 2px solid rgb(235, 228, 228);">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border: 2px solid rgb(235, 228, 228);">
+                                        <td class="py-1" style="border: 2px solid rgb(235, 228, 228); width:80%;">
+                                            <p class="card-text text-nowrap">
+                                                 Title :{{$service->title}}
+                                            </p>
+                                            <p class="card-text text-nowrap">
+                                                 Description :
+                                            </p>
+                                            <p class="card-text text-nowrap">
+                                                 Category :
+                                            </p>
+                                            <p class="card-text text-nowrap">
+                                                 Duration :
+                                            </p>
+                                            <p class="card-text text-nowrap">
+                                                 Location :
+                                            </p>
+                                        </td>
+                                        <td class="py-1 text-right" style="border: 2px solid rgb(235, 228, 228);">
+                                            <span class="font-weight-bold ">Php {{$service->subtotal}}.00</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">
+                                            <h6><b>Sub-Total : </b></h6>
+                                            <h6><b>Transaction Fee 7% : </b></h6>
+                                            <h6><b>Payment Processing Fee 3% : </b></h6>
+                                            <h3><b>T O T A L : </b></h3>
+                                        </td>
+                                        <td class="text-right">
+                                            <h6>{{$total}} </h6>
+                                            <h6>{{$transaction_fee}} </h6>
+                                            <h6>{{$processing_fee}} </h6>
+                                            <h3>Php {{$total}} </h3>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+                    </div>
+                </div> 
                 <!-- Invoice Description ends -->
 
-                <hr class="invoice-spacing">
+                <!-- <hr class="invoice-spacing"> -->
 
                 <!-- Invoice Note starts -->
+                <!-- <div class="card-body invoice-padding pt-0">
+                    <div class="row">
+                        <div class="col-xl-12 p-0 mt-xl-0 mt-2 mb-3 text-right">
+                            <h6><b>Sub-Total : </b> Php {{$total}} </h6>
+                            <h6><b>Transaction Fee : </b> Php {{$transaction_fee}} </h6>
+                            <h6><b>Payment Processing Fee : </b> Php {{$processing_fee}} </h6>
+                            <h3><b>Total Due : </b> Php {{$total}} </h3>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- Invoice Note ends -->
+                <!-- Invoice Footer start -->
                 <div class="card-body invoice-padding pt-0">
                     <div class="row">
-                        <!-- <div class="col-xl-4 p-0">
-                            <h5 class="mb-2"><b>Additional Information</b></h5>
-                            <h6 class="mb-25">Service Order No.</h6>
-                        </div> -->
-                        <div class="col-xl-12 p-0 mt-xl-0 mt-2 mb-3 text-right">
-                            <h5 class="mb-2"><b>Total Due</b></h5>
-                            <h1 style="font-size: 3rem">Php {{$total}}</h1>
+                        <div class="col-xl-12 p-0 mt-xl-0 mt-2 mb-3 text-center">
+                            <p> If you have any questions about this invoice please email us at epondo.co@gmail.com</p>
+                            <h5>Thank you!</h5>
                         </div>
                     </div>
                 </div>
-                <!-- Invoice Note ends -->
+                <!-- Invoice Footer end -->
             </div>
         </div>
         <!-- /Invoice -->
