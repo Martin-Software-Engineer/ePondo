@@ -49,28 +49,36 @@ class InvoicesController extends Controller
         $data = [
             'order_no' => System::GenerateFormattedId('S', $order->id),
             'order_id' => $order->id,
-            'invoice_no' => $order->invoice->id,
+            'invoice_no' => System::GenerateFormattedId('I', $order->invoice->id),
             'currency' => $order->service->currency,
-            'date_period' => $order->invoice->date_due,
+            'date_issued' => date('F d, Y', strtotime($order->invoice->created_at)),
+            'date_due' => date('F d, Y', strtotime($order->invoice->date_due)),
             'from' => (object)[
                 'name' => $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname,
+                'email' => $order->service->jobseeker->email,
+                'contact' => $order->service->jobseeker->information->phone,
                 'address' => $order->service->jobseeker->information->address
             ],
             'to' => (object)[
-                'name' => $order->backer->information->firstname.' '.$order->backer->information->lastname,
-                'address' => $order->backer->address
+                'name' => $order->backer->information->firstname.''.$order->backer->information->lastname,
+                'email' => $order->backer->email,
+                'contact' => $order->backer->information->phone,
+                'address' => $order->backer->information->address
             ],
             'service' => (object)[
                 'title' => $order->service->title,
-                'price' => $order->service->price,
+                'description' => $order->service->description,
+                'price' =>  $order->service->price,
                 'duration' => $duration,
-                'subtotal' => $order->service->price
+                'categories' => $order->service->categories,
             ],
+            'earned' => $order->invoice->price,
+
+            'delivery_address' => $order->details->delivery_address,
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'earned' => $order->invoice->price,
-            'total' => ($order->invoice->price) + $order->invoice->transaction_fee + $order->invoice->processing_fee
+            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee
         ];
         
         //return $data;

@@ -1,21 +1,22 @@
 <?php
 
+use App\Mail\Try1;
 use App\Mail\JobMail;
-use App\Mail\WelcomeMail;
-use App\Mail\CampaignMail;
-use App\Mail\UserVerifyEmail;
-
 use Admin\UserController;
+use App\Http\Controllers;
 
-use JobSeeker\JobseekerProfileController;
+use App\Mail\WelcomeMail;
+
+use App\Mail\CampaignMail;
 // use JobSeeker\JobController;
 // use JobController;
-use App\Http\Controllers;
+use App\Mail\UserVerifyEmail;
 // use App\Http\Controllers\JobseekerBackgroundController;
 
 // use App\Models\JobseekerBackground;
 // use PublicCampaignController;
 use Illuminate\Support\Facades\Route;
+use JobSeeker\JobseekerProfileController;
 
 
 
@@ -183,6 +184,20 @@ Route::get('/email', function () { return new UserVerifyEmail(); });
 Route::get('/welcome-mail', function () { return new WelcomeMail(); }); //create user email
 Route::get('/campaign-mail', function () { return new CampaignMail(); }); //creating campaign email
 Route::get('/job-mail', function () { return new JobMail(); }); //creating job email
+Route::get('/try1', function () { return new Try1(); });
+
+// campaign-mail
+// donation-received-mail
+// job-mail
+// order-accept-mail
+// order-request-mail
+// service-create-mail
+// tier-rankup-mail
+// user-verifemail
+// welcome-mail
+
+Route::view('/service', 'emails/service-create-mail');
+
 
 // Front-End Coding
 Route::get('/login-demo', function () { return view('/auth/login-demo'); });

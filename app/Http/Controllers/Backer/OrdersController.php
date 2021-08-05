@@ -56,11 +56,10 @@ class OrdersController extends Controller
         $data = [
             'order_no' => System::GenerateFormattedId('S', $order->id),
             'order_id' => $order->id,
-            'invoice_no' => $order->invoice->id,
-            'invoice_no2' => 'I-000-00'.$order->invoice->id,
+            'invoice_no' => System::GenerateFormattedId('I', $order->invoice->id),
             'currency' => $order->service->currency,
-            'date_issued' => $order->invoice->created_at,
-            'date_due' => $order->invoice->date_due,
+            'date_issued' => date('F d, Y', strtotime($order->invoice->created_at)),
+            'date_due' => date('F d, Y', strtotime($order->invoice->date_due)),
             'from' => (object)[
                 'name' => $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname,
                 'email' => $order->service->jobseeker->email,
