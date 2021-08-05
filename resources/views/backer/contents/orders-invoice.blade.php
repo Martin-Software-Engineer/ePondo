@@ -191,12 +191,28 @@
                             <!-- <p class="card-text mb-25">Contact No.:</p> -->
                             <h6 class="card-text p-0" style="font-size: 9px; margin: 5px 0 20px 60px;">https://epondo.co / epondo.co@gmail.com</h6>
                         </div>
-                        <div>
-                            <h1><b>INVOICE</b></h1>
-                            <p class="card-text mb-25">Date Issued: XXX {{$date_issued}}</p>
-                            <p class="card-text mb-25">Invoice No: {{$invoice_no}}</p>
-                            <p class="card-text mb-25">Due Date: XXX {{$date_due}}</p>
-                            <p class="card-text mb-25">Service Order No: {{$order_no}}</p>
+                        <div style=" align-items: flex-end;">
+                            <h1 style="text-align:center;font-weight:bold;">INVOICE</h1>
+                            <p class="card-text mb-0"> <span style="margin-right:40px;font-weight:500">Date Issued : </span> {{$date_issued}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:50px;font-weight:500">Invoice No : </span>  {{$invoice_no}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:4px;font-weight:500">Service Order No : </span>  {{$order_no}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:55px;font-weight:500">Due Date : </span>  {{$date_due}}</p>
+
+                            <!-- <div class="row">
+                                <div class="col"  style="font-size: 12px;">
+                                    <p class="card-text mb-25">Date Issued:</p>
+                                    <p class="card-text mb-25">Invoice No:</p>
+                                    <p class="card-text mb-25">Service Order No:</p>
+                                    <p class="card-text mb-25">Due Date:</p>
+                                </div>
+                                <div class="col"  style="font-size: 12px;">
+                                    <p class="card-text mb-25">{{$date_issued}}</p>
+                                    <p class="card-text mb-25">{{$invoice_no}}</p>
+                                    <p class="card-text mb-25">{{$order_no}}</p>
+                                    <p class="card-text mb-25">{{$date_due}}</p>
+                                </div>
+                            </div> -->
+                            
                         </div>
                     </div>
                     <!-- Header ends -->
@@ -288,8 +304,8 @@
                 <div class="card-body invoice-padding pt-0">
                     <div class="d-flex">
                         <div style="width:50%;">
-                            <h6 class="" style="text-align:left;padding:10px 0;background-color:#041151; color:white;font-weight:bold;">BILL TO</h6>
-                            <h6 class="">{{$to->name}}</h6>
+                            <h6 class="" style="text-align:left;padding:10px 0;margin-right:30px;border-bottom: 2px solid #041151; color:#041151;font-weight:bold;">BILL TO</h6>
+                            <p class="card-text mb-25" style="font-size: 12px;"><strong>Name : </strong>{{$to->name}}</p>
                             <p class="card-text mb-25" style="font-size: 12px;">
                                 <strong>Address :</strong>
                                 @if (empty($to->address))
@@ -309,8 +325,8 @@
                             <p class="card-text mb-25" style="font-size: 12px;"><strong>Email : </strong>{{$to->email}}</p>
                         </div>
                         <div style="width:50%;">
-                            <h6 class="" style="text-align:left;padding:10px 0;background-color:#041151; color:white;font-weight:bold;">BILL FROM</h6>
-                            <h6 class="">{{$from->name}}</h6>
+                            <h6 class="" style="text-align:left;padding:10px 0;margin-right:30px;border-bottom: 2px solid #041151; color:#041151;font-weight:bold;">BILL FROM</h6>
+                            <p class="card-text mb-25" style="font-size: 12px;"><strong>Name : </strong>{{$from->name}}</p>
                             <p class="card-text mb-25" style="font-size: 12px;">
                                 <strong>Address :</strong>
                                 @if (empty($from->address))
