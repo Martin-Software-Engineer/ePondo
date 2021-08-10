@@ -1,9 +1,8 @@
 @component('mail::message')
 # Greetings from ePondo!
 
-Congratulations! You have reached the {{$tier->title}} You are only a few steps away from reaching the {{$nextTier->title}}.
-
-Tips on how to increase you points? Complete more service ordersto earn more points!
+Congratulations! You have reached the XXXXX Reward Tier.
+You are now entitled to additional +XX% per service.
 
 Thanks,<br>
 {{ config('app.name') }}

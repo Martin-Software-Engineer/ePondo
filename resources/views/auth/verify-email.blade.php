@@ -10,7 +10,7 @@
             <p class="mb-3">We have sent you a verification link, please check your email inbox.<br>
                 If you have not received any email from us. Please click the button below.</p>
             @if(session('status'))
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success" role="alert" style="min-height: 40px; display: flex; justify-content: center; align-items: center; font-size:18px;">
                     {{session('status')}}
                 </div>
             @endif

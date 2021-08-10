@@ -60,7 +60,17 @@ class OrdersController extends Controller
             $reward->send();
         }
 
+        $backer_email = $order->backer->email; //get backer details for email order accepted
+
         auth()->user()->notify(new OrderAcceptedNotification($order));
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.order-accept-mail', [
+            'subject' => 'Service Order Accepted',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+        Mail::to($backer_email)->queue(new SendMail('emails.backer.order-accept-mail', [
+            'subject' => 'Service Order Accepted',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
 
         $backer = User::find($order->backer_id);
         $backer->notify(new OrderAcceptedNotification($order));

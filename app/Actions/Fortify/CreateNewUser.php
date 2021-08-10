@@ -4,17 +4,21 @@ namespace App\Actions\Fortify;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Mail\SendMail;
+use App\Models\Reward;
+use App\Mail\WelcomeMail;
+use App\Helpers\GiveReward;
 use App\Models\UserAddress;
-use App\Models\UserInformation;
 use Illuminate\Support\Str;
+use App\Models\UserInformation;
+
 use Illuminate\Validation\Rule;
+
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
-use App\Models\Reward;
-
-use App\Helpers\GiveReward;
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
@@ -58,6 +62,14 @@ class CreateNewUser implements CreatesNewUsers
         //give reward pts
         $reward = new GiveReward($user->id, 'create_account');
         $reward->send();
+
+        // Mail::to($user->email)->queue(new WelcomeMail('welcome-mail', [
+        //     'subject' => 'Welcome to ePondo'
+        // ]));
+
+        Mail::to($user->email)->queue(new SendMail('emails.welcome-mail', [
+            'subject' => 'Welcome to ePondo!'
+        ]));
         
         return $user;
     }

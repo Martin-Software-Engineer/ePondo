@@ -1,11 +1,15 @@
 @component('mail::message')
 # Greetings from ePondo!
 
-You have accepted <b>Service Order No. {{$order_id}}</b>
+<br>You have successfully Accepted <b>Service Order No. {{$order_id}}</b><br><br>
 
-Please refer to the order. for more details about the order.
-This can be found at the <b>Service Orders tab on your dashboard</b>
+Please double check the details of the service order. And you are also highly encouraged 
+to contact your customer/backer to confirm all the details of the service order.
+Remember that after service order has been delivered, you must submit service order delivered 
+in your account through the Service Orders tab. <br><br>
 
-Thanks,<br>
+If you have any question or need assistance you may contact us at epondo.co@gmail.com.<br><br>
+
+Best Regards,<br>
 {{ config('app.name') }}
 @endcomponent

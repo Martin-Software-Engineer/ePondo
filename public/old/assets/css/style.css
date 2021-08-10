@@ -140,3 +140,15 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     width: 100%;
     height: 0px;
 }
+
+/* Verify Email Page - Start */
+
+.alert_verify_email_page{
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:18px;
+}
+
+/* Verify Email Page - End */

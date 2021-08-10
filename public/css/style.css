@@ -2307,6 +2307,18 @@ input.address_text::placeholder {
 
 /* Service Order - End */
 
+/* Verify Email Page - Start */
+
+.alert_verify_email_page{
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:18px;
+}
+
+/* Verify Email Page - End */
+
 
 /*================================================================================
 	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template

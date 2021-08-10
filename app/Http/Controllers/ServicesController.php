@@ -35,14 +35,19 @@ class ServicesController extends Controller
             'message' => $request->message
         ]);
 
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.order-request-mail', [
-            'subject' => 'New Service Order',
-            'backer_name' => auth()->user()->username,
-            'order_id' => System::GenerateFormattedId('S', $order->id)
-        ]));
-
         $jobseeker = User::find($service->user_id);
         $jobseeker->notify(new OrderReceivedNotification($order));
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.order-request-mail', [
+            'subject' => 'Service Order Request',
+            'customer_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
+            'order_id' => System::GenerateFormattedId('S', $order->id),
+            'order_title' => $service->title,
+            'price' => number_format($service->price, 2),
+            'render_date' => date('F d, Y', strtotime($details->render_date)),
+            'delivery_address' => $details->delivery_address,
+            'message' => $details->message
+
+        ]));
         
         $totalorders = Order::whereHas('service', function($q) use($jobseeker){
             $q->where('user_id', $jobseeker->id);
