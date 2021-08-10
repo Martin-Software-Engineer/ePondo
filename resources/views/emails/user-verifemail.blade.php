@@ -12,9 +12,6 @@ If you did not create an account, please contact us at epondo@gmail.com
                     <div class="action">
                         <button type="submit" class="button-primary">Verify Email</button>
                     </div>
-                    <!-- <div class="donate_btn_main">
-                        <div class="donate_btn_1"><a href="#">Donate Now</a></div>
-                    </div> -->
                 </form>
 
 Best Regards,<br>

@@ -132,8 +132,18 @@ class CampaignsController extends Controller
             }
         }
 
+        // Mail::to(auth()->user()->email)->queue(new SendMail('emails.campaign-mail', [
+        //     'subject' => 'ePondo Campaign Created'
+        // ]));
+
         Mail::to(auth()->user()->email)->queue(new SendMail('emails.campaign-mail', [
-            'subject' => 'Epondo Campaign'
+            'subject' => 'Successfully Created Campaign',
+            'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
+            // 'campaign_id' => $campaign->id,
+            // 'campaign_title' => $campaign->title,
+            // 'campaign_target_date' => $campaign->target_date,
+            // 'campaign_target_amount' => $campaign->target_amount,
+            'campaign' => $campaign
         ]));
         
         auth()->user()->notify(new CreateCampaignNotification());

@@ -1,12 +1,16 @@
 @component('mail::message')
 # Greetings from ePondo!
 
-You've successfully created a service at ePondo! 
+<br>Congratulations for successfully creating a Service on ePondo!
 
-We will notify you once someone has avail to your service, but in the meantime you can customize the details about your job offer.
+<strong>Service Title : </strong> <span style="font-style:italic;"> " {{$service->title}} " </span> <br>
+<strong>Control No. : </strong> {{System::GenerateFormattedId('S', $service->id)}} <br>
+<strong>Created By : </strong> {{$jobseeker_name}} <br>
+<strong>Duration : </strong> {{$service->duration_hours}} Hr/s {{$service->duration_minutes}} Min/s <br>
+<strong>Location : </strong> {{$service->location}} <br>
+<strong>Price : </strong> Php {{number_format($service->price)}} <br>
 
 
-
-Thanks,<br>
+Best Regards,<br>
 {{ config('app.name') }}
 @endcomponent

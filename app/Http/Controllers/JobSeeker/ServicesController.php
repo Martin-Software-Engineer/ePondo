@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Image;
+use App\Models\Tag;
+
+use App\Models\User;
+use App\Models\Photo;
+use App\Mail\SendMail;
+use App\Models\Service;
+use App\Helpers\GiveReward;
 use Illuminate\Support\Str;
 
-use App\Models\Service;
-use App\Models\ServiceCategoryParent;
+use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 use App\Models\CampaignCategory;
-use App\Models\Photo;
-use App\Models\Tag;
-use App\Models\User;
-
 use App\Http\Requests\StoreService;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMail;
+use App\Models\ServiceCategoryParent;
 use App\Notifications\CreateService as CreateServiceNotification;
-use App\Helpers\GiveReward;
-use Image;
+
 class ServicesController extends Controller
 {
     /**
@@ -117,6 +118,12 @@ class ServicesController extends Controller
         }
 
         auth()->user()->notify(new CreateServiceNotification());
+
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.service-create-mail', [
+            'subject' => 'Successfully Created Service',
+            'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
+            'service' => $service
+        ]));
 
         $totalservices = Service::where('user_id', auth()->user()->id)->count();
         if(!$totalservices > 0){ //first time
