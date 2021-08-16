@@ -83,7 +83,11 @@
                         Submit Service Order Delivered
                     </button>
                     @endif
-
+                    @if($order->status == 3)
+                    <button type="button" class="btn btn-danger btn-block mb-75 disabled">
+                        Service Order Declined
+                    </button>
+                    @endif
                     @if($order->status == 5)
                     <p style="font-size:12px; margin-bottom:20px;">Service Order Submitted as Delivered. Please wait 1-3 days for processing of payment. Thank you! </p>
                     <button type="button" class="btn-deliver btn btn-warning btn-block mb-75" disabled>

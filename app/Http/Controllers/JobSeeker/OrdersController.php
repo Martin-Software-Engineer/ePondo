@@ -106,8 +106,20 @@ class OrdersController extends Controller
             $reward->send();
         }
 
+        $backer_email = $order->backer->email; //Get backer email
+
         auth()->user()->notify(new OrderCompletedNotification($order));
         auth()->user()->notify(new OrderInvoiceNotification($order, $invoice));
+
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.order-delivered-mail', [
+            'subject' => 'Service Order Delivered',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+        Mail::to($backer_email)->queue(new SendMail('emails.backer.order-invoice-mail', [
+            'subject' => 'Service Order Invoice & Payment',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+
         return response()->json(['success' => true, 'msg' => 'Order Delivered, Wait for the Buyer to response']);
     }
 
@@ -116,7 +128,17 @@ class OrdersController extends Controller
         $order->status = 3;
         $order->save();
 
+        $backer_email = $order->backer->email; //get backer details for email order accepted
+
         auth()->user()->notify(new OrderDeclinedNotification($order));
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.order-decline-mail', [
+            'subject' => 'Service Order Declined',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+        Mail::to($backer_email)->queue(new SendMail('emails.backer.order-decline-mail', [
+            'subject' => 'Service Order Declined',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
 
         return response()->json(['success' => true, 'msg' => 'Order Declined']);
     }

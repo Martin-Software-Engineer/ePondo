@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+use App\Helpers\System;
+use App\Models\Order;
 class OrderDeclined extends Notification
 {
     use Queueable;

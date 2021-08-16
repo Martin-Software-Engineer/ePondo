@@ -139,7 +139,18 @@ class OrderPaymentsController extends Controller
 
                 $jobseeker_id = $order->service->jobseeker->id;
                 $jobseeker = User::find($jobseeker_id);
+
+                $backer_id = $order->service->backer->id; //Find Backer ID
+                $backer = User::find($backer_id); //Get backer data for Email
+
                 $jobseeker->notify(new OrderPaymentNotification($order, $order->invoice));
+
+                // Mail::to($backer->email)->queue(new SendMail('emails.backer.order-payment-mail', [
+                //     'subject' => 'Successful Payment',
+                //     'order_id' => System::GenerateFormattedId('S', $order->id),
+                //     'transaction' => $transaction
+                // ]));
+    
             }
 
             return $result;
