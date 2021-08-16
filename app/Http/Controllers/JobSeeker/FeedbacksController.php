@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Feedback;
-use App\Models\FeedbackPlatform;
-use App\Models\Order;
 use App\Models\User;
+use App\Models\Order;
+use App\Mail\SendMail;
+use App\Helpers\System;
+use App\Models\Feedback;
 use App\Helpers\GiveReward;;
+use Illuminate\Http\Request;
+use App\Models\FeedbackPlatform;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+
 class FeedbacksController extends Controller
 {
     /**
@@ -73,6 +77,12 @@ class FeedbacksController extends Controller
             $reward = new GiveReward(auth()->user()->id, 'creating_service_order_feedback');
             $reward->send();
         }
+        
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.order-feedback-mail', [
+            'subject' => 'Successful Service Order Feedback',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+
         return response()->json(['success' => true, 'msg' => 'Feedback Submitted']);
     }
 

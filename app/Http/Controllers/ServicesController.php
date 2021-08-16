@@ -48,6 +48,17 @@ class ServicesController extends Controller
             'message' => $details->message
 
         ]));
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.backer.order-request-mail', [
+            'subject' => 'Service Order Request',
+            'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+            'order_id' => System::GenerateFormattedId('S', $order->id),
+            'order_title' => $service->title,
+            'price' => number_format($service->price, 2),
+            'render_date' => date('F d, Y', strtotime($details->render_date)),
+            'delivery_address' => $details->delivery_address,
+            'message' => $details->message
+
+        ]));
         
         $totalorders = Order::whereHas('service', function($q) use($jobseeker){
             $q->where('user_id', $jobseeker->id);

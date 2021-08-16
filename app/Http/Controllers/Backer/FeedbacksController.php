@@ -40,7 +40,6 @@ class FeedbacksController extends Controller
     public function store(Request $request)
     {
         $order = Order::find($request->order_id);
-        
         $order->status = 7;
         $order->save();
 
@@ -77,6 +76,12 @@ class FeedbacksController extends Controller
             $reward = new GiveReward(auth()->user()->id, 'receiving_service_order_rf');
             $reward->send();
         }
+
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.order-feedback-mail', [
+            'subject' => 'Successful Service Order Feedback',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+
         return response()->json(['success' => true, 'msg' => 'Feedback Submitted']);
     }
 
