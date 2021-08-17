@@ -61,12 +61,12 @@ class DonateCampaign extends Notification
             if($this->donator != null){
                 return [
                     'heading' => 'Donate Campaign',
-                    'text' => "You received a donation from {$this->donator->username} for {$this->campaign->title}. Pls check your campaign for more details"
+                    'text' => 'You received a donation from {$this->donator->userinformation->firstname} {$this->donator->userinformation->lastname} for {$this->campaign->title}. Pls check your campaign for more details'
                 ];
             }else{
                 return [
                     'heading' => 'Donate Campaign',
-                    'text' => "You received a donation for {$this->campaign->title}. Pls check your campaign for more details"
+                    'text' => "You received a donation from an anonymous donor for ' {$this->campaign->title} ' . Pls check your campaign for more details"
                 ];
             }
         }
@@ -74,7 +74,7 @@ class DonateCampaign extends Notification
         if($this->donator->hasAnyRole('Backer')){
             return [
                 'heading' => 'Donate Campaign',
-                'text' => "Successfully Donated to {$this->campaign->title}."
+                'text' => "Successfully Donated to ' {$this->campaign->title} '. View your donation at “Donated Campaigns” tab located on your dashboard. Thank you!"
             ];
         }
         

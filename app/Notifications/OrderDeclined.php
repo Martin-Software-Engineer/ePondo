@@ -59,16 +59,17 @@ class OrderDeclined extends Notification
     {
         $order_id = System::GenerateFormattedId('SO',$this->order->id);
         $order = Order::where('id', $this->order->id)->with('service')->first();
-
+        $jobseeker_name = $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname;
+        
         if($notifiable->hasAnyRole('JobSeeker')){
             return [
                 'heading' => 'Service Order - Declined',
-                'text' => "Declined Service Order Request for {$order->service->title} with No.:{$order_id}."
+                'text' => "Declined Service Order for ' {$order->service->title} ' with No.: {$order_id}"
             ];
         }elseif($notifiable->hasAnyRole('Backer')){
             return [
                 'heading' => 'Avail Service – Service Order Declined',
-                'text' => "Declined Service Order Request for {$order->service->title} by {$order->service->jobseeker->username} with No.:{$order_id}."
+                'text' => "Decline Service Order for ' {$order->service->title} ' by {$jobseeker_name} with No.: {$order_id}"
             ];
         }
     }

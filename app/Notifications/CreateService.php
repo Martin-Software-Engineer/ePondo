@@ -56,7 +56,7 @@ class CreateService extends Notification
     {
         return [
             'heading' => 'Create Service',
-            'text' => 'You have successfully created a service! You are now able to view your service at “My Services” tab located on your dashboard'
+            'text' => 'Successfully Created a Service! View your service at “My Services” tab located on your dashboard.'
         ];
     }
 }

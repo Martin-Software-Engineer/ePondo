@@ -58,17 +58,18 @@ class OrderCompleted extends Notification
     {
         $order_id = System::GenerateFormattedId('SO',$this->order->id);
         $order = Order::where('id', $this->order->id)->with('service')->first();
-        
+        $jobseeker_name = $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname;
 
         if($notifiable->hasAnyRole('JobSeeker')){
             return [
-                'heading' => 'Service Order - Complete',
-                'text' => "Successfully submitted Service Order Complete for {$order->service->title} with No.:{$order_id}."
+                'heading' => 'Service Order - Submitted Complete',
+                'text' => "Successfully Submitted Complete Service Order for ' {$order->service->title} ' with No.: {$order_id}"
             ];
         }elseif($notifiable->hasAnyRole('Backer')){
             return [
-                'heading' => 'Avail Service – Service Order Complete/Payment',
-                'text' => "Successfully Service Order Complete for {$order->service->title} by {$order->service->jobseeker->username} with No.:{$order_id}.. Please view Service Order Bill and proceed to Payment."
+                'heading' => 'Service Order – Submitted Complete',
+                'text' => "Successfully Submitted Complete Service Order for ' {$order->service->title} ' by {$jobseeker_name} with No.: {$order_id}. 
+                           Please proceed to View Invoice & Process Payment."
             ];
         }
     }

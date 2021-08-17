@@ -56,7 +56,7 @@ class CreateCampaign extends Notification
     {
         return [
             'heading' => 'Create Campaign',
-            'text' => 'You have successfully created a campaign! You are now able to see your campaign at “My Campaigns” tab located on your dashboard.'
+            'text' => 'Successfully Created a Campaign! View your campaign at “My Campaigns” tab located on your dashboard.'
         ];
     }
 }
