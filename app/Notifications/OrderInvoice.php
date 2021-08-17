@@ -64,13 +64,13 @@ class OrderInvoice extends Notification
 
         if($notifiable->hasAnyRole('JobSeeker')){
             return [
-                'heading' => 'Service Order – Invoice Sent',
-                'text' => "Successfully sent Service Order Invoice with No.:{$invoice_id} for {$order->service->title} with No.:{$order_id}."
+                'heading' => 'Service Order – Invoice Issued & Pending Payment',
+                'text' => "Invoice Issued & Pending Payment for Backer. Invoice No.: {$invoice_id}. Service Order for ' {$order->service->title} ' with No.: {$order_id}"
             ];
         }elseif($notifiable->hasAnyRole('Backer')){
             return [
-                'heading' => 'Avail Service – Service Order Payment',
-                'text' => "Pls. proceed to Payment for {$order->service->title} by {$order->service->jobseeker->username} with Invoice No:{$invoice_id} and Service Order No:{$order_id}."
+                'heading' => 'Service Order – Invoice Issued & Pending Payment',
+                'text' => "Invoice issued. Please proceed to Payment for ' {$order->service->title} ' by {$order->service->jobseeker->username} with Invoice No : {$invoice_id} and Service Order No.: {$order_id}"
             ];
         }
     }

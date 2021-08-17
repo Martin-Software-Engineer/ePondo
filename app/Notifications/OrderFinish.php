@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 
 use App\Helpers\System;
 use App\Models\Order;
-class OrderReceived extends Notification
+class OrderFinish extends Notification
 {
     use Queueable;
 
@@ -59,16 +59,17 @@ class OrderReceived extends Notification
     {
         $order_id = System::GenerateFormattedId('SO',$this->order->id);
         $order = Order::where('id', $this->order->id)->with('service')->first();
+        $jobseeker_name = $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname;
 
         if($notifiable->hasAnyRole('JobSeeker')){
             return [
-                'heading' => 'Service Order – Pending Request',
-                'text' => "Pending Service Order Request for ' {$order->service->title} ' with No.: {$order_id}. Pls be reminded to go to your ' Service Orders ' tab to Accept or Decline the request."
+                'heading' => 'Service Order – Complete!',
+                'text' => "Successfully Completed! Service Order for ' {$order->service->title} ' with No.: {$order_id}"
             ];
         }elseif($notifiable->hasAnyRole('Backer')){
             return [
-                'heading' => 'Service Order – Request Sent',
-                'text' => "Successfully Sent Service Order Request for ' {$order->service->title} ' with No.: {$order_id}. Please allow 1-3 days for Jobseeker's response regarding your request"
+                'heading' => 'Service Order – Complete!',
+                'text' => "Successfully Completed! Service Order for ' {$order->service->title} ' by {$jobseeker_name} with No.: {$order_id}"
             ];
         }
     }

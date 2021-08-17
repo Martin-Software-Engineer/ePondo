@@ -59,16 +59,17 @@ class OrderAccepted extends Notification
     {
         $order_id = System::GenerateFormattedId('SO',$this->order->id);
         $order = Order::where('id', $this->order->id)->with('service')->first();
+        $jobseeker_name = $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname;
 
         if($notifiable->hasAnyRole('JobSeeker')){
             return [
                 'heading' => 'Service Order – Accepted ',
-                'text' => "Successfully Accepted Service Order Request for {$order->service->title} with No.:{$order_id}"
+                'text' => "Successfully Accepted Service Order for ' {$order->service->title} ' with No.: {$order_id}"
             ];
         }elseif($notifiable->hasAnyRole('Backer')){
             return [
-                'heading' => 'Avail Service – Service Order Accepted',
-                'text' => "Accepted Service Order Request for {$order->service->title} by {$order->service->jobseeker->username} with No.:{$order_id}"
+                'heading' => 'Service Order – Accepted',
+                'text' => "Successfully Accepted Service Order for ' {$order->service->title} ' by {$jobseeker_name} with No.: {$order_id}"
             ];
         }
     }

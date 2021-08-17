@@ -57,7 +57,7 @@ class Rewards extends Notification
     {
         return [
             'heading' => "Rewards ({$this->reward})",
-            'text' => "Congratulations you have reached the {$this->reward}! Check your rewards and points for more information."
+            'text' => "Congratulations! You have reached the {$this->reward}. Check your ' Rewards ' tab for more details "
         ];
     }
 }
