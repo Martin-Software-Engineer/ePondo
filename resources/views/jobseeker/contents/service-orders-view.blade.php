@@ -95,9 +95,9 @@
                     </button>
                     @endif
 
-                    @if($order->status == 6 && !$order->hasjsfeedback)
+                    @if($order->status == 6 && !$order->hasjobseekerfeedback)
                     <button type="button" class="btn-feedback btn btn-info btn-block mb-75" data-toggle="modal" data-target="#feedback-modal">
-                        Add Feedback
+                        Add Feedback & Rating
                     </button>
                     @endif
 

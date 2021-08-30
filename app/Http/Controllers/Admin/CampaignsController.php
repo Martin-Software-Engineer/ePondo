@@ -135,8 +135,10 @@ class CampaignsController extends Controller
             }
         }
 
-        Mail::to($jobseeker->email)->queue(new SendMail('emails.campaign-mail', [
-            'subject' => 'Epondo Campaign'
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.campaign-mail', [
+            'subject' => 'Successfully Created Campaign',
+            'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+            'campaign' => $campaign
         ]));
 
         return response()->json(['success' => true,'msg' => trans('admin.campaign.create.success')]);

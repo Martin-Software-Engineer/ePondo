@@ -24,6 +24,7 @@ $(function() {
                 { data: 'target_amount' },
                 { data: 'amount_raised' },
                 { data: '' }
+                
             ],
             columnDefs: [{
                     // For Responsive

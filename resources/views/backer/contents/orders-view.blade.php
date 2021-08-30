@@ -133,7 +133,7 @@
                             <p style="font-size:12px; margin-bottom:20px;"> Service Order is Complete. Please view Invoice and continue to Payment. </p>
                             <a href="{{route('backer.order.invoice', $order->id)}}" class="btn btn-warning btn-block">View Invoice & Pay</a>
                         @endif
-                        @if($order->status == 6)
+                        @if($order->status == 6 && !$order->hasbackerfeedback)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
                             <p style="font-size:12px; margin-bottom:20px;"> Service Order Complete & Payment Successful. Please provide Feedback & Rating for your jobseeker. </p>
                             <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button>

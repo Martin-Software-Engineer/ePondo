@@ -1,7 +1,7 @@
 @component('mail::message')
 # Greetings from ePondo!
 
-<br>You have received a Service Order Request with <br><b>Service Order No. {{$order_id}}</b>.<br>
+<br>You have received a Service Order Request with <br>Service Order No. <b> {{$order_id}}</b>.<br>
 <hr><br>
 <h3>Service Order Details</h3>
 Service Title : <span style="font-style:italic;text-decoration:underline;"> " {{$order_title}} " </span> <br>

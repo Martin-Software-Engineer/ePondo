@@ -7,21 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-use App\Helpers\System;
-use App\Models\Order;
-class OrderDeclined extends Notification
+class PayoutRequest extends Notification
 {
     use Queueable;
 
-    protected $order;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($order)
+    public function __construct()
     {
-        $this->order = $order;
+        //
     }
 
     /**
@@ -57,20 +54,9 @@ class OrderDeclined extends Notification
      */
     public function toArray($notifiable)
     {
-        $order_id = System::GenerateFormattedId('SO',$this->order->id);
-        $order = Order::where('id', $this->order->id)->with('service')->first();
-        $jobseeker_name = $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname;
-        
-        if($notifiable->hasAnyRole('JobSeeker')){
-            return [
-                'heading' => 'Service Order - Declined',
-                'text' => "Declined Service Order for ' {$order->service->title} ' with No.: {$order_id}"
-            ];
-        }elseif($notifiable->hasAnyRole('Backer')){
-            return [
-                'heading' => 'Service Order - Declined',
-                'text' => "Decline Service Order for ' {$order->service->title} ' by {$jobseeker_name} with No.: {$order_id}"
-            ];
-        }
+        return [
+            'heading' => 'Payout Request Sent',
+            'text' => ''
+        ];
     }
 }

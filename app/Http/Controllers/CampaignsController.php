@@ -21,7 +21,7 @@ class CampaignsController extends Controller
 
         $campaign = Campaign::find($request->campaign_id);
         $campaign->donations()->attach($donate->id);
-        $jobseeker = User::find($campaign->user_id);
+        
         if(!$request->input('is_anonymous')){
             $user = User::where('email', $request->email)->first();
             
@@ -31,12 +31,11 @@ class CampaignsController extends Controller
                 if (Auth::check()) {
                     $user = User::find(auth()->user()->id);
                     $user->donations()->attach($donate->id);
-                    Mail::to(auth()->user()->email)->queue(new SendMail('emails.donation-received-mail', [
-                        'subject' => 'Epondo Service'
-                    ]));
+
                 }
             }
         }
+        //else statement for anonymous {require input of email, to send out confirmation of donation}
 
         return response()->json(array(
                 'success' => true, 

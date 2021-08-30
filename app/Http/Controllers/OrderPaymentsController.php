@@ -134,23 +134,60 @@ class OrderPaymentsController extends Controller
                 $transaction->save();
 
                 $order = Order::find($transaction->orders[0]->id);
-                $order->status = 6; //ongoing
-                $order->save();
+                // $order->status = 6;
+                // $order->save();
 
                 $jobseeker_id = $order->service->jobseeker->id;
                 $jobseeker = User::find($jobseeker_id);
 
-                $backer_id = $order->service->backer->id; //Find Backer ID
+                $backer_id = $order->backer->id; //Find Backer ID
                 $backer = User::find($backer_id); //Get backer data for Email
 
-                $jobseeker->notify(new OrderPaymentNotification($order, $order->invoice));
+                
+                $order_id = System::GenerateFormattedId('S', $order->id);
+                $invoice_id = System::GenerateFormattedId('I', $order->invoice->id);
+                $service_title = $order->service->title;
+                $delivery_address = $order->details->delivery_address;
+                $backer_name = $backer->information->firstname.' '.$backer->information->lastname;
+                $render_date = $order->details->render_date;
 
-                // Mail::to($backer->email)->queue(new SendMail('emails.backer.order-payment-mail', [
-                //     'subject' => 'Successful Payment',
-                //     'order_id' => System::GenerateFormattedId('S', $order->id),
-                //     'transaction' => $transaction
-                // ]));
-    
+                $jobseeker->notify(new OrderPaymentNotification($order, $order->invoice));
+                $backer->notify(new OrderPaymentNotification($order, $order->invoice));
+
+                Mail::to($backer->email)->queue(new SendMail('emails.backer.order-payment-mail', [
+                    'subject' => 'Payment Successful',
+                    'order_id' => $order_id,
+                    'invoice_id' => $invoice_id,
+                    'backer_name' => $backer_name,
+                    'jobseeker_name' => $jobseeker->information->firstname.' '.$jobseeker->information->lastname,
+                    'render_date' => $$render_date,
+                    'delivery_address' => $delivery_address,
+                    'service_title' => $service_title,
+                    'amount' => $transaction->amount,
+                    'paid_at' => $transaction->paid_at
+                ]));
+                Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-payment-mail', [
+                    'subject' => 'Payment Successful',
+                    'order_id' => $order_id,
+                    'invoice_id' => $invoice_id,
+                    'price' => $order->service->price,
+                    'service_title' => $service_title,
+                    'delivery_address' => $delivery_address,
+                    'render_date' => $$render_date,
+                    'backer_name' => $backer_name
+                ]));
+                
+            }
+            else //Added for unsuccessful payments
+            {
+                $transaction = MyTransaction::with('orders')->where('payment_id', $payment->id)->first();
+                $order = Order::find($transaction->orders[0]->id);
+                $order_id = System::GenerateFormattedId('S', $order->id);
+                
+                Mail::to($backer->email)->queue(new SendMail('emails.backer.order-paymentunsuccessful-mail', [
+                    'subject' => 'Payment Unsuccessful',
+                    'order_id' => $order_id,
+                ]));
             }
 
             return $result;

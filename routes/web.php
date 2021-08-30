@@ -147,6 +147,7 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
 });
 
+//Backer
 Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is-backer'])->group(function (){
     Route::get('/', 'Backer\AccountController@index')->name('index');
     Route::post('myaccount/update', 'Backer\AccountController@update')->name('myaccount.update');

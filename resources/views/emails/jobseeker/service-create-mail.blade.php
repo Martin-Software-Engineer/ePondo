@@ -10,6 +10,8 @@
 <strong>Location : </strong> {{$service->location}} <br>
 <strong>Price : </strong> Php {{number_format($service->price)}} <br>
 
+Please be reminded to check your account for updates. If you have any questions or need assistance 
+you may contact us at epondo.co@gmail.com. Thank you!<br><br>
 
 Best Regards,<br>
 {{ config('app.name') }}

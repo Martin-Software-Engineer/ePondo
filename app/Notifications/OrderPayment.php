@@ -65,12 +65,12 @@ class OrderPayment extends Notification
         if($notifiable->hasAnyRole('JobSeeker')){
             return [
                 'heading' => 'Service Order – Payment Successful',
-                'text' => "Successfully processed payment for Invoice No.: {$invoice_id} for ' {$order->service->title} ' with No.: {$order_id}"
+                'text' => "Successfully processed payment for Invoice No.: {$invoice_id} for ' {$order->service->title} ' with No.: {$order_id}. Please proceed to Add Feedback & Rating."
             ];
         }elseif($notifiable->hasAnyRole('Backer')){
             return [
                 'heading' => 'Service Order – Payment Successful',
-                'text' => "Successfully processed payment for Invoice No.: {$invoice_id} for ' {$order->service->title} ' by {$order->service->jobseeker->username} with No: {$order_id}"
+                'text' => "Successfully processed payment for Invoice No.: {$invoice_id} for ' {$order->service->title} ' by {$order->service->jobseeker->username} with No: {$order_id}.  Please proceed to Add Feedback & Rating."
             ];
         }
     }

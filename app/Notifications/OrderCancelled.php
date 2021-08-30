@@ -2,27 +2,26 @@
 
 namespace App\Notifications;
 
+use App\Models\Order;
+use App\Helpers\System;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
-use App\Helpers\System;
-use App\Models\Order;
-class OrderInvoice extends Notification
+
+class OrderCancelled extends Notification
 {
     use Queueable;
 
     protected $order;
-    protected $invoice;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($order, $invoice)
+    public function __construct($order)
     {
         $this->order = $order;
-        $this->invoice = $invoice;
     }
 
     /**
@@ -59,19 +58,18 @@ class OrderInvoice extends Notification
     public function toArray($notifiable)
     {
         $order_id = System::GenerateFormattedId('SO',$this->order->id);
-        $invoice_id = System::GenerateFormattedId('IO',$this->invoice->id);
         $order = Order::where('id', $this->order->id)->with('service')->first();
         $jobseeker_name = $order->service->jobseeker->information->firstname.' '.$order->service->jobseeker->information->lastname;
-
+        
         if($notifiable->hasAnyRole('JobSeeker')){
             return [
-                'heading' => 'Service Order – Invoice Issued & Pending Payment',
-                'text' => "Invoice Issued & Pending Payment for Backer. Invoice No.: {$invoice_id}. Service Order for ' {$order->service->title} ' with No.: {$order_id}"
+                'heading' => 'Service Order - Cancelled',
+                'text' => "Cancelled Service Order for ' {$order->service->title} ' with No.: {$order_id}"
             ];
         }elseif($notifiable->hasAnyRole('Backer')){
             return [
-                'heading' => 'Service Order – Invoice Issued & Pending Payment',
-                'text' => "Invoice issued. Please proceed to Payment for ' {$order->service->title} ' by {$jobseeker_name} with Invoice No : {$invoice_id} and Service Order No.: {$order_id}"
+                'heading' => 'Service Order - Cancelled',
+                'text' => "Cancelled Service Order for ' {$order->service->title} ' by {$jobseeker_name} with No.: {$order_id}"
             ];
         }
     }

@@ -5,12 +5,17 @@
 
 <hr><br>
 <h3>Payment Details</h3>
-<!-- Service Title : <span style="font-style:italic;text-decoration:underline;"> " {{$order_title}} " </span> <br> -->
-Order No. : <span style="text-decoration:underline;"> {{$order_id}} </span><br>
-Price : <span style="text-decoration:underline;"> Php {{$price}} </span><br>
-Jobseeker : <span style="text-decoration:underline;"> {{$jobseeker_name}} </span><br>
+
+Invoice No. : <span style="text-decoration:underline;"> {{$invoice_id}} </span><br>
+Date Paid : <span style="text-decoration:underline;"> {{$paid_at}} </span><br>
+Total Amount Paid : <span style="text-decoration:underline;"> Php {{$amount}} </span><br>
+Backer/Customer (Payers Name) : <span style="text-decoration:underline;"> {{$backer_name}} </span><br><br>
+
+Service Order No. : <span style="text-decoration:underline;"> {{$order_id}} </span><br>
 Service Order Date : <span style="text-decoration:underline;"> {{$render_date}} </span><br>
+Service Title : <span style="font-style:italic;text-decoration:underline;"> " {{$service_title}} " </span> <br>
 Delivery Address : <span style="text-decoration:underline;"> {{$delivery_address}} </span><br>
+Jobseeker : <span style="text-decoration:underline;"> {{$jobseeker_name}} </span><br><br>
 
 We are also reminding you that you have a <strong>Pending Feedback</strong> of the 
 service order to accomplish.<br><br>

@@ -1,7 +1,7 @@
 @component('mail::message')
 # Greetings from ePondo!
 
-<br>Service Order has been submitted as Delivered with <br><b>Service Order No. {{$order_id}}</b>. 
+<br>Service Order has been submitted as Delivered with <br>Service Order No. <b>{{$order_id}}</b>. 
 You now have a pending View Invoice and Process Payment.<br><br>
 
 To view Invoice go to your ePondo account and view Service Order. Click the "View Invoice & Pay" button. 
