@@ -31,8 +31,8 @@ class ServicesController extends Controller
     public function index()
     {
         $data['services'] = Service::where('user_id', auth()->user()->id)->get();
-        $data['service_categories'] = ServiceCategory::all();
-        $data['campaign_categories'] = CampaignCategory::all();
+        $data['categories'] = ServiceCategory::all();
+        // $data['campaign_categories'] = CampaignCategory::all();
         //return response()->json($data);
         return view('jobseeker.contents.services.index', $data);
     }
@@ -58,6 +58,8 @@ class ServicesController extends Controller
      */
     public function store(StoreService $request)
     {
+        $totalservices = Service::where('user_id', auth()->user()->id)->count(); //Counter for Reward Points
+        
         $service = Service::create([
             'user_id' => auth()->user()->id,
             'title' => $request->title,
@@ -119,13 +121,13 @@ class ServicesController extends Controller
 
         auth()->user()->notify(new CreateServiceNotification());
 
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.service-create-mail', [
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.service-create-mail', [
             'subject' => 'Successfully Created Service',
             'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
             'service' => $service
         ]));
 
-        $totalservices = Service::where('user_id', auth()->user()->id)->count();
+        //Reward Points
         if(!$totalservices > 0){ //first time
             $reward = new GiveReward(auth()->user()->id, 'creating_1st_service');
             $reward->send();
@@ -211,9 +213,9 @@ class ServicesController extends Controller
             $service->tags()->detach();
         }
 
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.service-create-mail', [
-            'subject' => 'Epondo Service'
-        ]));
+        // Mail::to(auth()->user()->email)->queue(new SendMail('emails.service-create-mail', [
+        //     'subject' => 'Epondo Service'
+        // ]));
 
         return response()->json(array('success' => true, 'msg' => 'Service Updated.'));
     }

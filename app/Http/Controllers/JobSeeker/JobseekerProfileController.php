@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Photo;
+use App\Helpers\GiveReward;
 use App\Models\User4psInfo;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class JobseekerProfileController extends Controller
 {
@@ -103,6 +104,9 @@ class JobseekerProfileController extends Controller
             'electricity_access' => $request->electricity_access,
             'clean_clothes_access' => $request->clean_clothes_access
         ]);
+
+        $reward = new GiveReward($user->id, 'edit_public_profile');
+        $reward->send();
 
         // $pppp = User4psInfo::where('user_id',$user->id)->first();
 
@@ -209,6 +213,10 @@ class JobseekerProfileController extends Controller
             $pppp->question4 = $request->question4;
             $pppp->save();
         }
+        
+        $reward = new GiveReward($user->id, 'edit_public_profile');
+        $reward->send();
+
         return response()->json(['success' => true, 'msg' => 'Your 4Ps profile was updated.']);
     }
 

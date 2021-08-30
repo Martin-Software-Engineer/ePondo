@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Backer;
 
 use DataTables;
+use App\Models\User;
 use App\Models\Order;
+use App\Mail\SendMail;
 use App\Helpers\System;
 use App\Models\OrderCancel;
 use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\BackerOrders as ResourceBackerOrders;
+use App\Notifications\OrderCancelled as OrderCancelledNotification;
 
 class OrdersController extends Controller
 {
@@ -99,8 +103,26 @@ class OrdersController extends Controller
         $order->status = 8;
         $order->save();
 
+        $backer = User::find($order->backer->id);
+        $jobseeker = User::find($order->service->jobseeker->id);
+
         if($order)
+        {
             OrderCancel::create(['order_id' => $request->id, 'reason' => $request->reason]);
+        }
+
+        $jobseeker->notify(new OrderCancelledNotification($order));
+        $backer->notify(new OrderCancelledNotification($order));
+
+        Mail::to($backer->email)->queue(new SendMail('emails.order-cancel-request-mail', [
+            'subject' => 'Service Order Cancelled',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.order-cancelled-mail', [
+            'subject' => 'Service Order Cancelled',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+
 
         return response()->json(['success' => true, 'msg' => 'Order Cancelled.']);
     }

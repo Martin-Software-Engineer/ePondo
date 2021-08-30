@@ -56,8 +56,8 @@ class Rewards extends Notification
     public function toArray($notifiable)
     {
         return [
-            'heading' => "Rewards ({$this->reward})",
-            'text' => "Congratulations! You have reached the {$this->reward}. Check your ' Rewards ' tab for more details "
+            'heading' => "{$this->reward} Rewards Tier Unlocked",
+            'text' => "Congratulations! You have reached the {$this->reward} Tier. Check your ' Rewards ' tab for more details "
         ];
     }
 }

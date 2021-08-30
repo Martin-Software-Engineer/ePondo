@@ -4,11 +4,11 @@
 <br>Congratulations, you have Successfully Donated to Campaign!<br>
 <hr><br>
 <h3>Campaign Donation Details</h3>
-Campaign Title : <span style="font-style:italic;text-decoration:underline;"> " XXX " </span> <br>
-Jobseeker : <span style="text-decoration:underline;"> XXX </span><br>
-Donated Amount : <span style="text-decoration:underline;"> Php XXX </span><br>
-Total Amount : <span style="text-decoration:underline;"> Php XXX </span><br>
-Date : <span style="text-decoration:underline;"> XXX </span><br>
+Campaign Title : <span style="font-style:italic;text-decoration:underline;"> " {{$title}} " </span> <br>
+Jobseeker : <span style="text-decoration:underline;"> {{$jobseeker}} </span><br>
+Amount : <span style="text-decoration:underline;"> Php {{$amount}} </span><br>
+Date : <span style="text-decoration:underline;"> {{$date}} </span><br>
+Donated By : <span style="text-decoration:underline;"> {{$donated_by}} </span><br>
 
 From the entire ePondo Team we would like to extend our greatest thank you for using our platform 
 and generously donating to your preferred campaign! We hope that you continue to support ePondo. 

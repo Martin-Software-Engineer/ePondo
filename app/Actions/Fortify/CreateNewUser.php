@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use App\Notifications\CreateAccount as CreateAccountNotification;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -59,14 +60,16 @@ class CreateNewUser implements CreatesNewUsers
 
         $user->roles()->attach($input['role']);
         
-        //give reward pts
-        $reward = new GiveReward($user->id, 'create_account');
-        $reward->send();
+        //give reward pts for jobseeker
+        if($input['role'] == 2)
+        {
+            $reward = new GiveReward($user->id, 'create_account');
+            $reward->send();
 
-        // Mail::to($user->email)->queue(new WelcomeMail('welcome-mail', [
-        //     'subject' => 'Welcome to ePondo'
-        // ]));
+        }
 
+        $user->notify(new CreateAccountNotification());
+        
         Mail::to($user->email)->queue(new SendMail('emails.welcome-mail', [
             'subject' => 'Welcome to ePondo!'
         ]));

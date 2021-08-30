@@ -44,7 +44,7 @@
                     <tr>
                         <th></th>
                         <th>Campaign ID</th>
-                        <th>Jobseeker Name</th>
+                        <th>Username</th>
                         <th>Jobseeker ID</th>
                         <th>Campaign Title</th>
                         <th>Campaign category</th>

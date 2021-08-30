@@ -21,7 +21,12 @@ class ServicesController extends Controller
     }
     public function avail(Request $request){
         $service = Service::find($request->service_id);
-        $backer_id = auth()->user()->id;
+        $backer = User::find(auth()->user()->id);
+        $backer_id = $backer->id;
+        $jobseeker = User::find($service->user_id);
+        $totalorders = Order::whereHas('service', function($q) use($jobseeker){
+            $q->where('user_id', $jobseeker->id);
+        })->count(); //Counter for Reward Points
 
         $order = Order::create([
             'backer_id' => $backer_id,
@@ -35,9 +40,10 @@ class ServicesController extends Controller
             'message' => $request->message
         ]);
 
-        $jobseeker = User::find($service->user_id);
         $jobseeker->notify(new OrderReceivedNotification($order));
-        Mail::to($jobseeker->email)->queue(new SendMail('emails.order-request-mail', [
+        $backer->notify(new OrderReceivedNotification($order));
+        
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-request-mail', [
             'subject' => 'Service Order Request',
             'customer_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
             'order_id' => System::GenerateFormattedId('S', $order->id),
@@ -60,9 +66,8 @@ class ServicesController extends Controller
 
         ]));
         
-        $totalorders = Order::whereHas('service', function($q) use($jobseeker){
-            $q->where('user_id', $jobseeker->id);
-        })->count();
+        
+        //Reward Points
         if($totalorders <= 0){ //first time
             $reward = new GiveReward($jobseeker->id, 'receiving_1st_service_order_request');
             $reward->send();

@@ -117,7 +117,7 @@
                                         <div class="col-sm-3 col-form-label">
                                             <label for="jobseeker-id">Job Seeker</label>
                                         </div>
-                                        <div class="col-sm-9">
+                                        <!-- <div class="col-sm-9">
                                             <select name="jobseeker_id" id="jobseeker-id" class="form-control">
                                                 @foreach($jobseekers as $jobseeker)
                                                     @php $selected = false @endphp
@@ -127,7 +127,7 @@
                                                     <option value="{{$jobseeker->id}}" @if($selected) checked @endif>{{$jobseeker->username}}</small></option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-9 offset-sm-3">

@@ -45,13 +45,18 @@ class OrdersController extends Controller
 
     public function accept($id){
         $order = Order::find($id);
-        $order->status = 2;
-        $order->save();
-
-        $jobseeker_id = $order->service->jobseeker->id;
+        $jobseeker = User::find($order->service->jobseeker->id);
+        $jobseeker_id = $jobseeker->id;
+        
+        $backer = User::find($order->backer_id);
         $totalorders = Order::whereHas('service', function($q) use($jobseeker_id){
             $q->where('user_id', $jobseeker_id);
-        })->count();
+        })->where('status','>',1)->where('status','!=',3)->count(); //Counter for Reward Points
+
+        $order->status = 2;
+        $order->save();        
+
+        //Reward Points
         if($totalorders <= 0){ //first time
             $reward = new GiveReward(auth()->user()->id, 'accepting_1st_service_order_request');
             $reward->send();
@@ -60,20 +65,18 @@ class OrdersController extends Controller
             $reward->send();
         }
 
-        $backer_email = $order->backer->email; //get backer details for email order accepted
-
-        auth()->user()->notify(new OrderAcceptedNotification($order));
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.order-accept-mail', [
-            'subject' => 'Service Order Accepted',
-            'order_id' => System::GenerateFormattedId('S', $order->id)
-        ]));
-        Mail::to($backer_email)->queue(new SendMail('emails.backer.order-accept-mail', [
-            'subject' => 'Service Order Accepted',
-            'order_id' => System::GenerateFormattedId('S', $order->id)
-        ]));
-
-        $backer = User::find($order->backer_id);
+        $jobseeker->notify(new OrderAcceptedNotification($order));
         $backer->notify(new OrderAcceptedNotification($order));
+
+
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.order-accept-mail', [
+            'subject' => 'Service Order Accepted',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+        Mail::to($backer->email)->queue(new SendMail('emails.backer.order-accept-mail', [
+            'subject' => 'Service Order Accepted',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
         
         if($order)
             return response()->json(['success' => true, 'msg' => 'Order Accepted']);
@@ -81,6 +84,14 @@ class OrdersController extends Controller
 
     public function deliver($id){
         $order = Order::find($id);
+        $jobseeker = User::find($order->service->jobseeker->id);
+        $jobseeker_id = $jobseeker->id;
+        $backer = User::find($order->backer->id);
+
+        $totalorders = Order::whereHas('service', function($q) use($jobseeker_id){
+            $q->where('user_id', $jobseeker_id);
+        })->where('status','>',4)->where('status','!=',8)->count(); //Counter for Reward Points
+
         $order->status = 5;
         $order->save();
 
@@ -93,29 +104,26 @@ class OrdersController extends Controller
             'total' => $price+($price*.07)+($price*.03)
         ]);
 
-        $jobseeker_id = $order->service->jobseeker->id;
-        $totalorders = Order::whereHas('service', function($q) use($jobseeker_id){
-            $q->where('user_id', $jobseeker_id);
-        })->count();
-
+        //Reward Points
         if($totalorders <= 0){ //first time
-            $reward = new GiveReward(auth()->user()->id, 'submit_1st_service_order_delivered');
+            $reward = new GiveReward($jobseeker->id, 'submit_1st_service_order_delivered');
             $reward->send();
         }else{
-            $reward = new GiveReward(auth()->user()->id, 'submitting_service_order_delivered');
+            $reward = new GiveReward($jobseeker->id, 'submitting_service_order_delivered');
             $reward->send();
         }
 
-        $backer_email = $order->backer->email; //Get backer email
+        $jobseeker->notify(new OrderCompletedNotification($order));
+        $backer->notify(new OrderCompletedNotification($order));
 
-        auth()->user()->notify(new OrderCompletedNotification($order));
-        auth()->user()->notify(new OrderInvoiceNotification($order, $invoice));
+        $jobseeker->notify(new OrderInvoiceNotification($order, $invoice));
+        $backer->notify(new OrderInvoiceNotification($order, $invoice));
 
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.order-delivered-mail', [
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-delivered-mail', [
             'subject' => 'Service Order Delivered',
             'order_id' => System::GenerateFormattedId('S', $order->id)
         ]));
-        Mail::to($backer_email)->queue(new SendMail('emails.backer.order-invoice-mail', [
+        Mail::to($backer->email)->queue(new SendMail('emails.backer.order-invoice-mail', [
             'subject' => 'Service Order Invoice & Payment',
             'order_id' => System::GenerateFormattedId('S', $order->id)
         ]));
@@ -128,14 +136,17 @@ class OrdersController extends Controller
         $order->status = 3;
         $order->save();
 
-        $backer_email = $order->backer->email; //get backer details for email order accepted
+        $backer = User::find($order->backer->id);
+        $jobseeker = User::find($order->service->jobseeker->id);
 
-        auth()->user()->notify(new OrderDeclinedNotification($order));
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.order-decline-mail', [
+        $jobseeker->notify(new OrderDeclinedNotification($order));
+        $backer->notify(new OrderDeclinedNotification($order));
+
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-decline-mail', [
             'subject' => 'Service Order Declined',
             'order_id' => System::GenerateFormattedId('S', $order->id)
         ]));
-        Mail::to($backer_email)->queue(new SendMail('emails.backer.order-decline-mail', [
+        Mail::to($backer->email)->queue(new SendMail('emails.backer.order-decline-mail', [
             'subject' => 'Service Order Declined',
             'order_id' => System::GenerateFormattedId('S', $order->id)
         ]));

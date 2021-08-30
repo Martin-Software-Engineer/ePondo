@@ -44,7 +44,7 @@
                     <tr>
                         <th></th>
                         <th>Services ID</th>
-                        <th>Jobseeker Name</th>
+                        <th>Username</th>
                         <th>Jobseeker ID</th>
                         <th>Service Title</th>
                         <th>Service category</th>

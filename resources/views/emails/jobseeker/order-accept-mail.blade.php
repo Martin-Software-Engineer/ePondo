@@ -1,7 +1,7 @@
 @component('mail::message')
 # Greetings from ePondo!
 
-<br>You have successfully Accepted <b>Service Order No. {{$order_id}}</b><br><br>
+<br>You have successfully Accepted Service Order No. <b> {{$order_id}}</b><br><br>
 
 Please double check the details of the service order. And you are also highly encouraged 
 to contact your customer/backer to confirm all the details of the service order.

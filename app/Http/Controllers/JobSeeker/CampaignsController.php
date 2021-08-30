@@ -64,7 +64,8 @@ class CampaignsController extends Controller
      */
     public function store(StoreCampaign $request)
     {
-       
+        $totalcampaigns = Campaign::where('user_id', auth()->user()->id)->count(); //Counter for Reward Points
+
         $campaign = Campaign::create([
             'user_id' => auth()->user()->id,
             'title' => $request->title,
@@ -72,7 +73,7 @@ class CampaignsController extends Controller
             'target_date' => $request->target_date,
             'target_amount' => $request->target_amount
         ]);
-
+        
         if($request->hasFile('thumbnail')){
             $image = $request->file('thumbnail');
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
@@ -132,24 +133,16 @@ class CampaignsController extends Controller
             }
         }
 
-        // Mail::to(auth()->user()->email)->queue(new SendMail('emails.campaign-mail', [
-        //     'subject' => 'ePondo Campaign Created'
-        // ]));
-
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.campaign-mail', [
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.campaign-mail', [
             'subject' => 'Successfully Created Campaign',
             'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
-            // 'campaign_id' => $campaign->id,
-            // 'campaign_title' => $campaign->title,
-            // 'campaign_target_date' => $campaign->target_date,
-            // 'campaign_target_amount' => $campaign->target_amount,
             'campaign' => $campaign
         ]));
         
         auth()->user()->notify(new CreateCampaignNotification());
         
-        $totalcampaigns = Campaign::where('user_id', auth()->user()->id)->count();
-        if(!$totalcampaigns > 0){ //first time
+        //Reward Points
+        if(!$totalcampaigns > 0){
             $reward = new GiveReward(auth()->user()->id, 'creating_1st_campaign');
             $reward->send();
         }else{

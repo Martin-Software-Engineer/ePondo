@@ -24,6 +24,15 @@ class PayoutRequestsController extends Controller
         $payout->status = $request->status;
         $payout->save();
 
+       if($payout->status == 'paid'){
+            Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.order-payout-mail', [
+                'subject' => 'Payout Successful',
+                'amount' => $payout->amount,
+                'details' => $payout->details
+            ]));
+
+       }
+
         if($payout)
             return response()->json(['success' => true, 'msg' => 'Payout Status Updated.']);
     }

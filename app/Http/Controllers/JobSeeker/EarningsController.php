@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Service;
 use App\Models\Order;
+use App\Mail\SendMail;
 use App\Models\Payout;
-use App\Models\Campaign;
-use App\Models\ClaimedDonations;
 use App\Models\Invoice;
+use App\Models\Service;
+use App\Models\Campaign;
+use Illuminate\Http\Request;
+use App\Models\ClaimedDonations;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class EarningsController extends Controller
 {
@@ -22,14 +24,15 @@ class EarningsController extends Controller
         // }
 
         $earnings = $user->earnings;
-
         $withdrawn = Payout::where('user_id', $user->id)->where('status', 'paid')->get()->sum('amount');
         $pendings = Payout::where('user_id', $user->id)->where('status', 'pending')->get()->sum('amount');
         $available = $earnings - ($withdrawn + $pendings);
+
         $service['earnings'] = $earnings;
         $service['withdrawn'] = $withdrawn;
         $service['pendings'] = $pendings;
         $service['available'] = $available;
+
         $service['payouts'] = Payout::where('user_id', $user->id)->get();
         $service['history'] = Invoice::with('order')->whereHas('order', function($q) use($user){
             $q->whereHas('transactions', function($trans){
@@ -59,6 +62,7 @@ class EarningsController extends Controller
 
         $claimed_requests = ClaimedDonations::with('campaign')->where('user_id', $user->id)->get();
         $campaign['campaigns'] = $campaigns;
+        
         $campaign['claimed_requests'] = $claimed_requests;
         $campaign['totalfunds'] = $totalfunds;
         $campaign['claimed'] = $claimed;
@@ -81,6 +85,12 @@ class EarningsController extends Controller
             'details' => $request->details,
             'status' => 'pending'
         ]);
+
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.order-payoutrequest-mail', [
+            'subject' => 'Payout Request Sent',
+            'amount' => $request->amount,
+            'details' => $request->details
+        ]));
 
         if($payout){
             return response()->json(['success' => true, 'msg' => 'Withdrawal Request Submitted']);
