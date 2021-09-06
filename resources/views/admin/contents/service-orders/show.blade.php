@@ -158,7 +158,7 @@
                     -->
                 </div>
             </div>
-            <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary btn-block ">Contact Jobseeker</a>
+            <!-- <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary btn-block ">Contact Jobseeker</a> -->
                     
         </div>
         <!-- /Actions -->

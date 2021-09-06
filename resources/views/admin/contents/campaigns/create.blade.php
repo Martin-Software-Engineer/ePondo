@@ -146,6 +146,8 @@
                                     <div class="form-group">
                                         <label for="thumbnail" class="mb-1">Add More Photos</label>
                                         <div class="media-group d-flex">
+
+
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input1" style="cursor: pointer">
@@ -157,7 +159,7 @@
                                                     <input type="file" name="images[]" id="images-input1" class="images-input" accept="image/*" style="display: none" />
                                                 </div>
                                                 <!--/ upload and reset button -->
-                                            </div>
+                                            </div>                                            
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
                                                     <label for="images-input2" style="cursor: pointer">

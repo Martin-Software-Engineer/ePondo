@@ -560,19 +560,21 @@
         <div class="loader"></div>
         <div class="card card-payment text-center hide">
           <div class="card-header pb-0">
-            <h2 class="card-title"><strong>Pay your Invoice #{{$invoice_no}}</strong></h2>
+            <h2 class="card-title"><strong>Pay your Invoice # {{$invoice_no}}</strong></h2>
           </div>
           <div class="card-body">
               <h3 class="topay">Amount to pay  <span class='topay-amount'>Php {{$total}}</span></h3>
               <div class="links">
                 <div id="paypal-button" data-order-id="{{$order_id}}" data-currency="{{$currency}}"></div>
               </div>
-              <p class="mt-1">or</p>
+              <!-- <p class="mt-1">or</p>
               <button type="button" id="pay-by-card" data-order-id="{{$order_id}}" data-currency="{{$currency}}">
                 <span id="button-text">Pay with Card</span>
               </button>
               <form id="payment-form" class="stripe-payment d-none">
-                <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+                <div id="card-element"> -->
+                    <!--Stripe.js injects the Card Element-->
+                <!-- </div>
                 <button id="submit">
                   <div class="spinner hidden" id="spinner"></div>
                   <span id="button-text">Pay</span>
@@ -582,7 +584,7 @@
                   Payment succeeded, see the result in your
                   <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
                 </p>
-              </form>
+              </form> -->
           </div>
         </div>
       </div>

@@ -160,7 +160,7 @@ class OrderPaymentsController extends Controller
                     'invoice_id' => $invoice_id,
                     'backer_name' => $backer_name,
                     'jobseeker_name' => $jobseeker->information->firstname.' '.$jobseeker->information->lastname,
-                    'render_date' => $$render_date,
+                    'render_date' => $render_date,
                     'delivery_address' => $delivery_address,
                     'service_title' => $service_title,
                     'amount' => $transaction->amount,
@@ -173,7 +173,7 @@ class OrderPaymentsController extends Controller
                     'price' => $order->service->price,
                     'service_title' => $service_title,
                     'delivery_address' => $delivery_address,
-                    'render_date' => $$render_date,
+                    'render_date' => $render_date,
                     'backer_name' => $backer_name
                 ]));
                 

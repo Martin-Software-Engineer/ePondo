@@ -69,7 +69,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
     Route::get('services/{id}/delete', 'Admin\ServicesController@destroy')->name('services.destroy');
     Route::resource('services', 'Admin\ServicesController');
 
+    Route::post('service-orders/{id}', 'Admin\ServiceOrdersController@update')->name('service-orders.update');
     Route::resource('service-orders', 'Admin\ServiceOrdersController');
+
+    
     Route::resource('invoice', 'Admin\InvoicesController');
     Route::resource('ratings', 'Admin\RatingsController');
     Route::resource('rewards', 'Admin\RewardsController');
