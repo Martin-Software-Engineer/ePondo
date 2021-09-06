@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMail;
-use App\Http\Requests\StoreCampaign;
-use App\Http\Requests\UpdateCampaign;
-use App\Http\Resources\Campaigns as ResourceCampaign;
-use App\Models\User;
-use App\Models\Campaign;
-use App\Models\CampaignCategory;
-use App\Models\Photo;
-use App\Models\Tag;
-use App\Helpers\System;
-use DataTables;
-
 use Image;
+use DataTables;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\Photo;
+use App\Mail\SendMail;
+use App\Helpers\System;
+use App\Models\Campaign;
+use App\Helpers\GiveReward;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\CampaignCategory;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCampaign;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\UpdateCampaign;
+
+use App\Http\Resources\Campaigns as ResourceCampaign;
+use App\Notifications\CreateCampaign as CreateCampaignNotification;
+
 class CampaignsController extends Controller
 {
     /**
@@ -68,6 +71,7 @@ class CampaignsController extends Controller
     public function store(StoreCampaign $request)
     {
         $jobseeker = User::find($request->jobseeker_id);
+        $totalcampaigns = Campaign::where('user_id', $jobseeker->id)->count(); //Counter for Reward Points
         $campaign = Campaign::create([
             'user_id' => $request->jobseeker_id,
             'title' => $request->title,
@@ -140,6 +144,17 @@ class CampaignsController extends Controller
             'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
             'campaign' => $campaign
         ]));
+        
+        $jobseeker->notify(new CreateCampaignNotification());
+        
+        //Reward Points
+        if(!$totalcampaigns > 0){
+            $reward = new GiveReward($jobseeker->id, 'creating_1st_campaign');
+            $reward->send();
+        }else{
+            $reward = new GiveReward($jobseeker->id, 'creating_campaign');
+            $reward->send();
+        }
 
         return response()->json(['success' => true,'msg' => trans('admin.campaign.create.success')]);
     }
@@ -166,9 +181,9 @@ class CampaignsController extends Controller
         $data['title'] = 'Edit Campaign';
         $data['campaign'] = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
         $data['categories'] = CampaignCategory::all();
-        $data['jobseekers'] = User::whereHas('roles', function($q){
-            $q->where('name', 'JobSeeker');
-        })->get();
+        // $data['jobseeker'] = User::whereHas('roles', function($q){
+        //     $q->where('name', 'JobSeeker');
+        // })->get();
 
         return view('admin.contents.campaigns.edit', $data);
     }
@@ -202,20 +217,6 @@ class CampaignsController extends Controller
 
             $campaign->thumbnail_id = $photo->id;
             $campaign->save();
-        }
-        
-        if($request->file('images',[])){
-            $campaign->photos()->detach();
-            foreach($request->file('images',[]) as $image){
-                $fileName   = time() . '.' . $image->getClientOriginalExtension();
-                $upload = $image->storeAs('/photos',$fileName,'public');
-                $photo = new Photo();
-                $photo ->filename =  $fileName;
-                $photo ->url = 'public/photos/'.$fileName;
-                $photo ->save();
-
-                $campaign->photos()->attach($photo->id);
-            }
         }
         
         if($request->get('category', [])){

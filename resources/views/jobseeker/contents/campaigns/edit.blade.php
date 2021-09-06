@@ -146,8 +146,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                    <!-- <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label> -->
-                                    <label>Campaign Photos</label></label>
+                                    <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label>
+                                    <label>It must be a JPG, PNG, no larger than 200 MB.</label></label>
                                         <div class="media-group d-flex">
                                             @foreach($campaign->photos as $photo)
                                             <div class="media">

@@ -169,13 +169,13 @@ class CampaignsController extends Controller
 
         // return view('jobseeker.campaigns.show', compact('campaign'));
         
-        $campaign_id = $campaign->id;
+        // $campaign_id = $campaign->id;
         $campaign_category = CampaignCategory::all();
 
-        $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
+        // $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
         // $job_category = JobCategory::all();
 
-        $products = Product::where('campaign_id',$campaign_id)->paginate(5);
+        // $products = Product::where('campaign_id',$campaign_id)->paginate(5);
         // $product_category = ProductCategory::all();
 
         // dd($products);
@@ -189,7 +189,7 @@ class CampaignsController extends Controller
 
         // return view('jobseeker.campaigns.show', compact('campaign'));
         
-        return view('jobseeker.campaigns.show',['campaign' => $campaign, 'campaign_category'=> $campaign_category ,'jobs'=> $jobs, 'products' => $products ]);
+        return view('jobseeker.campaigns.show',['campaign' => $campaign, 'campaign_category'=> $campaign_category ]);
     }
 
     /**

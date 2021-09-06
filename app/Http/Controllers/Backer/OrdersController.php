@@ -123,7 +123,6 @@ class OrdersController extends Controller
             'order_id' => System::GenerateFormattedId('S', $order->id)
         ]));
 
-
         return response()->json(['success' => true, 'msg' => 'Order Cancelled.']);
     }
 }

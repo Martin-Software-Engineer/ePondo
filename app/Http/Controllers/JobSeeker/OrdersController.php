@@ -128,7 +128,7 @@ class OrdersController extends Controller
             'order_id' => System::GenerateFormattedId('S', $order->id)
         ]));
 
-        return response()->json(['success' => true, 'msg' => 'Order Delivered, Wait for the Buyer to response']);
+        return response()->json(['success' => true, 'msg' => 'Order Delivered, Wait for the Buyer to responsd']);
     }
 
     public function decline($id){
