@@ -21,10 +21,5 @@ class CampaignCategoryCampaignSeeder extends Seeder
             $campaigns->campaign_categories()->attach($campaign_categories->random(1)->pluck('id'));
         });
 
-        // $roles = Role::where('id', 2)->get();
-
-        // User::all()->each( function ($user) use ($roles){
-        //     $user->roles()->attach($roles->random(1)->pluck('id'));
-        // });
     }
 }
