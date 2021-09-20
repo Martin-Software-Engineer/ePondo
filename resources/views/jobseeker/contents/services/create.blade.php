@@ -158,7 +158,6 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                    <!-- <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label> -->
                                     <label>Service Photos</label></label>
                                         <div class="media-group d-flex">
                                             <div class="media">

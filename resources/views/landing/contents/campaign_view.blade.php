@@ -234,17 +234,10 @@
                     <li class="nav-item c_tabs">
                       <a class="nav-link" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Profile</a>
                     </li>
-                    <!-- <li class="nav-item">
-                      <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" id="rating-tab" data-toggle="tab" href="#rating" role="tab" aria-controls="rating" aria-selected="false">Rating & Feedback</a>
-                    </li> -->
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
                         <div class="card">
-                            <!-- <div class="card-header">About Campaign</div> -->
                             <div class="card-body c_summary_area">
                                 <div class="c_summary">{{$campaign->description}}</div>
                             </div>
@@ -343,7 +336,6 @@
                                     <div class="col-sm-6 j_p_aboutme">
                                         <h3 class="j_p_header">About Me</h3>
                                         <h6 class="campaign_jobseeker_about ">
-                                            <!-- {{$campaign->jobseeker->userinformation->bio}} -->
                                             @if (empty($campaign->jobseeker->userinformation->bio))
                                                 <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
                                             @else
@@ -433,14 +425,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                {{$campaign->description}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">...</div> -->
                 </div>
             </div>
 

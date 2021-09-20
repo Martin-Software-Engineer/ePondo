@@ -134,9 +134,6 @@
                                     <div class="form-group">
                                     
                                     <label>Campaign Photos</label>
-                                    <!-- <label>It must be a JPG, PNG, no larger than 200 MB.</label></label> -->
-
-                                        <!-- <label for="thumbnail" class="mb-1">Add More Photos or Select a file.</label> -->
                                         <div class="media-group d-flex">
                                             <div class="media">
                                                 <a href="javascript:void(0);">

@@ -30,10 +30,6 @@
                                     <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : 
                                     asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a>
                                 </div>
-                                <!-- <div class="date_bt">
-                                    <div class="date_text active"><a href="#">{{date('d', strtotime($campaign->target_date))}}</a></div>
-                                    <div class="date_text"><a href="#">{{date('M', strtotime($campaign->target_date))}}</a></div>
-                                </div> -->
                             </div>
                         </div>
                         <div class="row">
@@ -47,21 +43,7 @@
                                     @endforeach
                                 </p>
                                 <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr></h3>
-                               
-                                <!-- <p class="ipsum_text_1 ">{{$campaign->description}}</p> -->
                                 <p class="card_c_desc">{{$campaign->description}}</p>
-                                <!-- <span class="card_c_category">
-                                    @foreach($campaign->categories as $category)
-                                        {{$category->name}} @if(!$loop->last)/@endif
-                                    @endforeach
-                                </span> -->
-
-
-                                <!-- <div>
-                                    <p class="card_c_targetd">by: {{date('F d, Y', strtotime($campaign->target_date))}}</p>
-                                </div> -->
-
-
                                 <div class="progress-wrapper progress_bar">
                                     <div id="example-caption-2">
                                         <div class="row">
@@ -71,7 +53,6 @@
                                             <div class="col-6">
                                                 <h6 class="campaign_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
                                             </div>
-                                            <!-- <div class="col-6">Php {{$campaign->progress->target_value}} <br>Target</div> -->
                                         </div>
                                     </div>
                                     <div class="progress progress-bar-primary">
@@ -84,16 +65,6 @@
                                 <div>
                                     <p class="card_c_targetd">{{date('F d, Y', strtotime($campaign->target_date))}}</p>
                                 </div>
-                                <!-- <div><p class="give_taital_1">{{date('M-d', strtotime($campaign->target_date))}}</p></div> -->
-                                <!-- <h5 class="raised_text_1 give_ipsum_1">Raised: ₱{{$campaign->raised}} <span class="goal_text">Goal: ₱{{$campaign->target_amount}}</span></h5> -->
-                                <!-- <div class="row">
-                                    <div class="col">
-                                        <h5 class="raised_text_1">₱{{$campaign->progress->current_value}}<br>Raised</h5>
-                                    </div>
-                                    <div class="col">
-                                        <h5 class="goal_text">₱{{$campaign->progress->target_value}}<br>Target</h5>
-                                    </div>
-                                </div> -->
                                 <div class="donate_btn_main">
                                     <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
                                 </div>
@@ -156,7 +127,6 @@
                                 <p class="ipsum_text_1 ">{{$service->description}}</p>
                                 
                                 <div>
-                                    <!-- <h3 class="s_location" style="font-weight: normal;"><span style="font-weight:600">Location:</span> {{$service->location}}</h3>  -->
                                     <h3 class="s_location"><span class="s_hlocation">Location:</span> {{$service->location}}</h3>
                                 </div>
                                 <div>
@@ -222,7 +192,6 @@
  <div class="section_4_quote layout_padding_quote">
     <div class="container">
        <div class="row">
-          <!-- <div class="col-sm-12 d-flex justify-content-start align-items-center"> -->
           <div class="col justify-content-start align-items-center">
               <div class="row">
                 <h1 class="news_taital_quote">"Giving is not just about making a donation. It is making a difference."</h1>

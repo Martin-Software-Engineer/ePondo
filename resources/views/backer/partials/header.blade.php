@@ -49,11 +49,6 @@
                             <span style="display:inline-block" class="user-name font-weight-bolder">{{auth()->user()->userinformation->firstname}}
                         </span>
                     </p>
-                    <!-- <p class="mb-0">Hello,
-                            <span style="display:inline-block" class="user-name font-weight-bolder">
-                                {{auth()->user()->userinformation->firstname}}
-                            </span>
-                        </p> -->
                         <span class="user-status">
                             @foreach(auth()->user()->roles as $role)
                                 @if(!$loop->last)
@@ -73,15 +68,10 @@
                     @else 
                         <div class="d-flex justify-content-left align-items-center">
                             <div class="avatar colorClass">
-
-                                <!-- <span class="avatar-content avatar-menu">{{strtoupper(substr(auth()->user()->username, 0,2))}}</span></div> -->
-                                <!-- <span class="avatar-content avatar-header"></span> -->
-                                <!-- strtoupper(System::get_avatar(auth()->user()->username)) -->
-                                
-                            <div class="d-flex flex-column">
-                                <span class="emp_name text-truncate font-weight-bold"></span>
-                                <small class="emp_post text-truncate text-muted"></small>
-                            </div>
+                                <div class="d-flex flex-column">
+                                    <span class="emp_name text-truncate font-weight-bold"></span>
+                                    <small class="emp_post text-truncate text-muted"></small>
+                                </div>
                         </div>
                     @endif
                     

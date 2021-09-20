@@ -63,7 +63,6 @@
                             <h5 class="text-secondary">POINTS REQUIRED: <br> 100-199 POINTS</h5>
                             <br><br>
                             <h5 class="text-secondary"><b>EARN ADDITIONAL</b></h5>
-                            <!-- <h5 class="text-secondary"><b>ADDITIONAL</b></h5> -->
                             <h2 class="text-secondary">+0.6%</h2>
                             <h5 class="text-secondary">PER SERVICE</h5>
                         </div>
