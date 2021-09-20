@@ -16,7 +16,8 @@ class CampaignsController extends Controller
     public function donate(Request $request){
         $donate = Donation::create([
             'message' => $request->message,
-            'amount' => $request->amount + ($request->amount * 0.03)
+            'amount' => $request->amount
+            // 'amount' => $request->amount + ($request->amount * 0.03)
         ]);
 
         $campaign = Campaign::find($request->campaign_id);

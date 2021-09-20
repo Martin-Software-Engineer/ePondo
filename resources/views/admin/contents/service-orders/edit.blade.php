@@ -129,8 +129,7 @@
                                         </div>
                                         <div class="col-sm-9 col-form-label">
                                             <select name="orderstatus" id="orderstatus" class="select2 form-control">
-                                                @for($i = 1; $i<=9; $i++)
-                                                <!-- <option value="{{$i}}"> -->
+                                                @for($i = 1; $i<=8; $i++)
                                                 <option value="{{$i}}"  @if($i == $order->status) selected @endif  >
                                                     {{$i}}
                                                     @if($i== 1)Pending Request 
@@ -146,6 +145,7 @@
                                                 @endfor
                                             </select>
                                             <div class="ml-1 mt-1">
+                                            <strong style="font-size:12px; margin-bottom:20px;">NOTE : </strong>
                                             @if($order->status == 1)
                                             <p style="font-size:12px; margin-bottom:20px;"> Please wait 1-3 days for Jobseeker to respond to your Service Order Request.</p>
                                             @endif
@@ -160,11 +160,9 @@
                                             @endif
                                             @if($order->status == 5)
                                             <p style="font-size:12px; margin-bottom:20px;"> Service Order is Complete. Please view Invoice and continue to Payment. </p>
-                                            <a href="{{route('backer.order.invoice', $order->id)}}" class="btn btn-warning btn-block">View Invoice & Pay</a>
                                             @endif
                                             @if($order->status == 6)
                                             <p style="font-size:12px; margin-bottom:20px;"> Service Order Complete & Payment Successful. Please provide Feedback & Rating for your jobseeker. </p>
-                                            <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button>
                                             @endif
                                             @if($order->status == 7)
                                             <p style="font-size:12px; margin-bottom:20px;"> Service Order Complete! On behalf of the whole ePondo Team, Thank you! </p>

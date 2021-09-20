@@ -132,7 +132,9 @@ class User extends Authenticatable implements MustVerifyEmail
         foreach($services as $service){
             foreach($service['orders'] as $order){
                 foreach($order['transactions'] as $transaction){
-                    $earnings += $transaction->amount;
+                    if($transaction->status == 'approved'){
+                        $earnings += $service->price;
+                    }
                 }
             }
         }

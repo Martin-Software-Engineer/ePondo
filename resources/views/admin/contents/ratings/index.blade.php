@@ -71,6 +71,7 @@
                                     <th>Service Title</th>
                                     <th>Name</th>
                                     <th>Backer ID</th>
+                                    <th>Service Rating</th>
                                     <th class="cell-fit">Actions</th>
                                 </tr>
                             </thead>

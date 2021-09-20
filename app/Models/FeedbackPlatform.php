@@ -9,5 +9,5 @@ class FeedbackPlatform extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['service_id', 'message', 'from', 'rating'];
+    protected $fillable = ['service_id', 'message', 'from', 'rating','service_rating_id'];
 }

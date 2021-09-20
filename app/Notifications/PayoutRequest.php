@@ -56,7 +56,7 @@ class PayoutRequest extends Notification
     {
         return [
             'heading' => 'Payout Request Sent',
-            'text' => ''
+            'text' => 'Successfully sent Payout Request. Please allow 1-3 days for processing of Payout. Thank you!'
         ];
     }
 }

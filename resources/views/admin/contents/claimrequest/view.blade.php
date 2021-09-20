@@ -31,7 +31,15 @@
                                     <label>Request From:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input class="form-control" value="{{$claimrequest->user->email}}" disabled>
+                                    <input class="form-control" value="{{$claimrequest->user->information->lastname}}, {{$claimrequest->user->information->firstname}} ({{$claimrequest->user->email}})" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                    <label>Campaign:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="form-control" value="{{$claimrequest->campaign->title}}" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -44,7 +52,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3 col-form-label">
-                                    <label>Paypal:</label>
+                                    <label>Contact No.:</label>
                                 </div>
                                 <div class="col-sm-9">
                                     <input class="form-control" value="{{$claimrequest->paypal}}" disabled>
@@ -52,7 +60,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3 col-form-label">
-                                    <label>Message:</label>
+                                    <label>Bank Details:</label>
                                 </div>
                                 <div class="col-sm-9">
                                     <textarea class="form-control" cols="6" rows="10" disabled>{{$claimrequest->details}}</textarea>
@@ -69,9 +77,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <a href="{{route('admin.claimrequests.index')}}" class="btn btn-warning">Back</a>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                            <div class="form-group row">
+                                <div class="col-3"></div>
+                                <div class="col-9">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
                             </div>
                         </div>
 

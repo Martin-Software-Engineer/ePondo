@@ -40,7 +40,7 @@
             <li class="nav-item @if(request()->segment(2) == 'services') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.services.index')}}"><span class="menu-title text-truncate">My Services</span></a></li>
             <li class="nav-item @if(request()->segment(2) == 'orders') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.orders')}}"><span class="menu-title text-truncate">Services Orders</span></a></li>
             <li class="nav-item @if(request()->segment(2) == 'invoices') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.invoices')}}"><span class="menu-title text-truncate">Invoice</span></a></li>
-            <li class="nav-item @if(request()->segment(2) == 'earnings') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.earnings')}}"><span class="menu-title text-truncate">Earnings</span></a></li>
+            <li class="nav-item @if(request()->segment(2) == 'earnings' || request()->segment(2) == 'claimfunds') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.earnings')}}"><span class="menu-title text-truncate">Earnings</span></a></li>
             <li class="nav-item @if(request()->segment(2) == 'rewards') active @endif"><a class="d-flex align-items-center" href="{{route('jobseeker.rewards')}}"><span class="menu-title text-truncate">Rewards</span></a></li>
         </ul>
     </div>

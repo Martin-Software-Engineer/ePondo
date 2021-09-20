@@ -8,7 +8,7 @@ use App\Helpers\System;
 use App\Models\ServiceRating;
 use App\Http\Resources\RatingBacker as ResourceRatingBacker;
 use App\Http\Resources\RatingJobseeker as ResourceRatingJobseeker;
-
+use App\Models\FeedbackPlatform;
 use DataTables;
 class RatingsController extends Controller
 {
@@ -76,8 +76,10 @@ class RatingsController extends Controller
     public function show($id)
     {
         $rating = ServiceRating::where('id',$id)->with('order')->first();
+        $platform = FeedbackPlatform::where('service_rating_id',$id)->first();
         $data['order_id'] = System::GenerateFormattedId('S', $rating->order_id);
         $data['rating'] = $rating;
+        $data['platform'] = $platform;
 
         return view('admin.contents.ratings.show', $data);
     }

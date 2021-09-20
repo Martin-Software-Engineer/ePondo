@@ -64,9 +64,9 @@ $(function() {
                     render: function(data, type, full, meta) {
                         var btns = [];
                         var statusCode = parseInt(full.status.code);
-                        if (statusCode == 1 || statusCode == 2) {
-                            btns.push(`<button type="button" class="mr-1 btn btn-danger btn-sm btn-cancel" data-id="${full.id}">Cancel</button>`);
-                        }
+                        // if (statusCode == 1 || statusCode == 2) {
+                        //     btns.push(`<button type="button" class="mr-1 btn btn-danger btn-sm btn-cancel" data-id="${full.id}">Cancel</button>`);
+                        // }
                         return (
                             `<div class="d-flex align-items-center col-actions">
                                 ${btns.join()}

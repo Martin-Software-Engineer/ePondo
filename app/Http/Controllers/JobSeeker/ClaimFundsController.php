@@ -1,10 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\JobSeeker;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Mail\SendMail;
 use App\Models\Campaign;;
+use Illuminate\Http\Request;
 use App\Models\ClaimedDonations;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+
+use App\Notifications\ClaimFundsRequest as ClaimFundsRequestlNotification;
+
 class ClaimFundsController extends Controller
 {
     public function index($id){
@@ -28,8 +34,16 @@ class ClaimFundsController extends Controller
             'details' => $request->details,
             'status' => 'pending'
         ]);
+        $jobseeker=User::where('id',auth()->user()->id)->first();
+        $jobseeker->notify(new ClaimFundsRequestlNotification());
+        // Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.claimfunds-mail', [
+        //     'subject' => 'Claim Funds Successful',
+        //     'campaign' => $claim->campaign->title,
+        //     'amount' => $claim->amount,
+        //     'details' => $claim->details
+        // ]));
 
         if($claim)
-            return response()->json(['success' => true, 'msg' => 'Claim fund request successfully submitted']);
+            return response()->json(['success' => true, 'msg' => 'Claim funds request successfully submitted']);
     }
 }

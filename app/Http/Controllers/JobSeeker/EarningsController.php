@@ -52,6 +52,11 @@ class EarningsController extends Controller
         $totalfunds = 0;
         foreach($campaigns as $c){
             foreach($c['donations'] as $d){
+                // foreach($d['transactions'] as $transaction){
+                //     if($transaction->status == 'approved'){
+                //         $totalfunds += $d->amount;
+                //     }
+                // }
                 $totalfunds += $d->amount;
             }
         }

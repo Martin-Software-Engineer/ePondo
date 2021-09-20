@@ -83,7 +83,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
 
     Route::get('jobseekers', 'Admin\JobseekerProfileController@index')->name('jobseekers.index');
     Route::get('jobseekers/{id}/edit','Admin\JobseekerProfileController@edit')->name('jobseekers.profile.edit');
+
     Route::post('jobseekers/{id}/update','Admin\JobseekerProfileController@update')->name('jobseekers.profile.update');
+    Route::post('jobseekers/{id}/updatepppp','Admin\JobseekerProfileController@updatepppp')->name('jobseekers.profile.updatepppp');
+    // Route::post('profile/updatepppp','JobSeeker\JobseekerProfileController@updatepppp')->name('profile.updatepppp');
+
+    Route::post('profile/update','JobSeeker\JobseekerProfileController@update')->name('profile.update');
+    Route::post('profile/updatepppp','JobSeeker\JobseekerProfileController@updatepppp')->name('profile.updatepppp');
 
     Route::get('reports', 'Admin\ReportsController@index')->name('reports.index');
 

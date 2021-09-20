@@ -18,13 +18,14 @@ class Invoice extends JsonResource
         return [
             'id' => $this->id,
             'invoice_id' => System::GenerateFormattedId('I', $this->id),
-            'jobseeker_name' => $this->order->service->jobseeker->name,
+            'jobseeker_name' => $this->order->service->jobseeker->userinformation->lastname.', '.$this->order->service->jobseeker->userinformation->firstname,
             'jobseeker_id' => System::GenerateFormattedId('J', $this->order->service->jobseeker->id),
-            'backer_name' => $this->order->backer->userinformation->firstname.' '.$this->order->backer->userinformation->lastname, 
+            'backer_name' => $this->order->backer->userinformation->lastname.', '.$this->order->backer->userinformation->firstname, 
             'backer_id' => System::GenerateFormattedId('B', $this->order->backer->id),
             'service_title' => $this->order->service->title,
             'order_id' => System::GenerateFormattedId('SO', $this->order->details->id), /** ACTIONS COLUMN */
-            'categories' => Service::find($this->order->service->id)->categories,
+            // 'categories' => Service::find($this->order->service->id)->categories,
+            'service_categories' => $this->order->service->categories,
             'due_date' => date('F d, Y', strtotime($this->date_due))
         ];
     }

@@ -33,26 +33,6 @@
 <div class="row match-height">
     @forelse($campaigns as $campaign)
     <div class="col-md-4 col-lg-3">
-        <!-- <div class="card text-center">
-            <img style="width: 100%; height: 200px; object-fit: cover;" src="{{Storage::url(@$campaign->thumbnail->url)}}" alt="Card image cap" />
-                <div class="card-body">
-                <h1 class="card-title overflow-ellipsis">{{$campaign->title}}</h1>
-                <div class="j_c_desc">{{$campaign->description}}</div>
-            </div>
-            <div class="card-footer">
-                <div class="progress-wrapper" >
-                    <div id="example-caption-2">Php {{$campaign->progress->current_value}} Raised / Php {{$campaign->progress->target_value}}</div>
-                    <div class="progress progress-bar-primary">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" aria-describedby="example-caption-2"></div>
-                    </div>
-                </div>
-                <div class="text-center mt-1">
-                    <a class="btn btn-primary btn-sm btn-round" href="/campaign/{{$campaign->id}}" target="_blank">View</a>
-                    <a href="{{route('jobseeker.campaigns.edit', $campaign->id)}}" class="btn btn-primary btn-sm btn-round">Edit</a>
-                    <button type="button" class="btn btn-danger btn-sm btn-round btn-delete" data-id="{{$campaign->id}}">Delete</button>
-                </div>
-            </div>
-        </div> -->
         <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
             <div class="row">
                 <div class="col-md-12">
