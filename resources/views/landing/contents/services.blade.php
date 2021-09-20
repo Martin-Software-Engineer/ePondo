@@ -31,14 +31,6 @@
                                  <a class="dropdown-item" href="#" data-value="popular">Popular</a>
                             </div>
                         </div>
-                        <!-- <div class="dropdown dropdown-region mr-1">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Region
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <a class="dropdown-item" href="#">All</a>
-                            </div>
-                        </div> -->
                   </div>
                   <div class="col-md-4 d-flex">
                       <input type="text" name="filter_search" class="form-control" placeholder="Search">
@@ -47,20 +39,6 @@
               </div>
           </div>
        </div>
-    <!-- 
-       <div class="row">
-           <div class="col-md-3">
-                <div class="card" >
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card with stretched link</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="stretched-link btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-           </div>
-       </div> -->
-
        <div class="row">
             @forelse($services as $service)
                 <div class="col-md-3 pt-4">
@@ -111,25 +89,9 @@
                                 </h3>
                                 </div>
                                 <h5 class="service_price">₱{{$service->price}}</h5></a>
-                                <!-- <div class="service_btn_main">
-                                    <div class="service_btn_1"><a href="{{route('service_view', $service->id)}}">Avail</a></div>
-                                </div> -->
-                                
                             </div>
                         </div>
                     </div>
-
-                    <!-- Bootstarp Stretched-link guide - Start -->
-                        <!-- <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card with stretched link</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
-                        </div>
-                        </div> -->
-                    <!-- Bootstarp Stretched-link guide - End -->
-
                     <!-- Service Tiles - End -->
                 </div>
             @empty 

@@ -1,7 +1,5 @@
 <!-- header section start -->
-<!-- <div class="container"> -->
 <div class="header_section">
-<!-- <div class="container"> -->
       <nav class="navbar navbar-expand-xl navbar-light bg-light ">
          <a class="navbar-brand" href="/"><img src="{{asset('app-assets/images/additional_pictures/navbar_logo.png')}}"></a>
 
@@ -28,20 +26,16 @@
                <div class="my-2 my-lg-0">
                @auth
                   @if(auth()->user()->hasAnyRole('Admin'))
-                     <!-- <a class="account_btn" href="{{route('admin.index')}}">My Account</a> -->
                      <a class="nav-link" href="{{route('admin.index')}}">My Account</a>
                   @endif
                   @if(auth()->user()->hasAnyRole('JobSeeker'))
-                     <!-- <a class="account_btn" href="{{route('jobseeker.index')}}">My Account</a> -->
                      <a style="display:inline-block" class="nav-link" href="{{route('jobseeker.index')}}">My Account</a>
                   @endif
                   @if(auth()->user()->hasAnyRole('Backer'))
-                     <!-- <a class="account_btn" href="{{route('backer.index')}}">My Account</a> -->
                      <a class="nav-link" href="{{route('backer.index')}}">My Account</a>
                   @endif
                @endauth
                @guest
-                  <!-- <a class="register_btn" href="{{route('register')}}">Register</a> -->
                   <a class=" nav-link" href="{{route('login')}}">Log-In</a>
                @endguest
                </div>

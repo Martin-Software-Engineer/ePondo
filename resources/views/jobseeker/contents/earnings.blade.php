@@ -225,7 +225,6 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="campaigns" role="tabpanel" aria-labelledby="campaigns-tab" aria-expanded="false">
                     <div class="card">
-                    <!-- <div class="table-responsive"> -->
                         <div class="card-datatable table-responsive">
                             <table class="withdraw-list-table table">
                                 <thead>
@@ -249,7 +248,6 @@
                                         <td>
                                             @if($campaign->available_funds > 0)
                                                 <a href="{{route('jobseeker.funds.claimform', $campaign->id)}}" class="btn btn-sm btn-primary">Withdraw Available</a>
-                                                <!-- <a href="{{route('jobseeker.funds.claimform', $campaign->id)}}" class="btn btn-sm btn-success">Withdraw Available</a> -->
                                             @else 
                                                 <button disabled class="btn btn-sm btn-warning">Claimed</button>
                                             @endif
@@ -321,7 +319,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle" style="text-align:center; align-items:center;">Withdraw Available Balance - Service Earnings</h5>
-                    <!-- <h5 class="modal-title" id="exampleModalCenterTitle">Your about to withdraw ₱{{$service_earnings['available']}} balance from your earnings</h5> -->
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -333,8 +330,6 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <!-- <label for="details" style="font-size:20px;font-weight:500;">₱ {{$service_earnings['available']}}</label> -->
-                                    <!-- <button class="btn btn-success mb-1" style="font-size:20px;">₱ {{$service_earnings['available']}}</button> -->
                                     <h2 style="margin: 15px 0;"> <span style="background-color:greenyellow;border-radius: 10%; padding: 4px 4px;">₱ {{$service_earnings['available']}}</span></h2>
                                     <p style="margin: 0 0;text-decoration:underline;">Payment Details</p>
                                     <p style="font-size:10px;"><strong>Instructions : </strong> Please indicate below your bank details. We accept through <br>(Gcash, PayMaya, Remittance Centers, Bank Transfer)</p>

@@ -11,28 +11,12 @@
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">Withdraw Available Balance - Campaign Funds</h4>
-            <!-- <h4 class="card-title">Claim Funds for "<span style="font-style:italic;text-decoration:underline;"> {{$campaign->title}} </span>"</h4> -->
         </div>
         <div class="card-body">
             <form class="form-validate" id="form-claim" action="{{route('jobseeker.funds.claim')}}" method="POST">
                 @csrf
                 <input type="hidden" name="campaign_id" value="{{$campaign->id}}">
                 <div class="row">
-                    <!-- <div class="col-md-8">
-                        <div class="form-group">
-                            <label for="amount" class="d-flex justify-content-between">Amount <small>Available funds : ₱{{$campaign->available_funds}}</small></label>
-                            <input id="amount" type="number" class="form-control" name="amount" placeholder="{{$campaign->available_funds}}"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="paypal">Paypal Email</label>
-                            <input id="paypal" type="text" class="form-control" name="paypal"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="details">Message</label>
-                            <textarea name="details" id="details" cols="30" rows="6" class="form-control"></textarea>
-                        </div>
-                    </div> -->
-                    <!--  -->
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12">
@@ -105,18 +89,13 @@
                             </div>
                         </div>
                     </div>
-                    <!--  -->
                 </div>
                 <div class="row">
-                    <!-- <div class="col-12 d-flex flex-sm-row flex-column mt-2">
-                        <div class="row"> -->
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-9">
-                                <button type="submit" class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1">Claim Funds</button>
-                                <a href="{{route('jobseeker.earnings')}}" class="btn btn-danger mb-1 mb-sm-0 mr-0 mr-sm-1">Cancel</a>
-                            </div>
-                        <!-- </div>
-                    </div> -->
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1">Claim Funds</button>
+                        <a href="{{route('jobseeker.earnings')}}" class="btn btn-danger mb-1 mb-sm-0 mr-0 mr-sm-1">Cancel</a>
+                    </div>
                 </div>
             </form>
         </div>

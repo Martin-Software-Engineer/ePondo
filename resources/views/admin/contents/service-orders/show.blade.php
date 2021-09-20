@@ -25,49 +25,14 @@
 <section class="invoice-preview-wrapper">
     <div class="row invoice-preview">
         <!-- Invoice -->
-        <!-- <div class="col-md-12"> -->
         <div class="col-xl-9 col-md-8 col-12">
-            <!-- <div class="card invoice-preview-card">
-                <div class="card-body invoice-padding pb-0">
-                <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0 ">
-                <div class="col">
-                    <h6>Hi</h6>
-                </div>
-                </div>
-                </div>
-            </div>                 -->
             <div class="card invoice-preview-card">
                 <div class="card-body invoice-padding pb-0">
                     <!-- Header starts -->
                     <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0 mb-0">
                         <!-- Service Details - Start -->
                         <div class="col">
-                            <!-- <h6 style="color:#120a78;margin-bottom:20px">
-                                Service Order No. : <span style="font-weight:900;">{{$order_id}}</span>
-                            </h6>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <h6 class="so_text">Title : </h6>
-                                </div>
-                                <div class="col-md-8">
-                                    <span style="font-weight:900;"> "{{$order->service->title}}" </span>                            
-                                </div>
-                            </div>
-                            <h6 class="so_text">
-                                Category :
-                                            @foreach($order->service->categories as $category)
-                                                {{$category->name}} @if(!$loop->last)/@endif
-                                            @endforeach
-                            </h6>
-                            <h6 class="so_text">Duration :
-                                            @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
-                                            @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
-                            </h6>
-                            <h6 class="so_text">Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6> -->
-
-                            
-                            <h6 style="color:#120a78;margin-bottom:30px;border-bottom: 3px solid #120a78;">Service Order No. : <b>{{$order_id}}</b> </h6>
-                            <!-- <h6 class="invoice-date-title"  ><strong style="margin-right:10px;">Status :</strong>{{\App\Helpers\System::StatusTextValue($order->status)}}</h6> -->
+                           <h6 style="color:#120a78;margin-bottom:30px;border-bottom: 3px solid #120a78;">Service Order No. : <b>{{$order_id}}</b> </h6>
                             <h6>Title : <span style="font-style:italic;"> "{{$order->service->title}}" </span> </h6>
                             <h6>
                                 Category :
@@ -95,23 +60,15 @@
                         <h6>Customer: {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
                         <h6 class="mt-2">Additonal Message: {{$order->details->message}}</h6>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-12">
-                            <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary">Send Direct Message</a>
-                        </div>
-                    </div> -->
                 </div>
                 <!-- Invoice Note ends -->
             </div>
         </div>
         <!-- /Invoice -->
-
         <!-- Actions -->
         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
             <div class="card mb-1">
                 <div class="card-body">
-                    <!-- <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-secondary btn-block mb-2">Contact Jobseeker</a>
-                    <hr> -->
                         @if($order->status == 1)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:lightskyblue"> Pending Request </span> </h5>
                             <p style="font-size:12px; margin-bottom:20px;"> Please wait 1-3 days for Jobseeker to respond to your Service Order Request.</p>
@@ -146,20 +103,8 @@
                             <h5 style="font-weight:bolder;"> Status : <span style="color:crimson"> Cancelled </span> </h5>
                             <p style="font-size:12px; margin-bottom:20px;"> Service Order Cancelled. If you have any concerns & feedback email us at <strong style="font-style:italic; text-decoration:underline;">epondo.co@gmail.com</strong style="font-style:italic; text-decoration:underline;"> </p>
                         @endif
-                    <!-- 
-                        '1' => 'Pending Request', 
-                        '2' => 'Accepted',
-                        '3' => 'Declined', 
-                        '4' => 'Ongoing', 
-                        '5' => 'Pending Payment', 
-                        '6' => 'Pending Rating & Feedback', 
-                        '7' => 'Completed',
-                        '8' => 'Cancelled' 
-                    -->
                 </div>
-            </div>
-            <!-- <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary btn-block ">Contact Jobseeker</a> -->
-                    
+            </div>       
         </div>
         <!-- /Actions -->
 

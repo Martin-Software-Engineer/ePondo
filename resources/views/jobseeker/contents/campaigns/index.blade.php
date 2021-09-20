@@ -18,9 +18,6 @@
         <div class="col-md-9">
             <h2 class="float-left mb-0">Campaigns</h2>
         </div>
-        <!-- <div class="col-md-3">
-            <a class="float-right btn btn-primary btn-round" href="{{route('jobseeker.campaigns.create')}}">Create</a>
-        </div> -->
     </div>
     <div class="row mb-2">
         <div class="col-md-3">

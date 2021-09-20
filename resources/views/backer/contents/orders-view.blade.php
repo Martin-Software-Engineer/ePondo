@@ -32,13 +32,11 @@
                     <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0 mb-0">
                         <!-- Service Details - Start -->
                         <div class="col">
-                            <!--  -->
                             <h6 style="color:#120a78;margin-bottom:20px;font-size:16px;text-decoration:underline;">Details</h6>    
                             <h6 class="ml-2">Service Order Date : {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
                             <h6 class="ml-2">Location : {{$order->details->delivery_address}}</h6>
                             <h6 class="ml-2">Customer : {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
                             <h6 class="ml-2">Additional Message : {{$order->details->message}}</h6>
-                            <!--  -->
                         </div>
                         <!-- Service Details - End -->
                     </div>
@@ -61,13 +59,7 @@
                                         @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
                         </h6>
                         <h6 class="ml-2">Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
-                        <!--  -->
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-12">
-                            <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary">Send Direct Message</a>
-                        </div>
-                    </div> -->
                 </div>
                 <!-- Invoice Note ends -->
             </div>
@@ -78,8 +70,6 @@
         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
             <div class="card mb-1">
                 <div class="card-body">
-                    <!-- <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-secondary btn-block mb-2">Contact Jobseeker</a>
-                    <hr> -->
                         @if($order->status == 1)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:lightskyblue"> Pending Request </span> </h5>
                             <p style="font-size:12px; margin-bottom:20px;"> Please wait 1-3 days for Jobseeker to respond to your Service Order Request.</p>
@@ -102,53 +92,34 @@
                             <a href="{{route('backer.order.invoice', $order->id)}}" class="btn btn-warning btn-block">View Invoice & Pay</a>
                         @endif
                         @if($order->status == 6)
-                            <!-- <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
-                            <p style="font-size:12px; margin-bottom:20px;"> Service Order Complete & Payment Successful. Please provide Feedback & Rating for your jobseeker. </p>
-                            <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button> -->
-                            <!--  -->
                                 @if(!$order->hasbackerfeedback)
-                                    <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
+                                    <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> <br>Pending Feedback & Rating </span> </h5>
                                     <hr>
                                     <h6 style="font-size:12px; margin-bottom:20px;"> Service Order Delivered & Payment Successful.<br><br> Please provide Feedback & Rating for your jobseeker. </h6>
                                     <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button>
-                                    <!-- <p style="font-size:12px; margin-bottom:20px;"> Service Order Delivered & Payment Successful. Please provide Feedback & Rating. </p> -->
-                                    <!-- <h6 style="font-size:12px; margin-bottom:20px;"> Service Order Delivered & Payment Successful. To view your Earnings, go to your "Earnings" Tab. <br><br> Please provide Feedback & Rating to Complete the Service Order. </h6> -->
-                                    <!-- <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button> -->
-                                    <!-- <button type="button" class="btn-feedback btn btn-block mb-75" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal"> Add Feedback & Rating </button>    -->
                                 @endif
                                 
                                 @if($order->hasbackerfeedback)
                                     <h5 style="font-weight:bolder;"> Status : <span style="color:mediumorchid"> Processing Jobseeker's Feedback & Rating </span> </h5>
                                     <hr>
-                                    <!-- <h6 style="font-size:12px; margin-bottom:20px;"> Please wait patiently while Backer's Feedback & Rating is still being processed. <br><br> Payment Successful! To view your Earnings, go to your "Earnings" Tab.</h6> -->
                                     <h6 style="font-size:12px; margin-bottom:20px;"> Currently processing Jobseeker's Feedback & Rating. We will notify you immediately once finished. Thank you! <br><br> Payment Successful, Thank you!.</h6>
                                 @endif
-                            <!--  -->
                         @endif
                         @if($order->status == 7)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Completed </span> </h5>
                             <hr>
-                            <!-- <p style="font-size:12px; margin-bottom:20px;"> Service Order Complete! On behalf of the whole ePondo Team, Thank you! </p> -->
                             <h6 style="font-size:12px; margin-bottom:20px;"> CONGRATULATIONS! <br><br>Service Order Complete! On behalf of the whole ePondo Team, we woul like to thank you for using our platform. We hope that you can continue to support ePondo. Thank you!</h6>
                         @endif
                         @if($order->status == 8)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:crimson"> Cancelled </span> </h5>
                             <hr>
                             <h6 style="font-size:12px; margin-bottom:20px;">Service Order Cancelled. We are sorry to hear that your service order has been cancelled. If you have concerns & feedback please email us at <span style="font-weight:bold;text-decoration:underline;">epondo.co@gmail.com</span> </h6>
-                            <!-- <p style="font-size:12px; margin-bottom:20px;"> Service Order Cancelled. If you have any concerns & feedback email us at <strong style="font-style:italic; text-decoration:underline;">epondo.co@gmail.com</strong style="font-style:italic; text-decoration:underline;"> </p> -->
                         @endif
-                    <!-- 
-                        '1' => 'Pending Request', 
-                        '2' => 'Accepted',
-                        '3' => 'Declined', 
-                        '4' => 'Ongoing', 
-                        '5' => 'Pending Payment', 
-                        '6' => 'Pending Rating & Feedback', 
-                        '7' => 'Completed',
-                        '8' => 'Cancelled' 
-                    -->
                 </div>
             </div>
+            @if($order->status > 5)
+            <a href="{{route('backer.order.invoice', $order->id)}}" class="btn btn-primary btn-block mt-2">View Invoice </a>
+            @endif
             <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary btn-block ">Contact Jobseeker</a>
                     
         </div>

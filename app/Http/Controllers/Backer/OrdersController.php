@@ -87,7 +87,8 @@ class OrdersController extends Controller
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee  
+            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee,
+            'order_status'  => $order->status
         ];
         
         //return $data;

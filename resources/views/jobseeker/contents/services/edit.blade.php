@@ -173,7 +173,6 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                    <!-- <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label> -->
                                     <label>Service Photos</label></label>
                                         <div class="media-group d-flex">
                                             @foreach($service->photos as $photo)
@@ -269,20 +268,6 @@
                                 location.href = "{{route('jobseeker.services.index')}}"
                             });
                         }
-                        // if (resp.success) {
-                        //     Swal.fire({
-                        //         title: 'Success!',
-                        //         text: resp.msg,
-                        //         icon: 'success',
-                        //         confirmButtonText: 'Campaigns List',
-                        //         customClass: {
-                        //             confirmButton: 'btn btn-primary',
-                        //         },
-                        //         buttonsStyling: false
-                        //     }).then(function(result) {
-                        //         location.href = "{{route('jobseeker.campaigns.index')}}"
-                        //     });
-                        // }
                     }
                 });
             });

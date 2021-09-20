@@ -31,14 +31,6 @@
                                <a class="dropdown-item" href="#" data-value="popular">Popular</a>
                           </div>
                       </div>
-                      <!-- <div class="dropdown dropdown-region mr-1">
-                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Region
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                              <a class="dropdown-item" href="#">All</a>
-                          </div>
-                      </div> -->
                 </div>
                 <div class="col-md-4 d-flex">
                     <input type="text" name="filter_search" class="form-control" placeholder="Search">
@@ -50,52 +42,6 @@
        <div class="row">
             @forelse($campaigns as $campaign)
                 <div class="col-md-3 pt-4">
-                    <!-- Campaign Tile - Start -->
-                    <!-- <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;" >
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="img_7">
-                                    <a href="{{route('campaign_view', $campaign->id)}}">
-                                        <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : 
-                                                  asset('app-assets/images/pages/no-image.png')}}" class="img_7">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                            <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a></h1>
-                                <p class="ipsum_text_1 ">{{$campaign->description}}</p>
-                                <div>
-                                    <p class="ipsum_text_1">Category</p>
-                                </div>
-                                <div>
-                                    <p class="ipsum_text_1">Target Date: <b>{{date('M-d', strtotime($campaign->target_date))}}</b></p>
-                                </div>
-                                <div class="progress-wrapper progress_bar_campaigns">
-                                    <div id="example-caption-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
-                                            </div>
-                                            <div class="col-6">
-                                                <h6 class="campaign_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress progress-bar-primary">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
-                                            aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" 
-                                            aria-describedby="example-caption-2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Campaign Tile - End -->
-
                     <!-- Campaign Tile 2 - Start -->
                     <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
@@ -143,14 +89,10 @@
                                     <p class="card_c_targetd">{{date('F d, Y', strtotime($campaign->target_date))}}</p>
                                 </div>
                                 </a>
-                                <!-- <div class="donate_btn_main">
-                                    <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
-                                </div> -->
                             </div>
                         </div>
                     </div>
                     <!-- Campaign Tile 2 - End -->
-
                 </div>
             @empty 
             @endforelse

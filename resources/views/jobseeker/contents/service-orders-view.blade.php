@@ -67,10 +67,9 @@
         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
             <div class="card">
                 <div class="card-body">
-                    <!-- <h6>Instrucitons:</h6> -->
                     @if($order->status == 1)
                     <h5 style="font-weight:bolder;"> Status : <span style="color:lightskyblue"> Pending Request </span> </h5>
-                    <hr><!-- <hr><h6>Instrucitons:</h6> -->
+                    <hr>
                     <p style="font-size:12px; margin-bottom:20px;"> <strong>Instructions : </strong> Please read the details of the service order request. Then click the appropriate button below.</p>
                     <button type="button" class="btn-accept btn btn-primary btn-block mb-75">
                         Accept
@@ -105,39 +104,22 @@
                     <h5 style="font-weight:bolder;"> Status : <span style="color:#FFC107"> Pending Payment </span> </h5>
                     <hr>
                     <p style="font-size:12px; margin-bottom:20px;">Please wait 1-3 days as we process the payment. We will notify you immediately once payment is successful. Thank you! </p>
-                    <!-- <button type="button" class="btn-deliver btn btn-warning btn-block mb-75" disabled> -->
-                        <!-- Payment Processing -->
                     </button>
                     @endif
 
                     @if($order->status == 6)
-                    <!-- <button type="button" class="btn-feedback btn btn-info btn-block mb-75" data-toggle="modal" data-target="#feedback-modal">
-                        Add Feedback & Rating
-                    </button> -->
-                    
-                    <!--  -->
                         @if(!$order->hasjobseekerfeedback)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
                             <hr>
-                            <!-- <p style="font-size:12px; margin-bottom:20px;"> Service Order Delivered & Payment Successful. Please provide Feedback & Rating. </p> -->
                             <h6 style="font-size:12px; margin-bottom:20px;"> Service Order Delivered & Payment Successful. To view your Earnings, go to your "Earnings" Tab. <br><br> Please provide Feedback & Rating to Complete the Service Order. </h6>
-                            <!-- <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button> -->
                             <button type="button" class="btn-feedback btn btn-block mb-75" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal"> Add Feedback & Rating </button>   
                         @endif
                         
                         @if($order->hasjobseekerfeedback)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:mediumorchid"> Processing Backer's Feedback & Rating </span> </h5>
                             <hr>
-                            <!-- <h6 style="font-size:12px; margin-bottom:20px;"> Please wait patiently while Backer's Feedback & Rating is still being processed. <br><br> Payment Successful! To view your Earnings, go to your "Earnings" Tab.</h6> -->
                             <h6 style="font-size:12px; margin-bottom:20px;"> Currently processing Backer's Feedback & Rating. We will notify you immediately once finished. Thank you! <br><br> Payment Successful! To view your Earnings, go to your "Earnings" Tab.</h6>
                         @endif
-                    <!--  -->
-
-                    <!-- <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
-                    <hr>
-                    <p style="font-size:12px; margin-bottom:20px;"> Service Order Complete & Payment Successful. Please provide Feedback & Rating. </p> -->
-                    <!-- <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button> -->
-                    <!-- <button type="button" class="btn-feedback btn btn-block mb-75" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal"> Add Feedback & Rating </button>    -->
                     @endif
 
                     @if($order->status == 7)

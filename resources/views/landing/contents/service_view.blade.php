@@ -431,8 +431,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div> -->
-                    <!-- <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">...</div> -->
                 </div>
             </div>
             
@@ -453,15 +451,6 @@
                         </div>
                     </div>
                     <!-- Body -->
-                    <!-- <div class="card-body"> -->
-                      <!-- @guest
-                          <p class="text-danger">Login to avail service!</p>
-                      @endguest
-                      @auth
-                          @if(auth()->user()->hasAnyRole('Backer'))
-                            <button class="avail_btn btn btn-block btn-success" data-service-id="{{$service->id}}">Avail Service</button>
-                          @endif
-                      @endauth -->
                       <div class="card-body c_j_body">
                         <div class="c_j_about">
                             <h6 class="c_j_about_subhead">About Me:</h6>
@@ -585,8 +574,6 @@
 <div class="modal fade" id="availModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <!-- <div class="modal-header m_c_title">
-          <h2 class="modal-title m_title"></h2> -->
         <div class="modal-header m_title_area">
           <h3 class="m_title">Avail Service</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
