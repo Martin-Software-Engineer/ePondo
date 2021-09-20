@@ -17,11 +17,6 @@ class EarningsController extends Controller
 {
     public function index(){
         $user = auth()->user();
-        // $services = Service::select('id')->where('user_id', $user->id)->get();
-        // $services_ids = [];
-        // foreach($services as $service){
-        //     array_push($services_ids, $service->id);
-        // }
 
         $earnings = $user->earnings;
         $withdrawn = Payout::where('user_id', $user->id)->where('status', 'paid')->get()->sum('amount');
@@ -52,11 +47,6 @@ class EarningsController extends Controller
         $totalfunds = 0;
         foreach($campaigns as $c){
             foreach($c['donations'] as $d){
-                // foreach($d['transactions'] as $transaction){
-                //     if($transaction->status == 'approved'){
-                //         $totalfunds += $d->amount;
-                //     }
-                // }
                 $totalfunds += $d->amount;
             }
         }
@@ -77,7 +67,7 @@ class EarningsController extends Controller
         $data['service_earnings'] = $service;
         $data['campaign_funds'] = $campaign;
 
-        //return $data;
+        
         return view('jobseeker.contents.earnings', $data);
     }
 

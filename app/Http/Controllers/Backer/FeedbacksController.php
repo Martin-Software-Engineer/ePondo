@@ -46,9 +46,6 @@ class FeedbacksController extends Controller
      */
     public function store(Request $request)
     {
-        // Validator::make($request->all(), [
-        //     'credit_card_number' => 'required_if:payment_type,cc'
-        // ]);
         $request->validate([
             
             'service_feedback' => 'required'
@@ -79,18 +76,6 @@ class FeedbacksController extends Controller
 
         $jobseeker = User::find($order->service->user_id);
         $backer = User::find($order->backer->id);
-
-        // $totalorders = Order::whereHas('service', function($q) use($jobseeker){
-        //     $q->where('user_id', $jobseeker->id);
-        // })->count();
-        
-        // if($totalorders <= 0){ //first time
-        //     $reward = new GiveReward($jobseeker->id, 'receiving_1st_service_order_rf');
-        //     $reward->send();
-        // }else{
-        //     $reward = new GiveReward($jobseeker->id, 'receiving_service_order_rf');
-        //     $reward->send();
-        // }
 
         $backer->notify(new OrderFeedbackNotification($order));
 

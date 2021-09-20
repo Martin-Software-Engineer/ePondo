@@ -45,7 +45,6 @@ class InvoicesController extends Controller
             $duration = $duration.' '.$order->service->duration_minutes.' Minutes';
         }
 
-        //return $data;
         $data = [
             'order_no' => System::GenerateFormattedId('S', $order->id),
             'order_id' => $order->id,
@@ -81,7 +80,6 @@ class InvoicesController extends Controller
             'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee
         ];
         
-        //return $data;
         return view('jobseeker.contents.service-orders-invoice',$data);
     }
 }

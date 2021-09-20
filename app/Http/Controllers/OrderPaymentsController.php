@@ -134,8 +134,6 @@ class OrderPaymentsController extends Controller
                 $transaction->save();
 
                 $order = Order::find($transaction->orders[0]->id);
-                // $order->status = 6;
-                // $order->save();
 
                 $jobseeker_id = $order->service->jobseeker->id;
                 $jobseeker = User::find($jobseeker_id);

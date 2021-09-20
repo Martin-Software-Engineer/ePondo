@@ -37,7 +37,6 @@ class OrdersController extends Controller
         $data['order'] = $order;
         $data['order_id'] = System::GenerateFormattedId('S', $order->id);
 
-        //return $data;
         return view('backer.contents.orders-view',$data);
     }
 
@@ -56,7 +55,6 @@ class OrdersController extends Controller
             $duration = $duration.' '.$order->service->duration_minutes.' Minutes';
         }
 
-        //return $data;
         $data = [
             'order_no' => System::GenerateFormattedId('S', $order->id),
             'order_id' => $order->id,
@@ -91,7 +89,6 @@ class OrdersController extends Controller
             'order_status'  => $order->status
         ];
         
-        //return $data;
         return view('backer.contents.orders-invoice',$data);
     }
 
