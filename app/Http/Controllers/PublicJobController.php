@@ -18,9 +18,6 @@ class PublicJobController extends Controller
         
         $job = Job::where('id',$job_id)->first();
         
-        // return view ('public.jobs.index',['jobs' => $jobs]);
-        // $job_id = $job->id;
-        // $job = Job::where('job_id',$job_id)->paginate(5);
         return view('public.jobs.show', compact('job'));
     }
 }

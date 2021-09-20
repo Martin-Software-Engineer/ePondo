@@ -34,6 +34,7 @@ class ServiceOrdersController extends Controller
     public function index()
     {
         $data['title'] = 'Services Orders';
+        
         return view('admin.contents.service-orders.index', $data);
     }
 
@@ -44,6 +45,7 @@ class ServiceOrdersController extends Controller
      */
     public function data(){
         $results = Order::whereHas('service')->with(['service','backer'])->get();
+        
         return DataTables::of(ResourceOrder::collection($results))->toJson();
     }
 
@@ -80,7 +82,6 @@ class ServiceOrdersController extends Controller
         $data['order'] = $order;
         $data['order_id'] = System::GenerateFormattedId('S', $order->id);
 
-        //return $data;
         return view('admin.contents.service-orders.show',$data);
     }
 

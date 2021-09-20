@@ -36,12 +36,6 @@ class ClaimFundsController extends Controller
         ]);
         $jobseeker=User::where('id',auth()->user()->id)->first();
         $jobseeker->notify(new ClaimFundsRequestlNotification());
-        // Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.claimfunds-mail', [
-        //     'subject' => 'Claim Funds Successful',
-        //     'campaign' => $claim->campaign->title,
-        //     'amount' => $claim->amount,
-        //     'details' => $claim->details
-        // ]));
 
         if($claim)
             return response()->json(['success' => true, 'msg' => 'Claim funds request successfully submitted']);

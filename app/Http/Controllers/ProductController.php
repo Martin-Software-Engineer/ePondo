@@ -54,9 +54,6 @@ class ProductController extends Controller
         $product->product_categories()->attach($request['product_category']);
         $request ->session()->flash('success','You have created a New Product!');
 
-        // $campaign = Campaign::findOrFail($campaign_id);
-        // $products = Product::where('campaign_id',$campaign_id)->paginate(5);
-
         return redirect(route('jobseeker.campaigns.show',$campaign_id));
     }
 
@@ -95,14 +92,9 @@ class ProductController extends Controller
     public function update($campaign_id, Request $request, Product $product)
     {
         $product->update($request->except(['_token']));
-
-        // $product->product_categories()->sync($request->product_category);
-
         $request ->session()->flash('success','You have edited the product');
-
         $product = Product::where('id',$product->id)->first();
 
-        // return view ('productseeker.products.show', ['product'=> $product, 'campaign' => $campaign_id]);
         return redirect(route('jobseeker.campaigns.products.show',[$campaign_id,$product->id]));
     }
 

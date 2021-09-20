@@ -30,6 +30,7 @@ class DonationsController extends Controller
         $results = Donation::whereHas('transactions', function($q){
             $q->where('status', 'approved');
         })->with('backer')->get();
+        
         return DataTables::of(ResourceDonation::collection($results))->toJson();
     }
     /**

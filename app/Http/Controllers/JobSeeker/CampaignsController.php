@@ -36,7 +36,7 @@ class CampaignsController extends Controller
     {
         $data['campaigns'] = Campaign::where('user_id', auth()->user()->id)->get();
         $data['categories'] = CampaignCategory::all();
-        //return response()->json($data);
+        
         return view('jobseeker.contents.campaigns.index', $data);
     }
 
@@ -160,34 +160,7 @@ class CampaignsController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        // use below if show($questionnaire)
-        // $campaign = Campaign::findOrFail($id);
-        // return view('jobseeker.campaigns.show',[ 'campaign' => $campaign]);
-        
-
-        // $questionnaire -> load ('questions.answers.responses');
-
-        // return view('jobseeker.campaigns.show', compact('campaign'));
-        
-        // $campaign_id = $campaign->id;
         $campaign_category = CampaignCategory::all();
-
-        // $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
-        // $job_category = JobCategory::all();
-
-        // $products = Product::where('campaign_id',$campaign_id)->paginate(5);
-        // $product_category = ProductCategory::all();
-
-        // dd($products);
-
-
-        //OUTPUT IMAGE FROM AWS S3
-        
-        // return Storage::disk('s3')->response('campaign/' . $image->filename);
-
-
-
-        // return view('jobseeker.campaigns.show', compact('campaign'));
         
         return view('jobseeker.campaigns.show',['campaign' => $campaign, 'campaign_category'=> $campaign_category ]);
     }
@@ -203,7 +176,7 @@ class CampaignsController extends Controller
         $data['title'] = 'Edit Campaign';
         $data['campaign'] = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
         $data['categories'] = CampaignCategory::all();
-        //return $data;
+        
         return view('jobseeker.contents.campaigns.edit', $data);
     }
 

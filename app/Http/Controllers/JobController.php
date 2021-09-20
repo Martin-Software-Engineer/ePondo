@@ -46,18 +46,6 @@ class JobController extends Controller
      */
     public function store($campaign_id, Request $request)
     {
-        // dd($campaign_id);
-
-        // $data = request() -> validate([
-            
-        //     'question.question' => 'required',
-        //     'answers.*.answer' => 'required',
-        // ]);
-
-        // $question = $questionnaire->questions()->create($data['question']);
-        // $question -> answers()->createMany($data['answers']);
-
-        // return redirect('/questionnaires/'.$questionnaire -> id);
 
         $data = $request->validate([
             
@@ -72,10 +60,6 @@ class JobController extends Controller
         $job -> title = $data['title'];
         $job -> description = $data['description'];
         $job -> save();
-
-        // $campaign->campaign_categories()->attach($request['campaign_category']);
-        // $path = Storage::disk('s3')->put('job',$data['images']['0'],'public');
-        // dd($path);
 
         foreach($data['images'] as $image){
             
@@ -99,11 +83,6 @@ class JobController extends Controller
         $campaign = Campaign::findOrFail($campaign_id);
         $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
 
-
-        // return redirect(route('jobseeker.campaigns.index'));
-        // return view('/jobseeker/campaigns/{campaign}/show');
-        // return view('jobseeker.campaigns.show', ['campaign' => $campaign,'jobs' => $jobs]);
-
         return redirect(route('jobseeker.campaigns.show',$campaign_id));
 
     }
@@ -119,14 +98,10 @@ class JobController extends Controller
           
         $job = Job::where('id',$job->id)->first();
         
-        // return view('jobseeker.campaigns.show', compact('campaign'));
         return view('jobseeker.jobs.show', ['job'=> $job, 'campaign' => $campaign_id]);
     }
 
-    // public function show($country_id, City $city)
-    // {
-    //     return view('admin.cities.show', compact('country_id', 'city'));
-    // }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -149,18 +124,11 @@ class JobController extends Controller
      */
     public function update($campaign_id, Request $request, Job $job)
     {
-        // $campaign = Campaign::findOrFail($id);
-
         $job->update($request->except(['_token']));
-        // $job->roles()->sync($request->roles);
-
         $job->job_categories()->sync($request->job_category);
-
         $request ->session()->flash('success','You have edited the job');
-
         $job = Job::where('id',$job->id)->first();
-
-        // return view ('jobseeker.jobs.show', ['job'=> $job, 'campaign' => $campaign_id]);
+        
         return redirect(route('jobseeker.campaigns.jobs.show',[$campaign_id,$job->id]));
     }
 

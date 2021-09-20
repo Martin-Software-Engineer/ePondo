@@ -39,7 +39,6 @@ class OrdersController extends Controller
         $data['order'] = $order;
         $data['order_id'] = System::GenerateFormattedId('S', $order->id);
 
-        //return $data;
         return view('jobseeker.contents.service-orders-view',$data);
     }
 

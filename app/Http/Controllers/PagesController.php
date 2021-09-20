@@ -113,10 +113,6 @@ class PagesController extends Controller
 
     public function privacypolicy(){
         return view('landing.contents.privacypolicy');
-        // Redirect::away('landing.contents.privacypolicyterms');
-        // Redirect::away('landing.contents.privacypolicyterms');
-        // Redirect::to(view('landing.contents.privacypolicyterms'));
-        // return redirect('/privacypolicyterms');
     }
 
     public function termsandconditions(){

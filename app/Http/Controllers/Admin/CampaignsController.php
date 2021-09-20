@@ -181,10 +181,7 @@ class CampaignsController extends Controller
         $data['title'] = 'Edit Campaign';
         $data['campaign'] = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
         $data['categories'] = CampaignCategory::all();
-        // $data['jobseeker'] = User::whereHas('roles', function($q){
-        //     $q->where('name', 'JobSeeker');
-        // })->get();
-
+        
         return view('admin.contents.campaigns.edit', $data);
     }
 

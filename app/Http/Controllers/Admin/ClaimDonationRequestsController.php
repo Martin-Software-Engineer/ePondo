@@ -17,7 +17,6 @@ class ClaimDonationRequestsController extends Controller
     public function index(){
         $data['claimrequests'] = ClaimedDonations::with(['user', 'campaign'])->get();
 
-        //return $data;
         return view('admin.contents.claimrequest.index', $data);
     }
 

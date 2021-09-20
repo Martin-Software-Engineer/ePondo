@@ -32,8 +32,7 @@ class ServicesController extends Controller
     {
         $data['services'] = Service::where('user_id', auth()->user()->id)->get();
         $data['categories'] = ServiceCategory::all();
-        // $data['campaign_categories'] = CampaignCategory::all();
-        //return response()->json($data);
+        
         return view('jobseeker.contents.services.index', $data);
     }
 
@@ -161,6 +160,7 @@ class ServicesController extends Controller
         $data['title'] = 'Edit Service';
         $data['service'] = Service::with(['jobseeker','categories','tags'])->where('id',$id)->first();
         $data['category_parents'] = ServiceCategoryParent::with('categories')->get();
+
         return view('jobseeker.contents.services.edit', $data);
     }
 
@@ -212,10 +212,6 @@ class ServicesController extends Controller
         }else{
             $service->tags()->detach();
         }
-
-        // Mail::to(auth()->user()->email)->queue(new SendMail('emails.service-create-mail', [
-        //     'subject' => 'Epondo Service'
-        // ]));
 
         return response()->json(array('success' => true, 'msg' => 'Service Updated.'));
     }
