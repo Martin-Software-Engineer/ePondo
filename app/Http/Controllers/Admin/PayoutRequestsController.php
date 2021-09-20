@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Mail\SendMail;
 use App\Models\Payout;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+
+use App\Notifications\PayoutSuccessful as PayoutSuccessulNotification;
 
 class PayoutRequestsController extends Controller
 {
@@ -25,7 +30,9 @@ class PayoutRequestsController extends Controller
         $payout->save();
 
        if($payout->status == 'paid'){
-            Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.order-payout-mail', [
+            $jobseeker = User::find($payout->user->id);
+            $jobseeker->notify(new PayoutSuccessulNotification());
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-payout-mail', [
                 'subject' => 'Payout Successful',
                 'amount' => $payout->amount,
                 'details' => $payout->details

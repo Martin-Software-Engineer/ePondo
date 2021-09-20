@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PayoutSuccessful extends Notification
+class ClaimFundsSuccessful extends Notification
 {
     use Queueable;
 
@@ -55,8 +55,8 @@ class PayoutSuccessful extends Notification
     public function toArray($notifiable)
     {
         return [
-            'heading' => 'Payout Successful!',
-            'text' => 'Successfully processed Payout. Please verify with your bank. Thank you! '
+            'heading' => 'Claim Funds Successful!',
+            'text' => 'Successfully processed Claim Funds. Please verify with your bank. Thank you!'
         ];
     }
 }

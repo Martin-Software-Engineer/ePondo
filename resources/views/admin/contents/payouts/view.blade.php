@@ -31,7 +31,7 @@
                                     <label>Request From:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input class="form-control" value="{{$payout->user->email}}" disabled>
+                                    <input class="form-control" value="{{$payout->user->information->lastname}}, {{$payout->user->information->firstname}} ({{$payout->user->email}})" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -61,9 +61,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <a href="{{route('admin.payouts.index')}}" class="btn btn-warning">Back</a>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                            <div class="form-group row">
+                                <div class="col-3"></div>
+                                <div class="col-9">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
                             </div>
                         </div>
 

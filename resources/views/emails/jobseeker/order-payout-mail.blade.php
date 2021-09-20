@@ -7,7 +7,8 @@
 <h3><strong>Payout Details</strong></h3><br>
 
 Payout Amount : <span style="text-decoration:underline;"> {{$amount}} </span><br>
-Bank / Paypal Details : <span style="text-decoration:underline;"> {{$details}} </span><br>
+Bank Details : <span style="text-decoration:underline;"> {{$details}} </span><br>
+Status : <span style="color:lime;font-weight:bolder;"> Successful </span><br>
 
 Payout amount has been successfully transfered to your bank account. 
 Verify with your Bank Account that the Payout Amount has been successfully transfered. Thank you!<br>

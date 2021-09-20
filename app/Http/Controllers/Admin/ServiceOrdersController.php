@@ -140,15 +140,7 @@ class ServiceOrdersController extends Controller
                 break;
             case 2:
                 //Status Order Accepted
-                
-                // $jobseeker = User::find($order->service->jobseeker->id);
-                // $jobseeker_id = $jobseeker->id;
-                // $backer = User::find($order->backer_id);
-
-                    //Reward Points
-                    // $totalorders = Order::whereHas('service', function($q) use($jobseeker_id){
-                    //     $q->where('user_id', $jobseeker_id);
-                    // })->where('status','>',1)->where('status','!=',3)->count(); //Counter for Reward Points     
+                   
                     if($totalorders <= 0){ //first time
                         $reward = new GiveReward($jobseeker->id, 'accepting_1st_service_order_request');
                         $reward->send();
@@ -171,9 +163,6 @@ class ServiceOrdersController extends Controller
             case 3:
                 //Status Declined
 
-                // $backer = User::find($order->backer->id);
-                // $jobseeker = User::find($order->service->jobseeker->id);
-
                 $jobseeker->notify(new OrderDeclinedNotification($order));
                 $backer->notify(new OrderDeclinedNotification($order));
                 Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-decline-mail', [
@@ -190,15 +179,6 @@ class ServiceOrdersController extends Controller
                 break;
             case 5:
                 //Status Submitted as Complete & Pending Payment
-                // $order = Order::find($id);
-                // $jobseeker = User::find($order->service->jobseeker->id);
-                // $jobseeker_id = $jobseeker->id;
-                // $backer = User::find($order->backer->id);
-                // $totalorders = Order::whereHas('service', function($q) use($jobseeker_id){
-                //     $q->where('user_id', $jobseeker_id);
-                // })->where('status','>',4)->where('status','!=',8)->count(); //Counter for Reward Points
-                // $order->status = 5;
-                // $order->save();
 
                 $price = $order->service->price;
                 $invoice = $order->invoice()->create([
@@ -233,9 +213,8 @@ class ServiceOrdersController extends Controller
                 break;
             case 6:
                 //Status Payment Successful, Pending Feedback & Rating
-                
                 //Unable to proceed with backend Transactions Model
-                // $order_id = System::GenerateFormattedId('S', $order->id);
+
                 $invoice_id = System::GenerateFormattedId('I', $order->invoice->id);
                 $service_title = $order->service->title;
                 $delivery_address = $order->details->delivery_address;
@@ -244,7 +223,6 @@ class ServiceOrdersController extends Controller
 
                 $jobseeker->notify(new OrderPaymentNotification($order, $order->invoice));
                 $backer->notify(new OrderPaymentNotification($order, $order->invoice));
-
                 Mail::to($backer->email)->queue(new SendMail('emails.backer.order-payment-mail', [
                     'subject' => 'Payment Successful',
                     'order_id' => $order_no,
@@ -272,38 +250,9 @@ class ServiceOrdersController extends Controller
             case 7:
                 //Status Completed
                 //Unable to process Feedbacks & Reward Points for Feedbacks
-                // $backer->notify(new OrderFeedbackNotification($order));
-
-                // Mail::to($backer->email)->queue(new SendMail('emails.order-feedback-mail', [
-                //     'subject' => 'Successful Service Order Feedback',
-                //     'order_id' => System::GenerateFormattedId('S', $order->id)
-                // ]));
-
-                //Change SO status to Complete if both Jobseeker & Backer have Feedback
-                // if(ServiceRating::where('order_id', $order->id)->where('from', 'jobseeker')->exists()){ 
-                //     $totalorders = Order::whereHas('service', function($q) use($jobseeker){
-                //         $q->where('user_id', $jobseeker->id);
-                //     })->where('status',7); //Counter for Reward Points
-            
-                    //Reward Points
-                    // if($totalorders <= 0){ //first time
-                    //     $reward = new GiveReward($jobseeker->id, 'receiving_1st_service_order_rf');
-                    //     $reward->send();
-                    //     $reward2 = new GiveReward(auth()->user()->id, 'creating_1st_service_order_feedback');
-                    //     $reward2->send();
-                    // }else{
-                    //     $reward = new GiveReward($jobseeker->id, 'receiving_service_order_rf');
-                    //     $reward->send();
-                    //     $reward2 = new GiveReward(auth()->user()->id, 'creating_service_order_feedback');
-                    //     $reward2->send();
-                    // }
-
-                    // $order->status = 7;
-                    // $order->save();
 
                 $backer->notify(new OrderFinishNotification($order));
                 $jobseeker->notify(new OrderFinishNotification($order));
-
                 Mail::to($backer->email)->queue(new SendMail('emails.backer.order-complete-mail', [
                     'subject' => 'Congratulations Service Order Complete!',
                     'order_id' => $order_no
@@ -315,22 +264,10 @@ class ServiceOrdersController extends Controller
                 break;
             case 8:
                 //Status Cancelled
-                // $order = Order::find($request->id);
-                // $order->status = 8;
-                // $order->save();
-
-                // $backer = User::find($order->backer->id);
-                // $jobseeker = User::find($order->service->jobseeker->id);
-
-                // if($order)
-                // {
-                //     OrderCancel::create(['order_id' => $request->id, 'reason' => $request->reason]);
-                // }
                 //Unable to process OrderCancel Model
 
                 $jobseeker->notify(new OrderCancelledNotification($order));
                 $backer->notify(new OrderCancelledNotification($order));
-
                 Mail::to($backer->email)->queue(new SendMail('emails.order-cancel-request-mail', [
                     'subject' => 'Service Order Cancelled',
                     'order_id' => $order_no

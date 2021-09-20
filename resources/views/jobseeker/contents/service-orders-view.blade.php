@@ -32,19 +32,11 @@
                     <!-- Service Details - Start -->
                     <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
                         <div class="col">
-                            <h6 style="color:#120a78;margin-bottom:30px;border-bottom: 3px solid #120a78;">Service Order No. : <b>{{$order_id}}</b> </h6>
-                            <h6>Title : <span style="font-style:italic;"> "{{$order->service->title}}" </span> </h6>
-                            <h6>
-                                Category :
-                                            @foreach($order->service->categories as $category)
-                                                {{$category->name}} @if(!$loop->last)/@endif
-                                            @endforeach
-                            </h6>
-                            <h6>Duration :
-                                            @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
-                                            @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
-                            </h6>
-                            <h6>Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
+                            <h6 style="color:#120a78;margin-bottom:20px;font-size:16px;text-decoration:underline;">Details</h6>    
+                            <h6 class="ml-2">Service Order Date : {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
+                            <h6 class="ml-2">Location : {{$order->details->delivery_address}}</h6>
+                            <h6 class="ml-2">Customer : {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
+                            <h6 class="ml-2">Additional Message : {{$order->details->message}}</h6>
                         </div>
                     </div>
                     <!-- /Service Details - End -->
@@ -53,10 +45,19 @@
                 <!-- Invoice Note starts -->
                 <div class="card-body invoice-padding">
                     <div class="col">
-                        <h6>Service Order Date : {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
-                        <h6>Location : {{$order->details->delivery_address}}</h6>
-                        <h6>Customer : {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
-                        <h6 class="mt-2">Additional Message : {{$order->details->message}}</h6>
+                            <h6 style="color:#120a78;margin-bottom:20px;font-size:16px;text-decoration:underline;">Other Information</h6>
+                            <h6 class="ml-2">Title : <span style="font-style:italic;"> "{{$order->service->title}}" </span> </h6>
+                            <h6 class="ml-2">
+                                Category :
+                                            @foreach($order->service->categories as $category)
+                                                {{$category->name}} @if(!$loop->last)/@endif
+                                            @endforeach
+                            </h6>
+                            <h6 class="ml-2">Duration :
+                                            @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
+                                            @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
+                            </h6>
+                            <h6 class="ml-2">Price : {{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
                     </div>
                 </div>
                 <!-- /Invoice Note ends -->
@@ -66,9 +67,11 @@
         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
             <div class="card">
                 <div class="card-body">
-                    <h6>Instrucitons:</h6>
+                    <!-- <h6>Instrucitons:</h6> -->
                     @if($order->status == 1)
-                    <p style="font-size:12px; margin-bottom:20px;">Please read the details of the service order request. Then click the appropriate button below.</p>
+                    <h5 style="font-weight:bolder;"> Status : <span style="color:lightskyblue"> Pending Request </span> </h5>
+                    <hr><!-- <hr><h6>Instrucitons:</h6> -->
+                    <p style="font-size:12px; margin-bottom:20px;"> <strong>Instructions : </strong> Please read the details of the service order request. Then click the appropriate button below.</p>
                     <button type="button" class="btn-accept btn btn-primary btn-block mb-75">
                         Accept
                     </button>
@@ -78,33 +81,74 @@
                     @endif
 
                     @if($order->status == 2)
-                    <div style="font-size:12px; margin-bottom:20px; font-weight:lighter;">Once you have completed the service order for your customer, you may now submit service order complete by clicking the button below.</div>
+                    <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Order Accepted </span> </h5>
+                    <hr>
+                    <div style="font-size:12px; margin-bottom:20px; font-weight:lighter;"><strong>Instructions : </strong>Once you have completed the service order for your customer, you may now submit service order delivered by clicking the button below.</div>
                     <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
                         Submit Service Order Delivered
                     </button>
                     @endif
                     @if($order->status == 3)
-                    <button type="button" class="btn btn-danger btn-block mb-75 disabled">
-                        Service Order Declined
+                    <h5 style="font-weight:bolder;"> Status : <span style="color:red"> Declined </span> </h5>
+                    <hr>
+                    <h6 style="font-size:12px; margin-bottom:20px;">Service Order Declined. We are sorry to hear that you declined the service order request. If you have concerns & feedback please email us at <span style="font-weight:bold;text-decoration:underline;">epondo.co@gmail.com</span> </h6>
+                    @endif
+                    @if($order->status == 4)
+                    <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Ongoing </span> </h5>
+                    <hr>
+                    <div style="font-size:12px; margin-bottom:20px; font-weight:lighter;"><strong>Instructions : </strong>Once you have completed the service order for your customer, you may now submit service order delivered by clicking the button below.</div>
+                    <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
+                        Submit Service Order Delivered
                     </button>
                     @endif
                     @if($order->status == 5)
-                    <p style="font-size:12px; margin-bottom:20px;">Service Order Submitted as Delivered. Please wait 1-3 days for processing of payment. Thank you! </p>
-                    <button type="button" class="btn-deliver btn btn-warning btn-block mb-75" disabled>
-                        Payment Processing
+                    <h5 style="font-weight:bolder;"> Status : <span style="color:#FFC107"> Pending Payment </span> </h5>
+                    <hr>
+                    <p style="font-size:12px; margin-bottom:20px;">Please wait 1-3 days as we process the payment. We will notify you immediately once payment is successful. Thank you! </p>
+                    <!-- <button type="button" class="btn-deliver btn btn-warning btn-block mb-75" disabled> -->
+                        <!-- Payment Processing -->
                     </button>
                     @endif
 
-                    @if($order->status == 6 && !$order->hasjobseekerfeedback)
-                    <button type="button" class="btn-feedback btn btn-info btn-block mb-75" data-toggle="modal" data-target="#feedback-modal">
+                    @if($order->status == 6)
+                    <!-- <button type="button" class="btn-feedback btn btn-info btn-block mb-75" data-toggle="modal" data-target="#feedback-modal">
                         Add Feedback & Rating
-                    </button>
+                    </button> -->
+                    
+                    <!--  -->
+                        @if(!$order->hasjobseekerfeedback)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
+                            <hr>
+                            <!-- <p style="font-size:12px; margin-bottom:20px;"> Service Order Delivered & Payment Successful. Please provide Feedback & Rating. </p> -->
+                            <h6 style="font-size:12px; margin-bottom:20px;"> Service Order Delivered & Payment Successful. To view your Earnings, go to your "Earnings" Tab. <br><br> Please provide Feedback & Rating to Complete the Service Order. </h6>
+                            <!-- <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button> -->
+                            <button type="button" class="btn-feedback btn btn-block mb-75" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal"> Add Feedback & Rating </button>   
+                        @endif
+                        
+                        @if($order->hasjobseekerfeedback)
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:mediumorchid"> Processing Backer's Feedback & Rating </span> </h5>
+                            <hr>
+                            <!-- <h6 style="font-size:12px; margin-bottom:20px;"> Please wait patiently while Backer's Feedback & Rating is still being processed. <br><br> Payment Successful! To view your Earnings, go to your "Earnings" Tab.</h6> -->
+                            <h6 style="font-size:12px; margin-bottom:20px;"> Currently processing Backer's Feedback & Rating. We will notify you immediately once finished. Thank you! <br><br> Payment Successful! To view your Earnings, go to your "Earnings" Tab.</h6>
+                        @endif
+                    <!--  -->
+
+                    <!-- <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
+                    <hr>
+                    <p style="font-size:12px; margin-bottom:20px;"> Service Order Complete & Payment Successful. Please provide Feedback & Rating. </p> -->
+                    <!-- <button class="btn-feedback btn btn-block" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal">Add Feedback & Rating</button> -->
+                    <!-- <button type="button" class="btn-feedback btn btn-block mb-75" style="background-color: blueviolet;color:white;" data-toggle="modal" data-target="#feedback-modal"> Add Feedback & Rating </button>    -->
                     @endif
 
                     @if($order->status == 7)
-                    <button type="button" class="btn btn-primary btn-block mb-75" disabled>
-                        Completed
-                    </button>
+                    <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Completed </span> </h5>
+                    <hr>
+                    <h6 style="font-size:12px; margin-bottom:20px;"> CONGRATULATIONS! <br><br>Service Order Complete! On behalf of the whole ePondo Team, we woul like to thank you for using our platform. We hope that you can continue to support ePondo. Thank you!</h6>
+                    @endif
+                    @if($order->status == 8)
+                        <h5 style="font-weight:bolder;"> Status : <span style="color:crimson"> Cancelled </span> </h5>
+                        <hr>
+                        <h6 style="font-size:12px; margin-bottom:20px;">Service Order Cancelled. We are sorry to hear that your service order has been cancelled. If you have concerns & feedback please email us at <span style="font-weight:bold;text-decoration:underline;">epondo.co@gmail.com</span> </h6>
                     @endif
                 </div>
             </div>

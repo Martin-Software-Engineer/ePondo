@@ -26,6 +26,7 @@ $(function() {
                 { data: 'service_title' },
                 { data: 'backer_name' },
                 { data: 'backer_id' },
+                { data: 'rating' },
                 { data: '' }
             ],
             columnDefs: [{

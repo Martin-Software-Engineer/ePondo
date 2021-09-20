@@ -22,7 +22,7 @@ $(function() {
                 { data: 'backer_id' },
                 { data: 'service_title' },
                 { data: 'order_id' },
-                { data: 'categories' },
+                { data: 'service_categories' },
                 { data: 'due_date' },
                 { data: '' }
             ],

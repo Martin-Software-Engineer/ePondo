@@ -36,11 +36,11 @@
             <table class="withdraw-list-table table">
                 <thead>
                     <tr>
-                        <th>Date</th>
+                        <th>Date Requested</th>
                         <th>For</th>
                         <th>Amount</th>
                         <th>Status</th>
-                        <th></th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +54,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
+                        <td colspan="5" class="text-center"><h3>No Records Found</h3></td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -63,8 +63,6 @@
     </div>
 </section>      
 @endsection
-
-
 
 @section('external_js')
 <script src="{{asset('/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js')}}"></script>

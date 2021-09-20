@@ -49,14 +49,14 @@
                     <tr>
                         <td>{{$claim->created_at->format('M d, Y')}}</td>
                         <td>{{$claim->campaign->title}}</td>
-                        <td>{{$claim->user->username}}</td>
+                        <td>{{$claim->user->information->lastname}}, {{$claim->user->information->firstname}}</td>
                         <td>₱{{$claim->amount}}</td>
                         <td>{{$claim->status}}</td>
                         <td><a href="{{route('admin.claimrequests.view', $claim->id)}}" class="btn btn-primary btn-sm">Details</a></td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
+                        <td colspan="6" class="text-center"><h3>No Records Found</h3></td>
                     </tr>
                     @endforelse
                 </tbody>

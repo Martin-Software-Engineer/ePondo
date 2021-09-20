@@ -46,15 +46,23 @@ class FeedbacksController extends Controller
      */
     public function store(Request $request)
     {
+        // Validator::make($request->all(), [
+        //     'credit_card_number' => 'required_if:payment_type,cc'
+        // ]);
+        $request->validate([
+            
+            'service_feedback' => 'required'
+        ]);
+
         $order = Order::find($request->order_id);
 
-        $order->ratings()->create([
+        $rating = $order->ratings()->create([
             'service_id' => $request->service_id,
             'rating' => $request->service_rating,
             'feedback' => $request->service_feedback,
             'from' => $request->from
         ]);
-
+        
         Feedback::create([
             'service_id' => $request->service_id,
             'message' => $request->service_feedback,
@@ -65,7 +73,8 @@ class FeedbacksController extends Controller
             'service_id' => $request->service_id,
             'rating' => $request->platform_rating,
             'message' => $request->platform_message,
-            'from' => $request->from
+            'from' => $request->from,
+            'service_rating_id' => $rating->id
         ]);
 
         $jobseeker = User::find($order->service->user_id);
@@ -94,7 +103,7 @@ class FeedbacksController extends Controller
         if(ServiceRating::where('order_id', $order->id)->where('from', 'jobseeker')->exists()){ 
             $totalorders = Order::whereHas('service', function($q) use($jobseeker){
                 $q->where('user_id', $jobseeker->id);
-            })->where('status',7); //Counter for Reward Points
+            })->where('status',7)->count(); //Counter for Reward Points
     
             //Reward Points
             if($totalorders <= 0){ //first time

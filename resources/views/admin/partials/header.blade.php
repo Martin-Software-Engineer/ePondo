@@ -44,7 +44,7 @@
                 </form>
             </li>
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{auth()->user()->username}}</span>
+                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">Welcome!</span>
                         <span class="user-status">
                             @foreach(auth()->user()->roles as $role)
                                 @if(!$loop->last)
@@ -56,24 +56,11 @@
                         </span>
                     </div>
                     
-                    @if(auth()->user()->avatar != '')
                     <span class="avatar">
-                        <img class="round" src="{{Storage::url(auth()->user()->avatar)}}" alt="avatar" height="40" width="40">
+                        <img class="round" src="{{asset('app-assets/images/portrait/small/noface.png')}}" alt="avatar" height="40" width="40">
                         <span class="avatar-status-online"></span>
                     </span>
-                    @else 
-                        <div class="d-flex justify-content-left align-items-center">
-                            <div class="avatar colorClass">
-                                <span class="avatar-content avatar-header"></span>
-                                <!-- <span class="avatar-content avatar-header"></span> -->
-                                <!-- strtoupper(System::get_avatar(auth()->user()->username)) -->
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span class="emp_name text-truncate font-weight-bold"></span>
-                                <small class="emp_post text-truncate text-muted"></small>
-                            </div>
-                        </div>
-                    @endif
+                    
                     
                 </a>
             </li>

@@ -48,7 +48,7 @@ class FeedbacksController extends Controller
     {
         $order = Order::find($request->order_id);
         
-        $order->ratings()->create([
+        $rating = $order->ratings()->create([
             'service_id' => $request->service_id,
             'rating' => $request->service_rating,
             'feedback' => $request->service_feedback,
@@ -65,7 +65,8 @@ class FeedbacksController extends Controller
             'service_id' => $request->service_id,
             'rating' => $request->platform_rating,
             'message' => $request->platform_message,
-            'from' => $request->from
+            'from' => $request->from,
+            'service_rating_id' => $rating->id
         ]);
 
         $jobseeker = User::find($order->service->user_id);
@@ -83,18 +84,19 @@ class FeedbacksController extends Controller
             
             $totalorders = Order::whereHas('service', function($q) use($jobseeker){
                 $q->where('user_id', $jobseeker->id);
-            })->where('status',7); //Counter for Reward Points
+            })->where('status',7)->count(); //Counter for Reward Points
     
             //Reward Points
             if($totalorders <= 0){ //first time
                 $reward = new GiveReward($jobseeker->id, 'receiving_1st_service_order_rf');
                 $reward->send();
-                $reward2 = new GiveReward(auth()->user()->id, 'creating_1st_service_order_feedback');
+                $reward2 = new GiveReward($jobseeker->id, 'creating_1st_service_order_feedback');
                 $reward2->send();
-            }else{
+            }
+            else{
                 $reward = new GiveReward($jobseeker->id, 'receiving_service_order_rf');
                 $reward->send();
-                $reward2 = new GiveReward(auth()->user()->id, 'creating_service_order_feedback');
+                $reward2 = new GiveReward($jobseeker->id, 'creating_service_order_feedback');
                 $reward2->send();
             }
             
