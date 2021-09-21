@@ -32,7 +32,8 @@ use JobSeeker\JobseekerProfileController;
 */
 Route::post('/register', 'Auth\RegisteredUserController@store');
 Route::get('verify', 'Auth\RegisteredUserController@verify');
-// PUBLIC PATHS
+
+// PUBLIC PATHS (Landing Pages)
 Route::get('/', 'PagesController@index');
 Route::get('campaigns', 'PagesController@campaigns')->name('campaigns');
 Route::get('campaign/{id}', 'PagesController@campaign_view')->name('campaign_view');
@@ -86,7 +87,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
 
     Route::post('jobseekers/{id}/update','Admin\JobseekerProfileController@update')->name('jobseekers.profile.update');
     Route::post('jobseekers/{id}/updatepppp','Admin\JobseekerProfileController@updatepppp')->name('jobseekers.profile.updatepppp');
-    // Route::post('profile/updatepppp','JobSeeker\JobseekerProfileController@updatepppp')->name('profile.updatepppp');
 
     Route::post('profile/update','JobSeeker\JobseekerProfileController@update')->name('profile.update');
     Route::post('profile/updatepppp','JobSeeker\JobseekerProfileController@updatepppp')->name('profile.updatepppp');
@@ -156,7 +156,7 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
 });
 
-//Backer
+//Backer -> using Route Group
 Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is-backer'])->group(function (){
     Route::get('/', 'Backer\AccountController@index')->name('index');
     Route::post('myaccount/update', 'Backer\AccountController@update')->name('myaccount.update');
@@ -179,6 +179,7 @@ Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is
 
 });
 
+//Chats
 Route::get('chats', 'ChatsController@index')->name('chats');
 Route::get('get-messages/{id}', 'ChatsController@fetchMessages');
 Route::get('get-user/{id}', 'ChatsController@getUser');
@@ -196,18 +197,7 @@ Route::get('/campaign-mail', function () { return new CampaignMail(); }); //crea
 Route::get('/job-mail', function () { return new JobMail(); }); //creating job email
 Route::get('/try1', function () { return new Try1(); });
 
-// campaign-mail
-// donation-received-mail
-// job-mail
-// order-accept-mail
-// order-request-mail
-// service-create-mail
-// tier-rankup-mail
-// user-verifemail
-// welcome-mail
-
 Route::view('/service', 'emails/service-create-mail');
-
 
 // Front-End Coding
 Route::get('/login-demo', function () { return view('/auth/login-demo'); });
