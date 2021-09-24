@@ -494,9 +494,9 @@
                                         </div>
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
-                                                <label for="year">Year/s</label>
-                                                <span class="j_tag_trans">(Taon)</span>
-                                                <input type="text" name="workexp[year][]" class="form-control" value="{{$workexp->year}}" id="year"/>
+                                                <label for="year">Period</label>
+                                                <span class="j_tag_trans">(Panahon)</span>
+                                                <input type="text" name="workexp[year][]" class="form-control" value="{{$workexp->year}}" id="year"/ placeholder="YYYY-YYYY">
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-12 mb-50">
@@ -515,19 +515,22 @@
                                         <div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label for="company">Company</label>
+                                                <span class="j_tag_trans">(Kompanya)</span>
                                                 <input type="text" name="workexp[company][]" class="form-control" id="company"/>
                                             </div>
                                         </div>
                                         <div class="col-md-5 col-12">
                                             <div class="form-group">
-                                                <label for="description">Description</label>
+                                                <label for="description">Position</label>
+                                                <span class="j_tag_trans">(Posisyon)</span>
                                                 <input type="text" name="workexp[description][]" class="form-control" id="description"/>
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
-                                                <label for="year">Year</label>
-                                                <input type="text" name="workexp[year][]" class="form-control" id="year"/>
+                                                <label for="year">Period</label>
+                                                <span class="j_tag_trans">(Panahon)</span>
+                                                <input type="text" name="workexp[year][]" class="form-control" id="year"/ placeholder="YYYY-YYYY">
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-12 mb-50">

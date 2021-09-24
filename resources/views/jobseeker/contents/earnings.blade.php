@@ -148,7 +148,7 @@
                                             @elseif($payout->status == 'paid')
                                                 <span class="badge badge-success">Paid</span>
                                             @elseif($payout->status == 'denied')
-                                                <span class="badge badge-error">Denied</span>
+                                                <span class="badge badge-danger">Denied</span>
                                             @endif
                                         </td>
                                         
@@ -288,7 +288,7 @@
                                                 @elseif($crequest->status == 'paid')
                                                     <span class="badge badge-success">Paid</span>
                                                 @elseif($crequest->status == 'denied')
-                                                    <span class="badge badge-error">Denied</span>
+                                                    <span class="badge badge-danger">Denied</span>
                                                 @endif
                                             </td>
                                         </tr>

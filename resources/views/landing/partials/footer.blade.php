@@ -9,20 +9,20 @@
                <div class="col-sm-2 d-flex justify-content-start align-items-start ">
                   <ul>
                      <li><h4 class="footernav_heading_text">CAMPAIGNS</h4></li>
-                     <a href="/campaigns?category=1">Education</a><br>
+                     <!-- <a href="/campaigns?category=1">Education</a><br>
                      <a href="/campaigns?category=2">Medical/ Health</a><br>
                      <a href="/campaigns?category=3">Animals</a><br>
-                     <a href="/campaigns?category=4">Nonprofit/ Charity</a><br>
+                     <a href="/campaigns?category=4">Nonprofit/ Charity</a><br> -->
                      <a href="{{route('campaigns')}}">Browse more ></a><br>
                   </ul>
                </div>
                <div class="col-sm-2 d-flex justify-content-start align-items-start ">
                <ul>
                      <li><h4 class="footernav_heading_text">SERVICES</h4></li>
-                     <a href="/services?category=1">Tutor</a><br>
+                     <!-- <a href="/services?category=1">Tutor</a><br>
                      <a href="/services?category=2">Babysitter</a><br>
                      <a href="/services?category=3">Driver</a><br>
-                     <a href="/services?category=4">Gardener</a><br>
+                     <a href="/services?category=4">Gardener</a><br> -->
                      <a href="{{route('services')}}">Browse more ></a><br>
                   </ul>
                </div>

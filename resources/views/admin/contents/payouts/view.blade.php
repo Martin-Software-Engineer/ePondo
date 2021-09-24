@@ -58,6 +58,7 @@
                                     <select name="status" class="form-control">
                                         <option value="pending" @if($payout->status == 'pending') selected @endif>Pending</option>
                                         <option value="paid" @if($payout->status == 'paid') selected @endif>Paid</option>
+                                        <option value="denied" @if($payout->status == 'denied') selected @endif>Denied (Reversed back to Jobseeker Account)</option>
                                     </select>
                                 </div>
                             </div>
