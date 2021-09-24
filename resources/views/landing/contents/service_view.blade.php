@@ -187,9 +187,10 @@
                 <div class="col-sm-4">
                     
                         @guest
-                        
-                        <div class="service_btn btn btn-block ">
-                            <h2 class="donate_now">Log In to Avail Service</h2>
+                        <div class="service_btn btn btn-block" href="{{route('login')}}">
+                            <!-- <h2 class="donate_now" >Log In to Avail Service</h2> -->
+                            <a href="{{route('login')}}">Log In to Avail Service</a>
+                            <!-- <h2 class="donate_now"><a href="{{route('login')}}">Log In to Avail Service</a></h2> -->
                         </div>
                         @endguest
                         @auth
@@ -542,7 +543,7 @@
                                     </div>
                                     <div class="progress progress-bar-primary">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
-                                            aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" 
+                                            aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%; background-color:#120a78;" 
                                             aria-describedby="example-caption-2">
                                         </div>
                                     </div>

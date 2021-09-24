@@ -1311,6 +1311,7 @@ button.donate_btn {
 }
 
 .s_img_jname{
+    height:20px;
     display: flex;
     padding: 0 20px 0 20px;
     /* align-items: center; */
@@ -1795,20 +1796,22 @@ button.donate_btn {
 }
 
 .service_btn a {
-    width: 150px;
+    /* width: 150px; */
     text-align: center;
-    font-size: 14px;
+    /* font-size:14px; */
+    font-size: 24px;
+    font-weight: bold;
     color: #ffffff;
-    background-color: #120a78;
-    border: 2px solid #ffffff;
+    /* background-color: #120a78;
+    border: 2px solid #ffffff; */
     padding: 8px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
-.service_btn a:hover {
+/* .service_btn a:hover {
     color: #ffffff;
     background-color: #120a78;
-}
+} */
 
 .s_hlocation2{
     font-weight:600;

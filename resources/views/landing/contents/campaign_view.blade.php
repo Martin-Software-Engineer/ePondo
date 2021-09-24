@@ -191,7 +191,7 @@
                             </div>
                             <div class="progress progress-bar-primary">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
-                                    aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%" 
+                                    aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%; background-color:#120a78;" 
                                     aria-describedby="example-caption-2">
                                 </div>
                             </div>

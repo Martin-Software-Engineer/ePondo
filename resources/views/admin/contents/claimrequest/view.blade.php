@@ -74,6 +74,7 @@
                                     <select name="status" class="form-control">
                                         <option value="pending" @if($claimrequest->status == 'pending') selected @endif>Pending</option>
                                         <option value="paid" @if($claimrequest->status == 'paid') selected @endif>Paid</option>
+                                        <option value="denied" @if($claimrequest->status == 'denied') selected @endif>Denied - (Reversed back to Jobseeker Account)</option>
                                     </select>
                                 </div>
                             </div>

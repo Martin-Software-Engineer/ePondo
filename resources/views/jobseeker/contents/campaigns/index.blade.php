@@ -29,7 +29,7 @@
 <section>
 <div class="row match-height">
     @forelse($campaigns as $campaign)
-    <div class="col-md-4 col-lg-3">
+    <div class="col-md-4 col-lg-3 mb-2">
         <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
             <div class="row">
                 <div class="col-md-12">
