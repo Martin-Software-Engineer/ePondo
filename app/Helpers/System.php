@@ -97,13 +97,13 @@ class System{
     public static function RewardsEarn($service_price, $tier){
         switch($tier){
             case 'silver':
-               return $service_price*0.6;
+               return $service_price*0.06;
             break;
             case 'gold': 
-                return $service_price*1.2;
+                return $service_price*0.012;
             break;
             case 'platinum': 
-                return $service_price*2;
+                return $service_price*.02;
             break;
             default: 
             return 0;

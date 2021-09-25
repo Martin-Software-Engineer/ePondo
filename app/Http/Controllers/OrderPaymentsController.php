@@ -28,6 +28,7 @@ use App\Models\Order;
 use App\Models\Transaction as MyTransaction;
 use App\Models\Donation;
 use App\Models\Invoice;
+use App\Models\ServiceReward;
 
 use Carbon\Carbon;
 use App\Mail\SendMail;
@@ -134,13 +135,14 @@ class OrderPaymentsController extends Controller
                 $transaction->save();
 
                 $order = Order::find($transaction->orders[0]->id);
+                $order->status = 6;
+                $order->save();
 
                 $jobseeker_id = $order->service->jobseeker->id;
                 $jobseeker = User::find($jobseeker_id);
 
                 $backer_id = $order->backer->id; //Find Backer ID
                 $backer = User::find($backer_id); //Get backer data for Email
-
                 
                 $order_id = System::GenerateFormattedId('S', $order->id);
                 $invoice_id = System::GenerateFormattedId('I', $order->invoice->id);
@@ -151,6 +153,11 @@ class OrderPaymentsController extends Controller
 
                 $jobseeker->notify(new OrderPaymentNotification($order, $order->invoice));
                 $backer->notify(new OrderPaymentNotification($order, $order->invoice));
+
+                $cpoints = $jobseeker->rewards->sum('points');
+                $tier = System::RewardsTier($cpoints);
+                $reward_earned = System::RewardsEarn($order->service->price, $tier);
+                ServiceReward::create(['user_id' => $jobseeker_id, 'order_id' => $order->id, 'amount' => $reward_earned]);
 
                 Mail::to($backer->email)->queue(new SendMail('emails.backer.order-payment-mail', [
                     'subject' => 'Payment Successful',
@@ -164,6 +171,7 @@ class OrderPaymentsController extends Controller
                     'amount' => $transaction->amount,
                     'paid_at' => $transaction->paid_at
                 ]));
+
                 Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-payment-mail', [
                     'subject' => 'Payment Successful',
                     'order_id' => $order_id,

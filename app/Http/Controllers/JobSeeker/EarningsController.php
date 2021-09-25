@@ -8,6 +8,7 @@ use App\Models\Payout;
 use App\Models\Invoice;
 use App\Models\Service;
 use App\Models\Campaign;
+use App\Models\ServiceReward;
 use Illuminate\Http\Request;
 use App\Models\ClaimedDonations;
 use App\Http\Controllers\Controller;
@@ -19,15 +20,16 @@ class EarningsController extends Controller
         $user = auth()->user();
 
         $earnings = $user->earnings;
+        $rewards = ServiceReward::where('user_id', $user->id)->get()->sum('amount');
         $withdrawn = Payout::where('user_id', $user->id)->where('status', 'paid')->get()->sum('amount');
         $pendings = Payout::where('user_id', $user->id)->where('status', 'pending')->get()->sum('amount');
-        $available = $earnings - ($withdrawn + $pendings);
+        $available = ($earnings + $rewards) - ($withdrawn + $pendings);
 
         $service['earnings'] = $earnings;
         $service['withdrawn'] = $withdrawn;
         $service['pendings'] = $pendings;
         $service['available'] = $available;
-
+        
         $service['payouts'] = Payout::where('user_id', $user->id)->get();
         $service['history'] = Invoice::with('order')->whereHas('order', function($q) use($user){
             $q->whereHas('transactions', function($trans){
@@ -64,10 +66,10 @@ class EarningsController extends Controller
         $campaign['pendings'] = $pendingClaims;
         $campaign['available'] = $availableFunds;
 
+        $data['service_rewards'] = ServiceReward::with('order')->where('user_id', $user->id)->get();
         $data['service_earnings'] = $service;
         $data['campaign_funds'] = $campaign;
 
-        
         return view('jobseeker.contents.earnings', $data);
     }
 

@@ -251,10 +251,10 @@
                     contentType: false,
                     cache: false,
                     processData: false,
-                    beforeSend: function() {
+                    beforeSend: () => {
                         form.find('button[type=submit]').prop('disabled', true);
                     },
-                    success: function(resp) {
+                    success: (resp) => {
                         $(this).find('button[type=submit]').prop('disabled', false);
                         if (resp.success) {
                             Swal.fire({
@@ -277,6 +277,15 @@
                                 }
                             });
                         }
+                    },
+                    error: (req, status, error) => {
+                        $(this).find('button[type=submit]').prop('disabled', false);
+                        $.each(req.responseJSON.errors, (i,error) => {
+                            toastr["error"](error[0], "Error!", {
+                                closeButton: true,
+                                tapToDismiss: false,
+                            });
+                        });
                     }
                 });
             });
