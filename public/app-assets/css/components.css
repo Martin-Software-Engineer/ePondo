@@ -719,7 +719,6 @@ footer.footer-border {
 .main-menu.menu-light .navigation>li.active>a {
     /* background: -webkit-linear(332deg, #191268, rgba(25, 18, 104, 0.8)); */
     background: linear-gradient(118deg, #191268, rgba(25, 18, 104, 0.8));
-    
     box-shadow: 0 0 10px 0px rgba(25, 18, 104, 0.8);
     color: #FFFFFF;
     font-weight: 400;
@@ -1196,8 +1195,8 @@ footer.footer-border {
 }
 
 .avatar .avatar-content {
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1211,7 +1210,7 @@ footer.footer-border {
     -ms-flex-align: center;
     align-items: center;
     border-radius: 50%;
-    font-size: 0.857rem;
+    font-size: 1.5rem;
 }
 
 .avatar .avatar-content .avatar-icon {
