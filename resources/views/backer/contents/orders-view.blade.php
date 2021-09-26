@@ -73,6 +73,9 @@
                         @if($order->status == 1)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:lightskyblue"> Pending Request </span> </h5>
                             <p style="font-size:12px; margin-bottom:20px;"> Please wait 1-3 days for Jobseeker to respond to your Service Order Request.</p>
+                            <button type="button" class="btn-cancel btn btn-danger btn-block mb-75" data-toggle="modal" data-target="#cancel-modal">
+                                Cancel Order
+                            </button>
                         @endif
                         @if($order->status == 2)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Order Accepted </span> </h5>
@@ -211,47 +214,74 @@
             </form>
         </div>
     </div>
-</div>    
+</div> 
+<div class="modal fade" id="cancel-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Cancel Order?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('backer.orders.cancel')}}" method="POST">
+                @csrf
+                <input type="hidden" name="order_id" value="{{$order->id}}">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="reason">What is the reason for the cancellation of the order?</label>
+                                <textarea name="reason" id="reason" cols="30" rows="6" class="form-control"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger btn-block">Cancel Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>   
 @endsection
 @section('scripts')
     <script>
         $(function(){
             'use strict';
 
-            $('.btn-accept').on('click', function(){
+            $('#cancel-modal').on('submit','form', function(e){
+                e.preventDefault();
+
                 $.ajax({
-                    url: '/jobseeker/orders/{{$order->id}}/accept',
-                    type: 'GET',
-                    success: function(resp){
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    beforeSend: function() {
+                        $(this).find('button[type=submit]').prop('disabled', true);
+                    },
+                    success: function(resp) {
+                        $(this).find('button[type=submit]').prop('disabled', false);
                         if(resp.success){
+                            $('#cancel-modal').modal('hide');
                             toastr['success'](resp.msg, 'Success!', {
                                 closeButton: true,
                                 tapToDismiss: false
                             });
 
-                            location.reload()
-                        }
-                    }
-                });
-            });
-
-            $('.btn-decline').on('click', function(){
-                $.ajax({
-                    url: '/jobseeker/orders/{{$order->id}}/decline',
-                    type: 'GET',
-                    success: function(resp){
-                        if(resp.success){
-                            toastr['success'](resp.msg, 'Success!', {
+                            setTimeout(function(){
+                                location.reload();
+                            }, 2000)
+                        }else{
+                            toastr['error'](resp.msg, 'Error!', {
                                 closeButton: true,
                                 tapToDismiss: false
                             });
-
-                            location.reload()
                         }
                     }
                 });
             });
-
             $('#feedback-modal').on('submit', 'form', function(e) {
                 e.preventDefault();
 

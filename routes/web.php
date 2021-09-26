@@ -122,8 +122,8 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::get('orders/{id}/show', 'JobSeeker\OrdersController@show')->name('orders.show');
     Route::get('orders/{id}/accept', 'JobSeeker\OrdersController@accept')->name('orders.accept');
     Route::get('orders/{id}/deliver', 'JobSeeker\OrdersController@deliver')->name('orders.deliver');
-    Route::get('orders/{id}/decline', 'JobSeeker\OrdersController@decline')->name('orders.decline');
     Route::get('order-list', 'JobSeeker\OrdersController@data')->name('order-list');
+    Route::post('orders/decline', 'JobSeeker\OrdersController@decline')->name('orders.decline');
 
     Route::resource('feedbacks', 'JobSeeker\FeedbacksController');
 
