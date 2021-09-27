@@ -76,7 +76,7 @@
                                             <span class="j_tag_trans">(Mithing Petsa)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="date" name="target_date" id="target-date" value="{{$campaign->target_date}}" class="form-control">
+                                            <input type="date" name="target_date" id="target_date" value="{{$campaign->target_date}}" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -87,14 +87,11 @@
                                             <span class="j_tag_trans"><br>(Mithing Halaga)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div class="input-group mb-2">
+                                            <div class="input-group flex-wrap mb-2">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">₱</span>
                                                 </div>
-                                                <input type="number" name="target_amount" step=".01" id="target-amount" value="{{$campaign->target_amount}}" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                                <input type="number" name="target_amount" step=".01" id="target_amount" value="{{$campaign->target_amount}}" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
                                             </div>
                                         </div>
                                     </div>
@@ -109,7 +106,7 @@
                                             @foreach($campaign->tags as $tag)
                                                 @php array_push($tags, $tag->name); @endphp
                                             @endforeach
-                                            <input name="tags" id="tagsinput" class="tagsinput" value="{{join(",", $tags)}}" />
+                                            <input name="tags" id="tags" class="tagsinput" value="{{join(",", $tags)}}" />
                                             <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
                                         </div>
                                     </div>
@@ -224,6 +221,10 @@
                     processData: false,
                     beforeSend: function() {
                         form.find('button[type=submit]').prop('disabled', true);
+                        form.find('.invalid-feedback').remove();
+                        form.find('.valid-feedback').remove();
+                        form.find('.invalid-feedback.valid-feedback').remove();
+                        form.find('input').removeClass('is-invalid');
                     },
                     success: function(resp) {
                         form.find('button[type=submit]').prop('disabled', false);
@@ -241,6 +242,21 @@
                                 location.href = "{{route('jobseeker.campaigns.index')}}"
                             });
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $(this).find('button[type=submit]').prop('disabled', false);
+                        $.each(xhr.responseJSON.errors, function(name, error) {
+                            form.find('button[type=submit]').prop('disabled', false);
+                            form.find('#' + name).siblings('.invalid-feedback').remove();
+                            form.find('#' + name).siblings('.valid-feedback').remove();
+                            form.find('#' + name).siblings('.invalid-feedback.valid-feedback').remove();
+                            form.find('#' + name).addClass('is-invalid');
+                            form.find('#' + name).after(`
+                                <div class="invalid-feedback">
+                                ${error}
+                            </div>
+                            `);
+                        });
                     }
                 });
             });

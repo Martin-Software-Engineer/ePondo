@@ -402,12 +402,22 @@
 
         withdrawModal.on('submit', 'form', function(e){
             e.preventDefault();
+            form = withdrawModal.find('form');
             $(this).find('button[type=submit]').prop('disabled', true);
             $.ajax({
                 url: $(this).attr('action'),
                 type: 'POST',
                 data: $(this).serialize(),
+                beforeSend: function() {
+                    form.find('button[type=submit]').prop('disabled', true);
+                    form.find('.invalid-feedback').remove();
+                    form.find('.valid-feedback').remove();
+                    form.find('.invalid-feedback.valid-feedback').remove();
+                    form.find('input').removeClass('is-invalid');
+                    form.find('textarea').removeClass('is-invalid');
+                },
                 success: function(resp){
+                    form.find('button[type=submit]').prop('disabled', false);
                     if(resp.success){
                         Swal.fire({
                             title: 'Success!',
@@ -417,6 +427,20 @@
                             location.reload();
                         });
                     }
+                },
+                error: function(xhr, status, error){
+                    $.each(xhr.responseJSON.errors, function(name, error){
+                        form.find('button[type=submit]').prop('disabled', false);
+                        form.find('#'+name).siblings('.invalid-feedback').remove();
+                        form.find('#'+name).siblings('.valid-feedback').remove();
+                        form.find('#'+name).siblings('.invalid-feedback.valid-feedback').remove();
+                        form.find('#'+name).addClass('is-invalid');
+                        form.find('#'+name).after(`
+                            <div class="invalid-feedback">
+                            ${error}
+                        </div>
+                        `);
+                    });
                 }
             });
         });

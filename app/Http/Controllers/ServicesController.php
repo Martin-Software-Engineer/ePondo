@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
+use App\Http\Requests\AvailService;
+
 use App\Models\Service;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -19,7 +21,7 @@ class ServicesController extends Controller
     public function __constructor(){
         $this->midlleware('auth');
     }
-    public function avail(Request $request){
+    public function avail(AvailService $request){
         $service = Service::find($request->service_id);
         $backer = User::find(auth()->user()->id);
         $backer_id = $backer->id;

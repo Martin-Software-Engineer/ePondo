@@ -79,11 +79,11 @@
                             <div class="col-12">
                                 <div class="form-group row">
                                     <div class="col-sm-3 col-form-label">
-                                        <label for="paypal">Contact No. :</label>
+                                        <label for="contact">Contact No. :</label>
                                         <span class="j_tag_trans"></span>
                                     </div>
                                     <div class="col-sm-9">
-                                        <input id="paypal" type="text" class="form-control" name="paypal" placeholder="09XXXXXXXXX"/>
+                                        <input id="contact" type="text" class="form-control" name="contact" placeholder="09XXXXXXXXX"/>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,16 @@
                 url: $(this).attr('action'),
                 type: 'POST',
                 data: $(this).serialize(),
+                beforeSend: function() {
+                    formClaim.find('button[type=submit]').prop('disabled', true);
+                    formClaim.find('.invalid-feedback').remove();
+                    formClaim.find('.valid-feedback').remove();
+                    formClaim.find('.invalid-feedback.valid-feedback').remove();
+                    formClaim.find('input').removeClass('is-invalid');
+                    formClaim.find('textarea').removeClass('is-invalid');
+                },
                 success: function(resp) {
+                    formClaim.find('button[type=submit]').prop('disabled', false);
                     if (resp.success) {
                         Swal.fire({
                             title: 'Success!',
@@ -133,13 +142,19 @@
                         });
                     }
                 },
-                error: function(req, status, err) {
-                    Swal.fire({
-                        title: 'Failed!',
-                        text: req.responseJSON.msg,
-                        icon: 'error'
+                error: function(xhr, status, error){
+                    $.each(xhr.responseJSON.errors, function(name, error){
+                        formClaim.find('button[type=submit]').prop('disabled', false);
+                        formClaim.find('#'+name).siblings('.invalid-feedback').remove();
+                        formClaim.find('#'+name).siblings('.valid-feedback').remove();
+                        formClaim.find('#'+name).siblings('.invalid-feedback.valid-feedback').remove();
+                        formClaim.find('#'+name).addClass('is-invalid');
+                        formClaim.find('#'+name).after(`
+                            <div class="invalid-feedback">
+                            ${error}
+                        </div>
+                        `);
                     });
-                    formClaim.find('button[type=submit]').prop('disabled', false);
                 }
             })
         });

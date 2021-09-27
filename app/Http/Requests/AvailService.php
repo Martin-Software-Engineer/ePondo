@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCampaign extends FormRequest
+class AvailService extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,9 @@ class UpdateCampaign extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:50',
-            'description' => 'required|string|max:1000',
-            'category' => 'required',
-            'target_date' => 'required|date',
-            'target_amount' => 'required|integer',
-            'tags' => 'required'
+            'render_date' => 'required|date',
+            'delivery_address' => 'required|string|max:100',
+            'message' => 'required|string|max:500'
         ];
     }
 }

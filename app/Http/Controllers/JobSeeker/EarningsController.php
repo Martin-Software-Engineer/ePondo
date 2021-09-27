@@ -75,6 +75,10 @@ class EarningsController extends Controller
 
 
     public function withdraw(Request $request){
+        $request->validate([
+            'details' => 'required|string|max:100'
+        ]);
+        
         $payout = Payout::create([
             'user_id' => auth()->user()->id,
             'amount' => $request->amount,

@@ -636,7 +636,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Service Delivery Date</label>
-                                    <input type="date" name="render_date" class="form-control">
+                                    <input type="date" name="render_date" id="render_date" class="form-control">
                                 </div>
                             </div>   
                         </div>
@@ -644,7 +644,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Service Delivery Location (Location where service will be rendered/delivered)</label>
-                                    <input type="text" name="delivery_address" class="form-control">
+                                    <input type="text" name="delivery_address" id="delivery_address" class="form-control">
                                 </div>
                             </div>   
                         </div>
@@ -652,7 +652,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="message">Message (Pls. indicate any additional message/requests)</label>
-                                    <textarea name="message" cols="30" rows="6" class="form-control"></textarea>
+                                    <textarea name="message" id="message" cols="30" rows="6" class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -742,6 +742,11 @@
                 data: $(this).serialize(),
                 beforeSend: function(){
                     availForm.find('button[type=submit]').prop('disabled', true);
+                    availForm.find('.invalid-feedback').remove();
+                    availForm.find('.valid-feedback').remove();
+                    availForm.find('.invalid-feedback.valid-feedback').remove();
+                    availForm.find('input').removeClass('is-invalid');
+                    availForm.find('textarea').removeClass('is-invalid');
                 },
                 success: function(resp){
                     if(resp.success){
@@ -757,6 +762,20 @@
                             location.reload();
                         })
                     }
+                },
+                error: function(resp){
+                    $.each(resp.responseJSON.errors, function(name, error){
+                        availForm.find('button[type=submit]').prop('disabled', false);
+                        availForm.find('#'+name).siblings('.invalid-feedback').remove();
+                        availForm.find('#'+name).siblings('.valid-feedback').remove();
+                        availForm.find('#'+name).siblings('.invalid-feedback.valid-feedback').remove();
+                        availForm.find('#'+name).addClass('is-invalid');
+                        availForm.find('#'+name).after(`
+                            <div class="invalid-feedback">
+                            ${error}
+                        </div>
+                        `);
+                    });
                 }
             });
         });

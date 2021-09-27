@@ -225,7 +225,7 @@
                                             <div class="form-group">
                                                 <label for="kids_name">Name</label>
                                                 <span class="j_tag_trans">(Pangalan)</span>
-                                                <input type="text" name="kids[name][]" class="form-control" value="{{$kid->fullname}}" id="kids_name"/>
+                                                <input type="text" name="kids[name][]" class="form-control" value="{{$kid->fullname}}" id="kids[name][]"/>
                                             </div>
                                         </div>
 
@@ -233,7 +233,7 @@
                                             <div class="form-group">
                                                 <label for="kids_age">Age</label>
                                                 <span class="j_tag_trans">(Edad)</span>
-                                                <input type="number" name="kids[age][]" class="form-control" value="{{$kid->age}}" id="kids_age"/>
+                                                <input type="number" name="kids[age][]" class="form-control" value="{{$kid->age}}" id="kids[name][]"/>
                                             </div>
                                         </div>
 
@@ -686,6 +686,14 @@
                                 location.reload()
                             }), 200;
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $.each(xhr.responseJSON.errors, function(key, text) {
+                            toastr['error'](text[0], 'Error!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+                        });
                     }
                 });
             });

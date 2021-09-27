@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\UpdatePublicProfile as UpdatePublicProfileRequest;
+
 class JobseekerProfileController extends Controller
 {
     /**
@@ -36,7 +38,7 @@ class JobseekerProfileController extends Controller
      * @param  \App\Models\JobseekerProfile  $jobseekerProfile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UpdatePublicProfileRequest $request)
     {
         $user = User::find(auth()->user()->id);
 
