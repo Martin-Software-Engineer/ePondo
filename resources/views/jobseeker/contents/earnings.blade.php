@@ -88,8 +88,12 @@
                     <a class="nav-link active" id="earnings-tab" data-toggle="pill" href="#earnings" aria-expanded="false">Earnings</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" id="rewards-tab" data-toggle="pill" href="#rewards" aria-expanded="true">Rewards</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="withdrawals-tab" data-toggle="pill" href="#withdrawals" aria-expanded="true">Withdrawal History</a>
                 </li>
+                
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="earnings" role="tabpanel" aria-labelledby="earnings-tab" aria-expanded="false">
@@ -113,6 +117,36 @@
                                         <td>{{$history->order->service->jobseeker->information->lastname}}, {{$history->order->service->jobseeker->information->firstname}}</td>
                                         <td>{{$history->order->backer->information->lastname}}, {{$history->order->backer->information->firstname}}</td>
                                         <td>₱{{$history->price}}</td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="rewards" aria-labelledby="rewards-tab" aria-expanded="true">
+                    <div class="card">
+                        <div class="card-datatable table-responsive">
+                            <table class="withdraw-list-table table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Order ID</th>
+                                        <th>Service</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($service_rewards as $reward)
+                                    <tr>
+                                        <td>{{$reward->created_at->format('M d, Y')}}</td>
+                                        <td>{{System::GenerateFormattedId('S', $reward->order->id)}}</td>
+                                        <td>{{$reward->order->service->title}}</td>
+                                        <td>₱{{$reward->amount}}</td>
                                     </tr>
                                     @empty
                                     <tr>

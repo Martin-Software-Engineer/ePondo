@@ -75,7 +75,7 @@
                     <button type="button" class="btn-accept btn btn-primary btn-block mb-75">
                         Accept
                     </button>
-                    <button type="button" class="btn-decline btn btn-danger btn-block mb-75">
+                    <button type="button" class="btn-decline btn btn-danger btn-block mb-75" data-toggle="modal" data-target="#decline-modal">
                         Decline
                     </button>
                     @endif
@@ -228,7 +228,37 @@
             </form>
         </div>
     </div>
-</div>    
+</div>   
+<div class="modal fade" id="decline-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Decline Order?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('jobseeker.orders.decline')}}" method="POST">
+                @csrf
+                <input type="hidden" name="order_id" value="{{$order->id}}">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="reason">What is the reason for the declining of the order?</label>
+                                <textarea name="reason" id="reason" cols="30" rows="6" class="form-control"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger btn-block">Decline Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>  
 @endsection
 @section('scripts')
     <script>
@@ -269,18 +299,33 @@
                 });
             });
 
-            $('.btn-decline').on('click', function(){
+            $('#decline-modal').on('submit','form', function(e){
+                e.preventDefault();
+
                 $.ajax({
-                    url: '/jobseeker/orders/{{$order->id}}/decline',
-                    type: 'GET',
-                    success: function(resp){
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    beforeSend: function() {
+                        $(this).find('button[type=submit]').prop('disabled', true);
+                    },
+                    success: function(resp) {
+                        $(this).find('button[type=submit]').prop('disabled', false);
                         if(resp.success){
+                            $('#decline-modal').modal('hide');
                             toastr['success'](resp.msg, 'Success!', {
                                 closeButton: true,
                                 tapToDismiss: false
                             });
 
-                            location.reload()
+                            setTimeout(function(){
+                                location.reload();
+                            }, 2000)
+                        }else{
+                            toastr['error'](resp.msg, 'Error!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
                         }
                     }
                 });

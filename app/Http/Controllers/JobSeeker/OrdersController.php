@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Orders as ResourceOrders;
 use App\Models\Order;
+use App\Models\OrderDecline;
 use App\Models\InvoiceNumber;
 use App\Models\User;
 use App\Helpers\System;
@@ -202,8 +203,8 @@ class OrdersController extends Controller
 
     }
 
-    public function decline($id){
-        $order = Order::find($id);
+    public function decline(Request $request){
+        $order = Order::find($request->order_id);
         $order->status = 3;
         $order->save();
 
@@ -212,6 +213,8 @@ class OrdersController extends Controller
 
         $jobseeker->notify(new OrderDeclinedNotification($order));
         $backer->notify(new OrderDeclinedNotification($order));
+
+        OrderDecline::create(['order_id' => $order->id, 'reason' => $request->reason]);
 
         Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-decline-mail', [
             'subject' => 'Service Order Declined',
