@@ -37,6 +37,7 @@ class ServicesController extends Controller
             'order_id' => $order->id,
             'render_date' => $request->render_date,
             'delivery_address' => $request->delivery_address,
+            'payment_method' => $request->payment_method,
             'message' => $request->message
         ]);
 
@@ -51,10 +52,11 @@ class ServicesController extends Controller
             'price' => number_format($service->price, 2),
             'render_date' => date('F d, Y', strtotime($details->render_date)),
             'delivery_address' => $details->delivery_address,
+            'payment_method' => $details->payment_method,
             'message' => $details->message
 
         ]));
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.backer.order-request-mail', [
+        Mail::to($backer->email)->queue(new SendMail('emails.backer.order-request-mail', [
             'subject' => 'Service Order Request',
             'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
             'order_id' => System::GenerateFormattedId('S', $order->id),
@@ -62,6 +64,7 @@ class ServicesController extends Controller
             'price' => number_format($service->price, 2),
             'render_date' => date('F d, Y', strtotime($details->render_date)),
             'delivery_address' => $details->delivery_address,
+            'payment_method' => $details->payment_method,
             'message' => $details->message
 
         ]));
