@@ -35,6 +35,7 @@
                             <h6 style="color:#120a78;margin-bottom:20px;font-size:16px;text-decoration:underline;">Details</h6>    
                             <h6 class="ml-2">Service Order Date : {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
                             <h6 class="ml-2">Location : {{$order->details->delivery_address}}</h6>
+                            <h6 class="ml-2">Payment Method : {{$order->details->payment_method}}</h6>
                             <h6 class="ml-2">Customer : {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
                             <h6 class="ml-2">Additional Message : {{$order->details->message}}</h6>
                         </div>
@@ -80,12 +81,19 @@
                     @endif
 
                     @if($order->status == 2)
-                    <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Order Accepted </span> </h5>
+                    <h5 style="font-weight:bolder;"> Status : <span style="color:#120a78"> Order Accepted </span> </h5>
                     <hr>
-                    <div style="font-size:12px; margin-bottom:20px; font-weight:lighter;"><strong>Instructions : </strong>Once you have completed the service order for your customer, you may now submit service order delivered by clicking the button below.</div>
-                    <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
-                        Submit Service Order Delivered
-                    </button>
+                        @if ($order->details->payment_method == 'OP')
+                        <div style="font-size:12px; margin-bottom:20px; font-weight:lighter;"><strong>Instructions : </strong>Once you have completed the service order for your customer, you may now submit service order delivered by clicking the button below.</div>
+                        <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
+                            Submit Service Order Delivered
+                        </button>
+                        @elseif ($order->details->payment_method == 'COD')
+                        <div style="font-size:12px; margin-bottom:20px; font-weight:lighter;"><strong>Instructions : </strong>Once you have completed the service order for your customer and received full payment, please click the submit button below to complete service order.</div>
+                        <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
+                            Submit Service Delivered & Payment Received
+                        </button>
+                        @endif
                     @endif
                     @if($order->status == 3)
                     <h5 style="font-weight:bolder;"> Status : <span style="color:red"> Declined </span> </h5>
@@ -95,10 +103,7 @@
                     @if($order->status == 4)
                     <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Ongoing </span> </h5>
                     <hr>
-                    <div style="font-size:12px; margin-bottom:20px; font-weight:lighter;"><strong>Instructions : </strong>Once you have completed the service order for your customer, you may now submit service order delivered by clicking the button below.</div>
-                    <button type="button" class="btn-deliver btn btn-success btn-block mb-75">
-                        Submit Service Order Delivered
-                    </button>
+                    <p style="font-size:12px; margin-bottom:20px;">Service Order is Ongoing. Thank you! </p>
                     @endif
                     @if($order->status == 5)
                     <h5 style="font-weight:bolder;"> Status : <span style="color:#FFC107"> Pending Payment </span> </h5>

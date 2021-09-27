@@ -134,6 +134,11 @@ class OrderPaymentsController extends Controller
                 $transaction->save();
 
                 $order = Order::find($transaction->orders[0]->id);
+                $order->status = 6; //Payment Successcul & Pending Feedback Rating
+                $order->save();
+                $invoice = Invoice::where('order_id',$order->id);
+                $invoice->status = 3; //Paid
+                $invoice->save();
 
                 $jobseeker_id = $order->service->jobseeker->id;
                 $jobseeker = User::find($jobseeker_id);

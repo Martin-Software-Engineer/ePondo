@@ -35,6 +35,7 @@
                             <h6 style="color:#120a78;margin-bottom:20px;font-size:16px;text-decoration:underline;">Details</h6>    
                             <h6 class="ml-2">Service Order Date : {{date('F d, Y', strtotime($order->details->render_date))}}</h6>
                             <h6 class="ml-2">Location : {{$order->details->delivery_address}}</h6>
+                            <h6 class="ml-2">Payment Method : {{$order->details->payment_method}}</h6>
                             <h6 class="ml-2">Customer : {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
                             <h6 class="ml-2">Additional Message : {{$order->details->message}}</h6>
                         </div>
@@ -72,11 +73,16 @@
                 <div class="card-body">
                         @if($order->status == 1)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:lightskyblue"> Pending Request </span> </h5>
-                            <p style="font-size:12px; margin-bottom:20px;"> Please wait 1-3 days for Jobseeker to respond to your Service Order Request.</p>
+                            <hr>
+                            <h6 style="font-size:12px; margin-bottom:20px;"> Please wait 1-3 days for Jobseeker to respond to your Service Order Request.</h6>
                         @endif
                         @if($order->status == 2)
-                            <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Order Accepted </span> </h5>
-                            <p style="font-size:12px; margin-bottom:20px;"> Service Order has been Accepted. Once service has been completed wait for Invoice and proceed to Payment. You may also contact your jobseeker by clicking the button below.</p>
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:#120a78"> Order Accepted </span> </h5>
+                            <hr>
+                            <h6 style="font-size:12px; margin-bottom:20px;"> Service Order has been Accepted. Payment Method is Cash on Delivery. Please be reminded that once jobseeker has delivered your service order, you must Pay accordingly to your Jobseeker.</h6>
+                            @if ($order->details->payment_method == 'COD')
+                            <a href="{{route('backer.order.invoice', $order->id)}}" class="btn btn-primary btn-block">View Invoice</a>
+                            @endif
                         @endif
                         @if($order->status == 3)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:crimson"> Declined </span> </h5>

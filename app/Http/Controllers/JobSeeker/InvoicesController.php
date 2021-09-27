@@ -72,8 +72,10 @@ class InvoicesController extends Controller
                 'categories' => $order->service->categories,
             ],
             'earned' => $order->invoice->price,
-
+            'payment_method' => $order->details->payment_method,
+            'invoice_status' => $order->invoice->status,
             'delivery_address' => $order->details->delivery_address,
+            'order_date' => $order->details->render_date,
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
