@@ -188,9 +188,7 @@
                     
                         @guest
                         <div class="service_btn btn btn-block" href="{{route('login')}}">
-                            <!-- <h2 class="donate_now" >Log In to Avail Service</h2> -->
                             <a href="{{route('login')}}">Log In to Avail Service</a>
-                            <!-- <h2 class="donate_now"><a href="{{route('login')}}">Log In to Avail Service</a></h2> -->
                         </div>
                         @endguest
                         @auth
@@ -204,7 +202,6 @@
           </div>
         </div>
     <!-- Service Header - End -->
-    
         <div class="row">
             <div class="col-md-8">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -645,6 +642,17 @@
                                 <div class="form-group">
                                     <label>Service Delivery Location (Location where service will be rendered/delivered)</label>
                                     <input type="text" name="delivery_address" id="delivery_address" class="form-control">
+                                </div>
+                            </div>   
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="payment_method">Payment Method</label>
+                                    <select name="payment_method" id="payment_method" class="form-control select2">
+                                        <option value="OP">Online Payment (Available: Paypal,Credit Card)</option>
+                                        <option value="COD">Cash on Delivery</option>
+                                    </select>
                                 </div>
                             </div>   
                         </div>

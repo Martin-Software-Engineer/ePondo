@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Mail\SendMail;
 use App\Helpers\System;
+use App\Models\Invoice;
 use App\Models\OrderCancel;
 use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
@@ -84,11 +85,13 @@ class OrdersController extends Controller
                 'categories' => $order->service->categories,
             ],
             'delivery_address' => $order->details->delivery_address,
+            'order_date' => $order->details->render_date,
             'add_charges' => [],
+            'payment_method' => $order->details->payment_method,
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
             'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee,
-            'order_status'  => $order->status
+            'invoice_status'  => $order->invoice->status
         ];
         
         return view('backer.contents.orders-invoice',$data);
@@ -99,7 +102,15 @@ class OrdersController extends Controller
     }
 
     public function cancel(Request $request){
-        $order = Order::find($request->order_id);
+
+        $order = Order::find($request->id);
+        $order->status = 8;
+        $order->save();
+
+        $invoice = Invoice::where('order_id',$order->id);
+        $invoice -> status = 4;
+        $invoice ->save();
+
         $backer = User::find($order->backer->id);
         $jobseeker = User::find($order->service->jobseeker->id);
 

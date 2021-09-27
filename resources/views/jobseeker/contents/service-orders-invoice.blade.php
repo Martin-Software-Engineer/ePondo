@@ -193,6 +193,18 @@
                         </div>
                         <div style=" align-items: flex-end;">
                             <h1 style="text-align:center;font-weight:bold;">INVOICE</h1>
+                            <p class="card-text mb-0"> <span style="margin-right:85px;font-weight:500">Status : </span>
+                                @if($invoice_status ==1 )
+                                Ongoing
+                                @elseif($invoice_status ==2 )
+                                Pending Payment
+                                @elseif($invoice_status ==3 )
+                                Paid
+                                @elseif($invoice_status ==4 )
+                                Cancelled
+                                @endif
+                            </p>
+                            <p class="card-text mb-0"> <span style="font-weight:500">Payment Method : </span> {{$payment_method}}</p>
                             <p class="card-text mb-0"> <span style="margin-right:45px;font-weight:500">Date Issued : </span> {{$date_issued}}</p>
                             <p class="card-text mb-0"> <span style="margin-right:55px;font-weight:500">Invoice No : </span>  {{$invoice_no}}</p>
                             <p class="card-text mb-0"> <span style="margin-right:4px;font-weight:500">Service Order No : </span>  {{$order_no}}</p>
@@ -274,6 +286,9 @@
                             </p>
                             <p class="card-text" style="font-size:12px; margin:10px 10px 10px 10px;">
                                     <strong>Location : </strong>{{$delivery_address}}
+                            </p>
+                            <p class="card-text" style="font-size:12px; margin:10px 10px 10px 10px;">
+                                    <strong>Order Date : </strong>{{$order_date}}
                             </p>
                         </div>
                         <div style="border: 2px solid rgb(235, 228, 228);width:50%">
