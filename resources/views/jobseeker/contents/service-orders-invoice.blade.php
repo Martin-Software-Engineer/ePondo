@@ -303,8 +303,8 @@
                     <div class="d-flex" style="display:flex;justify-content:flex-end;align-items:flex-end;margin-top:20px;">
                         <div style="text-align:right;margin-right:20px;">
                             <h6>Sub-Total : </h6>
-                            <h6>Transaction Fee 7% : </h6>
-                            <h6>Processing Fee 3% : </h6>
+                            <h6>Transaction Fee : </h6>
+                            <h6>Processing Fee : </h6>
                             <h6>Total Due : </h6>
                         </div>
                         <div style="text-align:right;margin:0 20px 0 10px">
@@ -319,7 +319,7 @@
                             <h4 style="color: #ffffff;">Total Earned : </h4>
                         </div>
                         <div style="text-align:right;padding: 5px 20px 0px 10px;background-color: #041151;">
-                            <h4 style="color: #ffffff;">Php {{$service->price}}</h4>
+                            <h4 style="color: #ffffff;">Php {{$total_earned}}</h4>
                         </div>
                     </div>
                 </div> 

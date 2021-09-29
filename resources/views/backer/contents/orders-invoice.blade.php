@@ -326,8 +326,8 @@
                     <div class="d-flex" style="display:flex;justify-content:flex-end;align-items:flex-end;margin-top:20px;">
                         <div style="text-align:right;margin-right:20px;">
                             <h6>Sub-Total : </h6>
-                            <h6>Transaction Fee 7% : </h6>
-                            <h6>Processing Fee 3% : </h6>
+                            <h6>Transaction Fee : </h6>
+                            <h6>Processing Fee : </h6>
                         </div>
                         <div style="text-align:right;margin:0 20px 0 10px">
                             <h6>{{$service->price}}</h6>

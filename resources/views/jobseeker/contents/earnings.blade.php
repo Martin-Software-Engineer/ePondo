@@ -23,7 +23,7 @@
 @endsection
 
 @section('content')
-<ul class="nav nav-pills">
+<ul class="nav nav-pills" style="border-bottom:darkblue;">
     <li class="nav-item">
         <a class="nav-link active" id="service-tab" data-toggle="pill" href="#service" aria-expanded="true">Service Earnings</a>
     </li>
@@ -31,7 +31,6 @@
         <a class="nav-link" id="campaign-tab" data-toggle="pill" href="#campaign" aria-expanded="false">Campaign Funds</a>
     </li>
 </ul>
-
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="service" aria-labelledby="service-tab" aria-expanded="true">
         <section>
@@ -48,11 +47,20 @@
         </section>
         <section>
             <div class="row">
+            <!-- col-xl-3 col-md-3 col-sm-6 -->
                 <div class="col-xl-3 col-md-3 col-sm-6">
                     <div class="card text-center">
                         <div class="card-body">
                             <h2 class="font-weight-bolder">₱{{$service_earnings['earnings']}}</h2>
                             <p class="card-text">Total Earnings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3 col-sm-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h2 class="font-weight-bolder">₱{{$service_earnings['rewards']}}</h2>
+                            <p class="card-text">Rewards</p>
                         </div>
                     </div>
                 </div>
@@ -120,7 +128,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
+                                        <td colspan="5" class="text-center"><h3>No Records Found</h3></td>
                                     </tr>
                                     @endforelse
                                 </tbody>
@@ -289,7 +297,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
+                                        <td colspan="5" class="text-center"><h3>No Records Found</h3></td>
                                     </tr>
                                     @endforelse
                                 </tbody>
