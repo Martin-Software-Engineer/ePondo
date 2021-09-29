@@ -104,16 +104,9 @@ class OrdersController extends Controller
     public function cancel(Request $request){
 
         $order = Order::find($request->id);
-        $order->status = 8;
-        $order->save();
-
         $invoice = Invoice::where('order_id',$order->id);
-        $invoice -> status = 4;
-        $invoice ->save();
-
         $backer = User::find($order->backer->id);
         $jobseeker = User::find($order->service->jobseeker->id);
-
         $orderDate = Carbon::parse($order->details->render_date);
         $now = Carbon::now();
         $datediff = $orderDate->diffInDays($now);
@@ -121,24 +114,34 @@ class OrdersController extends Controller
         if($datediff >= 3 && $orderDate > $now){
             $order->status = 8;
             $order->save();
+
+            $invoice -> status = 4;
+            $invoice ->save();
             
             if($order)
-                OrderCancel::create(['order_id' => $order->id, 'reason' => $request->reason]);
-
+            {
+                $cancel = OrderCancel::create(['order_id' => $order->id, 'reason' => $request->reason]);
+            }
+                
             $jobseeker->notify(new OrderCancelledNotification($order));
             $backer->notify(new OrderCancelledNotification($order));
 
             Mail::to($backer->email)->queue(new SendMail('emails.order-cancel-request-mail', [
                 'subject' => 'Service Order Cancelled',
-                'order_id' => System::GenerateFormattedId('S', $order->id)
+                'order_id' => System::GenerateFormattedId('S', $order->id),
+                'reason' => $cancel->reason
+
             ]));
             Mail::to($jobseeker->email)->queue(new SendMail('emails.order-cancelled-mail', [
                 'subject' => 'Service Order Cancelled',
-                'order_id' => System::GenerateFormattedId('S', $order->id)
+                'order_id' => System::GenerateFormattedId('S', $order->id),
+                'reason' => $cancel->reason
             ]));
 
             return response()->json(['success' => true, 'msg' => 'Order Cancelled.']); 
-        }else{
+        }
+        else
+        {
             return response()->json(['success' => false, 'msg' => 'Cancel Order is no longer available.']);
         }
         

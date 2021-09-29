@@ -59,17 +59,23 @@ class OrdersController extends Controller
         $order->status = 2;
         $order->save();
         
-        //Create Invoice
+        //Transaction Fee
         $price = $order->service->price;
-        $transaction_fee = ($price*.07);
-        $processing_fee = ($price*.03);
+        $cpoints = $jobseeker->rewards->sum('points');
+        $tier = System::RewardsTier($cpoints);
+        $reward_earned = System::RewardsEarn($price, $tier);
+        $transaction_fee = $reward_earned;
+
+        //Create Invoice
         if($order->details->payment_method == 'COD')
         {
             $date_due =  $order->details->render_date;
+            $processing_fee = 0;
         }
-        elseif($order->details->payment_method == 'OP')
+        else
         {
-            $date_due =  $order->details->render_date->addDays(3);
+            $date_due =  Carbon::parse( $order->details->render_date)->addDays(3);
+            $processing_fee = ($price * 0.03);
         }
         $order->invoice()->create([
             'price' => $price,
@@ -214,15 +220,17 @@ class OrdersController extends Controller
         $jobseeker->notify(new OrderDeclinedNotification($order));
         $backer->notify(new OrderDeclinedNotification($order));
 
-        OrderDecline::create(['order_id' => $order->id, 'reason' => $request->reason]);
+        $decline = OrderDecline::create(['order_id' => $order->id, 'reason' => $request->reason]);
 
         Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-decline-mail', [
             'subject' => 'Service Order Declined',
-            'order_id' => System::GenerateFormattedId('S', $order->id)
+            'order_id' => System::GenerateFormattedId('S', $order->id),
+            'reason' => $decline->reason
         ]));
         Mail::to($backer->email)->queue(new SendMail('emails.backer.order-decline-mail', [
             'subject' => 'Service Order Declined',
-            'order_id' => System::GenerateFormattedId('S', $order->id)
+            'order_id' => System::GenerateFormattedId('S', $order->id),
+            'reason' => $decline->reason
         ]));
 
         return response()->json(['success' => true, 'msg' => 'Order Declined']);
