@@ -21,8 +21,8 @@ class ServicesController extends Controller
     public function __constructor(){
         $this->midlleware('auth');
     }
-
-    public function avail(Request $request){
+  
+    public function avail(AvailService $request){
 
         if(auth()->user()->hasAnyRole('JobSeeker') || auth()->user()->hasAnyRole('Admin'))
         {
