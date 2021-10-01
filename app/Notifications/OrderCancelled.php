@@ -69,7 +69,7 @@ class OrderCancelled extends Notification
         }elseif($notifiable->hasAnyRole('Backer')){
             return [
                 'heading' => 'Service Order - Cancelled',
-                'text' => "Cancelled Service Order for ' {$order->service->title} ' by {$jobseeker_name} with No.: {$order_id}"
+                'text' => "Cancelled Service Order for ' {$order->service->title} '  with No.: {$order_id}"
             ];
         }
     }

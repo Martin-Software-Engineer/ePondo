@@ -26,6 +26,7 @@ class EarningsController extends Controller
         $available = ($earnings + $rewards) - ($withdrawn + $pendings);
 
         $service['earnings'] = $earnings;
+        $service['rewards'] = $rewards;
         $service['withdrawn'] = $withdrawn;
         $service['pendings'] = $pendings;
         $service['available'] = $available;

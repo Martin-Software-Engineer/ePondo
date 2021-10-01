@@ -3,6 +3,9 @@
 
 <br>Service Order Cancelled for <b> {{$order_id}}</b><br><br>
 
+Reason for Cancellation : <br>
+<span style="text-decoration:underline;">" {{$reason}} "<span><br><br>
+
 Sorry to hear that your Service Order has been cancelled.
 You may contact us to discuss any issues or problems encountered 
 that lead to the cancellation of service order. Or if you have 
