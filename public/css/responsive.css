@@ -302,7 +302,11 @@
         padding-top: 0px;
     }
     .about_img {
-        padding-top: 40px;
+        text-align: center;
+        padding-top: 0;
+    }
+    .about_img img {
+        width: 50%;
     }
     .mission_taital {
         font-size: 30px;
@@ -428,7 +432,11 @@
         padding-top: 0px;
     }
     .about_img {
-        padding-top: 40px;
+        text-align: center;
+        padding-top: 0;
+    }
+    .about_img img {
+        width: 50%;
     }
     .mission_taital {
         font-size: 30px;
@@ -501,3 +509,16 @@
     }
 }
 
+@media (max-width: 768px) {
+    .agg_section {
+        border-top: 1px solid #dfd5df;
+        border-left: none !important;
+    }
+    .agg_section ul {
+        display: flex;
+        justify-content: center;
+    }
+    .agg_section ul>a {
+        padding: 5px;
+    }
+}

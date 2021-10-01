@@ -227,4 +227,41 @@ class OrdersController extends Controller
 
         return response()->json(['success' => true, 'msg' => 'Order Declined']);
     }
+
+    public function cancel(Request $request){
+
+        $order = Order::find($request->order_id);
+
+        $backer = User::find($order->backer->id);
+        $jobseeker = User::find($order->service->jobseeker->id);
+
+        $orderDate = Carbon::parse($order->details->render_date);
+        $now = Carbon::now();
+        $datediff = $orderDate->diffInDays($now);
+
+        if($datediff >= 3 && $orderDate > $now){
+            $order->status = 8;
+            $order->save();
+            
+            if($order)
+                OrderCancel::create(['order_id' => $order->id, 'reason' => $request->reason]);
+
+            $jobseeker->notify(new OrderCancelledNotification($order));
+            $backer->notify(new OrderCancelledNotification($order));
+
+            Mail::to($backer->email)->queue(new SendMail('emails.order-cancel-request-mail', [
+                'subject' => 'Service Order Cancelled',
+                'order_id' => System::GenerateFormattedId('S', $order->id)
+            ]));
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.order-cancelled-mail', [
+                'subject' => 'Service Order Cancelled',
+                'order_id' => System::GenerateFormattedId('S', $order->id)
+            ]));
+
+            return response()->json(['success' => true, 'msg' => 'Order Cancelled.']); 
+        }else{
+            return response()->json(['success' => false, 'msg' => 'Cancel Order is no longer available.']);
+        }
+        
+    }
 }

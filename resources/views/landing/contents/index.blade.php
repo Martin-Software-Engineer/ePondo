@@ -22,7 +22,7 @@
        </div>
        <div class="row">
             @forelse($campaigns as $campaign)
-                <div class="col-md-4"  >
+                <div class="col-md-4 mb-3">
                     <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
                             <div class="col-md-12">
@@ -91,7 +91,7 @@
        </div>
        <div class="row">
             @forelse($services as $service)
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
                         <div class="row">
                             <div class="col-md-12">
@@ -193,10 +193,10 @@
     <div class="container">
        <div class="row">
           <div class="col justify-content-start align-items-center">
-              <div class="row">
+              <div class="row m-0">
                 <h1 class="news_taital_quote">"Giving is not just about making a donation. It is making a difference."</h1>
               </div>
-              <div class="row justify-content-end">
+              <div class="row justify-content-end m-0">
                 <h1 class="news_taital_author ">- Kathy Calvin</h1>
               </div>
           </div>

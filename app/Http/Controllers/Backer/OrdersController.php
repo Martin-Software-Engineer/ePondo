@@ -102,14 +102,7 @@ class OrdersController extends Controller
     }
 
     public function cancel(Request $request){
-
-        $order = Order::find($request->id);
-        $order->status = 8;
-        $order->save();
-
-        $invoice = Invoice::where('order_id',$order->id);
-        $invoice -> status = 4;
-        $invoice ->save();
+        $order = Order::find($request->order_id);;
 
         $backer = User::find($order->backer->id);
         $jobseeker = User::find($order->service->jobseeker->id);
