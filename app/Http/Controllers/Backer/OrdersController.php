@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Backer;
 
 use DataTables;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Mail\SendMail;
 use App\Helpers\System;
 use App\Models\Invoice;
 use App\Models\OrderCancel;
+use App\Models\OrderDecline;
 use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+
 use App\Http\Resources\BackerOrders as ResourceBackerOrders;
 use App\Notifications\OrderCancelled as OrderCancelledNotification;
-
-use Carbon\Carbon;
 
 class OrdersController extends Controller
 {
@@ -37,6 +38,18 @@ class OrdersController extends Controller
 
     public function show($id){
         $order = Order::where(['id' => $id, 'backer_id' => auth()->user()->id])->with(['service', 'details', 'backer'])->first();
+        
+        if($order->status == 3)
+        {
+            $decline = OrderDecline::where('order_id', $order->id)->first();
+            $data['decline'] = $decline;
+        }
+        elseif($order->status == 8)
+        {
+            $cancel = OrderCancel::where('order_id', $order->id)->first();
+            $data['cancel'] = $cancel;
+        }
+        
         $data['order'] = $order;
         $data['order_id'] = System::GenerateFormattedId('S', $order->id);
 
@@ -104,24 +117,29 @@ class OrdersController extends Controller
     public function cancel(Request $request){
 
         $order = Order::find($request->id);
-        $invoice = Invoice::where('order_id',$order->id);
+        // ERROR $order
+
         $backer = User::find($order->backer->id);
-        $jobseeker = User::find($order->service->jobseeker->id);
+        // $backer = User::find(auth()->user()->id);
+        $jobseeker = USer::find($order->service->jobseeker->id);
+        // $jobseeker = USer::where('id',$order->service->jobseeker->id)->first();
         $orderDate = Carbon::parse($order->details->render_date);
         $now = Carbon::now();
         $datediff = $orderDate->diffInDays($now);
-
+        
         if($datediff >= 3 && $orderDate > $now){
+            
+            if($order->status == 2){
+                $invoice = Invoice::find($order->invoice->id);
+                // $invoice = Invoice::where('order_id',$order->id)->first();
+                $invoice -> status = 4;
+                $invoice ->save();
+            }
+
             $order->status = 8;
             $order->save();
-
-            $invoice -> status = 4;
-            $invoice ->save();
             
-            if($order)
-            {
-                $cancel = OrderCancel::create(['order_id' => $order->id, 'reason' => $request->reason]);
-            }
+            $cancel = OrderCancel::create(['order_id' => $order->id, 'reason' => $request->reason, 'from' => $request->from]);
                 
             $jobseeker->notify(new OrderCancelledNotification($order));
             $backer->notify(new OrderCancelledNotification($order));
@@ -142,7 +160,7 @@ class OrdersController extends Controller
         }
         else
         {
-            return response()->json(['success' => false, 'msg' => 'Cancel Order is no longer available.']);
+            return response()->json(['error' => false, 'msg' => 'Cancel Order Not Permitted.']);
         }
         
     }

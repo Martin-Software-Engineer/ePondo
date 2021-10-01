@@ -339,11 +339,10 @@
                                     <div class="col-sm-6 j_p_aboutme">
                                         <h3 class="j_p_header">About Me</h3>
                                         <h6 class="campaign_jobseeker_about ">
-                                            <!-- {{$service->jobseeker->userinformation->bio}} -->
                                             @if (empty($service->jobseeker->userinformation->bio))
                                                 <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
                                             @else
-                                            {{$service->jobseeker->userinformation->bio}}
+                                                {{$service->jobseeker->userinformation->bio}}
                                             @endif
                                         </h6>
                                     </div>
@@ -630,12 +629,13 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Service Delivery Date</label>
                                     <input type="date" name="render_date" class="form-control">
+                                    <span style="font-size:12px;color:#120a78">*Reminder: Not permitted to Cancel Order 3 Days prior to Delivery Date</span>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
@@ -668,7 +668,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-block">Avail Service!</button>
+                <button type="submit" class="btn btn-danger btn-block">Avail Service!</button>
             </div>
         </form>
       </div>
@@ -761,6 +761,19 @@
                             title: 'Success',
                             text: resp.msg,
                             icon: 'success'
+                        }).then(function(){
+                            location.reload();
+                        })
+                    }
+                    if(resp.error){
+                        availForm.find('button[type=submit]').prop('disabled', false);
+                        availForm[0].reset();
+                        availModal.modal('hide');
+
+                        Swal.fire({
+                            title: 'Error',
+                            text: resp.msg,
+                            icon: 'error'
                         }).then(function(){
                             location.reload();
                         })
