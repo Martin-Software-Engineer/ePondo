@@ -22,6 +22,15 @@ class ServicesController extends Controller
         $this->midlleware('auth');
     }
     public function avail(AvailService $request){
+        if(auth()->user()->hasAnyRole('JobSeeker') || auth()->user()->hasAnyRole('Admin'))
+        {
+            return response()->json(array(
+                'error' => true,         
+                'msg' => 'Error!You are not permitted to avail service. Create a backer account in order to avail service. Thank you!'          
+                )
+            );
+        }
+        
         $service = Service::find($request->service_id);
         $backer = User::find(auth()->user()->id);
         $backer_id = $backer->id;
