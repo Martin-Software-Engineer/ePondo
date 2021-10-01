@@ -81,14 +81,11 @@
                                             <span class="j_tag_trans"><br>(Mithing Halaga)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div class="input-group mb-2">
+                                            <div class="input-group flex-wrap mb-2">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">₱</span>
                                                 </div>
-                                                <input type="number" name="target_amount" step=".01" id="target-amount" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                                <input type="number" name="target_amount" step=".01" id="target_amount" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +96,7 @@
                                             <label for="tags">Tags</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input name="tags" id="tagsinput" class="tagsinput" value="" />
+                                            <input name="tags" id="tags" class="tagsinput" value="" />
                                             <span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add a comma or press enter to separate tags</span>
                                         </div>
                                     </div>
@@ -227,6 +224,10 @@
                     processData: false,
                     beforeSend: function() {
                         $(this).find('button[type=submit]').prop('disabled', true);
+                        form.find('.invalid-feedback').remove();
+                        form.find('.valid-feedback').remove();
+                        form.find('.invalid-feedback.valid-feedback').remove();
+                        form.find('input').removeClass('is-invalid');
                     },
                     success: function(resp) {
                         $(this).find('button[type=submit]').prop('disabled', false);
@@ -251,6 +252,21 @@
                                 }
                             });
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $(this).find('button[type=submit]').prop('disabled', false);
+                        $.each(xhr.responseJSON.errors, function(name, error) {
+                            form.find('button[type=submit]').prop('disabled', false);
+                            form.find('#' + name).siblings('.invalid-feedback').remove();
+                            form.find('#' + name).siblings('.valid-feedback').remove();
+                            form.find('#' + name).siblings('.invalid-feedback.valid-feedback').remove();
+                            form.find('#' + name).addClass('is-invalid');
+                            form.find('#' + name).after(`
+                                <div class="invalid-feedback">
+                                ${error}
+                            </div>
+                            `);
+                        });
                     }
                 });
             });

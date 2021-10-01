@@ -6,7 +6,7 @@
             </span>
             <div class="d-flex justify-content-left align-items-center" v-else>
                 <div class="avatar colorClass">
-                    <span class="avatar-content avatar-header">{{contact.info.username | toUpper | subStr}}</span> 
+                    <span class="avatar-content avatar-header">{{contact.info.information.firstname+' '+contact.info.information.lastname | toUpper | subStr}}</span> 
                 </div>
                 <div class="d-flex flex-column">
                     <span class="emp_name text-truncate font-weight-bold"></span>
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="chat-info">
-                <h5 class="mb-0">{{contact.info.username}} <span class="badge badge-pill badge-danger" v-if="contact.unreadmessages > 0">{{contact.unreadmessages}}</span></h5>
+                <h5 class="mb-0">{{contact.info.information.firstname+' '+contact.info.information.lastname}} <span class="badge badge-pill badge-danger" v-if="contact.unreadmessages > 0">{{contact.unreadmessages}}</span></h5>
                 <p class="card-text text-truncate">
                     {{contact.info.email}} 
                 </p>

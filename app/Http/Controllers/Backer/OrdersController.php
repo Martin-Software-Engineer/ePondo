@@ -102,9 +102,8 @@ class OrdersController extends Controller
     }
 
     public function cancel(Request $request){
+        $order = Order::find($request->order_id);;
 
-        $order = Order::find($request->id);
-        $invoice = Invoice::where('order_id',$order->id);
         $backer = User::find($order->backer->id);
         $jobseeker = User::find($order->service->jobseeker->id);
         $orderDate = Carbon::parse($order->details->render_date);

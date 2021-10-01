@@ -47,8 +47,10 @@ class FeedbacksController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            
-            'service_feedback' => 'required'
+            'service_rating' => 'required',
+            'service_feedback' => 'required|string|max:500',
+            'platform_rating' => 'required',
+            'platform_message' => 'required|string|max:500'
         ]);
 
         $order = Order::find($request->order_id);

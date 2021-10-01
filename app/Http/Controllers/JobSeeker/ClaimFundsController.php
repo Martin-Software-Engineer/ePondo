@@ -20,6 +20,12 @@ class ClaimFundsController extends Controller
     }
 
     public function claim(Request $request){
+        $request->validate([
+            'amount' => 'required|integer',
+            'details' => 'required|string|max:100',
+            'contact' => 'required|integer'
+        ]);
+
         $campaign = Campaign::find($request->campaign_id);
 
         if($campaign->available_funds < $request->amount){
@@ -30,7 +36,7 @@ class ClaimFundsController extends Controller
             'user_id' => auth()->user()->id,
             'campaign_id' => $campaign->id,
             'amount' => $request->amount, 
-            'paypal' => $request->paypal,
+            'paypal' => $request->contact,
             'details' => $request->details,
             'status' => 'pending'
         ]);
