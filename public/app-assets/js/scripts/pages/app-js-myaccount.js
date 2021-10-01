@@ -31,6 +31,10 @@ $(function() {
             processData: false,
             beforeSend: function() {
                 formAccount.find('button[type=submit]').prop('disabled', true);
+                formAccount.find('.invalid-feedback').remove();
+                formAccount.find('.valid-feedback').remove();
+                formAccount.find('.invalid-feedback.valid-feedback').remove();
+                formAccount.find('input').removeClass('is-invalid');
             },
             success: function(resp) {
                 if (resp.success) {
@@ -46,14 +50,18 @@ $(function() {
                     }, 2000);
                 }
             },
-            error: function(xhr, status, error) {
-                formAccount.find('button[type=submit]').prop('disabled', false);
-
-                $.each(xhr.responseJSON.errors, function(key, text) {
-                    toastr['error'](text[0], 'Error!', {
-                        closeButton: true,
-                        tapToDismiss: false
-                    });
+            error: function(resp) {
+                $.each(resp.responseJSON.errors, function(name, error) {
+                    formAccount.find('button[type=submit]').prop('disabled', false);
+                    formAccount.find('#' + name).siblings('.invalid-feedback').remove();
+                    formAccount.find('#' + name).siblings('.valid-feedback').remove();
+                    formAccount.find('#' + name).siblings('.invalid-feedback.valid-feedback').remove();
+                    formAccount.find('#' + name).addClass('is-invalid');
+                    formAccount.find('#' + name).after(`
+                        <div class="invalid-feedback">
+                        ${error}
+                    </div>
+                    `);
                 });
 
             }

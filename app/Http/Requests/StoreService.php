@@ -24,10 +24,12 @@ class StoreService extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'price' => 'required',
-            'location' => 'string',
-            'description' => 'string'
+            'title' => 'required|string|max:50',
+            'description' => 'required|string|max:1000',
+            'category' => 'required',
+            'price' => 'required|integer',
+            'location' => 'required|string|max:100',
+            'tags' => 'required'
         ];
     }
 }

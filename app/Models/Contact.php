@@ -17,7 +17,7 @@ class Contact extends Model
     }
 
     public function info(){
-        return $this->belongsTo(User::class,'contact_id', 'id');
+        return $this->belongsTo(User::class,'contact_id', 'id')->with('information');
     }
 
     public function messages(){

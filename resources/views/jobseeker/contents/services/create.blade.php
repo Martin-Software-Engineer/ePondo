@@ -33,7 +33,7 @@
                                             <span class="j_tag_trans">(Pamagat)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" id="title" class="form-control" name="title" required>
+                                            <input type="text" id="title" class="form-control" name="title">
                                         </div>
                                     </div>
                                 </div>
@@ -79,9 +79,6 @@
                                                     <span class="input-group-text">₱</span>
                                                 </div>
                                                 <input type="number" name="price" step=".01" id="price" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +122,7 @@
                                             <label for="tags">Tags</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input name="tags" id="tagsinput" class="tagsinput" value="" />
+                                            <input name="tags" id="tags" class="tagsinput" value="" />
                                             <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
                                         </div>
                                     </div>
@@ -253,6 +250,10 @@
                     processData: false,
                     beforeSend: () => {
                         form.find('button[type=submit]').prop('disabled', true);
+                        form.find('.invalid-feedback').remove();
+                        form.find('.valid-feedback').remove();
+                        form.find('.invalid-feedback.valid-feedback').remove();
+                        form.find('input').removeClass('is-invalid');
                     },
                     success: (resp) => {
                         $(this).find('button[type=submit]').prop('disabled', false);
@@ -278,13 +279,19 @@
                             });
                         }
                     },
-                    error: (req, status, error) => {
+                    error: function(xhr, status, error){
                         $(this).find('button[type=submit]').prop('disabled', false);
-                        $.each(req.responseJSON.errors, (i,error) => {
-                            toastr["error"](error[0], "Error!", {
-                                closeButton: true,
-                                tapToDismiss: false,
-                            });
+                        $.each(xhr.responseJSON.errors, function(name, error) {
+                            form.find('button[type=submit]').prop('disabled', false);
+                            form.find('#' + name).siblings('.invalid-feedback').remove();
+                            form.find('#' + name).siblings('.valid-feedback').remove();
+                            form.find('#' + name).siblings('.invalid-feedback.valid-feedback').remove();
+                            form.find('#' + name).addClass('is-invalid');
+                            form.find('#' + name).after(`
+                                <div class="invalid-feedback">
+                                ${error}
+                            </div>
+                            `);
                         });
                     }
                 });

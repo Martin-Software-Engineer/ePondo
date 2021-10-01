@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 use App\Models\CampaignCategory;
 use App\Http\Requests\StoreService;
+use App\Http\Requests\UpdateService;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Models\ServiceCategoryParent;
@@ -171,7 +173,7 @@ class ServicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateService $request, $id)
     {
         $service = Service::findOrFail($id);
         $service->title = $request->title;

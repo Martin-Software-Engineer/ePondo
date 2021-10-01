@@ -125,7 +125,6 @@ h6 a {
     color: #212121;
     text-decoration: none!important;
     opacity: 1;
-
 }
 
 button:focus {
@@ -145,14 +144,12 @@ p {
     font-weight: 300;
     font-size: 15px;
     /* line-height: 24px; */
-
     /* BOTH of the following are required for text-overflow */
     /* white-space: nowrap;
     overflow: hidden;
 
     text-overflow: ellipsis;
     max-width: 200px; */
-
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -163,7 +160,7 @@ p {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-  }
+}
 
 a {
     color: #222222;
@@ -241,9 +238,6 @@ button {
     width: 100%;
 }
 
-
-
-
 .layout_padding {
     padding-top: 190px;
     padding-bottom: 100px;
@@ -284,13 +278,13 @@ button {
     border-top: 1px solid rgb(235, 228, 228);
 }
 
-
 .padding_0 {
     padding: 0px;
 }
 
 
 /* header section start */
+
 .header_section {
     width: 100%;
     /* float: left; */
@@ -311,14 +305,11 @@ button {
 
 .navbar-brand {
     margin-right: 0px;
-
 }
 
 .navbar-brand img {
     width: 150px;
 }
-
-
 
 .mr-auto,
 .mx-auto {
@@ -345,8 +336,6 @@ button {
     color: #041151;
 }
 
-
-
 .search_icon {
     padding-top: 0px;
     text-align: center;
@@ -366,10 +355,12 @@ button.donate_btn {
 .account_btn {
     width: 150px;
     font-size: 14px;
-    color: rgba(0,0,0,.5);;
+    color: rgba(0, 0, 0, .5);
+    ;
     background: transparent;
     padding: 0 8px;
 }
+
 
 /* .register_btn,
 .account_btn {
@@ -379,13 +370,13 @@ button.donate_btn {
 .bg-light {
     background-color: white !important;
     border-bottom: 1px solid rgb(235, 228, 228);
-
 }
 
-.enavbar{
+.enavbar {
     border-right: 1px solid rgb(235, 228, 228);
     margin-right: 8px;
 }
+
 
 /* header section end */
 
@@ -404,68 +395,66 @@ button.donate_btn {
     margin-bottom: 0;
     padding-top: 300px;
 }
-    .carousel_1 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/1.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
 
-    .carousel_2 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/2.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
+.carousel_1 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/1.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
 
-    .carousel_3 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/3.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
+.carousel_2 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/2.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
 
-    .carousel_4 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/4.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
+.carousel_3 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/3.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
 
-    .carousel_5 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/5.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
+.carousel_4 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/4.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
 
-
-
+.carousel_5 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/5.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
 
 .banner_taital {
     width: 100%;
@@ -486,25 +475,19 @@ button.donate_btn {
     color: #ffff;
     text-align: center;
     padding: 20px 0px; */
-
-
-
     font-size: 30px;
     color: #ffff;
     text-align: left;
-
 }
 
 .read_bt {
     /* width: 150px;
     margin: 0 auto;
     text-align: center; */
-
     width: 300px;
     /* margin: 0 auto; */
     padding: 10px 10px;
     text-align: center;
-
 }
 
 .read_bt a {
@@ -609,7 +592,8 @@ button.donate_btn {
 .fundraise_section {
     /* width: 100%; */
     text-align: center;
-    background-color: #ffffff;;
+    background-color: #ffffff;
+    ;
     padding-top: 100px;
 }
 
@@ -622,10 +606,8 @@ button.donate_btn {
 .box_main {
     width: 100%;
     /* background-color: #154377; */
-
     /* background-color: #120a78; */
     background-color: #0f073b;
-
     /* clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0); */
     /* clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0); */
     height: auto;
@@ -669,7 +651,6 @@ button.donate_btn {
     margin: 0 auto;
     font-size: 12px;
     color: #fff;
-
 }
 
 .join_bt {
@@ -677,7 +658,6 @@ button.donate_btn {
     margin: 0 auto;
     text-align: center;
     margin-top: 20px;
-
 }
 
 .join_bt a {
@@ -690,9 +670,10 @@ button.donate_btn {
     background-color: #f64646;
 }
 
-.join_bt a:hover{
+.join_bt a:hover {
     background-color: #63f646;
 }
+
 
 /* .box_main:hover {
     background-color: #f64646;
@@ -716,6 +697,7 @@ button.donate_btn {
     padding-top: 100px;
     padding-bottom: 40px;
 }
+
 .about_section2 {
     width: 100%;
     float: left;
@@ -989,7 +971,6 @@ button.donate_btn {
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     padding-top: 10px;
-
 }
 
 .donate_btn_main {
@@ -1092,7 +1073,7 @@ button.donate_btn {
 
 .section_5_footernav {
     width: 100%;
-    float:left;
+    float: left;
     padding-top: 20px;
     padding-bottom: 30px;
 }
@@ -1145,7 +1126,8 @@ button.donate_btn {
     float: left;
     color: #e0063d;
     font-weight: 500;
-    margin: 5px 0 15px 0;;
+    margin: 5px 0 15px 0;
+    ;
     padding: 0 20px 0 20px;
     text-align: right;
     font-size: 11px;
@@ -1161,19 +1143,22 @@ button.donate_btn {
     padding: 0 20px 0 20px;
 }
 
-.c_img { /* Campaigns Page*/
+.c_img {
+    /* Campaigns Page*/
     width: 100%;
     float: left;
     position: relative;
-    width: 100%; height: 150px; object-fit: cover;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
 }
 
-.c_tab_space{
+.c_tab_space {
     margin-top: 10px;
-
 }
 
-.c_card_c_desc { /* Campaigns Page*/
+.c_card_c_desc {
+    /* Campaigns Page*/
     width: 100%;
     height: 40px;
     float: left;
@@ -1181,23 +1166,21 @@ button.donate_btn {
     margin-left: 0px;
     color: #1b1b1b;
     padding: 0 20px 0 20px;
-
     font-weight: 300;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-
     margin-top: 0;
     margin-bottom: 1rem;
-
     /* margin-block-start: 1em; */
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
 
-.c_card_c_category { /* Campaigns Page*/
+.c_card_c_category {
+    /* Campaigns Page*/
     width: 100%;
     float: left;
     font-size: 11px;
@@ -1206,7 +1189,6 @@ button.donate_btn {
     font-style: italic;
     margin: 0;
     padding: 0 20px 0 20px;
-
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -1223,21 +1205,22 @@ button.donate_btn {
     text-align: left;
 }
 
-.hr_m{
+.hr_m {
     margin: 8px 0;
 }
 
-.hr_m_2{
+.hr_m_2 {
     margin: 8px 20px;
 }
 
-.progress_bar{
+.progress_bar {
     margin: 0 20px 0 20px;
 }
 
-.progress_bar_campaigns{
+.progress_bar_campaigns {
     margin: 0 20px 20px 20px;
 }
+
 
 /* Services Page - Start */
 
@@ -1260,14 +1243,13 @@ button.donate_btn {
     font-style: italic;
     margin: 0;
     padding: 0 20px 0 20px;
-
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
 
-.card_s_loc  {
+.card_s_loc {
     /* width: 100%;
     float: left;
     font-size: 12px;
@@ -1275,14 +1257,12 @@ button.donate_btn {
     margin: 0px;
     color: #1b1b1b;
     padding: 15px 20px 0 20px; */
-
     /* font-weight:500;
     margin-right:8px; */
-
     font-size: 12px;
     margin: 0 20px;
-
 }
+
 
 /* Services Page - End */
 
@@ -1310,70 +1290,65 @@ button.donate_btn {
     padding: 10px 0 20px 20px;
 }
 
-.s_img_jname{
-    height:20px;
+.s_img_jname {
+    height: 20px;
     display: flex;
     padding: 0 20px 0 20px;
     /* align-items: center; */
     /* justify-content: center; */
 }
 
-.s_j_name{
+.s_j_name {
     font-size: 12px;
     color: #1b1b1b;
     font-weight: normal;
     margin: 0;
     padding: 0;
     float: left;
-
 }
 
-.s_jname_spacing{
+.s_jname_spacing {
     padding: 0;
 }
 
-.s_location, .s_duration {
-        width: 100%;
-        float: left;
-        font-size: 12px;
-        font-weight: normal;
-        margin: 0px;
-        color: #1b1b1b;
-        padding: 0 20px 0 20px;
-
+.s_location,
+.s_duration {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0px;
+    color: #1b1b1b;
+    padding: 0 20px 0 20px;
 }
 
-.s_hlocation, .s_hduration {
-    font-weight:500;
-    margin-right:8px;
+.s_hlocation,
+.s_hduration {
+    font-weight: 500;
+    margin-right: 8px;
     font-size: 18px;
-
 }
 
-.s_image{
+.s_image {
     padding: 0;
-
     /* vertical-align: middle; */
-
     /* text-align: right; */
-
     /* align-items: right; */
     /* justify-content: right; */
-
-
 }
 
-.s_image_star{
+.s_image_star {
     width: 10px;
     height: 10px;
-
 }
 
 .img_7 {
     width: 100%;
     float: left;
     position: relative;
-    width: 100%; height: 200px; object-fit: cover;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
 .date_bt {
@@ -1411,9 +1386,11 @@ button.donate_btn {
 
 /* events section end */
 
+
 /* Campaign {Id} start */
 
-.campaign_title, .service_title {
+.campaign_title,
+.service_title {
     width: 100%;
     float: left;
     color: #1d1d1d;
@@ -1423,7 +1400,8 @@ button.donate_btn {
     font-size: 40px;
 }
 
-.campaign_category, .service_category {
+.campaign_category,
+.service_category {
     width: 100%;
     float: left;
     color: #7e7e7e;
@@ -1481,23 +1459,23 @@ button.donate_btn {
     font-size: 12px;
 }
 
-.campaign_progress_bar{
+.campaign_progress_bar {
     margin: 0 0 20px 0;
 }
 
-.campaign_donate_btn{
+.campaign_donate_btn {
     padding: 10px 15px 0 15px;
     /* text-align: center; */
 }
 
-.campaign_images{
+.campaign_images {
     width: 100%;
     height: 400px;
     position: relative;
     object-fit: cover;
 }
 
-.donate_now{
+.donate_now {
     width: 100%;
     color: #ffffff;
     font-weight: bold;
@@ -1508,31 +1486,28 @@ button.donate_btn {
     /* height: 60px; */
 }
 
-.donate_now_img{
+.donate_now_img {
     width: 30px;
     height: 30px;
     margin-right: 10px;
 }
 
-.c_j_body{
+.c_j_body {
     margin: 0;
     padding: 0;
-
 }
 
-.c_j_about{
+.c_j_about {
     width: auto;
     max-height: 225px;
     overflow: auto;
-
 }
 
-.c_j_about_text{
+.c_j_about_text {
     margin: 10px 20px;
-
 }
 
-.c_j_about_subhead{
+.c_j_about_subhead {
     color: #041151;
     font-weight: 500;
     font-size: 12px;
@@ -1540,16 +1515,15 @@ button.donate_btn {
     margin: 10px 20px;
 }
 
-.campaign_profile_border{
+.campaign_profile_border {
     border-radius: 50%;
     background-color: #FFFFFF;
     box-shadow: 0 0 8px 0 rgb(34 41 47 / 14%);
 }
 
-.campaign_profile_avatar{
+.campaign_profile_avatar {
     width: 100px;
     height: 100px;
-
     justify-content: center;
     align-items: center;
     display: block;
@@ -1557,7 +1531,7 @@ button.donate_btn {
     margin-right: auto;
 }
 
-.campaign_jobseeker_about{
+.campaign_jobseeker_about {
     font-weight: 300;
     font-size: 12px;
     overflow: hidden;
@@ -1567,14 +1541,13 @@ button.donate_btn {
     color: #111111;
     margin-bottom: 5px;
     text-align: justify;
-
 }
 
-.c_messages{
+.c_messages {
     color: #041151;
 }
 
-.c_summary{
+.c_summary {
     font-weight: 300;
     font-size: 14px;
     color: #111111;
@@ -1582,35 +1555,33 @@ button.donate_btn {
     text-align: justify;
 }
 
-.c_summary_area{
+.c_summary_area {
     width: auto;
     max-height: 500px;
     overflow: auto;
 }
 
-.c_tabs{
+.c_tabs {
     font-weight: bold;
     color: #041151;
     /* color: #120a78;
     color: #2610a5; */
-
 }
 
-
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {  /* changing c_tabs active color */
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    /* changing c_tabs active color */
     color: #ffffff;
     background-color: #041151;
-
 }
 
 .nav-tabs .nav-link {
     color: #041151;
     border-color: #dee2e6 #dee2e6 #fff;
-    background-color: rgba(0,0,0,.03);
-
+    background-color: rgba(0, 0, 0, .03);
 }
 
-.c_j_vm{
+.c_j_vm {
     width: 100%;
     font-weight: 300;
     font-size: 12px;
@@ -1620,23 +1591,20 @@ button.donate_btn {
     align-items: flex-end;
     justify-content: left;
     text-decoration: underline;
-
 }
-.j_p_subtitle{
+
+.j_p_subtitle {
     font-weight: 500;
-
 }
 
-.j_p_text{
+.j_p_text {
     font-weight: 300;
     font-size: 12px;
     color: #111111;
     margin-left: 5px;
-
 }
 
-
-.campaign_header_icons{
+.campaign_header_icons {
     width: 16px;
     height: 16px;
     justify-content: left;
@@ -1646,17 +1614,15 @@ button.donate_btn {
     margin-right: 7px;
 }
 
-.j_p_name{
+.j_p_name {
     text-align: center;
     font-size: 16px;
     font-weight: 500;
-
 }
 
-.j_p_profile{
+.j_p_profile {
     width: 70px;
     height: 70px;
-
     justify-content: center;
     align-items: center;
     display: block;
@@ -1664,124 +1630,117 @@ button.donate_btn {
     margin-right: auto;
 }
 
-.j_p_aboutme{
+.j_p_aboutme {
     width: auto;
     max-height: 300px;
     overflow: auto;
-
 }
 
-.j_p_header{
+.j_p_header {
     color: #041151;
     font-weight: 500;
     font-size: 20px;
     text-decoration: underline;
     margin-bottom: 10px;
-
 }
 
-.m_title_area{
+.m_title_area {
     /* border-color: #dee2e6 #dee2e6 #fff; */
-    background-color: rgba(0,0,0,.03);
+    background-color: rgba(0, 0, 0, .03);
     /* text-align: center; */
-
 }
 
-.m_title{
-    color: #041151   ;
+.m_title {
+    color: #041151;
     font-weight: 800;
     /* text-align: center;
     justify-content: center; */
-
 }
 
-.m_c_title{
+.m_c_title {
     padding-bottom: 10px;
-    color: #041151   ;
+    color: #041151;
     font-weight: 500;
-
 }
 
-.m_c_total{
+.m_c_total {
     font-weight: bold;
-
 }
 
-.section_profile_header{
+.section_profile_header {
     padding-bottom: 20px;
-
 }
 
-.section_profile_desc{
+.section_profile_desc {
     /* border-top: 1px solid rgb(235, 228, 228); */
     padding: 20px 0 20px 0;
 }
 
-.section_details{
+.section_details {
     border-right: 1px solid rgb(235, 228, 228);
     /* padding: 20px 0 20px 0; */
 }
 
-.section_living_state{
+.section_living_state {
     border-top: 1px solid rgb(235, 228, 228);
     padding: 10px 0 0 0;
 }
 
-.section_income{
+.section_income {
     border-right: 1px solid rgb(235, 228, 228);
     /* padding: 20px 0 20px 0; */
 }
 
-.c_message_section{
+.c_message_section {
     margin-top: 20px;
 }
 
-.c_messages_box{
+.c_messages_box {
     margin: 0;
     padding: 0;
     width: auto;
-    max-height:  295px;
+    max-height: 295px;
     overflow: auto;
-
 }
 
-.c_donation_sec{
+.c_donation_sec {
     padding: 10px 0;
     margin: 0 20px;
     border-bottom: 1px solid rgb(235, 228, 228);
-
 }
 
-.c_donation_text{
+.c_donation_text {
     margin: 0 20px;
 }
 
-.c_don_amount{
+.c_don_amount {
     margin-right: 5px;
     font-weight: bold;
     font-size: 14px;
     color: #041151;
 }
 
-.c_don_name{
+.c_don_name {
     font-weight: 500;
     font-size: 12px;
     color: #111111;
     text-align: justify;
 }
 
-.c_don_mess{
+.c_don_mess {
     font-style: oblique;
     font-weight: 300;
     margin: 10px 10px 0 10px;
     text-align: start;
 }
 
+
 /* Campaign {Id} end */
+
 
 /* Service {Id} start */
 
-.s_details{
+.s_details {
     padding: 0 0 10px 0;
     vertical-align: middle;
 }
@@ -1808,16 +1767,16 @@ button.donate_btn {
     /* text-transform: uppercase; */
 }
 
+
 /* .service_btn a:hover {
     color: #ffffff;
     background-color: #120a78;
 } */
 
-.s_hlocation2{
-    font-weight:600;
+.s_hlocation2 {
+    font-weight: 600;
     margin: 0 8px 0 0;
     padding-top: 10px;
-
 }
 
 .s_price {
@@ -1831,17 +1790,18 @@ button.donate_btn {
     /* line-height: normal; */
     font-size: 36px;
     /* position: absolute; */
-
     /* line-height: 1.5;
     display: inline-block; */
     vertical-align: top;
 }
 
+
 /* Service {Id} end */
+
 
 /* How it works - Start */
 
-.user_avatar{
+.user_avatar {
     width: 150px;
     height: 150px;
 }
@@ -1854,15 +1814,17 @@ button.donate_btn {
     padding-bottom: 40px;
 }
 
-.user_title{
+.user_title {
     color: #ffffff;
 }
 
-.user_desc{
+.user_desc {
     color: #ffffff;
 }
+
 
 /* How it works - End */
+
 
 /*  section start */
 
@@ -1904,6 +1866,7 @@ button.donate_btn {
 .client_img {
     width: 100%;
 }
+
 
 /* .carddd {
     border: 1px solid;
@@ -2044,6 +2007,7 @@ button.donate_btn {
 
 /* contact section end */
 
+
 /* Privacy Policy - Start */
 
 .pri_pol_section {
@@ -2055,18 +2019,18 @@ button.donate_btn {
     padding-bottom: 40px;
 }
 
-.pppic{
+.pppic {
     width: 100%;
     align-items: center;
     text-align: center;
 }
 
-.pri_pol_logo{
+.pri_pol_logo {
     width: 150px;
     height: 150px;
 }
 
-.pri_pol_nav_sec{
+.pri_pol_nav_sec {
     padding: 0 15px;
     justify-content: center;
     height: 50px;
@@ -2074,14 +2038,14 @@ button.donate_btn {
     border-bottom: 1px solid #e3e5e9;
 }
 
-.pri_pol_title_section{
+.pri_pol_title_section {
     background-color: #120a78;
     height: auto;
     /* margin-top: 20px; */
     margin: 20px 15px 0 15px;
 }
 
-.pri_pol_title{
+.pri_pol_title {
     color: #000000;
     font-size: 30px;
     font-weight: 500;
@@ -2089,10 +2053,11 @@ button.donate_btn {
     text-decoration: underline;
 }
 
-.pri_pol_nav{
+.pri_pol_nav {
     color: #120a78;
     font-weight: 500;
 }
+
 
 /* Privacy Policy - End */
 
@@ -2229,12 +2194,12 @@ input.address_text::placeholder {
     font-weight: bold;
 }
 
-.agg_section{
+.agg_section {
     /* border-bottom: 1px solid #656465; */
     border-left: 1px solid #dfd5df;
-
 }
-.agg_text{
+
+.agg_text {
     color: #b7b9bd;
 }
 
@@ -2284,7 +2249,9 @@ input.address_text::placeholder {
     text-align: center;
 }
 
+
 /* Email - end */
+
 
 /* copyright section end */
 
@@ -2296,30 +2263,35 @@ input.address_text::placeholder {
     margin-top: 90px;
 }
 
+
 /* Others */
 
-.just{
+.just {
     text-align: justify;
 }
 
+
 /* Service Order - Start */
 
-.btn-feedback-r{
+.btn-feedback-r {
     background-color: blueviolet;
     background: blueviolet;
 }
 
+
 /* Service Order - End */
+
 
 /* Verify Email Page - Start */
 
-.alert_verify_email_page{
+.alert_verify_email_page {
     min-height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size:18px;
+    font-size: 18px;
 }
+
 
 /* Verify Email Page - End */
 
