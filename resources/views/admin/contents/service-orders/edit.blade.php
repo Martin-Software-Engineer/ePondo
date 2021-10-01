@@ -85,7 +85,7 @@
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
-                                            <h6 for="location">Service Order Date : </h6>
+                                            <h6 for="target_date">Service Order Date : </h6>
                                         </div>
                                         <div class="col-sm-9 col-form-label">
                                             <input type="date" name="target_date" id="target_date" value="{{$order->details->render_date}}" class="form-control" required>
@@ -105,10 +105,23 @@
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
-                                            <h6 for="location">Customer : </h6>
+                                            <h6 for="customer">Customer : </h6>
                                         </div>
                                         <div class="col-sm-9 col-form-label">
                                             <h6>{{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <h6 for="payment_method">Payment Method : </h6>
+                                        </div>
+                                        <div class="col-sm-9 col-form-label">
+                                            <select name="payment_method" id="payment_method" class="form-control select2">
+                                                <option value="OP"  @if($order->details->payment_method == 'OP') selected @endif  >Online Payment (Available: Paypal,Credit Card)</option>
+                                                <option value="COD"  @if($order->details->payment_method == 'COD') selected @endif  >Cash on Delivery</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

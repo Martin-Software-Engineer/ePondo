@@ -3,26 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use DataTables;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Mail\SendMail;
 use App\Helpers\System;
 use App\Helpers\GiveReward;
+use App\Models\OrderCancel;
 use App\Models\OrderDetail;
+use App\Models\OrderDecline;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use Carbon\Carbon;
-
 use App\Http\Resources\Orders as ResourceOrder;
+use App\Notifications\OrderFinish as OrderFinishNotification;
 use App\Notifications\OrderInvoice as OrderInvoiceNotification;
+use App\Notifications\OrderPayment as OrderPaymentNotification;
 use App\Notifications\OrderAccepted as OrderAcceptedNotification;
 use App\Notifications\OrderDeclined as OrderDeclinedNotification;
-use App\Notifications\OrderCompleted as OrderCompletedNotification;
-use App\Notifications\OrderPayment as OrderPaymentNotification;
 use App\Notifications\OrderFeedback as OrderFeedbackNotification;
-use App\Notifications\OrderFinish as OrderFinishNotification;
 use App\Notifications\OrderCancelled as OrderCancelledNotification;
+use App\Notifications\OrderCompleted as OrderCompletedNotification;
 
 class ServiceOrdersController extends Controller
 {
@@ -79,6 +81,18 @@ class ServiceOrdersController extends Controller
     public function show($id)
     {
         $order = Order::where('id', $id)->with(['service', 'details', 'backer'])->first();
+
+        if($order->status == 3)
+        {
+            $decline = OrderDecline::where('order_id', $order->id)->first();
+            $data['decline'] = $decline;
+        }
+        elseif($order->status == 8)
+        {
+            $cancel = OrderCancel::where('order_id', $order->id)->first();
+            $data['cancel'] = $cancel;
+        }
+
         $data['order'] = $order;
         $data['order_id'] = System::GenerateFormattedId('S', $order->id);
 
@@ -126,9 +140,10 @@ class ServiceOrdersController extends Controller
             }
             $order_no = System::GenerateFormattedId('S', $order->id);
         
-        $details = OrderDetail::where('order_id',$id)->first();
+            $details = OrderDetail::where('order_id',$id)->first();
             $details->render_date = $request->target_date;
             $details->delivery_address = $request->location;
+            $details->payment_method = $request->payment_method;
             $details->message = $request->description;
             $details->save();
         
