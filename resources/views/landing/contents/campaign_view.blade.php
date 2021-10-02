@@ -810,7 +810,7 @@
         });
 
         paypal.Button.render({
-            env: {{env('PAYPAL_MODE')}}, // Or 'production'
+            env: "{{env('PAYPAL_MODE')}}", // Or 'production'
             style: {
                 size: 'responsive',
                 color: 'blue',
