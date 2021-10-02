@@ -10,7 +10,7 @@
             </div>
             <div class="d-flex justify-content-left align-items-center" v-else>
                 <div class="avatar colorClass">
-                    <span class="avatar-content avatar-header">{{selectedUser.username | toUpper | subStr}}</span> 
+                    <span class="avatar-content avatar-header">{{selectedUser.fullname | toUpper | subStr}}</span> 
                     <span class="avatar-status-busy"></span>
                 </div>
                 <div class="d-flex flex-column">
@@ -19,7 +19,7 @@
                 </div>
                 
             </div>
-            <h6 class="mb-0">{{selectedUser.username}}</h6>
+            <h6 class="mb-0">{{selectedUser.fullname}}</h6>
         </div>
     </header>
 </template>

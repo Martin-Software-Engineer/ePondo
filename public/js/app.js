@@ -27409,7 +27409,7 @@ var render = function() {
                   _vm._v(
                     _vm._s(
                       _vm._f("subStr")(
-                        _vm._f("toUpper")(_vm.selectedUser.username)
+                        _vm._f("toUpper")(_vm.selectedUser.fullname)
                       )
                     )
                   )
@@ -27423,7 +27423,7 @@ var render = function() {
           ),
       _vm._v(" "),
       _c("h6", { staticClass: "mb-0" }, [
-        _vm._v(_vm._s(_vm.selectedUser.username))
+        _vm._v(_vm._s(_vm.selectedUser.fullname))
       ])
     ])
   ])

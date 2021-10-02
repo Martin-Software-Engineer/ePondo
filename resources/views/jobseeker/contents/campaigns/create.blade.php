@@ -70,7 +70,7 @@
                                             <span class="j_tag_trans">(Mithing Petsa)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="date" name="target_date" id="target-date" class="form-control">
+                                            <input type="date" name="target_date" id="target_date" class="form-control">
                                         </div>
                                     </div>
                                 </div>

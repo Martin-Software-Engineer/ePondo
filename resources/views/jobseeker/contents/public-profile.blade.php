@@ -307,7 +307,7 @@
                                             <div class="form-group">
                                                 <label for="dependent_name">Name</label>
                                                 <span class="j_tag_trans">(Pangalan)</span>
-                                                <input type="text" name="dependent[name][]" class="form-control" value="{{$dependent->fullname}}" id="dependent_name"/>
+                                                <input type="text" name="dependents[name][]" class="form-control" value="{{$dependent->fullname}}" id="dependent_name"/>
                                             </div>
                                         </div>
 
@@ -315,7 +315,7 @@
                                             <div class="form-group">
                                                 <label for="dependent_age">Age</label>
                                                 <span class="j_tag_trans">(Edad)</span>
-                                                <input type="number" name="dependent[age][]" class="form-control" value="{{$dependent->age}}" id="dependent_age"/>
+                                                <input type="number" name="dependents[age][]" class="form-control" value="{{$dependent->age}}" id="dependent_age"/>
                                             </div>
                                         </div>
 
@@ -323,7 +323,7 @@
                                             <div class="form-group">
                                                 <label for="dependent_relation">Relation</label>
                                                 <span class="j_tag_trans">(Relasyon)</span>
-                                                <select name="dependent[relation][]" id="dependent_relation" class="form-control select2">
+                                                <select name="dependents[relation][]" id="dependent_relation" class="form-control select2">
                                                     <option value="Grandparents" @if($dependent->relation == 'Gradparents') selected @endif>Grandparents</option>
                                                     <option value="Parents" @if($dependent->relation == 'Parents') selected @endif>Parents</option>
                                                     <option value="Siblings" @if($dependent->relation == 'Siblings') selected @endif>Siblings</option>
@@ -351,21 +351,21 @@
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_name">Name</label>
-                                                <input type="text" name="dependent[name][]" class="form-control" id="kids_name"/>
+                                                <input type="text" name="dependents[name][]" class="form-control" id="kids_name"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_age">Age</label>
-                                                <input type="number" name="dependent[age][]" class="form-control" id="dependent_age"/>
+                                                <input type="number" name="dependents[age][]" class="form-control" id="dependent_age"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label for="dependent_relation">Relation</label>
-                                                <select name="dependent[relation][]" id="dependent_relation" class="form-control select2">
+                                                <select name="dependents[relation][]" id="dependent_relation" class="form-control select2">
                                                     <option value="Grandparents">Grandparents</option>
                                                     <option value="Parents">Parents</option>
                                                     <option value="Siblings">Siblings</option>
