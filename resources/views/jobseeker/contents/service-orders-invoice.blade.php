@@ -288,7 +288,7 @@
                                     <strong>Location : </strong>{{$delivery_address}}
                             </p>
                             <p class="card-text" style="font-size:12px; margin:10px 10px 10px 10px;">
-                                    <strong>Order Date : </strong>{{$order_date}}
+                                    <strong>Delivery Date : </strong>{{$order_date}}
                             </p>
                         </div>
                         <div style="border: 2px solid rgb(235, 228, 228);width:50%">

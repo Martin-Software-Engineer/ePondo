@@ -2,27 +2,28 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Resources\Orders as ResourceOrders;
-use App\Models\Order;
-use App\Models\OrderDecline;
-use App\Models\InvoiceNumber;
-use App\Models\User;
-use App\Helpers\System;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMail;
 use DataTables;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Order;
+use App\Mail\SendMail;
+use App\Helpers\System;
+use App\Models\Invoice;
+use App\Helpers\GiveReward;
+use App\Models\OrderCancel;
+use App\Models\OrderDecline;
+use Illuminate\Http\Request;
+use App\Models\InvoiceNumber;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Resources\Orders as ResourceOrders;
+use App\Notifications\OrderInvoice as OrderInvoiceNotification;
 use App\Notifications\OrderAccepted as OrderAcceptedNotification;
+
 use App\Notifications\OrderDeclined as OrderDeclinedNotification;
 use App\Notifications\OrderCompleted as OrderCompletedNotification;
 use App\Notifications\OrderCompletedCOD as OrderCompletedCODNotification;
-use App\Notifications\OrderInvoice as OrderInvoiceNotification;
-
-use App\Helpers\GiveReward;
-use App\Models\Invoice;
 
 class OrdersController extends Controller
 {
@@ -40,6 +41,18 @@ class OrdersController extends Controller
 
     public function show($id){
         $order = Order::where('id',$id)->with(['service', 'details', 'backer'])->first();
+        
+        if($order->status == 3)
+        {
+            $decline = OrderDecline::where('order_id', $order->id)->first();
+            $data['decline'] = $decline;
+        }
+        elseif($order->status == 8)
+        {
+            $cancel = OrderCancel::where('order_id', $order->id)->first();
+            $data['cancel'] = $cancel;
+        }
+        
         $data['order'] = $order;
         $data['order_id'] = System::GenerateFormattedId('S', $order->id);
 
