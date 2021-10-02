@@ -27505,7 +27505,9 @@ var render = function() {
                           _vm._v(
                             _vm._s(
                               _vm._f("subStr")(
-                                _vm._f("toUpper")(message.from.username)
+                                _vm._f("toUpper")(
+                                  message.from.information.firstname
+                                )
                               )
                             )
                           )
@@ -27552,7 +27554,9 @@ var render = function() {
                             _vm._v(
                               _vm._s(
                                 _vm._f("subStr")(
-                                  _vm._f("toUpper")(message.from.username)
+                                  _vm._f("toUpper")(
+                                    message.from.information.firstname
+                                  )
                                 )
                               )
                             )
