@@ -27525,7 +27525,7 @@ var render = function() {
               ])
             ])
           : _c("div", { staticClass: "chat" }, [
-              message.from.avatar != ""
+              message.from.avatar != "" && message.from.avatar != null
                 ? _c("div", { staticClass: "chat-avatar" }, [
                     _c(
                       "span",

@@ -25,7 +25,7 @@
             </div>
 
             <div class="chat" v-else>
-                <div class="chat-avatar" v-if="message.from.avatar != ''">
+                <div class="chat-avatar" v-if="message.from.avatar != '' && message.from.avatar != null">
                     <span class="avatar box-shadow-1 cursor-pointer">
                         <img v-bind:src="message.from.avatar" alt="avatar" height="42" width="42" />
                     </span>
