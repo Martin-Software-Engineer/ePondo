@@ -223,6 +223,8 @@ class OrdersController extends Controller
     }
 
     public function decline(Request $request){
+        $request->validate(['reason' => 'required|string|max:500']);
+        
         $order = Order::find($request->order_id);
         $order->status = 3;
         $order->save();
@@ -250,7 +252,8 @@ class OrdersController extends Controller
     }
 
     public function cancel(Request $request){
-
+        $request->validate(['reason' => 'required|string|max:500']);
+        
         $order = Order::find($request->order_id);
 
         $backer = User::find($order->backer->id);

@@ -404,6 +404,14 @@
                                 tapToDismiss: false
                             });
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $.each(xhr.responseJSON.errors, function(key, text) {
+                            toastr['error'](text[0], 'Error!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+                        });
                     }
                 });
             });

@@ -115,6 +115,9 @@ class OrdersController extends Controller
     }
 
     public function cancel(Request $request){
+
+        $request->validate(['reason' => 'required|string|max:500']);
+        
         $order = Order::find($request->order_id);;
         // ERROR $order
         $backer = User::find($order->backer->id);
