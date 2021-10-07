@@ -43,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['earnings', 'orders', 'unreadmessages'];
+    protected $appends = ['earnings', 'orders', 'unreadmessages', 'fullname'];
 
 
     public function setPasswordAttributes($password){
@@ -121,6 +121,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class, 'to', 'id');
     }
 
+    public function getFullNameAttribute(){
+        $fullname = '';
+
+        if($this->userinformation()){
+            $fullname = $this->information->firstname. ' '.$this->information->lastname;
+        }else{
+            $fullname = $this->username;
+        }
+
+        return $fullname;
+    }
     public function getEarningsAttribute(){
         $earnings = 0;
         $services =  $this->services()->whereHas('orders', function($q){

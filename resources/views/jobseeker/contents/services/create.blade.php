@@ -24,7 +24,7 @@
                 <form class="form form-horizontal" action="{{route('jobseeker.services.store')}}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-12 col-md-8 col-lg-8">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group row">
@@ -127,12 +127,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-9 offset-sm-3">
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
-                                </div>
+                                
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-md-4 col-lg-4">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -212,6 +210,11 @@
                                 <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign.</span></label>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light float-right">Submit</button>
                         </div>
                     </div>
                 </form>

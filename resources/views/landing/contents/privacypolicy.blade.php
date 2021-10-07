@@ -1,5 +1,43 @@
 @extends('landing.layouts.main')
-
+@section('stylesheets')
+   <style>
+      @media only screen and (max-width:768px){
+         .pppic{
+            margin: 0 !important;
+         }
+         .about_img img{
+            widows: 40%;
+         }
+         .pri_pol_nav{
+            text-align: center;
+            font-size: .8rem;
+            background:#419E88;
+            color: #D8E8E5;
+            padding: 10px;
+            margin: 3px;
+            border-radius: 20px;
+         }
+      }
+      .pri_pol_logo{
+         height: auto;
+      }
+      .pri_pol_nav{
+            text-align: center;
+            background:#419E88;
+            color: #D8E8E5;
+            padding: 10px;
+            margin: 3px;
+            border-radius: 20px;
+         }
+      .pri_pol_nav_sec{
+         height: auto !important;
+         padding-bottom: 10px !important;
+      }
+      .pri_pol_section{
+         overflow: hidden;
+      }
+   </style>
+@endsection
 @section('content')
 
 <div class="pri_pol_section" id="how">
@@ -8,11 +46,11 @@
             <div class="about_img"><img src="{{asset('app-assets/images/additional_pictures/logo2.png')}}" class="pri_pol_logo"></div>
       </div>
       <div class="row pri_pol_nav_sec" style="padding: 0 15px 0 15px">
-         <a href="{{route('termsandconditions')}}" class="pri_pol_nav mr-5">Terms & Conditions</a><br>
-         <a href="{{route('privacypolicy')}}" class="pri_pol_nav mr-5">Privacy Policy</a><br>
-         <a href="{{route('cookiepolicy')}}" class="pri_pol_nav mr-5">Cookie Policy</a><br>
-         <a href="{{route('eula')}}" class="pri_pol_nav mr-5">EULA</a><br>
-         <a href="{{route('disclaimer')}}" class="pri_pol_nav">Disclaimer</a><br>
+         <a href="{{route('termsandconditions')}}" class="pri_pol_nav">Terms & Conditions</a>
+         <a href="{{route('privacypolicy')}}" class="pri_pol_nav">Privacy Policy</a>
+         <a href="{{route('cookiepolicy')}}" class="pri_pol_nav">Cookie Policy</a>
+         <a href="{{route('eula')}}" class="pri_pol_nav">EULA</a>
+         <a href="{{route('disclaimer')}}" class="pri_pol_nav">Disclaimer</a>
       </div>
       <div class="row">
          <div class="col-sm-12">

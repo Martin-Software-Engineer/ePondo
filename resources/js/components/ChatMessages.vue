@@ -59,7 +59,7 @@
             new PerfectScrollbar(userChats[0], {
                 wheelPropagation: false
             });
-            userChats.animate({ scrollTop: userChats[0].scrollHeight }, 400);
+            userChats.animate({ scrollTop: userChats[0].scrollHeight }, 100);
         }
     },
     filters: {

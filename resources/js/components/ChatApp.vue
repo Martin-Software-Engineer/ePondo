@@ -1,10 +1,10 @@
 <template>
-<div class="content-area-wrapper">
+<div class="content-area-wrapper mt-1 mt-md-0">
     <div class="sidebar-left">
         <div class="sidebar">
             <!-- Chat Sidebar area -->
-            <div class="sidebar-content card">
-                <span class="sidebar-close-icon">
+            <div class="sidebar-content card" :class="{'show' : showSideBar}">
+                <span class="sidebar-close-icon" v-on:click="showSideBar=false">
                     <i data-feather="x"></i>
                 </span>
                 <!-- Sidebar header start -->
@@ -52,7 +52,7 @@
                     <div class="active-chat" v-if="isChatActive">
                         <!-- Chat Header -->
                         <div class="chat-navbar">
-                            <ChatHead :selected-user="selectedUser" />
+                            <ChatHead :selected-user="selectedUser" v-on:show-sidebar="setShowSideBar" />
                         </div>
                         <!--/ Chat Header -->
 
@@ -90,7 +90,8 @@ export default {
             contacts: [],
             selectedUser: {},
             selectedUserId: null,
-            isChatActive: false
+            isChatActive: false,
+            showSideBar: false
         }
     },
     created() {
@@ -136,6 +137,7 @@ export default {
             this.messages = messages;
         },
         async addMessage(message) {
+            //console.log(message);
             this.messages.push(message);
 
             await axios.post('/messages', {
@@ -144,6 +146,9 @@ export default {
             });
 
             $('.user-chats').scrollTop($('.user-chats > .chats').height());
+        },
+        setShowSideBar(status){
+            this.showSideBar = status.show;
         }
     }
 }
