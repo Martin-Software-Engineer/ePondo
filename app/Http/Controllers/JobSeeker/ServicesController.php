@@ -250,8 +250,13 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        if(Service::find($id)->delete()){
-            return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
-        }
+        $service = Service::find($id);
+        $service -> status = 2;
+        $service -> save();
+        return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+
+        // if(Service::find($id)->delete()){
+        //     return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+        // }
     }
 }

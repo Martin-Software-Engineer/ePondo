@@ -33,15 +33,15 @@
         <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="c_img"><a href="{{route('campaign_view', $campaign->id)}}">
+                    <div class="c_img">
                         <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url :
-                        asset('app-assets/images/pages/no-image.png')}}" class="c_img"></a>
+                        asset('app-assets/images/pages/no-image.png')}}" class="c_img">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <a class="c_card_title overflow-ellipsis" href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a>
+                    <h6 class="c_card_title overflow-ellipsis" >{{$campaign->title}}</h6>
                     <p class="c_card_c_category">
                         @foreach($campaign->categories as $category)
                             {{$category->name}} @if(!$loop->last)/@endif
@@ -69,11 +69,17 @@
                     <div>
                         <p class="card_c_targetd">{{date('F d, Y', strtotime($campaign->target_date))}}</p>
                     </div>
+                    @if($campaign->status == 1)
                     <div class="text-center mb-2">
                         <a class="btn btn-primary btn-sm btn-round" href="/campaign/{{$campaign->id}}" target="_blank">View</a>
                         <a href="{{route('jobseeker.campaigns.edit', $campaign->id)}}" class="btn btn-primary btn-sm btn-round">Edit</a>
                         <button type="button" class="btn btn-danger btn-sm btn-round btn-delete" data-id="{{$campaign->id}}">Delete</button>
                     </div>
+                    @else
+                    <div class="text-center mb-2">
+                        <button type="button" class="btn btn-danger btn-sm btn-round btn-delete" disabled>Campaign Deleted</button>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
