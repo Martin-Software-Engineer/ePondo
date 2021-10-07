@@ -160,6 +160,21 @@
           transform: rotate(360deg);
         }
       }
+
+      @media only screen and (max-width: 768px){
+          .campaign_title{
+              font-size: 26px;
+          }
+          .campaign_category{
+              font-size: 15px;
+          }
+          .campaign_raised_text,.campaign_target_text{
+              font-size: 16px;
+          }
+          .news_taital{
+              font-size: 26px;
+          }
+      }
 </style>
 @endsection
 

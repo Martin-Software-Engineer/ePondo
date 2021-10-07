@@ -72,6 +72,18 @@
             font-size: 1rem !important;
             border: 2px solid #FFFFFF;
         }
+
+        /* @media only screen and (max-width:768px){
+            #main-content-wrapper .header-navbar{
+                display: none !important;
+            }
+            html body.navbar-sticky .app-content{
+                padding: 0 !important;
+            }
+            html body.navbar-sticky .app-content .content-area-wrapper{
+                height: 100vh !important;
+            }
+        } */
     </style>
 
 </head>
@@ -81,7 +93,7 @@
 
 <body class="vertical-layout vertical-menu-modern 2-columns footer-static menu-expanded pace-done navbar-sticky" data-open="click" data-menu="vertical-menu-modern" data-col="">
     <div id="main-content-wrapper">
-        @include('jobseeker.partials.header')
+        @include('jobseeker.partials.header-chat')
         @include('jobseeker.partials.menu')
         
         @yield('content')

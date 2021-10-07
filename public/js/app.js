@@ -2027,7 +2027,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       contacts: [],
       selectedUser: {},
       selectedUserId: null,
-      isChatActive: false
+      isChatActive: false,
+      showSideBar: false
     };
   },
   created: function created() {
@@ -2086,6 +2087,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                //console.log(message);
                 _this4.messages.push(message);
 
                 _context.next = 3;
@@ -2104,6 +2106,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    setShowSideBar: function setShowSideBar(status) {
+      this.showSideBar = status.show;
     }
   }
 });
@@ -2265,21 +2270,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'me'],
   data: function data() {
     return {
       newMessage: ''
     };
+  },
+  mounted: function mounted() {
+    if (feather) {
+      feather.replace({
+        width: 14,
+        height: 14
+      });
+    }
   },
   methods: {
     sendMessage: function sendMessage() {
@@ -2332,6 +2336,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['selected-user'],
+  methods: {
+    sidebarToggle: function sidebarToggle() {
+      this.$emit('show-sidebar', {
+        show: true
+      });
+    }
+  },
   filters: {
     subStr: function subStr(string) {
       return string.substring(0, 2);
@@ -2415,7 +2426,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       userChats.animate({
         scrollTop: userChats[0].scrollHeight
-      }, 400);
+      }, 100);
     }
   },
   filters: {
@@ -26954,42 +26965,60 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-area-wrapper" }, [
+  return _c("div", { staticClass: "content-area-wrapper mt-1 mt-md-0" }, [
     _c("div", { staticClass: "sidebar-left" }, [
       _c("div", { staticClass: "sidebar" }, [
-        _c("div", { staticClass: "sidebar-content card" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "chat-user-list-wrapper list-group",
-              attrs: { id: "users-list" }
-            },
-            [
-              _c("h4", { staticClass: "chat-list-title" }, [_vm._v("Chats")]),
-              _vm._v(" "),
-              _c("ChatContacts", {
-                attrs: {
-                  contacts: _vm.contacts,
-                  me: _vm.user,
-                  "selected-user-id": _vm.selectedUserId
-                },
+        _c(
+          "div",
+          {
+            staticClass: "sidebar-content card",
+            class: { show: _vm.showSideBar }
+          },
+          [
+            _c(
+              "span",
+              {
+                staticClass: "sidebar-close-icon",
                 on: {
-                  "select-user": function($event) {
-                    return _vm.updateSelectedUser($event)
-                  },
-                  "update-messages": function($event) {
-                    return _vm.updateMessages($event)
+                  click: function($event) {
+                    _vm.showSideBar = false
                   }
                 }
-              })
-            ],
-            1
-          )
-        ])
+              },
+              [_c("i", { attrs: { "data-feather": "x" } })]
+            ),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "chat-user-list-wrapper list-group",
+                attrs: { id: "users-list" }
+              },
+              [
+                _c("h4", { staticClass: "chat-list-title" }, [_vm._v("Chats")]),
+                _vm._v(" "),
+                _c("ChatContacts", {
+                  attrs: {
+                    contacts: _vm.contacts,
+                    me: _vm.user,
+                    "selected-user-id": _vm.selectedUserId
+                  },
+                  on: {
+                    "select-user": function($event) {
+                      return _vm.updateSelectedUser($event)
+                    },
+                    "update-messages": function($event) {
+                      return _vm.updateMessages($event)
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          ]
+        )
       ])
     ]),
     _vm._v(" "),
@@ -27003,7 +27032,7 @@ var render = function() {
           _c("section", { staticClass: "chat-app-window" }, [
             !_vm.isChatActive
               ? _c("div", { staticClass: "start-chat-area" }, [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("h4", { staticClass: "sidebar-toggle start-chat-text" }, [
                     _vm._v("Start Conversation")
@@ -27021,7 +27050,8 @@ var render = function() {
                       { staticClass: "chat-navbar" },
                       [
                         _c("ChatHead", {
-                          attrs: { "selected-user": _vm.selectedUser }
+                          attrs: { "selected-user": _vm.selectedUser },
+                          on: { "show-sidebar": _vm.setShowSideBar }
                         })
                       ],
                       1
@@ -27053,14 +27083,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "sidebar-close-icon" }, [
-      _c("i", { attrs: { "data-feather": "x" } })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -27268,8 +27290,6 @@ var render = function() {
         "div",
         { staticClass: "input-group input-group-merge mr-1 form-send-message" },
         [
-          _vm._m(0),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -27293,9 +27313,7 @@ var render = function() {
                 _vm.newMessage = $event.target.value
               }
             }
-          }),
-          _vm._v(" "),
-          _vm._m(1)
+          })
         ]
       ),
       _vm._v(" "),
@@ -27318,44 +27336,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "speech-to-text input-group-text" }, [
-        _c("i", {
-          staticClass: "cursor-pointer",
-          attrs: { "data-feather": "mic" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-append" }, [
-      _c("span", { staticClass: "input-group-text" }, [
-        _c(
-          "label",
-          { staticClass: "attachment-icon mb-0", attrs: { for: "attach-doc" } },
-          [
-            _c("i", {
-              staticClass: "cursor-pointer lighten-2 text-secondary",
-              attrs: { "data-feather": "image" }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "file", id: "attach-doc", hidden: "" }
-            })
-          ]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -27379,7 +27360,20 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("header", { staticClass: "chat-header" }, [
     _c("div", { staticClass: "d-flex align-items-center" }, [
-      _vm._m(0),
+      _c(
+        "div",
+        {
+          staticClass: "sidebar-toggle d-block d-lg-none mr-1",
+          staticStyle: { cursor: "pointer" },
+          on: { click: _vm.sidebarToggle }
+        },
+        [
+          _c("i", {
+            staticClass: "font-medium-5",
+            attrs: { "data-feather": "users" }
+          })
+        ]
+      ),
       _vm._v(" "),
       _vm.selectedUser.avatar != "" && _vm.selectedUser.avatar != null
         ? _c(
@@ -27397,7 +27391,7 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("span", { staticClass: "avatar-status-busy" })
+              _c("span", { staticClass: "avatar-status-online" })
             ]
           )
         : _c(
@@ -27415,10 +27409,10 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "avatar-status-busy" })
+                _c("span", { staticClass: "avatar-status-online" })
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(0)
             ]
           ),
       _vm._v(" "),
@@ -27429,17 +27423,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sidebar-toggle d-block d-lg-none mr-1" }, [
-      _c("i", {
-        staticClass: "font-medium-5",
-        attrs: { "data-feather": "menu" }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
