@@ -262,8 +262,13 @@ class CampaignsController extends Controller
      */
     public function destroy($id)
     {
-        if(Campaign::find($id)->delete()){
-            return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
-        }
+        $campaign = Campaign::find($id);
+        $campaign -> status = 2;
+        $campaign -> save();
+        return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+        
+        // if(Campaign::find($id)->delete()){
+        //     return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+        // }
     }
 }

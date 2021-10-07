@@ -133,7 +133,7 @@
                         @endif
                 </div>
             </div>
-            @if($order->status > 5)
+            @if($order->status > 5 && $order->status != 8)
             <a href="{{route('backer.order.invoice', $order->id)}}" class="btn btn-primary btn-block mt-2">View Invoice </a>
             @endif
 
