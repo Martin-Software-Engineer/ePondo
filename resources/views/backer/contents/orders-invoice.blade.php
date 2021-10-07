@@ -374,7 +374,7 @@
                 </div>
             </div>
         </div>
-        @else
+        @elseif($payment_method == 'COD' && $invoice_status < 3 )
         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
             <div class="card">
                 <div class="card-body">

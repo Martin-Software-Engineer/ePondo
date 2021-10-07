@@ -37,15 +37,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="c_img">
-                        <a href="{{route('service_view', $service->id)}}">
                             <img class="c_img" src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" >
-                        </a>
                     </div>                        
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="give_taital_1 overflow-ellipsis"><a href="{{route('service_view', $service->id)}}">{{$service->title}}</a></h1>
+                    <h1 class="give_taital_1 overflow-ellipsis">{{$service->title}}</h1>
                     @foreach($service->categories as $category)
                     <p class="card_s_category">
                             {{$category->name}} @if(!$loop->last)/@endif
@@ -63,9 +61,13 @@
                     </div>
                     <h5 class="service_price">₱{{$service->price}}</h5>
                     <div class="text-center mb-2">
+                        @if($service->status == 1)
                         <a class="btn btn-primary btn-sm btn-round" href="/service/{{$service->id}}" target="_blank">View</a>
                         <a href="{{route('jobseeker.services.edit', $service->id)}}" class="btn btn-primary btn-sm btn-round">Edit</a>
                         <button type="button" class="btn btn-danger btn-sm btn-round btn-delete" data-id="{{$service->id}}">Delete</button>
+                        @else
+                        <button type="button" class="btn btn-danger btn-sm btn-round btn-delete" disabled>Service Deleted</button>
+                        @endif
                     </div>
                 </div>
             </div>

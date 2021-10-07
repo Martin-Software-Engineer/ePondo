@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Redirect;
 class PagesController extends Controller
 {
     public function index(){
-        $data['campaigns'] = Campaign::take(3)->get();
-        $data['services'] = Service::take(3)->get();
+        // $data['campaigns'] = Campaign::take(3)->get();
+        $data['campaigns'] = Campaign::where('status',1)->inRandomOrder()->limit(3)->get();
+        // $data['services'] = Service::take(3)->get();
+        $data['services'] = Service::where('status',1)->inRandomOrder()->limit(3)->get();
         return view('landing.contents.index', $data);
     }
 
     public function campaigns(Request $request){
-        $campaigns = Campaign::orderBy('created_at', 'desc');
+        $campaigns = Campaign::where('status',1)->orderBy('created_at', 'desc');
         if($request->search){   
             $campaigns = $campaigns->where('title', 'like', '%'.$request->search.'%');
         }
@@ -49,7 +51,7 @@ class PagesController extends Controller
             2. Find services with the same user_id
             3. Output all data
         */
-        $data['services'] = Service::where('user_id', $data['campaign']->user_id)->get();
+        $data['services'] = Service::where('user_id', $data['campaign']->user_id)->where('status',1)->get();
         //return $data;
         return view('landing.contents.campaign_view', $data);
     }
@@ -66,7 +68,7 @@ class PagesController extends Controller
 
     public function services(Request $request){
 
-        $services = Service::orderBy('created_at', 'desc');
+        $services = Service::where('status',1)->orderBy('created_at', 'desc');
         if($request->search){   
             $services = $services->where('title', 'like', '%'.$request->search.'%');
         }
@@ -89,7 +91,7 @@ class PagesController extends Controller
             2. Find services with the same user_id
             3. Output all data
         */
-        $data['campaigns'] = Campaign::where('user_id', $data['service']->user_id)->get();
+        $data['campaigns'] = Campaign::where('user_id', $data['service']->user_id)->where('status',1)->get();
         return view('landing.contents.service_view', $data);
     }
 

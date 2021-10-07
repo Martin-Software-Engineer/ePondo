@@ -69,12 +69,31 @@ $(function() {
                     width: '80px',
                     orderable: false,
                     render: function(data, type, full, meta) {
-                        return (
-                            `<div class="d-flex align-items-center col-actions">
-                                <a class="mr-1 btn btn-sm btn-primary" href="/campaign/${full.id}">View Campaign</a>
-                            </div>
-                            `
-                        );
+
+                        if(full.status == 1){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <a class="mr-1 btn btn-sm btn-primary" href="/campaign/${full.id}">View Campaign</a>
+                                </div>
+                                `
+                            );
+                        }
+                        else
+                        {
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <a class="mr-1 btn btn-sm btn-light">Campaign Unactive</a>
+                                </div>
+                                `
+                            );
+                        }
+
+                        // return (
+                        //     `<div class="d-flex align-items-center col-actions">
+                        //         <a class="mr-1 btn btn-sm btn-primary" href="/campaign/${full.id}">View Campaign</a>
+                        //     </div>
+                        //     `
+                        // );
                     }
                 }
             ],
