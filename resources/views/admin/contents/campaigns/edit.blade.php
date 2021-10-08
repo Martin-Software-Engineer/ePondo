@@ -21,7 +21,7 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('admin.campaigns.update', $campaign->id)}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('admin.campaigns.update', $campaign->id)}}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-8">
@@ -105,7 +105,7 @@
                                                 @php array_push($tags, $tag->name); @endphp
                                             @endforeach
                                             <input name="tags" id="tagsinput" class="tagsinput" value="{{join(",", $tags)}}" />
-                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
+                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
                                         </div>
                                     </div>
                                 </div>
@@ -119,13 +119,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <select name="jobseeker_id" id="jobseeker-id" class="form-control">
-                                                @foreach($jobseekers as $jobseeker)
-                                                    @php $selected = false @endphp
-                                                    @if($jobseeker->id == $campaign->jobseeker->id)
-                                                        @php $selected = true @endphp
-                                                    @endif
-                                                    <option value="{{$jobseeker->id}}" @if($selected) checked @endif>{{$jobseeker->username}}</small></option>
-                                                @endforeach
+                                                    <option value="{{$campaign->jobseeker->id}}" @if($selected) checked @endif>{{$campaign->jobseeker->username}}</small></option>
                                             </select>
                                         </div>
                                     </div>
@@ -145,7 +139,7 @@
                                                 <label for="thumbnail-input" style="cursor: pointer">
                                                     @if($campaign->thumbnail_url != '')
                                                         <img src="{{$campaign->thumbnail_url}}" id="thumbnail-preview" class="rounded mr-50" height="180" width="180" />
-                                                    @else 
+                                                    @else
                                                         <img src="../../../app-assets/images/portrait/small/no-image.png" id="thumbnail-preview" class="rounded mr-50" height="180" width="180" />
                                                     @endif
                                                 </label>
@@ -162,7 +156,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="thumbnail" class="mb-1">Add More Photos</label>
+                                    <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label>
+                                    <label>It must be a JPG, PNG, no larger than 200 MB.</label></label>
                                         <div class="media-group d-flex">
                                             @foreach($campaign->photos as $photo)
                                             <div class="media">
@@ -199,7 +194,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
+                                   <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add an image that clearly represents your CAMPAIGN. Choose one that looks good at different sizes — it’ll appear on your campaign page. </span></label>
                                 </div>
                             </div>
                         </div>
@@ -299,7 +294,7 @@
                 if(input.data('photoId')){
                     myFormData.append('photo_id', input.data('photoId'));
                 }
-                
+
                 myFormData.append('_token', $('meta[name=csrf-token]').attr('content'));
 
                 $.ajax({

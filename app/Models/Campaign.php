@@ -27,7 +27,7 @@ class Campaign extends Model
         'thumbnail_id'
     ];
 
-    protected $appends = ['progress','thumbnail','thumbnail_url', 'raised'];
+    protected $appends = ['progress','thumbnail','thumbnail_url', 'raised', 'claimed', 'pending', 'available_funds'];
 
     public function path(){
 
@@ -40,7 +40,7 @@ class Campaign extends Model
     }
 
     public function jobseeker(){
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id')->with('information');
     }
 
     public function user(){
@@ -52,7 +52,9 @@ class Campaign extends Model
     }
 
     public function donations(){
-        return $this->belongsToMany(Donation::class);
+        return $this->belongsToMany(Donation::class)->whereHas('transactions', function($q){
+            $q->where('status', 'approved');
+        });
     }
 
     public function tags(){
@@ -73,10 +75,31 @@ class Campaign extends Model
         return $this->belongsToMany(Photo::class);
     }
 
+    public function claimed(){
+        return $this->hasMany(ClaimedDonations::class);
+    }
     public function getRaisedAttribute(){
         return $this->donations()->whereHas('transactions', function($q){
             $q->where('transactions.status', 'approved');
         })->sum('amount');
+    }
+
+    public function getClaimedAttribute(){
+        return $this->claimed()->where('status', 'paid')->sum('amount');
+    }
+
+    public function getPendingAttribute(){
+        return $this->claimed()->where('status', 'pending')->sum('amount');
+    }
+
+    public function getAvailableFundsAttribute(){
+        $claimed = $this->claimed()->where('status', 'paid')->sum('amount');
+        $pending = $this->claimed()->where('status', 'pending')->sum('amount');
+        $raised = $this->donations()->whereHas('transactions', function($q){
+            $q->where('transactions.status', 'approved');
+        })->sum('amount');
+
+        return $raised - ($claimed + $pending);
     }
     public function getProgressAttribute(){
         $donations = $this->donations()->whereHas('transactions', function($q){
@@ -87,7 +110,7 @@ class Campaign extends Model
         $data = (object)array(
             'current_value' => number_format($donations),
             'target_value' => number_format($target),
-            'percentage' => $donations > 0 ? $target / $donations : 0
+            'percentage' => $donations > 0 ? ($donations / $target) * 100  : 0
         );
 
         return $data;

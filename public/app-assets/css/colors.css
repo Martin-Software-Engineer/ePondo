@@ -733,11 +733,13 @@ input:focus ~ .bg-light {
 
 .btn-primary:focus, .btn-primary:active, .btn-primary.active {
   color : #FFFFFF;
-  background-color : #5E50EE !important;
+  /* background-color : #5E50EE !important; */
+  background-color : #211786 !important;
 }
 
 .btn-primary:hover:not(.disabled):not(:disabled) {
-  box-shadow : 0 8px 25px -8px #7367F0;
+  /* box-shadow : 0 8px 25px -8px #7367F0; */
+  box-shadow : 0 8px 25px -8px #211786;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus {
@@ -878,7 +880,7 @@ input:focus ~ .bg-light {
 }
 
 .progress-bar-primary .progress-bar {
-  background-color : #7367F0;
+  background-color : #120a78;
 }
 
 .timeline .timeline-point-primary {

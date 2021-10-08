@@ -22,8 +22,10 @@ class BackerDonations extends JsonResource
             'description' => $campaign->description,
             'thumbnail_url' => $campaign->thumbnail_url,
             'categories' => $campaign->categories,
-            'date' => date('Y-m-d',strtotime($this->created_at)),
-            'amount' => 'Php '.number_format($this->amount,2)
+            'jobseeker_name' => $campaign->jobseeker->userinformation->firstname.' '.$campaign->jobseeker->userinformation->lastname,
+            'date' => date('F d, Y', strtotime($this->created_at)),
+            'amount' => 'Php '.number_format($this->amount,2),
+            'status' => $campaign->status
         ];
     }
 }

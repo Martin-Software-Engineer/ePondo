@@ -71,7 +71,7 @@ h6 {
     letter-spacing: 0;
     font-weight: normal;
     position: relative;
-    padding: 0 0 10px 0;
+    /* padding: 0 0 10px 0; */
     font-weight: normal;
     line-height: normal;
     color: #111111;
@@ -79,7 +79,10 @@ h6 {
 }
 
 h1 {
-    font-size: 24px
+    font-size: 24px;
+    /* BOTH of the following are required for text-overflow */
+    /* white-space: nowrap;
+    overflow: hidden; */
 }
 
 h2 {
@@ -91,7 +94,10 @@ h3 {
 }
 
 h4 {
-    font-size: 16px
+    font-size: 16px;
+    /* BOTH of the following are required for text-overflow */
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 h5 {
@@ -118,7 +124,7 @@ h5 a,
 h6 a {
     color: #212121;
     text-decoration: none!important;
-    opacity: 1
+    opacity: 1;
 }
 
 button:focus {
@@ -134,10 +140,26 @@ ol {
 }
 
 p {
-    margin: 20px;
+    /* margin: 20px; */
     font-weight: 300;
     font-size: 15px;
-    line-height: 24px;
+    /* line-height: 24px; */
+    /* BOTH of the following are required for text-overflow */
+    /* white-space: nowrap;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    max-width: 200px; */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.overflow-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 a {
@@ -216,10 +238,17 @@ button {
     width: 100%;
 }
 
-
-
-
 .layout_padding {
+    padding-top: 190px;
+    padding-bottom: 100px;
+}
+
+.layout_padding_campaignspage {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.layout_padding_servicespage {
     padding-top: 100px;
     padding-bottom: 100px;
 }
@@ -246,8 +275,8 @@ button {
     padding-top: 40px;
     padding-bottom: 10px;
     background-color: #ffffff;
+    border-top: 1px solid rgb(235, 228, 228);
 }
-
 
 .padding_0 {
     padding: 0px;
@@ -255,6 +284,7 @@ button {
 
 
 /* header section start */
+
 .header_section {
     width: 100%;
     /* float: left; */
@@ -275,14 +305,11 @@ button {
 
 .navbar-brand {
     margin-right: 0px;
-    
 }
 
 .navbar-brand img {
     width: 150px;
 }
-
-
 
 .mr-auto,
 .mx-auto {
@@ -309,8 +336,6 @@ button {
     color: #041151;
 }
 
-
-
 .search_icon {
     padding-top: 0px;
     text-align: center;
@@ -329,12 +354,13 @@ button.donate_btn {
 .register_btn,
 .account_btn {
     width: 150px;
-    font-size: 18px;
-    color: #666666;
+    font-size: 14px;
+    color: rgba(0, 0, 0, .5);
+    ;
     background: transparent;
-    padding: 0 10px;
-    margin: 0 10px;
+    padding: 0 8px;
 }
+
 
 /* .register_btn,
 .account_btn {
@@ -344,9 +370,12 @@ button.donate_btn {
 .bg-light {
     background-color: white !important;
     border-bottom: 1px solid rgb(235, 228, 228);
-    
 }
 
+.enavbar {
+    border-right: 1px solid rgb(235, 228, 228);
+    margin-right: 8px;
+}
 
 
 /* header section end */
@@ -364,69 +393,68 @@ button.donate_btn {
     background-size: cover;
     position: relative;
     margin-bottom: 0;
+    padding-top: 300px;
 }
-    .carousel_1 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/1.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
 
-    .carousel_2 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/2.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
-    
-    .carousel_3 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/3.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
-    
-    .carousel_4 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/4.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
-    
-    .carousel_5 {
-        width: 100%;
-        float: left;
-        background-image: url(../images/4800x2400/5.png);
-        /* background-color: #0e085f; */
-        height: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        margin-bottom: 0;
-    }
+.carousel_1 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/1.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
 
+.carousel_2 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/2.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
 
+.carousel_3 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/3.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
 
+.carousel_4 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/4.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.carousel_5 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/4800x2400/5.png);
+    /* background-color: #0e085f; */
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 0;
+}
 
 .banner_taital {
     width: 100%;
@@ -447,25 +475,19 @@ button.donate_btn {
     color: #ffff;
     text-align: center;
     padding: 20px 0px; */
-
-    
-    
     font-size: 30px;
     color: #ffff;
     text-align: left;
-    
 }
 
 .read_bt {
     /* width: 150px;
     margin: 0 auto;
     text-align: center; */
-
     width: 300px;
     /* margin: 0 auto; */
     padding: 10px 10px;
     text-align: center;
-    
 }
 
 .read_bt a {
@@ -480,7 +502,7 @@ button.donate_btn {
 }
 
 .read_bt a:hover {
-    background-color: #46f67b;
+    background-color: #33db65;
 }
 
 .carousel-indicators {
@@ -563,14 +585,16 @@ button.donate_btn {
 
 .fundraise_section_main {
     width: 80%;
-    margin: 0px auto 30px auto;
+    margin: 0 auto 30px auto;
     text-align: center;
 }
 
 .fundraise_section {
     /* width: 100%; */
     text-align: center;
-    background-color: #ffffff;;
+    background-color: #ffffff;
+    ;
+    padding-top: 100px;
 }
 
 .fundraise_img {
@@ -582,7 +606,8 @@ button.donate_btn {
 .box_main {
     width: 100%;
     /* background-color: #154377; */
-    background-color: #120a78;
+    /* background-color: #120a78; */
+    background-color: #0f073b;
     /* clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0 75%, 0 0); */
     /* clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0); */
     height: auto;
@@ -592,6 +617,13 @@ button.donate_btn {
 
 .icon_1 {
     width: 100%;
+    float: center;
+    text-align: center;
+}
+
+.icon_3 {
+    width: 100%;
+    height: 96px;
     float: center;
     text-align: center;
 }
@@ -609,7 +641,7 @@ button.donate_btn {
     width: 100%;
     float: left;
     font-size: 16px;
-    color: #120a78;
+    color: #0f073b;
     font-weight: bold;
     /* padding-top: 20px; */
 }
@@ -619,7 +651,6 @@ button.donate_btn {
     margin: 0 auto;
     font-size: 12px;
     color: #fff;
-    text-align: center;
 }
 
 .join_bt {
@@ -627,7 +658,6 @@ button.donate_btn {
     margin: 0 auto;
     text-align: center;
     margin-top: 20px;
-    
 }
 
 .join_bt a {
@@ -640,9 +670,10 @@ button.donate_btn {
     background-color: #f64646;
 }
 
-.join_bt a:hover{
+.join_bt a:hover {
     background-color: #63f646;
 }
+
 
 /* .box_main:hover {
     background-color: #f64646;
@@ -661,10 +692,12 @@ button.donate_btn {
 .about_section {
     width: 100%;
     float: left;
-    background-color: #120a78;
-    padding-top: 40px;
+    /* background-color: #120a78; */
+    background-color: #041151;
+    padding-top: 100px;
     padding-bottom: 40px;
 }
+
 .about_section2 {
     width: 100%;
     float: left;
@@ -866,11 +899,20 @@ button.donate_btn {
 
 .news_taital_quote {
     float: left;
-    font-size: 30px;
-    color: #1d1d1d;
-    /* text-transform: uppercase; */
+    font-size: 36px;
+    color: #041151;
     font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'New Century Schoolbook, TeX Gyre Schola', serif;
+}
+
+.news_taital_author {
+    float: left;
+    font-size: 30px;
+    color: #0b218b;
+    font-weight: bold;
+    font-family: 'New Century Schoolbook, TeX Gyre Schola', serif;
+    margin-top: 20px;
 }
 
 .news_text {
@@ -894,7 +936,7 @@ button.donate_btn {
     font-size: 26px;
     color: #1d1d1d;
     font-weight: bold;
-    padding-top: 60px;
+    /* padding-top: 60px; */
     text-transform: uppercase;
 }
 
@@ -904,7 +946,7 @@ button.donate_btn {
     font-size: 16px;
     margin-left: 0px;
     color: #1b1b1b;
-    padding-top: 20px;
+    padding-top: 2px;
 }
 
 .raised_text {
@@ -920,19 +962,39 @@ button.donate_btn {
 
 .goal_text {
     color: #f64646;
-    padding-left: 20px;
+    width: 100%;
+    float: left;
+    font-size: 20px;
+    /* color: #120a78; */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding-top: 10px;
 }
 
 .donate_btn_main {
-    width: 35%;
+    width: 100%;
     display: flex;
-    padding-top: 20px;
+    padding: 10px 0 20px 0;
+    align-self: center;
+}
+
+.service_btn_main {
+    width: 100%;
+    display: flex;
+    padding: 10px 0 20px 0;
+    align-self: center;
 }
 
 .donate_btn {
     display: flex;
-    margin: 0 auto;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    /* background-color: #2610a5; */
+    background-color: #1ea835;
+    border-color: #ffffff;
 }
 
 .donate_btn a {
@@ -962,6 +1024,23 @@ button.donate_btn {
     text-align: center;
     font-size: 14px;
     color: #ffffff;
+    background-color: #1ea835;
+    /* border: 2px solid #ffffff; */
+    padding: 8px;
+    text-transform: uppercase;
+}
+
+.service_btn_1 {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.service_btn_1 a {
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
     background-color: #f64646;
     border: 2px solid #ffffff;
     padding: 8px;
@@ -982,7 +1061,7 @@ button.donate_btn {
 .events_section {
     width: 100%;
     float: left;
-    padding-bottom: 90px;
+    padding-bottom: 50px;
 }
 
 .section_4_quote {
@@ -994,7 +1073,7 @@ button.donate_btn {
 
 .section_5_footernav {
     width: 100%;
-    float:left;
+    float: left;
     padding-top: 20px;
     padding-bottom: 30px;
 }
@@ -1004,17 +1083,188 @@ button.donate_btn {
     float: left;
     color: #1d1d1d;
     font-weight: bold;
-    padding-top: 10px;
-    text-transform: uppercase;
+    /* padding-top: 10px; */
+    padding: 15px 20px 0 20px;
+    font-size: 20px;
+    text-align: left;
+    /* text-transform: uppercase; */
 }
 
 .ipsum_text_1 {
     width: 100%;
+    height: 90px;
     float: left;
-    font-size: 16px;
+    font-size: 12px;
     margin-left: 0px;
     color: #1b1b1b;
+    padding: 0 20px 0 20px;
 }
+
+.card_c_category {
+    width: 100%;
+    float: left;
+    font-size: 13px;
+    color: #120a78;
+    font-weight: 700;
+    margin: 10px 0 0 0;
+    padding: 0 20px 0 20px;
+}
+
+.card_c_jname {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    color: #1b1b1b;
+    /* font-weight: 500; */
+    /* margin: 0 0 15px 0; */
+    padding: 0 20px 0 20px;
+    /* border-bottom: 1px solid #b1afd1 ; */
+}
+
+.card_c_targetd {
+    width: 100%;
+    float: left;
+    color: #e0063d;
+    font-weight: 500;
+    margin: 5px 0 15px 0;
+    ;
+    padding: 0 20px 0 20px;
+    text-align: right;
+    font-size: 11px;
+}
+
+.card_c_desc {
+    width: 100%;
+    height: 90px;
+    float: left;
+    font-size: 12px;
+    margin-left: 0px;
+    color: #1b1b1b;
+    padding: 0 20px 0 20px;
+}
+
+.c_img {
+    /* Campaigns Page*/
+    width: 100%;
+    float: left;
+    position: relative;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.c_tab_space {
+    margin-top: 10px;
+}
+
+.c_card_c_desc {
+    /* Campaigns Page*/
+    width: 100%;
+    height: 40px;
+    float: left;
+    font-size: 12px;
+    margin-left: 0px;
+    color: #1b1b1b;
+    padding: 0 20px 0 20px;
+    font-weight: 300;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    /* margin-block-start: 1em; */
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.c_card_c_category {
+    /* Campaigns Page*/
+    width: 100%;
+    float: left;
+    font-size: 11px;
+    color: #120a78;
+    font-weight: 500;
+    font-style: italic;
+    margin: 0;
+    padding: 0 20px 0 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.c_card_title {
+    width: 100%;
+    float: left;
+    color: #1d1d1d;
+    font-weight: bold;
+    padding: 5px 20px 0 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.hr_m {
+    margin: 8px 0;
+}
+
+.hr_m_2 {
+    margin: 8px 20px;
+}
+
+.progress_bar {
+    margin: 0 20px 0 20px;
+}
+
+.progress_bar_campaigns {
+    margin: 0 20px 20px 20px;
+}
+
+
+/* Services Page - Start */
+
+.card_s_title {
+    width: 100%;
+    float: left;
+    color: #1d1d1d;
+    font-weight: bold;
+    padding: 15px 20px 0 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.card_s_category {
+    width: 100%;
+    float: left;
+    font-size: 11px;
+    color: #120a78;
+    font-weight: 500;
+    font-style: italic;
+    margin: 0;
+    padding: 0 20px 0 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.card_s_loc {
+    /* width: 100%;
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0px;
+    color: #1b1b1b;
+    padding: 15px 20px 0 20px; */
+    /* font-weight:500;
+    margin-right:8px; */
+    font-size: 12px;
+    margin: 0 20px;
+}
+
+
+/* Services Page - End */
 
 .raised_text_1 {
     width: 100%;
@@ -1024,12 +1274,81 @@ button.donate_btn {
     font-weight: bold;
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.service_price {
+    width: 100%;
+    float: left;
+    font-size: 20px;
+    color: #120a78;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    /* text-align: center; */
+    padding: 10px 0 20px 20px;
+}
+
+.s_img_jname {
+    height: 20px;
+    display: flex;
+    padding: 0 20px 0 20px;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.s_j_name {
+    font-size: 12px;
+    color: #1b1b1b;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+.s_jname_spacing {
+    padding: 0;
+}
+
+.s_location,
+.s_duration {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0px;
+    color: #1b1b1b;
+    padding: 0 20px 0 20px;
+}
+
+.s_hlocation,
+.s_hduration {
+    font-weight: 500;
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.s_image {
+    padding: 0;
+    /* vertical-align: middle; */
+    /* text-align: right; */
+    /* align-items: right; */
+    /* justify-content: right; */
+}
+
+.s_image_star {
+    width: 10px;
+    height: 10px;
 }
 
 .img_7 {
     width: 100%;
     float: left;
     position: relative;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
 .date_bt {
@@ -1068,7 +1387,446 @@ button.donate_btn {
 /* events section end */
 
 
-/* donate section start */
+/* Campaign {Id} start */
+
+.campaign_title,
+.service_title {
+    width: 100%;
+    float: left;
+    color: #1d1d1d;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: left;
+    font-size: 40px;
+}
+
+.campaign_category,
+.service_category {
+    width: 100%;
+    float: left;
+    color: #7e7e7e;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.campaign_raised_text {
+    width: 100%;
+    float: left;
+    color: #120a78;
+    font-weight: bold;
+    padding: 10px 0 5px 0;
+    font-size: 18px;
+}
+
+.c_cam_target_text {
+    width: 100%;
+    float: left;
+    color: #e0063d;
+    font-weight: bold;
+    padding: 10px 0 0px 0;
+    text-align: right;
+    font-size: 13px;
+}
+
+.c_cam_raised_text {
+    width: 100%;
+    float: left;
+    color: #120a78;
+    font-weight: bold;
+    padding: 10px 0 5px 0;
+    font-size: 13px;
+}
+
+.campaign_target_text {
+    width: 100%;
+    float: left;
+    color: #e0063d;
+    font-weight: bold;
+    padding: 10px 0 0px 0;
+    text-align: right;
+    font-size: 18px;
+}
+
+.campaign_target_date {
+    width: 100%;
+    float: left;
+    color: #e0063d;
+    font-weight: 500;
+    padding: 0 0 10px 0;
+    text-align: right;
+    font-size: 12px;
+}
+
+.campaign_progress_bar {
+    margin: 0 0 20px 0;
+}
+
+.campaign_donate_btn {
+    padding: 10px 15px 0 15px;
+    /* text-align: center; */
+}
+
+.campaign_images {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    object-fit: cover;
+}
+
+.donate_now {
+    width: 100%;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 60px; */
+}
+
+.donate_now_img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.c_j_body {
+    margin: 0;
+    padding: 0;
+}
+
+.c_j_about {
+    width: auto;
+    max-height: 225px;
+    overflow: auto;
+}
+
+.c_j_about_text {
+    margin: 10px 20px;
+}
+
+.c_j_about_subhead {
+    color: #041151;
+    font-weight: 500;
+    font-size: 12px;
+    text-decoration: underline;
+    margin: 10px 20px;
+}
+
+.campaign_profile_border {
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px 0 rgb(34 41 47 / 14%);
+}
+
+.campaign_profile_avatar {
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.campaign_jobseeker_about {
+    font-weight: 300;
+    font-size: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    /* -webkit-line-clamp: 5; */
+    -webkit-box-orient: vertical;
+    color: #111111;
+    margin-bottom: 5px;
+    text-align: justify;
+}
+
+.c_messages {
+    color: #041151;
+}
+
+.c_summary {
+    font-weight: 300;
+    font-size: 14px;
+    color: #111111;
+    margin: 5px 0;
+    text-align: justify;
+}
+
+.c_summary_area {
+    width: auto;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.c_tabs {
+    font-weight: bold;
+    color: #041151;
+    /* color: #120a78;
+    color: #2610a5; */
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    /* changing c_tabs active color */
+    color: #ffffff;
+    background-color: #041151;
+}
+
+.nav-tabs .nav-link {
+    color: #041151;
+    border-color: #dee2e6 #dee2e6 #fff;
+    background-color: rgba(0, 0, 0, .03);
+}
+
+.c_j_vm {
+    width: 100%;
+    font-weight: 300;
+    font-size: 12px;
+    color: #111111;
+    float: right;
+    text-align: right;
+    align-items: flex-end;
+    justify-content: left;
+    text-decoration: underline;
+}
+
+.j_p_subtitle {
+    font-weight: 500;
+}
+
+.j_p_text {
+    font-weight: 300;
+    font-size: 12px;
+    color: #111111;
+    margin-left: 5px;
+}
+
+.campaign_header_icons {
+    width: 16px;
+    height: 16px;
+    justify-content: left;
+    align-items: flex-start;
+    /* display: block; */
+    /* margin-left: auto; */
+    margin-right: 7px;
+}
+
+.j_p_name {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.j_p_profile {
+    width: 70px;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.j_p_aboutme {
+    width: auto;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.j_p_header {
+    color: #041151;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.m_title_area {
+    /* border-color: #dee2e6 #dee2e6 #fff; */
+    background-color: rgba(0, 0, 0, .03);
+    /* text-align: center; */
+}
+
+.m_title {
+    color: #041151;
+    font-weight: 800;
+    /* text-align: center;
+    justify-content: center; */
+}
+
+.m_c_title {
+    padding-bottom: 10px;
+    color: #041151;
+    font-weight: 500;
+}
+
+.m_c_total {
+    font-weight: bold;
+}
+
+.section_profile_header {
+    padding-bottom: 20px;
+}
+
+.section_profile_desc {
+    /* border-top: 1px solid rgb(235, 228, 228); */
+    padding: 20px 0 20px 0;
+}
+
+.section_details {
+    border-right: 1px solid rgb(235, 228, 228);
+    /* padding: 20px 0 20px 0; */
+}
+
+.section_living_state {
+    border-top: 1px solid rgb(235, 228, 228);
+    padding: 10px 0 0 0;
+}
+
+.section_income {
+    border-right: 1px solid rgb(235, 228, 228);
+    /* padding: 20px 0 20px 0; */
+}
+
+.c_message_section {
+    margin-top: 20px;
+}
+
+.c_messages_box {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    max-height: 295px;
+    overflow: auto;
+}
+
+.c_donation_sec {
+    padding: 10px 0;
+    margin: 0 20px;
+    border-bottom: 1px solid rgb(235, 228, 228);
+}
+
+.c_donation_text {
+    margin: 0 20px;
+}
+
+.c_don_amount {
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #041151;
+}
+
+.c_don_name {
+    font-weight: 500;
+    font-size: 12px;
+    color: #111111;
+    text-align: justify;
+}
+
+.c_don_mess {
+    font-style: oblique;
+    font-weight: 300;
+    margin: 10px 10px 0 10px;
+    text-align: start;
+}
+
+
+/* Campaign {Id} end */
+
+
+/* Service {Id} start */
+
+.s_details {
+    padding: 0 0 10px 0;
+    vertical-align: middle;
+}
+
+.service_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    background-color: #f64646;
+    border-color: #ffffff;
+}
+
+.service_btn a {
+    /* width: 150px; */
+    text-align: center;
+    /* font-size:14px; */
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    /* background-color: #120a78;
+    border: 2px solid #ffffff; */
+    padding: 8px;
+    /* text-transform: uppercase; */
+}
+
+
+/* .service_btn a:hover {
+    color: #ffffff;
+    background-color: #120a78;
+} */
+
+.s_hlocation2 {
+    font-weight: 600;
+    margin: 0 8px 0 0;
+    padding-top: 10px;
+}
+
+.s_price {
+    /* width: 100%; */
+    float: right;
+    color: #e0063d;
+    /* color: #120a78; */
+    font-weight: bold;
+    padding: 0;
+    text-align: right;
+    /* line-height: normal; */
+    font-size: 36px;
+    /* position: absolute; */
+    /* line-height: 1.5;
+    display: inline-block; */
+    vertical-align: top;
+}
+
+
+/* Service {Id} end */
+
+
+/* How it works - Start */
+
+.user_avatar {
+    width: 150px;
+    height: 150px;
+}
+
+.user_role_section {
+    width: 100%;
+    float: left;
+    background-color: #041151;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.user_title {
+    color: #ffffff;
+}
+
+.user_desc {
+    color: #ffffff;
+}
+
+
+/* How it works - End */
+
+
+/*  section start */
 
 .donate_section {
     width: 100%;
@@ -1108,6 +1866,12 @@ button.donate_btn {
 .client_img {
     width: 100%;
 }
+
+
+/* .carddd {
+    border: 1px solid;
+    box-shadow:  0.5rem 1.5rem 0 #e4dede;
+} */
 
 .client_name_text {
     width: 100%;
@@ -1244,6 +2008,60 @@ button.donate_btn {
 /* contact section end */
 
 
+/* Privacy Policy - Start */
+
+.pri_pol_section {
+    width: 100%;
+    float: left;
+    /* background-color: #120a78; */
+    /* background-color: #041151; */
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
+
+.pppic {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.pri_pol_logo {
+    width: 150px;
+    height: 150px;
+}
+
+.pri_pol_nav_sec {
+    padding: 0 15px;
+    justify-content: center;
+    height: 50px;
+    /* border-bottom: 1px solid #041151; */
+    border-bottom: 1px solid #e3e5e9;
+}
+
+.pri_pol_title_section {
+    background-color: #120a78;
+    height: auto;
+    /* margin-top: 20px; */
+    margin: 20px 15px 0 15px;
+}
+
+.pri_pol_title {
+    color: #000000;
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 10px;
+    text-decoration: underline;
+}
+
+.pri_pol_nav {
+    color: #120a78;
+    font-weight: 500;
+}
+
+
+/* Privacy Policy - End */
+
+
 /* footer section start */
 
 .footer_section {
@@ -1376,6 +2194,15 @@ input.address_text::placeholder {
     font-weight: bold;
 }
 
+.agg_section {
+    /* border-bottom: 1px solid #656465; */
+    border-left: 1px solid #dfd5df;
+}
+
+.agg_text {
+    color: #b7b9bd;
+}
+
 
 /* footer section end */
 
@@ -1385,16 +2212,16 @@ input.address_text::placeholder {
 .copyright_section {
     width: 100%;
     float: left;
-    background-color: #222122;
-    height: auto;
+    /* background-color: #0f073b; */
+    height: 30px;
 }
 
 .copyright_text {
     width: 100%;
     float: left;
-    font-size: 6px;
+    font-size: 10px;
     margin-left: 0px;
-    color: #fff;
+    color: rgb(197, 197, 197);
     text-align: center;
 }
 
@@ -1407,11 +2234,66 @@ input.address_text::placeholder {
 }
 
 
+/* Email - start */
+
+.email_btn {
+    width: 100%;
+    display: flex;
+    padding: 10px 0 20px 0;
+    align-self: center;
+}
+
+.email_btn_1 {
+    display: flex;
+    /* padding: 200px 200px; */
+    text-align: center;
+}
+
+
+/* Email - end */
+
+
 /* copyright section end */
 
 .margin_top_90 {
     margin-top: 90px;
 }
+
+.img_header_email {
+    margin-top: 90px;
+}
+
+
+/* Others */
+
+.just {
+    text-align: justify;
+}
+
+
+/* Service Order - Start */
+
+.btn-feedback-r {
+    background-color: blueviolet;
+    background: blueviolet;
+}
+
+
+/* Service Order - End */
+
+
+/* Verify Email Page - Start */
+
+.alert_verify_email_page {
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+
+/* Verify Email Page - End */
 
 
 /*================================================================================

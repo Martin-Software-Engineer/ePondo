@@ -160,30 +160,77 @@
           transform: rotate(360deg);
         }
       }
+
+      @media only screen and (max-width: 768px){
+          .campaign_title{
+              font-size: 26px;
+          }
+          .campaign_category{
+              font-size: 15px;
+          }
+          .campaign_raised_text,.campaign_target_text{
+              font-size: 16px;
+          }
+          .news_taital{
+              font-size: 26px;
+          }
+      }
 </style>
 @endsection
 
 @section('content')
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_campaignspage">
     <div class="container">
+        <!-- Campaign Header - Start -->
         <div class="row">
-          <div class="col-sm-12">
-             <h1 class="pb-0">{{$campaign->title}}</h1>
-             <span class="text-muted">
-                 @foreach($campaign->categories as $category)
-                    {{$category->name}} @if(!$loop->last)/@endif
-                 @endforeach
-             </span>
-          </div>
+            <div class="col-sm-12">
+                <h1 class="campaign_title">{{$campaign->title}}</h1>
+                <span class="campaign_category">
+                    @foreach($campaign->categories as $category)
+                        {{$category->name}} @if(!$loop->last)/@endif
+                    @endforeach
+                </span>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="progress-wrapper campaign_progress_bar">
+                            <div id="example-caption-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="campaign_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="campaign_target_text">Php {{$campaign->progress->target_value}} <br>Target </h6>
+                                        <h6 class="campaign_target_date">({{date('F d, Y', strtotime($campaign->target_date))}})</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="progress progress-bar-primary">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
+                                    aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%; background-color:#120a78;" 
+                                    aria-describedby="example-caption-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 campaign_donate_btn">
+                        <div class="donate_btn btn btn-block " data-campaign-id="{{$campaign->id}}">
+                            <h2 class="donate_now"><img src="{{asset('app-assets/images/additional_pictures/icon-4.png')}}" class="donate_now_img">Donate</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- Campaign Header - End -->
+
+        <!-- Campaign Content - Start -->
         <div class="row">
             <div class="col-md-8">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @foreach($campaign->photos as $photo)
-                        <div class="carousel-item @if($loop->index == 0) active @endif">
-                          <img class="d-block w-100" src="{{Storage::url($photo->url)}}" alt="Second slide">
-                        </div>
+                            <div class="carousel-item @if($loop->index == 0) active @endif ">
+                                <img class="d-block w-100 campaign_images" src="{{Storage::url($photo->url)}} " alt="Second slide">
+                            </div>
                         @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -195,56 +242,335 @@
                       <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs c_tab_space" id="myTab" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">Campaign Summary</a>
+                      <a class="nav-link active c_tabs" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">Campaign Summary</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Data</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="rating-tab" data-toggle="tab" href="#rating" role="tab" aria-controls="rating" aria-selected="false">Rating & Feedback</a>
+                    <li class="nav-item c_tabs">
+                      <a class="nav-link" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Profile</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
                         <div class="card">
-                            <div class="card-header">About Campaign</div>
-                            <div class="card-body">
-                                {{$campaign->description}}
+                            <div class="card-body c_summary_area">
+                                <div class="c_summary">{{$campaign->description}}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">...</div>
-                    <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
-                    <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">...</div>
+                    <div class="tab-pane fade " id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">
+                        <div class="card">
+                            <div class="card-body">
+                            <!-- Profile Header -->
+                                
+                            <!-- Profile Description -->
+                                <div class="row section_profile_desc">
+                                    <div class="col-sm-6 section_details">
+                                        <!-- Jobseeker Profile & Name -->
+                                            @if($campaign->jobseeker->avatar != '')
+                                                <img src="{{$campaign->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="" />
+                                            @else 
+                                                <img src="{{asset('/app-assets/images/avatars/noface.png')}}" class="rounded-circle j_p_profile" alt="" />
+                                            @endif
+                                            <h1 class="j_p_name">
+                                                {{$campaign->jobseeker->userinformation->firstname}}
+                                                {{$campaign->jobseeker->userinformation->lastname}}
+                                            </h1>
+                                            <hr>
+                                        <!-- Details -->
+                                            <h3 class="j_p_header">Personal Information</h3>
+                                            <h6 class="j_p_subtitle">Age:
+                                                @if (empty($campaign->jobseeker->userinformation->age))
+                                                <span class="j_p_text">N/A</span>
+                                                @else
+                                                    <span class="j_p_text">{{$campaign->jobseeker->userinformation->age}}y.o.</span>
+                                                @endif
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Kids:
+                                                <span class="j_p_text">
+                                                @forelse($campaign->jobseeker->kids as $kid)
+                                                    @if(!$loop->last)
+                                                        {{$kid->fullname.','}}
+                                                    @else
+                                                        {{$kid->fullname}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span> 
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Dependents:
+                                                <span class="j_p_text">
+                                                @forelse($campaign->jobseeker->dependents as $dependent)
+                                                    @if(!$loop->last)
+                                                        {{$dependent->fullname.','}}
+                                                    @else
+                                                        {{$dependent->fullname}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span>
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Job:
+                                                @if (empty($campaign->jobseeker->userinformation->current_job))
+                                                <span class="j_p_text">N/A</span>
+                                                @else
+                                                    <span class="j_p_text">{{$campaign->jobseeker->userinformation->current_job}}</span>
+                                                @endif
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Skills:
+                                                <span class="j_p_text">
+                                                @forelse($campaign->jobseeker->skills as $skill)
+                                                    @if(!$loop->last)
+                                                        {{$skill->work_skill.','}}
+                                                    @else
+                                                        {{$skill->work_skill}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span>
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Work Experience:
+                                                <span class="j_p_text">
+                                                @forelse($campaign->jobseeker->workexperiences as $workexp)
+                                                    @if(!$loop->last)
+                                                        {{$workexp->description.','}}
+                                                    @else
+                                                        {{$workexp->description}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span>
+                                            </h6>
+                                        
+                                   </div>    
+                                    <!-- About Me -->
+                                    <div class="col-sm-6 j_p_aboutme">
+                                        <h3 class="j_p_header">About Me</h3>
+                                        <h6 class="campaign_jobseeker_about ">
+                                            @if (empty($campaign->jobseeker->userinformation->bio))
+                                                <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
+                                            @else
+                                            {{$campaign->jobseeker->userinformation->bio}}
+                                            @endif
+                                        </h6>
+                                    </div>
+                                    
+                                </div>
+                            <!-- Living State -->
+                                <div class="row section_living_state">
+                                    <div class="col-sm-12">
+                                        <h3 class="j_p_header">Living State</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Income -->
+                                    <div class="col-sm-6 section_income">
+                                        <h6 class="j_p_subtitle">Average Daily Income: 
+                                                @if (empty($campaign->jobseeker->userinformation->daily_income))
+                                                    <span class="j_p_text">N/A</span>
+                                                @else
+                                                    <span class="j_p_text">Php {{$campaign->jobseeker->userinformation->daily_income}}</span>
+                                                @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Main Source Income:
+                                            @if (empty($campaign->jobseeker->userinformation->main_source_income))
+                                            <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->main_source_income}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Other Source Income:
+                                            @if (empty($campaign->jobseeker->userinformation->extra_source_income))
+                                            <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->extra_source_income}}</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                    <!-- Expenses -->
+                                    <div class="col-sm-6">
+                                        <h5 class="j_p_subtitle">Average Daily Expenses: 
+                                            @if (empty($campaign->jobseeker->userinformation->daily_expenses))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">Php {{$campaign->jobseeker->userinformation->daily_expenses}}</span>
+                                            @endif
+                                        </h5>
+                                        <h6 class="j_p_subtitle">Type of Housing:
+                                            @if (empty($campaign->jobseeker->userinformation->type_of_housing))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->type_of_housing}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Meals per Day:
+                                            @if (empty($campaign->jobseeker->userinformation->daily_meals))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->daily_meals}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Water:
+                                            @if (empty($campaign->jobseeker->userinformation->water_access))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->water_access}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Electricity:
+                                            @if (empty($campaign->jobseeker->userinformation->electricity_access))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->electricity_access}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Clothes:
+                                            @if (empty($campaign->jobseeker->userinformation->clean_clothes_access))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$campaign->jobseeker->userinformation->clean_clothes_access}}</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="col-md-4">
+                <!-- Jobseeker Picture, Name, Some Details - Start -->
                 <div class="card">
                     <div class="card-header text-center">
-                        <h3 class="card-title">{{$campaign->title}}</h3>
-                        <p>{{$campaign->description}}</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="donate_btn btn btn-block btn-success" data-campaign-id="{{$campaign->id}}">Donate Now!</div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-start">
-                        <div class="avatar mr-3">
-                            <img src="{{asset('app-assets/images/avatars/noface.png')}}" width="50" class="rounded-circle" alt="">
+                        <div class="row">
+                            @if($campaign->jobseeker->avatar != '')
+                                <img src="{{$campaign->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="" />
+                            @else 
+                                <img src="{{asset('/app-assets/images/avatars/noface.png')}}" class="rounded-circle j_p_profile" alt="" />
+                            @endif
                         </div>
                         <div class="info">
-                            <h3>Posted By</h3>
-                            <h3><strong>{{$campaign->jobseeker->username}}</strong></h3>
-
+                            <h3><strong>{{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}} </strong></h3>
+                        </div>
+                    </div>
+                    <div class="card-body c_j_body">
+                        <div class="c_j_about">
+                            <h6 class="c_j_about_subhead">About Me:</h6>
+                            <h6 class="campaign_jobseeker_about c_j_about_text"> 
+                                @if (empty($campaign->jobseeker->userinformation->bio))
+                                    <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
+                                @else
+                                {{$campaign->jobseeker->userinformation->bio}}
+                                @endif
+                            </h6>
                         </div>
                     </div>
                 </div>
+                <!-- Jobseeker Picture, Name, Some Details - End -->
+
+                <!-- Donation Messages - Start -->
+                <div class="card c_message_section">
+                    <div class="card-header text-center">
+                        <div class="info c_messages">
+                            <strong>Donations</strong>
+                        </div>
+                    </div>
+                    <div class="card-body c_messages_box">
+                        <div class="c_donation_sec c_donation_text">
+                        @forelse($campaign->donations as $donation)
+                                <h6><span class="c_don_amount">Php {{$donation->amount}}</span>donated by {{@$donation->backer->userinformation->firstname}}, {{@$donation->backer->userinformation->lastname}}</h6>
+                                <h6 class="c_don_mess">"{{$donation->message}}"</h6>
+                        @empty
+                                <h6>N/A</h6>
+                        @endforelse
+                        </div>
+                    </div>
+                </div>
+                <!-- Donation Messages - End -->
             </div>
         </div>
+        <!-- Campaign Content - End -->
+    </div>
+
+    <div class="container">
+        <!-- Service Tiles - Start -->
+        <div class="row pt-4">
+            <div class="col-sm-12">
+                <h1 class="news_taital">Avail My Services</h1>
+            </div>
+        
+        </div>
+        <div class="row">
+        @forelse($services as $service)
+            <div class="col-sm-3 pt-4">
+                <!-- Service Tiles - Start -->
+                <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="c_img">
+                                    <a href="{{route('service_view', $service->id)}}">
+                                        <img class="c_img" src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" >
+                                    </a>
+                                </div>                        
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{{route('service_view', $service->id)}}" class="stretched-link"><h1 class="card_s_title overflow-ellipsis">{{$service->title}}</h1>
+                                <p class="card_s_category">
+                                @foreach($service->categories as $category)
+                                    {{$category->name}} @if(!$loop->last)/@endif
+                                @endforeach
+                                </p>
+
+                                <div class="row-md-12 s_img_jname">
+                                    <div class="col-md-6 s_jname_spacing">
+                                        <h3 class="s_j_name" >By: {{@$service->jobseeker->userinformation->firstname}} {{@$service->jobseeker->userinformation->lastname}}</h3>
+                                    </div>
+                                    @if($service->ratings > 0)
+                                    <div class="col-md-6 s_image">
+                                        @for($i = 0; $i < $service->ratings; $i++)
+                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                        @endfor
+                                        ({{$service->ratings}})
+                                    </div>
+                                    @endif
+                                    
+                                </div>
+                                <hr class="hr_m_2">
+                                <div class="c_card_c_desc">{{$service->description}}</div>
+                                
+                                <div>
+                                    <h3 class="card_s_loc"><strong>Location:</strong> {{$service->location}}</h3>
+                                </div>
+                                <div>
+                                <h3 class="card_s_loc"><strong>Duration:</strong>
+                                    @if( $service->duration_hours > 1 ) {{$service->duration_hours}} Hrs @elseif( $service->duration_hours == 0 )  @else {{$service->duration_hours}} Hr @endif
+                                    @if( $service->duration_minutes > 1 ) {{$service->duration_minutes}} Mins @elseif( $service->duration_minutes == 0 )  @else {{$service->duration_minutes}} Min @endif
+                                </h3>
+                                </div>
+                                <h5 class="service_price">₱{{$service->price}}</h5></a>
+                                <div class="service_btn_main mt-0">
+                                    <div class="service_btn_1"><a href="{{route('service_view', $service->id)}}">Avail</a></div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Service Tiles - End -->
+            </div>
+            @empty
+            <div class="col-sm-3">
+                <h3> No Services Available</h3>
+            </div>
+            @endforelse
+        </div>
+        <!-- Service Tiles - End -->
     </div>
 </div>
       
@@ -254,8 +580,8 @@
 <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title">Donation</h2>
+        <div class="modal-header m_title_area">
+          <h3 class="modal-title m_title">Donation</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -266,7 +592,7 @@
             <div class="modal-body">
                 <div class="row text-center">
                     <div class="col-md-12">
-                        <h2 class="campaign-title"></h2>
+                        <h2 class="campaign-title m_c_title"></h2>
                     </div>
                 </div>
                 <div class="card mb-1">
@@ -334,11 +660,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <select name="currency" id="currency" class="form-control">
-                                        <option value="php">PHP</option>
-                                        <option value="usd">USD</option>
-                                    </select>
-                                    <input type="number" name="amount" step=".01" placeholder="Amount in PHP/USD" class="form-control" required>
+                                    <div class="row">
+                                        <div class="col-md-4"><select name="currency" id="currency" class="form-control">
+                                            <option value="php">PHP</option>
+                                        </select></div>
+                                        <div class="col-md-8">  <input type="number" name="amount" step=".01" placeholder="Enter Amount" class="form-control" required>
+                                    </div>
+                                      </div>
                                 </div>
                             </div>   
                         </div>
@@ -352,14 +680,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h5>Transaction Fee</h5>
                                 <h5>Payment Processing Fee</h5>
                                 <h5><strong>Total Amount</strong></h5>
                             </div>
                             <div class="col-md-6">
-                                <h5>5%</h5>
                                 <h5>3%</h5>
-                                <h5 class="total_amount"></h5>
+                                <h5 class="total_amount m_c_total"></h5>
                             </div>
                         </div>
                     </div>
@@ -448,7 +774,8 @@
             if(donationForm.find('input[name=amount]').val() > 0){
                 totalAmount = donationForm.find('input[name=amount]').val()
             }
-
+            totalAmount = parseFloat(totalAmount);
+            totalAmount = (totalAmount + (totalAmount * .03));
             $('.total_amount').text(`${currency.toUpperCase()} ${totalAmount}`);
         });
 
@@ -459,7 +786,8 @@
             if(donationForm.find('input[name=amount]').val() > 0){
                 totalAmount = donationForm.find('input[name=amount]').val()
             }
-
+            totalAmount = parseFloat(totalAmount);
+            totalAmount = (totalAmount + (totalAmount * .03));
             $('.total_amount').text(`${currency.toUpperCase()} ${totalAmount}`);
         });
 
@@ -497,7 +825,7 @@
         });
 
         paypal.Button.render({
-            env: 'sandbox', // Or 'production'
+            env: "{{env('PAYPAL_MODE')}}", // Or 'production'
             style: {
                 size: 'responsive',
                 color: 'blue',

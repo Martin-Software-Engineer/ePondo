@@ -22,7 +22,7 @@ $(function() {
                 { data: 'backer_id' },
                 { data: 'service_title' },
                 { data: 'order_id' },
-                { data: 'categories' },
+                { data: 'service_categories' },
                 { data: 'due_date' },
                 { data: '' }
             ],
@@ -65,8 +65,7 @@ $(function() {
                     render: function(data, type, full, meta) {
                         return (
                             `<div class="d-flex align-items-center col-actions">
-                              <a class="mr-1 btn-edit" href="/admin/campaigns/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
-                              <a class="mr-1 btn-delete" href="javascript:void(0);" data-toggle="tooltip" data-id="${full.id}" data-placement="top" title="Delete">${feather.icons['delete'].toSvg({ class: 'font-medium-2' })}</a>
+                              <a class="mr-1 btn btn-sm btn-primary" href="/admin/invoice/${full.id}">Details</a>
                             </div>
                             `
                         );

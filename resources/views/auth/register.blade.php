@@ -103,7 +103,8 @@
         <div class="custom-control custom-checkbox">
             <input class="custom-control-input" type="checkbox" id="register-privacy-policy" tabindex="7" required/>
             <label class="custom-control-label" for="register-privacy-policy">
-                I agree to <a href="javascript:void(0);">privacy policy & terms</a>
+                I agree to <a target="_blank" href="{{route('privacypolicy')}}" target="_blank">Privacy Policy</a> & 
+                            <a target="_blank" href="{{route('termsandconditions')}}" target="_blank">Terms & Conditions</a>
             </label>
         </div>
     </div>

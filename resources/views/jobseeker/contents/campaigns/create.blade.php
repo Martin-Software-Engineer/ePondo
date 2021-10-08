@@ -21,18 +21,19 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('jobseeker.campaigns.store')}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('jobseeker.campaigns.store')}}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-12 col-md-8 col-lg-8">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="campaign-id">Title</label>
+                                            <span class="j_tag_trans">(Pamagat)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" id="title" class="form-control" name="title" placeholder="Input text here ...">
+                                            <input type="text" id="title" class="form-control" name="title">
                                         </div>
                                     </div>
                                 </div>
@@ -40,9 +41,10 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="description">Description</label>
+                                            <span class="j_tag_trans">(Diskripsyon)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ..."></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -50,6 +52,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="category">Category</label>
+                                            <span class="j_tag_trans">(Kategorya)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
@@ -64,9 +67,10 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="target-date">Target Date</label>
+                                            <span class="j_tag_trans">(Mithing Petsa)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="date" name="target_date" id="target-date" class="form-control">
+                                            <input type="date" name="target_date" id="target_date" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -74,16 +78,14 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="target-amount">Target Amount</label>
+                                            <span class="j_tag_trans"><br>(Mithing Halaga)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div class="input-group mb-2">
+                                            <div class="input-group flex-wrap mb-2">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">₱</span>
                                                 </div>
-                                                <input type="number" name="target_amount" step=".01" id="target-amount" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                                <input type="number" name="target_amount" step=".01" id="target_amount" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
                                             </div>
                                         </div>
                                     </div>
@@ -94,17 +96,14 @@
                                             <label for="tags">Tags</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input name="tags" id="tagsinput" class="tagsinput" value="" />
-                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add a comma or press enter to separate tags</span>        
+                                            <input name="tags" id="tags" class="tagsinput" value="" />
+                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add a comma or press enter to separate tags</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-9 offset-sm-3">
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
-                                </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-md-4 col-lg-4">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -127,7 +126,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="thumbnail" class="mb-1">Add More Photos</label>
+                                        <label>Campaign Photos</label>
                                         <div class="media-group d-flex">
                                             <div class="media">
                                                 <a href="javascript:void(0);">
@@ -179,11 +178,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Click on the photo to upload or edit </span>
+                                
+                                    <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign. </span></label>
+                                
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float float-right waves-light">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -221,6 +225,10 @@
                     processData: false,
                     beforeSend: function() {
                         $(this).find('button[type=submit]').prop('disabled', true);
+                        form.find('.invalid-feedback').remove();
+                        form.find('.valid-feedback').remove();
+                        form.find('.invalid-feedback.valid-feedback').remove();
+                        form.find('input').removeClass('is-invalid');
                     },
                     success: function(resp) {
                         $(this).find('button[type=submit]').prop('disabled', false);
@@ -245,6 +253,21 @@
                                 }
                             });
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $(this).find('button[type=submit]').prop('disabled', false);
+                        $.each(xhr.responseJSON.errors, function(name, error) {
+                            form.find('button[type=submit]').prop('disabled', false);
+                            form.find('#' + name).siblings('.invalid-feedback').remove();
+                            form.find('#' + name).siblings('.valid-feedback').remove();
+                            form.find('#' + name).siblings('.invalid-feedback.valid-feedback').remove();
+                            form.find('#' + name).addClass('is-invalid');
+                            form.find('#' + name).after(`
+                                <div class="invalid-feedback">
+                                ${error}
+                            </div>
+                            `);
+                        });
                     }
                 });
             });

@@ -24,10 +24,12 @@ class UpdateCampaign extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'target_date' => 'required',
-            'target_amount' => 'required',
-            'description' => 'string'
+            'title' => 'required|string|max:50',
+            'description' => 'required|string|max:1000',
+            'category' => 'required',
+            'target_date' => 'required|date',
+            'target_amount' => 'required|integer',
+            'tags' => 'required'
         ];
     }
 }

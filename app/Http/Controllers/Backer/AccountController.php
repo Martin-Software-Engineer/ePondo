@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\UserInformation;
 use App\Helpers\System;
 
+use App\Http\Requests\UpdateAccount;
+
 class AccountController extends Controller
 {
     public function index(){
@@ -27,7 +29,7 @@ class AccountController extends Controller
         return view('backer.contents.myaccount', $data);
     }
 
-    public function update(Request $request){
+    public function update(UpdateAccount $request){
         $user = User::find(auth()->user()->id);
 
         if ($request->hasFile('avatar')) {
@@ -37,7 +39,7 @@ class AccountController extends Controller
                 $fileName   = time() . '.' . $image->getClientOriginalExtension();
                 $upload = $request->file('avatar')->storeAs('/avatars',$fileName,'public');
                 
-                $user->avatar = 'public/avatars/'.$fileName;
+                $user->avatar = '/storage/avatars/'.$fileName;
                 $user->save();
 
             }

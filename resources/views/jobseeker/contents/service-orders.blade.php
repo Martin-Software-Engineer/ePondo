@@ -24,26 +24,28 @@
 
 @section('content')
 <section class="orders-list-wrapper">
+    <h2>Service Orders</h2>
     <div class="card">
         <div class="card-datatable table-responsive">
             <table class="orders-list-table table">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Order ID</th>
+                        <th>Service Order No.</th>
                         <th>Title</th>
-                        <th>Date of Service</th>
                         <th>Category</th>
-                        <th>Price</th>
                         <th>Duration</th>
+                        <th>Price</th>
+                        <th>Service Location</th>
+                        <th>Service Order Date</th>
                         <th>Status</th>
                         <th class="cell-fit">Actions</th>
-                    </tr>
+                        </tr>
                 </thead>
             </table>
         </div>
     </div>
-</section>      
+</section>
 @endsection
 
 @section('modals')
@@ -68,7 +70,7 @@
                                     <label for="service_feedback">How was the experience of your service with the customer/backer</label>
                                     <textarea name="service_feedback" id="service_feedback" cols="30" rows="6" class="form-control"></textarea>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="category">How was your experience using the platform?</label>
                                     <div class="demo-inline-spacing">

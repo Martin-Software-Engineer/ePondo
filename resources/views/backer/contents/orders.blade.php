@@ -27,13 +27,12 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Service Order No.</th>
+                                <th>Order No.</th>
                                 <th>Service Title</th>
                                 <th>Category</th>
-                                <th>Service Price</th>
-                                <th>Service Duration</th>
-                                <th>Date of Service</th>
-                                <th>Service Order Status</th>
+                                <th>Price</th>
+                                <th>Service Order Date</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

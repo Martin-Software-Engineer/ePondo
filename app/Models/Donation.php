@@ -15,10 +15,10 @@ class Donation extends Model
         'amount'
     ];
 
-    protected $appends = ['campaign'];
+    protected $appends = ['campaign', 'backer'];
     
     public function backer(){
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsToMany(User::class)->with('userinformation');
     }
 
     public function campaigns(){
@@ -27,6 +27,10 @@ class Donation extends Model
 
     public function getCampaignAttribute(){
         return $this->campaigns()->first();
+    }
+
+    public function getBackerAttribute(){
+        return $this->backer()->first();
     }
 
     public function transactions(){

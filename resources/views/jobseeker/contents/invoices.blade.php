@@ -25,28 +25,27 @@
 
 @section('content')
 <section class="invoices-list-wrapper">
+    <h2>Invoice</h2>
     <div class="card">
         <div class="card-datatable table-responsive">
             <table class="invoices-list-table table">
                 <thead>
                     <tr>
-                        <th></th>
+                     <th></th>
+
                         <th>Invoice No.</th>
-                        <th>Jobseeker Name</th>
-                        <th>Jobseeker ID</th>
-                        <th>Backer Name</th>
-                        <th>Backer ID</th>
+                        <th>Backer/Customer Name</th>
                         <th>Service Title</th>
                         <th>Serivce Order No.</th>
-                        <th>Service Category</th>
-                        <th>Date of Service</th>
+                        <th>Due Date of Payment</th>
                         <th class="cell-fit">Actions</th>
+
                     </tr>
                 </thead>
             </table>
         </div>
     </div>
-</section>    
+</section>
 @endsection
 
 @section('external_js')

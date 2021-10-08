@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 
 use App\Models\User;
 use App\Models\UserInformation;
+
+use App\Http\Requests\UpdateAccountJobseeker;
 class AccountController extends Controller
 {
     public function index(){
@@ -25,11 +27,12 @@ class AccountController extends Controller
             'email' => $user->email,
             'address' => @$userInfo->address,
             'zipcode' => @$userInfo->zipcode, 
+            'birthdate' => @$userInfo->birthdate
         ];
         return view('jobseeker.contents.myaccount', $data);
     }
 
-    public function update(Request $request){
+    public function update(UpdateAccountJobseeker $request){
         $user = User::find(auth()->user()->id);
 
         if ($request->hasFile('avatar')) {
@@ -39,7 +42,7 @@ class AccountController extends Controller
                 $fileName   = time() . '.' . $image->getClientOriginalExtension();
                 $upload = $request->file('avatar')->storeAs('/avatars',$fileName,'public');
                 
-                $user->avatar = 'public/avatars/'.$fileName;
+                $user->avatar = '/storage/avatars/'.$fileName;
                 $user->save();
 
             }
@@ -49,18 +52,16 @@ class AccountController extends Controller
         if(!$userinfo){
             UserInformation::create([
                 'user_id' => auth()->user()->id,
-                'firstname' => $request->firstname,
-                'lastname' => $request->lastname,
                 'phone' => $request->phone,
                 'address' => $request->address,
-                'zipcode' => $request->zipcode
+                'zipcode' => $request->zipcode,
+                'birthdate' => $request->birthdate
             ]); 
         }else{
-            $userinfo->firstname = $request->firstname;
-            $userinfo->lastname = $request->lastname;
             $userinfo->phone = $request->phone;
             $userinfo->address = $request->address;
             $userinfo->zipcode = $request->zipcode;
+            $userinfo->birthdate = $request->birthdate;
             $userinfo->save();
         }
 

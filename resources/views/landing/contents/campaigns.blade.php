@@ -1,7 +1,7 @@
 @extends('landing.layouts.main')
 
 @section('content')
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_campaignspage">
     <div class="container">
        <div class="row mb-2">
           <div class="col-sm-12 d-flex justify-content-start align-items-center">
@@ -15,9 +15,10 @@
                               Category
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              @foreach($categories as $category)
-                              <a class="dropdown-item" href="#" data-value="{{$category->id}}">{{$category->name}}</a>
-                              @endforeach
+                            <a class="dropdown-item" href="{{route('campaigns')}}">All</a>
+                            @foreach($categories as $category)
+                            <a class="dropdown-item" href="#" data-value="{{$category->id}}">{{$category->name}}</a>
+                            @endforeach
                           </div>
                       </div>
                       <div class="dropdown dropdown-type mr-1">
@@ -30,14 +31,6 @@
                                <a class="dropdown-item" href="#" data-value="popular">Popular</a>
                           </div>
                       </div>
-                      <div class="dropdown dropdown-region mr-1">
-                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Region
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                              <a class="dropdown-item" href="#">All</a>
-                          </div>
-                      </div>
                 </div>
                 <div class="col-md-4 d-flex">
                     <input type="text" name="filter_search" class="form-control" placeholder="Search">
@@ -48,32 +41,70 @@
        </div>
        <div class="row">
             @forelse($campaigns as $campaign)
-                <div class="col-md-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="img_7"><a href="{{route('campaign_view', $campaign->id)}}"><img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>
-                            <div class="date_bt">
-                                <div class="date_text active"><a href="#">{{date('d', strtotime($campaign->target_date))}}</a></div>
-                                <div class="date_text"><a href="#">{{date('M', strtotime($campaign->target_date))}}</a></div>
+                <div class="col-md-3 pt-4">
+                    <!-- Campaign Tile 2 - Start -->
+                    <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="c_img"><a href="{{route('campaign_view', $campaign->id)}}">
+                                    <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : 
+                                    asset('app-assets/images/pages/no-image.png')}}" class="c_img"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <a class="stretched-link" href="{{route('campaign_view', $campaign->id)}}">
+                                    <h1 class="card_s_title overflow-ellipsis">{{$campaign->title}}</h1>
+                                
+                                <p class="c_card_c_category">
+                                    @foreach($campaign->categories as $category)
+                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    @endforeach
+                                </p>
+                                <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
+                               
+                                <div class="c_card_c_desc">{{$campaign->description}}</div>
+                               
+                                <div class="progress-wrapper progress_bar">
+                                    <div id="example-caption-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6 class="c_cam_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="c_cam_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress progress-bar-primary">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
+                                            aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%; background-color:#120a78;" 
+                                            aria-describedby="example-caption-2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="card_c_targetd">{{date('F d, Y', strtotime($campaign->target_date))}}</p>
+                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="give_taital_1"><a href="{{route('campaign_view', $campaign->id)}}">{{$campaign->title}}</a></h1>
-                            <p class="ipsum_text_1">{{$campaign->description}}</p>
-                            <h5 class="raised_text_1">Raised: ₱{{$campaign->raised}} <br><span class="text-danger">Goal: ₱{{$campaign->target_amount}}</span></h5>
-                            <div class="donate_btn_main">
-                                <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}" class="donate_btn" data-campaign-id="{{$campaign->id}}">Donate Now</a></div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Campaign Tile 2 - End -->
                 </div>
             @empty 
             @endforelse
         </div> 
+        <div class="row mt-5">
+            <div class="col-12 d-flex justify-content-center">
+                {{ $campaigns->links() }}
+            </div>
+        </div>
     </div>
-</div>    
+</div>
+
 @endsection
 
 @section('modals')

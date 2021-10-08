@@ -25,7 +25,6 @@ $(function() {
                 { data: 'service.title' },
                 { data: 'service.categories' },
                 { data: 'service.price' },
-                { data: 'service.duration' },
                 { data: 'date' },
                 { data: 'status.text' },
                 { data: '' }
@@ -44,14 +43,15 @@ $(function() {
                     render: function(data, type, row) {
                         let categories = [];
                         $.each(row.service.categories, function(i, category) {
-                            categories.push(`<span class="badge badge-primary">${category.name}</span>`);
+                            // categories.push(`<span class="badge badge-primary">${category.name}</span>`);
+                            categories.push(`${category.name}`);
                         });
 
                         return categories.join('');
                     }
                 },
                 {
-                    targets: 7,
+                    targets: 6,
                     render: function(data, type, row) {
                         return $.parseHTML(row.status.text)[0].data;
                     }
@@ -63,9 +63,10 @@ $(function() {
                     orderable: false,
                     render: function(data, type, full, meta) {
                         var btns = [];
-                        if (full.status.code == 1 || full.status.code == 5) {
-                            btns.push(`<button type="button" class="mr-1 btn btn-danger btn-sm btn-cancel" data-id="${full.id}">Cancel</button>`);
-                        }
+                        var statusCode = parseInt(full.status.code);
+                        // if (statusCode == 1 || statusCode == 2) {
+                        //     btns.push(`<button type="button" class="mr-1 btn btn-danger btn-sm btn-cancel" data-id="${full.id}">Cancel</button>`);
+                        // }
                         return (
                             `<div class="d-flex align-items-center col-actions">
                                 ${btns.join()}

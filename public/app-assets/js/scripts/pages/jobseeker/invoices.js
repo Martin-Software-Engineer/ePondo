@@ -21,15 +21,18 @@ $(function() {
                 // columns according to JSON
                 { data: 'id' },
                 { data: 'invoice_id' },
-                { data: 'jobseeker_name' },
-                { data: 'jobseeker_id' },
                 { data: 'backer_name' },
-                { data: 'backer_id' },
                 { data: 'service_title' },
                 { data: 'order_id' },
-                { data: 'categories' },
                 { data: 'due_date' },
                 { data: '' }
+
+                // <th>Invoice No.</th>
+                //         <th>Backer Name</th>
+                //         <th>Service Title</th>
+                //         <th>Serivce Order No.</th>
+                //         <th>Date of Service</th>
+                //         <th class="cell-fit">Actions</th>
             ],
             columnDefs: [{
                     // For Responsive
@@ -41,27 +44,34 @@ $(function() {
                     }
                 },
                 {
-                    targets: 6,
+                    targets: 1,
+                    width: '100px',
                     render: function(data, type, row) {
-                        if (row.service_title.length > 20) {
-                            return row.service_title.substring(0, 20) + '...';
-                        } else {
-                            return row.service_title;
-                        }
-
+                        return row.invoice_id;
                     }
                 },
-                {
-                    targets: 8,
-                    render: function(data, type, row) {
-                        var $elArray = [];
-                        $.each(row.service_categories, function(index, category) {
-                            $elArray.push(`<span class="badge badge-info">${category.name}</span>`);
-                        });
+                // {
+                //     targets: 3,
+                //     render: function(data, type, row) {
+                //         if (row.service_title.length > 30) {
+                //             return row.service_title.substring(0, 30) + '...';
+                //         } else {
+                //             return row.service_title;
+                //         }
+                //     }
+                // },
 
-                        return $elArray.join();
-                    }
-                },
+                // {
+                //     targets: 8,
+                //     render: function(data, type, row) {
+                //         var $elArray = [];
+                //         $.each(row.service_categories, function(index, category) {
+                //             $elArray.push(`<span class="badge badge-info">${category.name}</span>`);
+                //         });
+
+                //         return $elArray.join();
+                //     }
+                // },
                 {
                     // Actions
                     targets: -1,
@@ -70,6 +80,7 @@ $(function() {
                     render: function(data, type, full, meta) {
                         return (
                             `<div class="d-flex align-items-center col-actions">
+                                <a class="mr-1" href="/jobseeker/invoices/${full.id}" data-toggle="tooltip" data-placement="top" title="View">${feather.icons['eye'].toSvg({ class: 'font-medium-2' })}</a>
                             </div>
                             `
                         );

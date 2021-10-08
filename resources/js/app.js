@@ -1,48 +1,8 @@
 require('./bootstrap');
 
-Vue.component('chat-contacts', require('./components/ChatContacts.vue'));
-Vue.component('chat-messages', require('./components/ChatMessages.vue'));
-Vue.component('chat-form', require('./components/ChatForm.vue'));
+Vue.component('chat-app', require('./components/ChatApp.vue').default);
 
 const app = new Vue({
-    el: '#app',
-
-    data: {
-        messages: [],
-        contacts: []
-    },
-
-    created() {
-        this.fetchMessages();
-        this.fetchContacts();
-        Echo.private('chat')
-            .listen('MessageSent', (e) => {
-                this.messages.push({
-                    message: e.message.message,
-                    user: e.user
-                });
-            });
-    },
-
-    methods: {
-        fetchMessages() {
-            axios.get('/messages').then(response => {
-                this.messages = response.data;
-            });
-        },
-
-        fetchContacts() {
-            axios.get('/get-contacts').then(response => {
-                this.contacts = response.data;
-            });
-        },
-
-        addMessage(message) {
-            this.messages.push(message);
-
-            axios.post('/messages', message).then(response => {
-                console.log(response.data);
-            });
-        }
-    }
+    el: '#app'
 });
+

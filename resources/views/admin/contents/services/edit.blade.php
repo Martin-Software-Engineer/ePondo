@@ -141,14 +141,8 @@
                                             <label for="jobseeker-id">Job Seeker</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <select name="jobseeker_id" id="jobseeker-id" class="select2 form-control">
-                                                @foreach($jobseekers as $jobseeker)
-                                                    @php $selected = false @endphp
-                                                    @if($jobseeker->id == $service->jobseeker->id)
-                                                        @php $selected = true @endphp
-                                                    @endif
-                                                    <option value="{{$jobseeker->id}}" @if($selected) checked @endif>{{$jobseeker->username}}</small></option>
-                                                @endforeach
+                                            <select name="jobseeker_id" id="jobseeker-id" class="form-control">
+                                                    <option value="{{$service->jobseeker->id}}" @if($selected) checked @endif>{{$service->jobseeker->username}}</small></option>
                                             </select>
                                         </div>
                                     </div>
@@ -272,7 +266,7 @@
                                 text: resp.msg,
                                 icon: 'success'
                             }).then(function(result) {
-                                location.reload();
+                                location.href = "{{route('admin.services.index')}}"
                             });
                         }
                     }

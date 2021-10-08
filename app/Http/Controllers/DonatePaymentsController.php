@@ -25,12 +25,16 @@ use Stripe\StripeClient;
 
 use App\Models\Donation;
 use App\Models\Transaction as MyTransaction;
+use App\Models\Campaign;
+use App\Models\User;
+
+use App\Notifications\DonateCampaign as DonateCampaignNotification;
 
 use Carbon\Carbon;
 use App\Mail\SendMail;
 class DonatePaymentsController extends Controller
 {
-    private $currency = 'USD';
+    private $currency = 'PHP';
 
     public function CreatePayPalPayment(Request $request){
         $apiContext = new \PayPal\Rest\ApiContext(
@@ -102,7 +106,8 @@ class DonatePaymentsController extends Controller
             'payment_method' => $payment->payer->payment_method,
             'amount' => $payment->transactions[0]->amount->total,
             'currency' => $payment->transactions[0]->amount->currency,
-            'status' => $payment->state
+            'status' => $payment->state,
+            'campaign_id' => $donation->campaign->id
         ]);
 
         $donation->transactions()->attach($transaction->id);
@@ -128,6 +133,50 @@ class DonatePaymentsController extends Controller
                 $transaction->status = $payment->state;
                 $transaction->paid_at = Carbon::now()->toDateString();
                 $transaction->save();
+
+                if($transaction->campaign_id != null){
+                    $campaign = Campaign::find($transaction->campaign_id);
+                    $jobseeker = User::find($campaign->jobseeker->id);
+
+                    $m_title = $campaign->title;
+                    $m_jobseeker = $jobseeker->information->firstname.' '.$jobseeker->information->lastname;
+                    $m_amount = $transaction->amount;
+                    $m_date = $transaction->paid_at;
+                    
+                    if($transaction->backer_id != null){
+                        $backer = User::find($transaction->backer_id);
+
+                        $jobseeker->notify(new DonateCampaignNotification($backer, $campaign));
+                        $backer->notify(new DonateCampaignNotification($backer, $campaign));
+
+                        Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.donation-received-mail', [
+                            'subject' => 'Campaign Donation Successful',
+                            'title' => $m_title,
+                            'jobseeker' => $m_jobseeker,
+                            'donated_by' => $backer->information->firstname.' '.$backer->information->lastname,
+                            'amount' => $m_amount,
+                            'date' => $m_date
+                        ]));
+                        Mail::to($backer->email)->queue(new SendMail('emails.backer.donation-successful-mail', [
+                            'subject' => 'Campaign Donation Successful',
+                            'title' => $m_title,
+                            'jobseeker' => $m_jobseeker,
+                            'donated_by' => $backer->information->firstname.' '.$backer->information->lastname,
+                            'amount' => $m_amount,
+                            'date' => $m_date
+                        ]));
+                    }else{
+                        $jobseeker->notify(new DonateCampaignNotification(null, $campaign));
+                        Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.donation-received-mail', [
+                            'subject' => 'Campaign Donation Successful',
+                            'title' => $m_title,
+                            'jobseeker' => $m_jobseeker,
+                            'donated_by' => 'Anonymous',
+                            'amount' => $m_amount,
+                            'date' => $m_date
+                        ]));
+                    }
+                }
             }
             return $result;
         } catch (Exception $ex) {
@@ -167,7 +216,8 @@ class DonatePaymentsController extends Controller
                 'payment_method' => 'stripe',
                 'amount' => $paymentIntent->amount/100,
                 'currency' => $paymentIntent->currency,
-                'status' => $paymentIntent->status
+                'status' => $paymentIntent->status,
+                'campaign_id' => $donation->campaign->id
             ]);
     
             $donation->transactions()->attach($transaction->id);
@@ -195,6 +245,18 @@ class DonatePaymentsController extends Controller
                 $transaction->status = 'approved';
                 $transaction->paid_at = Carbon::now()->toDateString();
                 $transaction->save();
+                
+                if($transaction->campaign_id != null){
+                    $campaign = Campaign::find($transaction->campaign_id);
+                    $jobseeker = User::find($campaign->jobseeker->id);
+                    
+                    if($transaction->backer_id != null){
+                        $backer = User::find($transaction->backer_id);
+                        $jobseeker->notify(new DonateCampaignNotification($backer, $campaign));
+                    }else{
+                        $jobseeker->notify(new DonateCampaignNotification(null, $campaign));
+                    }
+                }
 
                 return response()->json(['success' => true]);
             }

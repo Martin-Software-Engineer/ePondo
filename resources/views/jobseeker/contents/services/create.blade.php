@@ -21,18 +21,19 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('jobseeker.services.store')}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('jobseeker.services.store')}}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-12 col-md-8 col-lg-8">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="campaign-id">Title</label>
+                                            <span class="j_tag_trans">(Pamagat)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" id="title" class="form-control" name="title" placeholder="Ïnput text here ..." required>
+                                            <input type="text" id="title" class="form-control" name="title">
                                         </div>
                                     </div>
                                 </div>
@@ -40,9 +41,10 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="description">Description</label>
+                                            <span class="j_tag_trans">(Diskripsyon)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ..."></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" ></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -50,6 +52,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="category">Category</label>
+                                            <span class="j_tag_trans">(Kategorya)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
@@ -68,6 +71,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="price">Price</label>
+                                            <span class="j_tag_trans">(Presyo)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="input-group">
@@ -75,9 +79,6 @@
                                                     <span class="input-group-text">₱</span>
                                                 </div>
                                                 <input type="number" name="price" step=".01" id="price" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -86,6 +87,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="duration">Duration</label>
+                                            <span class="j_tag_trans"><br>(Haba ng oras ng serbisyo)</span>
                                         </div>
                                         <div class="col-sm-5">
                                             <select name="duration_hours" id="duration_hours" class="form-control">
@@ -96,7 +98,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <select name="duration_minutes" id="duration_minutes" class="form-control">
-                                                @for($i = 0; $i<=12; $i++)
+                                                @for($i = 0; $i<=11; $i++)
                                                     <option value="{{$i*5}}">{{$i*5}} Minutes</option>
                                                 @endfor
                                             </select>
@@ -107,9 +109,10 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="location">Location</label>
+                                            <span class="j_tag_trans">(Lokasyon)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="location" id="location" class="form-control" placeholder="City/Municipality/Provinc">
+                                            <input type="text" name="location" id="location" class="form-control" placeholder="City/Municipality/Province">
                                         </div>
                                     </div>
                                 </div>
@@ -119,21 +122,19 @@
                                             <label for="tags">Tags</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input name="tags" id="tagsinput" class="tagsinput" value="" />
-                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
+                                            <input name="tags" id="tags" class="tagsinput" value="" />
+                                            <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-9 offset-sm-3">
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
-                                </div>
+                                
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-md-4 col-lg-4">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="thumbnail" class="mb-1">Thumbnail</label>
+                                        <label for="thumbnail" class="mb-1">Service Thumbnail</label>
                                         <div class="media">
                                             <a href="javascript:void(0);" class="mr-25">
                                                 <label for="thumbnail-input" style="cursor: pointer">
@@ -152,7 +153,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="thumbnail" class="mb-1">Add More Photos</label>
+                                    <label>Service Photos</label></label>
                                         <div class="media-group d-flex">
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
@@ -206,9 +207,14 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
+                                <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign.</span></label>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light float-right">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -245,10 +251,14 @@
                     contentType: false,
                     cache: false,
                     processData: false,
-                    beforeSend: function() {
+                    beforeSend: () => {
                         form.find('button[type=submit]').prop('disabled', true);
+                        form.find('.invalid-feedback').remove();
+                        form.find('.valid-feedback').remove();
+                        form.find('.invalid-feedback.valid-feedback').remove();
+                        form.find('input').removeClass('is-invalid');
                     },
-                    success: function(resp) {
+                    success: (resp) => {
                         $(this).find('button[type=submit]').prop('disabled', false);
                         if (resp.success) {
                             Swal.fire({
@@ -271,6 +281,21 @@
                                 }
                             });
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $(this).find('button[type=submit]').prop('disabled', false);
+                        $.each(xhr.responseJSON.errors, function(name, error) {
+                            form.find('button[type=submit]').prop('disabled', false);
+                            form.find('#' + name).siblings('.invalid-feedback').remove();
+                            form.find('#' + name).siblings('.valid-feedback').remove();
+                            form.find('#' + name).siblings('.invalid-feedback.valid-feedback').remove();
+                            form.find('#' + name).addClass('is-invalid');
+                            form.find('#' + name).after(`
+                                <div class="invalid-feedback">
+                                ${error}
+                            </div>
+                            `);
+                        });
                     }
                 });
             });

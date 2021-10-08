@@ -9,9 +9,11 @@ If you did not create an account, please contact us at epondo@gmail.com
 
 <form method="POST" action="{{ route('verification.send') }}">
                     @csrf
-                    <button type="submit" class="btn btn-primary mt-1">Verify Email</button>
+                    <div class="action">
+                        <button type="submit" class="button-primary">Verify Email</button>
+                    </div>
                 </form>
 
-Thanks,<br>
+Best Regards,<br>
 {{ config('app.name') }}
 @endcomponent

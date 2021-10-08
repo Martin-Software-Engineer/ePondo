@@ -19,15 +19,26 @@ $(function() {
             serverSide: true,
             columns: [
                 // columns according to JSON
+                    // { data: 'id' },
+                    // { data: 'order_id' },
+                    // { data: 'service_title' },
+                    // { data: 'service_date' },
+                    // { data: 'service_categories' },
+                    // { data: 'service_price' },
+                    // { data: 'service_duration' },
+                    // { data: 'status' },
+                    // { data: '' }
                 { data: 'id' },
                 { data: 'order_id' },
                 { data: 'service_title' },
-                { data: 'service_date' },
                 { data: 'service_categories' },
-                { data: 'service_price' },
                 { data: 'service_duration' },
+                { data: 'service_price' },
+                { data: 'service_location' },
+                { data: 'service_date' },
                 { data: 'status' },
                 { data: '' }
+                
             ],
             columnDefs: [{
                     // For Responsive
@@ -46,7 +57,7 @@ $(function() {
                     }
                 },
                 {
-                    targets: 4,
+                    targets: 3,
                     render: function(data, type, row) {
                         var $elArray = [];
                         $.each(row.service_categories, function(index, category) {
@@ -61,13 +72,6 @@ $(function() {
                     width: '100px',
                     render: function(data, type, row) {
                         return `<span>Php ${row.service_price}</span>`;
-                    }
-                },
-                {
-                    targets: 6,
-                    width: '100px',
-                    render: function(data, type, row) {
-                        return `<span>${row.service_duration} Hrs</span>`;
                     }
                 },
                 {

@@ -34,14 +34,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="phonenumber">Contact No.</label>
-                                    <input id="phonenumber" type="text" class="form-control" name="phone" value="{{$phone}}">
+                                    <label for="phone">Contact No.</label>
+                                    <input id="phone" type="text" class="form-control" name="phone" value="{{$phone}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="emailaddress">Email Address</label>
-                                    <input id="emailaddress" type="email" class="form-control" name="email" value="{{$email}}" disabled>
+                                    <label for="email">Email Address</label>
+                                    <input id="email" type="email" class="form-control" name="email" value="{{$email}}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -49,16 +49,22 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <label style="font-size:11px;;" class="ml-1">(Unit No.,House/Building/Street No.,Street Name,Barangay/Subdivision,City/Minicipality,Province)</label>
+                                    <label style="font-size:11px;;" class="ml-1">(City/Minicipality,Province)</label>
                                     <input id="address" type="text" class="form-control" name="address" value="{{$address}}"/>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="postcode">ZIP Code/Post Code</label>
-                                    <input id="postcode" type="text" class="form-control" name="zipcode" value="{{$zipcode}}"/>
+                                    <label for="birthdate">Birthdate</label>
+                                    <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{$birthdate}}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="zipcode">ZIP Code/Post Code</label>
+                                    <input id="zipcode" type="text" class="form-control" name="zipcode" value="{{$zipcode}}"/>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +75,7 @@
                             <div class="media">
                                 <a href="javascript:void(0);" class="mr-25">
                                     @if(auth()->user()->avatar != '')
-                                        <img src="{{Storage::url(auth()->user()->avatar)}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                        <img src="{{auth()->user()->avatar}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
                                     @else 
                                         <img src="{{asset('/app-assets/images/avatars/noface.png')}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
                                     @endif
@@ -109,19 +115,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cpassword">Current Password</label>
-                                    <input id="cpassword" type="password" class="form-control" name="current_password" required/>
+                                    <input id="cpassword" type="password" class="form-control" name="current_password" placeholder="********" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="newpassword">New Password</label>
-                                    <input id="newpassword" type="password" class="form-control" name="new_password" required/>
+                                    <input id="newpassword" type="password" class="form-control" name="new_password" placeholder="********" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="confirmpassword">Confirm New Password</label>
-                                    <input id="confirmpassword" type="password" class="form-control" name="new_confirm_password" required/>
+                                    <input id="confirmpassword" type="password" class="form-control" name="new_confirm_password"  placeholder="********"required/>
                                 </div>
                             </div>
                         </div>

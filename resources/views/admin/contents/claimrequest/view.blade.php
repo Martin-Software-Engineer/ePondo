@@ -1,0 +1,131 @@
+@extends('admin.layouts.main')
+
+@section('external_css')
+<link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/forms/select/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css') }}">
+@endsection
+@section('css')
+    <style>
+        .tagsinput{
+            height: unset !important;
+        }
+    </style>
+@endsection
+@section('content')
+<section>
+    <div class="row mb-2">
+        <div class="col-md-9">
+            <h2 class="float-left mb-0">Claim Request Request</h2>
+        </div>
+    </div>
+</section>
+    <section class="create-campaign-wrapper">
+        <div class="card">
+            <div class="card-body">
+                <form class="form form-horizontal" action="{{route('admin.claimrequests.updatestatus', $claimrequest->id)}}" method="POST"> 
+                    @csrf
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                    <label>Request From:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="form-control" value="{{$claimrequest->user->information->lastname}}, {{$claimrequest->user->information->firstname}} ({{$claimrequest->user->email}})" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                    <label>Campaign:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="form-control" value="{{$claimrequest->campaign->title}}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                    <label>Request Amount:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="form-control" value="₱{{$claimrequest->amount}}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                    <label>Contact No.:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="form-control" value="{{$claimrequest->paypal}}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                    <label>Bank Details:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" cols="6" rows="10" disabled>{{$claimrequest->details}}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                    <label>Status:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <select name="status" class="form-control">
+                                        <option value="pending" @if($claimrequest->status == 'pending') selected @endif>Pending</option>
+                                        <option value="paid" @if($claimrequest->status == 'paid') selected @endif>Paid</option>
+                                        <option value="denied" @if($claimrequest->status == 'denied') selected @endif>Denied - (Reversed back to Jobseeker Account)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-3"></div>
+                                <div class="col-9">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+@endsection
+
+@section('vendors_js')
+<script src="{{ asset('app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{ asset('app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
+<script src="{{ asset('app-assets/vendors/js/jquery/jquery.tagsinput.js')}}"></script>
+@endsection
+
+@section('scripts')
+    <script>
+        $(function(){
+            'use strict';
+
+            var form = $('form');
+            form.on('submit', function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(resp){
+                        if(resp.success){
+                            Swal.fire({
+                                title: 'Success!',
+                                text: resp.msg,
+                                icon: 'success'
+                            }).then(()=>{
+                                location.reload();
+                            });
+                        }
+                    }
+                });
+            })
+
+        })
+    </script>
+@endsection

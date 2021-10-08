@@ -2,23 +2,27 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Image;
+use App\Models\Tag;
+
+use App\Models\User;
+use App\Models\Photo;
+use App\Mail\SendMail;
+use App\Models\Service;
+use App\Helpers\GiveReward;
 use Illuminate\Support\Str;
 
-use App\Models\Service;
-use App\Models\ServiceCategoryParent;
+use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 use App\Models\CampaignCategory;
-use App\Models\Photo;
-use App\Models\Tag;
-use App\Models\User;
-
 use App\Http\Requests\StoreService;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMail;
+use App\Http\Requests\UpdateService;
 
-use Image;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Models\ServiceCategoryParent;
+use App\Notifications\CreateService as CreateServiceNotification;
+
 class ServicesController extends Controller
 {
     /**
@@ -29,9 +33,8 @@ class ServicesController extends Controller
     public function index()
     {
         $data['services'] = Service::where('user_id', auth()->user()->id)->get();
-        $data['service_categories'] = ServiceCategory::all();
-        $data['campaign_categories'] = CampaignCategory::all();
-        //return response()->json($data);
+        $data['categories'] = ServiceCategory::all();
+        
         return view('jobseeker.contents.services.index', $data);
     }
 
@@ -56,6 +59,8 @@ class ServicesController extends Controller
      */
     public function store(StoreService $request)
     {
+        $totalservices = Service::where('user_id', auth()->user()->id)->count(); //Counter for Reward Points
+        
         $service = Service::create([
             'user_id' => auth()->user()->id,
             'title' => $request->title,
@@ -115,6 +120,23 @@ class ServicesController extends Controller
             }
         }
 
+        auth()->user()->notify(new CreateServiceNotification());
+
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.service-create-mail', [
+            'subject' => 'Successfully Created Service',
+            'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
+            'service' => $service
+        ]));
+
+        //Reward Points
+        if(!$totalservices > 0){ //first time
+            $reward = new GiveReward(auth()->user()->id, 'creating_1st_service');
+            $reward->send();
+        }else{
+            $reward = new GiveReward(auth()->user()->id, 'creating_service');
+            $reward->send();
+        }
+
         return response()->json(array('success' => true, 'msg' => 'New Service Created.'));
     }
 
@@ -140,6 +162,7 @@ class ServicesController extends Controller
         $data['title'] = 'Edit Service';
         $data['service'] = Service::with(['jobseeker','categories','tags'])->where('id',$id)->first();
         $data['category_parents'] = ServiceCategoryParent::with('categories')->get();
+
         return view('jobseeker.contents.services.edit', $data);
     }
 
@@ -150,7 +173,7 @@ class ServicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateService $request, $id)
     {
         $service = Service::findOrFail($id);
         $service->title = $request->title;
@@ -160,6 +183,20 @@ class ServicesController extends Controller
         $service->duration_minutes = $request->duration_minutes;
         $service->location = $request->location;
         $service->save();
+        
+        if($request->hasFile('thumbnail')){
+            $image = $request->file('thumbnail');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $upload = $request->file('thumbnail')->storeAs('/photos',$fileName,'public');
+            $photo = new Photo();
+            $photo ->filename =  $fileName;
+            $photo ->url = 'public/photos/'.$fileName;
+            $photo ->save();
+
+            $service->thumbnail_id = $photo->id;
+            $service->save();
+        }
         
         if($request->get('category', [])){
             $service->categories()->sync($request->get('category', []));
@@ -177,10 +214,6 @@ class ServicesController extends Controller
         }else{
             $service->tags()->detach();
         }
-
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.service-create-mail', [
-            'subject' => 'Epondo Service'
-        ]));
 
         return response()->json(array('success' => true, 'msg' => 'Service Updated.'));
     }
@@ -217,8 +250,13 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        if(Service::find($id)->delete()){
-            return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
-        }
+        $service = Service::find($id);
+        $service -> status = 2;
+        $service -> save();
+        return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+
+        // if(Service::find($id)->delete()){
+        //     return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+        // }
     }
 }

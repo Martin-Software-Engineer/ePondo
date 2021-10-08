@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Order;
+use App\Mail\SendMail;
+use App\Helpers\System;
 use App\Models\Feedback;
+use App\Helpers\GiveReward;;
+use Illuminate\Http\Request;
+use App\Models\ServiceRating;
 use App\Models\FeedbackPlatform;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Notifications\OrderFeedback as OrderFeedbackNotification;
+use App\Notifications\OrderFinish as OrderFinishNotification;
+
 class FeedbacksController extends Controller
 {
     /**
@@ -36,6 +46,22 @@ class FeedbacksController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'service_rating' => 'required',
+            'service_feedback' => 'required|string|max:500',
+            'platform_rating' => 'required',
+            'platform_message' => 'required|string|max:500'
+        ]);
+        
+        $order = Order::find($request->order_id);
+        
+        $rating = $order->ratings()->create([
+            'service_id' => $request->service_id,
+            'rating' => $request->service_rating,
+            'feedback' => $request->service_feedback,
+            'from' => $request->from
+        ]);
+
         Feedback::create([
             'service_id' => $request->service_id,
             'message' => $request->service_feedback,
@@ -46,8 +72,57 @@ class FeedbacksController extends Controller
             'service_id' => $request->service_id,
             'rating' => $request->platform_rating,
             'message' => $request->platform_message,
-            'from' => $request->from
+            'from' => $request->from,
+            'service_rating_id' => $rating->id
         ]);
+
+        $jobseeker = User::find($order->service->user_id);
+        $backer = User::find($order->backer->id);
+        
+        $jobseeker->notify(new OrderFeedbackNotification($order));
+
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.order-feedback-mail', [
+            'subject' => 'Successful Service Order Feedback',
+            'order_id' => System::GenerateFormattedId('S', $order->id)
+        ]));
+
+        //Change SO status to Complete if both Jobseeker & Backer have Feedback & Reward Points
+        if(ServiceRating::where('order_id', $order->id)->where('from', 'backer')->exists()){ 
+            
+            $totalorders = Order::whereHas('service', function($q) use($jobseeker){
+                $q->where('user_id', $jobseeker->id);
+            })->where('status',7)->count(); //Counter for Reward Points
+    
+            //Reward Points
+            if($totalorders <= 0){ //first time
+                $reward = new GiveReward($jobseeker->id, 'receiving_1st_service_order_rf');
+                $reward->send();
+                $reward2 = new GiveReward($jobseeker->id, 'creating_1st_service_order_feedback');
+                $reward2->send();
+            }
+            else{
+                $reward = new GiveReward($jobseeker->id, 'receiving_service_order_rf');
+                $reward->send();
+                $reward2 = new GiveReward($jobseeker->id, 'creating_service_order_feedback');
+                $reward2->send();
+            }
+            
+            $order->status = 7;
+            $order->save();
+
+            $jobseeker->notify(new OrderFinishNotification($order));
+            $backer->notify(new OrderFinishNotification($order));
+
+            Mail::to($backer->email)->queue(new SendMail('emails.backer.order-complete-mail', [
+                'subject' => 'Successful Service Order Feedback',
+                'order_id' => System::GenerateFormattedId('S', $order->id)
+            ]));
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-complete-mail', [
+                'subject' => 'Successful Service Order Feedback',
+                'order_id' => System::GenerateFormattedId('S', $order->id)
+            ]));
+
+        }
 
         return response()->json(['success' => true, 'msg' => 'Feedback Submitted']);
     }

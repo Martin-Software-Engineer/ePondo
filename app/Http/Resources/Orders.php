@@ -14,6 +14,17 @@ class Orders extends JsonResource
      */
     public function toArray($request)
     {
+        $duration = '';
+        if($this->service->duration_hours > 1){
+            $duration = $this->service->duration_hours.' Hours';
+        }else{
+            $duration = $this->service->duration_hours.' Hour';
+        }
+
+        if($this->service->duration_minutes > 1){
+            $duration = $duration.' '.$this->service->duration_minutes.' Minutes';
+        }
+
         return [
             'id' => $this->id,
             'order_id' => System::GenerateFormattedId('S', $this->id),
@@ -24,9 +35,10 @@ class Orders extends JsonResource
             'service_id' => $this->service->id,
             'service_title' => $this->service->title,
             'service_categories' => $this->service->categories,
-            'service_date' => $this->created_at->format('M-d-Y'),
+            'service_date' => date('F d, Y', strtotime($this->details->render_date)),
             'service_price' => number_format($this->service->price),
-            'service_duration' => $this->service->duration,
+            'service_location' => $this->details->delivery_address,
+            'service_duration' => $duration,
             'has_jobseeker_feedback' => $this->hasjobseekerfeedback,
             'has_backer_feedback' => $this->hasbackerfeedback,
             'status' => System::StatusTextValue($this->status)

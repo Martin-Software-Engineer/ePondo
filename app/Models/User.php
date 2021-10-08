@@ -43,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['earnings', 'orders'];
+    protected $appends = ['earnings', 'orders', 'unreadmessages', 'fullname'];
 
 
     public function setPasswordAttributes($password){
@@ -89,6 +89,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Campaign::class);
     }
     
+    public function mycampaigns()
+    {
+        return $this->hasMany(Campaign::class, 'user_id', 'id')->with(['donations']);
+    }
+
     public function services(){
         return $this->hasMany(Service::class, 'user_id', 'id')->with(['orders']);
     }
@@ -101,22 +106,46 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserInformation::class, 'user_id', 'id');
     }
 
+    public function pppp(){
+        return $this->hasOne(User4psInfo::class, 'user_id', 'id');
+    }
     public function contacts(){
         return $this->hasMany(Contact::class, 'user_id', 'id')->with('info');
+    }
+
+    public function earnings(){
+        return $this->hasMany(Earning::class, 'user_id', 'id');
+    }
+
+    public function messages(){
+        return $this->hasMany(Message::class, 'to', 'id');
+    }
+
+    public function getFullNameAttribute(){
+        $fullname = '';
+
+        if($this->userinformation()){
+            $fullname = $this->information->firstname. ' '.$this->information->lastname;
+        }else{
+            $fullname = $this->username;
+        }
+
+        return $fullname;
     }
     public function getEarningsAttribute(){
         $earnings = 0;
         $services =  $this->services()->whereHas('orders', function($q){
             $q->whereHas('transactions', function($q2){
-                $q2->orWhere('status', 'completed'); //paypal
-                $q2->orWhere('status', 'succeeded'); //stripe
+                $q2->where('status', 'approved'); //paypal
             });
         })->get();
 
         foreach($services as $service){
             foreach($service['orders'] as $order){
                 foreach($order['transactions'] as $transaction){
-                    $earnings += $transaction->amount;
+                    if($transaction->status == 'approved'){
+                        $earnings += $service->price;
+                    }
                 }
             }
         }
@@ -124,18 +153,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $earnings;
     }
 
+    public function getUnreadMessagesAttribute(){
+        return $this->messages()->where('seen', 0)->count();
+    }
     public function getOrdersAttribute(){
         return  $this->services()->get()->count();
     }
-    /**
-     * A user can have many messages
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function messages()
-    {
-        return $this->hasMany(Message::class);
-    }
+
 
     // MIDDLEWARE PURPOSES
     /**

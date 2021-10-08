@@ -1,21 +1,22 @@
 <?php
 
+use App\Mail\Try1;
 use App\Mail\JobMail;
-use App\Mail\WelcomeMail;
-use App\Mail\CampaignMail;
-use App\Mail\UserVerifyEmail;
-
 use Admin\UserController;
+use App\Http\Controllers;
 
-use JobSeeker\JobseekerProfileController;
+use App\Mail\WelcomeMail;
+
+use App\Mail\CampaignMail;
 // use JobSeeker\JobController;
 // use JobController;
-use App\Http\Controllers;
+use App\Mail\UserVerifyEmail;
 // use App\Http\Controllers\JobseekerBackgroundController;
 
 // use App\Models\JobseekerBackground;
 // use PublicCampaignController;
 use Illuminate\Support\Facades\Route;
+use JobSeeker\JobseekerProfileController;
 
 
 
@@ -31,7 +32,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('/register', 'Auth\RegisteredUserController@store');
 Route::get('verify', 'Auth\RegisteredUserController@verify');
-// PUBLIC PATHS
+
+// PUBLIC PATHS (Landing Pages)
 Route::get('/', 'PagesController@index');
 Route::get('campaigns', 'PagesController@campaigns')->name('campaigns');
 Route::get('campaign/{id}', 'PagesController@campaign_view')->name('campaign_view');
@@ -44,6 +46,12 @@ Route::get('service/{id}/details','PagesController@service_details')->name('serv
 Route::post('service/avail', 'ServicesController@avail')->name('service.avail');
 
 Route::get('aboutus', 'PagesController@aboutus')->name('aboutus');
+Route::get('howitworks', 'PagesController@howitworks')->name('howitworks');
+Route::get('privacypolicy', 'PagesController@privacypolicy')->name('privacypolicy');
+Route::get('termsandconditions', 'PagesController@termsandconditions')->name('termsandconditions');
+Route::get('cookiepolicy', 'PagesController@cookiepolicy')->name('cookiepolicy');
+Route::get('eula', 'PagesController@eula')->name('eula');
+Route::get('disclaimer', 'PagesController@disclaimer')->name('disclaimer');
 Route::get('profile/{id}', 'PagesController@jobseeker')->name('profile');
 
 //Admin Routes using Route Group
@@ -62,7 +70,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
     Route::get('services/{id}/delete', 'Admin\ServicesController@destroy')->name('services.destroy');
     Route::resource('services', 'Admin\ServicesController');
 
+    Route::post('service-orders/{id}', 'Admin\ServiceOrdersController@update')->name('service-orders.update');
     Route::resource('service-orders', 'Admin\ServiceOrdersController');
+
+    
     Route::resource('invoice', 'Admin\InvoicesController');
     Route::resource('ratings', 'Admin\RatingsController');
     Route::resource('rewards', 'Admin\RewardsController');
@@ -73,9 +84,27 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
 
     Route::get('jobseekers', 'Admin\JobseekerProfileController@index')->name('jobseekers.index');
     Route::get('jobseekers/{id}/edit','Admin\JobseekerProfileController@edit')->name('jobseekers.profile.edit');
+
     Route::post('jobseekers/{id}/update','Admin\JobseekerProfileController@update')->name('jobseekers.profile.update');
+    Route::post('jobseekers/{id}/updatepppp','Admin\JobseekerProfileController@updatepppp')->name('jobseekers.profile.updatepppp');
+
+    Route::post('profile/update','JobSeeker\JobseekerProfileController@update')->name('profile.update');
+    Route::post('profile/updatepppp','JobSeeker\JobseekerProfileController@updatepppp')->name('profile.updatepppp');
 
     Route::get('reports', 'Admin\ReportsController@index')->name('reports.index');
+
+    Route::get('payouts', 'Admin\PayoutRequestsController@index')->name('payouts.index');
+    Route::get('payouts/{id}', 'Admin\PayoutRequestsController@view')->name('payouts.view');
+    Route::post('payouts/{id}/updatestatus', 'Admin\PayoutRequestsController@update_status')->name('payouts.updatestatus');
+
+    Route::get('claimrequests', 'Admin\ClaimDonationRequestsController@index')->name('claimrequests.index');
+    Route::get('claimrequests/{id}', 'Admin\ClaimDonationRequestsController@view')->name('claimrequests.view');
+    Route::post('claimrequests/{id}/updatestatus', 'Admin\ClaimDonationRequestsController@update_status')->name('claimrequests.updatestatus');
+
+
+    Route::get('notifications', 'JobSeeker\NotificationsController@index')->name('notifications');
+    Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
+
 });
 
 // Demo route to check if verif email, lets use this for accessing profile, before they can they need to verify email
@@ -88,18 +117,29 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::post('myaccount/changepassword', 'JobSeeker\AccountController@changepassword')->name('myaccount.changepassword');
     Route::get('profile','JobSeeker\JobseekerProfileController@index')->name('profile');
     Route::post('profile/update','JobSeeker\JobseekerProfileController@update')->name('profile.update');
+    Route::post('profile/updatepppp','JobSeeker\JobseekerProfileController@updatepppp')->name('profile.updatepppp');
     Route::get('orders', 'JobSeeker\OrdersController@index')->name('orders');
     Route::get('orders/{id}/show', 'JobSeeker\OrdersController@show')->name('orders.show');
     Route::get('orders/{id}/accept', 'JobSeeker\OrdersController@accept')->name('orders.accept');
     Route::get('orders/{id}/deliver', 'JobSeeker\OrdersController@deliver')->name('orders.deliver');
-    Route::get('orders/{id}/decline', 'JobSeeker\OrdersController@decline')->name('orders.decline');
     Route::get('order-list', 'JobSeeker\OrdersController@data')->name('order-list');
+    Route::post('orders/decline', 'JobSeeker\OrdersController@decline')->name('orders.decline');
+    Route::post('orders/cancel', 'JobSeeker\OrdersController@cancel')->name('orders.cancel');
+
+    Route::resource('feedbacks', 'JobSeeker\FeedbacksController');
 
     Route::get('invoices', 'JobSeeker\InvoicesController@index')->name('invoices');
+    Route::get('invoices/{id}', 'JobSeeker\InvoicesController@show')->name('invoices.show');
     Route::get('invoice-list', 'JobSeeker\InvoicesController@data')->name('invoice-list');
 
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
-    
+
+    Route::get('claimfunds/{id}', 'JobSeeker\ClaimFundsController@index')->name('funds.claimform');
+    Route::post('claimfunds', 'JobSeeker\ClaimFundsController@claim')->name('funds.claim');
+
+    Route::get('earnings', 'JobSeeker\EarningsController@index')->name('earnings');
+    Route::post('withdraw', 'JobSeeker\EarningsController@withdraw')->name('earnings.withdraw');
+
     Route::resource('feedbacks', 'JobSeeker\FeedbacksController');
     Route::post('campaigns/{id}', 'JobSeeker\CampaignsController@update')->name('campaigns.update');
     Route::post('campaigns/photos/update', 'JobSeeker\CampaignsController@updatephotos')->name('campaigns.update-photos');
@@ -112,8 +152,12 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
     Route::resource('services', 'JobSeeker\ServicesController', ['except' => ['destroy', 'update']]);
 
     Route::get('rewards', 'JobSeeker\RewardsController@index')->name('rewards');
+
+    Route::get('notifications', 'JobSeeker\NotificationsController@index')->name('notifications');
+    Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
 });
 
+//Backer -> using Route Group
 Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is-backer'])->group(function (){
     Route::get('/', 'Backer\AccountController@index')->name('index');
     Route::post('myaccount/update', 'Backer\AccountController@update')->name('myaccount.update');
@@ -130,21 +174,31 @@ Route::prefix('backer')->name('backer.')->middleware(['auth','verified','auth.is
     Route::get('orders/{id}/approve', 'Backer\OrdersController@approve')->name('orders.approve');
     Route::get('orders/{id}/invoice', 'Backer\OrdersController@invoice')->name('order.invoice');
     Route::post('orders/cancel', 'Backer\OrdersController@cancel')->name('orders.cancel');
+
+    Route::get('notifications', 'Backer\NotificationsController@index')->name('notifications');
+    Route::get('notifications/markall', 'Backer\NotificationsController@markall')->name('notifications.markall');
+
 });
 
+//Chats
 Route::get('chats', 'ChatsController@index')->name('chats');
-Route::get('messages', 'ChatsController@fetchMessages');
+Route::get('get-messages/{id}', 'ChatsController@fetchMessages');
+Route::get('get-user/{id}', 'ChatsController@getUser');
 Route::get('get-contacts', 'ChatsController@getContacts');
 
 Route::post('messages', 'ChatsController@sendMessage');
 
-Route::post('getChats', 'ChatsController@getChats');
+Route::get('getChats', 'ChatsController@getChats');
+Route::post('getConversation', 'ChatsController@getConversation');
 
 // Mail Routes
 Route::get('/email', function () { return new UserVerifyEmail(); });
 Route::get('/welcome-mail', function () { return new WelcomeMail(); }); //create user email
 Route::get('/campaign-mail', function () { return new CampaignMail(); }); //creating campaign email
 Route::get('/job-mail', function () { return new JobMail(); }); //creating job email
+Route::get('/try1', function () { return new Try1(); });
+
+Route::view('/service', 'emails/service-create-mail');
 
 // Front-End Coding
 Route::get('/login-demo', function () { return view('/auth/login-demo'); });

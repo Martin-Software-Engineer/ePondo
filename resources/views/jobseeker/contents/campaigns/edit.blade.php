@@ -21,15 +21,16 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('jobseeker.campaigns.update', $campaign->id)}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('jobseeker.campaigns.update', $campaign->id)}}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-12 col-md-8 col-lg-8">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="campaign-id">Title</label>
+                                            <span class="j_tag_trans">(Pamagat)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="text" id="title" class="form-control" name="title" value="{{$campaign->title}}" placeholder="Campaign Title">
@@ -40,6 +41,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="description">Description</label>
+                                            <span class="j_tag_trans">(Diskripsyon)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ...">{{$campaign->description}}</textarea>
@@ -50,6 +52,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="category">Category</label>
+                                            <span class="j_tag_trans">(Kategorya)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
@@ -70,9 +73,10 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="target-date">Target Date</label>
+                                            <span class="j_tag_trans">(Mithing Petsa)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="date" name="target_date" id="target-date" value="{{$campaign->target_date}}" class="form-control">
+                                            <input type="date" name="target_date" id="target_date" value="{{$campaign->target_date}}" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -80,16 +84,14 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="target-amount">Target Amount</label>
+                                            <span class="j_tag_trans"><br>(Mithing Halaga)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div class="input-group mb-2">
+                                            <div class="input-group flex-wrap mb-2">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">₱</span>
                                                 </div>
-                                                <input type="number" name="target_amount" step=".01" id="target-amount" value="{{$campaign->target_amount}}" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                                <input type="number" name="target_amount" step=".01" id="target_amount" value="{{$campaign->target_amount}}" class="form-control" placeholder="00" aria-label="Amount (to the nearest peso)">
                                             </div>
                                         </div>
                                     </div>
@@ -104,20 +106,14 @@
                                             @foreach($campaign->tags as $tag)
                                                 @php array_push($tags, $tag->name); @endphp
                                             @endforeach
-                                            <input name="tags" id="tagsinput" class="tagsinput" value="{{join(",", $tags)}}" />
-                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
+                                            <input name="tags" id="tags" class="tagsinput" value="{{join(",", $tags)}}" />
+                                            <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="row"><hr class="my-2"></div>
-                                </div>
-                                <div class="col-sm-9 offset-sm-3">
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
-                                </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-md-4 col-lg-4">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -127,7 +123,7 @@
                                                 <label for="thumbnail-input" style="cursor: pointer">
                                                     @if($campaign->thumbnail_url != '')
                                                         <img src="{{$campaign->thumbnail_url}}" id="thumbnail-preview" class="rounded mr-50" height="180" width="180" />
-                                                    @else 
+                                                    @else
                                                         <img src="../../../app-assets/images/portrait/small/no-image.png" id="thumbnail-preview" class="rounded mr-50" height="180" width="180" />
                                                     @endif
                                                 </label>
@@ -144,18 +140,19 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="thumbnail" class="mb-1">Add More Photos</label>
+                                    <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label>
+                                    <label>It must be a JPG, PNG, no larger than 200 MB.</label></label>
                                         <div class="media-group d-flex">
                                             @foreach($campaign->photos as $photo)
                                             <div class="media">
                                                 <a href="javascript:void(0);" class="mr-25">
-                                                    <label for="images-input1" style="cursor: pointer">
+                                                    <label for="images-input{{$photo->id}}" style="cursor: pointer">
                                                         <img src="{{Storage::url($photo->url)}}" class="images-preview rounded mr-50" height="60" width="60" />
                                                     </label>
                                                 </a>
                                                 <!-- upload and reset button -->
                                                 <div class="media-body mt-75 ml-1">
-                                                    <input type="file" name="images[]" data-photo-id="{{$photo->id}}" id="images-input1" class="images-input" accept="image/*" style="display: none" />
+                                                    <input type="file" name="images[]" data-photo-id="{{$photo->id}}" id="images-input{{$photo->id}}" class="images-input" accept="image/*" style="display: none" />
                                                 </div>
                                                 <!--/ upload and reset button -->
                                             </div>
@@ -165,13 +162,13 @@
                                                 @for($i = 0; $i < $left; $i++)
                                                 <div class="media">
                                                     <a href="javascript:void(0);" class="mr-25">
-                                                        <label for="images-input2" style="cursor: pointer">
+                                                        <label for="images-input{{$i}}" style="cursor: pointer">
                                                             <img src="../../../app-assets/images/portrait/small/no-image.png" class="images-preview rounded mr-50" height="60" width="60" />
                                                         </label>
                                                     </a>
                                                     <!-- upload and reset button -->
                                                     <div class="media-body mt-75 ml-1">
-                                                        <input type="file" name="images[]" id="images-input2" class="images-input" accept="image/*" style="display: none" />
+                                                        <input type="file" name="images[]" id="images-input{{$i}}" class="images-input" accept="image/*" style="display: none" />
                                                     </div>
                                                     <!--/ upload and reset button -->
                                                 </div>
@@ -181,9 +178,14 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
+                                    <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign.</span></label>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light float-right">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -221,6 +223,10 @@
                     processData: false,
                     beforeSend: function() {
                         form.find('button[type=submit]').prop('disabled', true);
+                        form.find('.invalid-feedback').remove();
+                        form.find('.valid-feedback').remove();
+                        form.find('.invalid-feedback.valid-feedback').remove();
+                        form.find('input').removeClass('is-invalid');
                     },
                     success: function(resp) {
                         form.find('button[type=submit]').prop('disabled', false);
@@ -238,6 +244,21 @@
                                 location.href = "{{route('jobseeker.campaigns.index')}}"
                             });
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $(this).find('button[type=submit]').prop('disabled', false);
+                        $.each(xhr.responseJSON.errors, function(name, error) {
+                            form.find('button[type=submit]').prop('disabled', false);
+                            form.find('#' + name).siblings('.invalid-feedback').remove();
+                            form.find('#' + name).siblings('.valid-feedback').remove();
+                            form.find('#' + name).siblings('.invalid-feedback.valid-feedback').remove();
+                            form.find('#' + name).addClass('is-invalid');
+                            form.find('#' + name).after(`
+                                <div class="invalid-feedback">
+                                ${error}
+                            </div>
+                            `);
+                        });
                     }
                 });
             });
@@ -281,7 +302,7 @@
                 if(input.data('photoId')){
                     myFormData.append('photo_id', input.data('photoId'));
                 }
-                
+
                 myFormData.append('_token', $('meta[name=csrf-token]').attr('content'));
 
                 $.ajax({

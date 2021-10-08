@@ -19,7 +19,7 @@ class RatingJobseeker extends JsonResource
             'rating_id' => System::GenerateFormattedId('RF', $this->id),
             'order_id' => System::GenerateFormattedId('S', $this->order->id),
             'service_title' => $this->order->service->title,
-            'jobseeker_name' => $this->order->service->jobseeker->name,
+            'jobseeker_name' => $this->order->service->jobseeker->username,
             'jobseeker_id' => System::GenerateFormattedId('J', $this->order->service->jobseeker->id),
             'rating' => $this->rating,
             'feedback' => $this->feedback

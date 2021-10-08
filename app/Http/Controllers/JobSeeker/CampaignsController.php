@@ -21,8 +21,9 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
-
+use App\Notifications\CreateCampaign as CreateCampaignNotification;
 use App\Mail\SendMail;
+use App\Helpers\GiveReward;
 use Image;
 class CampaignsController extends Controller
 {
@@ -35,7 +36,7 @@ class CampaignsController extends Controller
     {
         $data['campaigns'] = Campaign::where('user_id', auth()->user()->id)->get();
         $data['categories'] = CampaignCategory::all();
-        //return response()->json($data);
+        
         return view('jobseeker.contents.campaigns.index', $data);
     }
 
@@ -46,6 +47,7 @@ class CampaignsController extends Controller
      */
     public function create()
     {
+
         $data['title'] = 'Create Campaign';
         $data['categories'] = CampaignCategory::all();
         
@@ -62,6 +64,8 @@ class CampaignsController extends Controller
      */
     public function store(StoreCampaign $request)
     {
+        $totalcampaigns = Campaign::where('user_id', auth()->user()->id)->count(); //Counter for Reward Points
+
         $campaign = Campaign::create([
             'user_id' => auth()->user()->id,
             'title' => $request->title,
@@ -69,7 +73,7 @@ class CampaignsController extends Controller
             'target_date' => $request->target_date,
             'target_amount' => $request->target_amount
         ]);
-
+        
         if($request->hasFile('thumbnail')){
             $image = $request->file('thumbnail');
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
@@ -129,10 +133,22 @@ class CampaignsController extends Controller
             }
         }
 
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.campaign-mail', [
-            'subject' => 'Epondo Campaign'
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.campaign-mail', [
+            'subject' => 'Successfully Created Campaign',
+            'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
+            'campaign' => $campaign
         ]));
         
+        auth()->user()->notify(new CreateCampaignNotification());
+        
+        //Reward Points
+        if(!$totalcampaigns > 0){
+            $reward = new GiveReward(auth()->user()->id, 'creating_1st_campaign');
+            $reward->send();
+        }else{
+            $reward = new GiveReward(auth()->user()->id, 'creating_campaign');
+            $reward->send();
+        }
         return response()->json(array('success' => true, 'msg' => 'New Campaign Created.'));
     }
 
@@ -144,36 +160,9 @@ class CampaignsController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        // use below if show($questionnaire)
-        // $campaign = Campaign::findOrFail($id);
-        // return view('jobseeker.campaigns.show',[ 'campaign' => $campaign]);
-        
-
-        // $questionnaire -> load ('questions.answers.responses');
-
-        // return view('jobseeker.campaigns.show', compact('campaign'));
-        
-        $campaign_id = $campaign->id;
         $campaign_category = CampaignCategory::all();
-
-        $jobs = Job::where('campaign_id',$campaign_id)->paginate(5);
-        // $job_category = JobCategory::all();
-
-        $products = Product::where('campaign_id',$campaign_id)->paginate(5);
-        // $product_category = ProductCategory::all();
-
-        // dd($products);
-
-
-        //OUTPUT IMAGE FROM AWS S3
         
-        // return Storage::disk('s3')->response('campaign/' . $image->filename);
-
-
-
-        // return view('jobseeker.campaigns.show', compact('campaign'));
-        
-        return view('jobseeker.campaigns.show',['campaign' => $campaign, 'campaign_category'=> $campaign_category ,'jobs'=> $jobs, 'products' => $products ]);
+        return view('jobseeker.campaigns.show',['campaign' => $campaign, 'campaign_category'=> $campaign_category ]);
     }
 
     /**
@@ -187,7 +176,7 @@ class CampaignsController extends Controller
         $data['title'] = 'Edit Campaign';
         $data['campaign'] = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
         $data['categories'] = CampaignCategory::all();
-        //return $data;
+        
         return view('jobseeker.contents.campaigns.edit', $data);
     }
 
@@ -273,8 +262,13 @@ class CampaignsController extends Controller
      */
     public function destroy($id)
     {
-        if(Campaign::find($id)->delete()){
-            return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
-        }
+        $campaign = Campaign::find($id);
+        $campaign -> status = 2;
+        $campaign -> save();
+        return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+        
+        // if(Campaign::find($id)->delete()){
+        //     return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+        // }
     }
 }

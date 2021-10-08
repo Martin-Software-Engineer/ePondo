@@ -27,7 +27,10 @@ class DonationsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(){
-        $results = Donation::with('backer')->get();
+        $results = Donation::whereHas('transactions', function($q){
+            $q->where('status', 'approved');
+        })->with('backer')->get();
+        
         return DataTables::of(ResourceDonation::collection($results))->toJson();
     }
     /**

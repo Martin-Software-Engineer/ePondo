@@ -21,15 +21,16 @@
     <section class="create-campaign-wrapper">
         <div class="card">
             <div class="card-body">
-                <form class="form form-horizontal" action="{{route('jobseeker.services.update', $service->id)}}" method="POST"> 
+                <form class="form form-horizontal" action="{{route('jobseeker.services.update', $service->id)}}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-12 col-md-8 col-lg-8">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="campaign-id">Title</label>
+                                            <span class="j_tag_trans    ">(Pamagat)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="text" id="title" class="form-control" name="title" value="{{$service->title}}" placeholder="Input text here ...">
@@ -40,6 +41,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="description">Description</label>
+                                            <span class="j_tag_trans    ">(Diskripsyon)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Input text here ...">{{$service->description}}</textarea>
@@ -50,6 +52,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="category">Category</label>
+                                            <span class="j_tag_trans    ">(Kategorya)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
@@ -74,6 +77,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="price">Price</label>
+                                            <span class="j_tag_trans    ">(Presyo)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="input-group">
@@ -93,6 +97,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="duration">Duration</label>
+                                            <span class="j_tag_trans    "><br>(Haba ng oras ng serbisyo)</span>
                                         </div>
                                         <div class="col-sm-5">
                                             <select name="duration_hours" id="duration_hours" class="form-control">
@@ -114,6 +119,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="location">Location</label>
+                                            <span class="j_tag_trans    ">(Lokasyon)</span>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="text" name="location" id="location" value="{{$service->location}}" class="form-control">
@@ -131,26 +137,23 @@
                                                 @php array_push($tags, $tag->name); @endphp
                                             @endforeach
                                             <input name="tags" id="tagsinput" class="tagsinput" value="{{join(",", $tags)}}" />
-                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>        
+                                            <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-9 offset-sm-3">
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
-                                </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-mg-4 col-lg-4">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="thumbnail" class="mb-1">Thumbnail</label>
+                                        <label for="thumbnail" class="mb-1">Service Thumbnail</label>
                                         <div class="media">
                                             <a href="javascript:void(0);" class="mr-25">
                                                 <label for="thumbnail-input" style="cursor: pointer">
                                                     @if($service->thumbnail_url != '')
                                                         <img src="{{$service->thumbnail_url}}" id="thumbnail-preview" class="rounded mr-50" height="180" width="180" />
-                                                    @else 
+                                                    @else
                                                         <img src="../../../app-assets/images/portrait/small/no-image.png" id="thumbnail-preview" class="rounded mr-50" height="180" width="180" />
                                                     @endif
                                                 </label>
@@ -167,7 +170,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="thumbnail" class="mb-1">Add More Photos</label>
+                                    <label>Service Photos</label></label>
                                         <div class="media-group d-flex">
                                             @foreach($service->photos as $photo)
                                             <div class="media">
@@ -204,9 +207,14 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <span class="badge badge-danger">NOTE!</span><span class="help-inline">Click on the icon/photo to upload/edit photo</span>
+                                <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign.</span></label>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light float-right">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -253,8 +261,13 @@
                                 title: 'Success!',
                                 text: resp.msg,
                                 icon: 'success',
+                                confirmButtonText: 'Services List',
+                                customClass: {
+                                    confirmButton: 'btn btn-primary',
+                                },
+                                buttonsStyling: false
                             }).then(function(result) {
-                                location.reload();
+                                location.href = "{{route('jobseeker.services.index')}}"
                             });
                         }
                     }
@@ -300,7 +313,7 @@
                 if(input.data('photoId')){
                     myFormData.append('photo_id', input.data('photoId'));
                 }
-                
+
                 myFormData.append('_token', $('meta[name=csrf-token]').attr('content'));
 
                 $.ajax({

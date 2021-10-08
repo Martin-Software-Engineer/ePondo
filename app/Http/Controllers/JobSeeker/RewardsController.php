@@ -17,7 +17,7 @@ class RewardsController extends Controller
             'badge' => System::RewardsTier($cpoints) != 'no-star' ? 'star-'.System::RewardsTier($cpoints).'.png' : 'no-star.png',
             'next_tier' => System::RewardsNextTier($cpoints)
         );
-        //return $data;
+        
         return view('jobseeker.contents.rewards', $data);
     }
 }

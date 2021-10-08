@@ -27,12 +27,10 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Campaign No.</th>
-                                <th>Campaigns</th>
-                                <th>Description</th>
-                                <th>Thumbnail</th>
+                                <th>Title</th>
                                 <th>Category</th>
-                                <th>Date</th>
+                                <th>Jobseeker Name</th>
+                                <th>Donation Date</th>
                                 <th>Amount</th>
                                 <th></th>
                             </tr>

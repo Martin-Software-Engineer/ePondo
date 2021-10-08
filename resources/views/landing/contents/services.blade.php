@@ -1,7 +1,7 @@
 @extends('landing.layouts.main')
 
 @section('content')
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_campaignspage">
     <div class="container">
        <div class="row mb-2">
           <div class="col-sm-12 d-flex justify-content-start align-items-center">
@@ -15,6 +15,7 @@
                                 Category
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <a class="dropdown-item" href="{{route('services')}}">All</a>
                                 @foreach($categories as $category)
                                 <a class="dropdown-item" href="#" data-value="{{$category->id}}">{{$category->name}}</a>
                                 @endforeach
@@ -30,14 +31,6 @@
                                  <a class="dropdown-item" href="#" data-value="popular">Popular</a>
                             </div>
                         </div>
-                        <div class="dropdown dropdown-region mr-1">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Region
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <a class="dropdown-item" href="#">All</a>
-                            </div>
-                        </div>
                   </div>
                   <div class="col-md-4 d-flex">
                       <input type="text" name="filter_search" class="form-control" placeholder="Search">
@@ -48,25 +41,67 @@
        </div>
        <div class="row">
             @forelse($services as $service)
-                <div class="col-md-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="img_7"><a href="{{route('service_view', $campaign->id)}}"><img src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" class="img_7"></a></div>                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="give_taital_1"><a href="{{route('service_view', $campaign->id)}}">{{$service->title}}</a></h3>
-                            <p class="ipsum_text_1">{{$service->description}}</p>
-                            <h5 class="raised_text_1">Price: ₱{{$service->price}} <br><span class="text-danger">Duration: {{$service->duration}}/Hours</span></h5>
-                            <div class="donate_btn_main">
-                                <div class="donate_btn_1"><a href="{{route('service_view', $service->id)}}" class="avail_btn" data-service-id="{{$service->id}}">Avail</a></div> 
+                <div class="col-md-3 pt-4">
+                    <!-- Service Tiles - Start -->
+                    <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="c_img">
+                                    <a href="{{route('service_view', $service->id)}}">
+                                        <img class="c_img" src="{{$service->thumbnail_url != '' ? $service->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" >
+                                    </a>
+                                </div>                        
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{{route('service_view', $service->id)}}" class="stretched-link"><h1 class="card_s_title overflow-ellipsis">{{$service->title}}</h1>
+                                <p class="card_s_category">
+                                @foreach($service->categories as $category)
+                                    {{$category->name}} @if(!$loop->last)/@endif
+                                @endforeach
+                                </p>
+
+                                <div class="row-md-12 s_img_jname">
+                                    <div class="col-md-6 s_jname_spacing">
+                                        <h3 class="s_j_name" >By: {{@$service->jobseeker->userinformation->firstname}} {{@$service->jobseeker->userinformation->lastname}}</h3>
+                                    </div>
+                                    @if($service->ratings > 0)
+                                    <div class="col-md-6 s_image">
+                                        @for($i = 0; $i < $service->ratings; $i++)
+                                        <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                        @endfor
+                                        ({{$service->ratings}})
+                                    </div>
+                                    @endif
+                                    
+                                </div>
+                                <hr class="hr_m_2">
+                                <div class="c_card_c_desc">{{$service->description}}</div>
+                                
+                                <div>
+                                    <h3 class="card_s_loc"><strong>Location:</strong> {{$service->location}}</h3>
+                                </div>
+                                <div>
+                                <h3 class="card_s_loc"><strong>Duration:</strong>
+                                    @if( $service->duration_hours > 1 ) {{$service->duration_hours}} Hrs @elseif( $service->duration_hours == 0 )  @else {{$service->duration_hours}} Hr @endif
+                                    @if( $service->duration_minutes > 1 ) {{$service->duration_minutes}} Mins @elseif( $service->duration_minutes == 0 )  @else {{$service->duration_minutes}} Min @endif
+                                </h3>
+                                </div>
+                                <h5 class="service_price">₱{{$service->price}}</h5></a>
                             </div>
                         </div>
                     </div>
+                    <!-- Service Tiles - End -->
                 </div>
             @empty 
             @endforelse
         </div> 
+        <div class="row mt-5">
+            <div class="col-12 d-flex justify-content-center">
+                {{ $services->links() }}
+            </div>
+        </div>
     </div>
 </div>    
 @endsection
@@ -95,201 +130,6 @@
         };
 
         loadFilterDefault();
-
-        $('.avail_btn').on('click', async function(){
-            var serviceId = $(this).data('serviceId');
-            const service = await $.get(`/service/${serviceId}/details`);
-            var categories = [];
-            $.each(service.categories, function(index, category){
-                categories.push(category.name);
-            });
-            availModal.find('.modal-title').text(service.title);
-            availModal.find('form').find('input[name=service_id]').val(service.id);
-            availModal.find('form').find('input[name=jobseeker_name]').val(service.jobseeker.username);
-            availModal.find('form').find('input[name=service_title]').val(service.title);
-            availModal.find('form').find('input[name=service_category]').val(categories.join('/'));
-            availModal.find('form').find('input[name=service_price]').val(service.currency+' '+service.price);
-            availModal.find('form').find('input[name=service_duration]').val(service.duration+' Hour/s');
-            availModal.modal('show');
-        });
-
-        availForm.on('submit', function(e){
-            e.preventDefault();
-
-            $.ajax({
-                url: $(this).attr('action'),
-                type: 'POST',
-                dataType: 'json',
-                data: $(this).serialize(),
-                beforeSend: function(){
-                    availForm.find('button[type=submit]').prop('disabled', true);
-                },
-                success: function(resp){
-                    if(resp.success){
-                        availForm.find('button[type=submit]').prop('disabled', false);
-                        availForm[0].reset();
-                        availModal.modal('hide');
-
-                        cardPayment.find('#paypal-button').attr('data-order-id', resp.order.id);
-                        cardPayment.find('#paypal-button').attr('data-currency', resp.currency);
-                        cardPayment.find('#pay-by-card').attr('data-order-id', resp.order.id);
-                        cardPayment.find('#pay-by-card').attr('data-currency', resp.currency);
-
-                        cardPayment.find('.card-title').html(`<strong>Pay your Order.<br>`);
-                        cardPayment.find('.topay').html(`Amount to pay  <span class='topay-amount'>${resp.currency} ${resp.service.price}</span>`);
-
-                        selectPaymentModal.modal('show');
-                    }
-                }
-            });
-        });
-
-        paypal.Button.render({
-            env: 'sandbox', // Or 'production'
-            style: {
-                size: 'responsive',
-                color: 'blue',
-                shape: 'pill',
-                label: 'paypal',
-                tagline: 'false'
-            },
-            // Set up the payment:
-            // 1. Add a payment callback
-            payment: function(data, actions) {
-            // 2. Make a request to your server
-                var order_data = $('#paypal-button').data();
-                return actions.request.post("{{route('api.order_create_paypal')}}", {
-                    order_id : order_data.orderId,
-                    currency : order_data.currency
-                }).then(function(res) {
-                    // 3. Return res.id from the response
-                    return res.id;
-                });
-            },
-            // Execute the payment:
-            // 1. Add an onAuthorize callback
-            onAuthorize: function(data, actions) {
-            // 2. Make a request to your server
-            return actions.request.post("{{route('api.order_execute_paypal')}}", {
-                paymentID: data.paymentID,
-                payerID:   data.payerID
-            })
-                .then(function(res) {
-                    if(res.state = 'approved'){
-                        $('#selectPaymentMethodModal').modal('hide');
-                        Swal.fire({
-                            title: 'Payment Successful',
-                            text: 'Your donation was successful, Thank You!',
-                            icon: 'success'
-                        }).then(function(){
-                            location.reload();
-                        })
-                    }
-                });
-            }
-        }, '#paypal-button');
-        
-        var stripe = Stripe("{{env('STRIPE_PUB_KEY')}}");
-
-        var stripePayment = function(order_id, currency){
-            var donate = { order_id, currency  };
-
-            fetch("{{route('api.order_create_stripe')}}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(donate)
-            }).then(function(result) {
-                return result.json();
-            }).then(function(data) {
-                var elements = stripe.elements();
-                var style = {
-                    base: {
-                    color: "#32325d",
-                    fontFamily: 'Arial, sans-serif',
-                    fontSmoothing: "antialiased",
-                    fontSize: "16px",
-                    "::placeholder": {
-                        color: "#32325d"
-                    }
-                    },
-                    invalid: {
-                    fontFamily: 'Arial, sans-serif',
-                    color: "#fa755a",
-                    iconColor: "#fa755a"
-                    }
-                };
-                var card = elements.create("card", { style: style });
-                // Stripe injects an iframe into the DOM
-                card.mount("#card-element");
-                card.on("change", function (event) {
-                    // Disable the Pay button if there are no card details in the Element
-                    document.querySelector("button").disabled = event.empty;
-                    document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
-                });
-                var form = document.getElementById("payment-form");
-                form.addEventListener("submit", function(event) {
-                    event.preventDefault();
-                    // Complete payment when the submit button is clicked
-                    payWithCard(stripe, card, data.clientSecret);
-                });
-            });
-
-        }
-
-        
-        // Calls stripe.confirmCardPayment
-        // If the card requires authentication Stripe shows a pop-up modal to
-        // prompt the user to enter authentication details without leaving your page.
-        var payWithCard = function(stripe, card, clientSecret) {
-        stripe.confirmCardPayment(clientSecret, {
-                payment_method: {
-                    card: card
-                }
-            }).then(function(result) {
-                if (result.error) {
-                    // Show error to your customer
-                    showError(result.error.message);
-                } else {
-                    // The payment succeeded!
-                    orderComplete(result.paymentIntent.id);
-                }
-            });
-        };
-
-        /* ------- UI helpers ------- */
-        // Shows a success message when the payment is complete
-        var orderComplete = function(paymentIntentId) {
-            $.ajax({
-                url: "{{route('api.order_confirm_stripe')}}",
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    id: paymentIntentId
-                }, 
-                success: function(resp){
-                    if(resp.success){
-                        $('#selectPaymentMethodModal').modal('hide');
-                        Swal.fire({
-                            title: 'Payment Successful',
-                            text: 'Your payment was successful, Thank You!',
-                            icon: 'success'
-                        }).then(function(){
-                            location.reload();
-                        })
-                    }
-                }
-            });
-            document.querySelector("button").disabled = true;
-        };
-
-        $('#pay-by-card').on('click', function(){
-            var data = $(this).data();
-            $(this).addClass('d-none');
-            $('.stripe-payment').removeClass('d-none');
-            stripePayment(data.orderId, data.currency);
-        });
 
         dropdownCategory.on('click', '.dropdown-item', function(){
             dropdownCategory.find('.dropdown-toggle').text($(this).text());

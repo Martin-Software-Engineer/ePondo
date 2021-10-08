@@ -21,14 +21,16 @@ class BackerOrders extends JsonResource
             'service' => (object)[
                 'title' => $service->title,
                 'categories' => $service->categories,
-                'price' => $service->price,
-                'duration' => $service->duration,
+                'price' => 'Php '.number_format($service->price,2)
+                
+                                
             ],
-            'date' => $this->created_at->format('Y-m-d'),
+            'date' => date('F d, Y', strtotime($this->details->render_date)),
             'status' => (object)[
                 'code' => $this->status,
-                'text' => System::StatusTextValue($this->status, true)
-            ]
+                'text' => System::StatusTextValue($this->status, true),
+            ],
+            'status_text' => System::StatusTextValue($this->status),
         ];
     }
 }

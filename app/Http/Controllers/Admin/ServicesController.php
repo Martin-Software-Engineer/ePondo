@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\Http\Resources\Service as ResourceService;
-use App\Models\Service;
-use App\Models\ServiceCategoryParent;
-use App\Models\ServiceCategory;
+use Image;
+use DataTables;
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Photo;
-use App\Models\Tag;
-
+use App\Mail\SendMail;
 use App\Helpers\System;
+use App\Models\Service;
+use App\Helpers\GiveReward;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
-use DataTables;
-use Image;
+use App\Models\ServiceCategory;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Models\ServiceCategoryParent;
+use App\Http\Resources\Service as ResourceService;
+use App\Notifications\CreateService as CreateServiceNotification;
+
 class ServicesController extends Controller
 {
     /**
@@ -64,6 +69,9 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
+        $jobseeker = User::find($request->jobseeker_id);
+        $totalservices = Service::where('user_id', $jobseeker->id)->count(); //Counter for Reward Points
+        
         $service = Service::create([
             'user_id' => $request->jobseeker_id,
             'title' => $request->title,
@@ -124,6 +132,23 @@ class ServicesController extends Controller
             }
         }
 
+        $jobseeker->notify(new CreateServiceNotification());
+
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.service-create-mail', [
+            'subject' => 'Successfully Created Service',
+            'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+            'service' => $service,
+        ]));
+
+        //Reward Points
+        if(!$totalservices > 0){ //first time
+            $reward = new GiveReward($jobseeker->id, 'creating_1st_service');
+            $reward->send();
+        }else{
+            $reward = new GiveReward($jobseeker->id, 'creating_service');
+            $reward->send();
+        }
+
         return response()->json(['success' => true,'msg' => trans('admin.service.create.success')]);
     }
 
@@ -149,9 +174,6 @@ class ServicesController extends Controller
         $data['title'] = 'Edit Service';
         $data['service'] = Service::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
         $data['category_parents'] = ServiceCategoryParent::with('categories')->get();
-        $data['jobseekers'] = User::whereHas('roles', function($q){
-            $q->where('name', 'JobSeeker');
-        })->get();
 
         return view('admin.contents.services.edit', $data);
     }

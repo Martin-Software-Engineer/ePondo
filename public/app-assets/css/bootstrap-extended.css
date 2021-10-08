@@ -2423,8 +2423,10 @@ input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-o
 }
 
 .nav-pills .nav-link.active {
-  border-color : #7367F0;
-  box-shadow : 0 4px 18px -4px rgba(115, 103, 240, 0.65);
+  border-color : #120a78;
+  /* #7367F0 */
+  /* box-shadow : 0 4px 18px -4px rgba(115, 103, 240, 0.65); */
+  box-shadow : 0 0 10px 0px rgb(25 18 104 / 80%);
 }
 
 .nav-pills .nav-link.disabled {
@@ -3183,7 +3185,7 @@ ul.list-inline.list-inline-pipe > li + li:before {
 .page-item.active .page-link {
   z-index : 3;
   border-radius : 5rem;
-  background-color : #7367F0;
+  background-color : #120a78;
   color : #FFFFFF !important;
   font-weight : 600;
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
 class UserInformation extends Model
 {
     use HasFactory;
@@ -41,6 +42,8 @@ class UserInformation extends Model
         'has_4ps',
     ];
 
+    protected $appends = ['age'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -49,5 +52,9 @@ class UserInformation extends Model
     public function useraddress()
     {
         return $this->hasOne(UserAddress::class);
+    }
+
+    public function getAgeAttribute(){
+        return Carbon::parse($this->birthdate)->age;
     }
 }

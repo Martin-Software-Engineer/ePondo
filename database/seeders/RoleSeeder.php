@@ -15,8 +15,6 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        // Role::factory()->times(count(10))->create(); //use to call if you want to generate
-
         DB::table('roles')->insert([
             'name' => 'Admin'
         ]);
@@ -26,7 +24,5 @@ class RoleSeeder extends Seeder
         DB::table('roles')->insert([
             'name' => 'Backer'
         ]);
-
-        
     }
 }

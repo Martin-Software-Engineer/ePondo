@@ -160,22 +160,69 @@
           transform: rotate(360deg);
         }
       }
+
+      @media only screen and (max-width: 768px){
+          .service_title{
+              font-size: 26px;
+          }
+          .service_category{
+              font-size: 15px;
+          }
+          .s_hlocation,.s_hduration{
+              font-size: 16px;
+          }
+          .s_price{
+              font-size: 30px;
+          }
+          .news_taital{
+              font-size: 26px;
+          }
+          .service_btn{
+              font-size: .8rem;
+          }
+      }
 </style>
 @endsection
 
 @section('content')
-<div class="events_section layout_padding">
+<div class="events_section layout_padding_servicespage">
     <div class="container">
+    <!-- Service Header - Start -->
         <div class="row">
           <div class="col-sm-12">
-             <h1 class="pb-0">{{$service->title}}</h1>
-             <span class="text-muted">
-                 @foreach($service->categories as $category)
+             <h1 class="service_title">{{$service->title}}</h1>
+             <span class="service_category">
+                @foreach($service->categories as $category)
                     {{$category->name}} @if(!$loop->last)/@endif
-                 @endforeach
-             </span>
+                @endforeach
+            </span>
+            <div class="row s_details">
+                <div class="col-sm-4 mt-2">
+                    
+                    <h4><span class="s_hlocation"> Location: </span> {{$service->location}}</h4>
+                    <h4> <span class="s_hduration"> Duration: </span>  {{$service->duration_hours}} Hrs {{$service->duration_minutes}} Mins</h4>
+                </div>
+                <div class="col-sm-4">
+                    <h6 class="s_price">Php {{$service->price}}</h6>
+                </div>
+                <div class="col-sm-4">
+                    
+                        @guest
+                        <div class="service_btn btn btn-block" href="{{route('login')}}">
+                            <a href="{{route('login')}}">Log In to Avail Service</a>
+                        </div>
+                        @endguest
+                        @auth
+                        <div class="service_btn btn btn-block " data-service-id="{{$service->id}}">
+                            <h2 class="donate_now"> <img src="{{asset('app-assets/images/additional_pictures/tap.png')}}" class="donate_now_img">Avail Service</h2>
+                        </div>
+                        @endauth
+                    
+                </div>
+            </div>
           </div>
         </div>
+    <!-- Service Header - End -->
         <div class="row">
             <div class="col-md-8">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -197,65 +244,346 @@
                       <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs c_tab_space" id="myTab" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">Campaign Summary</a>
+                      <a class="nav-link active c_tabs" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">About Service</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Data</a>
+                      <a class="nav-link c_tabs" id="jobseeker-tab" data-toggle="tab" href="#jobseeker" role="tab" aria-controls="jobseeker" aria-selected="false">Jobseeker Profile</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                       <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="rating-tab" data-toggle="tab" href="#rating" role="tab" aria-controls="rating" aria-selected="false">Rating & Feedback</a>
-                    </li>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link c_tabs" id="rating-tab" data-toggle="tab" href="#rating" role="tab" aria-controls="rating" aria-selected="false">Rating & Feedback</a>
+                    </li> -->
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
                         <div class="card">
-                            <div class="card-header">About Service</div>
-                            <div class="card-body">
+                            <!-- <div class="card-header">About Service</div> -->
+                            <div class="card-body c_summary_area">
                                 {{$service->description}}
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">...</div>
-                    <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
-                    <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">...</div>
+                    <div class="tab-pane fade " id="jobseeker" role="tabpanel" aria-labelledby="jobseeker-tab">
+                        <div class="card">
+                            <div class="card-body">
+                            <!-- Profile Header -->
+                                
+                            <!-- Profile Description -->
+                                <div class="row section_profile_desc">
+                                    <div class="col-sm-6 section_details">
+                                        <!-- Jobseeker Profile & Name -->
+                                            @if($service->jobseeker->avatar != '')
+                                                <img src="{{$service->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="" />
+                                            @else 
+                                                <img src="{{asset('/app-assets/images/avatars/noface.png')}}" class="rounded-circle j_p_profile" alt="" />
+                                            @endif
+                                            <h1 class="j_p_name">
+                                                {{$service->jobseeker->userinformation->firstname}}
+                                                {{$service->jobseeker->userinformation->lastname}}
+                                            </h1>
+                                            <hr>
+                                        <!-- Details -->
+                                            <h3 class="j_p_header">Personal Information</h3>
+                                            <h6 class="j_p_subtitle">Age:
+                                                @if (empty($service->jobseeker->userinformation->age))
+                                                <span class="j_p_text">N/A</span>
+                                                @else
+                                                    <span class="j_p_text">{{$service->jobseeker->userinformation->age}}y.o.</span>
+                                                @endif
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Kids:
+                                                <span class="j_p_text">
+                                                @forelse($service->jobseeker->kids as $kid)
+                                                    @if(!$loop->last)
+                                                        {{$kid->fullname.','}}
+                                                    @else
+                                                        {{$kid->fullname}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span> 
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Dependents:
+                                                <span class="j_p_text">
+                                                @forelse($service->jobseeker->dependents as $dependent)
+                                                    @if(!$loop->last)
+                                                        {{$dependent->fullname.','}}
+                                                    @else
+                                                        {{$dependent->fullname}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span>
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Job:
+                                                @if (empty($service->jobseeker->userinformation->current_job))
+                                                <span class="j_p_text">N/A</span>
+                                                @else
+                                                    <span class="j_p_text">{{$service->jobseeker->userinformation->current_job}}</span>
+                                                @endif
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Skills:
+                                                <span class="j_p_text">
+                                                @forelse($service->jobseeker->skills as $skill)
+                                                    @if(!$loop->last)
+                                                        {{$skill->work_skill.','}}
+                                                    @else
+                                                        {{$skill->work_skill}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span>
+                                            </h6>
+                                            <h6 class="j_p_subtitle">Work Experience:
+                                                <span class="j_p_text">
+                                                @forelse($service->jobseeker->workexperiences as $workexp)
+                                                    @if(!$loop->last)
+                                                        {{$workexp->description.','}}
+                                                    @else
+                                                        {{$workexp->description}}
+                                                    @endif
+                                                @empty 
+                                                N/A
+                                                @endforelse
+                                                </span>
+                                            </h6>
+                                        
+                                   </div>    
+                                    <!-- About Me -->
+                                    <div class="col-sm-6 j_p_aboutme">
+                                        <h3 class="j_p_header">About Me</h3>
+                                        <h6 class="campaign_jobseeker_about ">
+                                            @if (empty($service->jobseeker->userinformation->bio))
+                                                <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
+                                            @else
+                                                {{$service->jobseeker->userinformation->bio}}
+                                            @endif
+                                        </h6>
+                                    </div>
+                                    
+                                </div>
+                            <!-- Living State -->
+                                <div class="row section_living_state">
+                                    <div class="col-sm-12">
+                                        <h3 class="j_p_header">Living State</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Income -->
+                                    <div class="col-sm-6 section_income">
+                                        <h6 class="j_p_subtitle">Average Daily Income: 
+                                                @if (empty($service->jobseeker->userinformation->daily_income))
+                                                    <span class="j_p_text">N/A</span>
+                                                @else
+                                                    <span class="j_p_text">Php {{$service->jobseeker->userinformation->daily_income}}</span>
+                                                @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Main Source Income:
+                                            @if (empty($service->jobseeker->userinformation->main_source_income))
+                                            <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$service->jobseeker->userinformation->main_source_income}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Other Source Income:
+                                            @if (empty($service->jobseeker->userinformation->extra_source_income))
+                                            <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$service->jobseeker->userinformation->extra_source_income}}</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                    <!-- Expenses -->
+                                    <div class="col-sm-6">
+                                        <h5 class="j_p_subtitle">Average Daily Expenses: 
+                                            @if (empty($service->jobseeker->userinformation->daily_expenses))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">Php {{$service->jobseeker->userinformation->daily_expenses}}</span>
+                                            @endif
+                                        </h5>
+                                        <h6 class="j_p_subtitle">Type of Housing:
+                                            @if (empty($service->jobseeker->userinformation->type_of_housing))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$service->jobseeker->userinformation->type_of_housing}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Meals per Day:
+                                            @if (empty($service->jobseeker->userinformation->daily_meals))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$service->jobseeker->userinformation->daily_meals}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Water:
+                                            @if (empty($service->jobseeker->userinformation->water_access))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$service->jobseeker->userinformation->water_access}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Electricity:
+                                            @if (empty($service->jobseeker->userinformation->electricity_access))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$service->jobseeker->userinformation->electricity_access}}</span>
+                                            @endif
+                                        </h6>
+                                        <h6 class="j_p_subtitle">Clothes:
+                                            @if (empty($service->jobseeker->userinformation->clean_clothes_access))
+                                                <span class="j_p_text">N/A</span>
+                                            @else
+                                                <span class="j_p_text">{{$service->jobseeker->userinformation->clean_clothes_access}}</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <div class="col-md-4">
                 <div class="card">
+                <!-- Jobseeker Profile -->
+                    <!-- Header -->
                     <div class="card-header text-center">
-                        <h3 class="card-title">{{$service->title}}</h3>
-                        <p>Php {{$service->price}}</p>
-                        <p>{{$service->description}}</p>
-
-                    </div>
-                    <div class="card-body">
-                      @guest
-                          <p class="text-danger">Login to avail service!</p>
-                      @endguest
-                      @auth
-                          @if(auth()->user()->hasAnyRole('Backer'))
-                            <button class="avail_btn btn btn-block btn-success" data-service-id="{{$service->id}}">Avail Service</button>
-                          @endif
-                      @endauth
-                    </div>
-                    <div class="card-footer d-flex justify-content-start">
-                        <div class="avatar mr-2">
-                            <img src="{{asset('app-assets/images/avatars/noface.png')}}" width="100" class="rounded-circle" alt="">
+                        <div class="row">
+                            @if($service->jobseeker->avatar != '')
+                                <img src="{{$service->jobseeker->avatar}}" class="rounded-circle j_p_profile" alt="" />
+                            @else 
+                                <img src="{{asset('/app-assets/images/avatars/noface.png')}}" class="rounded-circle j_p_profile" alt="" />
+                            @endif
                         </div>
                         <div class="info">
-                            <h3>Posted By</h3>
-                            <h3><strong>{{$service->jobseeker->username}}</strong></h3>
-
+                            <h3><strong>{{$service->jobseeker->userinformation->firstname}} {{$service->jobseeker->userinformation->lastname}} </strong></h3>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                      <div class="card-body c_j_body">
+                        <div class="c_j_about">
+                            <h6 class="c_j_about_subhead">About Me:</h6>
+                            <h6 class="campaign_jobseeker_about c_j_about_text"> 
+                                @if (empty($service->jobseeker->userinformation->bio))
+                                    <span style="align-items:center; justify-content:center" class="text-center" > N/A </span> 
+                                @else
+                                {{$service->jobseeker->userinformation->bio}}
+                                @endif
+                            </h6>
+                        </div>
+                    </div>
+                <!-- </div> -->
+                </div>
+                <!-- Rating & Feedback - Start -->
+                <div class="card c_message_section">
+                    <div class="card-header text-center">
+                        <div class="info c_messages">
+                            <strong>Rating & Feedback</strong>
+                        </div>
+                    </div>
+                    <div class="card-body c_messages_box">
+                        <div class="c_donation_sec c_donation_text">
+                        @forelse($service->backer_ratings as $rating)
+                            <div class="col-md-6 s_image">
+                                @for($i = 0; $i < $rating->rating; $i++)
+                                    <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                @endfor
+                                ({{$rating->rating}})
+                            </div>
+                            <h6 class="c_don_mess">
+                                {{$rating->feedback}}
+                            </h6>
+                        @empty
+                            <h6>N/A</h6>
+                        @endforelse
                         </div>
                     </div>
                 </div>
+                <!-- Rating & Feedback - End -->
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Campaign Tiles - Start -->
+        <div class="row pt-4">
+            <div class="col-sm-12">
+                <h1 class="news_taital">Support My Campaigns</h1>
             </div>
         </div>
+        <div class="row pb-5">
+        @forelse($campaigns as $campaign)
+                <div class="col-md-3 pt-4">
+                    <!-- Campaign Tile - Start -->
+                    <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="c_img"><a href="{{route('campaign_view', $campaign->id)}}">
+                                    <img src="{{$campaign->thumbnail_url != '' ? $campaign->thumbnail_url : 
+                                    asset('app-assets/images/pages/no-image.png')}}" class="c_img"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <a class="stretched-link" href="{{route('campaign_view', $campaign->id)}}">
+                                    <h1 class="card_s_title overflow-ellipsis">{{$campaign->title}}</h1>
+                                
+                                <p class="c_card_c_category">
+                                    @foreach($campaign->categories as $category)
+                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    @endforeach
+                                </p>
+                                <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
+                               
+                                <div class="c_card_c_desc">{{$campaign->description}}</div>
+                               
+                                <div class="progress-wrapper progress_bar">
+                                    <div id="example-caption-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6 class="c_cam_raised_text">Php {{$campaign->progress->current_value}} <br>Raised</h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="c_cam_target_text" style="text-align: right;">Php {{$campaign->progress->target_value}} <br>Target</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress progress-bar-primary">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$campaign->progress->current_value}}" aria-valuemin="0" 
+                                            aria-valuemax="{{$campaign->progress->target_value}}" style="width: {{$campaign->progress->percentage}}%; background-color:#120a78;" 
+                                            aria-describedby="example-caption-2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="card_c_targetd">{{date('F d, Y', strtotime($campaign->target_date))}}</p>
+                                </div>
+                                </a>
+                                <div class="donate_btn_main">
+                                    <div class="donate_btn_1"><a href="{{route('campaign_view', $campaign->id)}}">Donate Now</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Campaign Tile - End -->
+                </div>
+            @empty
+            <div class="col-sm-3">
+                <h3> No Campaigns Posted</h3>
+            </div>
+            @endforelse
+        </div>
+        <!-- Campaign Tiles - End -->
     </div>
 </div> 
 @endsection
@@ -264,8 +592,8 @@
 <div class="modal fade" id="availModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title"></h2>
+        <div class="modal-header m_title_area">
+          <h3 class="m_title">Avail Service</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -274,6 +602,11 @@
             @csrf
             <input type="hidden" name="service_id">
             <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <h2 class="modal-title m_c_title"></h2>
+                    </div>
+                </div>
                 <div class="card mb-1">
                     <div class="card-body">
                         <div class="row">
@@ -317,18 +650,30 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Service Delivery Date</label>
                                     <input type="date" name="render_date" class="form-control">
+                                    <span style="font-size:12px;color:#120a78">*Reminder: Not permitted to Cancel Order 3 Days prior to Delivery Date</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Service Delivery Location (Location where service will be rendered/delivered)</label>
+                                    <input type="text" name="delivery_address" id="delivery_address" class="form-control">
                                 </div>
                             </div>   
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Service Delivery Location (Location where service will be rendered/delivered)</label>
-                                    <input type="text" name="delivery_address" class="form-control">
+                                    <label for="payment_method">Payment Method</label>
+                                    <select name="payment_method" id="payment_method" class="form-control select2">
+                                        <option value="OP">Online Payment (Available: Paypal,Credit Card)</option>
+                                        <option value="COD">Cash on Delivery</option>
+                                    </select>
                                 </div>
                             </div>   
                         </div>
@@ -336,7 +681,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="message">Message (Pls. indicate any additional message/requests)</label>
-                                    <textarea name="message" cols="30" rows="6" class="form-control"></textarea>
+                                    <textarea name="message" id="message" cols="30" rows="6" class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -344,7 +689,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-block">Avail Service!</button>
+                <button type="submit" class="btn btn-danger btn-block">Avail Service!</button>
             </div>
         </form>
       </div>
@@ -384,6 +729,7 @@
       </div>
     </div>
 </div>    
+
 @endsection
 
 @section('scripts')
@@ -397,8 +743,8 @@
             availForm = $('.avail_form'),
             selectPaymentModal = $('#selectPaymentMethodModal'),
             cardPayment = $('.card-payment');
-
-        $('.avail_btn').on('click', async function(){
+        
+        $('.service_btn').on('click', async function(){
             var serviceId = $(this).data('serviceId');
             const service = await $.get(`/service/${serviceId}/details`);
             var categories = [];
@@ -407,11 +753,11 @@
             });
             availModal.find('.modal-title').text(service.title);
             availModal.find('form').find('input[name=service_id]').val(service.id);
-            availModal.find('form').find('input[name=jobseeker_name]').val(service.jobseeker.username);
+            availModal.find('form').find('input[name=jobseeker_name]').val(service.jobseeker.information.firstname + ' ' +service.jobseeker.information.lastname);
             availModal.find('form').find('input[name=service_title]').val(service.title);
             availModal.find('form').find('input[name=service_category]').val(categories.join('/'));
             availModal.find('form').find('input[name=service_price]').val(service.currency+' '+service.price);
-            availModal.find('form').find('input[name=service_duration]').val(service.duration+' Hour/s');
+            availModal.find('form').find('input[name=service_duration]').val(service.duration_hours+' Hour/s ' + service.duration_minutes + ' Minute/s');
             availModal.modal('show');
         });
 
@@ -425,6 +771,11 @@
                 data: $(this).serialize(),
                 beforeSend: function(){
                     availForm.find('button[type=submit]').prop('disabled', true);
+                    availForm.find('.invalid-feedback').remove();
+                    availForm.find('.valid-feedback').remove();
+                    availForm.find('.invalid-feedback.valid-feedback').remove();
+                    availForm.find('input').removeClass('is-invalid');
+                    availForm.find('textarea').removeClass('is-invalid');
                 },
                 success: function(resp){
                     if(resp.success){
@@ -440,12 +791,40 @@
                             location.reload();
                         })
                     }
+                    if(resp.error){
+                        availForm.find('button[type=submit]').prop('disabled', false);
+                        availForm[0].reset();
+                        availModal.modal('hide');
+
+                        Swal.fire({
+                            title: 'Error',
+                            text: resp.msg,
+                            icon: 'error'
+                        }).then(function(){
+                            location.reload();
+                        })
+                    }
+                },
+                error: function(resp){
+                    $.each(resp.responseJSON.errors, function(name, error){
+                        availForm.find('button[type=submit]').prop('disabled', false);
+                        availForm.find('#'+name).siblings('.invalid-feedback').remove();
+                        availForm.find('#'+name).siblings('.valid-feedback').remove();
+                        availForm.find('#'+name).siblings('.invalid-feedback.valid-feedback').remove();
+                        availForm.find('#'+name).addClass('is-invalid');
+                        availForm.find('#'+name).after(`
+                            <div class="invalid-feedback">
+                            ${error}
+                        </div>
+                        `);
+                    });
+
                 }
             });
         });
 
         paypal.Button.render({
-            env: 'sandbox', // Or 'production'
+            env: "{{env('PAYPAL_MODE')}}", // Or 'production'
             style: {
                 size: 'responsive',
                 color: 'blue',
@@ -490,7 +869,7 @@
         }, '#paypal-button');
         
         var stripe = Stripe("{{env('STRIPE_PUB_KEY')}}");
-
+        
         var stripePayment = function(order_id, currency){
             var donate = { order_id, currency  };
 
@@ -591,70 +970,6 @@
             stripePayment(data.orderId, data.currency);
         });
 
-        dropdownCategory.on('click', '.dropdown-item', function(){
-            dropdownCategory.find('.dropdown-toggle').text($(this).text());
-            filter.category = $(this).data('value');
-            searchFilter(filter);
-        });
-        dropdownType.on('click', '.dropdown-item', function(){
-            dropdownType.find('.dropdown-toggle').text($(this).text());
-            filter.type = $(this).data('value');
-            searchFilter(filter);
-        });
-        dropdownRegion.on('click', '.dropdown-item', function(){
-            dropdownRegion.find('.dropdown-toggle').text($(this).text());
-            filter.type = $(this).data('value');
-            searchFilter(filter);
-        });
-        btnSearch.on('click', function(){
-            filter.search = $('input[name=filter_search]').val();
-            searchFilter(filter);
-        });
-        function loadFilterDefault(){
-            if(filter.category != ''){
-                var text = dropdownCategory.find('a[data-value='+filter.category+']').text();
-                dropdownCategory.find('.dropdown-toggle').text(text);
-            }
-                
-            if(filter.type != ''){
-                var text = dropdownType.find('a[data-value='+filter.type+']').text();
-                dropdownType.find('.dropdown-toggle').text(text);
-            }
-                
-            if(filter.region != ''){
-                var text = dropdownRegion.find('a[data-value='+filter.region+']').text();
-                dropdownRegion.find('.dropdown-toggle').text(text);
-            }
-                
-            if(filter.search != ''){
-                $('input[name=filter_search]').val(filter.search);
-            }
-                
-            
-        }
-        function searchFilter(filter){
-            var params = [];
-            var domain = window.location.origin;
-            if(filter.category != ''){
-                params.push('category='+filter.category);
-            }
-            if(filter.type != ''){
-                params.push('type='+filter.type);
-            }
-            if(filter.region != ''){
-                params.push('region='+filter.region);
-            }
-            if(filter.search != ''){
-                params.push('search='+filter.search);
-            }
-
-            var newUrl = domain+'/services?'+params.join('&');
-            window.location.href = newUrl;
-        }
-
-        function param(name) {
-            return (location.search.split(name + '=')[1] || '').split('&')[0];
-        }
     });
 </script>    
 @endsection
