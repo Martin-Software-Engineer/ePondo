@@ -160,6 +160,27 @@
           transform: rotate(360deg);
         }
       }
+
+      @media only screen and (max-width: 768px){
+          .service_title{
+              font-size: 26px;
+          }
+          .service_category{
+              font-size: 15px;
+          }
+          .s_hlocation,.s_hduration{
+              font-size: 16px;
+          }
+          .s_price{
+              font-size: 30px;
+          }
+          .news_taital{
+              font-size: 26px;
+          }
+          .service_btn{
+              font-size: .8rem;
+          }
+      }
 </style>
 @endsection
 
@@ -812,7 +833,7 @@
         });
 
         paypal.Button.render({
-            env: 'sandbox', // Or 'production'
+            env: "{{env('PAYPAL_MODE')}}", // Or 'production'
             style: {
                 size: 'responsive',
                 color: 'blue',

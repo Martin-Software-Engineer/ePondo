@@ -54,7 +54,11 @@ class ChatsController extends Controller
     }
 
     public function getUser($id){
-        return User::find($id);
+        $user = User::find($id);
+        $fullname = $user->information->firstname.' '.$user->information->lastname;
+
+        $user->fullname = $fullname;
+        return $user;
     }
 
     public function getConversation(Request $request){

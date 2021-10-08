@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 
 use App\Models\User;
 use App\Models\UserInformation;
+
+use App\Http\Requests\UpdateAccountJobseeker;
 class AccountController extends Controller
 {
     public function index(){
@@ -30,7 +32,7 @@ class AccountController extends Controller
         return view('jobseeker.contents.myaccount', $data);
     }
 
-    public function update(Request $request){
+    public function update(UpdateAccountJobseeker $request){
         $user = User::find(auth()->user()->id);
 
         if ($request->hasFile('avatar')) {

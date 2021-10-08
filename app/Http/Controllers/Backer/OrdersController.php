@@ -115,8 +115,19 @@ class OrdersController extends Controller
     }
 
     public function cancel(Request $request){
+
         $order = Order::find($request->order_id);
+
+
+        $request->validate(['reason' => 'required|string|max:500']);
         
+        $order = Order::find($request->order_id);;
+        // ERROR $order
+        $backer = User::find($order->backer->id);
+        // $backer = User::find(auth()->user()->id);
+        $jobseeker = USer::find($order->service->jobseeker->id);
+        // $jobseeker = USer::where('id',$order->service->jobseeker->id)->first();
+
         $orderDate = Carbon::parse($order->details->render_date);
         $now = Carbon::now();
         $datediff = $orderDate->diffInDays($now);

@@ -46,10 +46,12 @@ class OrderPaymentsController extends Controller
         if(env('PAYPAL_MODE') == 'production'){
             $apiContext->setConfig(array('mode' => 'live'));
         }
-        
+
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
-    
+        
+        
+
         $order = Order::with(['service', 'invoice'])->where('id',$request->order_id)->first();
         $invoice = $order->invoice;
 

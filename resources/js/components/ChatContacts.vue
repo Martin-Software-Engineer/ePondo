@@ -46,7 +46,7 @@
             let messages = await axios.get('/get-messages/'+user.id);
             this.$emit('update-messages', messages.data);
             this.$emit('select-user', user);
-
+            this.$emit('show-sidebar',{show: false});
             window.history.pushState( {} , '', '/chats/?'+$.param({contact_id: user.id}));
 
             

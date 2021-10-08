@@ -9,7 +9,7 @@
                 </div>
                 <div class="chat-avatar" v-else>
                     <div class="avatar colorClass">
-                        <span class="avatar-content avatar-header">{{message.from.username | toUpper | subStr}}</span> 
+                        <span class="avatar-content avatar-header">{{message.from.information.firstname | toUpper | subStr}}</span> 
                         
                     </div>
                     <div class="d-flex flex-column">
@@ -25,14 +25,14 @@
             </div>
 
             <div class="chat" v-else>
-                <div class="chat-avatar" v-if="message.from.avatar != ''">
+                <div class="chat-avatar" v-if="message.from.avatar != '' && message.from.avatar != null">
                     <span class="avatar box-shadow-1 cursor-pointer">
                         <img v-bind:src="message.from.avatar" alt="avatar" height="42" width="42" />
                     </span>
                 </div>
                 <div class="chat-avatar" v-else>
                     <div class="avatar box-shadow-1 cursor-pointer">
-                        <span class="avatar-content avatar-header">{{message.from.username | toUpper | subStr}}</span> 
+                        <span class="avatar-content avatar-header">{{message.from.information.firstname | toUpper | subStr}}</span> 
                     </div>
                     <div class="d-flex flex-column">
                         <span class="emp_name text-truncate font-weight-bold"></span>
@@ -59,7 +59,7 @@
             new PerfectScrollbar(userChats[0], {
                 wheelPropagation: false
             });
-            userChats.animate({ scrollTop: userChats[0].scrollHeight }, 400);
+            userChats.animate({ scrollTop: userChats[0].scrollHeight }, 100);
         }
     },
     filters: {

@@ -19,6 +19,15 @@
     }
     th { font-size: 12px; }
     td { font-size: 12px; }
+
+    .avatar .avatar-content{
+        width: 60px;
+        height: 60px;
+    }
+    .avatar .avatar-content .avatar-icon{
+        height: 2rem;
+        width: 2rem;
+    }
 </style>
 @endsection
 
@@ -50,164 +59,214 @@
             <!-- col-xl-3 col-md-3 col-sm-6 -->
                 <div class="col-xl-3 col-md-3 col-sm-6">
                     <div class="card text-center">
-                        <div class="card-body">
-                            <h2 class="font-weight-bolder">₱{{$service_earnings['earnings']}}</h2>
+                        <div class="card-body row">
+                            <div class="col-12 col-md-4 mb-2 mb-md-0">
+                                <div class="avatar bg-light-primary rounded">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-md-8">
+                                <h2 class="font-weight-bolder">₱{{$service_earnings['earnings']}}</h2>
                             <p class="card-text">Total Earnings</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3 col-sm-6">
                     <div class="card text-center">
-                        <div class="card-body">
-                            <h2 class="font-weight-bolder">₱{{$service_earnings['rewards']}}</h2>
-                            <p class="card-text">Rewards</p>
+                        <div class="card-body row">
+                            <div class="col-12 col-md-4  mb-2 mb-md-0">
+                                <div class="avatar bg-light-primary rounded">
+                                    <div class="avatar-content">
+                                        <i data-feather="award" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <h2 class="font-weight-bolder">₱{{$service_earnings['rewards']}}</h2>
+                                <p class="card-text">Rewards</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3 col-sm-6">
                     <div class="card text-center">
-                        <div class="card-body">
-                            <h2 class="font-weight-bolder">₱{{$service_earnings['withdrawn']}}</h2>
-                            <p class="card-text">Withdrawn</p>
+                        <div class="card-body row">
+                            <div class="col-12 col-md-4  mb-2 mb-md-0">
+                                <div class="avatar bg-light-primary rounded">
+                                    <div class="avatar-content">
+                                        <i data-feather="book" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-12 col-md-8">
+                                <h2 class="font-weight-bolder">₱{{$service_earnings['withdrawn']}}</h2>
+                                <p class="card-text">Withdrawn</p>    
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3 col-sm-6">
                     <div class="card text-center">
-                        <div class="card-body">
-                            <h2 class="font-weight-bolder">₱{{$service_earnings['pendings']}}</h2>
-                            <p class="card-text">Pending</p>
+                        <div class="card-body row">
+                            <div class="col-12 col-md-4  mb-2 mb-md-0">
+                                <div class="avatar bg-light-primary rounded">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <h2 class="font-weight-bolder">₱{{$service_earnings['pendings']}}</h2>
+                                <p class="card-text">Pending</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3 col-sm-6">
                     <div class="card text-center">
-                        <div class="card-body">
-                            <h2 class="font-weight-bolder">₱{{$service_earnings['available']}}</h2>
-                            <p class="card-text">Available Earnings</p>
+                        <div class="card-body row">
+                            <div class="col-12 col-md-4  mb-2 mb-md-0">
+                                <div class="avatar bg-light-primary rounded">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <h2 class="font-weight-bolder">₱{{$service_earnings['available']}}</h2>
+                                <p class="card-text">Available Earnings</p>    
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="withdraw-list-wrapper">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" id="earnings-tab" data-toggle="pill" href="#earnings" aria-expanded="false">Earnings</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="rewards-tab" data-toggle="pill" href="#rewards" aria-expanded="true">Rewards</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="withdrawals-tab" data-toggle="pill" href="#withdrawals" aria-expanded="true">Withdrawal History</a>
-                </li>
-                
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="earnings" role="tabpanel" aria-labelledby="earnings-tab" aria-expanded="false">
-                    <div class="card">
-                        <div class="card-datatable table-responsive">
-                            <table class="withdraw-list-table table">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Invoice</th>
-                                        <th>Jobseeker</th>
-                                        <th>Backer</th>
-                                        <th>Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse($service_earnings['history'] as $history)
-                                    <tr>
-                                        <td>{{$history->created_at->format('M d, Y')}}</td>
-                                        <td>{{System::GenerateFormattedId('I', $history->id)}}</td>
-                                        <td>{{$history->order->service->jobseeker->information->lastname}}, {{$history->order->service->jobseeker->information->firstname}}</td>
-                                        <td>{{$history->order->backer->information->lastname}}, {{$history->order->backer->information->firstname}}</td>
-                                        <td>₱{{$history->price}}</td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center"><h3>No Records Found</h3></td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+        <div class="card">
+            <div class="card-body">
+                <section class="withdraw-list-wrapper">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="earnings-tab" data-toggle="pill" href="#earnings" aria-expanded="false">Earnings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="rewards-tab" data-toggle="pill" href="#rewards" aria-expanded="true">Rewards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="withdrawals-tab" data-toggle="pill" href="#withdrawals" aria-expanded="true">Withdrawal History</a>
+                        </li>
+                        
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="earnings" role="tabpanel" aria-labelledby="earnings-tab" aria-expanded="false">
+                            <div class="card">
+                                <div class="card-datatable table-responsive">
+                                    <table class="withdraw-list-table table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Invoice</th>
+                                                <th>Jobseeker</th>
+                                                <th>Backer</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse($service_earnings['history'] as $history)
+                                            <tr>
+                                                <td>{{$history->created_at->format('M d, Y')}}</td>
+                                                <td>{{System::GenerateFormattedId('I', $history->id)}}</td>
+                                                <td>{{$history->order->service->jobseeker->information->lastname}}, {{$history->order->service->jobseeker->information->firstname}}</td>
+                                                <td>{{$history->order->backer->information->lastname}}, {{$history->order->backer->information->firstname}}</td>
+                                                <td>₱{{$history->price}}</td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center"><h3>No Records Found</h3></td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="rewards" aria-labelledby="rewards-tab" aria-expanded="true">
-                    <div class="card">
-                        <div class="card-datatable table-responsive">
-                            <table class="withdraw-list-table table">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Order ID</th>
-                                        <th>Service</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse($service_rewards as $reward)
-                                    <tr>
-                                        <td>{{$reward->created_at->format('M d, Y')}}</td>
-                                        <td>{{System::GenerateFormattedId('S', $reward->order->id)}}</td>
-                                        <td>{{$reward->order->service->title}}</td>
-                                        <td>₱{{$reward->amount}}</td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+                        <div role="tabpanel" class="tab-pane" id="rewards" aria-labelledby="rewards-tab" aria-expanded="true">
+                            <div class="card">
+                                <div class="card-datatable table-responsive">
+                                    <table class="withdraw-list-table table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Order ID</th>
+                                                <th>Service</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse($service_rewards as $reward)
+                                            <tr>
+                                                <td>{{$reward->created_at->format('M d, Y')}}</td>
+                                                <td>{{System::GenerateFormattedId('S', $reward->order->id)}}</td>
+                                                <td>{{$reward->order->service->title}}</td>
+                                                <td>₱{{$reward->amount}}</td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="withdrawals" aria-labelledby="withdrawals-tab" aria-expanded="true">
-                    <div class="card">
-                        <div class="card-datatable table-responsive">
-                            <table class="withdraw-list-table table">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>For</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse($service_earnings['payouts'] as $payout)
-                                    <tr>
-                                        <td>{{$payout->created_at->format('M d, Y')}}</td>
-                                        <td>{{$payout->for}}</td>
-                                        <td>₱{{$payout->amount}}</td>
-                                        <td>
-                                            @if($payout->status == 'pending')
-                                                <span class="badge badge-warning">Pending</span>
-                                            @elseif($payout->status == 'paid')
-                                                <span class="badge badge-success">Paid</span>
-                                            @elseif($payout->status == 'denied')
-                                                <span class="badge badge-danger">Denied</span>
-                                            @endif
-                                        </td>
-                                        
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+                        <div role="tabpanel" class="tab-pane" id="withdrawals" aria-labelledby="withdrawals-tab" aria-expanded="true">
+                            <div class="card">
+                                <div class="card-datatable table-responsive">
+                                    <table class="withdraw-list-table table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>For</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse($service_earnings['payouts'] as $payout)
+                                            <tr>
+                                                <td>{{$payout->created_at->format('M d, Y')}}</td>
+                                                <td>{{$payout->for}}</td>
+                                                <td>₱{{$payout->amount}}</td>
+                                                <td>
+                                                    @if($payout->status == 'pending')
+                                                        <span class="badge badge-warning">Pending</span>
+                                                    @elseif($payout->status == 'paid')
+                                                        <span class="badge badge-success">Paid</span>
+                                                    @elseif($payout->status == 'denied')
+                                                        <span class="badge badge-danger">Denied</span>
+                                                    @endif
+                                                </td>
+                                                
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
-                </div>
-                
+                </section>
             </div>
-        </section>
+        </div>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="campaign" aria-labelledby="campaign-tab" aria-expanded="true">
@@ -222,132 +281,172 @@
             <div class="row">
                 <div class="col-xl-3 col-md-3 col-sm-6">
                     <div class="card text-center">
-                        <div class="card-body">
-                            <h2 class="font-weight-bolder">₱{{$campaign_funds['totalfunds']}}</h2>
-                            <p class="card-text">Total Funds</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-3 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h2 class="font-weight-bolder">₱{{$campaign_funds['claimed']}}</h2>
-                            <p class="card-text">Withdrawn</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-3 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h2 class="font-weight-bolder">₱{{$campaign_funds['pendings']}}</h2>
-                            <p class="card-text">Pending</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-3 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h2 class="font-weight-bolder">₱{{$campaign_funds['available']}}</h2>
-                            <p class="card-text">Available Funds</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="withdraw-list-wrapper">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" id="campaigns-tab" data-toggle="pill" href="#campaigns" aria-expanded="false">Campaigns</a>
-                </li>    
-                <li class="nav-item">
-                    <a class="nav-link " id="claimed-tab" data-toggle="pill" href="#claimed" aria-expanded="true">Withdrawal History</a>
-                </li>
-                
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="campaigns" role="tabpanel" aria-labelledby="campaigns-tab" aria-expanded="false">
-                    <div class="card">
-                        <div class="card-datatable table-responsive">
-                            <table class="withdraw-list-table table">
-                                <thead>
-                                    <tr>
-                                        <th>Campaign</th>
-                                        <th>Funds Raised</th>
-                                        <th>Funds Claimed</th>
-                                        <th>Funds Pending</th>
-                                        <th>Funds Available</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse($campaign_funds['campaigns'] as $campaign)
-                                    <tr>
-                                        <td>{{$campaign->title}}</td>
-                                        <td>₱{{$campaign->raised}}</td>
-                                        <td>₱{{$campaign->claimed}}</td>
-                                        <td>₱{{$campaign->pending}}</td>
-                                        <td>₱{{$campaign->available_funds}}</td>
-                                        <td>
-                                            @if($campaign->available_funds > 0)
-                                                <a href="{{route('jobseeker.funds.claimform', $campaign->id)}}" class="btn btn-sm btn-primary">Withdraw Available</a>
-                                            @else 
-                                                <button disabled class="btn btn-sm btn-warning">Claimed</button>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center"><h3>No Records Found</h3></td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane " id="claimed" aria-labelledby="claimed-tab" aria-expanded="true">
-                    <div class="card">
-                        <div class="table-responsive">
-                            <div class="card-datatable table-responsive">
-                                <table class="withdraw-list-table table">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Description</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse($campaign_funds['claimed_requests'] as $crequest)
-                                        <tr>
-                                            <td>{{$crequest->created_at}}</td>
-                                            <td>{{$crequest->campaign->title}}</td>
-                                            <td>₱{{$crequest->amount}}</td>
-                                            <td>
-                                                @if($crequest->status == 'pending')
-                                                    <span class="badge badge-warning">Pending</span>
-                                                @elseif($crequest->status == 'paid')
-                                                    <span class="badge badge-success">Paid</span>
-                                                @elseif($crequest->status == 'denied')
-                                                    <span class="badge badge-danger">Denied</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                        <div class="card-body row">
+                            <div class="col-12 col-md-4  mb-2 mb-md-0">
+                                <div class="avatar bg-light-success rounded">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <h2 class="font-weight-bolder">₱{{$campaign_funds['totalfunds']}}</h2>
+                                <p class="card-text">Total Funds</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-xl-3 col-md-3 col-sm-6">
+                    <div class="card text-center">
+                        <div class="card-body row">
+                            <div class="col-12 col-md-4  mb-2 mb-md-0">
+                                <div class="avatar bg-light-success rounded">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <h2 class="font-weight-bolder">₱{{$campaign_funds['claimed']}}</h2>
+                                <p class="card-text">Withdrawn</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3 col-sm-6">
+                    <div class="card text-center">
+                        <div class="card-body row">
+                            <div class="col-12 col-md-4 mb-2 mb-md-0">
+                                <div class="avatar bg-light-success rounded">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <h2 class="font-weight-bolder">₱{{$campaign_funds['pendings']}}</h2>
+                                <p class="card-text">Pending</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3 col-sm-6">
+                    <div class="card text-center">
+                        <div class="card-body row">
+                            <div class="col-12 col-md-4  mb-2 mb-md-0">
+                                <div class="avatar bg-light-success rounded">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <h2 class="font-weight-bolder">₱{{$campaign_funds['available']}}</h2>
+                                <p class="card-text">Available Funds</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+        <div class="card">
+            <div class="card-body">
+                <section class="withdraw-list-wrapper">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="campaigns-tab" data-toggle="pill" href="#campaigns" aria-expanded="false">Campaigns</a>
+                        </li>    
+                        <li class="nav-item">
+                            <a class="nav-link " id="claimed-tab" data-toggle="pill" href="#claimed" aria-expanded="true">Withdrawal History</a>
+                        </li>
+                        
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="campaigns" role="tabpanel" aria-labelledby="campaigns-tab" aria-expanded="false">
+                            <div class="card">
+                                <div class="card-datatable table-responsive">
+                                    <table class="withdraw-list-table table">
+                                        <thead>
+                                            <tr>
+                                                <th>Campaign</th>
+                                                <th>Funds Raised</th>
+                                                <th>Funds Claimed</th>
+                                                <th>Funds Pending</th>
+                                                <th>Funds Available</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse($campaign_funds['campaigns'] as $campaign)
+                                            <tr>
+                                                <td>{{$campaign->title}}</td>
+                                                <td>₱{{$campaign->raised}}</td>
+                                                <td>₱{{$campaign->claimed}}</td>
+                                                <td>₱{{$campaign->pending}}</td>
+                                                <td>₱{{$campaign->available_funds}}</td>
+                                                <td>
+                                                    @if($campaign->available_funds > 0)
+                                                        <a href="{{route('jobseeker.funds.claimform', $campaign->id)}}" class="btn btn-sm btn-primary">Withdraw Available</a>
+                                                    @else 
+                                                        <button disabled class="btn btn-sm btn-warning">Claimed</button>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center"><h3>No Records Found</h3></td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane " id="claimed" aria-labelledby="claimed-tab" aria-expanded="true">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <div class="card-datatable table-responsive">
+                                        <table class="withdraw-list-table table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Description</th>
+                                                    <th>Amount</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse($campaign_funds['claimed_requests'] as $crequest)
+                                                <tr>
+                                                    <td>{{$crequest->created_at}}</td>
+                                                    <td>{{$crequest->campaign->title}}</td>
+                                                    <td>₱{{$crequest->amount}}</td>
+                                                    <td>
+                                                        @if($crequest->status == 'pending')
+                                                            <span class="badge badge-warning">Pending</span>
+                                                        @elseif($crequest->status == 'paid')
+                                                            <span class="badge badge-success">Paid</span>
+                                                        @elseif($crequest->status == 'denied')
+                                                            <span class="badge badge-danger">Denied</span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                @empty
+                                                <tr>
+                                                    <td colspan="4" class="text-center"><h3>No Records Found</h3></td>
+                                                </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
 </div>
    

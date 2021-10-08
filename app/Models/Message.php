@@ -12,10 +12,10 @@ class Message extends Model
     protected $fillable = ['from','to', 'message'];
 
     public function from(){
-        return $this->belongsTo(User::class, 'from', 'id');
+        return $this->belongsTo(User::class, 'from', 'id')->with('information');
     }
 
     public function to(){
-        return $this->belongsTo(User::class, 'to', 'id');
+        return $this->belongsTo(User::class, 'to', 'id')->with('information');
     }
 }

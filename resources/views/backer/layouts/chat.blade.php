@@ -25,7 +25,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/app-assets/images/logo/favicon-16x16.png')}}">
     <link rel="manifest" href="/manifest.json">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('/app-assets/images/logo/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('app-assets/images/additional_pictures/logo2.png')}}" />
     
     <title>{{ config('app.name','ePondo') }}</title>
 
@@ -60,7 +60,18 @@
 
     @yield('css')
 
-    
+    <style>
+        .avatar .avatar-menu{
+            width: 90px !important;
+            height: 90px !important;
+            font-size: 3rem !important;
+        }
+        .avatar .avatar-header{
+            width: 42px !important;
+            height: 42px !important;
+            font-size: 1.2rem !important;
+        }
+    </style>
 
 </head>
 <!-- END: Head-->
@@ -69,7 +80,7 @@
 
 <body class="vertical-layout vertical-menu-modern 2-columns footer-static menu-expanded pace-done navbar-sticky" data-open="click" data-menu="vertical-menu-modern" data-col="">
     <div id="main-content-wrapper">
-        @include('backer.partials.header')
+        @include('backer.partials.header-chat')
         @include('backer.partials.menu')
 
         @yield('content')

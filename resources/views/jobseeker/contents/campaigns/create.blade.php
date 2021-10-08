@@ -24,7 +24,7 @@
                 <form class="form form-horizontal" action="{{route('jobseeker.campaigns.store')}}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-12 col-md-8 col-lg-8">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group row">
@@ -53,7 +53,7 @@
                                         <div class="col-sm-3 col-form-label">
                                             <label for="category">Category</label>
                                             <span class="j_tag_trans">(Kategorya)</span>
-                                    </div>
+                                        </div>
                                         <div class="col-sm-9">
                                             <select name="category[]" id="category" class="select2 form-control" multiple>
                                                 @foreach($categories as $category)
@@ -70,7 +70,7 @@
                                             <span class="j_tag_trans">(Mithing Petsa)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="date" name="target_date" id="target-date" class="form-control">
+                                            <input type="date" name="target_date" id="target_date" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -101,12 +101,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-9 offset-sm-3">
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
-                                </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-md-4 col-lg-4">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -129,8 +126,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                    
-                                    <label>Campaign Photos</label>
+                                        <label>Campaign Photos</label>
                                         <div class="media-group d-flex">
                                             <div class="media">
                                                 <a href="javascript:void(0);">
@@ -181,12 +177,17 @@
                                                 <!--/ upload and reset button -->
                                             </div>
                                         </div>
-                                    
+                                    </div>
+                                
+                                    <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign. </span></label>
+                                
                                 </div>
-                                
-                                <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign. </span></label>
-                                
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float float-right waves-light">Submit</button>
                         </div>
                     </div>
                 </form>

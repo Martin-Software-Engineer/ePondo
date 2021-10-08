@@ -34,14 +34,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="phonenumber">Contact No.</label>
-                                    <input id="phonenumber" type="text" class="form-control" name="phone" value="{{$phone}}">
+                                    <label for="phone">Contact No.</label>
+                                    <input id="phone" type="text" class="form-control" name="phone" value="{{$phone}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="emailaddress">Email Address</label>
-                                    <input id="emailaddress" type="email" class="form-control" name="email" value="{{$email}}" disabled>
+                                    <label for="email">Email Address</label>
+                                    <input id="email" type="email" class="form-control" name="email" value="{{$email}}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -63,8 +63,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="postcode">ZIP Code/Post Code</label>
-                                    <input id="postcode" type="text" class="form-control" name="zipcode" value="{{$zipcode}}"/>
+                                    <label for="zipcode">ZIP Code/Post Code</label>
+                                    <input id="zipcode" type="text" class="form-control" name="zipcode" value="{{$zipcode}}"/>
                                 </div>
                             </div>
                         </div>
