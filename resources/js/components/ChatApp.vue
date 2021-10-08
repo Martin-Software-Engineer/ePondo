@@ -23,7 +23,7 @@
                 <!-- Sidebar Users start -->
                 <div id="users-list" class="chat-user-list-wrapper list-group">
                     <h4 class="chat-list-title">Chats</h4>
-                    <ChatContacts :contacts="contacts" :me="user" :selected-user-id="selectedUserId" v-on:select-user="updateSelectedUser($event)" v-on:update-messages="updateMessages($event)"/>
+                    <ChatContacts :contacts="contacts" :me="user" :selected-user-id="selectedUserId" v-on:select-user="updateSelectedUser($event)" v-on:update-messages="updateMessages($event)" v-on:show-sidebar="setShowSideBar($event)"/>
                 </div>
                 <!-- Sidebar Users end -->
             </div>
@@ -36,7 +36,7 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
-                <div class="body-content-overlay"></div>
+                <div class="body-content-overlay" :class="{'show' : showSideBar}"></div>
                 <!-- Main chat area -->
                 <section class="chat-app-window">
                     <!-- To load Conversation -->
@@ -44,7 +44,7 @@
                         <div class="mb-1 start-chat-icon">
                             <i data-feather="message-square"></i>
                         </div>
-                        <h4 class="sidebar-toggle start-chat-text">Start Conversation</h4>
+                        <h4 class="sidebar-toggle start-chat-text" v-on:click="showSideBar=true">Start Conversation</h4>
                     </div>
                     <!--/ To load Conversation -->
 
@@ -149,6 +149,9 @@ export default {
         },
         setShowSideBar(status){
             this.showSideBar = status.show;
+            if(status.show){
+                $('.sidebar-content').addClass('show');
+            }
         }
     }
 }

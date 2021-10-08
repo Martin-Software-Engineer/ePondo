@@ -2109,6 +2109,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     setShowSideBar: function setShowSideBar(status) {
       this.showSideBar = status.show;
+
+      if (status.show) {
+        $('.sidebar-content').addClass('show');
+      }
     }
   }
 });
@@ -2194,11 +2198,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$emit('select-user', user);
 
+                _this.$emit('show-sidebar', {
+                  show: false
+                });
+
                 window.history.pushState({}, '', '/chats/?' + $.param({
                   contact_id: user.id
                 })); //jQuery.param.querystring(window.location.href, $.param({contact_id: user.id}));
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -27011,6 +27019,9 @@ var render = function() {
                     },
                     "update-messages": function($event) {
                       return _vm.updateMessages($event)
+                    },
+                    "show-sidebar": function($event) {
+                      return _vm.setShowSideBar($event)
                     }
                   }
                 })
@@ -27027,16 +27038,28 @@ var render = function() {
         _c("div", { staticClass: "content-header row" }),
         _vm._v(" "),
         _c("div", { staticClass: "content-body" }, [
-          _c("div", { staticClass: "body-content-overlay" }),
+          _c("div", {
+            staticClass: "body-content-overlay",
+            class: { show: _vm.showSideBar }
+          }),
           _vm._v(" "),
           _c("section", { staticClass: "chat-app-window" }, [
             !_vm.isChatActive
               ? _c("div", { staticClass: "start-chat-area" }, [
                   _vm._m(1),
                   _vm._v(" "),
-                  _c("h4", { staticClass: "sidebar-toggle start-chat-text" }, [
-                    _vm._v("Start Conversation")
-                  ])
+                  _c(
+                    "h4",
+                    {
+                      staticClass: "sidebar-toggle start-chat-text",
+                      on: {
+                        click: function($event) {
+                          _vm.showSideBar = true
+                        }
+                      }
+                    },
+                    [_vm._v("Start Conversation")]
+                  )
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -39798,8 +39821,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "dd9503df3fe1e477b737",
+  cluster: "ap1",
   forceTLS: true
 });
 
@@ -40168,8 +40191,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Martin\Documents\Code\ePondo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Martin\Documents\Code\ePondo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! G:\ePondo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! G:\ePondo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

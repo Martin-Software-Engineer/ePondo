@@ -80,7 +80,7 @@
 
 <body class="vertical-layout vertical-menu-modern 2-columns footer-static menu-expanded pace-done navbar-sticky" data-open="click" data-menu="vertical-menu-modern" data-col="">
     <div id="main-content-wrapper">
-        @include('backer.partials.header')
+        @include('backer.partials.header-chat')
         @include('backer.partials.menu')
 
         @yield('content')
