@@ -286,6 +286,7 @@
             <form action="{{route('jobseeker.orders.cancel')}}" method="POST">
                 @csrf
                 <input type="hidden" name="order_id" value="{{$order->id}}">
+                <input type="hidden" name="from" value="jobseeker">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">

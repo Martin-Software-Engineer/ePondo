@@ -517,12 +517,12 @@
                                 <a class="stretched-link" href="{{route('campaign_view', $campaign->id)}}">
                                     <h1 class="card_s_title overflow-ellipsis">{{$campaign->title}}</h1>
                                 
-                                <p class="c_card_c_category">
+                                    <p class="c_card_c_category overflow-ellipsis">
                                     @foreach($campaign->categories as $category)
-                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    <span class="badge badge-info" style="background-color:#120a78;font-size:10px;">{{$category->name}}</span> @if(!$loop->last)@endif
                                     @endforeach
                                 </p>
-                                <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
+                                <h3 class="card_c_jname overflow-ellipsis">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
                                
                                 <div class="c_card_c_desc">{{$campaign->description}}</div>
                                
@@ -617,6 +617,14 @@
                                     <input type="text" name="service_price" id="service_price" class="form-control" disabled>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="service_location">Service Location</label>
+                                    <input type="text" name="service_location" id="service_location" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="service_duration">Service Duration</label>
@@ -736,6 +744,7 @@
             availModal.find('form').find('input[name=service_title]').val(service.title);
             availModal.find('form').find('input[name=service_category]').val(categories.join('/'));
             availModal.find('form').find('input[name=service_price]').val(service.currency+' '+service.price);
+            availModal.find('form').find('input[name=service_location]').val(service.location);
             availModal.find('form').find('input[name=service_duration]').val(service.duration_hours+' Hour/s ' + service.duration_minutes + ' Minute/s');
             availModal.modal('show');
         });

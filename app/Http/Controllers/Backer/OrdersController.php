@@ -115,12 +115,8 @@ class OrdersController extends Controller
     }
 
     public function cancel(Request $request){
-        $order = Order::find($request->order_id);;
-        // ERROR $order
-        $backer = User::find($order->backer->id);
-        // $backer = User::find(auth()->user()->id);
-        $jobseeker = USer::find($order->service->jobseeker->id);
-        // $jobseeker = USer::where('id',$order->service->jobseeker->id)->first();
+        $order = Order::find($request->order_id);
+        
         $orderDate = Carbon::parse($order->details->render_date);
         $now = Carbon::now();
         $datediff = $orderDate->diffInDays($now);
@@ -129,7 +125,6 @@ class OrdersController extends Controller
             
             if($order->status == 2){
                 $invoice = Invoice::find($order->invoice->id);
-                // $invoice = Invoice::where('order_id',$order->id)->first();
                 $invoice -> status = 4;
                 $invoice ->save();
             }
@@ -138,7 +133,10 @@ class OrdersController extends Controller
             $order->save();
             
             $cancel = OrderCancel::create(['order_id' => $order->id, 'reason' => $request->reason, 'from' => $request->from]);
-                
+            
+            $backer = User::find($order->backer->id);
+            $jobseeker = USer::find($order->service->jobseeker->id);
+
             $jobseeker->notify(new OrderCancelledNotification($order));
             $backer->notify(new OrderCancelledNotification($order));
 

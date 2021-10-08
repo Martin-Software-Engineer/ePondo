@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDecline extends Model
 {
     use HasFactory;
-    protected $fillable = ['order_id', 'reason'];
+    protected $fillable = ['order_id', 'reason', 'from'];
 }

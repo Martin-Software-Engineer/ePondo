@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="col-sm-5">
                                             <select name="duration_hours" id="duration_hours" class="form-control">
-                                                @for($i = 1; $i<=24; $i++)
+                                                @for($i = 0; $i<=24; $i++)
                                                     <option value="{{$i}}">{{$i}} @if($i> 1)Hours @else Hour @endif</option>
                                                 @endfor
                                             </select>

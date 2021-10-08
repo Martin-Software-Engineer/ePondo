@@ -24,6 +24,7 @@ use App\Notifications\OrderAccepted as OrderAcceptedNotification;
 use App\Notifications\OrderDeclined as OrderDeclinedNotification;
 use App\Notifications\OrderCompleted as OrderCompletedNotification;
 use App\Notifications\OrderCompletedCOD as OrderCompletedCODNotification;
+use App\Notifications\OrderCancelled as OrderCancelledNotification;
 
 class OrdersController extends Controller
 {
@@ -250,38 +251,47 @@ class OrdersController extends Controller
     }
 
     public function cancel(Request $request){
-
         $order = Order::find($request->order_id);
-
-        $backer = User::find($order->backer->id);
-        $jobseeker = User::find($order->service->jobseeker->id);
 
         $orderDate = Carbon::parse($order->details->render_date);
         $now = Carbon::now();
         $datediff = $orderDate->diffInDays($now);
 
         if($datediff >= 3 && $orderDate > $now){
+            
+            if($order->status == 2){
+                $invoice = Invoice::find($order->invoice->id);
+                $invoice -> status = 4;
+                $invoice ->save();
+            }
+
             $order->status = 8;
             $order->save();
             
-            if($order)
-                OrderCancel::create(['order_id' => $order->id, 'reason' => $request->reason]);
+            $cancel = OrderCancel::create(['order_id' => $order->id, 'reason' => $request->reason, 'from' => $request->from]);
+
+            $backer = User::find($order->backer->id);
+            $jobseeker = User::find($order->service->jobseeker->id);
 
             $jobseeker->notify(new OrderCancelledNotification($order));
             $backer->notify(new OrderCancelledNotification($order));
 
             Mail::to($backer->email)->queue(new SendMail('emails.order-cancel-request-mail', [
                 'subject' => 'Service Order Cancelled',
-                'order_id' => System::GenerateFormattedId('S', $order->id)
+                'order_id' => System::GenerateFormattedId('S', $order->id),
+                'reason' => $cancel->reason
             ]));
             Mail::to($jobseeker->email)->queue(new SendMail('emails.order-cancelled-mail', [
                 'subject' => 'Service Order Cancelled',
-                'order_id' => System::GenerateFormattedId('S', $order->id)
+                'order_id' => System::GenerateFormattedId('S', $order->id),
+                'reason' => $cancel->reason
             ]));
 
             return response()->json(['success' => true, 'msg' => 'Order Cancelled.']); 
-        }else{
-            return response()->json(['success' => false, 'msg' => 'Cancel Order is no longer available.']);
+        }
+        else
+        {
+            return response()->json(['success' => false, 'msg' => 'Cancel Order Not Permitted.']);
         }
         
     }
