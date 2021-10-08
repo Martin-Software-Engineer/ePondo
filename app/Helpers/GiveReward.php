@@ -36,18 +36,19 @@ class GiveReward{
             $user->notify(new PointsNotification($reward->actions, $reward->points)); //Notify user of the reward given
 
             if($ctier != $newtier){
-                if( $newtier == 'gold')
+                if( $newtier == 'silver')
                 {
-                    $newtiernotif = 'Gold';
+                    $newtiernotif = 'Silver';
                     $addon = '0.6';
                 }
-                elseif( $newtier == 'platinum' )
+                elseif( $newtier == 'gold')
                 {
-                    $newtiernotif  = 'Platinum';
+                    $newtiernotif = 'Gold';
                     $addon = '1.2';
                 }
-                else{
-                    $newtiernotif  = 'Silver';
+                else
+                {
+                    $newtiernotif  = 'Platinum';
                     $addon = '2';
                 }
                 $user->notify(new RewardsNotification($newtiernotif));

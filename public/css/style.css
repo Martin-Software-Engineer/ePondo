@@ -1025,7 +1025,6 @@ button.donate_btn {
     font-size: 14px;
     color: #ffffff;
     background-color: #1ea835;
-    /* border: 2px solid #ffffff; */
     padding: 8px;
     text-transform: uppercase;
 }
@@ -1042,7 +1041,6 @@ button.donate_btn {
     font-size: 14px;
     color: #ffffff;
     background-color: #f64646;
-    border: 2px solid #ffffff;
     padding: 8px;
     text-transform: uppercase;
 }

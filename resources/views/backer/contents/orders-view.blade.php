@@ -247,8 +247,8 @@
             </div>
             <form action="{{route('backer.orders.cancel')}}" method="POST">
                 @csrf
-                <input type="hidden" name="order_id" value="{{$order->id}}">
-                <input type="hidden" name="from" value="backer">
+                <input type="hidden" name="order_id" id="order_id" value="{{$order->id}}">
+                <input type="hidden" name="from" id="from" value="backer">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">

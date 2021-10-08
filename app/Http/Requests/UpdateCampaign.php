@@ -25,7 +25,7 @@ class UpdateCampaign extends FormRequest
     {
         return [
             'title' => 'required|string|max:50',
-            'description' => 'required|string|max:1000',
+            'description' => 'required|string|max:10000',
             'category' => 'required',
             'target_date' => 'required|date',
             'target_amount' => 'required|integer',

@@ -34,7 +34,7 @@ class UpdatePublicProfile extends FormRequest
             'workexp.*.company' => 'nullable|string|max:50',
             'workexp.*.description' => 'nullable|string|max:50',
             'workexp.*.year' => 'nullable|string|max:9',
-            'bio' => 'nullable|string|max:1000'
+            'bio' => 'nullable|string|max:10000'
         ];
     }
 }

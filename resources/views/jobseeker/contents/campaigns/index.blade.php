@@ -47,7 +47,6 @@
                             {{$category->name}} @if(!$loop->last)/@endif
                         @endforeach
                     </p>
-                    <div class="j_c_desc">Control No:  #{{$campaign->id}}</div>
                     <div class="progress-wrapper progress_bar">
                         <div id="example-caption-2">
                             <div class="row">

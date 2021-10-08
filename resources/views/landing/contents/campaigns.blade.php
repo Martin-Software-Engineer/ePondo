@@ -58,12 +58,12 @@
                                 <a class="stretched-link" href="{{route('campaign_view', $campaign->id)}}">
                                     <h1 class="card_s_title overflow-ellipsis">{{$campaign->title}}</h1>
                                 
-                                <p class="c_card_c_category">
+                                <p class="c_card_c_category overflow-ellipsis">
                                     @foreach($campaign->categories as $category)
-                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    <span class="badge badge-info" style="background-color:#120a78;font-size:10px;">{{$category->name}}</span> @if(!$loop->last)@endif
                                     @endforeach
                                 </p>
-                                <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
+                                <h3 class="card_c_jname overflow-ellipsis">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
                                
                                 <div class="c_card_c_desc">{{$campaign->description}}</div>
                                
