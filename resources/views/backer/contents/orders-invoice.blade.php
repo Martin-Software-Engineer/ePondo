@@ -366,10 +366,10 @@
             <div class="card">
                 <div class="card-body">
                     <h6 style="font-size:14px;margin-bottom:10px;font-weight:bold;text-decoration:underline;">Payment Instructions : </h6>
-                    <h6 style="font-size:12px;margin-bottom:10px;margin-top:20px;">Payment Method is Online Payment via (Paypal / Credit Card). Process payment by clicking the "Add Payment" button below. You will be routed to the Paypal payment gateway.</h6>
+                    <h6 style="font-size:12px;margin-bottom:10px;margin-top:20px;">Payment Method is Online Payment via (Paypal / Credit Card / Debit Card). Process payment by clicking the "Pay" button below. You will be routed to the Paypal payment gateway.</h6>
                     <h6 style="font-size:12px;margin-bottom:20px;margin-top:20px;font-weight:lighter">If you have any questions or concerns you may email us at epondo.co@gmail.com</h6>
-                    <button class="btn-payment btn btn-success btn-block" data-toggle="modal" data-target="#add-payment-sidebar">
-                        Add Payment
+                    <button class="btn-payment btn btn-success btn-block" style="font-size:16px;" data-toggle="modal" data-target="#add-payment-sidebar">
+                        Pay
                     </button>
                 </div>
             </div>
@@ -395,9 +395,9 @@
     <div class="modal-dialog modal-dialog-centered" style="width:400px" role="document">
         <div class="modal-content">
             <div class="loader"></div>
-            <div class="card card-payment text-center hide">
+            <div class="card card-payment text-center hide" style="align-items:center;">
                 <div class="card-header pb-0">
-                    <h2 class="card-title"><strong>Pay your Invoice # {{$invoice_no}}</strong></h2>
+                    <h2 class="card-title" ><strong>Pay your Invoice # {{$invoice_no}}</strong></h2>
                 </div>
                 <div class="card-body">
                     <h3 class="topay">Amount to pay <span class='topay-amount'>Php {{$total}}</span></h3>

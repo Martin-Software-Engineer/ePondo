@@ -31,12 +31,12 @@ $(function() {
                 { data: 'id' },
                 { data: 'order_id' },
                 { data: 'service_title' },
-                { data: 'service_categories' },
+                // { data: 'service_categories' },
                 { data: 'service_duration' },
                 { data: 'service_price' },
                 { data: 'service_location' },
                 { data: 'service_date' },
-                { data: 'status' },
+                { data: 'status.text' },
                 { data: '' }
                 
             ],
@@ -56,22 +56,28 @@ $(function() {
                         return row.order_id;
                     }
                 },
-                {
-                    targets: 3,
-                    render: function(data, type, row) {
-                        var $elArray = [];
-                        $.each(row.service_categories, function(index, category) {
-                            $elArray.push(`<span class="badge badge-info">${category.name}</span>`);
-                        });
+                // {
+                //     targets: 3,
+                //     render: function(data, type, row) {
+                //         var $elArray = [];
+                //         $.each(row.service_categories, function(index, category) {
+                //             $elArray.push(`<span class="badge badge-info">${category.name}</span>`);
+                //         });
 
-                        return $elArray.join();
-                    }
-                },
+                //         return $elArray.join();
+                //     }
+                // },
                 {
-                    targets: 5,
+                    targets: 4,
                     width: '100px',
                     render: function(data, type, row) {
                         return `<span>Php ${row.service_price}</span>`;
+                    }
+                },
+                {
+                    targets: 7,
+                    render: function(data, type, row) {
+                        return $.parseHTML(row.status.text)[0].data;
                     }
                 },
                 {
@@ -80,6 +86,8 @@ $(function() {
                     width: '80px',
                     orderable: false,
                     render: function(data, type, full, meta) {
+                        var btns = [];
+                        var statusCode = parseInt(full.status.code);
                         let actions = [];
                         actions.push(`<a class="mr-1 btn-view" href="/jobseeker/orders/${full.id}/show" data-toggle="tooltip" data-placement="top" title="View">${feather.icons['eye'].toSvg({ class: 'font-medium-2' })}</a>`);
                         if (!full.has_jobseeker_feedback && full.status == 7) {

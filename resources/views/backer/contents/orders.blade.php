@@ -30,8 +30,8 @@
                                 <th>Order No.</th>
                                 <th>Service Title</th>
                                 <th>Category</th>
-                                <th>Price</th>
-                                <th>Service Order Date</th>
+                                <th>Service Price</th>
+                                <th>Delivery Date</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>

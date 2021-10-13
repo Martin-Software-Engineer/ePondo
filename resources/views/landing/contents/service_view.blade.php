@@ -679,7 +679,7 @@
                                 <div class="form-group">
                                     <label for="payment_method">Payment Method</label>
                                     <select name="payment_method" id="payment_method" class="form-control select2">
-                                        <option value="OP">Online Payment (Available: Paypal,Credit Card)</option>
+                                        <option value="OP">Online Payment (Available: Paypal,Credit Card,Debit Card)</option>
                                         <option value="COD">Cash on Delivery</option>
                                     </select>
                                 </div>

@@ -49,6 +49,7 @@
                                     {{$category->name}} @if(!$loop->last)/@endif
                                 @endforeach
                             </h6>
+                            <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Location : </strong> {{$order->service->location}} </h6>
                             <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Duration : </strong>
                                 @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
                                 @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
@@ -123,9 +124,9 @@
                         <h6 style="font-size:12px; margin-bottom:20px;">Service Order Complete! On behalf of the whole ePondo Team, we would like to thank you for using our platform. We hope that you can continue to support ePondo. Thank you!</h6>
                         @endif
                         @if($order->status == 8)
-                            <h5 style="font-weight:bolder;"> Status : <span style="color:crimson"> Cancelled </span> </h5>
+                            <h5 style="font-weight:bolder;"> Status : <span style="color:red"> Cancelled </span> </h5>
                             <hr>
-                            <button  class=" btn btn-danger btn-block mb-75" style="font-size:12px;text-align:left;">
+                            <button  class=" btn btn-block mb-75" style="font-size:12px;text-align:left;background-color:red;color:white;">
                             By : {{$cancel->from}} <br>
                             Reason : {{$cancel->reason}}
                             </button>
@@ -157,7 +158,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Feedback & Rating</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -171,7 +172,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="service_feedback">How was the experience of your service with the customer</label>
+                                <label for="service_feedback"> <b>How would you rate the overall service provided by the jobseeker?</b> </label>
                                 <div class="demo-inline-spacing">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" class="custom-control-input" name="service_rating" value="1" id="customCheckSR1">
@@ -196,11 +197,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea name="service_feedback" id="service_feedback" cols="30" rows="6" class="form-control" placeholder="Give some feedback about the service rendered."></textarea>
+                                <label for="service_feedback"> <b>Please provide feedback regarding the service provided & jobseeker.</b> </label>
+                                <textarea name="service_feedback" id="service_feedback" cols="30" rows="6" class="form-control" placeholder="Input feedback here ..."></textarea>
                             </div>
                            
                             <div class="form-group">
-                                <label for="category">How was your experience using the platform?</label>
+                                <label for="category"> <b>How would you rate the overall experience with ePondo ?</b> </label>
                                 <div class="demo-inline-spacing">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" class="custom-control-input" name="platform_rating" value="very-good" id="customCheck1">
@@ -222,15 +224,15 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="platform_message">Message</label>
-                                <textarea name="platform_message" id="platform_message" cols="30" rows="5" class="form-control"></textarea>
+                                <label for="platform_message"> <b>Please provide feedback regarding your experience with ePondo. </b> </label>
+                                <textarea name="platform_message" id="platform_message" cols="30" rows="5" class="form-control" placeholder="Input feedback here ..."></textarea>
                             </div>
 
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-block">Submit Feedback</button>
+                    <button type="submit" class="btn btn-block" style="background-color: blueviolet;color:white;">Submit Feedback</button>
                 </div>
             </form>
         </div>
@@ -307,6 +309,7 @@
                                 location.reload();
                             }, 2000)
                         }
+<<<<<<< Updated upstream
                         else{
                             toastr['error'](resp.msg, 'Error!', {
                                 closeButton: true,
@@ -321,6 +324,8 @@
                                 tapToDismiss: false
                             });
                         });
+=======
+>>>>>>> Stashed changes
                     }
                 });
             });

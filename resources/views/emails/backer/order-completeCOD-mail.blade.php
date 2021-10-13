@@ -1,7 +1,7 @@
 @component('mail::message')
 # Greetings from ePondo!
 
-<br>Successfully Submitted Service Order Delivered & Payment Successful<br> for Service Order No. <b>{{$order_id}}</b><br><br>
+<br>Successfully Submitted Service Order Delivered & Payment Successful for Service Order No. <b>{{$order_id}}</b><br><br>
 
 <h3>Payment Details</h3>
 

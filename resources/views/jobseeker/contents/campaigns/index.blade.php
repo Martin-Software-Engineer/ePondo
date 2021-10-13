@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h6 class="c_card_title overflow-ellipsis" >{{$campaign->title}}</h6>
-                    <p class="c_card_c_category">
+                    <p class="c_card_c_category overflow-ellipsis">
                         @foreach($campaign->categories as $category)
                             {{$category->name}} @if(!$loop->last)/@endif
                         @endforeach

@@ -45,7 +45,7 @@
                 <div class="col-md-12">
                     <h1 class="give_taital_1 overflow-ellipsis">{{$service->title}}</h1>
                     
-                    <p class="card_s_category">
+                    <p class="card_s_category overflow-ellipsis">
                     @foreach($service->categories as $category)
                     {{$category->name}} @if(!$loop->last) / @endif
                     @endforeach

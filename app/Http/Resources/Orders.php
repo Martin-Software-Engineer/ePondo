@@ -41,7 +41,12 @@ class Orders extends JsonResource
             'service_duration' => $duration,
             'has_jobseeker_feedback' => $this->hasjobseekerfeedback,
             'has_backer_feedback' => $this->hasbackerfeedback,
-            'status' => System::StatusTextValue($this->status)
+            // 'status' => System::StatusTextValue($this->status)
+            'status' => (object)[
+                'code' => $this->status,
+                'text' => System::StatusTextValue($this->status, true),
+            ],
+            'status_text' => System::StatusTextValue($this->status),
         ];
     }
 }
