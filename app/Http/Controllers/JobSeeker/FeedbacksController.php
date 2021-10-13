@@ -114,11 +114,11 @@ class FeedbacksController extends Controller
             $backer->notify(new OrderFinishNotification($order));
 
             Mail::to($backer->email)->queue(new SendMail('emails.backer.order-complete-mail', [
-                'subject' => 'Successful Service Order Feedback',
+                'subject' => 'Congratulations Service Order Complete!',
                 'order_id' => System::GenerateFormattedId('S', $order->id)
             ]));
             Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-complete-mail', [
-                'subject' => 'Successful Service Order Feedback',
+                'subject' => 'Congratulations Service Order Complete!',
                 'order_id' => System::GenerateFormattedId('S', $order->id)
             ]));
 
