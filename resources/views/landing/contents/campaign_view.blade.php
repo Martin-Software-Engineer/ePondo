@@ -185,11 +185,13 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="campaign_title">{{$campaign->title}}</h1>
-                <span class="campaign_category">
+                <h1>
+                    <span class="s_hlocation"> Category: </span> 
                     @foreach($campaign->categories as $category)
-                        {{$category->name}} @if(!$loop->last)/@endif
+                        <span class="badge badge-info" style="background-color:#120a78;font-size:14px;">{{$category->name}}</span> @if(!$loop->last)@endif
                     @endforeach
-                </span>
+                </h1>
+                    
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="progress-wrapper campaign_progress_bar">
@@ -212,7 +214,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4 campaign_donate_btn">
+                    <div class="col-sm-4 campaign_donate_btn mb-2">
                         <div class="donate_btn btn btn-block " data-campaign-id="{{$campaign->id}}">
                             <h2 class="donate_now"><img src="{{asset('app-assets/images/additional_pictures/icon-4.png')}}" class="donate_now_img">Donate</h2>
                         </div>
