@@ -97,15 +97,7 @@
                     </div>
                     <!-- Service Tiles - End -->
                 </div>
-            @empty
-                <div class="col-lg-12">
-                    <div class="card card-empty mt-4">
-                        <div class="card-body text-center d-flex justify-content-center align-items-center">
-                            <!-- main title -->
-                            <h1 style="color:#0f073b;font-size:30px;font-weight:500;">Sorry No Results Found!</h1>
-                        </div>
-                    </div>
-                </div> 
+            @empty 
             @endforelse
         </div> 
         <div class="row mt-5">
