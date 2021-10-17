@@ -7,16 +7,14 @@
         <div class="row">
             <div class="fundraise_img align-items-start"><img src="{{asset('app-assets/images/additional_pictures/concept_model_800x400_v3.png')}}"></div>
         </div>
-         <div class="col-sm-12">
-            <div class="row">
-               <div class="just">ePondo is a Rewards Crowdfunding Platform. The goal of ePondo is to create a space where Filipinos can 
-               fundraise for their desired campaigns and also support their livelihood by also providing services. ePondo operates on a 
-               Web-based application that can be accessed on your preferred web browser. The web-based application caters to two 
-               specific users which are the jobseekers and the backers or customers. The jobseekers are users that are looking to 
-               fundraise and provide their services on the platform. The backers/customers on the other hand are users that support the 
-               campaigns through donations or avail the different services posted by the jobseekers.  Rewards are given to jobseekers as 
-               they progress along the web-application and unlock the different reward tiers. To learn more how ePondo works, please continue reading.
-               </div>
+        <div class="row">
+            <div class="just">ePondo is a Rewards Crowdfunding Platform. The goal of ePondo is to create a space where Filipinos can 
+            fundraise for their desired campaigns and also support their livelihood by also providing services. ePondo operates on a 
+            Web-based application that can be accessed on your preferred web browser. The web-based application caters to two 
+            specific users which are the jobseekers and the backers or customers. The jobseekers are users that are looking to 
+            fundraise and provide their services on the platform. The backers/customers on the other hand are users that support the 
+            campaigns through donations or avail the different services posted by the jobseekers.  Rewards are given to jobseekers as 
+            they progress along the web-application and unlock the different reward tiers. To learn more how ePondo works, please continue reading.
             </div>
          </div>
         <div class="row mt-4">
@@ -78,8 +76,8 @@
             </div>
        </div>
        <div class="row mt-2" style="padding-top:10px;">
-            <div class="col-sm-2 mb-4">
-                <div class="user_avatar align-items-start mb-4"><img src="{{asset('app-assets/images/additional_pictures/bac_cus_200x200.png')}}"></div>
+            <div class="col-sm-2  ">
+                <div class="user_avatar align-items-start"><img src="{{asset('app-assets/images/additional_pictures/bac_cus_200x200.png')}}"></div>
             </div>
             <div class="col-sm-10">
                 <h1 class="user_title">Backer/ Customer</h1>

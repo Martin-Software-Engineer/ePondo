@@ -1402,10 +1402,10 @@ button.donate_btn {
 .service_category {
     width: 100%;
     float: left;
-    color: #120a78;
+    color: #7e7e7e;
     text-align: left;
     font-size: 18px;
-    font-weight: bolder;
+    font-weight: 400;
     font-style: italic;
 }
 
@@ -1800,8 +1800,8 @@ button.donate_btn {
 /* How it works - Start */
 
 .user_avatar {
-    width: auto;
-    max-height: 150px;
+    width: 150px;
+    height: 150px;
 }
 
 .user_role_section {

@@ -193,8 +193,6 @@
                         </div>
                         <div style=" align-items: flex-end;">
                             <h1 style="text-align:center;font-weight:bold;">INVOICE</h1>
-                            <p class="card-text mb-0"> <span style="margin-right:50px;font-weight:500">Invoice No : </span> {{$invoice_no}}</p>
-                            <p class="card-text mb-0"> <span style="margin-right:55px;font-weight:500">Due Date : </span> {{$date_due}}</p>
                             <p class="card-text mb-0"> <span style="margin-right:85px;font-weight:500">Status : </span>
                                 @if($invoice_status ==1 )
                                 Ongoing
@@ -207,9 +205,10 @@
                                 @endif
                             </p>
                             <p class="card-text mb-0"> <span style="font-weight:500">Payment Method : </span> {{$payment_method}}</p>
-                            <p class="card-text mb-0"> <span style="margin-right:4px;font-weight:500">Service Order No : </span>  {{$order_no}}</p>
                             <p class="card-text mb-0"> <span style="margin-right:45px;font-weight:500">Date Issued : </span> {{$date_issued}}</p>
-                            
+                            <p class="card-text mb-0"> <span style="margin-right:55px;font-weight:500">Invoice No : </span>  {{$invoice_no}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:4px;font-weight:500">Service Order No : </span>  {{$order_no}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:60px;font-weight:500">Due Date : </span>  {{$date_due}}</p>
                         </div>
                     </div>
                     <!-- Header ends -->
