@@ -200,6 +200,7 @@ class CampaignsController extends Controller
         $campaign->description = $request->description;
         $campaign->target_date = $request->target_date;
         $campaign->target_amount = $request->target_amount;
+        $campaign->status = $request->status;
         $campaign->save();
 
         if($request->hasFile('thumbnail')){
