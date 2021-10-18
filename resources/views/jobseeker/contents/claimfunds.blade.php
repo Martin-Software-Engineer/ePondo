@@ -46,14 +46,15 @@
                             <div class="col-12">
                                 <hr>
                                 <p style="text-decoration:underline; margin: 0 0;">Payment Details</p>
-                                <h6 style="font-size:10px;margin-top:10px;"><strong>Instructions : </strong> Please indicate below the amount you would like to withdraw and your bank details. We accept through Gcash, PayMaya, Remittance Centers, Bank Transfer. (Paalala na ilagay sa ilalaim ang halaga na nais kunin mula sa pondo at ang mga detalye ng iyong banko)</h6><br>
+                                <h6 style="font-size:10px;"><strong>Instructions : </strong> Please indicate below your bank details. We accept through (Gcash, PayMaya, Remittance Centers, Bank Transfer)</h6><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group row">
                                     <div class="col-sm-3 col-form-label">
-                                        <label for="amount">Amount ₱ :<span class="j_tag_trans"><br>(Halaga)</span></label>
+                                        <label for="amount">Amount (₱) :</label>
+                                        <span class="j_tag_trans"></span>
                                     </div>
                                     <div class="col-sm-9">
                                         <input type="number" id="amount" class="form-control" name="amount" placeholder="{{$campaign->available_funds}}">
@@ -65,7 +66,8 @@
                             <div class="col-12">
                                 <div class="form-group row">
                                     <div class="col-sm-3 col-form-label">
-                                        <label for="details">Bank Details :<span class="j_tag_trans"><br>(Detalye ng Banko)</span></label>
+                                        <label for="details">Bank Details :</label>
+                                        <span class="j_tag_trans"></span>
                                     </div>
                                     <div class="col-sm-9">
                                         <textarea name="details" id="details" cols="30" rows="6" class="form-control" placeholder="Bank/ Account No./ Full Name"></textarea>
@@ -91,7 +93,7 @@
                 <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1">Submit Request</button>
+                        <button type="submit" class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1">Claim Funds</button>
                         <a href="{{route('jobseeker.earnings')}}" class="btn btn-danger mb-1 mb-sm-0 mr-0 mr-sm-1">Cancel</a>
                     </div>
                 </div>
