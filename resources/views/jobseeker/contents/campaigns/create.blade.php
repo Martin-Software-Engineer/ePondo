@@ -97,7 +97,8 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <input name="tags" id="tags" class="tagsinput" value="" />
-                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add a comma or press enter to separate tags</span>
+                                            <span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add a comma or press 'Enter' to separate tags</span>
+                                            <span class="j_tag_trans"><br>(Maglagay ng kuwit o pindutin and 'Enter', para hiwalayin ang tags)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -179,15 +180,27 @@
                                         </div>
                                     </div>
                                 
-                                    <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign. </span></label>
+                                    <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add photos that clearly represent your Campaign. It must be a JPG, PNG, no larger than 200 MB.  </span></label>
+                                    <span class="j_tag_trans">(Maglagay ng mga litrato na kumakatawan sa iyong kampanya. Aalalahaning ang laki ng litrato ay di lalagpas sa 200MB)</span>
                                 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-12 col-md-8 col-lg-8">
-                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float float-right waves-light">Submit</button>
+                            <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 </form>
