@@ -669,7 +669,15 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Service Delivery Location (Location where service will be rendered/delivered)</label>
-                                    <input type="text" name="delivery_address" id="delivery_address" class="form-control">
+                                    <select name="delivery_address" id="delivery_address" class="form-control">
+                                        @foreach($regions as $region)
+                                            <optgroup label="{{$region->name}}">
+                                                @foreach($region->cities as $city)
+                                                    <option value="{{$city->name}}, {{$region->name}}">{{$city->name}}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>   
                         </div>

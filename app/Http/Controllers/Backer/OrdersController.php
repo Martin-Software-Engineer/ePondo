@@ -32,13 +32,24 @@ class OrdersController extends Controller
     }
 
     public function edit($id){
-        $order = Order::where('id', $id)->with('service')->first();
+        $order = Order::where('id', $id)->with(['service', 'backer'])->first();
+
+        // if($campaign->user_id != auth()->user()->id)
+        //     abort(403, 'Unauthorized action.');
+
+
         return new ResourceBackerOrders($order);
     }
 
     public function show($id){
         $order = Order::where(['id' => $id, 'backer_id' => auth()->user()->id])->with(['service', 'details', 'backer'])->first();
         
+        if(!$order)
+            abort(404, 'Page not found.');
+
+        if($order->backer->id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
         if($order->status == 3)
         {
             $decline = OrderDecline::where('order_id', $order->id)->first();

@@ -33,6 +33,13 @@ class InvoicesController extends Controller
             $q->where('id', $id);
         })->with(['service', 'details', 'backer', 'invoice'])->first();
 
+        if(!$order){
+            abort(404, 'Page not found.');
+        }
+
+        if($order->service->jobseeker->id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
         $duration = '';
         $durationDec = $order->service->duration_hours + ($order->service->duration_minutes/60);
         if($order->service->duration_hours > 1){

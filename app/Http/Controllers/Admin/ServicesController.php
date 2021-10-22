@@ -10,6 +10,7 @@ use App\Models\Photo;
 use App\Mail\SendMail;
 use App\Helpers\System;
 use App\Models\Service;
+use App\Models\Region;
 use App\Helpers\GiveReward;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -57,7 +58,8 @@ class ServicesController extends Controller
         $data['jobseekers'] = User::whereHas('roles', function($q){
             $q->where('name', 'JobSeeker');
         })->get();
-
+        $data['regions'] = Region::with('cities')->orderBy('name', 'asc')->get();
+        
         return view('admin.contents.services.create', $data);
     }
 
@@ -174,7 +176,8 @@ class ServicesController extends Controller
         $data['title'] = 'Edit Service';
         $data['service'] = Service::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
         $data['category_parents'] = ServiceCategoryParent::with('categories')->get();
-
+        $data['regions'] = Region::with('cities')->orderBy('name', 'asc')->get();
+        
         return view('admin.contents.services.edit', $data);
     }
 

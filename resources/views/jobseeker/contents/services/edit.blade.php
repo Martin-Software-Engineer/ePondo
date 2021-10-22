@@ -122,7 +122,15 @@
                                             <span class="j_tag_trans    ">(Lokasyon)</span>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="location" id="location" value="{{$service->location}}" class="form-control">
+                                            <select name="location" id="location" class="form-control">
+                                                @foreach($regions as $region)
+                                                    <optgroup label="{{$region->name}}">
+                                                        @foreach($region->cities as $city)
+                                                            <option @if($service->location == $city->name.', '.$region->name) selected @endif value="{{$city->name}}, {{$region->name}}">{{$city->name}}</option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
