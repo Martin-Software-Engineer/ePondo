@@ -9,5 +9,5 @@ class OrderCancel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['order_id', 'reason'];
+    protected $fillable = ['order_id', 'reason', 'from'];
 }

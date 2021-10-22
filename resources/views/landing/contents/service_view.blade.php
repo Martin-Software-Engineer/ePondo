@@ -191,14 +191,13 @@
         <div class="row">
           <div class="col-sm-12">
              <h1 class="service_title">{{$service->title}}</h1>
-             <span class="service_category">
-                @foreach($service->categories as $category)
-                    {{$category->name}} @if(!$loop->last)/@endif
-                @endforeach
-            </span>
             <div class="row s_details">
                 <div class="col-sm-4 mt-2">
-                    
+                    <h4><span class="s_hlocation"> Category: </span> 
+                        @foreach($service->categories as $category)
+                        <span class="badge badge-info" style="background-color:#120a78;font-size:14px;">{{$category->name}}</span> @if(!$loop->last)@endif
+                        @endforeach
+                    </h4>
                     <h4><span class="s_hlocation"> Location: </span> {{$service->location}}</h4>
                     <h4> <span class="s_hduration"> Duration: </span>  {{$service->duration_hours}} Hrs {{$service->duration_minutes}} Mins</h4>
                 </div>
@@ -230,7 +229,7 @@
 
                       @foreach($service->photos as $photo)
                       <div class="carousel-item @if($loop->index == 0) active @endif">
-                        <img class="d-block w-100" src="{{Storage::url($photo->url)}}">
+                        <img class="d-block w-100 campaign_images" src="{{Storage::url($photo->url)}} " alt="Second slide">
                       </div>
                       @endforeach
                     </div>
@@ -538,12 +537,12 @@
                                 <a class="stretched-link" href="{{route('campaign_view', $campaign->id)}}">
                                     <h1 class="card_s_title overflow-ellipsis">{{$campaign->title}}</h1>
                                 
-                                <p class="c_card_c_category">
+                                    <p class="c_card_c_category overflow-ellipsis">
                                     @foreach($campaign->categories as $category)
-                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    <span class="badge badge-info" style="background-color:#120a78;font-size:10px;">{{$category->name}}</span> @if(!$loop->last)@endif
                                     @endforeach
                                 </p>
-                                <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
+                                <h3 class="card_c_jname overflow-ellipsis">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
                                
                                 <div class="c_card_c_desc">{{$campaign->description}}</div>
                                
@@ -640,6 +639,14 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="service_location">Service Location</label>
+                                    <input type="text" name="service_location" id="service_location" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="service_duration">Service Duration</label>
                                     <input type="text" name="service_duration" id="service_duration" class="form-control" disabled>
                                 </div>
@@ -653,7 +660,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Service Delivery Date</label>
-                                    <input type="date" name="render_date" class="form-control">
+                                    <input type="date" name="render_date" id="render_date" class="form-control">
                                     <span style="font-size:12px;color:#120a78">*Reminder: Not permitted to Cancel Order 3 Days prior to Delivery Date</span>
                                 </div>
                             </div>
@@ -671,7 +678,7 @@
                                 <div class="form-group">
                                     <label for="payment_method">Payment Method</label>
                                     <select name="payment_method" id="payment_method" class="form-control select2">
-                                        <option value="OP">Online Payment (Available: Paypal,Credit Card)</option>
+                                        <option value="OP">Online Payment (Available: Paypal,Credit Card,Debit Card)</option>
                                         <option value="COD">Cash on Delivery</option>
                                     </select>
                                 </div>
@@ -757,6 +764,7 @@
             availModal.find('form').find('input[name=service_title]').val(service.title);
             availModal.find('form').find('input[name=service_category]').val(categories.join('/'));
             availModal.find('form').find('input[name=service_price]').val(service.currency+' '+service.price);
+            availModal.find('form').find('input[name=service_location]').val(service.location);
             availModal.find('form').find('input[name=service_duration]').val(service.duration_hours+' Hour/s ' + service.duration_minutes + ' Minute/s');
             availModal.modal('show');
         });

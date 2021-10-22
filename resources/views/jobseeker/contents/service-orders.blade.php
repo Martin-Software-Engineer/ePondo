@@ -33,11 +33,10 @@
                         <th></th>
                         <th>Service Order No.</th>
                         <th>Title</th>
-                        <th>Category</th>
                         <th>Duration</th>
-                        <th>Price</th>
-                        <th>Service Location</th>
-                        <th>Service Order Date</th>
+                        <th>Service Price</th>
+                        <th>Delivery Location</th>
+                        <th>Delivery Date</th>
                         <th>Status</th>
                         <th class="cell-fit">Actions</th>
                         </tr>

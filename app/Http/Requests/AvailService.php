@@ -26,7 +26,7 @@ class AvailService extends FormRequest
         return [
             'render_date' => 'required|date',
             'delivery_address' => 'required|string|max:100',
-            'message' => 'required|string|max:500'
+            'message' => 'required|string|max:1000'
         ];
     }
 }

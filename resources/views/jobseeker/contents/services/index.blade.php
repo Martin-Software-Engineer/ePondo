@@ -44,12 +44,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="give_taital_1 overflow-ellipsis">{{$service->title}}</h1>
+                    
+                    <p class="card_s_category overflow-ellipsis">
                     @foreach($service->categories as $category)
-                    <p class="card_s_category">
-                            {{$category->name}} @if(!$loop->last)/@endif
-                    </p>
+                    {{$category->name}} @if(!$loop->last) / @endif
                     @endforeach
-                    <div class="j_c_desc">Control No:  #{{$service->id}}</div>
+                    </p>
                     <div>
                         <h3 class="s_card_s_loc"><hr><span class="s_hlocation">Location:</span> {{$service->location}}</h3>
                     </div>

@@ -56,26 +56,29 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="{{route('service_view', $service->id)}}" class="stretched-link"><h1 class="card_s_title overflow-ellipsis">{{$service->title}}</h1>
-                                <p class="card_s_category">
+                                <p class="card_s_category overflow-ellipsis">
                                 @foreach($service->categories as $category)
-                                    {{$category->name}} @if(!$loop->last)/@endif
+                                <span class="badge badge-info" style="background-color:#120a78;font-size:10px;">{{$category->name}}</span> @if(!$loop->last)@endif
                                 @endforeach
                                 </p>
-
                                 <div class="row-md-12 s_img_jname">
-                                    <div class="col-md-6 s_jname_spacing">
-                                        <h3 class="s_j_name" >By: {{@$service->jobseeker->userinformation->firstname}} {{@$service->jobseeker->userinformation->lastname}}</h3>
+                                    <div class="col-md-12 s_jname_spacing">
+                                        <h3 class="s_j_name overflow-ellipsis" style="width:100%">By: {{@$service->jobseeker->userinformation->firstname}} {{@$service->jobseeker->userinformation->lastname}}</h3>
                                     </div>
+                                </div>
+                                <div class="row-md-12 s_img_jname" style="align-items:center;">
                                     @if($service->ratings > 0)
-                                    <div class="col-md-6 s_image">
+                                    <div class="s_image">
                                         @for($i = 0; $i < $service->ratings; $i++)
                                         <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
                                         @endfor
-                                        ({{$service->ratings}})
                                     </div>
+                                    <h3 class="s_j_name ml-2" style="font-size:9px;text-align:center;align-items:center;">({{$service->ratings}})</h3>
+                                    @else
+                                    <h3 class="s_j_name" style="font-weight:300;font-size:9px;" >(No Rating)</h3>
                                     @endif
-                                    
                                 </div>
+                                
                                 <hr class="hr_m_2">
                                 <div class="c_card_c_desc">{{$service->description}}</div>
                                 
@@ -94,7 +97,15 @@
                     </div>
                     <!-- Service Tiles - End -->
                 </div>
-            @empty 
+            @empty
+                <div class="col-lg-12">
+                    <div class="card card-empty mt-4">
+                        <div class="card-body text-center d-flex justify-content-center align-items-center">
+                            <!-- main title -->
+                            <h1 style="color:#0f073b;font-size:30px;font-weight:500;">Sorry No Results Found!</h1>
+                        </div>
+                    </div>
+                </div> 
             @endforelse
         </div> 
         <div class="row mt-5">

@@ -58,12 +58,12 @@
                                 <a class="stretched-link" href="{{route('campaign_view', $campaign->id)}}">
                                     <h1 class="card_s_title overflow-ellipsis">{{$campaign->title}}</h1>
                                 
-                                <p class="c_card_c_category">
+                                <p class="c_card_c_category overflow-ellipsis">
                                     @foreach($campaign->categories as $category)
-                                        {{$category->name}} @if(!$loop->last)/@endif
+                                    <span class="badge badge-info" style="background-color:#120a78;font-size:10px;">{{$category->name}}</span> @if(!$loop->last)@endif
                                     @endforeach
                                 </p>
-                                <h3 class="card_c_jname">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
+                                <h3 class="card_c_jname overflow-ellipsis">By : {{$campaign->jobseeker->userinformation->firstname}} {{$campaign->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
                                
                                 <div class="c_card_c_desc">{{$campaign->description}}</div>
                                
@@ -94,7 +94,15 @@
                     </div>
                     <!-- Campaign Tile 2 - End -->
                 </div>
-            @empty 
+            @empty
+                <div class="col-lg-12">
+                    <div class="card card-empty mt-4">
+                        <div class="card-body text-center d-flex justify-content-center align-items-center">
+                            <!-- main title -->
+                            <h1 style="color:#0f073b;font-size:30px;font-weight:500;">Sorry No Results Found!</h1>
+                        </div>
+                    </div>
+                </div>
             @endforelse
         </div> 
         <div class="row mt-5">
@@ -249,16 +257,13 @@
             dropdownType = $('.dropdown-type'),
             dropdownRegion = $('.dropdown-region'),
             btnSearch = $('.btn-search');
-
         var filter = {
             category: param('category'),
             type: param('type'),
             region: param('region'),
             search: param('search')
         };
-
         loadFilterDefault();
-
         dropdownCategory.on('click', '.dropdown-item', function(){
             dropdownCategory.find('.dropdown-toggle').text($(this).text());
             filter.category = $(this).data('value');
@@ -278,7 +283,6 @@
             filter.search = $('input[name=filter_search]').val();
             searchFilter(filter);
         });
-
         function loadFilterDefault(){
             if(filter.category != ''){
                 var text = dropdownCategory.find('a[data-value='+filter.category+']').text();
@@ -316,11 +320,9 @@
             if(filter.search != ''){
                 params.push('search='+filter.search);
             }
-
             var newUrl = domain+'/campaigns?'+params.join('&');
             window.location.href = newUrl;
         }
-
         function param(name) {
             return (location.search.split(name + '=')[1] || '').split('&')[0];
         }

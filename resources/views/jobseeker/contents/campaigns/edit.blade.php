@@ -108,6 +108,7 @@
                                             @endforeach
                                             <input name="tags" id="tags" class="tagsinput" value="{{join(",", $tags)}}" />
                                             <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
+                                            <span class="j_tag_trans"><br>(Maglagay ng kuwit o pindutin and 'Enter', para hiwalayin ang tags)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -140,8 +141,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                    <label><span class="badge badge-danger">ADD MORE PHOTOS OR SELECT A FILE</span></label>
-                                    <label>It must be a JPG, PNG, no larger than 200 MB.</label></label>
+                                        <label>Campaign Photos</label>
                                         <div class="media-group d-flex">
                                             @foreach($campaign->photos as $photo)
                                             <div class="media">
@@ -178,14 +178,26 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">It must be a JPG, PNG, no larger than 200 MB. Add photos that clearly represent your Campaign.</span></label>
+                                    <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add photos that clearly represent your Campaign. It must be a JPG, PNG, no larger than 200 MB.</span></label>
+                                    <span class="j_tag_trans">(Maglagay ng mga litrato na kumakatawan sa iyong kampanya. Aalalahaning ang laki ng litrato ay di lalagpas sa 200MB)</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-12 col-md-8 col-lg-8">
-                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light float-right">Submit</button>
+                            <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light ">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -204,14 +216,11 @@
     <script>
         $(function(){
             'use strict'
-
             $(".tagsinput").tagsInput();
-
             var form = $('form'),
                 thumbnailInput = $('#thumbnail-input'),
                 thumbnailPreview = $('#thumbnail-preview'),
                 imagesInput = $('.images-input');
-
             form.on('submit', function(e){
                 e.preventDefault();
                 $.ajax({
@@ -262,7 +271,6 @@
                     }
                 });
             });
-
             $('.select2').each(function() {
                 var $this = $(this);
                 $this.wrap('<div class="position-relative"></div>');
@@ -274,8 +282,6 @@
                     dropdownParent: $this.parent()
                 });
             });
-
-
             thumbnailInput.on('change', function(e) {
                 var reader = new FileReader(),
                     files = e.target.files;
@@ -286,7 +292,6 @@
                 };
                 reader.readAsDataURL(files[0]);
             });
-
             imagesInput.on('change', function(e) {
                 var input = $(this);
                 var reader = new FileReader(),
@@ -295,16 +300,13 @@
                     input.parent().parent().find('.images-preview').attr('src', reader.result);
                 };
                 reader.readAsDataURL(files[0]);
-
                 var myFormData = new FormData();
                 myFormData.append('image', files[0]);
                 myFormData.append('id',"{{$campaign->id}}");
                 if(input.data('photoId')){
                     myFormData.append('photo_id', input.data('photoId'));
                 }
-
                 myFormData.append('_token', $('meta[name=csrf-token]').attr('content'));
-
                 $.ajax({
                     url: "{{route('jobseeker.campaigns.update-photos')}}",
                     type: 'POST',

@@ -13,14 +13,14 @@ class System{
 
         if($hasBadge){
             $status = [
-                '1' => '<span class="badge badge-secondary">Pending Request</span>', 
+                '1' => '<span class="badge " style="background-color:lightskyblue">Pending Request</span>', 
                 '2' => '<span class="badge badge-primary">Accepted</span>',
-                '3' => '<span class="badge badge-warning">Declined</span>', 
-                '4' => '<span class="badge badge-info">Ongoing</span>', 
-                '5' => '<span class="badge badge-secondary">Pending Payment</span>', 
-                '6' => '<span class="badge badge-secondary">Pending Rating & Feedback</span>', 
+                '3' => '<span class="badge badge-danger">Declined</span>', 
+                '4' => '<span class="badge badge-info" style="background-color:limegreen">Ongoing</span>', 
+                '5' => '<span class="badge badge-warning">Pending Payment</span>', 
+                '6' => '<span class="badge badge-secondary" style="background-color:darkmagenta">Pending Rating & Feedback</span>', 
                 '7' => '<span class="badge badge-success">Completed</span>',
-                '8' => '<span class="badge badge-danger">Cancelled</span>'
+                '8' => '<span class="badge badge-danger" style="background-color:red">Cancelled</span>'
             ];
         }else{
             $status = [

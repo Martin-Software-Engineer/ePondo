@@ -42,12 +42,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <h6 class="c_card_title overflow-ellipsis" >{{$campaign->title}}</h6>
-                    <p class="c_card_c_category">
+                    <p class="c_card_c_category overflow-ellipsis">
                         @foreach($campaign->categories as $category)
                             {{$category->name}} @if(!$loop->last)/@endif
                         @endforeach
                     </p>
-                    <div class="j_c_desc">Control No:  #{{$campaign->id}}</div>
                     <div class="progress-wrapper progress_bar">
                         <div id="example-caption-2">
                             <div class="row">

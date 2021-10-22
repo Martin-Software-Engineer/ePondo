@@ -31,7 +31,6 @@
         font-size: 20px;
         font-weight: 600;
       }
-
       .stripe-payment{
         width: 100%;
         align-self: center;
@@ -39,7 +38,6 @@
           0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
         border-radius: 7px;
       }
-
       .stripe-payment input{
         border-radius: 6px;
         margin-bottom: 6px;
@@ -50,7 +48,6 @@
         width: 100%;
         background: white;
       }
-
       .stripe-payment .result-message {
         line-height: 22px;
         font-size: 16px;
@@ -193,6 +190,8 @@
                         </div>
                         <div style=" align-items: flex-end;">
                             <h1 style="text-align:center;font-weight:bold;">INVOICE</h1>
+                            <p class="card-text mb-0"> <span style="margin-right:50px;font-weight:500">Invoice No : </span> {{$invoice_no}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:55px;font-weight:500">Due Date : </span> {{$date_due}}</p>
                             <p class="card-text mb-0"> <span style="margin-right:85px;font-weight:500">Status : </span>
                                 @if($invoice_status ==1 )
                                 Ongoing
@@ -205,10 +204,9 @@
                                 @endif
                             </p>
                             <p class="card-text mb-0"> <span style="font-weight:500">Payment Method : </span> {{$payment_method}}</p>
-                            <p class="card-text mb-0"> <span style="margin-right:45px;font-weight:500">Date Issued : </span> {{$date_issued}}</p>
-                            <p class="card-text mb-0"> <span style="margin-right:55px;font-weight:500">Invoice No : </span>  {{$invoice_no}}</p>
                             <p class="card-text mb-0"> <span style="margin-right:4px;font-weight:500">Service Order No : </span>  {{$order_no}}</p>
-                            <p class="card-text mb-0"> <span style="margin-right:60px;font-weight:500">Due Date : </span>  {{$date_due}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:45px;font-weight:500">Date Issued : </span> {{$date_issued}}</p>
+                            
                         </div>
                     </div>
                     <!-- Header ends -->
@@ -341,4 +339,3 @@
     </div>
 </section> 
 @endsection
-

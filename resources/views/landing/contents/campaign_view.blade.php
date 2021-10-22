@@ -19,7 +19,6 @@
         font-size: 20px;
         font-weight: 600;
       }
-
       .stripe-payment{
         width: 100%;
         align-self: center;
@@ -27,7 +26,6 @@
           0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
         border-radius: 7px;
       }
-
       .stripe-payment input{
         border-radius: 6px;
         margin-bottom: 6px;
@@ -38,7 +36,6 @@
         width: 100%;
         background: white;
       }
-
       .stripe-payment .result-message {
         line-height: 22px;
         font-size: 16px;
@@ -160,7 +157,6 @@
           transform: rotate(360deg);
         }
       }
-
       @media only screen and (max-width: 768px){
           .campaign_title{
               font-size: 26px;
@@ -185,11 +181,13 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="campaign_title">{{$campaign->title}}</h1>
-                <span class="campaign_category">
+                <h1>
+                    <span class="s_hlocation"> Category: </span> 
                     @foreach($campaign->categories as $category)
-                        {{$category->name}} @if(!$loop->last)/@endif
+                        <span class="badge badge-info" style="background-color:#120a78;font-size:14px;">{{$category->name}}</span> @if(!$loop->last)@endif
                     @endforeach
-                </span>
+                </h1>
+                    
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="progress-wrapper campaign_progress_bar">
@@ -212,7 +210,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4 campaign_donate_btn">
+                    <div class="col-sm-4 campaign_donate_btn mb-2">
                         <div class="donate_btn btn btn-block " data-campaign-id="{{$campaign->id}}">
                             <h2 class="donate_now"><img src="{{asset('app-assets/images/additional_pictures/icon-4.png')}}" class="donate_now_img">Donate</h2>
                         </div>
@@ -522,26 +520,29 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="{{route('service_view', $service->id)}}" class="stretched-link"><h1 class="card_s_title overflow-ellipsis">{{$service->title}}</h1>
-                                <p class="card_s_category">
+                                <p class="card_s_category overflow-ellipsis">
                                 @foreach($service->categories as $category)
-                                    {{$category->name}} @if(!$loop->last)/@endif
+                                <span class="badge badge-info" style="background-color:#120a78;font-size:10px;">{{$category->name}}</span> @if(!$loop->last)@endif
                                 @endforeach
                                 </p>
-
                                 <div class="row-md-12 s_img_jname">
-                                    <div class="col-md-6 s_jname_spacing">
-                                        <h3 class="s_j_name" >By: {{@$service->jobseeker->userinformation->firstname}} {{@$service->jobseeker->userinformation->lastname}}</h3>
+                                    <div class="col-md-12 s_jname_spacing">
+                                        <h3 class="s_j_name overflow-ellipsis" style="width:100%">By: {{@$service->jobseeker->userinformation->firstname}} {{@$service->jobseeker->userinformation->lastname}}</h3>
                                     </div>
+                                </div>
+                                <div class="row-md-12 s_img_jname" style="align-items:center;">
                                     @if($service->ratings > 0)
-                                    <div class="col-md-6 s_image">
+                                    <div class="s_image">
                                         @for($i = 0; $i < $service->ratings; $i++)
                                         <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
                                         @endfor
-                                        ({{$service->ratings}})
                                     </div>
+                                    <h3 class="s_j_name ml-2" style="font-size:9px;text-align:center;align-items:center;">({{$service->ratings}})</h3>
+                                    @else
+                                    <h3 class="s_j_name" style="font-weight:300;font-size:9px;" >(No Rating)</h3>
                                     @endif
-                                    
                                 </div>
+                                
                                 <hr class="hr_m_2">
                                 <div class="c_card_c_desc">{{$service->description}}</div>
                                 
@@ -711,12 +712,14 @@
               <div class="links">
                 <div id="paypal-button"></div>
               </div>
-              <p class="mt-1">or</p>
+              <!-- <p class="mt-1">or</p>
               <button type="button" id="pay-by-card">
                 <span id="button-text">Pay with Card</span>
               </button>
               <form id="payment-form" class="stripe-payment d-none">
-                <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+                <div id="card-element"> -->
+                    <!--Stripe.js injects the Card Element-->
+                <!-- </div>
                 <button id="submit">
                   <div class="spinner hidden" id="spinner"></div>
                   <span id="button-text">Pay</span>
@@ -726,7 +729,7 @@
                   Payment succeeded, see the result in your
                   <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
                 </p>
-              </form>
+              </form> -->
           </div>
         </div>
       </div>
@@ -746,7 +749,6 @@
             selectPaymentModal = $('#selectPaymentMethodModal'),
             cardPayment = $('.card-payment'),
             checkboxAnonymous = $('input[name=is_anonymous]');
-
         $('.donate_btn').on('click', async function(){
             var campaignId = $(this).data('campaignId');
             const campaign = await $.get(`/campaign/${campaignId}/details`);
@@ -754,7 +756,6 @@
             donateModal.find('form').find('input[name=campaign_id]').val(campaign.id);
             donateModal.modal('show');
         });
-
         checkboxAnonymous.on('change', function(){
             if($(this).is(':checked')){
                 donationForm.find('input[name=first_name]').prop('disabled', true);
@@ -766,11 +767,9 @@
                 donationForm.find('input[name=email_address]').prop('disabled', false);
             }
         });
-
         donationForm.find('input[name=amount]').on('keyup', function(){
             var totalAmount = 0;
             var currency = donationForm.find('select[name=currency]').val();
-
             if(donationForm.find('input[name=amount]').val() > 0){
                 totalAmount = donationForm.find('input[name=amount]').val()
             }
@@ -778,11 +777,9 @@
             totalAmount = (totalAmount + (totalAmount * .03));
             $('.total_amount').text(`${currency.toUpperCase()} ${totalAmount}`);
         });
-
         donationForm.find('select[name=currency]').on('change', function(){
             var totalAmount = 0;
             var currency = donationForm.find('select[name=currency]').val();
-
             if(donationForm.find('input[name=amount]').val() > 0){
                 totalAmount = donationForm.find('input[name=amount]').val()
             }
@@ -790,10 +787,8 @@
             totalAmount = (totalAmount + (totalAmount * .03));
             $('.total_amount').text(`${currency.toUpperCase()} ${totalAmount}`);
         });
-
         donationForm.on('submit', function(e){
             e.preventDefault();
-
             $.ajax({
                 url: $(this).attr('action'),
                 type: 'POST',
@@ -809,21 +804,17 @@
                         donationForm[0].reset();
                         checkboxAnonymous.trigger('change');
                         donateModal.modal('hide');
-
                         cardPayment.find('#paypal-button').attr('data-donation-id', resp.donation_id);
                         cardPayment.find('#paypal-button').attr('data-currency', resp.currency);
                         cardPayment.find('#pay-by-card').attr('data-donation-id', resp.donation_id);
                         cardPayment.find('#pay-by-card').attr('data-currency', resp.currency);
-
                         cardPayment.find('.card-title').html(`<strong>Pay your Donation.<br>`);
                         cardPayment.find('.topay').html(`Amount to pay  <span class='topay-amount'>${resp.currency} ${resp.donation_amount}</span>`);
-
                         selectPaymentModal.modal('show');
                     }
                 }
             });
         });
-
         paypal.Button.render({
             env: "{{env('PAYPAL_MODE')}}", // Or 'production'
             style: {
@@ -868,12 +859,9 @@
                 });
             }
         }, '#paypal-button');
-
         var stripe = Stripe("{{env('STRIPE_PUB_KEY')}}");
-
         var stripePayment = function(donation_id, currency){
             var donate = { donation_id, currency  };
-
             fetch("{{route('api.donation_create_stripe')}}", {
                 method: "POST",
                 headers: {
@@ -915,9 +903,7 @@
                     payWithCard(stripe, card, data.clientSecret);
                 });
             });
-
         }
-
         
         // Calls stripe.confirmCardPayment
         // If the card requires authentication Stripe shows a pop-up modal to
@@ -937,7 +923,6 @@
                 }
             });
         };
-
         /* ------- UI helpers ------- */
         // Shows a success message when the payment is complete
         var orderComplete = function(paymentIntentId) {
@@ -963,7 +948,6 @@
             });
             document.querySelector("button").disabled = true;
         };
-
         $('#pay-by-card').on('click', function(){
             var data = $(this).data();
             $(this).addClass('d-none');
@@ -972,4 +956,4 @@
         });
     });
 </script>
-@endsection
+@endsection 
