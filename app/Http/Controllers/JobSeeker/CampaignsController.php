@@ -174,7 +174,15 @@ class CampaignsController extends Controller
     public function edit($id)
     {
         $data['title'] = 'Edit Campaign';
-        $data['campaign'] = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
+        $campaign = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
+        if(!$campaign){
+            abort(404, 'Page not found.');
+        }
+
+        if($campaign->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
+        $data['campaign'] = $campaign;
         $data['categories'] = CampaignCategory::all();
         
         return view('jobseeker.contents.campaigns.edit', $data);
@@ -190,6 +198,13 @@ class CampaignsController extends Controller
     public function update(UpdateCampaign $request)
     {
         $campaign = Campaign::findOrFail($request->id);
+
+        if(!$campaign){
+            abort(404, 'Page not found.');
+        }
+
+        if($campaign->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
 
         $campaign->title = $request->title;
         $campaign->description = $request->description;
@@ -232,6 +247,14 @@ class CampaignsController extends Controller
 
     public function updatephotos(Request $request){
         $campaign = Campaign::findOrFail($request->id);
+
+        if(!$campaign){
+            abort(404, 'Page not found.');
+        }
+
+        if($campaign->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
         if($request->hasFile('image')){
             $image = $request->file('image');
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
@@ -263,6 +286,14 @@ class CampaignsController extends Controller
     public function destroy($id)
     {
         $campaign = Campaign::find($id);
+
+        if(!$campaign){
+            abort(404, 'Page not found.');
+        }
+
+        if($campaign->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+            
         $campaign -> status = 2;
         $campaign -> save();
         return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);

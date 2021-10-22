@@ -14,7 +14,16 @@ use App\Notifications\ClaimFundsRequest as ClaimFundsRequestlNotification;
 class ClaimFundsController extends Controller
 {
     public function index($id){
-        $data['campaign'] = Campaign::find($id);
+        $campaign = Campaign::find($id);
+
+        if(!$campaign)
+            abort(404, 'Page not found.');
+
+        if($campaign->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
+            
+        $data['campaign'] = $campaign;
 
         return view('jobseeker.contents.claimfunds', $data);
     }
@@ -27,6 +36,11 @@ class ClaimFundsController extends Controller
         ]);
 
         $campaign = Campaign::find($request->campaign_id);
+        if(!$campaign)
+            abort(404, 'Page not found.');
+
+        if($campaign->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
 
         if($campaign->available_funds < $request->amount){
             return response()->json(['success' => false, 'msg' => 'Available funds is not enough'], 404);

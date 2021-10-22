@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\ServiceRating;
 use App\Models\ServiceCategory;
 use App\Models\CampaignCategory;
+use App\Models\Region;
 use Illuminate\Support\Facades\Redirect;
 
 class PagesController extends Controller
@@ -92,6 +93,9 @@ class PagesController extends Controller
             3. Output all data
         */
         $data['campaigns'] = Campaign::where('user_id', $data['service']->user_id)->where('status',1)->get();
+        
+        $data['regions'] = Region::with('cities')->orderBy('name', 'asc')->get();
+  
         return view('landing.contents.service_view', $data);
     }
 

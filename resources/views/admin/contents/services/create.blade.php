@@ -109,7 +109,15 @@
                                             <label for="location">Location</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="location" id="location" class="form-control" placeholder="City/Municipality/Provinc" required>
+                                            <select name="location" id="location" class="form-control">
+                                                @foreach($regions as $region)
+                                                    <optgroup label="{{$region->name}}">
+                                                        @foreach($region->cities as $city)
+                                                            <option value="{{$city->name}}, {{$region->name}}">{{$city->name}}</option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

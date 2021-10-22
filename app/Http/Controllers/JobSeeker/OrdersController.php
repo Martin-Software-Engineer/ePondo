@@ -42,7 +42,13 @@ class OrdersController extends Controller
 
     public function show($id){
         $order = Order::where('id',$id)->with(['service', 'details', 'backer'])->first();
-        
+        if(!$order){
+            abort(404, 'Page not found.');
+        }
+
+        if($order->service->jobseeker->id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
         if($order->status == 3)
         {
             $decline = OrderDecline::where('order_id', $order->id)->first();
@@ -61,7 +67,15 @@ class OrdersController extends Controller
     }
 
     public function accept($id){
-        $order = Order::find($id);
+        $order = Order::where('id',$id)->with('service')->first();
+        
+        if(!$order){
+            abort(404, 'Page not found.');
+        }
+
+        if($order->service->jobseeker->id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
         $jobseeker = User::find($order->service->jobseeker->id);
         $jobseeker_id = $jobseeker->id;
         
@@ -125,7 +139,16 @@ class OrdersController extends Controller
     }
 
     public function deliver($id){
-        $order = Order::find($id);
+        $order = Order::where('id',$id)->with('service')->first();
+
+        if(!$order){
+            abort(404, 'Page not found.');
+        }
+
+        if($order->service->jobseeker->id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
+
         $jobseeker = User::find($order->service->jobseeker->id);
         $jobseeker_id = $jobseeker->id;
         $backer = User::find($order->backer->id);
@@ -226,7 +249,15 @@ class OrdersController extends Controller
     public function decline(Request $request){
         $request->validate(['reason' => 'required|string|max:500']);
         
-        $order = Order::find($request->order_id);
+        $order = Order::where('id',$request->order_id)->with('service')->first();
+
+        if(!$order)
+            abort(404, 'Page not found.');
+
+        if($order->service->jobseeker->id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
+            
         $order->status = 3;
         $order->save();
 
@@ -256,8 +287,13 @@ class OrdersController extends Controller
 
         $request->validate(['reason' => 'required|string|max:500']);
         
+        $order = Order::where('id',$request->order_id)->with('service')->first();
 
-        $order = Order::find($request->order_id);
+        if(!$order)
+            abort(404, 'Page not found.');
+
+        if($order->service->jobseeker->id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
 
         $orderDate = Carbon::parse($order->details->render_date);
         $now = Carbon::now();

@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Photo;
 use App\Mail\SendMail;
 use App\Models\Service;
+use App\Models\Region;
+
 use App\Helpers\GiveReward;
 use Illuminate\Support\Str;
 
@@ -47,7 +49,8 @@ class ServicesController extends Controller
     {
         $data['title'] = 'Create Service';
         $data['category_parents'] = ServiceCategoryParent::with('categories')->get();
-
+        $data['regions'] = Region::with('cities')->orderBy('name', 'asc')->get();
+        
         return view('jobseeker.contents.services.create', $data);
     }
 
@@ -160,8 +163,19 @@ class ServicesController extends Controller
     public function edit($id)
     {
         $data['title'] = 'Edit Service';
-        $data['service'] = Service::with(['jobseeker','categories','tags'])->where('id',$id)->first();
+        
+        $service = Service::with(['jobseeker','categories','tags'])->where('id',$id)->first();
+
+        if(!$service){
+            abort(404, 'Page not found.');
+        }
+
+        if($service->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
+        $data['service'] = $service;
         $data['category_parents'] = ServiceCategoryParent::with('categories')->get();
+        $data['regions'] = Region::with('cities')->orderBy('name', 'asc')->get();
 
         return view('jobseeker.contents.services.edit', $data);
     }
@@ -176,6 +190,14 @@ class ServicesController extends Controller
     public function update(UpdateService $request, $id)
     {
         $service = Service::findOrFail($id);
+
+        if(!$service){
+            abort(404, 'Page not found.');
+        }
+
+        if($service->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
         $service->title = $request->title;
         $service->description = $request->description;
         $service->price = $request->price;
@@ -220,6 +242,14 @@ class ServicesController extends Controller
 
     public function updatephotos(Request $request){
         $service = Service::findOrFail($request->id);
+
+        if(!$service){
+            abort(404, 'Page not found.');
+        }
+
+        if($service->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
         if($request->hasFile('image')){
             $image = $request->file('image');
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
@@ -251,6 +281,14 @@ class ServicesController extends Controller
     public function destroy($id)
     {
         $service = Service::find($id);
+
+        if(!$service){
+            abort(404, 'Page not found.');
+        }
+
+        if($service->user_id != auth()->user()->id)
+            abort(403, 'Unauthorized action.');
+
         $service -> status = 2;
         $service -> save();
         return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
