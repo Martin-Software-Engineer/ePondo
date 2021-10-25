@@ -31,6 +31,19 @@
                                  <a class="dropdown-item" href="#" data-value="popular">Popular</a>
                             </div>
                         </div>
+                        <div class="dropdown dropdown-location mr-1">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Location
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                <a class="dropdown-item" href="#" data-value="all">All</a>
+                                @foreach($regions as $region)
+                                    @foreach($region->cities as $city)
+                                    <a class="dropdown-item" href="#" data-value="{{$city->name}}, {{$region->name}}">{{$region->name}} - {{$city->name}}</a>
+                                    @endforeach
+                                @endforeach
+                            </div>
+                        </div>
                   </div>
                   <div class="col-md-4 d-flex">
                       <input type="text" name="filter_search" class="form-control" placeholder="Search">
@@ -129,14 +142,14 @@
             selectPaymentModal = $('#selectPaymentMethodModal'),
             dropdownCategory = $('.dropdown-category'),
             dropdownType = $('.dropdown-type'),
-            dropdownRegion = $('.dropdown-region'),
+            dropdownLocation = $('.dropdown-location'),
             btnSearch = $('.btn-search'),
             cardPayment = $('.card-payment');
         
         var filter = {
             category: param('category'),
             type: param('type'),
-            region: param('region'),
+            location: param('location'),
             search: param('search')
         };
 
@@ -152,9 +165,9 @@
             filter.type = $(this).data('value');
             searchFilter(filter);
         });
-        dropdownRegion.on('click', '.dropdown-item', function(){
-            dropdownRegion.find('.dropdown-toggle').text($(this).text());
-            filter.type = $(this).data('value');
+        dropdownLocation.on('click', '.dropdown-item', function(){
+            dropdownLocation.find('.dropdown-toggle').text($(this).text());
+            filter.location = $(this).data('value');
             searchFilter(filter);
         });
         btnSearch.on('click', function(){
@@ -172,9 +185,10 @@
                 dropdownType.find('.dropdown-toggle').text(text);
             }
                 
-            if(filter.region != ''){
-                var text = dropdownRegion.find('a[data-value='+filter.region+']').text();
-                dropdownRegion.find('.dropdown-toggle').text(text);
+            if(filter.location != ''){
+
+                var text = dropdownLocation.find('a[data-value="'+decodeURIComponent(filter.location)+'"]').text();
+                dropdownLocation.find('.dropdown-toggle').text(text);
             }
                 
             if(filter.search != ''){
@@ -192,8 +206,8 @@
             if(filter.type != ''){
                 params.push('type='+filter.type);
             }
-            if(filter.region != ''){
-                params.push('region='+filter.region);
+            if(filter.location != ''){
+                params.push('location='+filter.location);
             }
             if(filter.search != ''){
                 params.push('search='+filter.search);
