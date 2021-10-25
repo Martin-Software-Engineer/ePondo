@@ -79,9 +79,13 @@ class PagesController extends Controller
                 $q->where('service_category_id', $category);
             });
         }
-        
+        if($request->location){
+            if($request->location != 'all')
+                $services = $services->where('location', 'like', '%'.$request->location.'%');
+        }
         $data['services'] = $services->paginate(12);
         $data['categories'] = ServiceCategory::all();
+        $data['regions'] = Region::with('cities')->orderBy('name', 'asc')->get();
         return view('landing.contents.services', $data);
     }
 
