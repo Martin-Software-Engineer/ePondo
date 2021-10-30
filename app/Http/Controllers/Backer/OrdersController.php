@@ -127,10 +127,21 @@ class OrdersController extends Controller
 
     public function cancel(Request $request){
 
+        $request->validate(['reason' => 'required|string|max:500']);
         $order = Order::find($request->order_id);
 
 
-        $request->validate(['reason' => 'required|string|max:500']);
+        // $request->validate(['reason' => 'required|string|max:500']);
+
+        // $request->validate(['reason' => 'required|string|max:500']);
+        
+        // $order = Order::where('id',$request->order_id)->with('service')->first();
+
+        // if(!$order)
+        //     abort(404, 'Page not found.');
+
+        // if($order->service->jobseeker->id != auth()->user()->id)
+        //     abort(403, 'Unauthorized action.');
         
         $order = Order::find($request->order_id);;
         // ERROR $order

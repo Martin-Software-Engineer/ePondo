@@ -59,7 +59,7 @@ class Points extends Notification
     {
         return [
             'heading' => 'Points',
-            'text' => "You have successfully received {$this->task} Points for accomplishing ' {$this->pts} '. Check your ' Points ' tab in your Account for more deatails."
+            'text' => "You have successfully received {$this->task} Points for accomplishing ' {$this->pts} '. Check your ' Rewards ' tab in your Account for more deatails."
         ];
     }
 }

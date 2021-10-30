@@ -6,17 +6,18 @@ use Image;
 use DataTables;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Photo;
 use App\Mail\SendMail;
+use App\Models\Region;
 use App\Helpers\System;
 use App\Models\Service;
-use App\Models\Region;
 use App\Helpers\GiveReward;
 use Illuminate\Support\Str;
+
 use Illuminate\Http\Request;
 
 use App\Models\ServiceCategory;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Models\ServiceCategoryParent;
@@ -162,7 +163,35 @@ class ServicesController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = Service::where('id', $id)->with(['categories', 'jobseeker', 'tags'])->first();
+        $order = Order::where('service_id', $id)->with(['details', 'backer'])->get();
+        $data = [
+            'title' => 'View Service',
+            'service_id' => $service->id,
+            'service_no' => System::GenerateFormattedId('S', $service->id),
+            'service_title' => $service->title,
+            'service_categories' => $service->categories,
+            'service_desc' => $service->description,
+            'service_price' => $service->price,
+            'service_duration_hours' => $service->duration_hours,
+            'service_duration_minutes' => $service->duration_minutes,
+            'service_location' => $service->location,
+            'service_tags' => $service->tags,
+            'created_date' => date('F d, Y', strtotime($service->created_at)),
+            'service_status' => $service->status,
+
+            'user_id' => $service->jobseeker->id,
+            'jobseeker_id' => System::GenerateFormattedId('J', $service->jobseeker->id),
+            'jobseeker_username' => $service->jobseeker->username,
+            'jobseeker_firstname' => $service->jobseeker->information->firstname,
+            'jobseeker_lastname' => $service->jobseeker->information->lastname,
+            'jobseeker_email' => $service->jobseeker->email,
+            'jobseeker_contact' => $service->jobseeker->information->phone,
+
+            'orders' => $order,
+        ];
+
+        return view('admin.contents.services.show', $data);
     }
 
     /**

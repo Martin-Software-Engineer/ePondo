@@ -62,7 +62,11 @@ class InvoicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        $order = Order::where(['id' => $id])->with(['service', 'details', 'backer', 'invoice'])->first();
+        // $order = Order::where(['id' => $id])->with(['service', 'details', 'backer', 'invoice'])->first();
+        $order = Order::whereHas('invoice', function($q) use ($id){
+            $q->where('id', $id);
+        })->with(['service', 'details', 'backer', 'invoice'])->first();
+
 
         $duration = '';
         $durationDec = $order->service->duration_hours + ($order->service->duration_minutes/60);
@@ -103,11 +107,16 @@ class InvoicesController extends Controller
                 'duration' => $duration,
                 'categories' => $order->service->categories,
             ],
+            'earned' => $order->invoice->price,
+            'payment_method' => $order->details->payment_method,
+            'invoice_status' => $order->invoice->status,
             'delivery_address' => $order->details->delivery_address,
+            'order_date' => $order->details->render_date,
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee  
+            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee,
+            'total_earned' => $order->service->price + $order->invoice->transaction_fee
         ];
         
         return view('admin.contents.invoices.show',$data);

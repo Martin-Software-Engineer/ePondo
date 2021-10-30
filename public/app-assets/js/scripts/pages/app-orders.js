@@ -16,9 +16,7 @@ $(function() {
                 // columns according to JSON
                 { data: 'id' },
                 { data: 'order_id' },
-                { data: 'jobseeker_name' },
                 { data: 'jobseeker_id' },
-                { data: 'backer_name' },
                 { data: 'backer_id' },
                 { data: 'service_title' },
                 { data: 'service_categories' },
@@ -36,10 +34,10 @@ $(function() {
                     }
                 },
                 {
-                    targets: 6,
+                    targets: 4,
                     render: function(data, type, row) {
-                        if (row.service_title.length > 20) {
-                            return row.service_title.substring(0, 20) + '...';
+                        if (row.service_title.length > 30) {
+                            return row.service_title.substring(0, 30) + '...';
                         } else {
                             return row.service_title;
                         }
@@ -47,7 +45,7 @@ $(function() {
                     }
                 },
                 {
-                    targets: 7,
+                    targets: 5,
                     render: function(data, type, row) {
                         var $elArray = [];
                         $.each(row.service_categories, function(index, category) {
@@ -58,9 +56,10 @@ $(function() {
                     }
                 },
                 {
-                    targets: 9,
+                    targets: 7,
                     render: function(data, type, row) {
-                        return `<span class="badge badge-info">${row.status}</span>`
+                        // return `<span class="badge badge-info">${row.status}</span>`
+                        return $.parseHTML(row.status.text)[0].data;
                     }
                 },
                 {

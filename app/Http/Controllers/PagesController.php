@@ -53,7 +53,9 @@ class PagesController extends Controller
             3. Output all data
         */
         $data['services'] = Service::where('user_id', $data['campaign']->user_id)->where('status',1)->get();
-        //return $data;
+        
+        $data['campaigns'] = Campaign::where('user_id', $data['campaign']->user_id)->where('status',1)->where('id', '!=', $id)->get();
+
         return view('landing.contents.campaign_view', $data);
     }
 
@@ -99,6 +101,8 @@ class PagesController extends Controller
         $data['campaigns'] = Campaign::where('user_id', $data['service']->user_id)->where('status',1)->get();
         
         $data['regions'] = Region::with('cities')->orderBy('name', 'asc')->get();
+
+        $data['services'] = Service::where('user_id', $data['service']->user_id)->where('status',1)->where('id', '!=', $id)->get(); //To show other services offered by the Jobseeker
   
         return view('landing.contents.service_view', $data);
     }

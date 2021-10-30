@@ -77,7 +77,7 @@
                             <h5 class="text-warning">POINTS REQUIRED: <br> 500-999 POINTS</h5>
                             <br><br>
                             <h5 class="text-warning"><b>EARN ADDITIONAL</b></h5>
-                            <h1 class="text-warning">+1.2%</h1>
+                            <h2 class="text-warning">+1.2%</h2>
                             <h5 class="text-warning">PER SERVICE</h5>
                         </div>
                     </div>

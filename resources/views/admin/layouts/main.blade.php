@@ -9,8 +9,9 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <!-- <meta name="msapplication-TileImage" content="{{asset('/app-assets/images/logo/ms-icon-144x144.png')}}"> -->
     <meta name="theme-color" content="#ffffff">
-
     <link rel="manifest" href="/manifest.json">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style_myaccount.css')}}">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('app-assets/images/additional_pictures/logo2.png')}}" />
     <title>{{ config('app.name','ePondo') }}</title>

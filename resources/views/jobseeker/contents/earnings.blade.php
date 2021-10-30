@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-md-3">
                     @if($service_earnings['available'] > 0) 
-                        <button type="button" class="float-right btn btn-primary btn-round" data-toggle="modal" data-target="#withdraw-modal">Withdraw Available Balance</button>
+                        <button type="button" class="float-right btn btn-primary btn-round" data-toggle="modal" data-target="#withdraw-modal">Withdraw Available Earnings</button>
                     @endif
                 </div>
             </div>
@@ -394,7 +394,7 @@
                                                 <td>₱{{$campaign->available_funds}}</td>
                                                 <td>
                                                     @if($campaign->available_funds > 0)
-                                                        <a href="{{route('jobseeker.funds.claimform', $campaign->id)}}" class="btn btn-sm btn-primary">Withdraw Available</a>
+                                                        <a href="{{route('jobseeker.funds.claimform', $campaign->id)}}" class="btn btn-sm btn-primary">Withdraw Available Funds</a>
                                                     @else 
                                                         <button disabled class="btn btn-sm btn-warning">Claimed</button>
                                                     @endif
@@ -467,7 +467,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle" style="text-align:center; align-items:center;">Withdraw Available Balance - Service Earnings</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle" style="text-align:center; align-items:center;">Withdraw Available - Service Earnings</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
