@@ -93,6 +93,7 @@ class ServiceOrdersController extends Controller
             $data['cancel'] = $cancel;
         }
 
+        $data['title'] = 'View Service Order';
         $data['order'] = $order;
         $data['order_id'] = System::GenerateFormattedId('S', $order->id);
 

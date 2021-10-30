@@ -13,7 +13,6 @@
     <div class="form-group">
         <label for="username" class="form-label">Username(Alias)</label>
         <input type="text" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" id="username" name="username" placeholder="johndoe" aria-describedby="register-username" tabindex="1" autofocus />
-        <small>You can use this to login incase you forgot your email</small>
         @error('username')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

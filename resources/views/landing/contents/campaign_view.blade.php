@@ -252,7 +252,8 @@
                     <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
                         <div class="card">
                             <div class="card-body c_summary_area">
-                                <div class="c_summary">{{$campaign->description}}</div>
+                                <!-- <div class="c_summary">{{$campaign->description}}</div> -->
+                                <textarea cols="30" rows="15" class="form-control c_summary" style="border:none; outline:none;">{{$campaign->description}}{{$campaign->description}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -573,6 +574,84 @@
         </div>
         <!-- Service Tiles - End -->
     </div>
+
+    @forelse($campaigns as $other)
+    @if ($loop->first)
+    <div class="container">
+        <!-- Campaign Tiles - Start -->
+        <div class="row pt-4">
+            <div class="col-sm-12">
+                <h1 class="news_taital">Support My other Campaigns</h1>
+            </div>
+        </div>
+        <div class="row pb-5">
+    @endif
+        
+                <div class="col-md-3 pt-4">
+                    <!-- Campaign Tile - Start -->
+                    <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="c_img"><a href="{{route('campaign_view', $other->id)}}">
+                                    <img src="{{$other->thumbnail_url != '' ? $other->thumbnail_url : 
+                                    asset('app-assets/images/pages/no-image.png')}}" class="c_img"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <a class="stretched-link" href="{{route('campaign_view', $other->id)}}">
+                                    <h1 class="card_s_title overflow-ellipsis">{{$other->title}}</h1>
+                                
+                                    <p class="c_card_c_category overflow-ellipsis">
+                                    @foreach($other->categories as $category)
+                                    <span class="badge badge-info" style="background-color:#120a78;font-size:10px;">{{$category->name}}</span> @if(!$loop->last)@endif
+                                    @endforeach
+                                </p>
+                                <h3 class="card_c_jname overflow-ellipsis">By : {{$other->jobseeker->userinformation->firstname}} {{$other->jobseeker->userinformation->lastname}}<hr class="hr_m"></h3>
+                               
+                                <div class="c_card_c_desc">{{$other->description}}</div>
+                               
+                                <div class="progress-wrapper progress_bar">
+                                    <div id="example-caption-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6 class="c_cam_raised_text">Php {{$other->progress->current_value}} <br>Raised</h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="c_cam_target_text" style="text-align: right;">Php {{$other->progress->target_value}} <br>Target</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress progress-bar-primary">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$other->progress->current_value}}" aria-valuemin="0" 
+                                            aria-valuemax="{{$other->progress->target_value}}" style="width: {{$other->progress->percentage}}%; background-color:#120a78;" 
+                                            aria-describedby="example-caption-2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="card_c_targetd">{{date('F d, Y', strtotime($other->target_date))}}</p>
+                                </div>
+                                </a>
+                                <div class="donate_btn_main">
+                                    <div class="donate_btn_1"><a href="{{route('campaign_view', $other->id)}}">Donate Now</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Campaign Tile - End -->
+                </div>
+            @if($loop->last)
+            </div>
+        <!-- Campaign Tiles - End -->
+    </div>
+            @endif
+            @empty
+            
+            @endforelse
+        
 </div>
       
 @endsection

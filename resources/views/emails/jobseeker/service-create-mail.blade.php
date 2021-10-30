@@ -4,7 +4,6 @@
 <br>Congratulations for successfully creating a Service on ePondo!
 
 <strong>Service Title : </strong> <span style="font-style:italic;"> " {{$service->title}} " </span> <br>
-<strong>Control No. : </strong> {{System::GenerateFormattedId('S', $service->id)}} <br>
 <strong>Created By : </strong> {{$jobseeker_name}} <br>
 <strong>Duration : </strong> {{$service->duration_hours}} Hr/s {{$service->duration_minutes}} Min/s <br>
 <strong>Location : </strong> {{$service->location}} <br>

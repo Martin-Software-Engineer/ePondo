@@ -16,15 +16,14 @@ class BackerDonations extends JsonResource
     {
         $campaign = $this->campaign;
         return [
-            'id' => $campaign->id,
-            'campaign_id' => System::GenerateFormattedId('C', $campaign->id),
+            'donation_id' => System::GenerateFormattedId('CD', $this->id),
             'title' => $campaign->title,
             'description' => $campaign->description,
-            'thumbnail_url' => $campaign->thumbnail_url,
             'categories' => $campaign->categories,
             'jobseeker_name' => $campaign->jobseeker->userinformation->firstname.' '.$campaign->jobseeker->userinformation->lastname,
             'date' => date('F d, Y', strtotime($this->created_at)),
             'amount' => 'Php '.number_format($this->amount,2),
+            'message' => $this->message,
             'status' => $campaign->status
         ];
     }

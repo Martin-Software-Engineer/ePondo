@@ -1521,7 +1521,9 @@ button.donate_btn {
 
 .j_prof_note{
     color:gray;
-    font-size:10px;
+    font-size:12px;
+    font-weight:100;
+    line-height:1rem;
 }
 
 .campaign_header_icons{

@@ -23,9 +23,10 @@ class Invoice extends JsonResource
             'backer_name' => $this->order->backer->userinformation->lastname.', '.$this->order->backer->userinformation->firstname, 
             'backer_id' => System::GenerateFormattedId('B', $this->order->backer->id),
             'service_title' => $this->order->service->title,
-            'order_id' => System::GenerateFormattedId('SO', $this->order->details->id), /** ACTIONS COLUMN */
+            'order_id' => System::GenerateFormattedId('SO', $this->order->id), /** ACTIONS COLUMN */
             'service_categories' => $this->order->service->categories,
-            'due_date' => date('F d, Y', strtotime($this->date_due))
+            'due_date' => date('F d, Y', strtotime($this->date_due)),
+            'status' => $this->status
         ];
     }
 }

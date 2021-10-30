@@ -164,7 +164,7 @@
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <div class="font-weight-bolder">{{$jobseeker->username}}</div>
+                                                            <div class="font-weight-bolder">{{$jobseeker->information->firstname}} {{$jobseeker->information->lastname}}</div>
                                                             <div class="font-small-2 text-muted">{{$jobseeker->email}}</div>
                                                         </div>
                                                     </div>

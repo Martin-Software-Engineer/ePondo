@@ -19,22 +19,14 @@ $(function() {
             serverSide: true,
             columns: [
                 // columns according to JSON
-                // { data: 'id' },
-                // { data: 'campaign_id' },
-                // { data: 'title' },
-                // { data: 'description' },
-                // { data: 'thumbnail_url' },
-                // { data: 'categories' },
-                // { data: 'date' },
-                // { data: 'amount' },
-                // { data: '' }
-
                 { data: 'id' },
+                { data: 'donation_id' },
                 { data: 'title' },
                 { data: 'categories' },
                 { data: 'jobseeker_name' },
                 { data: 'date' },
                 { data: 'amount' },
+                { data: 'message' },
                 { data: '' }
             ],
             columnDefs: [{
@@ -53,7 +45,7 @@ $(function() {
                 //     }
                 // },
                 {
-                    targets: 2,
+                    targets: 3,
                     render: function(data, type, row) {
                         let categories = [];
                         $.each(row.categories, function(i, category) {
@@ -125,7 +117,7 @@ $(function() {
                     display: $.fn.dataTable.Responsive.display.modal({
                         header: function(row) {
                             var data = row.data();
-                            return 'Details of Invoice #' + data.invoice_id;
+                            return 'Details of Invoice #' + data.campaign_id;
                         }
                     }),
                     type: 'column',
