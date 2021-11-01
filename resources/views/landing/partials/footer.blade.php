@@ -41,8 +41,6 @@
                      <a href="{{route('howitworks')}}">How it works</a><br>
                      <a href="https://www.facebook.com/ePondo.co/" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/facebook.png')}}"></a>
                      <a href="https://www.instagram.com/epondo.co/" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/instagram.png')}}"></a>
-                     <a href="https://twitter.com/ePondo_co" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/twitter.png')}}"></a><a href="https://www.facebook.com/ePondo.co/" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/facebook.png')}}"></a>
-                     <a href="https://www.instagram.com/epondo.co/" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/instagram.png')}}"></a>
                      <a href="https://twitter.com/ePondo_co" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/twitter.png')}}"></a>
                   </ul>
                </div>
