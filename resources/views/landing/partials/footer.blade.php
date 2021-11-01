@@ -66,9 +66,5 @@
            Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" style="color: rgb(197, 197, 197);">Pixel perfect</a>
            from <a href="https://www.flaticon.com/" style="color: rgb(197, 197, 197);">www.flaticon.com</a></span>
          </p>
-         <p class="copyright_text">© 2021 ePondo. All Rights Reserved.<br> Design by <a href="https://html.design" style="color: rgb(197, 197, 197);">Free html  Templates</a>
-           Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" style="color: rgb(197, 197, 197);">Pixel perfect</a>
-           from <a href="https://www.flaticon.com/" style="color: rgb(197, 197, 197);">www.flaticon.com</a></span>
-         </p>
      </div>
      <!-- copyright section end -->
