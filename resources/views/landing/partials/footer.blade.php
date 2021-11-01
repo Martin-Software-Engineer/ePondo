@@ -41,6 +41,8 @@
                      <a href="{{route('howitworks')}}">How it works</a><br>
                      <a href="https://www.facebook.com/ePondo.co/" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/facebook.png')}}"></a>
                      <a href="https://www.instagram.com/epondo.co/" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/instagram.png')}}"></a>
+                     <a href="https://twitter.com/ePondo_co" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/twitter.png')}}"></a><a href="https://www.facebook.com/ePondo.co/" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/facebook.png')}}"></a>
+                     <a href="https://www.instagram.com/epondo.co/" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/instagram.png')}}"></a>
                      <a href="https://twitter.com/ePondo_co" target="_blank"><img src="{{asset('app-assets/images/additional_pictures/twitter.png')}}"></a>
                   </ul>
                </div>
@@ -62,6 +64,10 @@
          </div>
       </div>
       <div class="copyright_section mb-4">
+         <p class="copyright_text">© 2021 ePondo. All Rights Reserved.<br> Design by <a href="https://html.design" style="color: rgb(197, 197, 197);">Free html  Templates</a>
+           Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" style="color: rgb(197, 197, 197);">Pixel perfect</a>
+           from <a href="https://www.flaticon.com/" style="color: rgb(197, 197, 197);">www.flaticon.com</a></span>
+         </p>
          <p class="copyright_text">© 2021 ePondo. All Rights Reserved.<br> Design by <a href="https://html.design" style="color: rgb(197, 197, 197);">Free html  Templates</a>
            Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" style="color: rgb(197, 197, 197);">Pixel perfect</a>
            from <a href="https://www.flaticon.com/" style="color: rgb(197, 197, 197);">www.flaticon.com</a></span>
