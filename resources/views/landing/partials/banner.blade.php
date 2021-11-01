@@ -6,7 +6,7 @@
                <div class="container">
                <div class="col-sm-12">
                   <h1 class="banner_taital">Pondo patungo sa pangarap ng bawat Pilipino!</h1>
-                  <p class="banner_text">Get started today!</p><p class="banner_text">Get started today!</p><p class="banner_text">Get started today!</p>
+                  <p class="banner_text">Get started today!</p>
                   <div class="read_bt"><a href="/register">Sign Up</a></div>
                </div>
 
