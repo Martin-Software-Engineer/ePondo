@@ -145,8 +145,8 @@
                                                 @php array_push($tags, $tag->name); @endphp
                                             @endforeach
                                             <input name="tags" id="tagsinput" class="tagsinput" value="{{join(",", $tags)}}" />
-                                            <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
-                                            <span class="j_tag_trans"><br>(Maglagay ng kuwit o pindutin and 'Enter', para hiwalayin ang tags)</span>
+                                            <!-- <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
+                                            <span class="j_tag_trans"><br>(Maglagay ng kuwit o pindutin and 'Enter', para hiwalayin ang tags)</span> -->
                                         </div>
                                     </div>
                                 </div>
@@ -216,13 +216,13 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add photos that clearly represent your Service. It must be a JPG, PNG, no larger than 200 MB.</span></label>
-                                <span class="j_tag_trans">(Maglagay ng mga litrato na kumakatawan sa iyong serbisyo. Aalalahaning ang laki ng litrato ay di lalagpas sa 200MB)</span>
+                                <!-- <label><span class="badge badge-danger">NOTE!</span><span class="help-inline ml-1">Add photos that clearly represent your Service. It must be a JPG, PNG, no larger than 200 MB.</span></label>
+                                <span class="j_tag_trans">(Maglagay ng mga litrato na kumakatawan sa iyong serbisyo. Aalalahaning ang laki ng litrato ay di lalagpas sa 200MB)</span> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <!-- <div class="row mt-2">
                         <div class="col-12 col-md-8 col-lg-8">
                             <div class="row">
                                     <div class="col-12">
@@ -237,7 +237,7 @@
                                     </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>

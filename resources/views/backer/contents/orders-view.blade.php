@@ -37,7 +37,7 @@
                             <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Delivery Date : </strong>{{date('F d, Y', strtotime($order->details->render_date))}}</h6>
                             <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Location :</strong> {{$order->details->delivery_address}}</h6>
                             <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Payment Method :</strong> {{$order->details->payment_method}}</h6>
-                            <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Customer Name:</strong> {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6>
+                            <!-- <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Customer Name:</strong> {{$order->backer->userinformation->firstname}} {{$order->backer->userinformation->lastname}}</h6> -->
                             <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Additional Message :</strong> {{$order->details->message}}</h6>
 
                             <hr style="margin-top:30px;margin-bottom:30px;position: relative;border: none;height: 1px;background:#120a78 ;">
@@ -55,7 +55,7 @@
                                 @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
                             </h6>
                             <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Price : </strong>{{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
-                            <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Jobseeker Name : </strong>{{$order->service->jobseeker->userinformation->firstname}} {{$order->service->jobseeker->userinformation->lastname}}</h6>
+                            <!-- <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Jobseeker Name : </strong>{{$order->service->jobseeker->userinformation->firstname}} {{$order->service->jobseeker->userinformation->lastname}}</h6> -->
                         </div>
                         <!-- Service Details - End -->
                     </div>
@@ -69,7 +69,7 @@
         <!-- /Invoice -->
 
          <!-- Actions -->
-         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
+         <!-- <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
             @if($order->status == 1)
             <div class="card mb-1">
                 <div class="card-body">
@@ -196,7 +196,7 @@
                 </div>
             </div>
             @endif
-        </div>
+        </div> -->
         <!-- /Actions -->
 
     </div>

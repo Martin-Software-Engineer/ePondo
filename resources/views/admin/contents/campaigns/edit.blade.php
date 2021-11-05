@@ -124,7 +124,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <!-- <div class="col-12">
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label">
                                             <label for="status">Status</label>
@@ -144,7 +144,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-sm-9 offset-sm-3">
                                     <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
                                 </div>
