@@ -7,7 +7,7 @@
         <div class="row">
             <div class="fundraise_img align-items-start"><img src="{{asset('app-assets/images/additional_pictures/concept_model_800x400_v3.png')}}"></div>
         </div>
-         <!-- <div class="col-sm-12">
+         <div class="col-sm-12">
             <div class="row">
                <div class="just">ePondo is a Rewards Crowdfunding Platform. The goal of ePondo is to create a space where Filipinos can fundraise
                    for their desired campaigns and support their livelihood by providing services. ePondo operates on a Web-based application that
@@ -18,7 +18,7 @@
                        please continue reading.
                </div>
             </div>
-         </div> -->
+         </div>
         <div class="row mt-4">
          <div class="col-sm-2">
             <div class="user_avatar align-items-start"><img src="{{asset('app-assets/images/additional_pictures/reward.png')}}"></div>
@@ -78,9 +78,9 @@
             </div>
        </div>
        <div class="row mt-2" style="padding-top:10px;">
-            <!-- <div class="col-sm-2 mb-4">
+            <div class="col-sm-2 mb-4">
                 <div class="user_avatar align-items-start mb-4"><img src="{{asset('app-assets/images/additional_pictures/bac_cus_200x200.png')}}"></div>
-            </div> -->
+            </div>
             <div class="col-sm-10">
                 <h1 class="user_title">Backer/ Customer</h1>
                 <p class="user_desc">	Backer and Customer are two different roles but are categorized into one user as they serve the same purpose of

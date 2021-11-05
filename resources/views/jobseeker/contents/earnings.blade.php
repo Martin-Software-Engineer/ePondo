@@ -62,15 +62,15 @@
                             <div class="col-12 col-md-4 mb-2 mb-md-0">
                                 <div class="avatar bg-light-primary rounded">
                                     <div class="avatar-content">
-                                        <!-- <i data-feather="trending-up" class="avatar-icon"></i> -->
+                                        <i data-feather="trending-up" class="avatar-icon"></i>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="col-12 col-md-8">
                                 <h2 class="font-weight-bolder">₱{{$service_earnings['earnings']}}</h2>
-                            <!-- <p class="card-text mb-0">Total Earnings</p>
-                            <h6 class="j_tag_trans">(Kabuuang Kita)</h6> -->
+                            <p class="card-text mb-0">Total Earnings</p>
+                            <h6 class="j_tag_trans">(Kabuuang Kita)</h6>
                             </div>
                         </div>
                     </div>
@@ -81,14 +81,14 @@
                             <div class="col-12 col-md-4  mb-2 mb-md-0">
                                 <div class="avatar bg-light-primary rounded">
                                     <div class="avatar-content">
-                                        <!-- <i data-feather="gift" class="avatar-icon"></i> -->
+                                        <i data-feather="gift" class="avatar-icon"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8">
                                 <h2 class="font-weight-bolder">₱{{$service_earnings['rewards']}}</h2>
-                                <!-- <p class="card-text mb-0">Total Rewards</p>
-                                <h6 class="j_tag_trans">(Kabuuang Gantimpala)</h6> -->
+                                <p class="card-text mb-0">Total Rewards</p>
+                                <h6 class="j_tag_trans">(Kabuuang Gantimpala)</h6>
                             </div>
                         </div>
                     </div>
@@ -99,14 +99,14 @@
                             <div class="col-12 col-md-4  mb-2 mb-md-0">
                                 <div class="avatar bg-light-primary rounded">
                                     <div class="avatar-content">
-                                        <!-- <i data-feather="share" class="avatar-icon"></i> -->
+                                        <i data-feather="share" class="avatar-icon"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-12 col-md-8">
                                 <h2 class="font-weight-bolder">₱{{$service_earnings['withdrawn']}}</h2>
-                                <!-- <p class="card-text mb-0">Withdrawn</p>
-                                <h6 class="j_tag_trans">(Nakuhang Kita)</h6>     -->
+                                <p class="card-text mb-0">Withdrawn</p>
+                                <h6 class="j_tag_trans">(Nakuhang Kita)</h6>    
                             </div>
                         </div>
                     </div>
@@ -117,14 +117,14 @@
                             <div class="col-12 col-md-4  mb-2 mb-md-0">
                                 <div class="avatar bg-light-primary rounded">
                                     <div class="avatar-content">
-                                        <!-- <i data-feather="clock" class="avatar-icon"></i> -->
+                                        <i data-feather="clock" class="avatar-icon"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8">
                                 <h2 class="font-weight-bolder">₱{{$service_earnings['pendings']}}</h2>
-                                <!-- <p class="card-text mb-0">Pending</p>
-                                <h6 class="j_tag_trans" style="font-size:9px;">(Nakabinbing Kinukuhang Kita)</h6>  -->
+                                <p class="card-text mb-0">Pending</p>
+                                <h6 class="j_tag_trans" style="font-size:9px;">(Nakabinbing Kinukuhang Kita)</h6> 
                             </div>
                         </div>
                     </div>
@@ -141,8 +141,8 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <h2 class="font-weight-bolder">₱{{$service_earnings['available']}}</h2>
-                                <!-- <p class="card-text mb-0">Available Earnings</p>
-                                <h6 class="j_tag_trans" style="font-size:9px;">(Hindi pa nakukuhang Kita)</h6>      -->
+                                <p class="card-text mb-0">Available Earnings</p>
+                                <h6 class="j_tag_trans" style="font-size:9px;">(Hindi pa nakukuhang Kita)</h6>     
                             </div>
                         </div>
                     </div>
@@ -289,14 +289,14 @@
                             <div class="col-12 col-md-4  mb-2 mb-md-0">
                                 <div class="avatar bg-light-success rounded">
                                     <div class="avatar-content">
-                                        <!-- <i data-feather="trending-up" class="avatar-icon"></i> -->
+                                        <i data-feather="trending-up" class="avatar-icon"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8">
                                 <h2 class="font-weight-bolder">₱{{$campaign_funds['totalfunds']}}</h2>
-                                <!-- <p class="card-text mb-0">Total Funds</p>
-                                <h6 class="j_tag_trans">(Kabuuang Pondo)</h6> -->
+                                <p class="card-text mb-0">Total Funds</p>
+                                <h6 class="j_tag_trans">(Kabuuang Pondo)</h6>
                             </div>
                         </div>
                     </div>
@@ -307,14 +307,14 @@
                             <div class="col-12 col-md-4  mb-2 mb-md-0">
                                 <div class="avatar bg-light-success rounded">
                                     <div class="avatar-content">
-                                        <!-- <i data-feather="share" class="avatar-icon"></i> -->
+                                        <i data-feather="share" class="avatar-icon"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8">
                                 <h2 class="font-weight-bolder">₱{{$campaign_funds['claimed']}}</h2>
-                                <!-- <p class="card-text mb-0">Withdrawn</p>
-                                <h6 class="j_tag_trans">(Nakuhang Pondo)</h6> -->
+                                <p class="card-text mb-0">Withdrawn</p>
+                                <h6 class="j_tag_trans">(Nakuhang Pondo)</h6>
                             </div>
                         </div>
                     </div>
@@ -325,14 +325,14 @@
                             <div class="col-12 col-md-4 mb-2 mb-md-0">
                                 <div class="avatar bg-light-success rounded">
                                     <div class="avatar-content">
-                                        <!-- <i data-feather="clock" class="avatar-icon"></i> -->
+                                        <i data-feather="clock" class="avatar-icon"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8">
                                 <h2 class="font-weight-bolder">₱{{$campaign_funds['pendings']}}</h2>
-                                <!-- <p class="card-text mb-0">Pending</p>
-                                <h6 class="j_tag_trans" style="font-size:8px;">(Nakabinbing Kinukuhang Pondo)</h6> -->
+                                <p class="card-text mb-0">Pending</p>
+                                <h6 class="j_tag_trans" style="font-size:8px;">(Nakabinbing Kinukuhang Pondo)</h6>
                             </div>
                         </div>
                     </div>
@@ -349,8 +349,8 @@
                             </div>
                             <div class="col-12 col-md-8">
                                 <h2 class="font-weight-bolder">₱{{$campaign_funds['available']}}</h2>
-                                <!-- <p class="card-text mb-0">Available Funds</p>
-                                <h6 class="j_tag_trans" style="font-size:8px;">(Hindi pa nakukuhang Pondo)</h6> -->
+                                <p class="card-text mb-0">Available Funds</p>
+                                <h6 class="j_tag_trans" style="font-size:8px;">(Hindi pa nakukuhang Pondo)</h6>
                             </div>
                         </div>
                     </div>
@@ -481,8 +481,8 @@
                                 <div class="form-group">
                                     <h2 style="margin: 15px 0;"> <span style="background-color:greenyellow;border-radius: 10%; padding: 4px 4px;">₱ {{$service_earnings['available']}}</span></h2>
                                     <p style="margin: 0 0;text-decoration:underline;">Payment Details</p>
-                                    <!-- <h6 style="font-size:10px;margin-top:10px;"><strong>Instructions : </strong> Please indicate below your bank details. We accept through Gcash, PayMaya, Remittance Centers, Bank Transfer.</h6>
-                                    <h6 style="font-size:10px;font-style:italic;font-weight:100;margin-top:0;">(Paalala na ilagay sa ilalaim ang mga detalye ng iyong banko)</h6> -->
+                                    <h6 style="font-size:10px;margin-top:10px;"><strong>Instructions : </strong> Please indicate below your bank details. We accept through Gcash, PayMaya, Remittance Centers, Bank Transfer.</h6>
+                                    <h6 style="font-size:10px;font-style:italic;font-weight:100;margin-top:0;">(Paalala na ilagay sa ilalaim ang mga detalye ng iyong banko)</h6>
                                     <textarea name="details" id="details" cols="30" rows="5" class="form-control" placeholder="Bank/ Account No./ Full Name/ Contact No."></textarea>
                                 </div>
 
@@ -490,7 +490,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <!-- <button type="submit" class="btn btn-primary btn-block">Submit Request</button> -->
+                        <button type="submit" class="btn btn-primary btn-block">Submit Request</button>
                     </div>
                 </form>
             </div>
