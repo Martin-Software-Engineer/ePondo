@@ -95,13 +95,13 @@
                     <!-- Campaign Tile 2 - End -->
                 </div>
             @empty
-                <!-- <div class="col-lg-12">
+                <div class="col-lg-12">
                     <div class="card card-empty mt-4">
                         <div class="card-body text-center d-flex justify-content-center align-items-center">
                             <h1 style="color:#0f073b;font-size:30px;font-weight:500;">Sorry No Results Found!</h1>
                         </div>
                     </div>
-                </div> -->
+                </div>
             @endforelse
         </div> 
         <div class="row mt-5">

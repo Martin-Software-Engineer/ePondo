@@ -192,7 +192,7 @@
           <div class="col-sm-12">
              <h1 class="service_title">{{$service->title}}</h1>
             <div class="row s_details">
-                <!-- <div class="col-sm-4 mt-2">
+                <div class="col-sm-4 mt-2">
                     <h4><span class="s_hlocation"> Category: </span> 
                         @foreach($service->categories as $category)
                         <span class="badge badge-info" style="background-color:#120a78;font-size:14px;">{{$category->name}}</span> @if(!$loop->last)@endif
@@ -200,7 +200,7 @@
                     </h4>
                     <h4><span class="s_hlocation"> Location: </span> {{$service->location}}</h4>
                     <h4> <span class="s_hduration"> Duration: </span>  {{$service->duration_hours}} Hrs {{$service->duration_minutes}} Mins</h4>
-                </div> -->
+                </div>
                 <div class="col-sm-4">
                     <h6 class="s_price">Php {{$service->price}}</h6>
                 </div>
@@ -228,9 +228,9 @@
                     <div class="carousel-inner">
 
                       @foreach($service->photos as $photo)
-                      <!-- <div class="carousel-item @if($loop->index == 0) active @endif">
+                      <div class="carousel-item @if($loop->index == 0) active @endif">
                         <img class="d-block w-100 campaign_images" src="{{Storage::url($photo->url)}} " alt="Second slide">
-                      </div> -->
+                      </div>
                       @endforeach
                     </div>
 
@@ -740,11 +740,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <label>Service Delivery Date</label>
                                     <input type="date" name="render_date" id="render_date" class="form-control">
                                     <span style="font-size:12px;color:#120a78">*Reminder: Not permitted to Cancel Order 3 Days prior to Delivery Date</span>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                         <div class="row">
