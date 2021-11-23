@@ -4,13 +4,16 @@ namespace App\Http\Controllers\JobSeeker;
 
 use App\Models\User;
 use App\Models\Photo;
+use App\Mail\SendMail;
 use App\Helpers\GiveReward;
 use App\Models\User4psInfo;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UpdatePublicProfile as UpdatePublicProfileRequest;
+use App\Notifications\JobseekerPublicProfileUpdate as JobseekerPublicProfileUpdateNotification;
 
 class JobseekerProfileController extends Controller
 {
@@ -110,12 +113,17 @@ class JobseekerProfileController extends Controller
         $reward = new GiveReward($user->id, 'edit_public_profile');
         $reward->send();
 
+        $user->notify(new JobseekerPublicProfileUpdateNotification());
+        Mail::to($user->email)->queue(new SendMail('emails.jobseeker-public-profile-mail', [
+            'subject' => 'Jobseeker Public Profile Updated'
+        ]));
+
         return response()->json(['success' => true, 'msg' => 'Your public profile was updated.']);
     }
 
     public function updatepppp(Request $request)
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find(auth()->user()->id)->first();
         
         $pppp = User4psInfo::where('user_id',$user->id)->first();
 
@@ -169,6 +177,11 @@ class JobseekerProfileController extends Controller
         
         $reward = new GiveReward($user->id, 'edit_public_profile');
         $reward->send();
+
+        $user->notify(new JobseekerPublicProfileUpdateNotification());
+        Mail::to($user->email)->queue(new SendMail('emails.jobseeker-public-profile-mail', [
+            'subject' => 'Jobseeker Public Profile Updated'
+        ]));
 
         return response()->json(['success' => true, 'msg' => 'Your 4Ps profile was updated.']);
     }

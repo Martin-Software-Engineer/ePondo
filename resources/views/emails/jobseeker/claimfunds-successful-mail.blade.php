@@ -1,10 +1,10 @@
 @component('mail::message')
 # Greetings from ePondo!
 
-<br>Successful Transfer of Funds!<br>
+<br>Successful Transfer of Campaign Funds!<br>
 
 <hr><br>
-<h3><strong>Claim Funds Details</strong></h3><br>
+<h3><strong>Withdraw Campaign Funds Details</strong></h3><br>
 
 Campaign Title : <span style="text-decoration:underline;font-style:italic;"> " {{$campaign}} " </span><br>
 Withdraw Amount : <span style="text-decoration:underline;"> {{$amount}} </span><br>

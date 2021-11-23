@@ -21,13 +21,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
-                                    <input id="firstname" type="text" class="form-control" name="firstname" placeholder="Your First Name" value="{{$firstname}}" required/>
+                                    <input id="firstname" type="text" class="form-control" name="firstname" placeholder="Your First Name" value="{{$firstname}}" disabled/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lastname">Last Name</label>
-                                    <input id="lastname" type="text" class="form-control" name="lastname" placeholder="Your Last Name" value="{{$lastname}}" required/>
+                                    <input id="lastname" type="text" class="form-control" name="lastname" placeholder="Your Last Name" value="{{$lastname}}" disabled/>
                                 </div>
                             </div>
                         </div>

@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UpdateCampaign;
 use App\Http\Resources\Campaigns as ResourceCampaign;
 use App\Notifications\CreateCampaign as CreateCampaignNotification;
+use App\Notifications\EditCampaign as EditCampaignNotification;
+use App\Notifications\DeleteCampaign as DeleteCampaignNotification;
 
 class CampaignsController extends Controller
 {
@@ -279,6 +281,24 @@ class CampaignsController extends Controller
             }
         }else{
             $campaign->tags()->detach();
+        }
+
+        $jobseeker = User::where('id',$campaign->user_id)->first();
+
+        if($campaign->status == 2){
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.campaign-delete-mail', [
+                'subject' => 'Campaign - Deleted',
+                'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+                'campaign' => $campaign
+            ]));
+            $jobseeker->notify(new DeleteCampaignNotification($campaign));
+        }else{
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.campaign-edit-mail', [
+                'subject' => 'Campaign - Edited Successfully',
+                'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+                'campaign' => $campaign
+            ]));
+            $jobseeker->notify(new EditCampaignNotification($campaign));
         }
 
         return response()->json(['success' => true,'msg' => trans('admin.campaign.update.success')]);

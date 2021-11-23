@@ -35,9 +35,10 @@
 
                         <th>Invoice No.</th>
                         <th>Backer/Customer Name</th>
-                        <th>Service Title</th>
                         <th>Serivce Order No.</th>
                         <th>Due Date of Payment</th>
+                        <th>Payment Method</th>
+                        <th>Status</th>
                         <th class="cell-fit">Actions</th>
 
                     </tr>

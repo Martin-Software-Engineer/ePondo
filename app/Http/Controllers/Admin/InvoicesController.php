@@ -115,8 +115,8 @@ class InvoicesController extends Controller
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee,
-            'total_earned' => $order->service->price + $order->invoice->transaction_fee
+            'total' => $order->invoice->total,
+            'total_earned' => $order->invoice->price + $order->invoice->transaction_fee
         ];
         
         return view('admin.contents.invoices.show',$data);
@@ -130,7 +130,10 @@ class InvoicesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['title'] = 'Edit Invoice';
+        $data['invoice'] = Invoice::where('id', $id)->first();        
+        
+        return view('admin.contents.invoices.edit', $data);
     }
 
     /**
@@ -142,7 +145,23 @@ class InvoicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $invoice = Invoice::find($id);
+        $invoice->price = $request->price;
+        $invoice->transaction_fee = $request->transaction_fee;
+        $invoice->processing_fee = $request->processing_fee;
+        $invoice->total = $request->price + $request->transaction_fee + $request->processing_fee;
+        $invoice->date_due = $request->date_due;
+        $invoice->status = $request->status;
+        $invoice->save();
+
+        // Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.campaign-delete-mail', [
+        //     'subject' => 'Campaign - Deleted',
+        //     'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+        //     'campaign' => $campaign
+        // ]));
+        // $jobseeker->notify(new DeleteCampaignNotification($campaign));
+        
+        return response()->json(['success' => true,'msg' => trans('admin.invoice.update.success')]);
     }
 
     /**

@@ -36,7 +36,7 @@ class ClaimDonationRequestsController extends Controller
             $jobseeker = User::where('id',$payout->user->id)->first();
             $jobseeker->notify(new ClaimFundsSuccessfulNotification());
             Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.claimfunds-successful-mail', [
-                'subject' => 'Claim Funds Successful',
+                'subject' => 'Withdraw Campaign Funds Successful',
                 'campaign' => $payout->campaign->title,
                 'amount' => $payout->amount,
                 'details' => $payout->details

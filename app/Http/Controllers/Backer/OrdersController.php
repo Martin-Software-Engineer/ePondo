@@ -114,7 +114,7 @@ class OrdersController extends Controller
             'payment_method' => $order->details->payment_method,
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee,
+            'total' => $order->invoice->total,
             'invoice_status'  => $order->invoice->status
         ];
         

@@ -14,6 +14,11 @@ use Auth;
 class CampaignsController extends Controller
 {
     public function donate(Request $request){
+
+        $request->validate([
+            'message' => 'required|string|max:10',
+        ]);
+
         $donate = Donation::create([
             'message' => $request->message,
             'amount' => $request->amount

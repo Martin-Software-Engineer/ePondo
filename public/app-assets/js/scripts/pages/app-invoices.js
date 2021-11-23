@@ -112,6 +112,7 @@ $(function() {
                         return (
                             `<div class="d-flex align-items-center col-actions">
                               <a class="mr-1 btn btn-sm btn-primary" href="/admin/invoice/${full.id}">Details</a>
+                              <a class="mr-1 btn-edit" href="/admin/invoice/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
                             </div>
                             `
                         );

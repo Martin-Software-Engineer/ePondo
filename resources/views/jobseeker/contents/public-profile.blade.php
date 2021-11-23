@@ -625,7 +625,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="question1">How did you acquired for 4Ps?</label>
+                            <label for="question1">How did were you acquired for 4Ps?</label>
                             <span class="j_tag_trans">(Paano ka nagrehistro bilang isang 4Ps beneficairy ?)</span>
                             <input type="text" name="question1" class="form-control" id="question1" value="{{@$pppp->question1}}"/>
                         </div>
@@ -647,7 +647,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="question3">How is your experience?</label>
+                            <label for="question3">How is your experience with 4Ps?</label>
                             <span class="j_tag_trans">(Kamusta ang iyong karanasan kabilang sa 4Ps ?)</span>
                             <select name="question3" id="question3" class="form-control">
                                 <option value="Very Good" @if(@$pppp->question3 == 'Very Good') selected @endif>Very Good</option>

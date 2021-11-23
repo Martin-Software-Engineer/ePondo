@@ -46,7 +46,7 @@
                             <div class="col-12">
                                 <hr>
                                 <p style="text-decoration:underline; margin: 0 0;">Payment Details</p>
-                                <h6 style="font-size:10px;margin-top:10px;"><strong>Instructions : </strong> Please indicate below the amount you would like to withdraw and your bank details. We accept through Gcash, PayMaya, Remittance Centers, Bank Transfer. (Paalala na ilagay sa ilalaim ang halaga na nais kunin mula sa pondo at ang mga detalye ng iyong banko)</h6><br>
+                                <h6 style="font-size:10px;margin-top:10px;"><strong>Instructions : </strong> Please indicate below the amount you would like to withdraw and your bank details. We accept through Gcash, PayMaya, Remittance Centers, Bank Transfer.`<br> (Paalala na ilagay sa ilalaim ang halaga na nais kunin mula sa pondo at ang mga detalye ng iyong banko)</h6><br>
                                 
                             </div>
                         </div>

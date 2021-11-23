@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ClaimFundsSuccessful extends Notification
+class ResetUserPassword extends Notification
 {
     use Queueable;
 
@@ -55,8 +55,8 @@ class ClaimFundsSuccessful extends Notification
     public function toArray($notifiable)
     {
         return [
-            'heading' => 'Withdraw Campaign Funds Successful!',
-            'text' => 'Successfully processed Withdraw Campaign Funds. Please verify with your bank. Thank you!'
+            'heading' => 'Password Changed',
+            'text' => 'Successfully changed user account login Password! You may now use your New Password to login to your ePondo Account.'
         ];
     }
 }

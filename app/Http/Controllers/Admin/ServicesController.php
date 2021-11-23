@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\ServiceCategoryParent;
 use App\Http\Resources\Service as ResourceService;
 use App\Notifications\CreateService as CreateServiceNotification;
+use App\Notifications\EditService as EditServiceNotification;
+use App\Notifications\DeleteService as DeleteServiceNotification;
 
 class ServicesController extends Controller
 {
@@ -227,6 +229,7 @@ class ServicesController extends Controller
         $service->duration_hours = $request->duration_hours;
         $service->duration_minutes = $request->duration_minutes;
         $service->location = $request->location;
+        $service->status = $request->status;
         $service->save();
         
         if($request->get('category', [])){
@@ -245,6 +248,27 @@ class ServicesController extends Controller
         }else{
             $service->tags()->detach();
         }
+
+        $jobseeker = User::where('id',$service->user_id)->first();
+
+        if($service->status == 2){
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.service-delete-mail', [
+                'subject' => 'Service - Deleted',
+                'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+                'service' => $service
+            ]));
+            $jobseeker->notify(new DeleteServiceNotification($service));
+        }
+        else{
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.service-edit-mail', [
+                'subject' => 'Service - Edited Successfully',
+                'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+                'service' => $service
+            ]));
+            $jobseeker->notify(new EditServiceNotification($service));
+        }
+        
+        
 
         return response()->json(['success' => true,'msg' => trans('admin.service.update.success')]);
     }

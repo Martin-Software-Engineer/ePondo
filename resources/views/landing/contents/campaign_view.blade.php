@@ -754,7 +754,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="message">Message to Jobseeker/Campaign (optional)</label>
-                                    <textarea name="message" cols="30" rows="6" class="form-control"></textarea>
+                                    <textarea id="message" name="message" cols="30" rows="6" class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>

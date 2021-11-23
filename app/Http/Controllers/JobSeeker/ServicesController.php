@@ -24,6 +24,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Models\ServiceCategoryParent;
 use App\Notifications\CreateService as CreateServiceNotification;
+use App\Notifications\EditService as EditServiceNotification;
+use App\Notifications\DeleteService as DeleteServiceNotification;
 
 class ServicesController extends Controller
 {
@@ -195,9 +197,10 @@ class ServicesController extends Controller
             abort(404, 'Page not found.');
         }
 
-        if($service->user_id != auth()->user()->id)
+        if($service->user_id != auth()->user()->id){
             abort(403, 'Unauthorized action.');
-
+        }
+        
         $service->title = $request->title;
         $service->description = $request->description;
         $service->price = $request->price;
@@ -237,7 +240,14 @@ class ServicesController extends Controller
             $service->tags()->detach();
         }
 
-        return response()->json(array('success' => true, 'msg' => 'Service Updated.'));
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.service-edit-mail', [
+            'subject' => 'Service - Edited Successfully',
+            'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
+            'service' => $service
+        ]));
+        auth()->user()->notify(new EditServiceNotification($service));
+
+        return response()->json(array('success' => true, 'msg' => 'Service Edited.'));
     }
 
     public function updatephotos(Request $request){
@@ -291,7 +301,15 @@ class ServicesController extends Controller
 
         $service -> status = 2;
         $service -> save();
-        return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
+
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.service-delete-mail', [
+            'subject' => 'Service - Deleted',
+            'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
+            'service' => $service
+        ]));
+        auth()->user()->notify(new DeleteServiceNotification($service));
+
+        return response()->json(['success' => true, 'msg' => 'Service Deleted.']);
 
         // if(Service::find($id)->delete()){
         //     return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);

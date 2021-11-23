@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
-use App\Rules\MatchOldPassword;
-use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-
 use App\Models\User;
+use App\Mail\SendMail;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Models\UserInformation;
+use App\Rules\MatchOldPassword;
+use Illuminate\Http\UploadedFile;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Support\Facades\Mail;
+
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateAccountJobseeker;
+use App\Notifications\ResetUserPassword as ResetUserPasswordNotification;
+use App\Notifications\UserAccountUpdate as UserAccountUpdateNotification;
+
 class AccountController extends Controller
 {
     public function index(){
@@ -65,6 +71,11 @@ class AccountController extends Controller
             $userinfo->save();
         }
 
+        $user->notify(new UserAccountUpdateNotification());
+        Mail::to($user->email)->queue(new SendMail('emails.user-account-update-mail', [
+            'subject' => 'User Account Information Updated'
+        ]));
+
         return response()->json(['success' => true, 'msg' => 'Account Information Updated']);
     }
 
@@ -75,7 +86,13 @@ class AccountController extends Controller
             'new_confirm_password' => ['same:new_password']
         ]);
 
-        $changepass = User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        $user = User::where('id',auth()->user()->id)->first();
+        $changepass = $user->update(['password'=> Hash::make($request->new_password)]);
+
+        $user->notify(new ResetUserPasswordNotification());
+        Mail::to($user->email)->queue(new SendMail('emails.reset-user-password-mail', [
+            'subject' => 'Password Changed'
+        ]));
 
         if($changepass){
             return response()->json(['success' => true, 'msg' => 'Account Password Updated']);
