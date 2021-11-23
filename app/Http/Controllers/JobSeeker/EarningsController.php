@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Mail\SendMail;
 use App\Models\Payout;
 use App\Models\Invoice;
 use App\Models\Service;
 use App\Models\Campaign;
-use App\Models\ServiceReward;
 use Illuminate\Http\Request;
+use App\Models\ServiceReward;
 use App\Models\ClaimedDonations;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+
+use App\Notifications\PayoutRequest as PayoutRequestNotification;
 
 class EarningsController extends Controller
 {
@@ -88,8 +91,10 @@ class EarningsController extends Controller
             'status' => 'pending'
         ]);
 
-        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.order-payoutrequest-mail', [
-            'subject' => 'Payout Request Sent',
+        $jobseeker = User::where('id',auth()->user()->id)->first();
+        $jobseeker->notify(new PayoutRequestNotification());
+        Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-payoutrequest-mail', [
+            'subject' => 'Withdraw Service Earnings Request',
             'amount' => $request->amount,
             'details' => $request->details
         ]));

@@ -2,23 +2,25 @@
 
 namespace App\Notifications;
 
+use App\Helpers\System;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class ClaimFundsSuccessful extends Notification
+class EditService extends Notification
 {
     use Queueable;
 
+    protected $service;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($service)
     {
-        //
+        $this->service = $service;
     }
 
     /**
@@ -55,8 +57,8 @@ class ClaimFundsSuccessful extends Notification
     public function toArray($notifiable)
     {
         return [
-            'heading' => 'Withdraw Campaign Funds Successful!',
-            'text' => 'Successfully processed Withdraw Campaign Funds. Please verify with your bank. Thank you!'
+            'heading' => 'Service - Edited',
+            'text' => "Successfully Edited Service ' {$this->service->title} '. View your service at “My Services” tab located on your dashboard."
         ];
     }
 }

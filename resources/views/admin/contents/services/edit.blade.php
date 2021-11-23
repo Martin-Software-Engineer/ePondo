@@ -155,6 +155,25 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <label for="status">Status</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select name="status" id="status" class="form-control">
+                                                @for($i = 1; $i<=2; $i++)
+                                                <option value="{{$i}}"  @if($i == $service->status) selected @endif  >
+                                                    {{$i}}
+                                                    @if($i== 1)Ongoing 
+                                                    @elseif($i== 2)Deleted
+                                                    @endif
+                                                </option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-sm-9 offset-sm-3">
                                     <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
                                 </div>

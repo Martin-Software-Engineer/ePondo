@@ -2,23 +2,25 @@
 
 namespace App\Notifications;
 
+use App\Helpers\System;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class ClaimFundsSuccessful extends Notification
+class DeleteCampaign extends Notification
 {
     use Queueable;
 
+    protected $campaign;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($campaign)
     {
-        //
+        $this->campaign = $campaign;
     }
 
     /**
@@ -55,8 +57,8 @@ class ClaimFundsSuccessful extends Notification
     public function toArray($notifiable)
     {
         return [
-            'heading' => 'Withdraw Campaign Funds Successful!',
-            'text' => 'Successfully processed Withdraw Campaign Funds. Please verify with your bank. Thank you!'
+            'heading' => 'Campaign - Deleted',
+            'text' => "Campaign Deleted ' {$this->campaign->title} '. For questions & inquiries, contact us at epondo.co@gmail.com"
         ];
     }
 }

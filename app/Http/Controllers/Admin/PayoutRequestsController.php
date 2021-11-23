@@ -33,7 +33,7 @@ class PayoutRequestsController extends Controller
             $jobseeker = User::find($payout->user->id);
             $jobseeker->notify(new PayoutSuccessulNotification());
             Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-payout-mail', [
-                'subject' => 'Payout Successful',
+                'subject' => 'Withdraw Service Earnings Successful',
                 'amount' => $payout->amount,
                 'details' => $payout->details
             ]));

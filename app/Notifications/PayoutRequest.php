@@ -55,8 +55,8 @@ class PayoutRequest extends Notification
     public function toArray($notifiable)
     {
         return [
-            'heading' => 'Payout Request Sent',
-            'text' => 'Successfully sent Payout Request. Please allow 1-3 days for processing of Payout. Thank you!'
+            'heading' => 'Withdraw Service Earnings Request Sent',
+            'text' => 'Successfully sent Withdraw Service Earnings Request. Please allow 1-3 days for processing. Thank you!'
         ];
     }
 }

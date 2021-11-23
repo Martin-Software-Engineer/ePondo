@@ -22,9 +22,10 @@ $(function() {
                 { data: 'id' },
                 { data: 'invoice_id' },
                 { data: 'backer_name' },
-                { data: 'service_title' },
                 { data: 'order_id' },
                 { data: 'due_date' },
+                { data: 'payment_method' },
+                { data: 'status' },
                 { data: '' }
 
                 // <th>Invoice No.</th>
@@ -48,6 +49,52 @@ $(function() {
                     width: '100px',
                     render: function(data, type, row) {
                         return row.invoice_id;
+                    }
+                },
+                {
+                    targets: 6,
+                    render: function(data, type, row) {
+                        if(row.status == 1){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-info">Ongoing</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else if (row.status == 2){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-warning">Pending</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else if (row.status == 3){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-info" style="background-color:limegreen">Paid</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else if (row.status == 4){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-danger">Cancelled</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else{
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-dark">Error Status</span>
+                                </div>
+                                `
+                            );
+                        }
+                        
                     }
                 },
                 // {

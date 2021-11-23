@@ -55,8 +55,8 @@ class PayoutSuccessful extends Notification
     public function toArray($notifiable)
     {
         return [
-            'heading' => 'Payout Successful!',
-            'text' => 'Successfully processed Payout. Please verify with your bank. Thank you! '
+            'heading' => 'Withdraw Service Earnings Successful!',
+            'text' => 'Successfully processed Withdraw Service Earnings. Please verify with your bank. Thank you! '
         ];
     }
 }

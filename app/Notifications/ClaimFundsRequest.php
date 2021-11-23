@@ -55,8 +55,8 @@ class ClaimFundsRequest extends Notification
     public function toArray($notifiable)
     {
         return [
-            'heading' => 'Claim Funds Request Sent',
-            'text' => 'Successfully sent Payout Request. Please allow 1-3 days for processing of Payout. Thank you!'
+            'heading' => 'Withdraw Campaign Funds Request Sent',
+            'text' => 'Successfully sent Withdraw Campaign Funds Request. Please allow 1-3 days for processing. Thank you!'
         ];
     }
 }

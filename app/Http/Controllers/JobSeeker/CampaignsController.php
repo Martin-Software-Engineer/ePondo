@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
 use App\Notifications\CreateCampaign as CreateCampaignNotification;
+use App\Notifications\EditCampaign as EditCampaignNotification;
+use App\Notifications\DeleteCampaign as DeleteCampaignNotification;
 use App\Mail\SendMail;
 use App\Helpers\GiveReward;
 use Image;
@@ -242,7 +244,14 @@ class CampaignsController extends Controller
             $campaign->tags()->detach();
         }
 
-        return response()->json(array('success' => true, 'msg' => 'Campaign Updated.'));
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.campaign-edit-mail', [
+            'subject' => 'Campaign - Edited Successfully',
+            'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
+            'campaign' => $campaign
+        ]));
+        auth()->user()->notify(new EditCampaignNotification($campaign));
+
+        return response()->json(array('success' => true, 'msg' => 'Campaign Edited.'));
     }
 
     public function updatephotos(Request $request){
@@ -296,6 +305,14 @@ class CampaignsController extends Controller
             
         $campaign -> status = 2;
         $campaign -> save();
+
+        Mail::to(auth()->user()->email)->queue(new SendMail('emails.jobseeker.campaign-delete-mail', [
+            'subject' => 'Campaign - Deleted',
+            'jobseeker_name' => auth()->user()->userinformation->firstname.' '.auth()->user()->userinformation->lastname,
+            'campaign' => $campaign
+        ]));
+        auth()->user()->notify(new DeleteCampaignNotification($campaign));
+
         return response()->json(['success' => true, 'msg' => 'Campaign Deleted.']);
         
         // if(Campaign::find($id)->delete()){

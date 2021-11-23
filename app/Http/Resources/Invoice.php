@@ -26,6 +26,7 @@ class Invoice extends JsonResource
             'order_id' => System::GenerateFormattedId('SO', $this->order->id), /** ACTIONS COLUMN */
             'service_categories' => $this->order->service->categories,
             'due_date' => date('F d, Y', strtotime($this->date_due)),
+            'payment_method' => $this->order->details->payment_method,
             'status' => $this->status
         ];
     }
