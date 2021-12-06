@@ -115,8 +115,9 @@ class InvoicesController extends Controller
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
+            'add_charges' => $order->invoice->add_charges,
             'total' => $order->invoice->total,
-            'total_earned' => $order->invoice->price + $order->invoice->transaction_fee
+            'total_earned' => $order->invoice->price + $order->invoice->add_charges + $order->invoice->transaction_fee
         ];
         
         return view('admin.contents.invoices.show',$data);
@@ -147,9 +148,10 @@ class InvoicesController extends Controller
     {
         $invoice = Invoice::find($id);
         $invoice->price = $request->price;
+        $invoice->add_charges = $request->add_charges;
         $invoice->transaction_fee = $request->transaction_fee;
         $invoice->processing_fee = $request->processing_fee;
-        $invoice->total = $request->price + $request->transaction_fee + $request->processing_fee;
+        $invoice->total = $request->price + $request->add_charges + $request->transaction_fee + $request->processing_fee;
         $invoice->date_due = $request->date_due;
         $invoice->status = $request->status;
         $invoice->save();

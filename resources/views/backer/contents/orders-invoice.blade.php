@@ -328,11 +328,13 @@
                             <h6>Sub-Total : </h6>
                             <h6>Transaction Fee : </h6>
                             <h6>Processing Fee : </h6>
+                            <h6>Added Charges : </h6>
                         </div>
                         <div style="text-align:right;margin:0 20px 0 10px">
                             <h6>{{$service->price}}</h6>
                             <h6>{{$transaction_fee}}</h6>
                             <h6>{{$processing_fee}}</h6>
+                            <h6>{{$add_charges}}</h6>
                         </div>
                     </div>
                     <div class="d-flex" style="display:flex;justify-content:flex-end;align-items:flex-end;">

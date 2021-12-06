@@ -86,8 +86,9 @@ class InvoicesController extends Controller
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
+            'add_charges' => $order->invoice->add_charges,
             'total' => $order->invoice->total,
-            'total_earned' => $order->invoice->price + $order->invoice->transaction_fee
+            'total_earned' => $order->invoice->price + $order->invoice->add_charges + $order->invoice->transaction_fee
         ];
         
         return view('jobseeker.contents.service-orders-invoice',$data);

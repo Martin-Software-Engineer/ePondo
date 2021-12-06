@@ -38,7 +38,7 @@ class ServicesController extends Controller
         $backer_id = $backer->id;
         $jobseeker = User::find($service->user_id);
         $totalorders = Order::whereHas('service', function($q) use($jobseeker){
-            $q->where('user_id', $jobseeker->id)->get();
+            $q->where('user_id', $jobseeker->id); //$q->where('user_id', $jobseeker->id)->get();
         })->count(); //Counter for Reward Points
 
         $order = Order::create([
