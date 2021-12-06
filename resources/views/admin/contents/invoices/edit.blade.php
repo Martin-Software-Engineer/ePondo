@@ -104,7 +104,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">₱</span>
                                                 </div>
-                                                <input type="number" name="add_charges" step=".01" id="add-charges" class="form-control" value="{{$invoice->add_charges}}" placeholder="00" aria-label="Amount (to the nearest peso)" disabled>
+                                                <input type="number" name="add_charges" step=".01" id="add-charges" class="form-control" value="{{$invoice->add_charges}}" placeholder="00" aria-label="Amount (to the nearest peso)" >
                                             </div>
                                         </div>
                                     </div>
