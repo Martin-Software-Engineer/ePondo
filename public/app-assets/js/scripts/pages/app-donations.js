@@ -16,10 +16,13 @@ $(function() {
                 // columns according to JSON
                 { data: 'id' },
                 { data: 'donation_id' },
-                { data: 'backer_name' },
+                { data: 'backer_firstname' },
+                { data: 'backer_lastname' },
                 { data: 'backer_email' },
                 { data: 'message' },
                 { data: 'amount' },
+                { data: 'date' },
+                { data: 'status' },
             ],
             columnDefs: [{
                     // For Responsive
@@ -31,7 +34,7 @@ $(function() {
                     }
                 },
                 {
-                    targets: 4,
+                    targets: 5,
                     render: function(data, type, row) {
                         if(row.message != null && row.message != ''){
                             if (row.message.length > 20) {
@@ -43,6 +46,20 @@ $(function() {
                             return '';
                         }
 
+                    }
+                },
+                {
+                    // Actions
+                    targets: -1,
+                    width: '80px',
+                    orderable: false,
+                    render: function(data, type, full, meta) {
+                        return (
+                            `<div class="d-flex align-items-center col-actions">
+                              <a class="mr-1 btn-edit" href="/admin/donations/${full.id}" data-toggle="tooltip" data-placement="top" title="Details">${feather.icons['eye'].toSvg({ class: 'font-medium-2' })}</a>
+                            </div>
+                            `
+                        );
                     }
                 }
             ],

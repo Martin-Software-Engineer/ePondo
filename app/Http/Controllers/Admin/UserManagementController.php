@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use DataTables;
+use App\Models\Role;
+use App\Models\User;
+use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+
 use Laravel\Fortify\Rules\Password;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Resources\UserList as ResourceUserList;
-use App\Models\User;
-use App\Models\Role;
+use App\Notifications\ResetUserPassword as ResetUserPasswordNotification;
+use App\Notifications\UserAccountUpdate as UserAccountUpdateNotification;
 
-use DataTables;
 class UserManagementController extends Controller
 {
 
@@ -122,32 +128,67 @@ class UserManagementController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->input();
-        Validator::make($input, [
-            'username' => ['required','string','max:64'],
-            'firstname' => ['required','string','max:64'],
-            'lastname' => ['required','string','max:64'],
-            'email' => [
-                'required',
-                'email',
-                'string',
-                'max:255',
-                'unique:users,email,'.$id
-            ],
-            'password' => ['required', 'string', new Password, 'confirmed'],
-        ])->validate();
-
         $user = User::find($id);
-        $user->username = $input['username'];
-        $user->email = $input['email'];
-        $user->password = Hash::make($input['password']);
-        $user->save();
+
+        if($request->password == ''){
+            Validator::make($input, [
+                'username' => ['required','string','max:64'],
+                'firstname' => ['required','string','max:64'],
+                'lastname' => ['required','string','max:64'],
+                'email' => [
+                    'required',
+                    'email',
+                    'string',
+                    'max:255',
+                    'unique:users,email,'.$id
+                ]
+            ])->validate();
+
+            $user->username = $input['username'];
+            $user->email = $input['email'];
+            $user->save();
+        }
+        else{
+            Validator::make($input, [
+                'username' => ['required','string','max:64'],
+                'firstname' => ['required','string','max:64'],
+                'lastname' => ['required','string','max:64'],
+                'email' => [
+                    'required',
+                    'email',
+                    'string',
+                    'max:255',
+                    'unique:users,email,'.$id
+                ],
+                'password' => ['string', new Password, 'confirmed']
+            ])->validate();
+
+            $user->username = $input['username'];
+            $user->email = $input['email'];
+            $user->password = Hash::make($input['password']);
+            $user->save();
+
+            $user->notify(new ResetUserPasswordNotification());
+            Mail::to($user->email)->queue(new SendMail('emails.reset-user-password-mail', [
+                'subject' => 'Password Changed'
+            ]));
+        }
 
         $user->information()->update([
             'firstname' => $input['firstname'],
-            'lastname' => $input['lastname']
+            'lastname' => $input['lastname'],
+            'address' => $input['address'],
+            'phone' => $input['phone'],
+            'birthdate' => $input['birthdate'],
+            'zipcode' => $input['zipcode']
         ]);
 
         $user->roles()->sync($input['role']);
+
+        $user->notify(new UserAccountUpdateNotification());
+        Mail::to($user->email)->queue(new SendMail('emails.user-account-update-mail', [
+            'subject' => 'User Account Information Updated'
+        ]));
 
         if($user)
             return response()->json(['success' => true, 'msg' => 'User Information Updated.']);

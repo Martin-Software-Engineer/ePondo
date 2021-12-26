@@ -20,7 +20,11 @@
     td { font-size: 12px; }
 </style>
 @endsection
-
+@section('header')
+<div class="content-header-left col-md-9 col-12 mb-2">
+    @include('admin.partials.breadcrumbs', ['title' => $title])
+</div>
+@endsection
 @section('content')
 <section class="invoice-preview-wrapper">
     <div class="row invoice-preview">
@@ -49,11 +53,13 @@
                                     {{$category->name}} @if(!$loop->last)/@endif
                                 @endforeach
                             </h6>
+                            <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Location : </strong> {{$order->service->location}} </h6>
                             <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Duration : </strong>
                                 @if( $order->service->duration_hours > 1 ) {{$order->service->duration_hours}} Hrs @elseif( $order->service->duration_hours == 0 )  @else {{$order->service->duration_hours}} Hr @endif
                                 @if( $order->service->duration_minutes > 1 ) {{$order->service->duration_minutes}} Mins @elseif( $order->service->duration_minutes == 0 )  @else {{$order->service->duration_minutes}} Min @endif
                             </h6>
                             <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Price : </strong>{{ucfirst($order->service->currency)}} {{number_format($order->service->price, 2)}}</h6>
+                            <h6 class="ml-2" style="font-size:14px; font-weight:400;"><strong>Jobseeker Name : </strong>{{$order->service->jobseeker->userinformation->firstname}} {{$order->service->jobseeker->userinformation->lastname}}</h6>
                         </div>
                         <!-- Service Details - End -->
                     </div>
@@ -75,8 +81,9 @@
                             <h4 style="font-weight:bolder;">Backer</h4>
                                 <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> Please wait 1-3 days for Jobseeker to respond to your Service Order Request.</h6>
                             <h4 style="font-weight:bolder;">Jobseeker</h4>
-                                <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> <strong>Instructions : </strong> Please read the details of the service order request. Then click the appropriate button below.</h6>
-                                <button type="button" class="btn-accept btn btn-primary btn-block mb-75" disabled>
+                            <h6 style="font-size:12px;font-weight:400;"> <strong>Instructions : </strong> Please read the details of the service order request. Then click the appropriate button below.</h6>
+                            <h6 class="j_tag_trans mb-2">(Basahin ang mga detalye ng order request. Kapag ikaw ay sangayon sa lahat ng hinihiling ng customer at nais mong tanggapin ang order request, pindutin lamang ang "Accept". Kapag ikaw sumasalungat rito, pindutin ang "Decline")</h6>
+                            <button type="button" class="btn-accept btn btn-primary btn-block mb-75" disabled>
                                     Accept
                                 </button>
                                 <button type="button" class="btn-decline btn btn-danger btn-block mb-75" disabled>
@@ -93,12 +100,14 @@
                                 @endif
                             <h4 style="font-weight:bolder;margin-top:10px;">Jobseeker</h4>
                                 @if ($order->details->payment_method == 'OP')
-                                    <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> <strong>Instructions : </strong>Once you have completed the service order for your customer, you may now submit service order delivered by clicking the button below.</h6>
+                                    <h6 style="font-size:12px;font-weight:400;"> <strong>Instructions : </strong>Once you have completed the service order for your customer, you may now submit service order delivered by clicking the button below.</h6>
+                                    <h6 class="j_tag_trans mb-2">(Kapag iyong nakumpleto na ang service order para sa iyong customer, pindutin lamang ang "Submit Service Order Delivered". Ito ay nagkakahulugan na natapos mo na ang service order at naihatid na sa iyong customer ng kumpleto.)</h6>
                                     <button type="button" class="btn-deliver btn btn-success btn-block mb-75" disabled>
                                         Submit Service Order Delivered
                                     </button>
                                 @elseif ($order->details->payment_method == 'COD')
                                     <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> <strong>Instructions : </strong>Once you have completed the service order for your customer and received full payment, please click the submit button below to complete service order.</h6>
+                                    <h6 class="j_tag_trans mb-2">(Kapag iyong nakumpleto na ang service order para sa iyong customer at natanggap na ang kabuuang bayad, pindutin lamang ang "Submit Service Delivered & Payment Received". Ito ay nagkakahulugan na nakumpleto at naihatid mo na ang service order sa iyong customer at natanggap mo na rin ang kabuuang bayad para rito.)</h6>
                                     <button type="button" class="btn-deliver btn btn-success btn-block mb-75" disabled>
                                         Submit Service Delivered & Payment Received
                                     </button>
@@ -114,7 +123,8 @@
                             <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> Service Order Declined. We are sorry to hear that your service order request has been declined. If you have concerns & feedback please email us at <strong style="font-style:italic; text-decoration:underline;">epondo.co@gmail.com</strong style="font-style:italic; text-decoration:underline;"></h6>
                             <h4 style="font-weight:bolder;">Jobseeker</h4>
                             <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;">Service Order Declined. We are sorry to hear that you declined the service order request. If you have concerns & feedback please email us at <span style="font-weight:bold;text-decoration:underline;">epondo.co@gmail.com</span> </h6>
-                        @endif
+                            <h6 class="j_tag_trans">(Ikinalulungkot namin malaman na hindi niyo tinaggap ang service order request. Kung merong kayong katanungan, puna o pagaalala maari niyo kaming kontakin gamit ang email sa epondo.co@gmail.com)</h6>
+                            @endif
                         @if($order->status == 4)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Ongoing </span> </h5>
                             <hr>
@@ -131,6 +141,7 @@
                             <a class="btn btn-warning btn-block">View Invoice & Pay</a>
                             <h4 style="font-weight:bolder;margin-top:20px;">Jobseeker</h4>
                             <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> Please wait 1-3 days as we process the payment. We will notify you immediately once payment is successful. Thank you! </h6>
+                            <h6 class="j_tag_trans">(Maghintay lamang ng 1-3 araw para sa pag proceso ng bayad. Kapag na proceso na ng buo ang bayad, agad-agad namin kayong sasabihan. Maraming Salamat.)</h6>
                         @endif
                         @if($order->status == 6)
                             <h4 style="font-weight:bolder;">Backer</h4>
@@ -152,13 +163,15 @@
                                     <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
                                     <hr>
                                     <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> Service Order Delivered & Payment Successful. To view your Earnings, go to your "Earnings" Tab. <br><br> Please provide Feedback & Rating to Complete the Service Order. </h6>
-                                    <button class="btn-feedback btn btn-block mb-75" style="background-color: blueviolet;color:white;"> Add Feedback & Rating </button>   
+                                    <h6 class="j_tag_trans mb-2">(Kumpleto na and iyong Service Order at natanggap na ang kabuuang bayad. Maari iyong makita ang mga natanggap na bayad sa "Earnings" Tab. Palala na magbigay ng iyong puna at marka upang maikompleto and service order, pindutin lamang ang "Submit Feedback & Rating")</h6>
+                                    <button class="btn-feedback btn btn-block mb-75" style="background-color: blueviolet;color:white;"> Submit Feedback & Rating </button>   
                                 @endif
                                 
                                 @if($order->hasjobseekerfeedback)
                                     <h5 style="font-weight:bolder;"> Status : <span style="color:mediumorchid"> Processing Backer's Feedback & Rating </span> </h5>
                                     <hr>
                                     <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> Currently processing Backer's Feedback & Rating. We will notify you immediately once finished. Thank you! <br><br> Payment Successful! To view your Earnings, go to your "Earnings" Tab.</h6>
+                                    <h6 class="j_tag_trans">(Kasalukuyang prinoproceso ang puna at marka ng iyong customer. Aabisuhan namin kayo agad kung ito ay natapos na. Salamat! Matagumpay ang pagproceso ng kabuuang bayad, maari itong makita sa "Earnings" Tab)</h6>
                                 @endif
                         @endif
                         @if($order->status == 7)
@@ -166,6 +179,7 @@
                             <hr>
                             <h6 style="color:limegreen;font-weight:bolder;text-align:center;margin-bottom:10px;">CONGRATULATIONS!</h6>
                             <h6 style="font-size:12px; margin-bottom:20px;">Service Order Complete! On behalf of the whole ePondo Team, we would like to thank you for using our platform. We hope that you can continue to support ePondo. Thank you!</h6>
+                            <h6 class="j_tag_trans">                        (Kumpleto na ang iyong Service Order! Mula sa buong ePondo, kami ay nagpapasalamat sa paggamit ng among plataporma. Umaasa kami na patuloy parin kayo magsusuporta sa ePondo. Maraming Salamat!)</h6>
                         @endif
                         @if($order->status == 8)
                             <h5 style="font-weight:bolder;"> Status : <span style="color:crimson"> Cancelled </span> </h5>
@@ -175,6 +189,7 @@
                             Reason : {{$cancel->reason}}
                             </button>
                             <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;">Service Order Cancelled. We are sorry to hear that your service order has been cancelled. If you have concerns & feedback please email us at <span style="font-weight:bold;text-decoration:underline;">epondo.co@gmail.com</span> </h6>
+                            <h6 class="j_tag_trans">(Ikinalulungkot namin malaman na hindi natuloy ang service order, it ay cinancel. Kung merong kayong katanungan, puna o pagaalala maari niyo kaming kontakin gamit ang email sa epondo.co@gmail.com)</h6>
                         @endif
                 </div>
             </div>       

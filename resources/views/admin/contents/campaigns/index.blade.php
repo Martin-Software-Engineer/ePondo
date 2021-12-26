@@ -42,16 +42,36 @@
             <table class="campaigns-list-table table">
                 <thead>
                     <tr>
-                        <th></th>
+                        <!-- <th></th>
                         <th>Campaign ID</th>
                         <th>Username</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
                         <th>Jobseeker ID</th>
+                        <th>Campaign Status</th>
                         <th>Campaign Title</th>
                         <th>Campaign category</th>
                         <th>Target Date</th>
                         <th>Target Amount</th>
                         <th>Amount Raised</th>
+                        <th class="cell-fit">Actions</th> -->
+                        <th></th>
+                        <th>Campaign ID</th>
+                        <th>Title</th>
+                        <th>Target Date</th>
+                        <th>Target Amount</th>
+                        <th>Amount Raised</th>
+                        <th>Jobseeker ID</th>
+                        <th>Jobseeker Status</th>
                         <th class="cell-fit">Actions</th>
+
+                        <!-- ID
+                        Title
+                        Target Date
+                        Target Amount
+                        Amount Raised
+                        Jobseeker ID
+                        Status -->
                     </tr>
                 </thead>
             </table>

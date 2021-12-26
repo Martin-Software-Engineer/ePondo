@@ -74,7 +74,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','verified','auth.is-a
     Route::resource('service-orders', 'Admin\ServiceOrdersController');
 
     
+    Route::post('invoice/{id}', 'Admin\InvoicesController@update')->name('invoice.update');
     Route::resource('invoice', 'Admin\InvoicesController');
+    
     Route::resource('ratings', 'Admin\RatingsController');
     Route::resource('rewards', 'Admin\RewardsController');
 

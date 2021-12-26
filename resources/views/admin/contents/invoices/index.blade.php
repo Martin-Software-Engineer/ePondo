@@ -42,6 +42,7 @@
                         <th>Jobseeker ID</th>
                         <th>Backer Name</th>
                         <th>Backer ID</th>
+                        <th>Status</th>
                         <th>Service Title</th>
                         <th>Serivce Order No.</th>
                         <th>Service Category</th>

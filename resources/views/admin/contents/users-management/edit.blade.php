@@ -43,7 +43,7 @@
                                             <label for="password">Password</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+                                            <input type="password" id="password" class="form-control" name="password" placeholder="Password" >
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                             <label for="confirm_password">Confirm Password</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="password" id="confirm_password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
+                                            <input type="password" id="confirm_password" class="form-control" name="password_confirmation" placeholder="Confirm Password" >
                                         </div>
                                     </div>
                                 </div>
@@ -75,6 +75,46 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="text" id="lastname" class="form-control" name="lastname" placeholder="Lastname" value="{{$user->information->lastname}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <label for="address">Address</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="address" class="form-control" name="address" placeholder="" value="{{$user->information->address}}">
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <label for="phone">Phone/Contact No.</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="phone" class="form-control" name="phone" placeholder="" value="{{$user->information->phone}}">
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <label for="birthdate">Birthdate <span style="font-size:8px;">(For Jobseekers Only)</span></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="date" id="birthdate" class="form-control" name="birthdate" placeholder="" value="{{$user->information->birthdate}}">
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label">
+                                            <label for="zipcode">Zip Code/ Postal Code</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="zipcode" class="form-control" name="zipcode" placeholder="" value="{{$user->information->zipcode}}">
                                         </div>
                                     </div>
                                 </div>

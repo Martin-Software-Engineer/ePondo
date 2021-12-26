@@ -191,6 +191,8 @@
                     Reason : {{$cancel->reason}}
                     </button>
                     <h6 style="font-size:12px; margin-bottom:20px;margin-top:20px;font-weight:400;">Service Order Cancelled. We are sorry to hear that your service order has been cancelled. If you have concerns & feedback please email us at <span style="font-weight:bold;text-decoration:underline;">epondo.co@gmail.com</span> </h6>
+                    <hr class="mt-2">
+                    <a href="/chats/?contact_id={{$order->service->jobseeker->id}}" class="btn btn-primary btn-block ">Contact Jobseeker</a>
                 </div>
             </div>
             @endif
@@ -345,17 +347,20 @@
                                 location.reload();
                             }, 2000)
                         }
-                        if(resp.error){
-                            $('#cancel-modal').modal('hide');
+                        else{
                             toastr['error'](resp.msg, 'Error!', {
                                 closeButton: true,
                                 tapToDismiss: false
                             });
-                            
-                            setTimeout(function(){
-                                location.reload();
-                            }, 2000)
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $.each(xhr.responseJSON.errors, function(key, text) {
+                            toastr['error'](text[0], 'Error!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+                        });
                     }
                 });
             });

@@ -20,6 +20,7 @@ $(function() {
                 { data: 'jobseeker_id' },
                 { data: 'backer_name' },
                 { data: 'backer_id' },
+                { data: 'status' },
                 { data: 'service_title' },
                 { data: 'order_id' },
                 { data: 'service_categories' },
@@ -36,7 +37,7 @@ $(function() {
                     }
                 },
                 {
-                    targets: 6,
+                    targets: 7,
                     render: function(data, type, row) {
                         if (row.service_title.length > 20) {
                             return row.service_title.substring(0, 20) + '...';
@@ -47,7 +48,7 @@ $(function() {
                     }
                 },
                 {
-                    targets: 8,
+                    targets: 9,
                     render: function(data, type, row) {
                         var $elArray = [];
                         $.each(row.service_categories, function(index, category) {
@@ -55,6 +56,51 @@ $(function() {
                         });
 
                         return $elArray.join();
+                    }
+                },
+                {
+                    targets: 6,
+                    render: function(data, type, row) {
+                        if(row.status == 1){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-info" style="">Ongoing</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else if (row.status == 2){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-warning">Pending Payment</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else if (row.status == 3){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-success">Paid</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else if (row.status == 4){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-danger">Cancelled</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else{
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-dark">Error Status</span>
+                                </div>
+                                `
+                            );
+                        }
                     }
                 },
                 {
@@ -66,6 +112,7 @@ $(function() {
                         return (
                             `<div class="d-flex align-items-center col-actions">
                               <a class="mr-1 btn btn-sm btn-primary" href="/admin/invoice/${full.id}">Details</a>
+                              <a class="mr-1 btn-edit" href="/admin/invoice/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
                             </div>
                             `
                         );
@@ -100,7 +147,7 @@ $(function() {
                     display: $.fn.dataTable.Responsive.display.modal({
                         header: function(row) {
                             var data = row.data();
-                            return 'Details of Campaign Donation #' + data.id;
+                            return 'Details of Invoice # ' + data.invoice_id;
                         }
                     }),
                     type: 'column',

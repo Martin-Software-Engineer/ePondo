@@ -9,13 +9,13 @@
         </div>
          <div class="col-sm-12">
             <div class="row">
-               <div class="just">ePondo is a Rewards Crowdfunding Platform. The goal of ePondo is to create a space where Filipinos can 
-               fundraise for their desired campaigns and also support their livelihood by also providing services. ePondo operates on a 
-               Web-based application that can be accessed on your preferred web browser. The web-based application caters to two 
-               specific users which are the jobseekers and the backers or customers. The jobseekers are users that are looking to 
-               fundraise and provide their services on the platform. The backers/customers on the other hand are users that support the 
-               campaigns through donations or avail the different services posted by the jobseekers.  Rewards are given to jobseekers as 
-               they progress along the web-application and unlock the different reward tiers. To learn more how ePondo works, please continue reading.
+               <div class="just">ePondo is a Rewards Crowdfunding Platform. The goal of ePondo is to create a space where Filipinos can fundraise
+                   for their desired campaigns and support their livelihood by providing services. ePondo operates on a Web-based application that
+                    can be accessed on your preferred web browser. The web-based application caters to two specific users which are the jobseekers
+                     and backers. The "Jobseekers" are users looking to fundraise and provide their services on the platform. The ""Backers" on
+                      the other hand are users that support the campaigns through monetary donations or avail services posted by the jobseekers. The 
+                      integration of a rewards model allows jobseekers to merit rewards per completed service order. To learn more how ePondo works,
+                       please continue reading.
                </div>
             </div>
          </div>
@@ -25,7 +25,7 @@
          </div>
          <div class="col-sm-10">
             <h1>What is Rewards Crowdfunding ?</h1>
-            <div class="just">Rewards Crowdfunding as the term states consists of two words which are rewards and crowdfunding. Reward 
+            <div class="just">Rewards Crowdfunding as the term states consists of two words which are 'rewards' and 'crowdfunding'. Reward 
             is any form of recognition that is given in leu of someone’s action. Crowdfunding is the practice by which one raises many 
             small amounts of monetary support from a large number of people. ePondo is all about the “bayanihan” Filipino trait, helping 
             one another. Therefore, ePondo created a unique rewards system that enables Jobseekers to be rewarded as they progress through

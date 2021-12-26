@@ -110,6 +110,7 @@ class OrdersController extends Controller
             'date_due' => $date_due,
             'transaction_fee' => $transaction_fee,
             'processing_fee' => $processing_fee,
+            'add_charges' => 0,
             'total' => $price + $transaction_fee + $processing_fee
         ]);
 
@@ -193,7 +194,7 @@ class OrdersController extends Controller
             $backer->notify(new OrderCompletedCODNotification($order));
 
             Mail::to($backer->email)->queue(new SendMail('emails.backer.order-completeCOD-mail', [
-                'subject' => 'Payment Successful',
+                'subject' => 'Service Order Delivered & Payment Received',
                 'order_id' => $order_id,
                 'invoice_id' => $invoice_id,
                 'backer_name' => $backer_name,
@@ -206,7 +207,7 @@ class OrdersController extends Controller
                 'payment_method' => $order->details->payment_method
             ]));
             Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-completeCOD-mail', [
-                'subject' => 'Payment Successful',
+                'subject' => 'Service Order Delivered & Payment Received',
                 'order_id' => $order_id,
                 'invoice_id' => $invoice_id,
                 'price' => $order->service->price,

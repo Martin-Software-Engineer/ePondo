@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <!-- <meta name="msapplication-TileImage" content="{{asset('/app-assets/images/logo/ms-icon-144x144.png')}}"> -->
+    <meta name="msapplication-TileImage" content="{{asset('/app-assets/images/logo/ms-icon-144x144.png')}}">
     <meta name="theme-color" content="#ffffff">
 
     <link rel="manifest" href="/manifest.json">

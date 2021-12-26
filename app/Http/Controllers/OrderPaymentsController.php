@@ -175,7 +175,8 @@ class OrderPaymentsController extends Controller
                     'delivery_address' => $delivery_address,
                     'service_title' => $service_title,
                     'amount' => $transaction->amount,
-                    'paid_at' => $transaction->paid_at
+                    'paid_at' => $transaction->paid_at,
+                    'payment_method' => $order->details->payment_method
                 ]));
 
                 Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-payment-mail', [
@@ -186,7 +187,8 @@ class OrderPaymentsController extends Controller
                     'service_title' => $service_title,
                     'delivery_address' => $delivery_address,
                     'render_date' => $render_date,
-                    'backer_name' => $backer_name
+                    'backer_name' => $backer_name,
+                    'payment_method' => $order->details->payment_method
                 ]));
                 
             }

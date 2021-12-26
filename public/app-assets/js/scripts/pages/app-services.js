@@ -16,11 +16,11 @@ $(function() {
                 // columns according to JSON
                 { data: 'id' },
                 { data: 'service_id' },
-                { data: 'jobseeker_name' },
                 { data: 'jobseeker_id' },
                 { data: 'title' },
                 { data: 'category' },
                 { data: 'duration' },
+                { data: 'status' },
                 { data: '' }
             ],
             columnDefs: [{
@@ -55,6 +55,36 @@ $(function() {
                     }
                 },
                 {
+                    targets: 6,
+                    render: function(data, type, row) {
+                        if(row.status == 1){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-info" style="background-color:limegreen">Available</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else if (row.status == 2){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-danger">Deleted</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else{
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-warning">Error Status</span>
+                                </div>
+                                `
+                            );
+                        }
+                        
+                    }
+                },
+                {
                     // Actions
                     targets: -1,
                     width: '80px',
@@ -62,6 +92,7 @@ $(function() {
                     render: function(data, type, full, meta) {
                         return (
                             `<div class="d-flex align-items-center col-actions">
+                              <a class="mr-1 btn-edit" href="/admin/services/${full.id}" data-toggle="tooltip" data-placement="top" title="Details">${feather.icons['eye'].toSvg({ class: 'font-medium-2' })}</a>  
                               <a class="mr-1 btn-edit" href="/admin/services/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
                               <a class="mr-1 btn-delete" href="javascript:void(0);" data-toggle="tooltip" data-id="${full.id}" data-placement="top" title="Delete">${feather.icons['delete'].toSvg({ class: 'font-medium-2' })}</a>
                             </div>
@@ -98,7 +129,7 @@ $(function() {
                     display: $.fn.dataTable.Responsive.display.modal({
                         header: function(row) {
                             var data = row.data();
-                            return 'Details of Campaign Donation #' + data.id;
+                            return 'Details of Services #' + data.service_id;
                         }
                     }),
                     type: 'column',

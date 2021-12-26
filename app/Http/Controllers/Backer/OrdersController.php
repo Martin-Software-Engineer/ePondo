@@ -114,7 +114,8 @@ class OrdersController extends Controller
             'payment_method' => $order->details->payment_method,
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee,
+            'add_charges' => $order->invoice->add_charges,
+            'total' => $order->invoice->total,
             'invoice_status'  => $order->invoice->status
         ];
         
@@ -127,10 +128,21 @@ class OrdersController extends Controller
 
     public function cancel(Request $request){
 
+        $request->validate(['reason' => 'required|string|max:500']);
         $order = Order::find($request->order_id);
 
 
-        $request->validate(['reason' => 'required|string|max:500']);
+        // $request->validate(['reason' => 'required|string|max:500']);
+
+        // $request->validate(['reason' => 'required|string|max:500']);
+        
+        // $order = Order::where('id',$request->order_id)->with('service')->first();
+
+        // if(!$order)
+        //     abort(404, 'Page not found.');
+
+        // if($order->service->jobseeker->id != auth()->user()->id)
+        //     abort(403, 'Unauthorized action.');
         
         $order = Order::find($request->order_id);;
         // ERROR $order

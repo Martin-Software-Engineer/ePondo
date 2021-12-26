@@ -192,10 +192,23 @@
                         </div>
                         <div style=" align-items: flex-end;">
                             <h1 style="text-align:center;font-weight:bold;">INVOICE</h1>
-                            <p class="card-text mb-0"> <span style="margin-right:40px;font-weight:500">Date Issued : </span> {{$date_issued}}</p>
-                            <p class="card-text mb-0"> <span style="margin-right:50px;font-weight:500">Invoice No : </span>  {{$invoice_no}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:50px;font-weight:500">Invoice No : </span> {{$invoice_no}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:55px;font-weight:500">Due Date : </span> {{$date_due}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:85px;font-weight:500">Status : </span>
+                                @if($invoice_status ==1 )
+                                Ongoing
+                                @elseif($invoice_status ==2 )
+                                Pending Payment
+                                @elseif($invoice_status ==3 )
+                                Paid
+                                @elseif($invoice_status ==4 )
+                                Cancelled
+                                @endif
+                            </p>
+                            <p class="card-text mb-0"> <span style="font-weight:500">Payment Method : </span> {{$payment_method}}</p>
                             <p class="card-text mb-0"> <span style="margin-right:4px;font-weight:500">Service Order No : </span>  {{$order_no}}</p>
-                            <p class="card-text mb-0"> <span style="margin-right:55px;font-weight:500">Due Date : </span>  {{$date_due}}</p>
+                            <p class="card-text mb-0"> <span style="margin-right:45px;font-weight:500">Date Issued : </span> {{$date_issued}}</p>
+                            
                         </div>
                     </div>
                     <!-- Header ends -->
@@ -274,6 +287,9 @@
                             <p class="card-text" style="font-size:12px; margin:10px 10px 10px 10px;">
                                     <strong>Location : </strong>{{$delivery_address}}
                             </p>
+                            <p class="card-text" style="font-size:12px; margin:10px 10px 10px 10px;">
+                                    <strong>Delivery Date : </strong>{{$order_date}}
+                            </p>
                         </div>
                         <div style="border: 2px solid rgb(235, 228, 228);width:50%">
                             <div style="text-align:center;background-color:rgb(235, 228, 228);padding:5px 0;">
@@ -289,11 +305,13 @@
                             <h6>Sub-Total : </h6>
                             <h6>Transaction Fee 7% : </h6>
                             <h6>Processing Fee 3% : </h6>
+                            <h6>Added Charges : </h6>
                         </div>
                         <div style="text-align:right;margin:0 20px 0 10px">
                             <h6>{{$service->price}}</h6>
                             <h6>{{$transaction_fee}}</h6>
                             <h6>{{$processing_fee}}</h6>
+                            <h6>{{$add_charges}}</h6>
                         </div>
                     </div>
                     <div class="d-flex" style="display:flex;justify-content:flex-end;align-items:flex-end;">

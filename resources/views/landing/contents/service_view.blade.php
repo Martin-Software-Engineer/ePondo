@@ -259,10 +259,11 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-                        <div class="card">
+                        <div class="card ">
                             <!-- <div class="card-header">About Service</div> -->
                             <div class="card-body c_summary_area">
-                                {{$service->description}}
+                                <!-- {{$service->description}} -->
+                                <textarea cols="30" rows="15" class="form-control c_summary" style="border:none; outline:none;">{{$service->description}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -584,6 +585,87 @@
         </div>
         <!-- Campaign Tiles - End -->
     </div>
+    
+    @forelse($services as $other)
+        @if ($loop->first)
+        <div class="container mb-4">
+            <div class="row pt-4">
+                <div class="col-sm-12">
+                    <h1 class="news_taital">Avail My Other Services</h1>
+                </div>
+            </div>
+            <div class="row">
+            @endif
+                <div class="col-sm-3 pt-4">
+                    <!-- Service Tiles - Start -->
+                    <div class="campaign_tile" style="box-shadow: 0 0.5rem 1.5rem 0 #e4dede;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="c_img">
+                                        <a href="{{route('service_view', $other->id)}}">
+                                            <img class="c_img" src="{{$other->thumbnail_url != '' ? $other->thumbnail_url : asset('app-assets/images/pages/no-image.png')}}" >
+                                        </a>
+                                    </div>                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="{{route('service_view', $other->id)}}" class="stretched-link"><h1 class="card_s_title overflow-ellipsis">{{$other->title}}</h1>
+                                    <p class="card_s_category overflow-ellipsis">
+                                    @foreach($other->categories as $category)
+                                    <span class="badge badge-info" style="background-color:#120a78;font-size:10px;">{{$category->name}}</span> @if(!$loop->last)@endif
+                                    @endforeach
+                                    </p>
+                                    <div class="row-md-12 s_img_jname">
+                                        <div class="col-md-12 s_jname_spacing">
+                                            <h3 class="s_j_name overflow-ellipsis" style="width:100%">By: {{@$other->jobseeker->userinformation->firstname}} {{@$other->jobseeker->userinformation->lastname}}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row-md-12 s_img_jname" style="align-items:center;">
+                                        @if($other->ratings > 0)
+                                        <div class="s_image">
+                                            @for($i = 0; $i < $other->ratings; $i++)
+                                            <img class="s_image_star" src="{{asset('app-assets/images/additional_pictures/star_1.png')}}">
+                                            @endfor
+                                        </div>
+                                        <h3 class="s_j_name ml-2" style="font-size:9px;text-align:center;align-items:center;">({{$other->ratings}})</h3>
+                                        @else
+                                        <h3 class="s_j_name" style="font-weight:300;font-size:9px;" >(No Rating)</h3>
+                                        @endif
+                                    </div>
+                                    
+                                    <hr class="hr_m_2">
+                                    <div class="c_card_c_desc">{{$other->description}}</div>
+                                    
+                                    <div>
+                                        <h3 class="card_s_loc"><strong>Location:</strong> {{$other->location}}</h3>
+                                    </div>
+                                    <div>
+                                    <h3 class="card_s_loc"><strong>Duration:</strong>
+                                        @if( $other->duration_hours > 1 ) {{$other->duration_hours}} Hrs @elseif( $other->duration_hours == 0 )  @else {{$other->duration_hours}} Hr @endif
+                                        @if( $other->duration_minutes > 1 ) {{$other->duration_minutes}} Mins @elseif( $other->duration_minutes == 0 )  @else {{$other->duration_minutes}} Min @endif
+                                    </h3>
+                                    </div>
+                                    <h5 class="service_price">₱{{$other->price}}</h5></a>
+                                    <div class="service_btn_main mt-0">
+                                        <div class="service_btn_1"><a href="{{route('service_view', $other->id)}}">Avail</a></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Service Tiles - End -->
+                </div>
+                
+        @if ($loop->last)
+            </div>
+        </div>
+        @endif
+
+        @empty
+    
+    @endforelse
+    <!-- Service Tiles - End -->
 </div> 
 @endsection
 
@@ -669,7 +751,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Service Delivery Location (Location where service will be rendered/delivered)</label>
-                                    <select name="delivery_address" id="delivery_address" class="form-control">
+                                    <input type="text" name="delivery_address" id="delivery_address" class="form-control">
+                                    <!-- <select name="delivery_address" id="delivery_address" class="form-control">
                                         @foreach($regions as $region)
                                             <optgroup label="{{$region->name}}">
                                                 @foreach($region->cities as $city)
@@ -677,7 +760,7 @@
                                                 @endforeach
                                             </optgroup>
                                         @endforeach
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>   
                         </div>

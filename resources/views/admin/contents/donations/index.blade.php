@@ -34,11 +34,14 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Campaign Donation ID</th>
-                        <th>Backer Name</th>
-                        <th>Backer Email</th>
-                        <th>Backer Message</th>
-                        <th>Donation Amount</th>
+                        <th>CD ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th class="cell-fit">Actions</th>
                     </tr>
                 </thead>
             </table>

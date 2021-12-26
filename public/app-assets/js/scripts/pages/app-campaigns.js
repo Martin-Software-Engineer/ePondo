@@ -16,13 +16,12 @@ $(function() {
                 // columns according to JSON
                 { data: 'id' },
                 { data: 'campaign_id' },
-                { data: 'jobseeker_name' },
-                { data: 'jobseeker_id' },
                 { data: 'title' },
-                { data: 'categories' },
                 { data: 'target_date' },
                 { data: 'target_amount' },
                 { data: 'amount_raised' },
+                { data: 'jobseeker_id' },
+                { data: 'status' },
                 { data: '' }
                 
             ],
@@ -36,27 +35,57 @@ $(function() {
                     }
                 },
                 {
-                    targets: 4,
+                    targets: 7,
+                    render: function(data, type, row) {
+                        if(row.status == 1){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-info" style="background-color:limegreen">Ongoing</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else if (row.status == 2){
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-danger">Deleted</span>
+                                </div>
+                                `
+                            );
+                        }
+                        else{
+                            return (
+                                `<div class="d-flex align-items-center col-actions">
+                                    <span class="badge badge-warning">Error Status</span>
+                                </div>
+                                `
+                            );
+                        }
+                        
+                    }
+                },
+                {
+                    targets: 2,
                     className: 'table-campaign-title',
                     render: function(data, type, row) {
-                        if (row.title.length > 20) {
-                            return row.title.substring(0, 20) + '...';
+                        if (row.title.length > 40) {
+                            return row.title.substring(0, 40) + '...';
                         } else {
                             return row.title;
                         }
                     }
                 },
-                {
-                    targets: 5,
-                    render: function(data, type, row) {
-                        var $elArray = [];
-                        $.each(row.categories, function(index, category) {
-                            $elArray.push(`<span class="badge badge-primary">${category.name}</span>`);
-                        });
+                // {
+                //     targets: 8,
+                //     render: function(data, type, row) {
+                //         var $elArray = [];
+                //         $.each(row.categories, function(index, category) {
+                //             $elArray.push(`<span class="badge badge-primary">${category.name}</span>`);
+                //         });
 
-                        return $elArray.join('');
-                    }
-                },
+                //         return $elArray.join('');
+                //     }
+                // },
                 {
                     // Actions
                     targets: -1,
@@ -65,7 +94,8 @@ $(function() {
                     render: function(data, type, full, meta) {
                         return (
                             `<div class="d-flex align-items-center col-actions">
-                              <a class="mr-1 btn-edit" href="/admin/campaigns/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
+                                <a class="mr-1 btn-edit" href="/admin/campaigns/${full.id}" data-toggle="tooltip" data-placement="top" title="Details">${feather.icons['eye'].toSvg({ class: 'font-medium-2' })}</a>  
+                                <a class="mr-1 btn-edit" href="/admin/campaigns/${full.id}/edit" data-toggle="tooltip" data-placement="top" title="Edit">${feather.icons['edit-2'].toSvg({ class: 'font-medium-2' })}</a>
                               <a class="mr-1 btn-delete" href="javascript:void(0);" data-toggle="tooltip" data-id="${full.id}" data-placement="top" title="Delete">${feather.icons['delete'].toSvg({ class: 'font-medium-2' })}</a>
                             </div>
                             `
@@ -101,7 +131,7 @@ $(function() {
                     display: $.fn.dataTable.Responsive.display.modal({
                         header: function(row) {
                             var data = row.data();
-                            return 'Details of ' + data.title;
+                            return 'Details of ' + data.campaign_id;
                         }
                     }),
                     type: 'column',

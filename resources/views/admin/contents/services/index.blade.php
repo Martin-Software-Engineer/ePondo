@@ -44,11 +44,11 @@
                     <tr>
                         <th></th>
                         <th>Services ID</th>
-                        <th>Username</th>
                         <th>Jobseeker ID</th>
                         <th>Service Title</th>
                         <th>Service category</th>
                         <th>Duration of Service</th>
+                        <th>Status</th>
                         <th class="cell-fit">Actions</th>
                     </tr>
                 </thead>

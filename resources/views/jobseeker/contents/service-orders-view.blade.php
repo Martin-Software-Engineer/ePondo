@@ -69,7 +69,7 @@
         <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
 
             @if($order->status == 1)
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
                     <h5 style="font-weight:bolder;"> Status : <span style="color:lightskyblue"> Pending Request </span> </h5>
                     <hr>
@@ -82,6 +82,11 @@
                     <button type="button" class="btn-decline btn btn-danger btn-block " data-toggle="modal" data-target="#decline-modal">
                         Decline
                     </button>
+                </div>
+            </div>                    
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a href="/chats/?contact_id={{$order->backer->id}}" class="btn btn-primary btn-block ">Contact Backer</a>
                 </div>
             </div>                    
             @endif
@@ -108,6 +113,11 @@
                         @endif
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="/chats/?contact_id={{$order->backer->id}}" class="btn btn-primary btn-block ">Contact Backer</a>
+                </div>
+            </div>  
             <div class="card mb-4">
                 <div class="card-body">
                     <button type="button" class="btn-cancel btn btn-danger btn-block " data-toggle="modal" data-target="#cancel-modal">
@@ -118,7 +128,7 @@
             @endif
 
             @if($order->status == 3)
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
                     <h5 style="font-weight:bolder;"> Status : <span style="color:crimson"> Declined </span> </h5>
                     <hr>
@@ -127,6 +137,8 @@
                     </button>
                     <h6 style="font-size:12px; margin-top:20px; font-weight:400;">Service Order Declined. We are sorry to hear that you declined the service order request. If you have concerns & feedback please email us at <span style="font-weight:bold;text-decoration:underline;font-style:italic;">epondo.co@gmail.com</span> </h6>
                     <h6 class="j_tag_trans">(Ikinalulungkot namin malaman na hindi niyo tinaggap ang service order request. Kung merong kayong katanungan, puna o pagaalala maari niyo kaming kontakin gamit ang email sa epondo.co@gmail.com)</h6>
+                    <hr>
+                    <a href="/chats/?contact_id={{$order->backer->id}}" class="btn btn-primary btn-block ">Contact Backer</a>
                 </div>
             </div>
             @endif
@@ -137,6 +149,8 @@
                     <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Ongoing </span> </h5>
                     <hr>
                     <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> Service Order is Ongoing  </h6>
+                    <hr>
+                    <a href="/chats/?contact_id={{$order->backer->id}}" class="btn btn-primary btn-block ">Contact Backer</a>
                 </div>
             </div>
             @endif
@@ -146,13 +160,15 @@
                     <h5 style="font-weight:bolder;"> Status : <span style="color:#FFC107"> Pending Payment </span> </h5>
                     <hr>
                     <h6 style="font-size:12px; margin-bottom:20px;font-weight:400;"> Please wait 1-3 days as we process the payment. We will notify you immediately once payment is successful. Thank you! </h6>
-                    <h6 class="j_tag_trans">(Ikinalulungkot namin malaman na hindi niyo tinaggap ang service order request. Kung merong kayong katanungan, puna o pagaalala maari niyo kaming kontakin gamit ang email sa epondo.co@gmail.com)</h6>
+                    <h6 class="j_tag_trans">(Maghintay lamang ng 1-3 araw para sa pag proceso ng bayad. Kapag na proceso na ng buo ang bayad, agad-agad namin kayong sasabihan. Maraming Salamat.)</h6>
+                    <hr>
+                    <a href="/chats/?contact_id={{$order->backer->id}}" class="btn btn-primary btn-block ">Contact Backer</a>
                 </div>
             </div>
             @endif
 
             @if($order->status == 6)
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
                     @if(!$order->hasjobseekerfeedback)
                         <h5 style="font-weight:bolder;"> Status : <span style="color:darkmagenta"> Pending Feedback & Rating </span> </h5>
@@ -171,10 +187,15 @@
                     @endif
                 </div>
             </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a href="/chats/?contact_id={{$order->backer->id}}" class="btn btn-primary btn-block ">Contact Backer</a>
+                </div>
+            </div>
             @endif
 
             @if($order->status == 7)
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
                     <h5 style="font-weight:bolder;"> Status : <span style="color:limegreen"> Completed </span> </h5>
                     <hr>
@@ -183,9 +204,14 @@
                     <h6 class="j_tag_trans">                        (Kumpleto na ang iyong Service Order! Mula sa buong ePondo, kami ay nagpapasalamat sa paggamit ng among plataporma. Umaasa kami na patuloy parin kayo magsusuporta sa ePondo. Maraming Salamat!)</h6>
                 </div>
             </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a href="/chats/?contact_id={{$order->backer->id}}" class="btn btn-primary btn-block ">Contact Backer</a>
+                </div>
+            </div>
             @endif
             @if($order->status == 8)
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
                     <h5 style="font-weight:bolder;"> Status : <span style="color:red"> Cancelled </span> </h5>
                     <hr>
@@ -194,6 +220,12 @@
                         Reason : {{$cancel->reason}}
                         </button>
                     <h6 style="font-size:12px; margin-bottom:20px;margin-top:20px;font-weight:400;">Service Order Cancelled. We are sorry to hear that your service order has been cancelled. If you have concerns & feedback please email us at <span style="font-weight:bold;text-decoration:underline;">epondo.co@gmail.com</span> </h6>
+                    <h6 class="j_tag_trans">(Ikinalulungkot namin malaman na hindi natuloy ang service order, it ay cinancel. Kung merong kayong katanungan, puna o pagaalala maari niyo kaming kontakin gamit ang email sa epondo.co@gmail.com)</h6>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a href="/chats/?contact_id={{$order->backer->id}}" class="btn btn-primary btn-block ">Contact Backer</a>
                 </div>
             </div>
             @endif
@@ -221,6 +253,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="service_feedback"> <b>How would you rate the overall experience of your service order with the backer/customer ?</b> </label>
+                                <span class="j_tag_trans">(Kamusta ang iyong karansan sa service order kabilang ang iyong backer/customer ?)</span>
                                 <div class="demo-inline-spacing">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" class="custom-control-input" name="service_rating" value="1" id="customCheckSR1">
@@ -246,11 +279,13 @@
                             </div>
                             <div class="form-group">
                             <label for="service_feedback"> <b>Please provide feedback regarding your service order & backer.</b> </label>
+                            <span class="j_tag_trans"><br>(Magbigay ng iyong puna/komento ukol sa service order at backer/customer)</span>
                             <textarea name="service_feedback" id="service_feedback" cols="30" rows="6" class="form-control" placeholder="Input feedback here ..."></textarea>
                             </div>
                            
                             <div class="form-group">
                                 <label for="category"> <b>How would you rate the overall experience with ePondo ?</b> </label>
+                                <span class="j_tag_trans"><br>(Kamusta ang iyong karansan sa paggamit ng ePondo ?)</span>
                                 <div class="demo-inline-spacing">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" class="custom-control-input" name="platform_rating" value="very-good" id="customCheck1">
@@ -273,6 +308,7 @@
 
                             <div class="form-group">
                             <label for="platform_message"> <b>Please provide feedback regarding your experience with ePondo. </b> </label>
+                            <span class="j_tag_trans"><br>(Magbigay ng iyong puna/komento ukol sa paggamit ng ePondo web-application)</span>
                                 <textarea name="platform_message" id="platform_message" cols="30" rows="5" class="form-control" placeholder="Input feedback here ..."></textarea>
                             </div>
 

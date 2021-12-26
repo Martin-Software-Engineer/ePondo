@@ -9,7 +9,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{asset('/app-assets/images/logo/ms-icon-144x144.png')}}">
     <meta name="theme-color" content="#ffffff">
-
     <link rel="manifest" href="/manifest.json">
     <!-- App favicon -->
     <link rel="icon" href="{{asset('app-assets/images/additional_pictures/logo2.png')}}" type="image/gif" />

@@ -10,6 +10,7 @@ use App\Models\Photo;
 use App\Mail\SendMail;
 use App\Helpers\System;
 use App\Models\Campaign;
+use App\Models\Donation;
 use App\Helpers\GiveReward;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -17,10 +18,12 @@ use App\Models\CampaignCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaign;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Requests\UpdateCampaign;
 
+use App\Http\Requests\UpdateCampaign;
 use App\Http\Resources\Campaigns as ResourceCampaign;
 use App\Notifications\CreateCampaign as CreateCampaignNotification;
+use App\Notifications\EditCampaign as EditCampaignNotification;
+use App\Notifications\DeleteCampaign as DeleteCampaignNotification;
 
 class CampaignsController extends Controller
 {
@@ -167,7 +170,53 @@ class CampaignsController extends Controller
      */
     public function show($id)
     {
-        //
+        // $data['title'] = 'View Campaign';
+        $campaign = Campaign::where('id', $id)->with(['categories', 'jobseeker', 'photos', 'tags'])->first();
+        $data = [
+            'title' => 'View Campaign',
+            'campaign_id' => $campaign->id,
+            'campaign_no' => System::GenerateFormattedId('C', $campaign->id),
+            'campaign_title' => $campaign->title,
+            'campaign_categories' => $campaign->categories,
+            'campaign_desc' => $campaign->description,
+            'created_date' => date('F d, Y', strtotime($campaign->created_at)),
+            'target_date' => date('F d, Y', strtotime($campaign->target_date)),
+            'target_amount' => $campaign->target_amount,
+            'raised_amount' => $campaign->donations()->sum('amount'),
+            'campaign_status' => $campaign->status,
+
+            'user_id' => $campaign->jobseeker->id,
+            'jobseeker_id' => System::GenerateFormattedId('J', $campaign->jobseeker->id),
+            'jobseeker_username' => $campaign->jobseeker->username,
+            'jobseeker_firstname' => $campaign->jobseeker->information->firstname,
+            'jobseeker_lastname' => $campaign->jobseeker->information->lastname,
+            'jobseeker_email' => $campaign->jobseeker->email,
+            'jobseeker_contact' => $campaign->jobseeker->information->phone,
+
+            'donations' => $campaign->donations
+        ];
+
+        // $data['donations'] = Donation::whereHas('transactions', function($q){
+        //     $q->where('status', 'approved');
+        // })->with('backer')->get();
+
+        // <!-- Campaign No.
+        //     Status
+        //     Title
+        //     Category
+        //     Description
+        //     Created Date
+        //     Target Date
+        //     Target Amount
+        //     Raised Amount
+
+        //     Jobseeker ID
+        //     Username
+        //     FirstName
+        //     LastName
+        //     Email -->
+
+        return view('admin.contents.campaigns.show',$data);
     }
 
     /**
@@ -232,6 +281,24 @@ class CampaignsController extends Controller
             }
         }else{
             $campaign->tags()->detach();
+        }
+
+        $jobseeker = User::where('id',$campaign->user_id)->first();
+
+        if($campaign->status == 2){
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.campaign-delete-mail', [
+                'subject' => 'Campaign - Deleted',
+                'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+                'campaign' => $campaign
+            ]));
+            $jobseeker->notify(new DeleteCampaignNotification($campaign));
+        }else{
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.campaign-edit-mail', [
+                'subject' => 'Campaign - Edited Successfully',
+                'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+                'campaign' => $campaign
+            ]));
+            $jobseeker->notify(new EditCampaignNotification($campaign));
         }
 
         return response()->json(['success' => true,'msg' => trans('admin.campaign.update.success')]);

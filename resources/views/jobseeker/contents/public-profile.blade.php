@@ -16,14 +16,25 @@
             <form class="form-validate" id="form-profile" action="{{route('jobseeker.profile.update')}}">
                 @csrf
                     
-                <p class="j_prof_note"><strong>Note :</strong> 
+                <h6 class="j_prof_note"><strong>Note :</strong> 
                     The public profile is not required. But highly encouraged in order to provide your backers/customers 
                     additional information about you. This is important for campaigns so that backers are able to connect
                     with you through your life story and this can touch their hearts to support your campaigns. For services
                     this becomes important as it will contain information such us skills and work experience that can be vital
-                    to attract your customers to avail your services. You may review ePondo's Data Privacy Policy <a href="{{route('privacypolicy')}}" style="font-weight:400;">here</a>. If you have
+                    to attract your customers to avail your services. You may review ePondo's Data Privacy Policy <a href="{{route('privacypolicy')}}" style="font-weight:bolder;">here</a>. If you have
                     any additional quesitons you can contact us through epondo.co@gmail.com.
-                </p>
+                </h6>
+
+                <h6 class="j_prof_note mt-1" style="font-style:italic;font-weight:100;">
+                 (Ang public profile ay hindi kailangan, kung gayon ay opsyonal lamang. Pero ito ay lubos na hinihikayat upang
+                 mas kilalanin ka ng mga Backers/Customers mo. Ito ay importante sa iyong mga kampanya, para naway mas 
+                 kilalanin ka ng mga backer sa iyong kwento ng buhay. Sa ganitong paraan mas mauudyok mo sila na magbigay 
+                 suporta sa iyong kampanya. Para sa serbisyo, ito ay importante dahil merong impormasyon katulad ng skills 
+                 (kasanayan/kakayahan) at work experience (karanasahan sa trabaho) na mas aakitin na kunin ang iyong serbisyo. 
+                 Paalala, pwede ninyo basahin ang Polisiya tungkol sa Data Privacy ng ePondo '<a href="{{route('privacypolicy')}}" style="font-weight:bolder;">dito</a>'. Kung meron kayong katanungan pwede 
+                 niyo kami icontact sa epondo.co@gmail.com)
+                </h6>
+                
 
                 <div class="row mt-1">
                     <div class="col-12">
@@ -584,20 +595,27 @@
                 @csrf
                 <div class="row">
                 
-                <div class="col-12">
+                    <div class="col-12">
                         <h4 class="mb-1">
                             <i data-feather="edit-3" class="font-medium-4 mr-25"></i>
                             <span class="align-middle">4Ps Information (Pantawid Pamilyang Pilipino Program)</span>
                         </h4>
-                        <p class="j_prof_note mb-1"><strong>Note :</strong> 
-                            Optional. If you are a 4Ps beneficiary please fill in the following information below .You may review ePondo's Data Privacy Policy <a href="{{route('privacypolicy')}}" style="font-weight:400;">here</a>. If you have
+                        <h6 class="j_prof_note mb-1"><strong>Note :</strong> 
+                            Optional. If you are a 4Ps beneficiary please fill in the following information below .You may review ePondo's Data Privacy Policy <a href="{{route('privacypolicy')}}" style="font-weight:bolder;">here</a>. If you have
                             any additional quesitons you can contact us through epondo.co@gmail.com.
-                        </p>
+                        </h6>
+                        <h6 class="j_prof_note " style="font-style:italic;">
+                            (Opsyonal. Kapag ikaw ay isang 4Ps beneficiary pakisagutan ang mga sumusunod na tanong. Paalala, pwede ninyo basahin ang Polisiya tungkol sa Data Privacy ng ePondo '<a href="{{route('privacypolicy')}}" style="font-weight:bolder;">dito</a>'. Kung meron kayong katanungan pwede 
+                            niyo kami icontact sa epondo.co@gmail.com)
+                        </h6>
+                        <hr>
                     </div>
+
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="4psId">Upload proof of 4Ps beneficiary (ID, or any proof)</label>
+                            <label for="4psId">Upload proof of 4Ps beneficiary; ID, or any proof</label>
+                            <span class="j_tag_trans">(Upload ng katunayan na ikaw ay isang 4Ps bendiciary. Katulang na lamang ng ID or dokumento)</span>
                             <input type="file" name="4psId" class="form-control" id="4psId"/>
                         </div>
 
@@ -607,7 +625,8 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="question1">How did you acquired for 4Ps?</label>
+                            <label for="question1">How did were you acquired for 4Ps?</label>
+                            <span class="j_tag_trans">(Paano ka nagrehistro bilang isang 4Ps beneficairy ?)</span>
                             <input type="text" name="question1" class="form-control" id="question1" value="{{@$pppp->question1}}"/>
                         </div>
                     </div>
@@ -615,6 +634,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="question2">How long have you been a 4Ps beneficiary?</label>
+                            <span class="j_tag_trans">(Ilang taon ka na kabilang sa 4Ps ?)</span>
                             <select name="question2" id="question2" class="form-control">
                                 <option value="less than a year" @if(@$pppp->question2 == 'less than a year') selected @endif>less than a year</option>
                                 <option value="1 year" @if(@$pppp->question2 == '1 year') selected @endif>1 year</option>
@@ -627,7 +647,8 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="question3">How is your experience?</label>
+                            <label for="question3">How is your experience with 4Ps?</label>
+                            <span class="j_tag_trans">(Kamusta ang iyong karanasan kabilang sa 4Ps ?)</span>
                             <select name="question3" id="question3" class="form-control">
                                 <option value="Very Good" @if(@$pppp->question3 == 'Very Good') selected @endif>Very Good</option>
                                 <option value="Good" @if(@$pppp->question3 == 'Good') selected @endif>Good</option>
@@ -639,7 +660,8 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="question4">Why? (Indicate reason for your answer above)</label>
+                            <label for="question4">Why? Indicate the reason for your answer above</label>
+                            <span class="j_tag_trans">(Bakit ? Ipaliwanag and dahilan sa iyong sagot sa naunang tanong.)</span>
                             <textarea name="question4" id="question4" cols="30" rows="15" class="form-control">{{@$pppp->question4}}</textarea>
                         </div>
                     </div>

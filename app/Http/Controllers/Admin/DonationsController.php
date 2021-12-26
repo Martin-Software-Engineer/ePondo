@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Resources\Donations as ResourceDonation;
-use App\Models\Donation;
-
 use DataTables;
+use App\Helpers\System;
+use App\Models\Donation;
+use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Donations as ResourceDonation;
+
 class DonationsController extends Controller
 {
     /**
@@ -62,7 +64,23 @@ class DonationsController extends Controller
      */
     public function show($id)
     {
-        //
+        $donation = Donation::where('id',$id)->with(['campaigns', 'backer'])->first();
+        $data = [
+            'title' => 'View Campaign Donation',
+            'donation_id' => $donation->id,
+            'donation_no' => System::GenerateFormattedId('CD', $donation->id),
+            'donation_message' => $donation->message,
+            'donation_amount' => $donation->amount,
+            'donation_date' => date('F d, Y', strtotime($donation->created_at)),
+
+            'backer_firstname' => $donation->backer->information->firstname,
+            'backer_lastname' => $donation->backer->information->lastname,
+            'backer_email' => $donation->backer->email,
+
+            'campaigns' => $donation->campaigns
+        ];
+
+        return view('admin.contents.donations.show', $data);
     }
 
     /**

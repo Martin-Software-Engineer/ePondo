@@ -37,9 +37,7 @@
                     <tr>
                         <th></th>
                         <th>Service Order No.</th>
-                        <th>Jobseeker Name</th>
                         <th>Jobseeker ID</th>
-                        <th>Backer Name</th>
                         <th>Backer ID</th>
                         <th>Service Title</th>
                         <th>Service Category</th>

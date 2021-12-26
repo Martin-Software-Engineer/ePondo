@@ -62,7 +62,11 @@ class InvoicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        $order = Order::where(['id' => $id])->with(['service', 'details', 'backer', 'invoice'])->first();
+        // $order = Order::where(['id' => $id])->with(['service', 'details', 'backer', 'invoice'])->first();
+        $order = Order::whereHas('invoice', function($q) use ($id){
+            $q->where('id', $id);
+        })->with(['service', 'details', 'backer', 'invoice'])->first();
+
 
         $duration = '';
         $durationDec = $order->service->duration_hours + ($order->service->duration_minutes/60);
@@ -103,11 +107,17 @@ class InvoicesController extends Controller
                 'duration' => $duration,
                 'categories' => $order->service->categories,
             ],
+            'earned' => $order->invoice->price,
+            'payment_method' => $order->details->payment_method,
+            'invoice_status' => $order->invoice->status,
             'delivery_address' => $order->details->delivery_address,
+            'order_date' => $order->details->render_date,
             'add_charges' => [],
             'transaction_fee' => $order->invoice->transaction_fee,
             'processing_fee' => $order->invoice->processing_fee,
-            'total' => $order->service->price + $order->invoice->transaction_fee + $order->invoice->processing_fee  
+            'add_charges' => $order->invoice->add_charges,
+            'total' => $order->invoice->total,
+            'total_earned' => $order->invoice->price + $order->invoice->add_charges + $order->invoice->transaction_fee
         ];
         
         return view('admin.contents.invoices.show',$data);
@@ -121,7 +131,10 @@ class InvoicesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['title'] = 'Edit Invoice';
+        $data['invoice'] = Invoice::where('id', $id)->first();        
+        
+        return view('admin.contents.invoices.edit', $data);
     }
 
     /**
@@ -133,7 +146,24 @@ class InvoicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $invoice = Invoice::find($id);
+        $invoice->price = $request->price;
+        $invoice->add_charges = $request->add_charges;
+        $invoice->transaction_fee = $request->transaction_fee;
+        $invoice->processing_fee = $request->processing_fee;
+        $invoice->total = $request->price + $request->add_charges + $request->transaction_fee + $request->processing_fee;
+        $invoice->date_due = $request->date_due;
+        $invoice->status = $request->status;
+        $invoice->save();
+
+        // Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.campaign-delete-mail', [
+        //     'subject' => 'Campaign - Deleted',
+        //     'jobseeker_name' => $jobseeker->userinformation->firstname.' '.$jobseeker->userinformation->lastname,
+        //     'campaign' => $campaign
+        // ]));
+        // $jobseeker->notify(new DeleteCampaignNotification($campaign));
+        
+        return response()->json(['success' => true,'msg' => trans('admin.invoice.update.success')]);
     }
 
     /**

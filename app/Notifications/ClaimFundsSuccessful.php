@@ -55,8 +55,8 @@ class ClaimFundsSuccessful extends Notification
     public function toArray($notifiable)
     {
         return [
-            'heading' => 'Claim Funds Successful!',
-            'text' => 'Successfully processed Claim Funds. Please verify with your bank. Thank you!'
+            'heading' => 'Withdraw Campaign Funds Successful!',
+            'text' => 'Successfully processed Withdraw Campaign Funds. Please verify with your bank. Thank you!'
         ];
     }
 }
