@@ -109,7 +109,7 @@
                                         <div class="col-sm-4">
                                             <select name="duration_minutes" id="duration_minutes" class="form-control">
                                                 @for($i = 0; $i<=12; $i++)
-                                                    <option value="{{$i*5}}" @if($i == $service->duration_minutes) selected @endif>{{$i*5}} Minutes</option>
+                                                    <option value="{{$i*5}}" @if($i*5 == $service->duration_minutes) selected @endif>{{$i*5}} Minutes</option>
                                                 @endfor
                                             </select>
                                         </div>
@@ -144,7 +144,7 @@
                                             @foreach($service->tags as $tag)
                                                 @php array_push($tags, $tag->name); @endphp
                                             @endforeach
-                                            <input name="tags" id="tagsinput" class="tagsinput" value="{{join(",", $tags)}}" />
+                                            <input name="tags" id="tags" class="tagsinput" value="{{join(",", $tags)}}" />
                                             <span class="badge badge-danger mr-1">NOTE!</span><span class="help-inline">Press enter or commas to separate tags</span>
                                             <span class="j_tag_trans"><br>(Maglagay ng kuwit o pindutin and 'Enter', para hiwalayin ang tags)</span>
                                         </div>
@@ -271,6 +271,10 @@
                     processData: false,
                     beforeSend: function() {
                         form.find('button[type=submit]').prop('disabled', true);
+                        form.find('.invalid-feedback').remove();
+                        form.find('.valid-feedback').remove();
+                        form.find('.invalid-feedback.valid-feedback').remove();
+                        form.find('input').removeClass('is-invalid');
                     },
                     success: function(resp) {
                         form.find('button[type=submit]').prop('disabled', false);
@@ -288,6 +292,21 @@
                                 location.href = "{{route('jobseeker.services.index')}}"
                             });
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $(this).find('button[type=submit]').prop('disabled', false);
+                        $.each(xhr.responseJSON.errors, function(name, error) {
+                            form.find('button[type=submit]').prop('disabled', false);
+                            form.find('#' + name).siblings('.invalid-feedback').remove();
+                            form.find('#' + name).siblings('.valid-feedback').remove();
+                            form.find('#' + name).siblings('.invalid-feedback.valid-feedback').remove();
+                            form.find('#' + name).addClass('is-invalid');
+                            form.find('#' + name).after(`
+                                <div class="invalid-feedback">
+                                ${error}
+                            </div>
+                            `);
+                        });
                     }
                 });
             });

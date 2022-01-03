@@ -338,7 +338,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="reason"> <strong>*Instructions :</strong> Please state the reason for declining order request below.</label>
+                                <label for="reason"> <strong>*Instructions :</strong> Please state the reason for declining order request below.<span class="j_tag_trans">(Magbigay ng dahilan kung bakit di tinanggap ang order request)</span></label>
                                 <textarea name="reason" id="reason" cols="30" rows="6" class="form-control"></textarea>
                             </div>
 
@@ -368,9 +368,9 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <span style="font-size:12px;font-weight:500;color:#dc3545">Reminder: Not permitted to Cancel Order 3 Days prior to Delivery Date</span>
+                            <span style="font-size:12px;font-weight:500;color:#dc3545">Reminder: Not permitted to Cancel Order 3 Days prior to Delivery Date </span><span class="j_tag_trans" style="color:brown;">(Bawal mag cancel ng order 3 araw bago ang petsa ng pagbibigay ng serbisyo)</span>
                             <div class="form-group mt-1">
-                                <label for="reason"> <strong>*Instructions :</strong> Please state the reason for cancellation below.</label>
+                                <label for="reason"> <strong>*Instructions :</strong> Please state the reason for cancellation below.<span class="j_tag_trans"> (Magbigay ng dahilan kung bakit icacancel ang order)</span></label>
                                 <textarea name="reason" id="reason" cols="30" rows="6" class="form-control"></textarea>
                             </div>
 

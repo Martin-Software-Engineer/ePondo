@@ -319,12 +319,12 @@ class OrdersController extends Controller
             $jobseeker->notify(new OrderCancelledNotification($order));
             $backer->notify(new OrderCancelledNotification($order));
 
-            Mail::to($backer->email)->queue(new SendMail('emails.order-cancel-request-mail', [
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.order-cancel-request-mail', [
                 'subject' => 'Service Order Cancelled',
                 'order_id' => System::GenerateFormattedId('S', $order->id),
                 'reason' => $cancel->reason
             ]));
-            Mail::to($jobseeker->email)->queue(new SendMail('emails.order-cancelled-mail', [
+            Mail::to($backer->email)->queue(new SendMail('emails.order-cancelled-mail', [
                 'subject' => 'Service Order Cancelled',
                 'order_id' => System::GenerateFormattedId('S', $order->id),
                 'reason' => $cancel->reason

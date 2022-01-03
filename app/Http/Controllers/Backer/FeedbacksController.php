@@ -87,7 +87,8 @@ class FeedbacksController extends Controller
         ]));
 
         //Change SO status to Complete if both Jobseeker & Backer have Feedback
-        if(ServiceRating::where('order_id', $order->id)->where('from', 'jobseeker')->exists()){ 
+        if(ServiceRating::where('order_id', $order->id)->where('from', 'jobseeker')->exists()){
+
             $totalorders = Order::whereHas('service', function($q) use($jobseeker){
                 $q->where('user_id', $jobseeker->id);
             })->where('status',7)->count(); //Counter for Reward Points
@@ -96,12 +97,12 @@ class FeedbacksController extends Controller
             if($totalorders <= 0){ //first time
                 $reward = new GiveReward($jobseeker->id, 'receiving_1st_service_order_rf');
                 $reward->send();
-                $reward2 = new GiveReward(auth()->user()->id, 'creating_1st_service_order_feedback');
+                $reward2 = new GiveReward($jobseeker->id, 'creating_1st_service_order_feedback');
                 $reward2->send();
             }else{
                 $reward = new GiveReward($jobseeker->id, 'receiving_service_order_rf');
                 $reward->send();
-                $reward2 = new GiveReward(auth()->user()->id, 'creating_service_order_feedback');
+                $reward2 = new GiveReward($jobseeker->id, 'creating_service_order_feedback');
                 $reward2->send();
             }
 

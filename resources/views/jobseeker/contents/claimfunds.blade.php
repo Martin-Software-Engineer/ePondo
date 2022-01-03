@@ -82,7 +82,7 @@
                                         <span class="j_tag_trans"></span>
                                     </div>
                                     <div class="col-sm-9">
-                                        <input id="contact" type="text" class="form-control" name="contact" placeholder="09XXXXXXXXX"/>
+                                        <input id="contact" type="text" class="form-control" name="contact" placeholder="(63)999-9999999"/>
                                     </div>
                                 </div>
                             </div>
