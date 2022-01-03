@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateAccount;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rules\Password;
 use App\Notifications\ResetUserPassword as ResetUserPasswordNotification;
 use App\Notifications\UserAccountUpdate as UserAccountUpdateNotification;
 
@@ -60,8 +61,8 @@ class AccountController extends Controller
                 'zipcode' => $request->zipcode
             ]); 
         }else{
-            $userinfo->firstname = $request->firstname;
-            $userinfo->lastname = $request->lastname;
+            // $userinfo->firstname = $request->firstname;
+            // $userinfo->lastname = $request->lastname;
             $userinfo->phone = $request->phone;
             $userinfo->address = $request->address;
             $userinfo->zipcode = $request->zipcode;
@@ -79,7 +80,7 @@ class AccountController extends Controller
     public function changepassword(Request $request){
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required'],
+            'new_password' => ['required', Password::min(8)->mixedCase()->numbers()->symbols()],
             'new_confirm_password' => ['same:new_password']
         ]);
         

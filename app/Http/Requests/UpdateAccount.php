@@ -24,8 +24,8 @@ class UpdateAccount extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => 'required|string|max:50',
-            'lastname' => 'required|string|max:50',
+            // 'firstname' => 'required|string|max:50',
+            // 'lastname' => 'required|string|max:50',
             'phone' => 'nullable|string|max:12',
             'address' => 'nullable|string|max:100',
             'zipcode'   => 'nullable|integer'

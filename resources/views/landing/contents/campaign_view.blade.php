@@ -891,6 +891,36 @@
                         cardPayment.find('.topay').html(`Amount to pay  <span class='topay-amount'>${resp.currency} ${resp.donation_amount}</span>`);
                         selectPaymentModal.modal('show');
                     }
+                    if(resp.error){
+                        donationForm.find('button[type=submit]').prop('disabled', false);
+                        donationForm.find('input[name=amount]').val('');
+                        donationForm[0].reset();
+                        checkboxAnonymous.trigger('change');
+                        donateModal.modal('hide');
+
+                        Swal.fire({
+                            title: 'Error',
+                            text: resp.msg,
+                            icon: 'error'
+                        }).then(function(){
+                            location.reload();
+                        })
+                    }
+                },
+                error: function(resp){
+                    $.each(resp.responseJSON.errors, function(name, error){
+                        donationForm.find('button[type=submit]').prop('disabled', false);
+                        donationForm.find('#'+name).siblings('.invalid-feedback').remove();
+                        donationForm.find('#'+name).siblings('.valid-feedback').remove();
+                        donationForm.find('#'+name).siblings('.invalid-feedback.valid-feedback').remove();
+                        donationForm.find('#'+name).addClass('is-invalid');
+                        donationForm.find('#'+name).after(`
+                            <div class="invalid-feedback">
+                            ${error}
+                        </div>
+                        `);
+                    });
+
                 }
             });
         });

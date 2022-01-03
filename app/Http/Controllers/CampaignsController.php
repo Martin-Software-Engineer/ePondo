@@ -15,8 +15,17 @@ class CampaignsController extends Controller
 {
     public function donate(Request $request){
 
+        if(auth()->user()->hasAnyRole('JobSeeker') || auth()->user()->hasAnyRole('Admin'))
+        {
+            return response()->json(array(
+                'error' => true,         
+                'msg' => 'Error! You are not permitted to donate to campaign. Create a backer account or logout of your account in order to donate. Thank you!'          
+                )
+            );
+        }
+        
         $request->validate([
-            'message' => 'required|string|max:10',
+            'message' => 'required|string|max:100',
         ]);
 
         $donate = Donation::create([

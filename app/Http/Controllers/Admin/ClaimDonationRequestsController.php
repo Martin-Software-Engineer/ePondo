@@ -11,6 +11,7 @@ use App\Models\ClaimedDonations;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\ClaimFundsSuccessful as ClaimFundsSuccessfulNotification;
+use App\Notifications\ClaimFundsUnsuccessful as ClaimFundsUnsuccessfulNotification;
 
 class ClaimDonationRequestsController extends Controller
 {
@@ -37,6 +38,16 @@ class ClaimDonationRequestsController extends Controller
             $jobseeker->notify(new ClaimFundsSuccessfulNotification());
             Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.claimfunds-successful-mail', [
                 'subject' => 'Withdraw Campaign Funds Successful',
+                'campaign' => $payout->campaign->title,
+                'amount' => $payout->amount,
+                'details' => $payout->details
+            ]));
+        }
+        if($payout->status == 'denied'){
+            $jobseeker = User::where('id',$payout->user->id)->first();
+            $jobseeker->notify(new ClaimFundsUnsuccessfulNotification());
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.claimfunds-unsuccessful-mail', [ 
+                'subject' => 'Withdraw Campaign Funds Unsuccessful',
                 'campaign' => $payout->campaign->title,
                 'amount' => $payout->amount,
                 'details' => $payout->details

@@ -107,11 +107,10 @@
                             <label for="main_source_income">Main source of income</label>
                             <span class="j_tag_trans"><br>(Pangunahing pinagkukunan ng inggreso/kita)</span>
                             <select name="main_source_income" id="main_source_income" class="form-control select2">
-                                <option value="job" @if($info->main_source_income=='Job') selected @endif>Job</option>
-                                <option value="part time jobs" @if($info->main_source_income=='Part Time Jobs') selected @endif>Part Time Jobs </option>
-                                <option value="donations" @if($info->main_source_income=='Donations') selected @endif>Donations</option>
-                                <option value="family" @if($info->main_source_income=='Family') selected @endif>Family</option>
-
+                                <option value="job"             @if($info->main_source_income == 'job') selected @endif>Job</option>
+                                <option value="part time jobs"  @if($info->main_source_income == 'part time jobs') selected @endif>Part Time Jobs </option>
+                                <option value="donations"       @if($info->main_source_income == 'donations') selected @endif>Donations</option>
+                                <option value="family"          @if($info->main_source_income == 'family') selected @endif>Family</option>
                             </select>
                         </div>
                     </div>
@@ -120,10 +119,10 @@
                             <label for="extra_source_income">Other Source of Income</label>
                             <span class="j_tag_trans"><br>(Pangalawang pinagkukunan ng inggreso/kita)</span>
                             <select name="extra_source_income" id="extra_source_income" class="form-control select2">
-                                <option value="none" @if($info->main_source_income=='None') selected @endif>None</option>
-                                <option value="part time jobs" @if($info->extra_source_income=='Part Time Jobs') selected @endif>Part Time Jobs </option>
-                                <option value="donations" @if($info->extra_source_income=='Donations') selected @endif>Donations</option>
-                                <option value="family" @if($info->extra_source_income=='Family') selected @endif>Family</option>
+                                <option value="none"            @if($info->extra_source_income == 'none') selected @endif>None</option>
+                                <option value="part time jobs"  @if($info->extra_source_income == 'part time jobs') selected @endif>Part Time Jobs </option>
+                                <option value="donations"       @if($info->extra_source_income == 'donations') selected @endif>Donations</option>
+                                <option value="family"          @if($info->extra_source_income == 'family') selected @endif>Family</option>
                             </select>
                         </div>
                     </div>
@@ -189,9 +188,9 @@
                             <label class="d-block ">Do you have access to clean water ?</label>
                             <span class="j_tag_trans">(Nakakagamit ba kayo ng malinis na tubig ?)</span>
                             <select name="water_access" id="water_access" class="form-control select2">
-                                <option value="Always" @if($info->water_access == 1) selected @endif>Always</option>
-                                <option value="Seldom" @if($info->water_access == 2) selected @endif>Seldom</option>
-                                <option value="Never" @if($info->water_access == 5) selected @endif>Never</option>
+                                <option value="Always" @if($info->water_access == 'Always') selected @endif>Always</option>
+                                <option value="Seldom" @if($info->water_access == 'Seldom') selected @endif>Seldom</option>
+                                <option value="Never" @if($info->water_access == 'Never') selected @endif>Never</option>
                             </select>
                         </div>
                     </div>
@@ -200,9 +199,9 @@
                             <label class="d-block ">Do you have access to electricity ?</label>
                             <span class="j_tag_trans">(Nakakagamit ba kayo ng kuryente ?)</span>
                             <select name="electricity_access" id="electricity_access" class="form-control select2">
-                                <option value="Always" @if($info->electricity_access == 1) selected @endif>Always</option>
-                                <option value="Seldom" @if($info->electricity_access == 2) selected @endif>Seldom</option>
-                                <option value="Never" @if($info->electricity_access == 5) selected @endif>Never</option>
+                                <option value="Always" @if($info->electricity_access == 'Always') selected @endif>Always</option>
+                                <option value="Seldom" @if($info->electricity_access == 'Seldom') selected @endif>Seldom</option>
+                                <option value="Never" @if($info->electricity_access == 'Never') selected @endif>Never</option>
                             </select>
                         </div>
                     </div>
@@ -211,9 +210,9 @@
                             <label class="d-block">Do you have access to clean clothes ?</label>
                             <span class="j_tag_trans">(Nakakasuot ba kayo ng malinis na damit ?)</span>
                             <select name="clean_clothes_access" id="clean_clothes_access" class="form-control select2">
-                                <option value="Always" @if($info->clean_clothes_access == 1) selected @endif>Always</option>
-                                <option value="Seldom" @if($info->clean_clothes_access == 2) selected @endif>Seldom</option>
-                                <option value="Never" @if($info->clean_clothes_access == 5) selected @endif>Never</option>
+                                <option value="Always" @if($info->clean_clothes_access == 'Always') selected @endif>Always</option>
+                                <option value="Seldom" @if($info->clean_clothes_access == 'Seldom') selected @endif>Seldom</option>
+                                <option value="Never" @if($info->clean_clothes_access == 'Never') selected @endif>Never</option>
                             </select>
                         </div>
                     </div>

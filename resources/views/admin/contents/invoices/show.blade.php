@@ -339,6 +339,34 @@
             </div>
         </div>
         <!-- /Invoice -->
+
+        <!-- Invoice Actions -->
+        @if($payment_method == 'OP' && $invoice_status < 3 )
+        <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6 style="font-size:14px;margin-bottom:10px;font-weight:bold;text-decoration:underline;">Payment Instructions : </h6>
+                    <h6 style="font-size:12px;margin-bottom:10px;margin-top:20px;">Payment Method is Online Payment via (Paypal / Credit Card / Debit Card). Process payment by clicking the "Pay" button below. You will be routed to the Paypal payment gateway.</h6>
+                    <h6 style="font-size:12px;margin-bottom:20px;margin-top:20px;font-weight:lighter">If you have any questions or concerns you may email us at epondo.co@gmail.com</h6>
+                    <button class="btn-payment btn btn-success btn-block" style="font-size:16px;" data-toggle="modal" data-target="#add-payment-sidebar" disabled>
+                        Pay
+                    </button>
+                </div>
+            </div>
+        </div>
+        @elseif($payment_method == 'COD' && $invoice_status < 3 )
+        <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6 style="font-size:14px;margin-bottom:10px;font-weight:bold;text-decoration:underline;">Payment Instructions : </h6>
+                    <h6 style="font-size:12px;margin-bottom:10px;margin-top:20px;">Payment Method is Cash on Delivery. Please be reminded that once jobseeker has delivered your service order, you must Pay accordingly to your Jobseeker. Thank you.</h6>
+                    <h6 style="font-size:12px;margin-bottom:10px;margin-top:20px;font-weight:lighter">If you have any questions or concerns you may email us at epondo.co@gmail.com</h6>
+                </div>
+            </div>
+        </div>
+        @endif
+        <!-- /Invoice Actions -->
+
     </div>
 </section>   
 @endsection

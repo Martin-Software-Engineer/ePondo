@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
 use App\Notifications\PayoutSuccessful as PayoutSuccessulNotification;
+use App\Notifications\PayoutUnsuccessful as PayoutUnsuccessfulNotification;
 
 class PayoutRequestsController extends Controller
 {
@@ -34,6 +35,16 @@ class PayoutRequestsController extends Controller
             $jobseeker->notify(new PayoutSuccessulNotification());
             Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-payout-mail', [
                 'subject' => 'Withdraw Service Earnings Successful',
+                'amount' => $payout->amount,
+                'details' => $payout->details
+            ]));
+
+       }
+       if($payout->status == 'denied'){
+            $jobseeker = User::find($payout->user->id);
+            $jobseeker->notify(new PayoutUnsuccessfulNotification());
+            Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.order-payout-denied-mail', [
+                'subject' => 'Withdraw Service Earnings Unsuccessful',
                 'amount' => $payout->amount,
                 'details' => $payout->details
             ]));
