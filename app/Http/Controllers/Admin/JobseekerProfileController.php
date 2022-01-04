@@ -184,6 +184,11 @@ class JobseekerProfileController extends Controller
             $pppp->save();
         }
 
+        $user->notify(new JobseekerPublicProfileUpdateNotification());
+        Mail::to($user->email)->queue(new SendMail('emails.jobseeker-public-profile-mail', [
+            'subject' => 'Jobseeker Public Profile Updated'
+        ]));
+
         return response()->json(['success' => true, 'msg' => 'Your 4Ps profile was updated.']);
     }
 }
