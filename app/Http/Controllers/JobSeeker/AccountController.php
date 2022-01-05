@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 use App\Http\Requests\UpdateAccountJobseeker;
 use App\Notifications\ResetUserPassword as ResetUserPasswordNotification;
 use App\Notifications\UserAccountUpdate as UserAccountUpdateNotification;
@@ -82,7 +84,7 @@ class AccountController extends Controller
     public function changepassword(Request $request){
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required'],
+            'new_password' => ['required', Password::min(8)->mixedCase()->numbers()->symbols()],
             'new_confirm_password' => ['same:new_password']
         ]);
 

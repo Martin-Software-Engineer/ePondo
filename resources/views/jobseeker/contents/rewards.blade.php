@@ -104,8 +104,8 @@
                         <div class="card-header">
                             <h4 class="card-title">Points History</h4>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table">
+                        <div class="" style="position: relative;height: 200px;overflow: auto;display: block;">
+                            <table class="table table-bordered table-striped mb-0">
                                 <thead>
                                     <tr>
                                         <th>Date</th>

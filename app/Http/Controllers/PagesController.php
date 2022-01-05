@@ -92,6 +92,10 @@ class PagesController extends Controller
     }
 
     public function service_view($id){
+        if(!Service::find($id)){
+            abort(404);
+        }
+        
         $data['service'] = Service::with(['categories','jobseeker', 'photos', 'messages','backer_ratings'])->where('id',$id)->first();
         /* 
             1. Get the user_id from campaigns
