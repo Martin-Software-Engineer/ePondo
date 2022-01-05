@@ -15,6 +15,7 @@ class CampaignsController extends Controller
 {
     public function donate(Request $request){
 
+        if(Auth::user())
         if(auth()->user()->hasAnyRole('JobSeeker') || auth()->user()->hasAnyRole('Admin'))
         {
             return response()->json(array(
