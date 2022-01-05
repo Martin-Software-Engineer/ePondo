@@ -119,6 +119,10 @@ class DonatePaymentsController extends Controller
             new \PayPal\Auth\OAuthTokenCredential(env('PAYPAL_CLIENT_ID', ''),env('PAYPAL_CLIENT_SECRET',''))
         );
     
+        if(env('PAYPAL_MODE') == 'production'){
+            $apiContext->setConfig(array('mode' => 'live'));
+        }
+        
         $paymentId = $request->paymentID;
         $payment = Payment::get($paymentId, $apiContext);
     
