@@ -6,7 +6,7 @@
 <h3>Campaign Donation Details</h3>
 Campaign Title : <span style="font-style:italic;text-decoration:underline;"> " {{$title}} " </span> <br>
 Jobseeker : <span style="text-decoration:underline;"> {{$jobseeker}} </span><br>
-Amount : <span style="text-decoration:underline;"> Php {{$amount}} </span><br>
+Donation Amount : <span style="text-decoration:underline;"> Php {{$amount}} </span><br>
 Date : <span style="text-decoration:underline;"> {{$date}} </span><br>
 Donated By : <span style="text-decoration:underline;"> {{$donated_by}} </span><br>
 
