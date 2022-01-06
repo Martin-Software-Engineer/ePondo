@@ -36,7 +36,7 @@ use App\Helpers\System;
 use App\Notifications\OrderPayment as OrderPaymentNotification;
 class OrderPaymentsController extends Controller
 {
-    private $currency = 'USD';
+    private $currency = 'PHP';
 
     public function CreatePayPalPayment(Request $request){
         $apiContext = new \PayPal\Rest\ApiContext(
@@ -124,7 +124,7 @@ class OrderPaymentsController extends Controller
         if(env('PAYPAL_MODE') == 'production'){
             $apiContext->setConfig(array('mode' => 'live'));
         }
-        
+
         $paymentId = $request->paymentID;
         $payment = Payment::get($paymentId, $apiContext);
     
@@ -140,11 +140,14 @@ class OrderPaymentsController extends Controller
                 $transaction->paid_at = Carbon::now()->toDateString();
                 $transaction->save();
 
+                
                 $order = Order::find($transaction->orders[0]->id);
 
                 $order->status = 6; //Payment Successcul & Pending Feedback Rating
                 $order->save();
-                $invoice = Invoice::where('order_id',$order->id);
+
+                
+                $invoice = Invoice::where('order_id',$order->id)->first();
                 $invoice->status = 3; //Paid
                 $invoice->save();
 

@@ -764,7 +764,7 @@
                                 <h5><strong>Total Amount</strong></h5>
                             </div>
                             <div class="col-md-6">
-                                <h5>3%</h5>
+                                <h5 class="processing_fee">0</h5>
                                 <h5 class="total_amount m_c_total"></h5>
                             </div>
                         </div>
@@ -848,12 +848,15 @@
         });
         donationForm.find('input[name=amount]').on('keyup', function(){
             var totalAmount = 0;
+            var processingFee = 0;
             var currency = donationForm.find('select[name=currency]').val();
             if(donationForm.find('input[name=amount]').val() > 0){
                 totalAmount = donationForm.find('input[name=amount]').val()
             }
             totalAmount = parseFloat(totalAmount);
-            totalAmount = (totalAmount + (totalAmount * .03));
+            processingFee = (totalAmount*.0390)+15;
+            totalAmount = (totalAmount + processingFee);
+            $('.processing_fee').text(`${currency.toUpperCase()} ${processingFee}`)
             $('.total_amount').text(`${currency.toUpperCase()} ${totalAmount}`);
         });
         donationForm.find('select[name=currency]').on('change', function(){
@@ -888,7 +891,7 @@
                         cardPayment.find('#pay-by-card').attr('data-donation-id', resp.donation_id);
                         cardPayment.find('#pay-by-card').attr('data-currency', resp.currency);
                         cardPayment.find('.card-title').html(`<strong>Pay your Donation.<br>`);
-                        cardPayment.find('.topay').html(`Amount to pay  <span class='topay-amount'>${resp.currency} ${resp.donation_amount}</span>`);
+                        cardPayment.find('.topay').html(`Amount to pay  <span class='topay-amount'>${resp.currency} ${parseFloat(resp.donation_amount) + (resp.donation_amount*0.039+15)}</span>`);
                         selectPaymentModal.modal('show');
                     }
                     if(resp.error){

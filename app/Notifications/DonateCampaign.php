@@ -57,11 +57,11 @@ class DonateCampaign extends Notification
      */
     public function toArray($notifiable)
     {
-        if($this->donator->hasAnyRole('JobSeeker')){
+        if($notifiable->hasAnyRole('JobSeeker')){
             if($this->donator != null){
                 return [
                     'heading' => 'Donate Campaign',
-                    'text' => 'You received a donation from {$this->donator->userinformation->firstname} {$this->donator->userinformation->lastname} for {$this->campaign->title}. Pls check your campaign for more details'
+                    'text' => "You received a donation from {$this->donator->userinformation->firstname} {$this->donator->userinformation->lastname} for {$this->campaign->title}. Pls check your campaign for more details"
                 ];
             }else{
                 return [
@@ -71,13 +71,12 @@ class DonateCampaign extends Notification
             }
         }
 
-        if($this->donator->hasAnyRole('Backer')){
+        if($notifiable->hasAnyRole('Backer')){
             return [
                 'heading' => 'Donate Campaign',
                 'text' => "Successfully Donated to ' {$this->campaign->title} '. View your donation at “Donated Campaigns” tab located on your dashboard. Thank you!"
             ];
         }
         
-        return [];
     }
 }

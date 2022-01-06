@@ -9,7 +9,7 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['payment_id', 'payment_method', 'amount', 'currency', 'status'];
+    protected $fillable = ['payment_id', 'payment_method', 'amount', 'currency', 'status', 'campaign_id', 'service_id'];
 
     public function orders(){
         return $this->belongsToMany(Order::class);
