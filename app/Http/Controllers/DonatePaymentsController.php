@@ -163,7 +163,7 @@ class DonatePaymentsController extends Controller
                             'title' => $m_title,
                             'jobseeker' => $m_jobseeker,
                             'donated_by' => $backer->information->firstname.' '.$backer->information->lastname,
-                            'amount' => $m_amount,
+                            'amount' => $donation->amount,
                             'date' => $m_date
                         ]));
                         Mail::to($backer->email)->queue(new SendMail('emails.backer.donation-successful-mail', [
@@ -171,7 +171,7 @@ class DonatePaymentsController extends Controller
                             'title' => $m_title,
                             'jobseeker' => $m_jobseeker,
                             'donated_by' => $backer->information->firstname.' '.$backer->information->lastname,
-                            'amount' => $m_amount,
+                            'amount' => $donation->amount,
                             'date' => $m_date
                         ]));
                     }else{
@@ -182,7 +182,7 @@ class DonatePaymentsController extends Controller
                             'title' => $m_title,
                             'jobseeker' => $m_jobseeker,
                             'donated_by' => 'Anonymous',
-                            'amount' => $m_amount,
+                            'amount' => $donation->amount,
                             'date' => $m_date
                         ]));
                     }
