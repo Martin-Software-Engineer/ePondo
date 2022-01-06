@@ -103,7 +103,7 @@ class OrdersController extends Controller
         else
         {
             $date_due =  Carbon::parse( $order->details->render_date)->addDays(3);
-            $processing_fee = ($price * 0.03);
+            $processing_fee = ($price * 0.039) + 15;
         }
         $order->invoice()->create([
             'price' => $price,

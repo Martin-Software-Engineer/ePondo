@@ -51,20 +51,22 @@ class DonatePaymentsController extends Controller
         $donation = Donation::find($request->donation_id);
 
         $this->currency = $request->currency;
-        
+        $processFee = ($donation->amount*0.039)+15;
+        $donationAmount = $donation->amount + $processFee;
+
         $item = new Item();
         $item->setName('Donation to '.$donation->campaign->title)
             ->setCurrency($this->currency)
             ->setQuantity(1)
             ->setSku("Donate") // Similar to `item_number` in Classic API
-            ->setPrice($donation->amount);
+            ->setPrice($donationAmount);
     
         $itemList = new ItemList();
         $itemList->setItems(array($item));
     
         $amount = new Amount();
         $amount->setCurrency($this->currency)
-            ->setTotal($donation->amount);
+            ->setTotal($donationAmount);
     
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -122,7 +124,7 @@ class DonatePaymentsController extends Controller
         if(env('PAYPAL_MODE') == 'production'){
             $apiContext->setConfig(array('mode' => 'live'));
         }
-        
+
         $paymentId = $request->paymentID;
         $payment = Payment::get($paymentId, $apiContext);
     
@@ -137,7 +139,6 @@ class DonatePaymentsController extends Controller
                 $transaction->status = $payment->state;
                 $transaction->paid_at = Carbon::now()->toDateString();
                 $transaction->save();
-
                 if($transaction->campaign_id != null){
                     $campaign = Campaign::find($transaction->campaign_id);
                     $jobseeker = User::find($campaign->jobseeker->id);
@@ -171,6 +172,7 @@ class DonatePaymentsController extends Controller
                         ]));
                     }else{
                         $jobseeker->notify(new DonateCampaignNotification(null, $campaign));
+                        
                         Mail::to($jobseeker->email)->queue(new SendMail('emails.jobseeker.donation-received-mail', [
                             'subject' => 'Campaign Donation Successful',
                             'title' => $m_title,

@@ -31,7 +31,7 @@ class CampaignsController extends Controller
 
         $donate = Donation::create([
             'message' => $request->message,
-            'amount' => $request->amount
+            'amount' => $request->amount 
         ]);
 
         $campaign = Campaign::find($request->campaign_id);
@@ -46,7 +46,6 @@ class CampaignsController extends Controller
                 if (Auth::check()) {
                     $user = User::find(auth()->user()->id);
                     $user->donations()->attach($donate->id);
-
                 }
             }
         }
