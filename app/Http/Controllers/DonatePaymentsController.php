@@ -148,8 +148,12 @@ class DonatePaymentsController extends Controller
                     $m_amount = $transaction->amount;
                     $m_date = $transaction->paid_at;
                     
-                    if($transaction->backer_id != null){
-                        $backer = User::find($transaction->backer_id);
+                    $donation = Donation::with('backer')->whereHas('transactions', function($query) use ($transaction){
+                        $query->where('transaction_id',$transaction->id);
+                    })->first();
+                    
+                    if($donation->backer != null){
+                        $backer = User::find($donation->backer->id);
 
                         $jobseeker->notify(new DonateCampaignNotification($backer, $campaign));
                         $backer->notify(new DonateCampaignNotification($backer, $campaign));
