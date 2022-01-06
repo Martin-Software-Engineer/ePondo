@@ -50,8 +50,6 @@ class OrderPaymentsController extends Controller
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
         
-        
-
         $order = Order::with(['service', 'invoice'])->where('id',$request->order_id)->first();
         $invoice = $order->invoice;
 
