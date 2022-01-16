@@ -13,6 +13,7 @@ class RewardsController extends Controller
         $cpoints = auth()->user()->rewards->sum('points');
 
         $data = array(
+            'user'  => auth()->user(),
             'rewards' => auth()->user()->rewards,
             'current_points' => $cpoints,
             'progress' => System::RewardsProgress($cpoints),
