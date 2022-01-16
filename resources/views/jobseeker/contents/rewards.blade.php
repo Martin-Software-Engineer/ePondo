@@ -60,7 +60,7 @@
                         <div class="card-body">
                             <img src="{{asset('app-assets/images/reward/star-silver.png')}}" class="reward-star mb-2" alt="svg img" />
                             <h1>SILVER</h1>
-                            <h5 class="text-secondary">POINTS REQUIRED: <br> 100-199 POINTS</h5>
+                            <h5 class="text-secondary">POINTS REQUIRED: <br> 100-499 POINTS</h5>
                             <br><br>
                             <h5 class="text-secondary"><b>EARN ADDITIONAL</b></h5>
                             <h2 class="text-secondary">+0.6%</h2>
@@ -116,7 +116,8 @@
                                 <tbody>
                                     @foreach($rewards as $reward)
                                     <tr>
-                                        <td>{{date('F d, Y', strtotime($reward->created_at))}}</td>
+                                        <td>{{date('F d, Y', strtotime($reward->pivot->created_at))}}</td>
+                                        <!-- <td>{{$reward->created_at}}</td> -->
                                         <td>{{$reward->actions}}</td>
                                         <td>{{$reward->points}}</td>
                                     </tr>
