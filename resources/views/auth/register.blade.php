@@ -11,7 +11,7 @@
 <form class="auth-register-form mt-2" action="{{route('register')}}" method="POST">
     @csrf
     <div class="form-group">
-        <label for="username" class="form-label">Username(Alias)</label>
+        <label for="username" class="form-label">Username</label>
         <input type="text" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" id="username" name="username" placeholder="johndoe" aria-describedby="register-username" tabindex="1" autofocus />
         @error('username')
             <span class="invalid-feedback" role="alert">
@@ -84,7 +84,14 @@
 
     <div class="form-group">
         <label for="role" class="form-label">Register as </label>
-
+        <span style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">
+            (Jobseeker & Backer Role are explained here; 
+            <a target="_blank" href="{{route('howitworks')}}" target="_blank">How it works ?</a>)
+        </span>
+        <!-- <p style="color:gray;font-weight:lighter;font-style:italic;font-size:10px;">
+            *Jobseeker & Backer Role are explained here; 
+            <a target="_blank" href="{{route('howitworks')}}" target="_blank">How it works ?</a>
+        </p> -->
         <select name="role" id="role" class="form-control">
             @foreach($roles as $role)
                 <option value="{{$role->id}}">{{$role->name}}</option>
