@@ -37,6 +37,7 @@
                     <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="{{route('jobseeker.notifications')}}">Read all notifications</a></li>
                 </ul>
             </li>
+            <li class="nav-item mr-1"><a class="nav-link" href="{{route('jobseeker.help')}}" data-toggle="tooltip" data-placement="top" title="Help" data-original-title="Help"><i class="ficon" data-feather="help-circle"></i></a></li>
             <li class="nav-item mr-1">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();" data-toggle="tooltip" data-placement="top" title="Logout" data-original-title="Logout"><i class="ficon" data-feather="power"></i></a>

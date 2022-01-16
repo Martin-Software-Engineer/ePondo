@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li class="nav-item mr-1 dropdown dropdown-notification">
-                <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">{{count(auth()->user()->unreadNotifications)}}</span></a>
+                <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown" ><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">{{count(auth()->user()->unreadNotifications)}}</span></a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                     <li class="dropdown-menu-header">
                         <div class="dropdown-header d-flex">
@@ -37,6 +37,7 @@
                     <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="{{route('jobseeker.notifications')}}">Read all notifications</a></li>
                 </ul>
             </li>
+            <li class="nav-item mr-1"><a class="nav-link" href="{{route('jobseeker.help')}}" data-toggle="tooltip" data-placement="top" title="Help" data-original-title="Help"><i class="ficon" data-feather="help-circle"></i></a></li>
             <li class="nav-item mr-1">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();" data-toggle="tooltip" data-placement="top" title="Logout" data-original-title="Logout"><i class="ficon" data-feather="power"></i></a>
