@@ -123,6 +123,13 @@ class JobseekerProfileController extends Controller
 
     public function updatepppp(Request $request)
     {
+        $request->validate([
+            'question1' => 'string|max:50',
+            'question2' => 'required',
+            'question3' => 'required',
+            'question4' => 'nullable|string|max:1000',
+        ]);
+
         $user = User::find(auth()->user()->id)->first();
         
         $pppp = User4psInfo::where('user_id',$user->id)->first();
