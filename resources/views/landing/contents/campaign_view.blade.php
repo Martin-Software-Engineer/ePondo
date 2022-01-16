@@ -760,7 +760,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h5>Payment Processing Fee</h5>
+                                <h5>PayPal Processing Fee</h5>
                                 <h5><strong>Total Amount</strong></h5>
                             </div>
                             <div class="col-md-6">
@@ -891,7 +891,7 @@
                         cardPayment.find('#pay-by-card').attr('data-donation-id', resp.donation_id);
                         cardPayment.find('#pay-by-card').attr('data-currency', resp.currency);
                         cardPayment.find('.card-title').html(`<strong>Pay your Donation.<br>`);
-                        cardPayment.find('.topay').html(`Amount to pay  <span class='topay-amount'>${resp.currency} ${parseFloat(resp.donation_amount) + (resp.donation_amount*0.039+15)}</span>`);
+                        cardPayment.find('.topay').html(`Amount to pay  <span class='topay-amount'>${resp.currency} ${parseFloat(resp.donation_amount) + (resp.donation_amount*0.04+15)}</span>`);
                         selectPaymentModal.modal('show');
                     }
                     if(resp.error){
