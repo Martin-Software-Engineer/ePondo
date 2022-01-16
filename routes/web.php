@@ -157,6 +157,8 @@ Route::prefix('jobseeker')->name('jobseeker.')->middleware(['auth','verified','a
 
     Route::get('notifications', 'JobSeeker\NotificationsController@index')->name('notifications');
     Route::get('notifications/markall', 'JobSeeker\NotificationsController@markall')->name('notifications.markall');
+
+    Route::view('help', 'jobseeker.contents.help')->name('help');
 });
 
 //Backer -> using Route Group
