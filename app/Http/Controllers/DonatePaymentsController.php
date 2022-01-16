@@ -51,7 +51,7 @@ class DonatePaymentsController extends Controller
         $donation = Donation::find($request->donation_id);
 
         $this->currency = $request->currency;
-        $processFee = ($donation->amount*0.039)+15;
+        $processFee = ($donation->amount*0.04)+15;
         $donationAmount = $donation->amount + $processFee;
 
         $item = new Item();
