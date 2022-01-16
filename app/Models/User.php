@@ -55,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function rewards(){
-        return $this->belongsToMany(Reward::class);
+        return $this->belongsToMany(Reward::class)->withPivot('created_at');
     }
 
     public function userinformation()

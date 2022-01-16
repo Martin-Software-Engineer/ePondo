@@ -1,6 +1,7 @@
 <?php 
 namespace App\Helpers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Mail\SendMail;
 use App\Models\Reward;
@@ -25,7 +26,7 @@ class GiveReward{
         $cpoints = $user->rewards()->sum('points'); //get users reward points sum
         $ctier = System::RewardsTier($cpoints);  //get equivalent tier (silver,gold,platinum)
         if($reward){
-            $user->rewards()->attach($reward->id); //give reward to user
+            $user->rewards()->attach($reward->id, ['created_at' => Carbon::now()]); //give reward to user
 
             // $newpoints = $user->rewards()->sum('points');
             // $newtier = System::RewardsTier($cpoints);
