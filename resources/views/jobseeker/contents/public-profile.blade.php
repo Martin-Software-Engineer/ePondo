@@ -624,15 +624,15 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="question1">How did were you acquired for 4Ps?</label>
+                            <label for="question1">Question 1: How did were you acquired for 4Ps?</label>
                             <span class="j_tag_trans">(Paano ka nagrehistro bilang isang 4Ps beneficairy ?)</span>
-                            <input type="text" name="question1" class="form-control" id="question1" value="{{@$pppp->question1}}"/>
+                            <input type="text" name="question1" class="form-control" id="How did were you acquired for 4Ps?" value="{{@$pppp->question1}}"/>
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="question2">How long have you been a 4Ps beneficiary?</label>
+                            <label for="question2">Question 2: How long have you been a 4Ps beneficiary?</label>
                             <span class="j_tag_trans">(Ilang taon ka na kabilang sa 4Ps ?)</span>
                             <select name="question2" id="question2" class="form-control">
                                 <option value="less than a year" @if(@$pppp->question2 == 'less than a year') selected @endif>less than a year</option>
@@ -646,7 +646,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="question3">How is your experience with 4Ps?</label>
+                            <label for="question3">Question 3: How is your experience with 4Ps?</label>
                             <span class="j_tag_trans">(Kamusta ang iyong karanasan kabilang sa 4Ps ?)</span>
                             <select name="question3" id="question3" class="form-control">
                                 <option value="Very Good" @if(@$pppp->question3 == 'Very Good') selected @endif>Very Good</option>
@@ -659,7 +659,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="question4">Why? Indicate the reason for your answer above</label>
+                            <label for="question4">Question 4: Why? Indicate the reason for your answer above</label>
                             <span class="j_tag_trans">(Bakit ? Ipaliwanag and dahilan sa iyong sagot sa naunang tanong.)</span>
                             <textarea name="question4" id="question4" cols="30" rows="15" class="form-control">{{@$pppp->question4}}</textarea>
                         </div>
@@ -739,6 +739,14 @@
                                 location.reload()
                             }), 200;
                         }
+                    },
+                    error: function(xhr, status, error){
+                        $.each(xhr.responseJSON.errors, function(key, text) {
+                            toastr['error'](text[0], 'Error!', {
+                                closeButton: true,
+                                tapToDismiss: false
+                            });
+                        });
                     }
                 });
             });
