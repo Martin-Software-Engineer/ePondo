@@ -40,8 +40,9 @@
                         <th>Name</th>
                         <th>Reward Tier</th>
                         <th>Points</th>
+                        <th class="cell-fit">Actions</th>
                     </tr>
-                </thead>
+                </thead>    
             </table>
         </div>
     </div>

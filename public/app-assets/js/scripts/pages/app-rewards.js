@@ -17,7 +17,8 @@ $(function() {
                 { data: 'jobseeker_id' },
                 { data: 'jobseeker_name' },
                 { data: 'reward_tier' },
-                { data: 'total_points' }
+                { data: 'total_points' },
+                { data: '' }
             ],
             columnDefs: [{
                     // For Responsive
@@ -26,6 +27,20 @@ $(function() {
                     targets: 0,
                     render: function() {
                         return '';
+                    }
+                },
+                {
+                    // Actions
+                    targets: -1,
+                    width: '80px',
+                    orderable: false,
+                    render: function(data, type, full, meta) {
+                        return (
+                            `<div class="d-flex align-items-center col-actions">
+                                <a class="mr-1 btn-edit" href="/admin/rewards/${full.id}" data-toggle="tooltip" data-placement="top" title="Details">${feather.icons['eye'].toSvg({ class: 'font-medium-2' })}</a>
+                            </div>
+                            `
+                        );
                     }
                 }
             ],

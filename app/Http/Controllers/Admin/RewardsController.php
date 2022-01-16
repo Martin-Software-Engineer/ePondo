@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Resources\Rewards as ResourceRewards;
-use App\Models\User;
-use App\Models\Role;
 use DataTables;
+use App\Models\Role;
+use App\Models\User;
+use App\Helpers\System;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Rewards as ResourceRewards;
+
 class RewardsController extends Controller
 {
     /**
@@ -63,7 +65,19 @@ class RewardsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id,'id');
+        $total_points = $user->rewards->sum('points');
+        $data = [
+            'title' => 'View Rewards History',
+            'user' => $user->id,
+            'name' => $user->userinformation->firstname.' '.$user->userinformation->lastname,
+            'total' => $total_points,
+            'reward_tier' => System::RewardsTier($total_points),
+            'rewards' => $user->rewards,
+
+        ];
+
+        return view('admin.contents.rewards.show', $data);
     }
 
     /**
