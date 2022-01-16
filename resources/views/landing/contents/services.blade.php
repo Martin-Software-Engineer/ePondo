@@ -14,7 +14,7 @@
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Category
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1"  style="max-height: 300px;overflow-y: auto; overflow-x:hidden;">
                                 <a class="dropdown-item" href="{{route('services')}}">All</a>
                                 @foreach($categories as $category)
                                 <a class="dropdown-item" href="#" data-value="{{$category->id}}">{{$category->name}}</a>
@@ -35,7 +35,7 @@
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Location
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3" style="max-height: 300px;overflow-y: auto; overflow-x:hidden;">
                                 <a class="dropdown-item" href="#" data-value="all">All</a>
                                 @foreach($regions as $region)
                                     @foreach($region->cities as $city)
