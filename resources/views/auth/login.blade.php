@@ -3,6 +3,13 @@
 @section('content')
 <h2 class="mb-1 text-center">Welcome!</h2>
 <p class="card-text mb-2 text-center">Sign in to ePondo</p>
+    @if(session('status'))
+    <div class="w-100 text-center">
+        <div class="alert alert-success" role="alert">
+            {{session('status')}}
+        </div>
+    </div>
+    @endif
 <form class="auth-login-form mt-2" action="{{route('login')}}" method="POST">
     @csrf
     <div class="form-group">
