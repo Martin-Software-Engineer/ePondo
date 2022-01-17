@@ -36,7 +36,7 @@
                   @endif
                @endauth
                @guest
-                  <a class=" nav-link" href="{{route('login')}}">Log-In</a>
+                  <a class=" nav-link" href="{{route('login')}}">Log-In (Sign-Up)</a>
                @endguest
                </div>
                </li>

@@ -2,7 +2,7 @@
 
 @section('content')
 <h2 class="mb-1 text-center">Welcome!</h2>
-<p class="card-text mb-2 text-center">Sign in to ePondo</p>
+<p class="card-text mb-2 text-center">Log-In to ePondo</p>
     @if(session('status'))
     <div class="w-100 text-center">
         <div class="alert alert-success" role="alert">
@@ -51,9 +51,9 @@
     <button type="submit" class="btn btn-primary btn-block" tabindex="4">Sign in</button>
 </form>
 <p class="text-center mt-2">
-    <span>New on our platform?</span>
+    <span>New in ePondo / No Account ?</span>
     <a href="{{route('register')}}">
-        <span>Create an account</span>
+        <strong>Sign-Up</strong>
     </a>
 </p>
 @endsection
