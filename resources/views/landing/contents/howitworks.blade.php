@@ -134,7 +134,7 @@
                   </button>
                 </h5>
               </div>
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                   <div class="row mb-2">
                     <div class="col" style="text-align: left;">
@@ -169,7 +169,7 @@
                   </button>
                 </h5>
               </div>
-              <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
                   <div class="row mb-2">
                     <div class="col" style="text-align: left;">
@@ -214,7 +214,7 @@
                   </button>
                 </h5>
               </div>
-              <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
                   <div class="row mb-2">
                     <div class="col" style="text-align: left;">

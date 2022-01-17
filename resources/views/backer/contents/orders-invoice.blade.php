@@ -327,7 +327,7 @@
                         <div style="text-align:right;margin-right:20px;">
                             <h6>Sub-Total : </h6>
                             <h6>Transaction Fee : </h6>
-                            <h6>Processing Fee : </h6>
+                            <h6>PayPal Processing Fee : </h6>
                             <h6>Added Charges : </h6>
                         </div>
                         <div style="text-align:right;margin:0 20px 0 10px">
